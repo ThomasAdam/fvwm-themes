@@ -53,6 +53,10 @@ AddToFunc   FuncFvwmReloadDecor
 + I AddTitleStyle TiledPixmap button/title_bottom.png -- Flat Bottom
 + I AddTitleStyle Pixmap      button/title_left.png   -- Flat Left
 + I AddTitleStyle Pixmap      button/title_right.png  -- Flat Right
++ I AddButtonStyle All TiledPixmap button/title_top.png    -- Flat Top
++ I AddButtonStyle All TiledPixmap button/title_bottom.png -- Flat Bottom
++ I AddButtonStyle All Pixmap      button/title_left.png   -- Flat Left
++ I AddButtonStyle All Pixmap      button/title_right.png  -- Flat Right
 + I AddButtonStyle 1 AllNormal  Pixmap button/close.png
 + I AddButtonStyle 2 AllNormal  Pixmap button/maximize.png
 + I AddButtonStyle 4 AllNormal  Pixmap button/iconify.png
