@@ -1,3 +1,8 @@
+2002-05-30  migo  <migo@homemail.com>
+
+	Makefile.am:
+	small changes
+
 2002-05-29  migo  <migo@homemail.com>
 
 	* themes/redmondxp/modules/FvwmButtons-Panel:

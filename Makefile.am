@@ -29,6 +29,9 @@ install-data-local:
 		find "$(FT_DATADIR)/$$dir" -name CVS -exec rm -r {} \; 2>/dev/null; \
 	done
 
+	$(FVWM_BINDIR)/fvwm-config --version | grep 2.4. >/dev/null \
+		&& rm -rf "$(FT_DATADIR)/themes/redmondxp" || true
+
 	sed -e "s,xGNOME_IMAGES_DIRx,$(GNOME_IMAGES_DIR),g" \
 		$(SETTINGS_FILE) > $(SETTINGS_FILE).tmp && \
 	mv -f $(SETTINGS_FILE).tmp $(SETTINGS_FILE)
@@ -87,7 +90,10 @@ dist-hook:
 #    make distcheck2  # instead of make distcheck
 #    make distclean2  # instead of make distclean
 
-dist2: dist
+cleanup-cvs:
+	find . -name '.#*' -exec rm \{\} \; >/dev/null
+
+dist2: cleanup-cvs dist
 	gzip -dc $(distdir).tar.gz | bzip2 -9 >$(distdir).tar.bz2
 
 distcheck2: dist2 distcheck
@@ -96,9 +102,14 @@ distcheck2: dist2 distcheck
 	echo "$$banner"; \
 	echo "$$dashes"
 
-distclean2: distclean
+distclean2: cleanup-cvs distclean
 
-dist3: dist
+#    make dist3 - creates -base and -extra tarballs (tar.gz)
+#    make dist4 - creates -base and -extra tarballs (tar.gz and tar.bz2)
+#    make dist5 - creates also individual themes tarballs (tar.gz)
+#    make dist6 - creates also individual themes tarballs (tar.gz and tar.bz2)
+
+dist3: cleanup-cvs dist
 	@$(TAR) xzf $(distdir).tar.gz
 	@rm -rf $(PACKAGE)-extra-$(VERSION)
 	@mkdir $(PACKAGE)-extra-$(VERSION)
@@ -151,6 +162,9 @@ dist6: dist5
 #    make rpm-dist cparams='--enable-gnome --quiet' mparams='CFLAGS="-O2 -g"'
 
 rpm-dist: dist rpm-this
+
+#    make rpm-dist3 - creates -base and -extra rpms
+#    make rpm-dist5 - creates individual themes rpms
 
 rpm-dist3: dist3 rpm-base-this rpm-extra-this
 
