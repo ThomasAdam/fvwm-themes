@@ -72,6 +72,10 @@ AddToFunc   FuncFvwmReloadDecor
 	ActiveUp   (Pixmap button/iconify-activeup.xpm   -- flat) \
 	ActiveDown (Pixmap button/iconify-activedown.xpm -- flat) \
 	Inactive   (Pixmap button/iconify-inactive.xpm   -- flat)
++ I AddButtonStyle 4 \
+	ToggledActiveUp   (Pixmap button/maximize-activedown.xpm -- flat) \
+	ToggledActiveDown (Pixmap button/maximize-activeup.xpm   -- flat) \
+	ToggledInactive   (Pixmap button/maximize-inactive.xpm   -- flat)
 
 DestroyFunc FuncFvwmOverRideWindowLook
 AddToFunc   FuncFvwmOverRideWindowLook
