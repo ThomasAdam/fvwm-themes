@@ -15,21 +15,21 @@ AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
 
 
 DestroyModuleConfig FvwmPager-Single*
-*FvwmPager-SingleColumns 1
+*FvwmPager-Single: Columns 1
 
-*FvwmPager-SingleColorset * 14
-*FvwmPager-SingleHilightColorset * 15
-*FvwmPager-SingleBalloonColorset * 16
-*FvwmPager-SingleWindowColorsets 1 2
+*FvwmPager-Single: Colorset * 14
+*FvwmPager-Single: HilightColorset * 15
+*FvwmPager-Single: BalloonColorset * 16
+*FvwmPager-Single: WindowColorsets 1 2
 
-*FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-*FvwmPager-SingleSmallFont 5x8
-*FvwmPager-SingleBalloons            All
-*FvwmPager-SingleBalloonFont         lucidasanstypewriter-12
-*FvwmPager-SingleBalloonYOffset      +3
-*FvwmPager-SingleBalloonBorderWidth  1
+*FvwmPager-Single: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-Single: SmallFont 5x8
+*FvwmPager-Single: Balloons            All
+*FvwmPager-Single: BalloonFont         lucidasanstypewriter-12
+*FvwmPager-Single: BalloonYOffset      +3
+*FvwmPager-Single: BalloonBorderWidth  1
 
-*FvwmPager-SingleLabel 0 Main
-*FvwmPager-SingleLabel 1 Web & Mail
-*FvwmPager-SingleLabel 2 Devel
-*FvwmPager-SingleLabel 3 Games
+*FvwmPager-Single: Label 0 Main
+*FvwmPager-Single: Label 1 Web & Mail
+*FvwmPager-Single: Label 2 Devel
+*FvwmPager-Single: Label 3 Games

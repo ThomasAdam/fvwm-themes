@@ -2,80 +2,80 @@
 # Probably may be renamed back later.
 
 DestroyModuleConfig FvwmButtons-AsBar*
-*FvwmButtons-AsBarColorset 10
-*FvwmButtons-AsBarFrame 1
-*FvwmButtons-AsBarColumns 1
-*FvwmButtons-AsBarFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-#*FvwmButtons-AsBarGeometry 12x440-5-64
-*FvwmButtons-AsBarGeometry -5-5
-*FvwmButtons-AsBar(1x3, Size 64 64, Colorset 12, Icon 48x48-general/netscape.xpm, \
+*FvwmButtons-AsBar: Colorset 10
+*FvwmButtons-AsBar: Frame 1
+*FvwmButtons-AsBar: Columns 1
+*FvwmButtons-AsBar: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+#*FvwmButtons-AsBar: Geometry 12x440-5-64
+*FvwmButtons-AsBar: Geometry -5-5
+*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Icon 48x48-general/netscape.xpm, \
 	Action(Mouse 1) 'FuncFvwmWWW', \
 	Action(Mouse 2) 'FuncFvwm2WWW', \
 	Action(Mouse 3) 'FuncFvwm3WWW')
-*FvwmButtons-AsBar(1x3, Size 64 64, Colorset 12, Swallow (Kill) "FvwmApplet-DayClock" \
+*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Swallow (Kill) "FvwmApplet-DayClock" \
 	'FvwmScript FvwmApplet-DayClock 10 13')
-#*FvwmButtons-AsBar(1x3, Size 64 64, Colorset 12, Swallow "asclock" 'Exec exec asclock -shape -position +5000+5000')
-*FvwmButtons-AsBar(1x3, Size 64 64, Colorset 12, Title(Left) ..., Icon 48x48-general/folders.xpm, Panel(left, position mlr) "FvwmButtons-AsPanel" 'FvwmButtons -transientpanel FvwmButtons-AsPanel')
-#*FvwmButtons-AsBar(1x3, Size 64 64, Colorset 12, Swallow "xeyes" 'Exec exec xeyes -shape -geometry +5000+5000')
-*FvwmButtons-AsBar(1x3, Size 64 64, Colorset 12, Title "load", \
+#*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Swallow "asclock" 'Exec exec asclock -shape -position +5000+5000')
+*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Title(Left) ..., Icon 48x48-general/folders.xpm, Panel(left, position mlr) "FvwmButtons-AsPanel" 'FvwmButtons -transientpanel FvwmButtons-AsPanel')
+#*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Swallow "xeyes" 'Exec exec xeyes -shape -geometry +5000+5000')
+*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Title "load", \
 	Swallow(UseOld,NoHints) "xload" \
 	`Exec exec xload -bg $[bg.cs11] -fg $[fg.cs11] -hl $[shadow.cs11]\
 	-update 5 -nolabel -geometry +5000+5000`)
-*FvwmButtons-AsBar(1x3, Size 64 64, Colorset 12, Icon 48x48-general/wm-restart.xpm, Action 'Restart')
-*FvwmButtons-AsBar(1x3, Size 64 64, Colorset 12, Icon 48x48-general/choice-no.xpm, Action 'Module FvwmForm FormFvwmQuitVerify.')
-*FvwmButtons-AsBar(1x1, Colorset 12, Title(Left) ...., Panel(left, position module bottom mtb mlr) "FvwmButtons-AsAppletsPanel" 'FvwmButtons FvwmButtons-AsAppletsPanel')
+*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Icon 48x48-general/wm-restart.xpm, Action 'Restart')
+*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Icon 48x48-general/choice-no.xpm, Action 'Module FvwmForm FormFvwmQuitVerify.')
+*FvwmButtons-AsBar: (1x1, Colorset 12, Title(Left) ...., Panel(left, position module bottom mtb mlr) "FvwmButtons-AsAppletsPanel" 'FvwmButtons FvwmButtons-AsAppletsPanel')
 
 DestroyModuleConfig FvwmButtons-AsPanel*
-*FvwmButtons-AsPanelColorset 12
-*FvwmButtons-AsPanelFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-*FvwmButtons-AsPanelGeometry +5000+5000
-*FvwmButtons-AsPanelRows 1
-*FvwmButtons-AsPanelFrame 1
-*FvwmButtons-AsPanel(Size 64 64, Icon 48x48-general/folder.xpm, Colorset 12, \
+*FvwmButtons-AsPanel: Colorset 12
+*FvwmButtons-AsPanel: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmButtons-AsPanel: Geometry +5000+5000
+*FvwmButtons-AsPanel: Rows 1
+*FvwmButtons-AsPanel: Frame 1
+*FvwmButtons-AsPanel: (Size 64 64, Icon 48x48-general/folder.xpm, Colorset 12, \
 	Action(Mouse 1) 'FuncFvwmFileManager', \
 	Action(Mouse 2) 'FuncFvwm2FileManager', \
 	Action(Mouse 3) 'FuncFvwm3FileManager')
-*FvwmButtons-AsPanel(Size 64 64, Icon 48x48-general/terminal.xpm, Colorset 12, \
+*FvwmButtons-AsPanel: (Size 64 64, Icon 48x48-general/terminal.xpm, Colorset 12, \
 	Action(Mouse 1) 'FuncFvwmTerminal', \
 	Action(Mouse 2) 'FuncFvwm2Terminal', \
 	Action(Mouse 3) 'FuncFvwm3Terminal')
-*FvwmButtons-AsPanel(Size 64 64, Icon 48x48-general/editor.xpm, Colorset 12, \
+*FvwmButtons-AsPanel: (Size 64 64, Icon 48x48-general/editor.xpm, Colorset 12, \
 	Action(Mouse 1) 'FuncFvwmEditor', \
 	Action(Mouse 2) 'FuncFvwm2Editor', \
 	Action(Mouse 3) 'FuncFvwm3Editor')
-*FvwmButtons-AsPanel(Size 64 64, Icon 48x48-general/ghostview.xpm, \
+*FvwmButtons-AsPanel: (Size 64 64, Icon 48x48-general/ghostview.xpm, \
 	Colorset 12, \
 	Action(Mouse 1) 'FuncFvwmDocView', \
 	Action(Mouse 2) 'FuncFvwm2DocView', \
 	Action(Mouse 3) 'FuncFvwm3DocView')
-*FvwmButtons-AsPanel(Size 64 64, Icon 48x48-general/xv.xpm, Colorset 12, \
+*FvwmButtons-AsPanel: (Size 64 64, Icon 48x48-general/xv.xpm, Colorset 12, \
 	Action(Mouse 1) 'FuncFvwmImageView', \
 	Action(Mouse 2) 'FuncFvwm2ImageView', \
 	Action(Mouse 3) 'FuncFvwm3ImageView')
-*FvwmButtons-AsPanel(Size 64 64, Icon 48x48-general/image-viewer.xpm, \
+*FvwmButtons-AsPanel: (Size 64 64, Icon 48x48-general/image-viewer.xpm, \
 	Colorset 12, \
 	Action(Mouse 1) 'FuncFvwmImageEdit', \
 	Action(Mouse 2) 'FuncFvwmImageEdit', \
 	Action(Mouse 3) 'FuncFvwmImageEdit')
 
 DestroyModuleConfig FvwmButtons-AsAppletsPanel*
-*FvwmButtons-AsAppletsPanelColorset 12
-*FvwmButtons-AsAppletsPanelFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-*FvwmButtons-AsAppletsPanelGeometry +5000+5000
-*FvwmButtons-AsAppletsPanelRows 1
-*FvwmButtons-AsAppletsPanelFrame 1
-#*FvwmButtons-AsAppletsPanel(Size 64 64, Colorset 12, Swallow "asmixer" 'Exec exec asmixer -g +5000+5000')
-#*FvwmButtons-AsAppletsPanel(Size 64 64, Swallow "asMix" 'Exec exec asmix -shape -g +5000+5000')
-#*FvwmButtons-AsAppletsPanel(Size 64 64, Colorset 12, Swallow "ascd" 'Exec exec ascd -g +5000+5000')
-#*FvwmButtons-AsAppletsPanel(Size 64 64, Colorset 12, Swallow "asfsm" 'Exec exec asfsm -bp None -g +5000+5000')
-#*FvwmButtons-AsAppletsPanel(Size 64 64, Title aspostit, Swallow "aspostit" 'Exec exec aspostit -g +5000+5000')
-#*FvwmButtons-AsAppletsPanel(Size 64 64, Colorset 12, Swallow "asapm" 'Exec exec asapm -position +5000+5000')
-#*FvwmButtons-AsAppletsPanel(Size 64 64, Colorset 12, Swallow "asmodem" 'Exec exec asmodem -s -p +5000+5000')
-#*FvwmButtons-AsAppletsPanel(Size 64 64, Colorset 12, Swallow "asppp" 'Exec exec asppp -g +5000+5000')
-*FvwmButtons-AsAppletsPanel(Size 64 64, Colorset 12, \
+*FvwmButtons-AsAppletsPanel: Colorset 12
+*FvwmButtons-AsAppletsPanel: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmButtons-AsAppletsPanel: Geometry +5000+5000
+*FvwmButtons-AsAppletsPanel: Rows 1
+*FvwmButtons-AsAppletsPanel: Frame 1
+#*FvwmButtons-AsAppletsPanel: (Size 64 64, Colorset 12, Swallow "asmixer" 'Exec exec asmixer -g +5000+5000')
+#*FvwmButtons-AsAppletsPanel: (Size 64 64, Swallow "asMix" 'Exec exec asmix -shape -g +5000+5000')
+#*FvwmButtons-AsAppletsPanel: (Size 64 64, Colorset 12, Swallow "ascd" 'Exec exec ascd -g +5000+5000')
+#*FvwmButtons-AsAppletsPanel: (Size 64 64, Colorset 12, Swallow "asfsm" 'Exec exec asfsm -bp None -g +5000+5000')
+#*FvwmButtons-AsAppletsPanel: (Size 64 64, Title aspostit, Swallow "aspostit" 'Exec exec aspostit -g +5000+5000')
+#*FvwmButtons-AsAppletsPanel: (Size 64 64, Colorset 12, Swallow "asapm" 'Exec exec asapm -position +5000+5000')
+#*FvwmButtons-AsAppletsPanel: (Size 64 64, Colorset 12, Swallow "asmodem" 'Exec exec asmodem -s -p +5000+5000')
+#*FvwmButtons-AsAppletsPanel: (Size 64 64, Colorset 12, Swallow "asppp" 'Exec exec asppp -g +5000+5000')
+*FvwmButtons-AsAppletsPanel: (Size 64 64, Colorset 12, \
 	Swallow (Kill) "FvwmApplet-Mixer" \
 	'FvwmScript FvwmApplet-Mixer 10 13')
-#*FvwmButtons-AsAppletsPanel(Size 64 64, Colorset 12, Swallow "asmail" 'Exec exec asmail -g +5000+5000')
-*FvwmButtons-AsAppletsPanel(Size 64 64, Colorset 12, Swallow "xbiff" `Exec exec xbiff -bg $[bg.cs13] -fg $[fg.cs13] -geometry +5000+5000`)
-*FvwmButtons-AsAppletsPanel(Size 64 64, Colorset 12, Swallow "xeyes" 'Exec exec xeyes -shape -geometry +5000+5000')
-#*FvwmButtons-AsAppletsPanel(2x1, Swallow "FvwmPager-Single" 'Module FvwmPager FvwmPager-Single * *')
+#*FvwmButtons-AsAppletsPanel: (Size 64 64, Colorset 12, Swallow "asmail" 'Exec exec asmail -g +5000+5000')
+*FvwmButtons-AsAppletsPanel: (Size 64 64, Colorset 12, Swallow "xbiff" `Exec exec xbiff -bg $[bg.cs13] -fg $[fg.cs13] -geometry +5000+5000`)
+*FvwmButtons-AsAppletsPanel: (Size 64 64, Colorset 12, Swallow "xeyes" 'Exec exec xeyes -shape -geometry +5000+5000')
+#*FvwmButtons-AsAppletsPanel: (2x1, Swallow "FvwmPager-Single" 'Module FvwmPager FvwmPager-Single * *')

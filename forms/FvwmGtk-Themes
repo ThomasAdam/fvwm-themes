@@ -5,65 +5,65 @@
 #   KillModule FvwmGtk FvwmGtk-Themes
 #   Read FvwmGtk-Themes
 #   Module FvwmGtk FvwmGtk-Themes
-#   SendToModule FvwmGtk SettingsDialog  # why not FvwmGtk-Themes?
+#   SendToModule FvwmGtk-Themes SettingsDialog
 
 DestroyModuleConfig FvwmGtk-Themes*
 
-*FvwmGtk-ThemesDestroy SettingsDialog
-*FvwmGtk-ThemesDialog SettingsDialog "FVWM Theme Settings"
-*FvwmGtk-ThemesBox vertical 10 12
-*FvwmGtk-ThemesLabel "FVWM Theme Settings" -- 10 expand fill
+*FvwmGtk-Themes: Destroy SettingsDialog
+*FvwmGtk-Themes: Dialog SettingsDialog "FVWM Theme Settings"
+*FvwmGtk-Themes: Box vertical 10 12
+*FvwmGtk-Themes: Label "FVWM Theme Settings" -- 10 expand fill
 
-*FvwmGtk-ThemesFrame Switches
-*FvwmGtk-ThemesBox
-*FvwmGtk-ThemesCheckButton animation Animation enabled disabled on
-*FvwmGtk-ThemesCheckButton background Background theme disabled on
-*FvwmGtk-ThemesCheckButton banner Banner enabled disabled on
-*FvwmGtk-ThemesCheckButton stroke Stroke enabled disabled
-*FvwmGtk-ThemesEndBox
-*FvwmGtk-ThemesEndFrame
+*FvwmGtk-Themes: Frame Switches
+*FvwmGtk-Themes: Box
+*FvwmGtk-Themes: CheckButton animation Animation enabled disabled on
+*FvwmGtk-Themes: CheckButton background Background theme disabled on
+*FvwmGtk-Themes: CheckButton banner Banner enabled disabled on
+*FvwmGtk-Themes: CheckButton stroke Stroke enabled disabled
+*FvwmGtk-Themes: EndBox
+*FvwmGtk-Themes: EndFrame
 
 ### I don't know why this gives Gtk-CRITICAL, probably FvwmGtk bug.
-*FvwmGtk-ThemesFrame "Sound Player"
+*FvwmGtk-Themes: Frame "Sound Player"
 # the following box is optional, just not to expand all frame
-*FvwmGtk-ThemesBox
-*FvwmGtk-ThemesOptionMenu sound-player
-#*FvwmGtk-ThemesDestroy sound-player2
-#*FvwmGtk-ThemesMenu sound-player2
-*FvwmGtk-ThemesItem "Disabled" disabled on
-*FvwmGtk-ThemesItem "play (sox)" play
-*FvwmGtk-ThemesItem "esdplay" esdplay
-*FvwmGtk-ThemesItem "audioplay" audioplay
-*FvwmGtk-ThemesItem "auplay" auplay
-*FvwmGtk-ThemesItem "rplay" rplay
-*FvwmGtk-ThemesItem "rplayD" rplayD
-*FvwmGtk-ThemesEndOptionMenu
-*FvwmGtk-ThemesEndBox
-*FvwmGtk-ThemesEndFrame
+*FvwmGtk-Themes: Box
+*FvwmGtk-Themes: OptionMenu sound-player
+#*FvwmGtk-Themes: Destroy sound-player2
+#*FvwmGtk-Themes: Menu sound-player2
+*FvwmGtk-Themes: Item "Disabled" disabled on
+*FvwmGtk-Themes: Item "play (sox)" play
+*FvwmGtk-Themes: Item "esdplay" esdplay
+*FvwmGtk-Themes: Item "audioplay" audioplay
+*FvwmGtk-Themes: Item "auplay" auplay
+*FvwmGtk-Themes: Item "rplay" rplay
+*FvwmGtk-Themes: Item "rplayD" rplayD
+*FvwmGtk-Themes: EndOptionMenu
+*FvwmGtk-Themes: EndBox
+*FvwmGtk-Themes: EndFrame
 
-*FvwmGtk-ThemesFrame "Auto Raise"
-*FvwmGtk-ThemesBox
-*FvwmGtk-ThemesRadioGroup autoraise
-*FvwmGtk-ThemesRadioButton "Disabled" disabled on
-*FvwmGtk-ThemesRadioButton "Auto Raise (1/2 sec)" autoraise-500
-*FvwmGtk-ThemesRadioButton "Auto Raise (2 sec)" autoraise-2000
-*FvwmGtk-ThemesRadioButton "Auto Raise Modules" modules
-*FvwmGtk-ThemesEndRadioGroup
-*FvwmGtk-ThemesEndBox
-*FvwmGtk-ThemesEndFrame
+*FvwmGtk-Themes: Frame "Auto Raise"
+*FvwmGtk-Themes: Box
+*FvwmGtk-Themes: RadioGroup autoraise
+*FvwmGtk-Themes: RadioButton "Disabled" disabled on
+*FvwmGtk-Themes: RadioButton "Auto Raise (1/2 sec)" autoraise-500
+*FvwmGtk-Themes: RadioButton "Auto Raise (2 sec)" autoraise-2000
+*FvwmGtk-Themes: RadioButton "Auto Raise Modules" modules
+*FvwmGtk-Themes: EndRadioGroup
+*FvwmGtk-Themes: EndBox
+*FvwmGtk-Themes: EndFrame
 
-*FvwmGtk-ThemesFrame "Icon Styles"
-*FvwmGtk-ThemesBox
-*FvwmGtk-ThemesRadioGroup iconstyles
-*FvwmGtk-ThemesRadioButton "Disabled" disabled
-*FvwmGtk-ThemesRadioButton "Native" native on
-*FvwmGtk-ThemesRadioButton "wm-icons" wm-icons
-*FvwmGtk-ThemesEndBox
-*FvwmGtk-ThemesEndFrame
+*FvwmGtk-Themes: Frame "Icon Styles"
+*FvwmGtk-Themes: Box
+*FvwmGtk-Themes: RadioGroup iconstyles
+*FvwmGtk-Themes: RadioButton "Disabled" disabled
+*FvwmGtk-Themes: RadioButton "Native" native on
+*FvwmGtk-Themes: RadioButton "wm-icons" wm-icons
+*FvwmGtk-Themes: EndBox
+*FvwmGtk-Themes: EndFrame
 
-*FvwmGtk-ThemesBox homogeneous
+*FvwmGtk-Themes: Box homogeneous
 # Maybe to add "close" before "--"?
-*FvwmGtk-ThemesButton "Apply" "FuncFvwmThemesConfigAndUpdate ' \
+*FvwmGtk-Themes: Button "Apply" "FuncFvwmThemesConfigAndUpdate ' \
 	--choice settings/animation=$(animation) \
 	--choice settings/background=$(background) \
 	--choice settings/banner=$(banner) \
@@ -82,7 +82,7 @@ DestroyModuleConfig FvwmGtk-Themes*
 #	--choice settings/gnome/user-menu=$(gnome/user-menu) \
 #	--choice settings/gnome/anotherlevel-menu=$(gnome/anotherlevel-menu) \
 
-*FvwmGtk-ThemesButton "Close" close
-*FvwmGtk-ThemesEndBox
+*FvwmGtk-Themes: Button "Close" close
+*FvwmGtk-Themes: EndBox
 
-*FvwmGtk-ThemesEndBox
+*FvwmGtk-Themes: EndBox

@@ -1,29 +1,29 @@
 DestroyModuleConfig FvwmIconMan*
-*FvwmIconMan*numManagers 1
-*FvwmIconMan*resolution desk
+*FvwmIconMan: *numManagers 1
+*FvwmIconMan: *resolution desk
 
-*FvwmIconMan*Colorset		12
-*FvwmIconMan*iconcolorset	19
-*FvwmIconMan*plaincolorset	17
-*FvwmIconMan*selectcolorset	20
-*FvwmIconMan*focuscolorset	18
-*FvwmIconMan*focusandselectcolorset 20
+*FvwmIconMan: *colorset		12
+*FvwmIconMan: *iconcolorset	19
+*FvwmIconMan: *plaincolorset	17
+*FvwmIconMan: *selectcolorset	20
+*FvwmIconMan: *focuscolorset	18
+*FvwmIconMan: *focusandselectcolorset 20
 
-*FvwmIconMan*iconbutton		up
-*FvwmIconMan*plainbutton	up
-*FvwmIconMan*selectbutton	down
-*FvwmIconMan*focusbutton	up
-*FvwmIconMan*focusandselectbutton down
+*FvwmIconMan: *iconbutton		up
+*FvwmIconMan: *plainbutton	up
+*FvwmIconMan: *selectbutton	down
+*FvwmIconMan: *focusbutton	up
+*FvwmIconMan: *focusandselectbutton down
 
-*FvwmIconMan*font        7x13bold
-*FvwmIconMan*format      "%t"
-*FvwmIconMan*action   Mouse   1 N sendcommand "FuncFvwmDeiconifyFocusAndRaise"
-*FvwmIconMan*action   Mouse   2 N sendcommand "Iconify"
-*FvwmIconMan*action   Mouse   3 N sendcommand "Popup MenuFvwmWindowOps2 Mouse c -102m"
-*FvwmIconMan*followfocus true
-*FvwmIconMan*sort        none
-*FvwmIconMan*dontshow icon=Untitled resource=Untitled
-*FvwmIconMan*drawicons false
-*FvwmIconMan*buttongeometry  300x0
-*FvwmIconMan*managergeometry 5x1+0+0
-*FvwmIconMan*NoIconAction "SendToModule FvwmAnimate animate"
+*FvwmIconMan: *font        7x13bold
+*FvwmIconMan: *format      "%t"
+*FvwmIconMan: *action   Mouse   1 N sendcommand "FuncFvwmDeiconifyFocusAndRaise"
+*FvwmIconMan: *action   Mouse   2 N sendcommand "Iconify"
+*FvwmIconMan: *action   Mouse   3 N sendcommand "Popup MenuFvwmWindowOps2 Mouse c -102m"
+*FvwmIconMan: *followfocus true
+*FvwmIconMan: *sort        none
+*FvwmIconMan: *dontshow icon=Untitled resource=Untitled
+*FvwmIconMan: *drawicons false
+*FvwmIconMan: *buttongeometry  300x0
+*FvwmIconMan: *managergeometry 5x1+0+0
+*FvwmIconMan: *NoIconAction "SendToModule FvwmAnimate animate"

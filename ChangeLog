@@ -1,11 +1,36 @@
-2000-09-07  migo  <migo@homemail.com>
+2000-09-08  migo  <migo@homemail.com>
 
 	* configure.in:
+	* NEWS:
 	increased version to 0.3.19
 
 	* bin/fvwm-themes-config.in:
 	* themes/*/modules/main:
 	removed commented FuncFvwmSessionStartThemeModules
+
+	* themes/*/modules/main:Fvwm*:
+	* themes/olicha/modules/main:
+	* themes/*/colors*:
+	* doc/colorsets:
+	* bin/fvwm-themes-xrdb.in:
+	* forms/FvwmForm-ThemeSettings:
+	* forms/FvwmGtk-Themes:
+	* themes/*/sound:
+	* themes/default/settings/gnome/*/*:
+	completed conversion to a new module config syntax, i.e.
+	*FvwmIconBox: IconHiColorset 18
+	Default* in FvwmScript and FvwmForm are not consistent...
+	DestroyModuleConfig should be updated later too (when fvwm supports)
+
+	There is a problem with FvwmTheme synchronization, I will fix later.
+
+	* themes/*/sound:
+	* themes/default/settings/sound-player/*:
+	Finally, can rename FvwmSoundEvent to FvwmEvent-Sound
+
+	* themes/default/menus:
+	* forms/FvwmGtk-Themes:
+	Now that SendToModule supports aliases, use FvwmGtk-Themes
 
 2000-09-07  migo  <migo@homemail.com>
 

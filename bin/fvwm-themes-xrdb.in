@@ -26,7 +26,7 @@ my @lines = <INFILE>;
 close(INFILE);
 
 foreach (@lines) {
-	if (/^\*FvwmThemeColorset\s+(\d+)\s+(.*)$/) {
+	if (/^\*FvwmTheme:?\s*Colorset\s+(\d+)\s+(.*)$/) {
 		my $cs = $colorsetNames[$1] || '*unknown*';
 		my $options = $2;
 		$fore{$cs} = $2 if $options =~ /(fg|foreground)\s+([^\s,]+)/;
