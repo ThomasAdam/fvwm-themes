@@ -22,11 +22,11 @@ install-data-local:
 		rm -rf "$(FT_DATADIR)/$$dir"; \
 		(if test -f $$dir.tar.gz; then gzip -dc $$dir.tar.gz; else \
 		tar cpf - $$dir; fi) | (cd "$(FT_DATADIR)" && tar xfBp -); \
-		find "$(FT_DATADIR)/$$dir" -name CVS -exec rm -r {} \; 2>/dev/null ; \
+		find "$(FT_DATADIR)/$$dir" -name CVS -exec rm -r {} \; 2>/dev/null; \
 	done
 
 	sed -e "s,xGNOME_IMAGES_DIRx,$(GNOME_IMAGES_DIR),g" \
-	$(SETTINGS_FILE) > $(SETTINGS_FILE).tmp; \
+		$(SETTINGS_FILE) > $(SETTINGS_FILE).tmp && \
 	mv -f $(SETTINGS_FILE).tmp $(SETTINGS_FILE)
 
 	$(bindir)/fvwm-themes-config --site --reset
@@ -79,7 +79,7 @@ dist-hook:
 #    make distclean2  # instead of make distclean
 
 dist2: dist
-	gzip -dc $(distdir).tar.gz | bzip2 -9c >$(distdir).tar.bz2;
+	gzip -dc $(distdir).tar.gz | bzip2 -9c >$(distdir).tar.bz2
 
 distcheck2: dist2 distcheck
 	@banner="$(distdir).tar.bz2 - ready for distribution"; \
@@ -90,34 +90,34 @@ distcheck2: dist2 distcheck
 distclean2: distclean
 
 dist3: dist
-	tar xzf $(distdir).tar.gz; \
-	mkdir $(PACKAGE)-extra-$(VERSION); \
-	for t in $(EXTRA_THEMES); do \
-		echo "creating $$t gz tar ball"; \
+	@tar xzf $(distdir).tar.gz
+	@mkdir $(PACKAGE)-extra-$(VERSION)
+	@for t in $(EXTRA_THEMES); do \
+		echo "creating ft-$$t-$(VERSION).tar.gz"; \
 		mkdir ft-$$t-$(VERSION); \
 		cp -rdp $(distdir)/themes/$$t $(PACKAGE)-extra-$(VERSION); \
 		mv -f $(distdir)/themes/$$t ft-$$t-$(VERSION); \
 		tar czf ft-$$t-$(VERSION).tar.gz ft-$$t-$(VERSION); \
 		rm -rf ft-$$t-$(VERSION); \
-	done; \
-	echo "creating extra gz tar ball"; \
-	tar czf $(PACKAGE)-extra-$(VERSION).tar.gz $(PACKAGE)-extra-$(VERSION); \
-	rm -rf $(PACKAGE)-extra-$(VERSION); \
-	echo "creating main gz tar ball"; \
-	tar czf $(PACKAGE)-main-$(VERSION).tar.gz $(distdir); \
-	rm -rf $(distdir)
+	done
+	@echo "creating $(PACKAGE)-extra-$(VERSION).tar.gz"
+	@tar czf $(PACKAGE)-extra-$(VERSION).tar.gz $(PACKAGE)-extra-$(VERSION)
+	@rm -rf $(PACKAGE)-extra-$(VERSION)
+	@echo "creating $(PACKAGE)-base-$(VERSION).tar.gz"
+	@tar czf $(PACKAGE)-base-$(VERSION).tar.gz $(distdir)
+	@rm -rf $(distdir)
 
 dist4: dist3
-	echo "creating bz2 full tar ball"; \
-	gzip -dc $(distdir).tar.gz | bzip2 -9c >$(distdir).tar.bz2; \
-	for t in $(EXTRA_THEMES); do \
-		echo "creating $$t bz2 tar ball"; \
+	@echo "creating $(distdir).tar.bz2"
+	@gzip -dc $(distdir).tar.gz | bzip2 -9c >$(distdir).tar.bz2
+	@for t in $(EXTRA_THEMES); do \
+		echo "creating ft-$$t-$(VERSION).tar.bz2"; \
 		gzip -dc ft-$$t-$(VERSION).tar.gz | bzip2 -9c >ft-$$t-$(VERSION).tar.bz2; \
-	done; \
-	echo "creating extra bz2 tar ball"; \
-	gzip -dc $(PACKAGE)-extra-$(VERSION).tar.gz | bzip2 -9c >$(PACKAGE)-extra-$(VERSION).tar.bz2; \
-	echo "creating main bz2 tar ball"; \
-	gzip -dc $(PACKAGE)-main-$(VERSION).tar.gz | bzip2 -9c >$(PACKAGE)-main-$(VERSION).tar.bz2;
+	done
+	@echo "creating $(PACKAGE)-extra-$(VERSION).tar.bz2"
+	@gzip -dc $(PACKAGE)-extra-$(VERSION).tar.gz | bzip2 -9c >$(PACKAGE)-extra-$(VERSION).tar.bz2
+	@echo "creating $(PACKAGE)-base-$(VERSION).tar.bz2"
+	@gzip -dc $(PACKAGE)-base-$(VERSION).tar.gz | bzip2 -9c >$(PACKAGE)-base-$(VERSION).tar.bz2
 
 ## ---------------------------------------------------------------------------
 ## Produce an rpm package using dist or from the given tarball

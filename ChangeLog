@@ -1,3 +1,10 @@
+2001-05-22  migo  <migo@homemail.com>
+
+	* Makefile.am:
+	* bin/fvwm-themes-config.in:
+	small improvements and fixes of the previous commit,
+	s/--create-themes/--create-pack/
+
 2001-05-21  olicha  <olivier.chapuis@free.fr>
 
 	* Makefile.am:

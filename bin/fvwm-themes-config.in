@@ -82,10 +82,9 @@ sub showHelp {
 	print "\t--set-locked cmp=v set or unset the component's lock\n";
 	print "\t--pipe             generate fvwm commands\n";
 	print "\t--install theme..  install theme.tar.gz or theme.tar.bz2 files\n";
-	print "\t--force-install    remove old themes without prompting\n";
-	print "\t--create-themes name theme.. create a themes tarball from themes\n";
-	print "\t--tmp-dir          full path to a temporary directory";
-	print "\t";
+	print "\t--force-install    replace old themes without prompting\n";
+	print "\t--create-pack pack theme..   create a pack from given themes\n";
+	print "\t--tmp-dir          full path to a temporary directory\n";
 	exit 0;
 }
 
@@ -2071,7 +2070,7 @@ my $comMode = 0;
 my $comName = "config";
 my $comPid = 0;
 my $install = 0;
-my $createThemes = "";
+my $createPack = undef;
 my $tmpDir = "/tmp";
 my $forceInstall = 0;
 my $fvwmscript = 0;
@@ -2103,10 +2102,10 @@ GetOptions(
 	"variant=s%"  => $variants,
 	"set-locked=s%" => $setLockeds,
 	"pipe"        => \$pipe,
-	"install"         => \$install,
-	"force-install"   => \$forceInstall,
-	"create-themes=s" => \$createThemes,
-	"tmp-dir=s"       => \$tmpDir,
+	"install"       => \$install,
+	"force-install" => \$forceInstall,
+	"create-pack=s" => \$createPack,
+	"tmp-dir=s"     => \$tmpDir,
 	"com-mode"    => \$comMode,
 	"com-name=s"  => \$comName,
 	"fvwmscript"  => \$fvwmscript,
@@ -2132,14 +2131,14 @@ if ($install) {
 		$file = "$dir/$file" unless $file =~ m:^/:;
 		errDie("No such file $file") unless -f $file;
 		my ($dir,$outDir,$ext) = $file =~ m:^(.*/|)([^/]+)\.tar\.(gz|bz2)$:;
-		my ($ver) = $outDir =~ /^[\w-]*[\w\d]*[-]+([.\d]+)$/;
+		my ($ver) = $outDir =~ /^[\w-]*[\w\d]*[-]+([\.\d]+)$/;
 		errDie("File '$file' is not a .tar.gz or .tar.bz2")
 			unless defined $dir || defined $outDir || defined $ext || defined $ver;
 		if ("$ver" ne "$version") {
 			print "WARNING: fvwm-themes version and tarball version differ\n";
 			if (!$forceInstall) {
 				print "Use the --force-install option if you really want to " .
-				  "install this tarball.\n";
+					"install this tarball.\n";
 				exit(0);
 			}
 		} 
@@ -2150,77 +2149,75 @@ if ($install) {
 			|| sysDie("Can't open untar for $file");
 		my $output = join('', <TAR>);
 		close(TAR) || errDie("\nErrors while installing $file");
-		opendir(DIR,"$outDir");
-		print"\n";
-		foreach (readdir(DIR)) {
-			my $answer = "";
-			next if /^\./;
-			errDie("Theme name '$_' contains unacceptable symbols")
-			  unless /^[\w\d-]+$/;
-			if (-d "$workDir/$themesSubDir/$_") {
-				my $notdone = 1;
-				$notdone = 0 if $forceInstall;
-				if ($notdone) {
-					print "Warning: A theme named $_ is already installed, ".
-							 "Do we replace it (y/n)? ";
+		opendir(DIR, $outDir);
+		print "\n";
+		my $theme;
+		foreach $theme (readdir(DIR)) {
+			next if $theme =~ /^\./;
+			errDie("Theme name '$theme' contains unacceptable symbols")
+				unless $theme =~ /^[\w\d-]+$/;
+			my $answer = "y";
+			if (-d "$workDir/$themesSubDir/$theme") {
+				my $prompt = 2;
+				$prompt = 0 if $forceInstall;
+				if ($prompt) {
+					print "Warning: A theme named $theme is already installed, ".
+						"Replace it (y/n)? ";
 				}
-				while ($notdone) {
+				while ($prompt > 0) {
 					$answer = readline(*STDIN);
 					chomp($answer);
-					if ($answer eq "y" || $answer eq "n") {
-						$notdone = 0;
-					}
-					else {
-						print "You must answer by y or n: ";
-					}
+					last if $answer eq "y" || $answer eq "n";
+					print "Please answer y or n, or Ctrl-C to cancel: [n] "
+						if --$prompt > 0;
 				}
 			}
-			if ($answer eq "y" || $answer eq "") {
-				if (-d "$workDir/$themesSubDir/$_") {
-					system ("rm -rf $workDir/$themesSubDir/$_");
+			if ($answer eq "y") {
+				if (-d "$workDir/$themesSubDir/$theme") {
+					system ("rm -rf $workDir/$themesSubDir/$theme");
 				}
-				rename "$outDir/$_" , "$workDir/$themesSubDir/$_";
-				print "Theme $_ is successfully installed in $themesDir\n\n";
+				rename "$outDir/$theme", "$workDir/$themesSubDir/$theme";
+				print "Theme $theme is successfully installed in $themesDir\n\n";
 			}
 			else {
-				print "Do not install $_\n\n";
-				system ("rm -rf $outDir/$_");
+				print "Theme $theme is not installed\n\n";
+				system ("rm -rf $outDir/$theme");
 			}
 		}
 		close(DIR);
 		rmdir "$outDir";
-		print "$outDir  installation procedure succeed\n";
+		print "Installation of $outDir is completed\n";
 	}
 	print "now \"Refresh with no cache\" and have fun ...\n\n";
 	exit(0);
 }
 
-if ($createThemes ne "") {
-	my $VERSION= '@VERSION@';
+if (defined $createPack) {
+	errDie("Pack name '$createPack' contains unacceptable symbols")
+		unless $createPack =~ /^[\w\d-]+$/;
+	my $version = '@VERSION@';
 	my $themesDir = "$workDir/$themesSubDir";
-	my $tarName = "ft-$createThemes-$VERSION";
+	my $tarName = "ft-$createPack-$version";
 	my $tarDir = "$tmpDir/$tarName";
-	errDie("$tmpDir must exist for creating themes tar ball " .
-			 "(see the --tmp-dir option)")
-	  unless -d $tmpDir;
+	errDie("$tmpDir must exist for creating themes pack " .
+		"(see --tmp-dir option)") unless -d $tmpDir;
 	if (-d "$tarDir") {
-		system("rm -rf $tarDir");
+		system("rm -rf '$tarDir'");
 	}
 	mkdir "$tarDir" ||
-	  errDie("Cannot create $tarDir (see the --tmp-dir option)");
+		errDie("Cannot create $tarDir (see the --tmp-dir option)");
 	errDie("Cannot chdir to $themesDir") unless chdir "$themesDir";
-	my $t;
-	foreach $t (@ARGV) {
-		errDie("Theme name '$t' contains unacceptable symbols")
-		  unless $t =~ /^[\w\d-]+$/;
-		errDie("No such theme $t in $themesDir") unless -d $t;
-		system("cp -ard $t $tarDir/");
+	my $theme;
+	foreach $theme (@ARGV) {
+		errDie("Theme name '$theme' contains unacceptable symbols")
+			unless $theme =~ /^[\w\d-]+$/;
+		errDie("No such theme $theme in $themesDir") unless -d $theme;
+		system("cp -ard $theme $tarDir/");
 	}
 	chdir("$tmpDir") || errDie("cannot chdir to $tmpDir");
-	system("tar cf $tarName.tar $tarName");
-	system("gzip $tarName.tar");
+	system("tar cf - $tarName | gzip -9 >$tarName.tar.gz");
 	system("rm -rf $tarDir");
-	print "tar ball $tarName.tar.gz created in $tmpDir\n";
+	print "Pack $tarName.tar.gz created in $tmpDir\n";
 	exit(0);
 }
 
@@ -3592,14 +3589,14 @@ directory by verifying and unpacking the contents of the tarballs.
 B<--force-install> - During the installation of a theme remove existing
 theme with the same name without prompting.
 
-B<--create-themes> I<name> I<theme ...> - create a gz tarball named
+B<--create-pack> I<pack> I<theme ...> - create a gzipped tarball named
 ft-name-VERSION.tar.gz made of the specified themes found in the
 user's themes directory or in the site directory if B<--site> is
 also given.
 
 B<--tmp-dir> I<dir> - full path to a directory that can be use as a
-temporary directory. Default is /tmp. This option is used only with
-B<--create-themes>. 
+temporary working directory. Default is /tmp. This option is used only with
+B<--create-pack>. 
 
 B<--com-mode> - run fvwm-themes-config under the "communication mode". See,
 the fvwm-themes-com and fvwm-themes-menuapp manual pages for more information
@@ -3651,6 +3648,7 @@ Other examples:
   fvwm-themes-config --set-locked colors=1 --set-locked globalfeel=0
 
   fvwm-themes-config --install --site metallic.tar.gz wooden.tar.gz
+  fvwm-themes-config --create-pack martyns -tmp-dir . metallic wooden
 
 =head1 AUTHORS
 
