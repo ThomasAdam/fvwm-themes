@@ -10,11 +10,11 @@ BlC AddButtonStyle BlN *undefined*
 BrC AddButtonStyle BrN *undefined*
 
 AddToFunc   FuncFvwmReloadDecor
-+ I BoC AddButtonStyle BoN Vector 5 22x39@1 78x39@1 78x61@0 22x61@0 22x39@1
-+ I BcC AddButtonStyle BcN Vector 17 20x20@1 30x20@1 50x40@1 70x20@1 80x20@1 80x30@0 60x50@0 80x70@1 80x80@0 70x80@0 50x60@0 30x80@0 20x80@0 20x70@0 40x50@1 20x30@0 20x20@1
-+ I BmC AddButtonStyle BmN Vector 5 25x25@1 75x25@1 75x75@0 25x75@0 25x25@1
-+ I BiC AddButtonStyle BiN Vector 5 39x39@1 61x39@1 61x61@0 39x61@0 39x39@1
-+ I BsC AddButtonStyle BsN Vector 5 32x45@1 68x45@1 68x55@0 32x55@0 32x45@1
-+ I BhC AddButtonStyle BhN Vector 5 25x35@1 75x35@1 75x40@0 25x40@0 25x35@1
-+ I BlC AddButtonStyle BlN *undefined*
-+ I BrC AddButtonStyle BrN *undefined*
+BoC + I AddButtonStyle BoN Vector 5 22x39@1 78x39@1 78x61@0 22x61@0 22x39@1
+BcC + I AddButtonStyle BcN Vector 17 20x20@1 30x20@1 50x40@1 70x20@1 80x20@1 80x30@0 60x50@0 80x70@1 80x80@0 70x80@0 50x60@0 30x80@0 20x80@0 20x70@0 40x50@1 20x30@0 20x20@1
+BmC + I AddButtonStyle BmN Vector 5 25x25@1 75x25@1 75x75@0 25x75@0 25x25@1
+BiC + I AddButtonStyle BiN Vector 5 39x39@1 61x39@1 61x61@0 39x61@0 39x39@1
+BsC + I AddButtonStyle BsN Vector 5 32x45@1 68x45@1 68x55@0 32x55@0 32x45@1
+BhC + I AddButtonStyle BhN Vector 5 25x35@1 75x35@1 75x40@0 25x40@0 25x35@1
+BlC + I AddButtonStyle BlN *undefined*
+BrC + I AddButtonStyle BrN *undefined*

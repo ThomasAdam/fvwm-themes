@@ -2794,7 +2794,7 @@ sub comLoop {
 
 			#------- build the answer:
 			$return = 
-			  mergeScriptAnswer("$tlReturn\n$tcReturn1\n$ccReturn\n$ccnReturn1\n$ccnReturn2\nn$ccnReturn3",4);
+			  mergeScriptAnswer("$tlReturn\n$tcReturn1\n$ccReturn\n$ccnReturn1\n$ccnReturn2\n$ccnReturn3",4);
 		}
 
 		# -------------------------------------------------
@@ -3964,6 +3964,7 @@ sub checkScript {
 # 
 sub myMakeFifo {
 	my ($fifo) = @_;
+	#unlink("$fifo");
 	system("mkfifo '$fifo'");  # not portable: mknod '$fifo' p
 }
 

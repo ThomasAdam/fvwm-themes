@@ -39,6 +39,9 @@ my $clearBuf = 0;
 my $optBufferName = "";
 my $mainDir = $ENV{'FVWM_USERDIR'};
 my $l;
+# Nbr of 1/10 of second we spent to create a fifo (because an arbitrairy
+# nbr of "Script" can ask question to a given "?" programs can) 
+my $mkFifoTimeOut = 100;
 
 chdir($mainDir) || die "No FvwmConfigHome $mainDir";
 
@@ -84,8 +87,6 @@ if ($message ne "") {
 	# Nbr of 1/10 of second we wait an answer of "?"
 	my $workTimeOut = 200;
 
-	unlink($outFifo);
-	unlink($inFifo);
 	myMakeFifo($outFifo);
 
 	# unlock the "?", wait $startTimeOut sec so that the "?" have the time
@@ -198,8 +199,10 @@ if ($message ne "") {
 			print STDERR "com: $name does not answer the message!\n";
 			$done = 1;
 		}
-		select(undef,undef,undef,0.1);
-		$i++;
+		if (!$done) {
+		  select(undef,undef,undef,0.1);
+		  $i++;
+	  }
 	}
 }
 #-----------------------------------------------------------------------------
@@ -210,7 +213,24 @@ if ($message ne "") {
 
 sub myMakeFifo {
 	my ($fifo) = @_;
-	system("mkfifo '$fifo'");  # not portable: mknod '$fifo' p
+	my $ok=0;
+	my $i=0;
+
+	# not portable: mknod '$fifo' p
+	while(!$ok && $i < $mkFifoTimeOut) {
+		if (system("mkfifo '$fifo' 2>/dev/null") == 0) {
+			$ok = 1;
+		}
+		if (!$ok) {
+			select(undef,undef,undef,0.1);
+			$i++;
+		}
+	}
+	if (!$ok) {
+		print STDERR "fvwm-themes[com]: fail to create fifo $fifo\n";
+		print STDERR "    Can you send a bug report to ".
+		  "fvwm-themes-devel\@lists.sourceforge.net";
+	}
 }
 #-----------------------------------------------------------------------------
 # 
@@ -269,7 +289,7 @@ This script is not a user script. It is used by Fvwm-Themes for communication
 between some FvwmScript scripts and some other programs. Basically, you want
 to start a programs in the background which support the fvwm-themes-com 
 communication protocol (e.g., fvwm-themes-menuapp and fvwm-themes-config
-with the com-mode option can be used as a generic examples), 
+with the com-mode option can be used as generic examples), 
 then you can use fvwm-themes-com to ask 
 questions or to give instructions to the background program. The answer are 
 displayed by fvwm-themes-com in the standard out put and can be used by a 
@@ -314,7 +334,7 @@ B<--clear-buffer> - remove the buffer file.
 
 Here an example:
 
-In the Script FvwmScript-Menus you first start the back program, here
+In the Script FvwmScript-Menus you first start the background program, here
 fvwm-themes-menuapp, and you set some variables for an easy use of
 fvwm-themes-com:
 
@@ -341,7 +361,7 @@ You can also just send an instruction to fvwm-themes-menuapp:
   Do {Exec }$CMD
 
 Of course your back program have to support the fvwm-themes-com
-protocol. See fvwm-themes-menuapp and fvwm-themes-config for an example 
+protocol. See fvwm-themes-menuapp and fvwm-themes-config for examples 
 (com-mode option).
 See also FvwmScript-Menus and FvwmScript-ThemesCenter.
 
