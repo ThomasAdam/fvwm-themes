@@ -1,4 +1,5 @@
 #!@PERL@ -w
+# for speed testing add: -d:DProf
 
 # Filter this script to pod2man to get a man page:
 #   pod2man -c "Fvwm Utility" fvwm-themes-config | nroff -man | less -e
@@ -30,6 +31,8 @@ my $imagesSubDir = 'images';
 my $themeCfgFile = 'theme.cfg';
 my $mainDirFile = 'main';
 my $defaultReadCommand = 'Read "%f"';
+#ccf 1
+my $cfgCacheFileName = '.cfg-cache.pl';
 
 my $idKey = 'file';
 my $themeKey = 'theme';
@@ -363,15 +366,20 @@ sub encodeCfgEntry ($) {
 	return $str;
 }
 
-use vars qw($cfgFileCache);
-BEGIN { $cfgFileCache = {}; }
+#ccf: new variable $cfgCacheFileStatus in the next two lines
+use vars qw($cfgFileCache $cfgCacheFileStatus);
+BEGIN { $cfgFileCache = {}; $cfgCacheFileStatus = 0; }
 sub loadThemeCfg ($) {
 	my $theme = shift;
+	#ccf: 1 line
+	loadCfgCacheFile() if $cfgCacheFileStatus == 0;
+	### olicha this line was after "errDie("No ..." why?
+	return $cfgFileCache->{$theme} if exists $cfgFileCache->{$theme};
 	my $cfgFile = searchThemeCfgIncludeFile($themeCfgFile, $theme);
 	$cfgFile ||= searchThemeCfgIncludeFile($themeCfgFile, "default");
 	errDie("No $themeCfgFile for $theme found") unless defined $cfgFile;
 
-	return $cfgFileCache->{$theme} if exists $cfgFileCache->{$theme};
+	#return $cfgFileCache->{$theme} if exists $cfgFileCache->{$theme};
 	my $cfg = [{}, {}];
 
 	my $strRef = loadFile($cfgFile);
@@ -410,7 +418,45 @@ sub loadThemeCfg ($) {
 #	$cfg->[0]->{$componentKey} = [sort @realComponents];
 
 	$cfgFileCache->{$theme} = $cfg;
+	#ccf: 1 line
+	saveCfgCacheFile($theme,$cfg);
 	return $cfg;
+}
+
+#ccf: new function
+sub loadCfgCacheFile () {
+	$cfgCacheFileStatus = 1;
+	if (-f "$userDir/$cfgCacheFileName" && $workDir eq $userDir) {
+		eval {
+			require "$userDir/$cfgCacheFileName";
+		};
+		if ($@) {
+			print STDERR "Warning: a problem arise when loding " .
+				"$userDir/$cfgCacheFileName:\n$@\n";
+			unlink "$userDir/$cfgCacheFileName";
+		}
+	}
+}
+
+#ccf: new function
+sub saveCfgCacheFile ($$) {
+	my $theme = shift;
+	my $cfg = shift;
+	return if $theme eq "current" || $workDir ne $userDir;
+	if ($cfgCacheFileStatus == 1) {
+		open(CACHE_FILE,">$userDir/$cfgCacheFileName");
+		$cfgCacheFileStatus = 2;
+	}
+	{
+		require Data::Dumper;
+		# compact as possible: 50% more fast
+		local $Data::Dumper::Indent;
+		$Data::Dumper::Indent = 0;
+		my $str = "";
+		my $var = "\$cfgFileCache->{$theme}";
+		$str = Data::Dumper->Dump([$cfg],["$var"]);
+		print CACHE_FILE $str . "\n";
+	}
 }
 
 sub saveThemeCfg ($$) {
@@ -710,7 +756,7 @@ sub save ($) {
 	}
 	saveThemeCfg($self->{$idKey}, [$themeCfg, $componentCfgs]);
 }
-
+	
 sub isModified ($) {
 	my $self = shift;
 	return $self->{'_isModified'};
@@ -1640,6 +1686,11 @@ wrongUsage() unless
 	keys %$options || keys %$variants ||
 	keys %$setLockeds || $comMode || $configCenter;
 
+#ccf: 3
+if (($reset || $fresh) && -f "$userDir/$cfgCacheFileName") {
+	unlink "$userDir/$cfgCacheFileName";
+}
+
 my $cfg = Fvwm::ThemeCfg->new('current', $reset? 'default': 'current', $fresh);
 if ($comMode) {
 	$comPid = $comName;
@@ -2310,6 +2361,9 @@ sub comLoop {
 		elsif ($command =~ /^update\s+(\d+)$/) {
 			my $fresh = $1;
 			$cfgFileCache = {};
+			#ccf 2
+			unlink "$userDir/$cfgCacheFileName"
+				if -f "$userDir/$cfgCacheFileName";
 			$self = Fvwm::ThemeCfg->new('current', 'current', $fresh);
 			$allThemes = getAllThemes();
 			$tmp = $self->{$componentKey};
@@ -2515,6 +2569,9 @@ sub comLoop {
 			}
 			($currentSession,$sessionList,$uptime) = sessionInfo();
 			$cfgFileCache = {};
+			#ccf 2
+			unlink "$userDir/$cfgCacheFileName"
+				if -f "$userDir/$cfgCacheFileName";
 			$self = Fvwm::ThemeCfg->new('current', 'current', 1);
 			$allThemes = getAllThemes();
 			$tmp = $self->{$componentKey};

@@ -1,3 +1,8 @@
+2000-11-22  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	Implement a cfg cache file for speed.
+	
 2000-12-21  migo  <migo@homemail.com>
 
 	* scripts/FvwmScript-FontSelector:
