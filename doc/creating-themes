@@ -84,13 +84,15 @@ $HOME/.fvwm/themes/menus-extra may contain:
 
 $HOME/.fvwm/themes/personal/startup may contain:
 
-  DestroyFunc InitFunction
-  AddToFunc   InitFunction
+  AddToFunc InitFunction
   + I Exec sleep 5; panel
   + I Exec exec xterm -g 80x40+400+100 -fn 7x14 -fb 7x14b
 
 Note, since the startup@default is empty, you may define your InitFunction
 and StartFunction in either startup or startup-extra (we suggest startup@).
+
+Don't forget to "Refresh the current theme" for your new components
+to be reflected in the "Theme Management" menu, then choose them.
 
 
 How to create a new theme
@@ -113,7 +115,7 @@ The procedure for adding a new component.
   5) you may need to do something about theme.cfg, but usually you do not
   6) edit the copied files; don't add fvwm commands which are defined
      in other components if you want to get an independent component
-  7) to see your work in action, choose "Refresh the Current Theme"
+  7) to see your work in action, choose "Refresh the current theme"
   8) you should now see your new component in your new theme
   9) you can load this component, but don't be upset if it does not work
      as you expected for the first time, repeat steps 6 and 9 :)
