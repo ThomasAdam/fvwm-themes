@@ -1158,20 +1158,20 @@ sub getSortedComponentsToRead ($) {
 	}
 
 	my ($i, $j, $k);
-	for ($i = 0; $i < @currentComponents - 1; $i++) {
+	for ($i = 0; $i < @currentComponents - 2; $i++) {
 		my $c1 = $currentComponents[$i];
-		for ($j = $i + 1; $j < @currentComponents; $j++) {
+		for ($j = $i + 1; $j < @currentComponents - 1; $j++) {
 			my $c2 = $currentComponents[$j];
 			my $cmp1 = $precedes->{$c1}->{$c2};
-			for ($k = $i + 1; $k < $j; $k++) {
+			for ($k = $j + 1; $k < @currentComponents; $k++) {
 				my $c3 = $currentComponents[$k];
 				my $cmp2 = $precedes->{$c1}->{$c3};
-				my $cmp3 = $precedes->{$c3}->{$c2};
-				if ($cmp3 == 0 && $cmp1) {
-					$precedes->{$c3}->{$c2} = $cmp1;
+				my $cmp3 = $precedes->{$c2}->{$c3};
+				if ($cmp1 == 0 && $cmp2) {
+					$precedes->{$c1}->{$c2} = $cmp2;
 				}
-				if ($cmp2 == 0 && $cmp1) {
-					$precedes->{$c1}->{$c3} = $cmp1;
+				if ($cmp3 == 0 && $cmp2) {
+					$precedes->{$c2}->{$c3} = $cmp2;
 				}
 			}
 		}
