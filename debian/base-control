@@ -10,7 +10,7 @@ Architecture: any
 Suggests: xmessage, m4, awk
 Conflicts: fvwm-themes-full
 Replaces: fvwm-themes-full
-Depends: ${shlibs:Depends}, fvwm (>> 2.5.8)
+Depends: ${shlibs:Depends}, ${perl:Depends}, fvwm (>> 2.5.8)
 Recommends: fvwm-themes-extra
 Description: Nice look, feel and menusystem for FVWM (base themes)
  FVWM Themes is a powerful configuration framework for FVWM,
