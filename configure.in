@@ -67,6 +67,14 @@ dnl the cached value!  For ancient shells "rm config.cache" is a solution.
 UNSET=true
 if unset UNSET 2>/dev/null; then UNSET=unset; fi
 
+dnl Reports are that INSTALL is set incorrectly on Solaris.
+if test "`echo $INSTALL | cut -c1-2`" = ".."; then
+	AC_MSG_ERROR([
+	It seems that ./configure can't automatically set INSTALL.
+	Please set this environment var yourself and rerun ./configure.
+	For example: env INSTALL='/usr/ucb/install -c' ./configure])
+fi
+
 AC_PATH_PROG(PERL, perl)
 if test -z "$PERL"; then
 	AC_MSG_WARN(Perl is not found; you will have fatal problems using this package!)
