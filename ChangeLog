@@ -6,6 +6,9 @@
 	* configure.in:
 	require fvwm-2.5.8
 
+	* bin/fvwm-themes-images.in:
+	use "fvwm-root -r"
+
 2003-07-20  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings/session-manager/none:

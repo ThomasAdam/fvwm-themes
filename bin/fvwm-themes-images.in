@@ -119,8 +119,8 @@ my $patternY = "";
 
 # set the background
 my $setRoot = 0;
-#my $setRootProg = "fvwm-root --retain-pixmap";
-my $setRootProg = "fvwm-root";
+my $setRootProg = "fvwm-root --retain-pixmap";
+#my $setRootProg = "fvwm-root";
 my $setRootTmpFile = "/tmp/$userName-ft-back.xpm";
 
 # rotate
