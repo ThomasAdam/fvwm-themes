@@ -15,9 +15,6 @@
 * Fix a bug, when an option is removed, it is still here (due to 'current').
   The same if the option is added.
 
-* Fix a problem when the current component (say used in old session) does
-  not exist anymore. Probably write a warning (xmessage), not fatal error.
-
 Optional items to do:
 --------------------
 

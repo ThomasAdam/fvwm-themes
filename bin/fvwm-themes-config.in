@@ -94,6 +94,18 @@ sub errDie ($) {
 	}
 }
 
+sub errWarn ($) {
+	my $msg = shift;
+	$msg .= "\n" unless $msg =~ /\n$/s;
+	if ($pipe) {
+		$msg =~ s/\n$//s;
+		$msg =~ s/'/`/g;
+		print qq(Exec exec xmessage -g 400x100 -xrm "*form*background:rgb:90/90/50" -xrm "*form*okay*background:rgb:70/70/40" -xrm "*textSink*font:lucidasans-14" -xrm "*form*message*background:rgb:b0/b0/60" -title '$scriptName warning' -center '$msg'\n);
+	} else {
+		warn $msg;
+	}
+}
+
 #' <- a fix for my xemacs (olicha)
 
 sub sysDie ($) {
@@ -365,7 +377,8 @@ sub loadThemeCfg ($) {
 	my $strRef = loadFile($cfgFile);
 	while ($$strRef =~ s/^!include(-quiet)?\s+(.*)\s*$/
 		my $subCfgFile = searchThemeCfgIncludeFile($2, $theme);
-		!$1 || defined $subCfgFile? ${loadFile($subCfgFile)}: ""
+		errDir("No include $2 in $cfgFile") unless $1 || defined $subCfgFile;
+		defined $subCfgFile? ${loadFile($subCfgFile)}: ""
 	/meg) {}
 
 	while (1) {
@@ -377,7 +390,7 @@ sub loadThemeCfg ($) {
 			$cfg->[0] = $entry;
 		} elsif ($entryTag eq 'component') {
 			my $key = $entry->{$idKey};
-			errDie("No '$idKey' value in entry [$entryTag]") unless $key;
+			errDie("No '$idKey' value in entry [$entryTag] in $cfgFile") unless $key;
 			$cfg->[1]->{$key} = $entry;
 		} else {
 			print STDERR "Warning: unknown entry [$entryTag], ignoring...\n";
@@ -602,10 +615,10 @@ sub new ($$;$$) {
 	$self->setModified($fresh || $theme ne $loadTheme? 1: 0);
 
 	my ($themeCfg, $componentCfgs) = @{loadThemeCfg($loadTheme)};
-	my ($key, $value, $comp, $cfg);
+	my ($key, $value);
 	while (($key, $value) = each %$themeCfg) {
-		$self->{$key} = $key eq $componentKey && 
-		$loadTheme !~ /^$currentThemeName/?
+		$self->{$key} = ($key eq $componentKey
+			&& $loadTheme !~ /^$currentThemeName/)?
 			getThemeComponents($loadTheme): $value;
 	}
 	errDie("No '$componentKey' key in theme '$loadTheme' cfg") unless exists $self->{$componentKey};
@@ -613,6 +626,7 @@ sub new ($$;$$) {
 	my @components = ('_core', @{$self->{$componentKey}});
 
 	my $component;
+	my $cindex = -1;  # because of '_core'
 	while ($component = shift(@components)) {
 		my $componentCfg = $componentCfgs->{$component};
 		my $realTheme = $loadTheme;
@@ -620,8 +634,11 @@ sub new ($$;$$) {
 		if ($fresh) {
 			$realTheme = $componentCfg->{$themeKey} || "*unknown*";
 			my $origComponentCfg = loadThemeCfg($realTheme)->[1]->{$component};
-			errDie("Theme '$realTheme' has no component '$component' anymore")
-				unless $origComponentCfg;
+			unless ($origComponentCfg) {
+				errWarn("Theme '$realTheme' has no component '$component' anymore, auto-dropping");
+				splice(@{$self->{$componentKey}}, $cindex, 1);
+				next;
+			}
 			$dir = getThemeDir($realTheme);
 			$cc = clonePerlValue($origComponentCfg);
 
@@ -661,9 +678,10 @@ sub new ($$;$$) {
 		$cc->{'locked'} = 0 unless exists $cc->{'locked'};
 		$cc->{'used'} = 1 unless exists $cc->{'used'};
 		errDie("Duplicated component '$component' for theme '$theme'")
-			if exists $self->{'cc'}->{$component} && 
-				$self->{'cc'}->{$component}->{'used'} eq 1;
+			if exists $self->{'cc'}->{$component} &&
+				$self->{'cc'}->{$component}->{'used'};
 		$self->{'cc'}->{$component} = $cc;
+		$cindex++;
 	}
 	return $self;
 }

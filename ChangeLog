@@ -1,3 +1,10 @@
+2000-11-10  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	* TODO:
+	improved several messages to be more meaningful;
+	fixed a problem where the component is removed/renamed from a theme,
+	but still is used in @current (f.e. in old session)
 
 2000-11-09  olicha  <olivier.chapuis@free.fr>
 
