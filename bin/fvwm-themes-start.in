@@ -56,10 +56,10 @@ realCurrentThemeName="current-$session"
 realCurrentThemeDir="$themesDir/$realCurrentThemeName"
 destRcFile2="$themesName/$realCurrentThemeName/$rcName2"
 
-[ ! -d $FVWM_USERDIR ] || mkdir $FVWM_USERDIR
+[ -d $FVWM_USERDIR ] || mkdir $FVWM_USERDIR
 # create the symbolic links
-# POSIX says that we can have symlink to not existing file. However some
-# 2.3.x Linux kernel and may be 2.4.x do not support this ???
+# POSIX says that we can have symlink to a not existing file.
+# However some 2.3.x Linux kernels and may be 2.4.x do not support this???
 [ -d $themesDir ] || mkdir $themesDir
 cd $themesDir
 if [ ! -d $realCurrentThemeName ]; then
