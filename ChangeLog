@@ -4,6 +4,10 @@
 	* themes/default/modules/main:FvwmWinList:
 	minor changes
 
+	* bin/fvwm-themes-config.in:
+	* doc/FAQ:
+	A workaround for core dumps - the user should set $FT_USE_RESTART.
+
 2000-09-30  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmApplet-Mixer:

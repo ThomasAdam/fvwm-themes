@@ -34,6 +34,7 @@ my $themeKey = 'theme';
 my $componentKey = 'component';
 my $componentGroupKey = 'group';
 my $pipe = 0;  # produce fvwm commands for fvwm's PipeRead if set
+my $useRestart = $ENV{'FT_USE_RESTART'}? 1: 0;
 
 # ----------------------------------------------------------------------------
 
@@ -1469,6 +1470,10 @@ Read @$rcFile2@
 };
 
 	$contents =~ s/@\$(\w+)@/eval "\$$1"/eg;
+	# use Restart to switch themes if asked
+	my $f = "FuncFvwmThemesConfigAndUpdate";
+	$contents =~ s{(DestroyFunc\s+$f\nAddToFunc\s+$f\n)((?:[^\n]+\n)*(\+ I PipeRead[^\n]+\n)(?:[^\n]+\n)*)}
+		{$1$2\n$1$3\+ I Restart\n}s if $useRestart;
 	saveFile("$workDir/$rcFile", \$contents);
 
 	my $imagePath = "$workDir/$currentThemeSubDir/images:$workDir/images";
@@ -1477,7 +1482,6 @@ Read @$rcFile2@
 	$imagePath =~ s=(^|:)\Q$userDir\E(/|:|$)=$1\$FVWM_USERDIR$2=g;
 	$imagePath =~ s=(^|:)\Q$userHome\E(/|:|$)=$1\$HOME$2=g;
 	$imagePath =~ s=(^|:)\Q$siteDir\E(/|:|$)=$1\$FT_DATADIR$2=g;
-	#olicha 2
 	my $addImagePath = $self->getAdditionalImagePath();
 	$imagePath .= "\nImagePath $addImagePath" if $addImagePath =~ /\+/;
 	my $menusAndHooksRc = $self->getMenusAndHooksAndReadsRc();
@@ -2671,8 +2675,9 @@ not given $FVWM_USERDIR/themes-rc is taken.
 This parameter can't be used with others.
 
 B<--fresh> - refresh (regenerate) the fvwm configuration files needed to
-load themes, this includes files $FVWM_USERDIR/themes-rc,
-$FVWM_USERDIR/themes-rc2 and $FVWM_USERDIR/themes/current/theme.cfg.
+load themes, this includes files in the user's directory:
+$FVWM_USERDIR/themes-rc, $FVWM_USERDIR/themes-rc-2 and
+$FVWM_USERDIR/themes/current/theme.cfg.
 
 B<--reset> - forget all the currently used components and use the ones from
 the default theme.
