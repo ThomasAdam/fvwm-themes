@@ -12,12 +12,12 @@ Colorset 4 fg $[fg.cs2], bg $[bg.cs2], Plain, NoShape
 DestroyFunc FuncFvwmTitleStyleEntry
 AddToFunc   FuncFvwmTitleStyleEntry
 + I TitleStyle $0 MultiPixmap \
-	Main     (stretched) $./images/decor/title-main-$1.xpm, \
-	LeftEnd  (stretched) $./images/decor/title-leftend-$1.xpm, \
-	RightEnd (stretched) $./images/decor/title-rightend-$1.xpm, \
-	UnderText   (stretched) $./images/decor/title-undertext-$1.xpm, \
-	LeftOfText  (stretched) $./images/decor/title-leftoftext-$1.xpm, \
-	RightOfText (stretched) $./images/decor/title-rightoftext-$1.xpm, \
+	Main     AdjustedPixmap $./images/decor/title-main-$1.xpm, \
+	LeftEnd  AdjustedPixmap) $./images/decor/title-leftend-$1.xpm, \
+	RightEnd AdjustedPixmap $./images/decor/title-rightend-$1.xpm, \
+	UnderText   AdjustedPixmap $./images/decor/title-undertext-$1.xpm, \
+	LeftOfText  AdjustedPixmap $./images/decor/title-leftoftext-$1.xpm, \
+	RightOfText AdjustedPixmap $./images/decor/title-rightoftext-$1.xpm, \
 
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground

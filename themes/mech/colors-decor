@@ -13,12 +13,7 @@ Colorset 4 fg #000000, bg #aaaaaa, Plain, NoShape
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
 + I TitleStyle \
-	ActiveUp   (TiledPixmap $./images/decor/title-active.xpm) \
-	ActiveDown (TiledPixmap $./images/decor/title-active.xpm) \
-	Inactive   (TiledPixmap $./images/decor/title-inactive.xpm) \
-	ToggledActiveUp   (TiledPixmap $./images/decor/title-active.xpm) \
-	ToggledActiveDown (TiledPixmap $./images/decor/title-active.xpm) \
-	ToggledInactive   (TiledPixmap $./images/decor/title-inactive.xpm)
-
-+ I ButtonStyle All Pixmap 16x16/empty.xpm
-+ I ButtonStyle All -- UseTitleStyle
+	AllActive   (TiledPixmap $./images/decor/title-active.xpm) \
+	AllInactive (TiledPixmap $./images/decor/title-inactive.xpm)
+#
++ I ButtonStyle All Simple -- UseTitleStyle

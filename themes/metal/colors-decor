@@ -16,19 +16,16 @@ Colorset 4 fg black, bg rgb:66/66/99, Plain, NoShape, \
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
-+ I TitleStyle \
-	ActiveUp   (TiledPixmap $./images/decor/title-active.xpm) \
-	ActiveDown (TiledPixmap $./images/decor/title-active.xpm) \
-	Inactive   (TiledPixmap $./images/decor/title-inactive.xpm)
-
-+ I ButtonStyle All Pixmap 16x16/empty.xpm
-+ I ButtonStyle All \
-	ActiveUp   (TiledPixmap $./images/decor/underline-active.xpm) \
-	ActiveDown (TiledPixmap $./images/decor/underline-active.xpm) \
-	Inactive   (TiledPixmap $./images/decor/underline-inactive.xpm) \
-	ToggledActiveUp   (TiledPixmap $./images/decor/underline-active.xpm) \
-	ToggledActiveDown (TiledPixmap $./images/decor/underline-active.xpm) \
-	ToggledInactive   (TiledPixmap $./images/decor/underline-inactive.xpm)
++ I TitleStyle AllActive MultiPixmap \
+	Main      TiledPixmap $./images/decor/title-active.xpm, \
+	UnderText AdjustedPixmap $./images/decor/underline-active.xpm, \
+	Buttons   AdjustedPixmap $./images/decor/underline-active.xpm
++ I TitleStyle AllInactive MultiPixmap \
+	Main      TiledPixmap $./images/decor/title-inactive.xpm, \
+	UnderText AdjustedPixmap $./images/decor/underline-inactive.xpm, \
+	Buttons   AdjustedPixmap $./images/decor/underline-inactive.xpm
+#
++ I ButtonStyle All Simple -- UseTitleStyle
 
 #AddToFunc   FuncFvwmStartColors
 #+ I BorderStyle \
