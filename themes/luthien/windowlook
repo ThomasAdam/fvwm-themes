@@ -2,7 +2,7 @@ Style "*"	Font lucidasanstypewriter-14
 Style "*"	IconFont lucidasanstypewriter-12
 
 Style "*"	BorderWidth 4, HandleWidth 4
-Style "*"	MWMBorder  # FvwmBorder
+Style "*"	MWMBorder, FirmBorder
 
 BorderStyle	Simple -- HiddenHandles NoInset Raised
 

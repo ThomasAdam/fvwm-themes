@@ -2,7 +2,7 @@ Style "*"	Font -*-helvetica-medium-r-*-*-14-*-*-*-*-*-*-*
 Style "*"	IconFont -*-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
 
 Style "*"	BorderWidth 5, HandleWidth 5
-Style "*"	FvwmBorder  # MWMBorder
+Style "*"	FvwmBorder, FirmBorder
 
 BorderStyle	Simple -- HiddenHandles
 

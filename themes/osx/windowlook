@@ -2,7 +2,7 @@ Style "*"	Font variable
 Style "*"	IconFont fixed
 
 Style "*"	BorderWidth 2, HandleWidth 2
-Style "*"	FvwmBorder  # MWMBorder
+Style "*"	FvwmBorder, FirmBorder
 
 BorderStyle	Simple -- HiddenHandles NoInset
 

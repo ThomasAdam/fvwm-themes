@@ -5,6 +5,9 @@
 	* themes/default/menus:
 	added version info window
 
+	* themes/*/windowlook:
+	added FirmBorder; in @cde used DepressableBorder
+
 2000-10-23  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/menus:

@@ -3,7 +3,7 @@ Style "*"	Font -adobe-times-*-*-*-*-18-*-*-*-*-*-*-*
 Style "*"	IconFont -adobe-times-*-*-*-*-14-*-*-*-*-*-*-*
 
 Style "*"	BorderWidth 8, HandleWidth 8
-Style "*"	FvwmBorder
+Style "*"	FvwmBorder, FirmBorder
 
 BorderStyle	Active   -- !HiddenHandles !NoInset
 BorderStyle	Inactive --  HiddenHandles  NoInset

@@ -2,7 +2,7 @@ Style "*"	Font     -*-lucidabright-medium-r-*-*-14-*-*-*-*-*-*-*
 Style "*"	IconFont -*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*
 
 Style "*"	BorderWidth 5, HandleWidth 6
-Style "*"	MWMBorder
+Style "*"	MWMBorder, DepressableBorder
 
 BorderStyle	Simple
 
