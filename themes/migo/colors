@@ -18,22 +18,24 @@ Colorset 0 fg black, bg rgb:E4/D2/C0, Plain, NoShape
 # Window decorations
 
 # window title, inactive and active
-Colorset 1 fg #000030, bg #808078, Plain, NoShape
-Colorset 2 fg #000030, bg #C0C0B4, Plain, NoShape
+Colorset 1 fg rgb:30/10/58, bg #cece9c, fgsh #a1a17a, \
+	TiledPixmap decor/rose.xpm, bgTint black 22, Tint black 22, NoShape
+Colorset 2 fg rgb:50/10/90, bg #cece9c, fgsh #cece9c, \
+	TiledPixmap decor/rose.xpm, NoShape
 
 # window borders, inactive and active
-Colorset 3 fg #000030, bg #808078, Plain, NoShape
-Colorset 4 fg #000030, bg #C0C0B4, Plain, NoShape
+Colorset 3 fg black, bg #cece9c, bgTint black 20, Plain, NoShape
+Colorset 4 fg black, bg #cece9c, Plain, NoShape
 
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
-+ I TitleStyle \
-	AllActive   (TiledPixmap decor/title-active.xpm) \
-	AllInactive (TiledPixmap decor/title-inactive.xpm)
++ I TitleStyle AllInactive MultiPixmap Main Colorset 1
++ I TitleStyle AllActive   MultiPixmap Main Colorset 2
++ I AddTitleStyle AllInactive Colorset 1 30
 
-+ I ButtonStyle	All Pixmap 16x16/empty.xpm
-+ I ButtonStyle	All -- UseTitleStyle
+#+ I ButtonStyle	All Pixmap 16x16/empty.xpm
++ I ButtonStyle	All Simple #-- UseTitleStyle
 
 # --------------
 # Menu Colorsets
@@ -55,10 +57,12 @@ Colorset 7 fg gray, bg gray, Plain, NoShape
 # Common Colorsets
 
 # default for modules
-Colorset 10 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+Colorset 10 fg rgb:f0/f0/f4, bg average, \
+	Pixmap modcolor/plast-blue.png, NoShape
 
 # default hilight
-Colorset 11 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+Colorset 11 fg rgb:f0/f0/f4, bg average, \
+	Pixmap modcolor/plast-brown.png, NoShape
 
 # special
 Colorset 12 fg black, bg rgb:E4/D2/C0, \
@@ -69,10 +73,12 @@ Colorset 13 fg black, bg rgb:E4/D2/C0, hi black, sh rgb:F0/F0/80, \
 	Plain, NoShape
 
 # default2 (FvwmPager or to get more colors in Buttons)
-Colorset 14 fg black, bg rgb:C2/B1/A0, Plain, NoShape
+Colorset 14 fg rgb:f0/f0/f4, bg average, \
+	Pixmap modcolor/plast-blue.png, NoShape
 
 # default hilight2: (FvwmPager or to get more colors in a Buttons)
-Colorset 15 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+Colorset 15 fg rgb:ff/ff/60, bg rgb:5d5d/1212/38, \
+	Pixmap modcolor/plast-inverted-green.png, NoShape
 
 # tips/balloons
 Colorset 16 fg black, bg rgb:FF/FF/D0, Plain, NoShape
@@ -133,3 +139,6 @@ AddToFunc   FuncFvwmStartColors
 
 DestroyFunc FuncFvwmStopColors
 AddToFunc   FuncFvwmStopColors
+# temporarily until we have Colorset Reset
++ I Colorset 1 bgTint, Tint
++ I Colorset 3 bgTint, Tint
