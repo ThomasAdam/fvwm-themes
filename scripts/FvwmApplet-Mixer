@@ -165,7 +165,7 @@ Property
  Position 1 50
  Size 11 11
  Type ItemDraw
- Icon scripts/mini-left-arrow.xpm
+ Icon fvwmscript/mini-left-arrow.xpm
 Main
  Case message of
   SingleClic :
@@ -276,7 +276,7 @@ Property
  Position 13 50
  Size 11 11
  Type ItemDraw
- Icon scripts/mini-right-arrow.xpm
+ Icon fvwmscript/mini-right-arrow.xpm
 Main
  Case message of
   SingleClic :

@@ -1,3 +1,3 @@
 DestroyFunc FuncFvwmStartChosenPager
 AddToFunc   FuncFvwmStartChosenPager
-+ I Style * IconBox 10 5 -100 580, IconGrid 64 74, IconFill top left
++ I Style * IconBox 10 5 -100 580, IconGrid 64 76, IconFill top left

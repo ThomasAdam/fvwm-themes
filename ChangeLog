@@ -1,3 +1,11 @@
+2000-11-01  migo  <migo@homemail.com>
+
+	* themes/default/menus: minor adjustment fix
+
+	* themes/migo/modules/pager/none: increase IconGrid a bit
+
+	* scripts/FvwmApplet-Mixer: correct icon dir
+
 2000-10-31  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
