@@ -56,13 +56,14 @@ realCurrentThemeName="current-$session"
 realCurrentThemeDir="$themesDir/$realCurrentThemeName"
 destRcFile2="$themesName/$realCurrentThemeName/$rcName2"
 
+[ ! -d $FVWM_USERDIR ] || mkdir $FVWM_USERDIR
 # create the symbolic links
 # POSIX says that we can have symlink to not existing file. However some
 # 2.3.x Linux kernel and may be 2.4.x do not support this ???
-[ -d $themesDir ] || mkdir -p $themesDir
+[ -d $themesDir ] || mkdir $themesDir
 cd $themesDir
 if [ ! -d $realCurrentThemeName ]; then
-	mkdir -p $realCurrentThemeName
+	mkdir $realCurrentThemeName
 	isNewSession=1
 fi
 rm -rf $currentThemeName
@@ -81,7 +82,7 @@ isNewVersion="$?"
 if [ "$isNewVersion" = 1 -o "$isNewSession" = 1 ]; then
 	if [ "$isNewVersion" = 1 ]; then
 		echo '[FVWM-Themes]: Welcome to FVWM Themes @VERSION@!'
-		xmessage -g 400x100 -xrm "*form*background:rgb:c0/c0/a0" -xrm "*form*okay*background:rgb:90/90/7a" -xrm "*textSink*font:lucidasans-18" -xrm "*form*message*background:rgb:f0/f0/c0" -center 'Welcome to FVWM Themes @VERSION@!' &
+		xmessage -g 400x100 -xrm "*form*background:rgb:c0/c0/a0" -xrm "*form*okay*background:rgb:90/90/7a" -xrm "*textSink*font:lucidasans-18" -xrm "*form*message*background:rgb:f0/f0/c0" -center 'Welcome to FVWM Themes @VERSION@!' 2>/dev/null &
 	else
 		echo "[FVWM-Themes]: Initial $session FVWM Themes session"
 	fi

@@ -4,6 +4,9 @@
 	* themes/migo/README:
 	added more info
 
+	* bin/fvwm-themes-start.in:
+	don't use -p for mkdir
+
 2000-11-11  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ConfigCenter:
