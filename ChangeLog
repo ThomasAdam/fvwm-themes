@@ -4,7 +4,7 @@
 	only consider component.d directory if there is no component file/dir;
 	don't add a title for inline option if the option name is empty
 
-2000-11-20  migo  <migo@homemail.com>
+2000-11-21  migo  <migo@homemail.com>
 
 	* NEWS:
 	* themes/default/background:
