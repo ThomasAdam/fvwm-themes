@@ -1,4 +1,4 @@
-This documents tries to popularly cover the following questions:
+This document tries to popularly cover the following questions:
 
   * Introduction into themes & components
   * How fvwm-themes works
@@ -7,10 +7,11 @@ This documents tries to popularly cover the following questions:
   * CCDS (Component Configuration and Dependancy System)
   * Syntax of theme.cfg
 
+
 Introduction into themes & components
 -------------------------------------
 
-Themes are a set of their components. Themes are placed into directories.
+Theme is just a set of its components. Themes are placed into directories.
 Component is a meaningful part of the configuration, not something fixed.
 There are standard components; it is easier if you stick to the standard
 components, in this case you should not define component dependancies,
@@ -41,11 +42,16 @@ A component can come in several variants (reflected in menu) and can have
 any number of options (also automatically reflected). Also a component can
 be a complex one, i.e. include other components, like settings@default.
 
+A simple component is defined in one file, more complex components
+are defined in several files or even better in their own directories.
+
+
 How fvwm-themes works
 ---------------------
 
 This is kind of magic.
 To be written.
+
 
 How to create your personal parts to use with fvwm-themes
 ---------------------------------------------------------
@@ -62,7 +68,7 @@ the needed component.
 
 Examples:
 
-$HOME/.fvwm/themes/bindings-extra may contain:
+$HOME/.fvwm/themes/personal/bindings-extra may contain:
 
   Key F13 	A	S	FuncFvwmWWW
   Key Help	A	A	Menu MenuFvwmHelp
@@ -75,6 +81,17 @@ $HOME/.fvwm/themes/menus-extra may contain:
   + "Mozilla Home%menu/www.xpm"        Exec exec mozilla http://mozilla.org/
   + "Remote Shells%menu/terminal.xpm%" Popup MenuMyRemoteShells
   + "Private%menu/home.xpm%"           Popup MenuPrivate
+
+$HOME/.fvwm/themes/personal/startup may contain:
+
+  DestroyFunc InitFunction
+  AddToFunc   InitFunction
+  + I Exec sleep 5; panel
+  + I Exec exec xterm -g 80x40+400+100 -fn 7x14 -fb 7x14b
+
+Note, since the startup@default is empty, you may define your InitFunction
+and StartFunction in either startup or startup-extra (we suggest startup@).
+
 
 How to create a new theme
 -------------------------
@@ -128,6 +145,7 @@ or to install it to a system wide place (usually as root):
 
 Good luck in creating new themes.
 
+
 CCDS (Component Configuration and Dependancy System)
 ----------------------------------------------------
 
@@ -153,6 +171,7 @@ theme.cfg may include other .cfg files, usually there is one .cfg file for
 every non-simple component. If you your component has several options or
 variants, it is suggested to add a corresponding component.cfg, where all
 options are defined, instead of adding theme.cfg.
+
 
 Syntax of theme.cfg
 -------------------

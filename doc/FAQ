@@ -17,7 +17,7 @@ Q. Can I use fvwm-themes with GNOME?
 Q. I am screwed. How can I get fvwm config in one file?
 Q. How can I submit my own theme?
 Q. Why changes done using X Configuration Scripts are not persistent?
-Q. Where can I find a documentation on fvwm-themes shell scripts?
+Q. Where can I find a documentation on fvwm-themes and its shell scripts?
 ==============================================================================
 
 ------------------------------------------------------------------------------
@@ -409,12 +409,14 @@ in your .xinitrc or .xsession file before running fvwm-themes-start.
 ==============================================================================
 
 ------------------------------------------------------------------------------
-Q. Where I can found some documentations on fvwm-themes shell scripts?
+Q. Where can I find documentations on fvwm-themes and its shell scripts?
 
 A. All fvwm-themes perl/shell scripts (fvwm-themes-config,
 fvwm-themes-start, fvwm-themes-menuapp, fvwm-themes-images, fvwm-themes-com)
 have manual pages. They are, together with fvwm manual pages are accessible
 from the Help menu.
+
+See also other files in the doc/ directory, especially doc/creating-themes.
 ==============================================================================
 
 ------------------------------------------------------------------------------
