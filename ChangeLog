@@ -1,12 +1,18 @@
 2001-08-09  migo  <migo@homemail.com>
 
+	* themes/default/colors:
+	* doc/colorsets:
+	small changes in colorset descriptions
+
 	* bin/fvwm-themes-config.in:
 	restored one small cmd:arg change :) The intention was that a
 	separator between cmd and arg may be just space.
 
-	* themes/default/colors:
-	* doc/colorsets:
-	small changes in colorset descriptions
+	* NEWS:
+	* doc/README.1st:
+	* rpm/fvwm-themes-base.spec.in:
+	* rpm/fvwm-themes.spec.in:
+	updated to 0.5.0 release
 
 2001-08-09  olicha  <olivier.chapuis@free.fr>
 
