@@ -3302,14 +3302,14 @@ load themes, this includes files in the user's directory:
 $FVWM_USERDIR/themes-rc, $FVWM_USERDIR/themes-rc-2 and
 $FVWM_USERDIR/themes/current/theme.cfg.
 
-B<--reset> - forget all the currently used components, remove the 
-configuration cache file and use the components from the default theme.
+B<--reset> - forget all the currently used components, use the components
+from the default theme and regenerate the user's configuration cache.
 
 B<--no-cfg-cache> - don't use the existing configuration cache file,
 this file will be regenerated.
 
 B<--set-minimal-reload> I<value> - if value is 1, then minimal theme switching
-is used, if value is 0, then global theme switching is used.
+is used, if value is 0, then full theme switching is used.
 
 B<--load> I<component> - multiple C<--load> parameters may be given. If the
 parameter is of form component@theme, this specific theme component is used,
@@ -3339,10 +3339,6 @@ B<--set-locked> I<component=value> - set (if I<value> is 1) or unset (if
 I<value> is 0) a locked state of the given component. When the component
 from the current theme is locked, C<--load @theme> will not replace it,
 it can only be replaced by explicit C<--load component@theme>.
-
-B<--install> I<theme.tar.{gz,bz2} ...> - install the specified tarballs
-into the site (if B<--site> is alo given) or into the user's I<themes>
-directory by verifying and unpacking the contents of the tarballs.
 
 Five last parameters may be combined together and multiple parameters are
 possible. If B<--load> and B<--drop> parameters are given, first it will
