@@ -64,13 +64,13 @@ Begin
     
     Set $cmd = {echo "$FT_DATADIR"}
     Set $FtDataDir = (GetOutput $cmd 1 -1)
-    Set $RainbowFile = $FtDataDir{/images/scripts/rainbow.xpm}
-    Set $GreyFile = $FtDataDir{/images/scripts/grey.xpm}
+    Set $RainbowFile = $FtDataDir{/images/fvwmscript/pallete-rainbow.xpm}
+    Set $GreyFile    = $FtDataDir{/images/fvwmscript/pallete-gray.xpm}
 
     Set $cmd = {cat }$RainbowFile
-    Set $ColorLine = (GetOutput $cmd 283 -1)
+    Set $ColorLine = (GetOutput $cmd 282 -1)
     Set $cmd = {cat }$GreyFile
-    Set $GreyColorLine = (GetOutput $cmd 277 -1)
+    Set $GreyColorLine = (GetOutput $cmd 282 -1)
 
     If $Color <> {} Then
 	Set $CurrentColor = $Color
@@ -79,7 +79,7 @@ Begin
 
     Set $UpdateColors = 1
     Set $IsSecond = 0
-    Do {*FvwmTheme: Colorset 26 fg black, bg #908090, HGradient 190 2 #000000 50 }$CurrentColor{ 50 #ffffff, NoShape}
+    Do {*FvwmTheme: Colorset 29 fg black, bg #908090, HGradient 190 2 #000000 50 }$CurrentColor{ 50 #ffffff, NoShape}
     Set $LightColor = $CurrentColor
     Set $LightNumRed = (HexToNum (StrCopy $LightColor 2 3))
     Set $LightNumGreen = (HexToNum (StrCopy $LightColor 4 5))
@@ -122,7 +122,7 @@ Property
     Position 10 5
     Size 296 20
     Type ItemDraw
-    Title {Select a Color with the Pallets:}
+    Title {Select a Color using the Palletes}
 Main
 Case message of
  SingleClic :
@@ -149,10 +149,10 @@ Widget 10
 Property
     Flags NoReliefString
     Position 30 35
-    Size 257 20
+    Size 256 20
     Type ItemDraw
     Title {}
-    Icon scripts/rainbow.xpm
+    Icon fvwmscript/pallete-rainbow.xpm
 Main
 Case message of
  SingleClic :
@@ -180,7 +180,7 @@ Case message of
     Set $LightGreen = (StrCopy $LightColor 6 7)
     Set $LightBlue = (StrCopy $LightColor 10 11)
     Set $LightColor = {#} $LightRed $LightGreen $LightBlue
-    Do {*FvwmTheme: Colorset 26 fg black, bg #908090, HGradient 256 2 #000000 50 }$LightColor{ 50 #ffffff, NoShape}
+    Do {*FvwmTheme: Colorset 29 fg black, bg #908090, HGradient 256 2 #000000 50 }$LightColor{ 50 #ffffff, NoShape}
     Set $LightNumRed = (HexToNum $LightRed)
     Set $LightNumGreen = (HexToNum $LightGreen)
     Set $LightNumBlue = (HexToNum $LightBlue)
@@ -193,10 +193,10 @@ Widget 13
 Property
     Flags NoReliefString
     Position 30 60
-    Size 257 20
+    Size 256 20
     Type ItemDraw
     Title {}
-    Icon scripts/rainbow.xpm
+    Icon fvwmscript/pallete-rainbow.xpm
 Main
 Case message of
  SingleClic :
@@ -224,7 +224,7 @@ Case message of
     Set $SecondGreen = (StrCopy $SecondColor 6 7)
     Set $SecondBlue = (StrCopy $SecondColor 10 11)
     Set $SecondColor = {#} $SecondRed $SecondGreen $SecondBlue
-Do {*FvwmTheme: Colorset 26 fg black, bg #908090, HGradient 256 }$SecondColor{ }$CurrentColor{, NoShape}
+    Do {*FvwmTheme: Colorset 29 fg black, bg #908090, HGradient 256 }$SecondColor{ }$CurrentColor{, NoShape}
     Set $SecondNumRed = (HexToNum $SecondRed)
     Set $SecondNumGreen = (HexToNum $SecondGreen)
     Set $SecondNumBlue = (HexToNum $SecondBlue)
@@ -243,7 +243,7 @@ Property
     Size 256 20
     Type ItemDraw
     Title {}
-    Icon scripts/grey.xpm
+    Icon fvwmscript/pallete-gray.xpm
 Main
 Case message of
  SingleClic :
@@ -271,7 +271,7 @@ Case message of
     Set $SecondGreen = (StrCopy $SecondColor 6 7)
     Set $SecondBlue = (StrCopy $SecondColor 10 11)
     Set $SecondColor = {#} $SecondRed $SecondGreen $SecondBlue
-    Do {*FvwmTheme: Colorset 26 fg black, bg #908090, HGradient 256 }$SecondColor{ }$CurrentColor{, NoShape}
+    Do {*FvwmTheme: Colorset 29 fg black, bg #908090, HGradient 256 }$SecondColor{ }$CurrentColor{, NoShape}
     Set $IsSecond = 1
     Set $SecondNumRed = (HexToNum $SecondRed)
     Set $SecondNumGreen = (HexToNum $SecondGreen)
@@ -286,8 +286,8 @@ Widget 12
 Property
     Flags NoReliefString
     Position 30 110
-    Size 257 20
-    Colorset 26
+    Size 256 20
+    Colorset 29
     Type ItemDraw
     Title {}
 Main
@@ -364,7 +364,7 @@ Case message of
     Set $LightGreen = $Green
     Set $LightBlue = $Blue
     Set $LightColor = {#} $LightRed $LightGreen $LightBlue
-    Do {*FvwmTheme: Colorset 26 fg black, bg #908090, HGradient 256 2 #000000 50 }$LightColor{ 50 #ffffff, NoShape}
+    Do {*FvwmTheme: Colorset 29 fg black, bg #908090, HGradient 256 2 #000000 50 }$LightColor{ 50 #ffffff, NoShape}
     Set $LightNumRed = $NumRed
     Set $LightNumGreen = $NumGreen
     Set $LightNumBlue = $NumBlue
@@ -663,9 +663,37 @@ Property
     Type List
     Font fixed
     Flags NoReliefString Hidden
-    # it will better to put the documentations file under 
-    # datadir/fvwm/local ?
-    Title {       Color Selector Documentation       |       -----------------------------        ||First of all, the only way to select a    |color is to use the 4th pallet.  The other|bands can modify this last band. |If you choose a "color" with the 1st band|then the 4th band will be a black "color" |white gradien. If you choose a "color"|with the 2nd or the 3rd band, then the 4th|band will be gradient from this "color"|to the selected color.|Moreover, if you click on the selected|color, then the 4th band will be a black|to white gradient with the selected color|in the center.|Finally, you can modify the Red Green and|Blue value of the selected color with the|mini scrolls.||Report Bugs to:|  fvwm-themes-devel@lists.sourceforge.net}
+    # it will better to put the documentation files under 
+    # FT_DATADIR/locale/en/FvwmScript-ColorSelector; and use real newlines
+    Title {       Color Selector Documentation       |       ----------------------------       |                                          |To actually select a color, you should    |use the 4th color pallete. The first three|palletes modify this forth one.           |                                          |By choosing a color in the first pallete, |you populate this color in the forth one  |using black-color-white gradient.         |                                          |By choosing a color in the second or third|palletes, the 4th is changed to a gradient|from this color to the selected color.    |                                          |Moreover, clicking to the selected color  |has the same effect as choosing a color   |using the first pallete.                  |                                          |Finally, you can modify the Red Green and |Blue values of the selected color with the|mini scroll bars.                         |                                          |Report Bugs to:                           |  fvwm-themes-devel@lists.sourceforge.net }
+
+#    Title {\
+#       Color Selector Documentation       |\
+#       ----------------------------       |\
+#                                          |\
+#To actually select a color, you should    |\
+#use the 4th color pallete. The first three|\
+#palletes modify this forth one.           |\
+#                                          |\
+#By choosing a color in the first pallete, |\
+#you populate this color in the forth one  |\
+#using black-color-white gradient.         |\
+#                                          |\
+#By choosing a color in the second or third|\
+#palletes, the 4th is changed to a gradient|\
+#from this color to the selected color.    |\
+#                                          |\
+#Moreover, clicking to the selected color  |\
+#has the same effect as choosing a color   |\
+#using the first pallete.                  |\
+#                                          |\
+#Finally, you can modify the Red Green and |\
+#Blue values of the selected color with the|\
+#mini scroll bars.                         |\
+#                                          |\
+#Report Bugs to:                           |\
+#  fvwm-themes-devel@lists.sourceforge.net }
+
 Main
 Case message of
  SingleClic :
