@@ -1,3 +1,8 @@
+2001-07-19  migo  <migo@homemail.com>
+
+	* Makefile.am:
+	use $(TAR) not tar
+
 2001-07-18  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:

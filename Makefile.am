@@ -22,7 +22,7 @@ install-data-local:
 		chmod -R o-w,go+rX $$dir 2>/dev/null || true; \
 		rm -rf "$(FT_DATADIR)/$$dir"; \
 		(if test -f $$dir.tar.gz; then gzip -dc $$dir.tar.gz; else \
-		tar cpf - $$dir; fi) | (cd "$(FT_DATADIR)" && tar xfBp -); \
+		$(TAR) cpf - $$dir; fi) | (cd "$(FT_DATADIR)" && $(TAR) xfBp -); \
 		find "$(FT_DATADIR)/$$dir" -name CVS -exec rm -r {} \; 2>/dev/null; \
 	done
 
@@ -91,7 +91,7 @@ distcheck2: dist2 distcheck
 distclean2: distclean
 
 dist3: dist
-	@tar xzf $(distdir).tar.gz
+	@$(TAR) xzf $(distdir).tar.gz
 	@rm -rf $(PACKAGE)-extra-$(VERSION)
 	@mkdir $(PACKAGE)-extra-$(VERSION)
 	@for t in $(EXTRA_THEMES); do \
@@ -100,16 +100,16 @@ dist3: dist
 		mkdir ft-$$t-$(VERSION); \
 		cp -rdp $(distdir)/themes/$$t $(PACKAGE)-extra-$(VERSION); \
 		mv -f $(distdir)/themes/$$t ft-$$t-$(VERSION); \
-		tar czf ft-$$t-$(VERSION).tar.gz ft-$$t-$(VERSION); \
+		$(TAR) czf ft-$$t-$(VERSION).tar.gz ft-$$t-$(VERSION); \
 		rm -rf ft-$$t-$(VERSION); \
 	done
 	@echo "creating $(PACKAGE)-extra-$(VERSION).tar.gz"
-	@tar czf $(PACKAGE)-extra-$(VERSION).tar.gz $(PACKAGE)-extra-$(VERSION);
+	@$(TAR) czf $(PACKAGE)-extra-$(VERSION).tar.gz $(PACKAGE)-extra-$(VERSION);
 	@rm -rf $(PACKAGE)-extra-$(VERSION);
 	@echo "creating $(PACKAGE)-base-$(VERSION).tar.gz";
 	@rm -rf $(PACKAGE)-base-$(VERSION);
 	@mv -f $(distdir) $(PACKAGE)-base-$(VERSION);
-	@tar czf $(PACKAGE)-base-$(VERSION).tar.gz $(PACKAGE)-base-$(VERSION);
+	@$(TAR) czf $(PACKAGE)-base-$(VERSION).tar.gz $(PACKAGE)-base-$(VERSION);
 	@rm -rf $(PACKAGE)-base-$(VERSION)
 
 dist4: dist3
