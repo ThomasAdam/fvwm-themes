@@ -3,14 +3,14 @@ FuncFvwmDecorBackground
 Style "*" Button 1, Button 2, Button 4
 Style "*" MWMButtons  # button relief follows the state
 
-AddButtonStyle 1 3 23x58@0 77x58@0 77x42@0 
-AddButtonStyle 1 3 23x58@1 23x42@1 77x42@1 
+AddButtonStyle 1 Vector 3 23x58@0 77x58@0 77x42@0
+AddButtonStyle 1 Vector 3 23x58@1 23x42@1 77x42@1
 
-AddButtonStyle 2 3 21x79@0 79x79@0 79x21@0 
-AddButtonStyle 2 3 21x79@1 21x21@1 79x21@1 
+AddButtonStyle 2 Vector 3 21x79@0 79x79@0 79x21@0
+AddButtonStyle 2 Vector 3 21x79@1 21x21@1 79x21@1
 
-AddButtonStyle 4 3 42x58@0 58x58@0 58x42@0 
-AddButtonStyle 4 3 42x58@1 42x42@1 58x42@1 
+AddButtonStyle 4 Vector 3 42x58@0 58x58@0 58x42@0
+AddButtonStyle 4 Vector 3 42x58@1 42x42@1 58x42@1
 
 ButtonStyle 1 - Clear MWMDecorMenu
 ButtonStyle 2 - Clear MWMDecorMax

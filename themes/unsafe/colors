@@ -36,12 +36,8 @@ Colorset 4 fg grey70, bg rgb:4e/1c/13, sh rgb:1e/13/11, \
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
-+ I TitleStyle ActiveUp   TiledPixmap decor/bar-active.xpm
-+ I TitleStyle ActiveDown TiledPixmap decor/bar-active.xpm
-+ I TitleStyle Inactive   TiledPixmap decor/bar.xpm
-+ I TitleStyle ToggledActiveUp   TiledPixmap decor/bar-active.xpm
-+ I TitleStyle ToggledActiveDown TiledPixmap decor/bar-active.xpm
-+ I TitleStyle ToggledInactive   TiledPixmap decor/bar.xpm
++ I TitleStyle AllActive   TiledPixmap decor/bar-active.xpm
++ I TitleStyle AllInactive TiledPixmap decor/bar.xpm
 
 + I ButtonStyle All Pixmap 16x16/empty.xpm
 + I ButtonStyle All -- UseTitleStyle

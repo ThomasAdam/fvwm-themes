@@ -29,9 +29,8 @@ Colorset 4 fg white, bg grey50, Plain, NoShape
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
 + I TitleStyle \
-	Inactive   (Pixmap decor/title-inactive.xpm -- Top Left) \
-	ActiveUp   (Pixmap decor/title-active.xpm   -- Top Left) \
-	ActiveDown (Pixmap decor/title-active.xpm   -- Top Left)
+	AllInactive (Pixmap decor/title-inactive.xpm -- Top Left) \
+	AllActive   (Pixmap decor/title-active.xpm   -- Top Left)
 
 + I ButtonStyle left  Pixmap decor/left-button-back.xpm   -- Top Left
 + I ButtonStyle right Pixmap decor/right-button-back.xpm  -- Top Left

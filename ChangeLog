@@ -7,6 +7,10 @@
 	* themes/sa/buttons:
 	make decorations follow the common division
 
+	* themes/*/colors*:
+	* themes/*/buttons*:
+	optimize TitleStyle using new state aliases like AllActive
+
 2002-12-28  migo  <migo@homemail.com>
 
 	* devel/bin/gtk-colorize-background:

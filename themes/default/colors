@@ -54,12 +54,9 @@ Colorset 4 fg black, bg rgb:CC/BA/99, Plain, NoShape
 #
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
-+ I TitleStyle ActiveUp   (Solid rgb:CC/BA/99 -- Raised)
-+ I TitleStyle ActiveDown (Solid rgb:CC/BA/99 -- Raised)
-+ I TitleStyle Inactive   (Solid rgb:88/7C/66 -- Raised)
-+ I TitleStyle ToggledActiveUp   (Solid rgb:CC/BA/99 -- Raised)
-+ I TitleStyle ToggledActiveDown (Solid rgb:CC/BA/99 -- Raised)
-+ I TitleStyle ToggledInactive   (Solid rgb:88/7C/66 -- Raised)
++ I TitleStyle AllInactive Solid $[bg.cs1] -- Raised
++ I TitleStyle AllActive   Solid $[bg.cs2] -- Raised
+#
 + I ButtonStyle All Pixmap 16x16/empty.xpm
 + I ButtonStyle All -- UseTitleStyle
 

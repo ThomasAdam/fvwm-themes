@@ -28,25 +28,15 @@ Colorset 4 fg black, bg blue, Plain, NoShape
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
-+ I TitleStyle ActiveUp   HGradient 100 LightSlateBlue MidnightBlue
-+ I TitleStyle ActiveDown HGradient 100 LightSlateBlue MidnightBlue
-+ I TitleStyle Inactive   HGradient 100 grey60 grey30
++ I TitleStyle Active   HGradient 100 LightSlateBlue MidnightBlue
++ I TitleStyle Inactive HGradient 100 grey60 grey30
 
 + I ButtonStyle All Pixmap 16x16/empty.xpm
 
-+ I AddButtonStyle Left  ActiveUp           Solid LightSlateBlue
-+ I AddButtonStyle Left  ActiveDown         Solid LightSlateBlue
-+ I AddButtonStyle Left  ToggledActiveUp    Solid LightSlateBlue
-+ I AddButtonStyle Left  ToggledActiveDown  Solid LightSlateBlue
-+ I AddButtonStyle Left  ToggledInactive    Solid grey60
-+ I AddButtonStyle Left  Inactive           Solid grey60
-
-+ I AddButtonStyle Right ActiveUp           Solid MidnightBlue
-+ I AddButtonStyle Right ActiveDown         Solid MidnightBlue
-+ I AddButtonStyle Right ToggledActiveUp    Solid MidnightBlue
-+ I AddButtonStyle Right ToggledActiveDown  Solid MidnightBlue
-+ I AddButtonStyle Right ToggledInactive    Solid grey30
-+ I AddButtonStyle Right Inactive           Solid grey30
++ I AddButtonStyle Left  AllActive   Solid LightSlateBlue
++ I AddButtonStyle Left  AllInactive Solid grey60
++ I AddButtonStyle Right AllActive   Solid MidnightBlue
++ I AddButtonStyle Right AllInactive Solid grey30
 
 # --------------
 # Menu Colorsets

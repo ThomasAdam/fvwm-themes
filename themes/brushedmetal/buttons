@@ -5,9 +5,6 @@ TitleStyle \
 	ActiveUp   (TiledPixmap $./images/decor/title-activeup.xpm) \
 	ActiveDown (TiledPixmap $./images/decor/title-activedown.xpm) \
 	Inactive   (TiledPixmap $./images/decor/title-inactive.xpm) \
-	ToggledActiveUp   (TiledPixmap $./images/decor/title-activeup.xpm) \
-	ToggledActiveDown (TiledPixmap $./images/decor/title-activedown.xpm) \
-	ToggledInactive   (TiledPixmap $./images/decor/title-inactive.xpm)
 
 Style "*" Button 1, Button 2, Button 3, Button 4, Button 6, Button 8
 Style "*" FvwmButtons  # button relief does not follow the state
@@ -73,10 +70,7 @@ AddToFunc   FuncFvwmReloadDecor
 + I TitleStyle \
 	ActiveUp   (TiledPixmap $./images/decor/title-activeup.xpm) \
 	ActiveDown (TiledPixmap $./images/decor/title-activedown.xpm) \
-	Inactive   (TiledPixmap $./images/decor/title-inactive.xpm) \
-	ToggledActiveUp   (TiledPixmap $./images/decor/title-activeup.xpm) \
-	ToggledActiveDown (TiledPixmap $./images/decor/title-activedown.xpm) \
-	ToggledInactive   (TiledPixmap $./images/decor/title-inactive.xpm)
+	Inactive   (TiledPixmap $./images/decor/title-inactive.xpm)
 + I ButtonStyle 1 \
 	ActiveUp   (Pixmap $./images/button/options-activeup.xpm) \
 	ActiveDown (Pixmap $./images/button/options-activedown.xpm) \

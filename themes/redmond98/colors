@@ -28,24 +28,14 @@ Colorset 4 fg white, bg #c3c3c3, Plain, NoShape
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
-+ I TitleStyle ActiveUp   HGradient 128 Blue4 DeepSkyBlue
-+ I TitleStyle ActiveDown HGradient 128 Blue4 DeepSkyBlue
-+ I TitleStyle Inactive   Solid grey51
++ I TitleStyle AllInactive Solid grey51
++ I TitleStyle Active      HGradient 128 Blue4 DeepSkyBlue
 
 + I ButtonStyle All Pixmap 16x16/empty.xpm
 
-+ I AddButtonStyle All   Inactive solid grey51
-+ I AddButtonStyle All   ToggledInactive solid grey51
-
-+ I AddButtonStyle Left  ActiveUp solid Blue4 
-+ I AddButtonStyle Left  ActiveDown solid Blue4
-+ I AddButtonStyle Left  ToggledActiveUp solid Blue4
-+ I AddButtonStyle Left  ToggledActiveDown solid Blue4
-
-+ I AddButtonStyle Right ActiveUp solid DeepSkyBlue 
-+ I AddButtonStyle Right ActiveDown solid DeepSkyBlue 
-+ I AddButtonStyle Right ToggledActiveUp solid DeepSkyBlue 
-+ I AddButtonStyle Right ToggledActiveDown solid DeepSkyBlue
++ I AddButtonStyle All   AllInactive Solid grey51
++ I AddButtonStyle Left  AllActive   Solid Blue4
++ I AddButtonStyle Right AllActive   Solid DeepSkyBlue
 
 + I ButtonStyle All -- UseTitleStyle
 

@@ -38,12 +38,8 @@ Colorset 4 fg CDE_COLOR1_FG, bg CDE_COLOR1_BG, Plain, NoShape
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
-+ I TitleStyle Inactive   VGradient 30 CDE_COLOR6_BG CDE_COLOR3_BG
-+ I TitleStyle ActiveUp   VGradient 30 CDE_COLOR1_BG CDE_COLOR5_BG
-+ I TitleStyle ActiveDown VGradient 30 CDE_COLOR1_BG CDE_COLOR5_BG
-+ I TitleStyle ToggledInactive   VGradient 30 CDE_COLOR6_BG CDE_COLOR3_BG
-+ I TitleStyle ToggledActiveUp   VGradient 30 CDE_COLOR1_BG CDE_COLOR5_BG
-+ I TitleStyle ToggledActiveDown VGradient 30 CDE_COLOR1_BG CDE_COLOR5_BG
++ I TitleStyle AllInactive VGradient 30 CDE_COLOR6_BG CDE_COLOR3_BG
++ I TitleStyle AllActive   VGradient 30 CDE_COLOR1_BG CDE_COLOR5_BG
 
 + I ButtonStyle All Pixmap 16x16/empty.xpm
 + I ButtonStyle All -- UseTitleStyle
