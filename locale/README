@@ -1,0 +1,52 @@
+Here some instructions for the files under the LANG directory.
+
+1. The ".txt" Files:
+--------------------
+
+These files are almost txt files but are not. They look likes more
+elementary sgml file and there are formatted (currently by 
+fvwm-themes-script) before there are displayed to the users.
+
+Formating Instruction: the formating instructions must (really) begin
+the lines. For one which are of the form <inst> ... </inst> they must
+be alone on the line, the others concern only the line where they occur.  
+
+ <title>A title
+
+	this will put "A title" in the center of the page and add some
+	'-' under it. Then start a new line.
+
+ <abstract>
+ txt
+ </abstract>
+
+	this do nothing, the line with <abstract> and </abstract> are
+	ignored, that's all :o)
+
+ <sec>A title
+
+	this will put "A title" on the left and add some  '-' under it
+	and then start a new line.
+	
+
+ <verb>
+ txt
+ </verb>
+
+	Display the "txt" exactly as it is and then start a new line
+
+ blanc line
+
+	the blanc lines are taken in count they are equivalent to
+	a "new line". So to get a blanc line you need two blanc lines
+	(one line is  enough after or before a title, sec or verb 
+	environment).
+
+ # 
+	any line which begin with a # is ignored
+
+
+2. The .msg file
+----------------
+
+We work on this ... even on the name ".msg" ...

@@ -32,8 +32,6 @@ Begin
     While $arg <> {} Do
     Begin
 	Set $j = (Add $i 1)
-	If $arg == {--session} Then
-	    Set $Session = (GetScriptArgument $j)
 	If $arg == {--viewer-colorset} Then
 	    Set $ViewerColorset = (GetScriptArgument $j)
 	If $arg == {--text-colorset} Then
@@ -259,6 +257,7 @@ Begin
     End
     If $locateSet == 0 Then
     Begin
+	Set $Lang = {en}
 	ChangeTitle 1 {Configuration Tools:}
 	ChangeTitle 2 {       Themes Selector        |       General Settings        |       FVWM Themes Sessions      }
 	ChangeTitle 5 {List of Themes:}
@@ -2306,7 +2305,7 @@ Main
  Case message of
   SingleClic :
   Begin
-    Set $arg={FvwmScript-Help --text-colorset }$TextColorset{ --message "                    Documentation in progress" --title "Help for the The Themes Center}
+    Set $arg={FvwmScript-Help --text-colorset }$TextColorset{ --in-line-doc FvwmScript-ThemesCenter --title "Themes Center" --lang }$Lang
     Set $dummy = (LaunchScript $arg)
   End
 End

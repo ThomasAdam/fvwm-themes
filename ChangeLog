@@ -1,5 +1,19 @@
 2000-11-15  olicha  <olivier.chapuis@free.fr>
 
+	* locale/en/Makefile.am:
+	* locale/en/FvwmScript-ThemesCenter.txt(new):
+	* scripts/FvwmScript-ThemesCenter:
+	* scripts/FvwmScript-Help:
+	"english" documentation for the Themes Center
+
+	* locale/README(new):
+	* locale/Makefile.am:
+	* locale/{en,fr}/FvwmScript-ColorSelector.txt:
+	* fvwm-themes-script.in:
+	The .txt file use a kind of formating à la sgml.
+
+2000-11-15  olicha  <olivier.chapuis@free.fr>
+
 	* configure.in:
 	* Makefile.am:
 	* locale/*:

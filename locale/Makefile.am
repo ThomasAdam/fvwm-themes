@@ -2,3 +2,5 @@
 
 AUTOMAKE_OPTIONS = foreign
 SUBDIRS = en fr ru
+
+EXTRA_DIST = README

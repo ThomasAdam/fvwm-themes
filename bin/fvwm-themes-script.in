@@ -50,6 +50,7 @@ my $comPid = 0;
 # in line doc
 my $inLineDoc = "";
 my $lineLength = 70;
+my $lang = "";
 
 GetOptions(
 	"help"               => \&showHelp,
@@ -64,6 +65,7 @@ GetOptions(
 	"com-name=s"         => \$comName,
 	"in-line-doc=s"      => \$inLineDoc,
 	"line-length=i"      => \$lineLength,
+	"lang=s"             => \$lang,
 ) || wrongUsage();
 
 
@@ -93,7 +95,7 @@ elsif ($inLineDoc ne "") {
 
 sub buildDoc {
 
-	my $lang = $ENV{'LANG'};
+	$lang = $ENV{'LANG'} if $lang eq "";
 	my $txtExt = "txt";
 	#$lang = "en";
 	#$lang = "ru";
@@ -117,8 +119,9 @@ sub buildDoc {
 	#print $doc;
 	open(DOC,"$file") || die "cannot open the doc for $inLineDoc";
 	my $l = 0;
-	my $isFirstLine = 1;
 	my $inVerb = 0;
+	my $previousWasBlanc = 0;
+
 	while(<DOC>) {
 		next if /^\#/;
 		chomp;
@@ -126,11 +129,12 @@ sub buildDoc {
 
 		if ($line =~ /^<verb>/) {
 			$inVerb = 1;
-			$doc .= "|";
+			$doc .= "|" if $doc !~ /\|$/ || $previousWasBlanc;
 			next;
 		}
 		if ($line =~ /^<\/verb>/) {
 			$inVerb = 0;
+			$previousWasBlanc = 1;
 			next;
 		}
 		if ($inVerb) {
@@ -138,28 +142,38 @@ sub buildDoc {
 			next;
 		}
 
-		if ($isFirstLine) {
-			next if $line =~ /^\s*$/;
+		next if ($line =~ /^<abstract>/ || $line =~ /^<\/abstract>/);
+
+		if ($line =~ /^<title>/ || $line =~ /^<sec>/)  {
+			my $type = "t";
+			$type = "s" if $line =~ /^<sec>/;
+			$line =~ s/^<title>\s*//;
+			$line =~ s/^<sec>\s*//;
 			$line =~ s/\s+$//;
-			$line =~ s/^\s+//;
 			$l = length($line);
-			my $t = int (($lineLength - $l) / 2);
-			$t = 0 if $t <= -1;
-			$doc .= " "x$t . $line . "|" . " "x$t . "-"x$l;
+			my $t = 0;
+			if ($type eq "t") {
+				$t = int (($lineLength - $l) / 2);
+				$t = 0 if $t <= -1;
+			}
+			$doc .= "|" if $doc !~ /\|$/ || $previousWasBlanc;
+			$doc .= " "x$t . $line . "|" . " "x$t . "-"x$l ."|";
 			$l = 0;
-			$isFirstLine = 0;
+			$previousWasBlanc = 1;
 			next;
 		}
 
 		if ($line =~ /^\s*$/) {
 			$l = 0;
-			if ($doc =~ /\|$/) {
+			if ($doc !~ /\|$/) {
 				$doc .= "|";
-			} else {
-				$doc .= "||";
 			}
+			$doc .= "|" if ($previousWasBlanc);
+			$previousWasBlanc = 1;
 			next;
 		}
+
+		$previousWasBlanc = 0;
 	  	$line =~ s/\s+$//;
 		#my $space = substr($line,0,index($line," ")+1);
 		$line =~ s/^\s+//;

@@ -1,0 +1,110 @@
+<title>FVWM Themes Center Documentation
+
+<abstract>
+The Themes Center is a FvwmScript which allows you to choose your
+themes configuration, your general settings and edit your FVWM Themes
+sessions. You can start it via the Theme Management Menu (Themes Center
+GUI).
+</abstract>
+
+<verb>
+Contents:
+            1. Themes Selector
+            2. General Settings
+            3. FVWM Themes Session
+            4. Miscenallous
+            5. Bugs
+</verb>
+
+<sec>1. Themes Selector
+
+In the top left you have the list of all the themes. When you select one
+of these themes the list of the components of this theme are displayed in
+the the top right. Then, you can either select all the components of this
+theme using the left "Set" button, only the look components with the button
+"Look" or you can select only one component by selecting one in the top
+right text field and using the left "Set" button. You can get information
+on the theme by using the "README" button (the other button are not yet
+implemented).
+
+
+Your used configuration and the change you are doing using the Themes
+Selector is reflected in the bottom text field. The first colon list
+all the components, the second colon says which theme is used for the
+component and the third colon (empty when you start the Script) say
+which theme has been set for the component (via the method explained
+in the above paragraph). Finally, the last colon may contains a "Var"
+or an "Opt" which indicate that the component of the theme (the used
+one or the set one if you have set this component) have some variants
+or some options. 
+
+
+If a component has some variants
+or some options you can modify its by selecting the component (in the bottom
+text field) and by using the "Property" button. Moreover, you can restore
+the used component by using the "Restore" buttons and you can lock it
+(i.e., a "load all" for a theme will ignore this component) by using
+the "Lock" button. The "Drop" button is not yet implemented.
+
+
+Now so that your change apply, you just have to use the "Apply" button
+on the bottom. The refresh button will reload the current configuration
+without applying the changes. The "Update" button will just update the
+the Themes Selector configuration (this is useful if you have made change
+using an other tool as the Theme Management menu).
+
+
+<sec>2. General Settings
+
+With this you can do the same job that with the
+"Theme Management -> current -> settings ->" sub-menu. The top text field
+represent your used and set configuration. To modify a setting, select
+one component and then a text field will appear so that you can modify
+the setting of this component. All the buttons work as for the Themes
+Selector.
+
+
+Important Note: If you click on "Apply" in the Themes Selector or here
+the changes will be applied for both.
+
+
+<sec>3. FVWM Themes Session
+
+FVWM Themes has its own session concept. See the fvwm-themes-start
+manual page and the FAQ for details on this. This is useful to run
+different FVWM Themes configuration. The use of the GUI seems really
+transparent for me (and there are already a mini doc in it) so I
+will not go further.
+
+
+However, let us give a tips. If you want to make some test without
+changing your configuration, add a session named "test" (with say
+"your" main configuration) and "Apply". Then, you can used the
+Themes Selector and the General Settings tool freely without
+modifying your main configuration. Then, you can return
+to your main configuration and if you prefer the test configuration
+you can copy it to your main configuration by using the GUI.
+
+
+<sec>4. Miscenallous
+
+The Script as a few options, it is run as follows in the Themes Management
+Menu:
+
+<verb>
+  FvwmScript FvwmScript-ThemesCenter --text-colorset 34 \
+                                     --viewer-colorset 33
+</verb>
+
+I.e., colorset 34 is used for the text field and colorset 33 is
+used for the text of this help (any FvwmScript use colorset 36
+for its main colors). The only other option is --Lang xx where
+xx is a "Unix" LANG. By default the LANG is computed from $LANG
+and the only supported lang are currently en, fr and ru.
+
+
+<sec>5. Bugs
+
+Report Bugs To: fvwm-themes-devel@lists.sourceforge.net
+
+--

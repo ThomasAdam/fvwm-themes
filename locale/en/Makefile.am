@@ -3,6 +3,6 @@
 configdir = @FT_LOCALE_DIR@/en
 
 config_DATA = \
-	FvwmScript-ColorSelector.txt
+	FvwmScript-ColorSelector.txt FvwmScript-ThemesCenter.txt
 
 EXTRA_DIST = $(config_DATA)
