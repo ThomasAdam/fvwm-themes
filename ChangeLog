@@ -7,6 +7,9 @@
 	moved StaysOnTop from style to window operations (style does not
 	work dynamically with 2.5.x anyway)
 
+	* themes/default/settings.cfg:
+	added $HOME/.wm-icons;.png, this is not problematic for 2.4.x
+
 2002-09-13  migo  <migo@homemail.com>
 
 	* themes/redmondxp/modules/FvwmThemesPanelManager:
