@@ -39,6 +39,9 @@
 	on afterstep@ and awol@ modules. FvwmTaskBar core dumps when
 	restarting fvwm-themes-start (but does not when restarting fvwm2).
 
+	* bin/fvwm-themes-images.in:
+	fixed $ftDataDir
+
 2000-11-11  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ConfigCenter:
