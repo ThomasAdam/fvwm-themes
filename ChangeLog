@@ -1,3 +1,8 @@
+2001-05-19  migo  <migo@homemail.com>
+
+	* themes/default/styles:
+	remove panel GNOMEIgnoreHints, fixed in fvwm
+
 2001-05-17  migo  <migo@homemail.com>
 
 	* themes/*/menustyle:
