@@ -1330,7 +1330,7 @@ sub getOwnThemeSubMenusRc ($) {
 		}
 		$menusRc .= qq(+ "" Nop\n) unless $m == 2;
 		### Temporarily hardcoded
-		my $dropCommand = !/^(settings|colors|menus)/ || /-extra$/?
+		my $dropCommand = !/^(settings|colors$|menus)/ || /-extra$/?
 			qq(FuncFvwmThemesDrop "$_"):
 			'Exec xmessage "Dropping of this component is not supported"';
 		my $lockLabel = $cc->{'locked'}? "Unlock": "Lock";
