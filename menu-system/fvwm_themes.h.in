@@ -1,0 +1,92 @@
+# the following file contains the functions:
+# ftGetSectionIcon, ftFindIconByList, ftIsWmIcons, ftGetSectionIconForApp 
+# used below
+!include fvwm_themes_data.h
+
+# the following function try to find the "system" icons in a "standar place".
+# Where debian and others distrib put the icons? the system-menu doc say
+# in /usr/X11R6/include/X11/{pixmaps,bitmaps} but we can find icons of
+# any size in these diectory (e.g., 32x32)?
+# mandrake: /usr/share/icons/mini is ok!
+# debian: ?
+# other distro. based on debian ?
+
+# So, Return nothing by default
+function ftFindSystemMiniIcon($n) = ""
+
+# here an example for a Linux-Mandrake 7.x distro, in any case the icon should
+# be returned with its complet path
+#function ftFindSystemMiniIcon($n)= \
+#    ifeqelse($n, "", "", \
+#    ifelsefile("/usr/share/icons/mini/" $n, \
+#      "/usr/share/icons/mini/" $n, "")))
+
+# these functions try to found a transformed kde2 or gnome mini icons produced
+# by fvwm-themes-images
+
+function ftFindTrMiniIconMatch($n)= \
+    ifeqelse($n, "", "", \
+    ifelsefile("xFT_DATADIRx/tr-images/16x16-gnome/" $n, \
+	"xFT_DATADIRx/tr-images/16x16-gnome/" $n, \
+    ifelsefile("xFT_DATADIRx/tr-images/16x16-kde2/" $n, \
+	"xFT_DATADIRx/tr-images/16x16-kde2/" $n,\
+    "")))
+
+function ftFindTrMiniIcon($i,$c,$t,$p)=\
+  ifeqelse(ftFindTrMiniIconMatch($i), "",\
+  ifeqelse(ftFindTrMiniIconMatch($c".xpm"), "",\
+  ifeqelse(ftFindTrMiniIconMatch($t".xpm"), "",\
+  ifeqelse(ftFindTrMiniIconMatch($p".xpm"), "",\
+	"",\
+	ftFindTrMiniIconMatch($p".xpm")),\
+	ftFindTrMiniIconMatch($t".xpm")),\
+	ftFindTrMiniIconMatch($c".xpm")),\
+	ftFindTrMiniIconMatch($i))
+
+# return the best possible section ($f) icon by using the following
+# preference order:
+#  1. the wm-icons associated to a standard menu system section ($s)
+#  2. the menu system icon ($i) if it is a wm-icons
+#  3. the "system" mini icon (ftFindSystemMiniIcon should be edited)
+#  4. the wm-icons associated to a standard section if the section is a
+#     subsection of a standard one
+#  5. $f folder.xpm
+# That you may want is to change this order
+function ftFindBestSectionIcon($s,$i,$f)= \
+  ifeqelse(ftGetSectionIcon($s),"",\
+  ifeqelse(ftIsWmIcons($i,$f),"",\
+  ifeqelse(ftFindSystemMiniIcon($i),"",\
+  ifeqelse(ftGetSectionIcon(parent($s)),"",\
+  ifeqelse(ftGetSectionIcon(parent(parent($s))),"",\
+	   $f "folder.xpm",\ 
+	   $f ftGetSectionIcon(parent(parent($s)))),\
+	   $f ftGetSectionIcon(parent($s))),\
+	   ftFindSystemMiniIcon($i)),\
+           ftIsWmIcons($i,$f)),\
+	   $f ftGetSectionIcon($s))
+
+# return the best possible application ($f) icon by using the following
+# preference order:
+#  1. the menu system icon ($i) if it is a wm-icons
+#  2. A wm-icons associated to the package ($p), or command ($c) or title ($t)
+#     via the ftFindIconByList function
+#  3. As above but try to found a kde2 or gnome icons produced by 
+#     fvwm-themes-images
+#  4. the "system" mini icon (ftFindSystemMiniIcon should be edited)
+#  5. the wm-icons associated to a standard section if the app is in
+#     such a section (or a subsection of such a section)
+#  6. $f item.xpm
+# That you may want is to change this order
+function ftFindBestIcon($i,$p,$s,$c,$t,$f)= \
+  ifeqelse(ftIsWmIcons($i,$f),"",\
+  ifeqelse(ftFindIconByList($p,$c,$t,$f),"",\
+  ifeqelse(ftFindTrMiniIcon($i,$c,$t,$p),"",\
+  ifeqelse(ftFindSystemMiniIcon($i),"",\
+  ifeqelse(ftGetSectionIconForApp($s,$f),"",\
+	   $f "item.xpm",\
+	   ftGetSectionIconForApp($s,$f)),\
+           ftFindSystemMiniIcon($i)),\
+	   ftFindTrMiniIcon($i,$c,$t,$p)),\
+           ftFindIconByList($p,$c,$t,$f)),\
+           ftIsWmIcons($i,$f))
+

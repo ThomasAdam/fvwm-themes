@@ -1,3 +1,22 @@
+2001-08-14  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	New ft cfg "start stop" config command: "load-unload" and
+	"reload-prereload". 
+
+	* themes/default/settings.cfg:
+	* themes/default/settings/ewmh/{enabled,disabled}: (new files)
+	* themes/default/settings/session-manager/ksmserver: (new file)
+	Added fvwm-ewmh support and ksmserver support
+
+	* themes/default/settings.cfg:
+	* themes/default/settings/menu-system/*: (new files)
+	* configure.in:
+	* Makefile.am:
+	* menu-system/*: (new files):
+	Added debian menu system support (TODO: added a FAQ entries and 
+	maybe document the new "disabled" ./configure option)
+	
 2001-08-10  migo  <migo@homemail.com>
 
 	* configure.in:

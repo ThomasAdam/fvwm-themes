@@ -1,0 +1,46 @@
+Style "KDE Desktop" Sticky,WindowListSkip,CirculateSkip,BorderWidth 0,\
+	HandleWidth 0, NoTitle 
+
+DestroyFunc FuncFvwmRestartFvwmNetHints
+AddToFunc   FuncFvwmRestartFvwmNetHints
++ I SendToModule FvwmNetHints Quit
++ I Module FvwmNetHints
+
+AddToMenu MenuFvwmStartRegularModules "EWMH Support%menu/windows.xpm%" \
+	FuncFvwmRestartFvwmNetHints
+AddToMenu MenuFvwmStopRegularModules "Stop EWMH Support%menu/quit.xpm%" \
+	SendToModule FvwmNetHints Quit
+
+DestroyFunc FuncFvwmNetHintsConfig
+AddToFunc   FuncFvwmNetHintsConfig
++ I DestroyModuleConfig FvwmNetHints*
++ I *FvwmNetHints: ActivateWindowCmd FuncFvwmDeiconifyFocusAndRaise
+# focus workaround
++ I *FvwmNetHints: DockNetStyle Focus
++ I *FvwmNetHints: DesktopNetStyle Focus
++ I *FvwmNetHints: ToolBarNetStyle Focus
++ I *FvwmNetHints: MenuNetStyle Focus
+
+*FvwmPager-Desker: UseListSkip
+*FvwmPager-Single: UseListSkip
+
+Style "KDE Desktop" ClickToFocus
+Style "kicker" ClickToFocus
+
+DestroyFunc FuncFvwmReloadEWMH
+AddToFunc   FuncFvwmReloadEWMH
++ I SendToModule FvwmNetHints ReadStartDesktopFile
++ I SendToModule FvwmNetHints ReadStartFile
+
+DestroyFunc FuncFvwmPreReloadEWMH
+AddToFunc   FuncFvwmPreReloadEWMH
+
+DestroyFunc FuncFvwmLoadEWMH
+AddToFunc   FuncFvwmLoadEWMH
++ I FuncFvwmNetHintsConfig
++ I Module FvwmNetHints
+
+DestroyFunc FuncFvwmUnloadEWMH
+AddToFunc   FuncFvwmUnloadEWMH
++ I DestroyModuleConfig FvwmNetHints: *
++ I SendToModule FvwmNetHints Quit

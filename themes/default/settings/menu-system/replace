@@ -1,0 +1,1 @@
+PipeRead 'f="$FT_DATADIR"; if [ -f $FVWM_USERDIR/menu-system/ft-menu ]; then f="$FVWM_USERDIR"; fi; cat $f/menu-system/ft-menu | sed -e "s/MenuFvwmMenuSystem/MenuFvwmPrograms/"'

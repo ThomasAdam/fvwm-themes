@@ -1,0 +1,23 @@
+# quit menu
+DestroyMenu MenuFvwmQuit
+AddToMenu   MenuFvwmQuit "Quit KDE2 Session?" Title
++ "&Restart (not recommanded!)%menu/restart.xpm%"          Restart fvwm2
++  "" Nop
++ "Re&fresh Screen%menu/refresh.xpm%"   Refresh
++ "Re&capture Screen%menu/refresh.xpm%" Recapture
++ "" Nop
++ "&Yes, Quit Session%menu/choice-yes.xpm%"		QuitSession
++ "Yes, Save and Quit Session%menu/choice-yes.xpm%"	SaveQuitSession
++  "" Nop
++ "Quit FVWM &Only%menu/quit.xpm%"		Quit
++ "&Save Session Only%menu/windows.xpm%"	SaveSession
++ "" Nop
++ "&No, Don't Quit%menu/choice-no.xpm%"    Nop
+
+#
+DestroyFunc FuncFvwmStartKsmserver
+AddToFunc   FuncFvwmStartKsmserver
++ I *FvwmNetHints: NoIconAction SendToModule FvwmAnimate animate
+
+DestroyFunc FuncFvwmStopKsmserver
+AddToFunc   FuncFvwmStopKsmserver

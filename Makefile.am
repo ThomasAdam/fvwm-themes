@@ -2,7 +2,7 @@
 ## Makefile.am for fvwm-themes.
 
 AUTOMAKE_OPTIONS = foreign
-SUBDIRS = bin doc rpm scripts forms locale
+SUBDIRS = bin doc rpm scripts forms locale menu-system
 FT_DATA_SUBDIRS = themes images sounds
 FT_MODULE_SUBDIRS = 
 EXTRA_DIST = images.tar.gz sounds.tar.gz
@@ -16,6 +16,8 @@ install-data-local:
 	GNOME_ICONS=@GNOME_ICONS@
 	KDE2_ICONS=@KDE2_ICONS@
 	BUILD_MENUS=@BUILD_MENUS@
+	RUN_UPDATEMENU=@RUN_UPDATEMENU@
+	UPDATE_MENU=@UPDATE_MENU@
 
 	$(mkinstalldirs) $(FT_DATADIR)
 	for dir in $(FT_DATA_SUBDIRS); do \
@@ -42,6 +44,10 @@ install-data-local:
 
 	if test "$(KDE2_ICONS)" = "yes"; then \
 		$(bindir)/fvwm-themes-images --ft-install --kde2; \
+	fi
+
+	if test "$(RUN_UPDATEMENU)" = "yes"; then \
+		$(UPDATE_MENU); \
 	fi
 
 	@echo

@@ -417,7 +417,7 @@ BEGIN { $cfgFileCache = {}; $cfgCacheFileStatus = 0; }
 
 my @dependencyKeys = qw(
 	provides requires complements precedes follows
-	local-imagepath start-stop uses auto-drops
+	local-imagepath start-stop uses auto-drops load-unload reload-prereload
 );
 
 # returns 0 if the given condition is false (so should be hidden), 1 - if true
@@ -915,6 +915,8 @@ sub new ($$;$$) {
 
 			$cc->{'memory'} = $componentCfg->{'memory'}
 				if exists $componentCfg->{'memory'};
+			$cc->{'stop'} = $componentCfg->{'stop'}
+				if exists $componentCfg->{'stop'};
 			$cc->{'locked'} = $componentCfg->{'locked'}
 				if exists $componentCfg->{'locked'};
 			$cc->{'current'} = $componentCfg->{'current'}
@@ -957,7 +959,7 @@ sub new ($$;$$) {
 		$cc->{'locked'} = 0 unless exists $cc->{'locked'};
 		$cc->{'used'} = 1 unless exists $cc->{'used'};
 		#ccds 1
-		$cc->{'used'} = 1 if $cc->{'used'} == 2;
+		$cc->{'used'} = 1 if $cc->{'used'} >= 2;
 		errDie("Duplicated component '$component' for theme '$theme'")
 			if exists $self->{'cc'}->{$component} &&
 				$self->{'cc'}->{$component}->{'used'};
@@ -1049,7 +1051,7 @@ sub storeThemeComponentMemory ($$$) {
 	my $cm = {};
 
 	if (ref($cc->{'variant'}) eq 'ARRAY' && $cc->{'current'} &&
-		!$cc->{'variant'}->[$cc->{'current'} - 1]->{'hidden'})
+		!$cc->{'variant'}->[$cm->{'current'} - 1]->{'hidden'})
 	{
 		$cm->{'current'} = $cc->{'current'};
 	}
@@ -1187,7 +1189,7 @@ sub useNewComponents ($$$;$) {
 		my $themeCfg = new Fvwm::ThemeCfg($theme);
 		my $cc = $themeCfg->getComponentCfg($component);
 		#ccds 1
-		$cc->{'used'} = 2;
+		$cc->{'used'} = 3;
 		$self->setComponentCfg($component, $cc);
 		$self->applyThemeComponentMemory($theme, $component);
 
@@ -1236,7 +1238,7 @@ sub setNewComponentValues ($$$$) {
 		errDie("Unexisting option value '$index2' in option '$component:$option'")
 			if $index2 <= 0 || $index2 > @$values;
 		#ccds: 1
-		$cc->{'used'} = 2;
+		$cc->{'used'} = 3;
 		$self->setComponentCfg($component, $cc);
 		$optionEntry->{'current'} = $index2;
 	}
@@ -1258,7 +1260,7 @@ sub setNewComponentValues ($$$$) {
 			);
 		}
 		#ccds: 1
-		$cc->{'used'} = 2;
+		$cc->{'used'} = 3;
 		$self->setComponentCfg($component, $cc);
 		$cc->{'current'} = $index;
 	}
@@ -1610,7 +1612,7 @@ sub getReloadDependency () {
 			'settings/session-manager'  ],
 		'buttons' => [ 'buttons-extra', 'windowlook', 'colors', 'colors-decor' ],
 		'colors' => [ 'colors-extra', 'colors-decor', 'modules', 'windowlook',
-			'buttons', 'globallook' ],	
+		'buttons', 'globallook' ],
 		'colors-decor' => [ 'colors-decor-extra', 'colors' ],
 		'cursors' => [ 'cursors-extra' ],
 		'fonts' => [ 'fonts-extra', 'colors', 'menustyle', 'modules',
@@ -1690,7 +1692,7 @@ sub setComponentsToReload ($) {
 		next if $component =~ /^_/;
 		next unless $cc->{'used'};
 		push @currentComponents, $component;
-		if ($cc->{'used'} == 2) {
+		if ($cc->{'used'} >= 2) {
 			$needReload->{$component} = 1;
 		} else {
 			$needReload->{$component} = 0;
@@ -1731,14 +1733,16 @@ sub setComponentsToReload ($) {
 	foreach (@currentComponents) { 
 		if ($needReload->{$_}) {
 			my $cc = $self->getComponentCfg($_);
-			$cc->{'used'} = 2;
-			$self->setComponentCfg($_, $cc);
+			if ($cc->{'used'} < 2) {
+				$cc->{'used'} = 2;
+				$self->setComponentCfg($_, $cc);
+			}
 #			print STDERR "$_ ";
 		}
 	}
 #	print STDERR "\n";
 }
-									
+								
 # returns component key value, which can be overridden by the current variant
 # or options key values. If it is array, all found values are joined together.
 sub getComponentNamedValue ($$$) {
@@ -1800,45 +1804,189 @@ sub getAdditionalImagePath ($) {
 sub getAllHooksRc ($) {
 	my $self = shift;
 	my $currentComponents = [keys %{$self->{cc}}];
-	my $startStopItems = [];
+	my $startItems = [];
+	my $stopItems = [];
+	my $loadItems = [];
 
+	my $_c = $self->getComponentCfg("_core");
+	my $saveStop = ( $_c->{'stop'} ||= {} );
+	my $cs = {};
+ 
 	my $startHooksRc =
 		"DestroyFunc FuncFvwmStartAllHooks\n" .
 		"AddToFunc   FuncFvwmStartAllHooks\n";
-	my $stopHooksRc =
-		"DestroyFunc FuncFvwmStopAllHooks\n" .
-		"AddToFunc   FuncFvwmStopAllHooks\n";
+	my $stopHooksRc = "";
+	my $loadHooksRc =
+		"DestroyFunc FuncFvwmLoadAllHooks\n" .
+		"AddToFunc   FuncFvwmLoadAllHooks\n";
 	#ccds: 3, the Stop Hooks must be computed before somewhere!
 	my $minimalStartHooksRc = $startHooksRc;
 	my $minimalStopHooksRc = "";
 	my $hardCodedStopHooks = "";
 	my $c;
 	foreach $c (@$currentComponents) {
-		my $items = $self->getComponentNamedValue($c, 'start-stop');
-		#ccds 4
 		my $cc = $self->getComponentCfg($c);
-		next if $cc->{'hidden'};
-		if ($c eq "colors" && $cc->{'used'} == 2) {
+		next if defined $cc->{'hidden'};
+
+		# get the saved "stop" functions
+		my @savedStopFunctions = ();
+		my @savedUnloadFunctions = ();
+		my @savedPreReloadFunctions = ();
+		if (defined $saveStop->{$c} && ref($saveStop->{$c}) eq 'HASH') {
+			if (defined $saveStop->{$c}->{'start-stop'} &&
+				 ref($saveStop->{$c}->{'start-stop'}) eq 'ARRAY') {
+				@savedStopFunctions = @{$saveStop->{$c}->{'start-stop'}};
+			}
+			if (defined $saveStop->{$c}->{'load-unload'} &&
+				 ref($saveStop->{$c}->{'load-unload'}) eq 'ARRAY') {
+				@savedUnloadFunctions = @{$saveStop->{$c}->{'load-unload'}};
+			}
+			if (defined $saveStop->{$c}->{'reload-prereload'} &&
+				 ref($saveStop->{$c}->{'reload-prereload'}) eq 'ARRAY') {
+				@savedPreReloadFunctions = @{$saveStop->{$c}->{'reload-prereload'}};
+			}
+			delete $saveStop->{$c};
+		}
+
+		if ($c eq "colors" && $cc->{'used'} >= 2) {
 			$hardCodedStopHooks = "FuncFvwmRestartFvwmTheme\n";
 		}
-		next unless defined $items;
-		errDie("start-stop ($items) in component '$c' is not ARRAY")
-			unless ref($items) eq 'ARRAY';
-		foreach (@$items) {
-			next if isArrayElement($startStopItems, $_);
-			push @$startStopItems, $_;
-			$startHooksRc .= "+ I FuncFvwmStart$_\n";
-			$stopHooksRc  .= "+ I FuncFvwmStop$_\n";
-			#ccds next block
-			if ($cc->{'used'} == 2) {
-				$minimalStartHooksRc .= "+ I FuncFvwmStart$_\n";
-				$minimalStopHooksRc .= "FuncFvwmStop$_\n";
+		my $startStop = $self->getComponentNamedValue($c,'start-stop');
+		my $loadUnload = $self->getComponentNamedValue($c,'load-unload');
+		my $reloadPrereload = $self->getComponentNamedValue($c,'reload-prereload');
+
+		next unless defined $startStop || $loadUnload || $reloadPrereload ||
+		  @savedStopFunctions || (@savedUnloadFunctions && $cc->{'used'} >= 3) ||
+		  (@savedPreReloadFunctions &&  $cc->{'used'} < 3);
+
+		errDie("start-stop ($startStop) in component '$c' is not ARRAY")
+		  unless !defined $startStop || ref($startStop) eq 'ARRAY';
+		errDie("start-stop ($loadUnload) in component '$c' is not ARRAY")
+		  unless !defined $loadUnload || ref($loadUnload) eq 'ARRAY';
+		errDie("start-stop ($reloadPrereload) in component '$c' is not ARRAY")
+		  unless !defined $reloadPrereload || ref($reloadPrereload) eq 'ARRAY';
+
+		# prepare to save the "stop" functions
+		if (defined $startStop) {
+			$cs->{$c}->{'start-stop'} = $startStop;
+		}
+		if (defined $loadUnload) {
+			$cs->{$c}->{'load-unload'} = $loadUnload;
+		}
+		if (defined $reloadPrereload) {
+			$cs->{$c}->{'reload-prereload'} = $reloadPrereload;
+		}
+
+		my $startFunctions = [];
+		my $loadFunctions = [];
+		my @stopFunctions = ();
+		my $loadFunctionsType = "Start";
+		my $startFunctionsType = "Start";
+		my $stopFunctionsType = "Stop";
+		if (defined $loadUnload) {
+			$loadFunctions = $loadUnload;
+			$loadFunctionsType = "Load";
+		}
+		elsif (defined $startStop) {
+			$loadFunctions = $startStop;
+		}
+		if ($cc->{'used'} < 3) {
+			if (defined $reloadPrereload) {
+				$startFunctions = $reloadPrereload;
+				$startFunctionsType = "ReLoad";
+			}
+			elsif (defined $startStop) {
+				$startFunctions = $startStop;
+			}
+			if (@savedPreReloadFunctions) {
+				@stopFunctions = @savedPreReloadFunctions;
+				$stopFunctionsType = "PreReload";
+			}
+			elsif (@savedStopFunctions) {
+				@stopFunctions = @savedStopFunctions;
 			}
 		}
+		else {
+			if (defined $loadUnload) {
+				$startFunctions = $loadUnload;
+				$startFunctionsType = "Load";
+			}
+			elsif (defined $startStop) {
+				$startFunctions = $startStop;
+			}
+			if (@savedUnloadFunctions) {
+				@stopFunctions = @savedUnloadFunctions;
+				$stopFunctionsType = "Unload";
+			}
+			elsif (@savedStopFunctions) {
+				@stopFunctions = @savedStopFunctions;
+			}
+		}
+		
+		foreach (@$startFunctions) {
+			next if isArrayElement($startItems, $_);
+			push @$startItems, $_;
+			$startHooksRc .= "+ I FuncFvwm$startFunctionsType$_\n";
+			if ($cc->{'used'} >= 2) {
+				$minimalStartHooksRc .= "+ I FuncFvwm$startFunctionsType$_\n";
+			}
+		}
+
+		foreach (@stopFunctions) {
+			next if isArrayElement($stopItems, $_);
+			push @$stopItems, $_;
+			$stopHooksRc  .= "FuncFvwm$stopFunctionsType$_\n";
+			if ($cc->{'used'} >= 2) {
+				$minimalStopHooksRc .= "FuncFvwm$stopFunctionsType$_\n";
+			}
+		}
+
+		foreach (@$loadFunctions) {
+			next if isArrayElement($loadItems, $_);
+			push @$loadItems, $_;
+			$loadHooksRc .= "+ I FuncFvwm$loadFunctionsType$_\n";
+		}
+
 	}
-	#ccds: 2nd arg
-	return ("$startHooksRc\n$stopHooksRc\n",
-		"$minimalStartHooksRc\n$minimalStopHooksRc\n$hardCodedStopHooks\n");
+
+	# get the remaining stop functions ("dropped" component)
+	foreach $c (keys %$saveStop) {
+		print STDERR "sS: $c\n";
+		my @stopFunctions = ();
+		my $stopFunctionsType = "Stop";
+		# from the strongest
+		if (ref($saveStop->{$c}) eq 'HASH') {
+			if (defined $saveStop->{$c}->{'load-unload'} &&
+				 ref($saveStop->{$c}->{'load-unload'}) eq 'ARRAY') {
+				@stopFunctions = @{$saveStop->{$c}->{'load-unload'}};
+				$stopFunctionsType = "Unload";
+			}
+			elsif (defined $saveStop->{$c}->{'start-stop'} &&
+				 ref($saveStop->{$c}->{'start-stop'}) eq 'ARRAY') {
+				@stopFunctions = @{$saveStop->{$c}->{'start-stop'}};
+			}
+			elsif (defined $saveStop->{$c}->{'reload-prereload'} &&
+					 ref($saveStop->{$c}->{'reload-prereload'}) eq 'ARRAY') {
+				# should not happen ?
+				@stopFunctions = @{$saveStop->{$c}->{'reload-prereload'}};
+				$stopFunctionsType = "PreUnload";
+			}
+			delete $saveStop->{$c};
+		}
+		
+		foreach (@stopFunctions) {
+			next if isArrayElement($stopItems, $_);
+			push @$stopItems, $_;
+			$stopHooksRc  .= "FuncFvwm$stopFunctionsType$_\n";
+			$minimalStopHooksRc .= "FuncFvwm$stopFunctionsType$_\n";
+		}
+	}
+
+	# save the stop functions
+	$_c->{'stop'} = $cs;
+
+	return ("$loadHooksRc\n","$stopHooksRc\n$startHooksRc\n",
+			  "$minimalStopHooksRc$hardCodedStopHooks\n$minimalStartHooksRc\n");
 }
 
 sub getMenusAndHooksAndReadsRc ($) {
@@ -1847,6 +1995,7 @@ sub getMenusAndHooksAndReadsRc ($) {
 	my $rc = "";
 	#ccds 1
 	my $minimalRc = "";
+	my $normalRc = "";
 
 	my ($ownThemeListRc, $ownThemeMenuRc) = $self->getOwnThemeSubMenusRc();
 	my ($allThemeListRc, $allThemeMenuRc) = $self->getAllThemeSubMenusRc();
@@ -1855,10 +2004,10 @@ sub getMenusAndHooksAndReadsRc ($) {
 	$self->setComponentsToReload() if $self->isMinimalReload();
 	# add current theme hooks
 	#ccds: 2nd arg
-	($rc,$minimalRc) = $self->getAllHooksRc();
+	($rc,$normalRc,$minimalRc) = $self->getAllHooksRc();
 
 	# include components themselves (Read)
-	$rc .= "### We will decide later whether to use full paths here.\n";
+	my $tmpRc .= "### We will decide later whether to use full paths here.\n";
 	foreach (@{$self->getSortedComponentsToRead()}) {
 		my $cc = $self->getComponentCfg($_);
 		my $readFile = $cc->{'read-file'};
@@ -1908,10 +2057,12 @@ sub getMenusAndHooksAndReadsRc ($) {
 		$command =~ s/%f/$readFile/sg;
 		$command =~ s/%d/getThemeDir($cc->{$themeKey})/seg;
 		$command =~ s/%o([\d]+)(\w)/$optionExports->[$1-1]->{$2} || ""/seg;
-		$rc .= "$readRc1$command\n$readRc2";
+		$tmpRc .= "$readRc1$command\n$readRc2";
 		#ccds 1
-		$minimalRc .= "$readRc1$command\n$readRc2" if $cc->{'used'} == 2;
+		$minimalRc .= "$readRc1$command\n$readRc2" if $cc->{'used'} >= 2;
 	}
+	$rc .= $tmpRc;
+	$normalRc .= $tmpRc;
 
 	# add main menu entries
 	#ccds: some changes ...
@@ -1950,8 +2101,9 @@ sub getMenusAndHooksAndReadsRc ($) {
 	$menu .= "$allThemeMenuRc\n";
 
 	$rc .= $menu;
+	$normalRc .= $menu;
 	$minimalRc .= $menu;
-	return ($rc,$minimalRc);
+	return ($rc,$normalRc,$minimalRc);
 }
 
 sub generateThemesRc ($) {
@@ -1992,7 +2144,7 @@ AddToFunc   FuncFvwmResetInitFunctions
 + I DestroyFunc SessionInitFunction
 + I DestroyFunc SessionRestartFunction
 + I AddToFunc StartFunction
-+ I + I FuncFvwmStartAllHooks
++ I + I FuncFvwmLoadAllHooks
 
 DestroyFunc FuncFvwmRestartFvwmTheme
 AddToFunc   FuncFvwmRestartFvwmTheme
@@ -2017,10 +2169,10 @@ AddToFunc   FuncFvwmThemesConfigAndUpdate
 + I Wait FvwmScript-NoteMessage
 + I PipeRead `@$scriptFile@ $0 --pipe`
 + I FuncFvwmResetInitFunctions
-+ I FuncFvwmStopAllHooks
+#+ I FuncFvwmStopAllHooks
 #+ I FuncFvwmRestartFvwmTheme
 #+ I DestroyModuleConfig FvwmTheme: *
-+ I Read @$rcFile2@
++ I Read @$rcFile3@
 + I FuncFvwmStartAllHooks
 + I All (FvwmScript-NoteMessage) Delete
 
@@ -2029,8 +2181,8 @@ AddToFunc   FuncFvwmThemesCenterUpdate
 + I FvwmScript FvwmScript-NoteMessage "Theme switching"
 + I Wait FvwmScript-NoteMessage
 + I FuncFvwmResetInitFunctions
-+ I FuncFvwmStopAllHooks
-+ I Read @$rcFile2@
+#+ I FuncFvwmStopAllHooks
++ I Read @$rcFile3@
 + I FuncFvwmStartAllHooks
 + I All (FvwmScript-NoteMessage) Delete
 
@@ -2155,7 +2307,7 @@ Read @$rcFile2@
 	$imagePath =~ s=(^|:)\Q$siteDir\E(/|:|$)=$1\$FT_DATADIR$2=g;
 	my $addImagePath = $self->getAdditionalImagePath();
 	$imagePath .= "\nImagePath $addImagePath" if $addImagePath =~ /\+/;
-	my ($menusAndHooksRc, $minimalMenusAndHooksRc) = 
+	my ($menusAndHooksRc, $normalMenusAndHooksRc, $minimalMenusAndHooksRc) = 
 			$self->getMenusAndHooksAndReadsRc();
 
 	$contents = "# fvwm/$rcFile2 $version$header";
@@ -2180,7 +2332,19 @@ ImagePath $imagePath
 $minimalMenusAndHooksRc
 Mouse 2 A CM Menu MenuFvwmThemes
 };
+		
+		saveFile("$workDir/$rcFile3", \$contents);
+	}
+	else {
+		$contents = "# fvwm/$rcFile3 $version$header";
+		$contents .= qq{
+SetEnv FT_DATADIR '$siteDir'
+ImagePath $imagePath
 
+$normalMenusAndHooksRc
+Mouse 2 A CM Menu MenuFvwmThemes
+};
+		
 		saveFile("$workDir/$rcFile3", \$contents);
 	}
 

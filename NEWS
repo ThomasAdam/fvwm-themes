@@ -1,5 +1,8 @@
 fvwm-themes-0.5.1 - not released yet
 
+* Added ewmh and ksmserver support
+* Added Debian menu system support
+
 fvwm-themes-0.5.0 - 20010810
 
 * The package is now divided to fvwm-themes-base and fvwm-themes-extra.

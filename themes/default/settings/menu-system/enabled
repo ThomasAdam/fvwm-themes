@@ -1,0 +1,6 @@
+AddToMenu MenuFvwmPrograms "" Nop
++ "Menu System%menu/folder.xpm" Popup MenuFvwmMenuSystem
+
+DestroyMenu MenuFvwmMenuSystem
+AddToMenu MenuFvwmMenuSystem DynamicPopupAction \
+	Read menu-system/ft-menu

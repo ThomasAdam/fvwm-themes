@@ -1,0 +1,13 @@
+#
+DestroyFunc FuncFvwmReloadEWMH
+AddToFunc   FuncFvwmReloadEWMH
+
+DestroyFunc FuncFvwmPreReloadEWMH
+AddToFunc   FuncFvwmPreReloadEWMH
+
+DestroyFunc FuncFvwmLoadEWMH
+AddToFunc   FuncFvwmLoadEWMH
+
+DestroyFunc FuncFvwmUnLoadEWMH
+AddToFunc   FuncFvwmUnLoadEWMH
+

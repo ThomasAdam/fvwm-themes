@@ -7,17 +7,30 @@ AM_INIT_AUTOMAKE(fvwm-themes, 0.5.1)
 REQUIRED_FVWM_VERSION=2.3.33
 AC_SUBST(REQUIRED_FVWM_VERSION)dnl
 
-mg_ARG_WITH(fvwm-bindir, [  --with-fvwm-bindir DIR  specify fvwm bin directory, if not in PATH], FVWM_BINDIR, "")
-mg_ARG_WITH(ft-datadir,  [  --with-ft-datadir DIR   specify data dir, if different from fvwm], FT_DATADIR, "")
+mg_ARG_WITH(fvwm-bindir, 
+	[  --with-fvwm-bindir DIR    specify fvwm bin directory, if not in PATH],
+	FVWM_BINDIR, ""
+)
 
-AC_ARG_ENABLE(gnome-icons, [  --enable-gnome-icons    convert gnome icons to xpm icons ], GNOME_ICONS=yes, GNOME_ICONS=no)
+mg_ARG_WITH(ft-datadir,
+	[  --with-ft-datadir DIR     specify data dir, if different from fvwm],
+	FT_DATADIR, ""
+)
+
+AC_ARG_ENABLE(gnome-icons,
+	[  --enable-gnome-icons      convert gnome icons to xpm icons ],
+	GNOME_ICONS=yes, GNOME_ICONS=no
+)
 AC_SUBST(GNOME_ICONS)dnl
 
-AC_ARG_ENABLE(kde2-icons, [  --enable-kde2-icons     convert kde2 icons to xpm icons ], KDE2_ICONS=yes, KDE2_ICONS=no)
+AC_ARG_ENABLE(kde2-icons,
+	[  --enable-kde2-icons       convert kde2 icons to xpm icons ],
+	KDE2_ICONS=yes, KDE2_ICONS=no
+)
 AC_SUBST(KDE2_ICONS)dnl
 
 AC_ARG_ENABLE(build-menus,
-	[  --disable-build-menus   disable the rebuilding of the user menus ],
+	[  --disable-build-menus     disable the rebuilding of the user menus ],
 	[ if test "$enableval" = yes; then
 		BUILD_MENUS=yes
 	else
@@ -25,7 +38,29 @@ AC_ARG_ENABLE(build-menus,
 	fi ],
 	[ BUILD_MENUS=yes ]
 )
-AC_SUBST(BUILD_MENUS)dnl
+AC_SUBST(BUILD_MENUS)
+
+# disabled menu system stuff even if present in the machine
+AC_ARG_ENABLE(menu-system,
+	[  --disable-menu-system     disable (Debian) menu system support ],
+	[ if test "$enableval" = yes; then
+		MENU_SYSTEM=yes
+	else
+		MENU_SYSTEM=no
+	fi ],
+	[ MENU_SYSTEM=yes ]
+)
+
+# do not run update-menu at install even if menu-system is enabled
+AC_ARG_ENABLE(run-updatemenu,
+	[  --disable-run-updatemenu  do not run (Debian) update-menu during installation even if detected ],
+	[ if test "$enableval" = yes; then
+		RUN_UPDATEMENU=yes
+	else
+		RUN_UPDATEMENU=no
+	fi ],
+	[ RUN_UPDATEMENU=yes ]
+)
 
 dnl 'unset' is not portable, but setting to null is not enough to avoid using
 dnl the cached value!  For ancient shells "rm config.cache" is a solution.
@@ -49,6 +84,24 @@ AC_PATH_PROG(M4, m4)
 if test -z "$M4"; then
 	AC_MSG_WARN(m4 is not found; you will have a few problems using this package!)
 fi
+
+# debian menu system
+AC_PATH_PROG(UPDATE_MENU, update-menus)
+if test -z "$UPDATE_MENU"; then
+	MENU_SYSTEM=no
+fi
+if test "$MENU_SYSTEM" = yes; then
+	MENU_SYSTEM_PREFIX=/etc/menu-methods
+	MENU_SYSTEM_BINSCRIPTS='fvwm_themes'
+	MENU_SYSTEM_CONFIGDATA='fvwm_themes.h fvwm_themes_data.h'
+	AC_SUBST(MENU_SYSTEM_PREFIX)
+	AC_SUBST(MENU_SYSTEM_BINSCRIPTS)
+	AC_SUBST(MENU_SYSTEM_CONFIGDATA)
+else
+	RUN_UPDATEMENU=no
+fi
+AC_SUBST(RUN_UPDATEMENU)
+AC_SUBST(UPDATE_MENU)
 
 # fvwm-themes-images needs to know where the rgb.txt file is
 AC_PATH_XTRA
@@ -166,6 +219,7 @@ AC_OUTPUT(
 	rpm/fvwm-themes-extra.spec
 	rpm/fvwm-themes-themes.spec
 	rpm/Makefile
+	menu-system/Makefile
 )
 
 if test -n "$DEBUG"; then
@@ -177,6 +231,7 @@ if test -n "$DEBUG"; then
 	echo "[ft-datadir:        ${FT_DATADIR}]"
 	echo "[ft-fvwmscript-dir: ${FT_FVWMSCRIPT_DIR}]"
 	echo "[ft-fvwmform-dir:   ${FT_FVWMFORM_DIR}]"
+	echo "[menu-system:       ${MENU_SYSTEM},${MENU_SYSTEM_PREFIX},${UPDATE_MENU}]"
 	echo "[gnome-icons:       ${GNOME_ICONS}]"
 	echo "[gnome-session:     ${GNOME_SESSION}]"
 	echo "[gnome-images-dir:  ${GNOME_IMAGES_DIR}]"

@@ -1,0 +1,54 @@
+#!/usr/sbin/install-menu
+compat="menu-1"
+!include menu.h
+!include fvwm_themes.h
+
+#
+# You may want to edit (in fvwm_themes.h) the ftFindBestIcon and 
+# ftFindBestSectionIcon as well as the ftFindSystemMiniIcon. 
+#
+
+function ltitle()=translate(lang(),title())
+
+supported
+  wm =  "+ \"" escfirst(ltitle(), $hotkey,"&") \
+    cond_surr(ftFindBestIcon($icon,$package,$section,$command,$title,"menu/"),\
+	"%","%") \
+    "\" Restart " $command "\n"
+  FvwmModule =  "+ \"" escfirst(ltitle(),$hotkey,"&") \
+    cond_surr(ftFindBestIcon($icon,$package,$section,$command,$title,"menu/"),\
+              "%","%") \
+    "\" Module " $command "\n"
+  FvwmThemes =  "+ \"" escfirst(ltitle(),$hotkey,"&") \
+    cond_surr(ftFindBestIcon($icon,$package,$section,$command,$title,"menu/"),\
+              "%","%") \
+    "\" " $command "\n"
+  fvwm2=  "+ \"" escfirst(ltitle(),$hotkey,"&") \
+    cond_surr(ftFindBestIcon($icon,$package,$section,$command,$title,"menu/"),\
+	"%","%") \
+    "\" " $command "\n"
+  x11 = "+ \"" escfirst(ltitle(),$hotkey,"&") \
+    cond_surr(ftFindBestIcon($icon,$package,$section,$command,$title,"menu/"),\
+              "%","%") \
+    "\" Exec    " $command  "\n"
+  text = "+ \"" escfirst(ltitle(),$hotkey,"&") \
+    cond_surr(ftFindBestIcon($icon,$package,$section,$command,$title,"menu/"),\
+              "%","%") \
+    "\""  " Exec /usr/bin/X11/xterm -T \"" ltitle() "\" -e " $command "\n"
+endsupported
+
+startmenu=   "DestroyMenu \"" replacewith($section, " ", "_") "\"" "\n" \
+             "AddToMenu \"" replacewith($section, " ", "_") "\"" \
+	     " \"" ltitle() "\" Title" "\n"
+endmenu=     "\n"
+
+#
+submenutitle= "+ \"" escfirst(ltitle() ,$hotkey,"&") \
+	cond_surr(ftFindBestSectionIcon($section,$icon,"menu/"),"%","%") \
+	"\" PopUp \"" replacewith($section, " ", "_") "\"\n"
+
+rootprefix="xFT_DATADIRx/menu-system"
+userprefix="/.fvwm/menu-system"
+treewalk="c(m)"
+genmenu="ft-menu"
+rootsection="MenuFvwmMenuPrograms"
