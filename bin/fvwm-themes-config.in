@@ -359,7 +359,7 @@ sub loadThemeCfg ($) {
 	$cfgFile ||= searchThemeCfgIncludeFile($themeCfgFile, "default");
 	errDie("No $themeCfgFile for $theme found") unless defined $cfgFile;
 
-	return $cfgFileCache->{$cfgFile} if exists $cfgFileCache->{$cfgFile};
+	return $cfgFileCache->{$theme} if exists $cfgFileCache->{$theme};
 	my $cfg = [{}, {}];
 
 	my $strRef = loadFile($cfgFile);
@@ -396,7 +396,7 @@ sub loadThemeCfg ($) {
 #	}
 #	$cfg->[0]->{$componentKey} = [sort @realComponents];
 
-	$cfgFileCache->{$cfgFile} = $cfg;
+	$cfgFileCache->{$theme} = $cfg;
 	return $cfg;
 }
 

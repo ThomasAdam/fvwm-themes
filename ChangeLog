@@ -1,3 +1,11 @@
+2000-11-07  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-script.in:
+	* themes/*/theme.cfg:
+	* TODO:
+	fixed file cache (some previous ideas about cache can't be done
+	effectively for now), so one-line theme.cfg files are not needed
+
 2000-11-06  olicha  <olivier.chapuis@free.fr>
 
 	* rpm/Makefile.am:
@@ -5,7 +13,6 @@
 
 	* themes/{blackbox,cde,default,luthien,olicha,osx}/*
 	Fixed swallowed app vs interactive placement
-
 
 2000-11-05  migo  <migo@homemail.com>
 

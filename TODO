@@ -14,10 +14,6 @@ Important items to do:
 * Test and port fvwm-themes to BSD and Solaris.
   There are problems for sure, mkdir without -p, no killall etc.
 
-* Increase speed of fvwm-themes-config.
-  Make current theme.cfg with one include line non needed.
-  [migo]
-
 Optional items to do:
 --------------------
 
@@ -110,3 +106,6 @@ Closed (will be deleted after 0.4.0):
 * It would be nice if someone enhance 'multichoice' theme.
 
 * Completing 'cde' theme. need a windowlook and a modules theme.
+
+* Increase speed of fvwm-themes-config.
+  Make current theme.cfg with one include line non needed.
