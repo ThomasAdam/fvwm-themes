@@ -49,7 +49,7 @@ Mouse 1 	5	A	FuncFvwmWindowOpsOrAction WindowShade
 MouseXX 2 3	5	A       Menu MenuFvwmWindowMove
 MouseXX 3 2	5	A	Menu MenuFvwmWindowGroupOps
 Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Delete on click^nDestroy on double click"
-Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize fully on click^n^tMaximize Menu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
+Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tfully on click^n^tmenu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
 Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Iconify"
 Mouse 0 	5	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu, or WindowShade on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
 # simulate title bindings on two edge buttons:

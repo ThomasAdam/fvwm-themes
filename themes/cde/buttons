@@ -30,7 +30,7 @@ Mouse 1 	4	A	FuncFvwmIconify
 Mouse 2 	4	A	Close
 Mouse 3 	4	A	Destroy
 Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu, or Delete on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
-Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize fully on click^n^tMaximize Menu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
+Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tfully on click^n^tmenu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
 Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Close^nMouse 3 - Destroy"
 
 DestroyFunc FuncFvwmStartWindowButtons

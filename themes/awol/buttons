@@ -30,7 +30,7 @@ Mouse 2 	6	N	WindowShade
 Mouse 3 	6	N	Recapture
 Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu, or FvwmIdent on double click^nMouse 3 - WindowShade"
 Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Close on click^nMouse 3 - WindowShade"
-Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize fully on click^n^tMaximize Menu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
+Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tfully on click^n^tmenu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
 Mouse 0 	6	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - WindowShade^nMouse 3 - Recapture"
 
 DestroyFunc FuncFvwmStartWindowButtons

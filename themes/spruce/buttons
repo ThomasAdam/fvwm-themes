@@ -29,7 +29,7 @@ Mouse 2 	6	A	FuncFvwmIconifySameResource on
 Mouse 3 	6	A	FuncFvwmIconifySameResource toggle
 Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Mouse 1 - popup Window Ops menu^nMouse 2/3 - popup Move menu^nMouse 3/2 - popup Resource Group menu"
 Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Delete on click^nDestroy on double click"
-Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize fully^n on click^n^tMaximize Menu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
+Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tfully on click^n^tmenu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
 Mouse 0 	6	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^nMouse 3 - Iconify toggle resource group"
 
 DestroyFunc FuncFvwmStartWindowButtons

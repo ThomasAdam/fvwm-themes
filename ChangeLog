@@ -1,3 +1,8 @@
+2001-08-21  migo  <migo@homemail.com>
+
+	* themes/*/buttons{,/main}:
+	small change in Button Info of Maximize button
+
 2001-08-16  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
