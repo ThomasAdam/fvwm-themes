@@ -2,7 +2,7 @@
 ## Process this file with automake to create Makefile.in
 
 EXTRA_THEMES = @EXTRA_THEMES@
-
+EXTRA_DIST = docs dirs postinst postrm
 version = @VERSION@
 release = 0.`date +%Y%m%d`
 cparams = --disable-run-updatemenu --disable-build-menus --with-fvwm-bindir=/usr/bin
@@ -11,6 +11,7 @@ datum = `date "+%a, %d %b %Y %T %z"`
 fullname = FVWM Themes Developers
 email = fvwm-themes-devel@lists.sourceforge.net
 arch ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+DESTDIR = $(CURDIR)/debian/tmp
 
 this:
 	tar -xzf `cd $(top_srcdir) && pwd`/fvwm-themes-$(version).tar.gz
@@ -44,8 +45,8 @@ inplace:
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE) $(mparams)
-	$(MAKE) prefix=$(CURDIR)/debian/fvwm-themes-full/usr ROOT_PREFIX=$(CURDIR)/debian/fvwm-themes-full mandir=$(CURDIR)/debian/fvwm-themes-full/usr/share/man install
-	chmod 0644 debian/fvwm-themes-full/usr/share/fvwm/themes/cde/background/pattern
+	$(MAKE) prefix=$(DESTDIR)/usr ROOT_PREFIX=$(DESTDIR) mandir=$(DESTDIR)/usr/share/man install
+	chmod 0644 $(DESTDIR)/usr/share/fvwm/themes/cde/background/pattern
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	fakeroot dh_installchangelogs
@@ -80,19 +81,11 @@ inplace-base:
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE) $(mparams)
-	$(MAKE) prefix=$(CURDIR)/debian/fvwm-themes/usr ROOT_PREFIX=$(CURDIR)/debian/fvwm-themes mandir=$(CURDIR)/debian/fvwm-themes/usr/share/man install
-	-[ -d debian/fvwm-themes-extra ] || mkdir debian/fvwm-themes-extra
-	-[ -d debian/fvwm-themes-extra/usr ] || mkdir debian/fvwm-themes-extra/usr
-	-[ -d debian/fvwm-themes-extra/usr/share ] || mkdir debian/fvwm-themes-extra/usr/share
-	-[ -d debian/fvwm-themes-extra/usr/share/fvwm ] || mkdir debian/fvwm-themes-extra/usr/share/fvwm
-	-[ -d debian/fvwm-themes-extra/usr/share/fvwm/themes ] || mkdir debian/fvwm-themes-extra/usr/share/fvwm/themes
-	-[ -d debian/fvwm-themes-extra/DEBIAN ] || mkdir debian/fvwm-themes-extra/DEBIAN
-	-@for t in $(EXTRA_THEMES); do \
-		mv -f debian/fvwm-themes/usr/share/fvwm/themes/$$t \
-		debian/fvwm-themes-extra/usr/share/fvwm/themes/; \
+	$(MAKE) prefix=$(DESTDIR)/usr ROOT_PREFIX=$(DESTDIR) mandir=$(DESTDIR)/usr/share/man install
+	@for t in $(EXTRA_THEMES); do \
+		rm -r $(DESTDIR)/usr/share/fvwm/themes/$$t ; \
 	done
-	rm -r debian/fvwm-themes-extra
-	chmod 0644 debian/fvwm-themes/usr/share/fvwm/themes/cde/background/pattern
+	chmod 0644 $(DESTDIR)/usr/share/fvwm/themes/cde/background/pattern
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	fakeroot dh_installchangelogs
@@ -120,25 +113,20 @@ inplace-extra:
 	echo "  * new upstream release" >> debian/changelog
 	echo "" >> debian/changelog
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
-	./configure --prefix=/usr --mandir=/usr/share/man $(cparams)
 	cp -f debian/extra-control debian/control
 	fakeroot dh_clean
 	(cd .. && dpkg-source -b $(CURDIR))
 	fakeroot dh_testdir
 	fakeroot dh_testroot
-	$(MAKE) $(mparams)
-	$(MAKE) prefix=$(CURDIR)/debian/fvwm-themes/usr ROOT_PREFIX=$(CURDIR)/debian/fvwm-themes mandir=$(CURDIR)/debian/fvwm-themes/usr/share/man install
-	-[ -d debian/fvwm-themes-extra ] || mkdir debian/fvwm-themes-extra 
-	-[ -d debian/fvwm-themes-extra/usr ] || mkdir debian/fvwm-themes-extra/usr
-	-[ -d debian/fvwm-themes-extra/usr/share ] || mkdir debian/fvwm-themes-extra/usr/share
-	-[ -d debian/fvwm-themes-extra/usr/share/fvwm ] || mkdir debian/fvwm-themes-extra/usr/share/fvwm
-	-[ -d debian/fvwm-themes-extra/usr/share/fvwm/themes ] || mkdir debian/fvwm-themes-extra/usr/share/fvwm/themes
-	-[ -d debian/fvwm-themes-extra/DEBIAN ] || mkdir debian/fvwm-themes-extra/DEBIAN
+	-[ -d $(DESTDIR) ] || mkdir  $(DESTDIR)
+	-[ -d $(DESTDIR)/usr ] || mkdir $(DESTDIR)/usr
+	-[ -d $(DESTDIR)/usr/share ] || mkdir $(DESTDIR)/usr/share
+	-[ -d $(DESTDIR)/usr/share/fvwm ] || mkdir $(DESTDIR)/usr/share/fvwm
+	-[ -d $(DESTDIR)/usr/share/fvwm/themes ] || mkdir $(DESTDIR)/usr/share/fvwm/themes
+	-[ -d $(DESTDIR)/DEBIAN ] || mkdir $(DESTDIR)/DEBIAN
 	-@for t in $(EXTRA_THEMES); do \
-		mv -f debian/fvwm-themes/usr/share/fvwm/themes/$$t \
-		debian/fvwm-themes-extra/usr/share/fvwm/themes/; \
+		cp -r themes/$$t $(DESTDIR)/usr/share/fvwm/themes/; \
 	done
-	rm -r debian/fvwm-themes
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	fakeroot dh_installchangelogs
@@ -153,8 +141,8 @@ inplace-extra:
 	fakeroot dh_shlibdeps
 	fakeroot dh_gencontrol
 	fakeroot dh_md5sums
-	-rm debian/fvwm-themes-extra/DEBIAN/postinst
-	-rm debian/fvwm-themes-extra/DEBIAN/postrm
+	-rm $(DESTDIR)/DEBIAN/postinst
+	-rm $(DESTDIR)/DEBIAN/postrm
 	fakeroot dh_builddeb 
 	-dpkg-genchanges > ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes
 	-debsign  ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes
