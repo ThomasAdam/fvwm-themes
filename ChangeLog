@@ -1,3 +1,8 @@
+2001-06-24  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-start.in:
+	remove -f, it makes problems when restarting from (very buggy) 2.2.x
+
 2001-06-20  migo  <migo@homemail.com>
 
 	* configure.in:

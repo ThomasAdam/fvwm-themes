@@ -37,8 +37,7 @@ while [ "x$1" != "x" ]; do
 			case "$1" in
 			--no-start|-no-start|-n)
 				start=no ;;
-			# leave -f for compatibility only, to be removed
-			--fvwm|-fvwm|-f|--fvwm-exe|-fvwm-exe|-e)
+			--fvwm|-fvwm|--fvwm-exe|-fvwm-exe|-e)
 				shift
 				fvwmExe="$1" ;;
 			--session|-session|-s)
