@@ -1700,7 +1700,6 @@ SingleClic :
     End
     Else
     Begin
-	Do {Echo }$SettingsComponent{@default}
 	Do {FuncFvwmShowComponentInfo }$SettingsComponent{@default}
 	#ChangeTitle 95 $l_NoHelp
     End

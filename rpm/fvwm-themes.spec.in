@@ -17,7 +17,9 @@ Version:   %{ver}
 Release:   %{rel}
 Copyright: GPL
 Group:     X11/Window Managers
-Source:    %{name}-%{version}.tar.gz
+Source0:   %{name}-%{version}.tar.gz
+Source1:   rpm-wa.tar.gz
+Source2:   install-menu-system.sh
 URL:       http://fvwm-themes.sourceforge.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 Packager:  FVWM Themes Developers <fvwm-themes-devel@lists.sourceforge.net>
@@ -57,6 +59,11 @@ make %{m_p}
 rm -rf $RPM_BUILD_ROOT
 make prefix=$RPM_BUILD_ROOT%{prefix} ROOT_PREFIX=$RPM_BUILD_ROOT install
 
+# menu-methode stuff
+mkdir -p $RPM_BUILD_ROOT/usr/share/fvwm/menu-system
+cp -f %{SOURCE1} $RPM_BUILD_ROOT/usr/share/fvwm/menu-system/
+cp -f %{SOURCE2} $RPM_BUILD_ROOT/usr/share/fvwm/menu-system/
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -72,8 +79,20 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 [ -x %{prefix}/bin/fvwm-themes-menuapp ] && fvwm-themes-menuapp --site --build-menus --remove-popup || true
+sh /usr/share/fvwm/menu-system/install-menu-system.sh Install
+echo ""
+echo "    If you are running fvwm-themes now, to avoid problems choose"
+echo "    'Reset all to the default' from the Theme Management menu."
+echo ""
+
+%preun
+[ -f /usr/share/fvwm/menu-system/install-menu-system.sh ] && sh /usr/share/fvwm/menu-system/install-menu-system.sh Uninstall || true
+
 ## TODO: how to specify the current date in .spec? Or how to run a `command`?
 #%changelog
+#
+#* Tue 24 Oct 2001 31:25:00 UTC  olicha  <olivier.chapuis@free.fr>
+#- synchronize with fvwm-themes-base.spec
 #
 #* Thu 07 Sep 2000 20:00:00 IDT  FVWM Themes Developers  <fvwm-themes-devel@lists.sourceforge.net>
 #- Auto building %{PACKAGE_VERSION}

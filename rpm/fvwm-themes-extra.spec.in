@@ -28,7 +28,7 @@ FVWM Themes is a powerful configuration framework for FVWM,
 designed to be easily extendible and configurable, includes
 several pre-built themes, a pack of images and sounds.
 
-This package contains 8 more themes for use with the base FVWM Themes
+This package contains 10 more themes for use with the base FVWM Themes
 package.
 
 %description -l fr
@@ -36,15 +36,15 @@ FVWM Themes est un systХme de configuration puissant pour FVWM.
 Il est extansible, facilement configurable et contient des
 thХmes, des images et des fichiers sons.
 
-Ce paquet contient 8 themes fait pour Йtre utilisИ avec le paquet
-base de FVWM Themes.
+Ce paquet contient 10 themes qui sont fait pour Йtre utilisИ avec
+le paquet base de FVWM Themes.
 
 %description -l ru
 FVWM Themes является мощным окружением для оконного менеджера FVWM,
 спроектированным с учетом легкости расширения и конфигурации.
 Пакет включает в себя готовые темы, графические и звуковые файлы.
 
-Данный пакет содержит дополнительные 8 тем для использования наряду
+Данный пакет содержит дополнительные 10 тем для использования наряду
 с базовыми.
 
 %prep

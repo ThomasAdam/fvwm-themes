@@ -3,29 +3,23 @@ WindowSize 36 36		# Taille
 Font		6x10
 
 Init
- Begin
-  Set $MainColorset=(GetScriptArgument 1)
-  If $MainColorset <> {} Then
-  Begin
-   ChangeColorset 0 $MainColorset
-   ChangeColorset 2 $MainColorset
-  End
+Begin
+    ChangeColorset 0 23
+    ChangeColorset 2 23
 
- Set $day  = (GetOutput {exec date} $pos 1)
- #Set $month =  (GetOutput {exec date} $pos 2)
- ChangeTitle  4 (GetOutput {exec date} $pos 3)
- ChangeTitle  3 $day
+    Set $day  = (GetOutput {exec date} $pos 1)
+    ChangeTitle  3 (GetOutput {exec date} $pos 3)
+    ChangeTitle  4 $day
 End
 
 PeriodicTasks
- Begin
- If (RemainderOfDiv (GetTime) 30)==0 Then
- Begin
-  Set $day  = (GetOutput {exec date} $pos 1)
-  #Set $month =  (GetOutput {exec date} $pos 2)
-  ChangeTitle  4 (GetOutput {exec date} $pos 3)
-  ChangeTitle  3 $day
- End
+Begin
+    If (RemainderOfDiv (GetTime) 30)==0 Then
+    Begin
+	Set $day  = (GetOutput {exec date} $pos 1)
+	ChangeTitle  3 (GetOutput {exec date} $pos 3)
+	ChangeTitle  4 $day
+    End
 End
 
 Widget 2
@@ -45,14 +39,14 @@ End
 
 Widget 3
 Property
- Position 6 22
+ Position 11 7
  Size 0 0
- Font 5x7
+ Font 6x13
  Type ItemDraw
  ForeColor	{black}
  BackColor	{#bdbdbd}
- Flags NoReliefString 
- Title {XXX}
+ Flags NoReliefString
+ Title {XX}
 Main
  Case message of
   SingleClic :
@@ -62,14 +56,14 @@ End
 
 Widget 4
 Property
- Position 11 7
- Size 0 0
- Font fixed
+ Position 6 20
+ Size 0 11
+ Font 5x7
  Type ItemDraw
  ForeColor	{black}
  BackColor	{#bdbdbd}
- Flags NoReliefString
- Title {12}
+ Flags NoReliefString 
+ Title {OOO}
 Main
  Case message of
   SingleClic :

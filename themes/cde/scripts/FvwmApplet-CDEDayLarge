@@ -3,14 +3,9 @@ WindowSize  54 54		# Taille
 Font		6x10
 
 Init
- Begin
-  Set $MainColorset=(GetScriptArgument 1)
-  If $MainColorset <> {} Then
-  Begin
-   ChangeColorset 0 $MainColorset
-   ChangeColorset 2 $MainColorset
-  End
-
+Begin
+ ChangeColorset 0 23
+ ChangeColorset 2 23
  Set $day  = (GetOutput {exec date} $pos 1)
  Set $month =  (GetOutput {exec date} $pos 2)
  ChangeTitle  4 (GetOutput {exec date} $pos 3)
@@ -47,8 +42,8 @@ End
 
 Widget 3
 Property
- Position 20 36
- Size 0 0
+ Position 19 35
+ Size 0 11
  Font 5x7
  Type ItemDraw
  ForeColor	{black}
@@ -64,8 +59,8 @@ End
 
 Widget 5
 Property
- Position 20 11
- Size 0 0
+ Position 19 8
+ Size 0 11
  Font 5x7
  Type ItemDraw
  ForeColor	{black}
@@ -82,9 +77,9 @@ End
 
 Widget 4
 Property
- Position 21 20
+ Position 21 19
  Size 0 0
- Font fixed
+ Font 6x13
  Type ItemDraw
  ForeColor	{black}
  BackColor	{#bdbdbd}
