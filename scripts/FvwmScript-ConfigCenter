@@ -2174,7 +2174,7 @@ Main
 End
 
 #---------------------------
-# Placement of widows, Title
+# Placement of windows, Title
 Widget 18
 Property
     Size 580 15
@@ -2301,7 +2301,7 @@ SingleClic :
 End
 
 
-# "Options" for Placement of widows:
+# "Options" for Placement of windows:
 Widget 25
 Property
     Size 580 15

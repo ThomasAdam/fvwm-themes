@@ -5,7 +5,7 @@
 Style * SloppyFocus, ClickToFocusPassesClick, ClickToFocusRaises, \
 	MouseFocusClickRaises
 ColormapFocus FollowsMouse
-Style * MinOverlapPercentPlavement, GrabFocus, NoPPosition
+Style * MinOverlapPercentPlacement, GrabFocus, NoPPosition
 
 # ---------------------------- Move and Resize ----------------------------
 
@@ -33,7 +33,7 @@ Style * DecorateTransient, RaiseTransient, LowerTransient, \
 Style * WindowShadeSteps 20, WindowShadeScrolls
 SetAnimation  10  -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
 
-# --------------------- Hints, Busy Cursor and Avanced ---------------------
+# -------------------- Hints, Busy Cursor and Advanced --------------------
 
 Style * MwmDecor, OLDecor, HintOverride, MwmFunctions, GNOMEUseHints
 BugOpts ModalityIsEvil on

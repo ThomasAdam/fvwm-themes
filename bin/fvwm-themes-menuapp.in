@@ -100,7 +100,7 @@ if ($buildMenus && $fvwmMenu) {
 
 	checkTitleAndNopInstrMenu();
 	updateLinesInstrMenu();
-	wrotefilesLines();
+	writeFiles();
 	exit(0);
 
 }
@@ -128,16 +128,18 @@ END {
 		if ($?) {
 			my $lockFifo = ".tmp-com-lock-" . $comName;
 			my $inFifo = ".tmp-com-in-" . $comName;
-			my $message= "fvwm-themes-menuapp: internal error $?";
-			$message .= "\t perl error: $@\n";
-			$message .= "\t C lib error: $!\n";
-			$message .= "\t os error: $^E\n";
+			my $message = "fvwm-themes-menuapp: internal error $?\n";
+			# actually $@ is never defined in END
+			$message .= "\teval error: $@\n" if $@;
+			$message .= "\tOS error: $!\n" if $!;
+			# actually the following is never executed on unix
+			$message .= "\tOS error 2: $^E\n" if $^E && !($! && $^E eq $!);
 			
 			unlink($lockFifo);
 			unlink($inFifo);
 		  	if ($comPid) {
 				kill(9,$comPid);
-				$message .= "\t killing FvwmScript-Menus";
+				$message .= "\tkilling FvwmScript-Menus";
 			}
 			print STDERR "$message\n"; 
 		}
@@ -291,7 +293,7 @@ sub comLoop {
 			$return = outPutfilesLines();
 		}
 		elsif ($command =~ /^save/) {
-			wrotefilesLines();
+			writeFiles();
 			$return = 1;
 		}
 		elsif ($command eq "exit") {
@@ -1601,11 +1603,11 @@ sub getTypeForItemsList {
 
 #----------------------------------------------------------------------------
 #
-# wrote the menus in the files (comLoop and building)
+# write the menus in the files (comLoop and building)
 #
 #----------------------------------------------------------------------------
 
-sub wrotefilesLines {
+sub writeFiles {
 
 	if (!$site) {
 		-d $persThemeDir || mkdir($persThemeDir, 0775) ||

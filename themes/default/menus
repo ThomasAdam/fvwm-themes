@@ -266,7 +266,7 @@ AddToMenu   MenuFvwmWindowOps "Window Operations" Title
 + "Window Style%menu/window.xpm%"               Popup MenuFvwmWindowStyle
 + "Maximize Window%menu/window-maximize.xpm%"   Popup MenuFvwmWindowMaximize
 + "Refresh Window%menu/wm-refresh.xpm%"         Popup MenuFvwmWindowRefresh
-+ "Rearrange Windows%menu/wm-refresh.xpm%"      Popup MenuFvwmWindowRearrange
++ "Rearrange All%menu/wm-refresh.xpm%"          Popup MenuFvwmRearrangeWindows
 + "Window Utility%menu/utility.xpm%"            Popup MenuFvwmWindowUtility
 + "" Nop
 + "Identify%menu/window-identify.xpm%"          Module FvwmIdent
@@ -288,9 +288,7 @@ AddToMenu   MenuFvwmWindowOps3
 + "Identify	Alt-F11%menu/window-identify.xpm%" Module FvwmIdent
 + "More&...	Alt-F3%menu/window.xpm%"           Menu MenuFvwmWindowOps This 0 0
 
-# migo: probably it is better without menu icons, like in mwm
-# olicha: I've renamed the previous menu so that buttons can choose between
-# the two menus
+# Someone may prefer the version without menu icons, like in mwm
 DestroyMenu MenuFvwmWindowOps2
 AddToMenu   MenuFvwmWindowOps2
 + "Restore	Alt-F6"  FuncFvwmRestore
@@ -373,13 +371,14 @@ AddToMenu   MenuFvwmWindowRefresh "Refresh Window" Title
 
 # olicha: maybe we have to define function in "functions-appbind" for the
 #  FvwmRearrange entries of this menu 
-DestroyMenu MenuFvwmWindowRearrange
-AddToMenu   MenuFvwmWindowRearrange "Rearrange Windows" Title
+# migo: and maybe move these entries to MenuFvwmWindowUtility menu?
+DestroyMenu MenuFvwmRearrangeWindows
+AddToMenu   MenuFvwmRearrangeWindows "Rearrange Windows" Title
 + "%menu/wm-refresh.xpm%&Cascade" FvwmRearrange -cascade -m 3 3 -incx 2
-+ "%menu/wm-refresh.xpm%PlaceAgain"   All (CurrentPage !Sticky) PlaceAgain anim
++ "%menu/wm-refresh.xpm%&PlaceAgain" All (CurrentPage !Sticky) PlaceAgain anim
 + "" Nop
 + "%menu/wm-refresh.xpm%Tile &horizontally" FvwmRearrange -tile -h -m 2 2 98 98
-+ "%menu/wm-refresh.xpm%Tile &vertically" FvwmRearrange -tile -m 2 2 98 98
++ "%menu/wm-refresh.xpm%Tile &vertically"   FvwmRearrange -tile    -m 2 2 98 98
 
 DestroyFunc FuncFvwmRaiseAndExec
 AddToFunc   FuncFvwmRaiseAndExec
@@ -396,9 +395,11 @@ AddToFunc   FuncFvwmWindowPrintReverse
 
 DestroyFunc FuncFvwmWindowCreateScreenshot
 AddToFunc   FuncFvwmWindowCreateScreenshot
-+ I Raise
-+ I PipeRead `import  -frame -window $w /tmp/$USER-shot-window-$w.gif`
+# Can't use PipeRead here if we want to use this function from mini-icon button
+#+ I PipeRead `import -frame -window $w /tmp/$USER-shot-window-$w.gif`
 + I FuncFvwmShowMessage "Screenshot Info for window $w" "You should have 'import' utility from ImageMagick.^nCheck the screenshot at /tmp/$USER-shot-window-$w.gif"
++ I Wait "Screenshot Info for window $w"
++ I FuncFvwmRaiseAndExec import -frame -window $w /tmp/$USER-shot-window-$w.gif
 
 DestroyFunc FuncFvwmDesktopCreateScreenshot
 AddToFunc   FuncFvwmDesktopCreateScreenshot
@@ -417,5 +418,5 @@ AddToMenu   MenuFvwmWindowUtility "Window Utility" Title
 + "%menu/window-raise.xpm%Layer +1"       Pick (CirculateHit) Layer +1
 + "%menu/window-lower.xpm%Layer -1"       Pick (CirculateHit) Layer -1
 + "" Nop
-+ "%menu/window-resize.xpm%Scroll&Bar"    Pick Module FvwmScroll 2 2
++ "%menu/window-resize.xpm%Scroll&Bar (1/2 app)"  Pick Module FvwmScroll 2 2
 + "%menu/window-resize.xpm%ScrollBar (&75%% scr)" Pick Module FvwmScroll 75p 75p

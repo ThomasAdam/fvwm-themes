@@ -1,3 +1,16 @@
+2000-02-22  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	* bin/fvwm-themes-menuapp.in:
+	* bin/fvwm-themes-script.in:
+	* locale/ru/FvwmScript-ConfigCenter.msg:
+	* scripts/FvwmScript-ConfigCenter:
+	* themes/default/menus:
+	* themes/default/settings/kde/kde2-system-menu/ft-enabled:
+	* themes/redmond98/colors:
+	* themes/*/globalfeel
+	some fixes and improvements of the previous commit(s)
+
 2001-02-21  olicha  <olivier.chapuis@free.fr>
 
         * bin/fvwm-themes-config.in:

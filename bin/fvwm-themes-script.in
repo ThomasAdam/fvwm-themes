@@ -1356,16 +1356,18 @@ END {
 		if ($?) {
 			my $lockFifo = ".tmp-com-lock-" . $comName;
 			my $inFifo = ".tmp-com-in-" . $comName;
-			my $message = "fvwm-themes-script: internal error $?";
-			$message .= "\t perl error: $@\n";
-			$message .= "\t C lib error: $!\n";
-			$message .= "\t os error: $^E\n";
+			my $message = "fvwm-themes-script: internal error $?\n";
+			# actually $@ is never defined in END
+			$message .= "\teval error: $@\n" if $@;
+			$message .= "\tOS error: $!\n" if $!;
+			# actually the following is never executed on unix
+			$message .= "\tOS error 2: $^E\n" if $^E && !($! && $^E eq $!);
 
 			unlink($lockFifo) if -p "$lockFifo";
 			unlink($inFifo) if -p "$lockFifo";
 		  	if ($comPid) {
 				kill(9, $comPid);
-				$message .= "\t killing FvwmScript-ConfigCenter";
+				$message .= "\tkilling FvwmScript-ConfigCenter";
 			}
 			print STDERR "$message\n";
 		}
@@ -1805,14 +1807,14 @@ sub  build_globalfeel_Config {
 	if ($tmp2) { $fvwmConfig->{'Transient'} .= " $tmp" }
 	else { 
 		$err->{'Transient'} = 
-			"Animation Setps must be a sequence of < 17 rationnals around 0 to 1|"
+			"Animation Steps must be a sequence of < 17 rationals around 0 to 1|"
 	}
 	$fvwmConfig->{'Transient'} .= "\n";
 
 	# ----------------------------------------------- Hints
 	$fvwmConfig->{'Hints'} .= 
-		"\n# --------------------- Hints, Busy Cursor and Avanced ".
-		"---------------------\n\n";
+		"\n# -------------------- Hints, Busy Cursor and Advanced ".
+		"--------------------\n\n";
 	$tmp = substr($configFromScript,$index,1);
 	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= "Style * NoDecorHint" }
 	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= "Style * MwmDecor" }

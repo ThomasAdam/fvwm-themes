@@ -3199,16 +3199,18 @@ END {
 		if ($?) {
 			my $lockFifo = ".tmp-com-lock-" . $comName;
 			my $inFifo = ".tmp-com-in-" . $comName;
-			my $message = "fvwm-themes-config: internal error $?";
-			$message .= "\t perl error: $@\n";
-			$message .= "\t C lib error: $!\n";
-			$message .= "\t os error: $^E\n";
+			my $message = "fvwm-themes-config: internal error $?\n";
+			# actually $@ is never defined in END
+			$message .= "\teval error: $@\n" if $@;
+			$message .= "\tOS error: $!\n" if $!;
+			# actually the following is never executed on unix
+			$message .= "\tOS error 2: $^E\n" if $^E && !($! && $^E eq $!);
 
 			unlink($lockFifo) if -p "$lockFifo";
 			unlink($inFifo) if -p "$inFifo";
 		  	if ($comPid) {
 				kill(9, $comPid);
-				$message .= "\t killing FvwmScript-ThemesCenter";
+				$message .= "\tkilling FvwmScript-ThemesCenter";
 			}
 			print STDERR "$message\n";
 		}
