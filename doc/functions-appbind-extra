@@ -1,0 +1,38 @@
+# This is an example of ~/.fvwm/personal/functions-appbind-extra component.
+
+# I prefer to use myxterm that is just a wrapper for xterm that look like:
+##!/bin/sh
+#xterm -geometry 80x40 -sb +sk -si -sl 4096 -j -ls -fn 7x14 -fb 7x14bold "$@"
+
+DestroyFunc FuncFvwmViewManPage
+AddToFunc   FuncFvwmViewManPage
++ I Exec exec myxterm -name xxterm -n "Man page - $0" -T "Man page - $0" -e man "$0"
+
+DestroyFunc FuncFvwmTerminal
+AddToFunc   FuncFvwmTerminal
++ I Exec exec myxterm -fg $[fg.cs30] -bg $[bg.cs30] -n $USER@$HOST -T $USER@$HOST
+
+DestroyFunc FuncFvwm2Terminal
+AddToFunc   FuncFvwm2Terminal
++ I Exec exec myxterm -fg $[fg.cs31] -bg $[bg.cs31] -n root@$HOST -T root@$HOST  -e sudo su -l
+
+DestroyFunc FuncFvwm3Process
+AddToFunc   FuncFvwm3Process
++ I FvwmScript FvwmScript-ThemesCenter
+
+DestroyFunc FuncFvwmQuitVerify
+AddToFunc   FuncFvwmQuitVerify
++ I Quit
+
+DestroyFunc FuncFvwmWWW
+AddToFunc   FuncFvwmWWW
++ I Exec exec opera
+
+# These two are very handy, just a stroke right-to-left or left-to-right
+#DestroyFunc FuncFvwm2WWW
+#AddToFunc   FuncFvwm2WWW
+#+ I Exec test -z "`ifconfig | grep 'P-t-P' | sed 's/[^:0-9.]*//g' | cut -d: -f2`" && xterm -T +internet -n +internet -e su -c "internet-on" || xterm -T -internet -n -internet -e su -c "internet-off"
+#
+#DestroyFunc FuncFvwm3WWW
+#AddToFunc   FuncFvwm3WWW
+#+ I Exec ${HOME}/bin/phonenum

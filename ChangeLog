@@ -17,6 +17,9 @@
 	* images.tar.gz:
 	replaced 48x48-general icon set with 48x48-infox
 
+	* doc/functions-appbind-extra:
+	example component
+
 2002-12-05  olicha  <olivier.chapuis@free.fr>
 
 	* themes/minimal/modules/main:
