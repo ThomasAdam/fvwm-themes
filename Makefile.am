@@ -5,6 +5,7 @@ AUTOMAKE_OPTIONS = foreign
 SUBDIRS = bin doc rpm scripts forms locale menu-system
 FT_DATA_SUBDIRS = themes images sounds
 EXTRA_DIST = images.tar.gz sounds.tar.gz
+release = 0.`date +%Y%m%d`
 
 EXTRA_THEMES = @EXTRA_THEMES@
 
@@ -216,7 +217,8 @@ deb-dist:
 # build base and extra debs
 deb-dist3:
 
-	
+
+	release=$(release); 
 	@echo "creating $(PACKAGE)_base/extra_$(VERSION).deb"
 	cp -f debian/base-control debian/control
 	cp -f debian/base-changelog debian/changelog
@@ -233,7 +235,7 @@ deb-dist3:
 	debian/fvwm-themes-extra/usr/share/fvwm/themes/; \
 	done
 	fakeroot dh_md5sums
-	fakeroot dh_builddeb 
+	fakeroot dh_builddeb --filename=$(PACKAGE)-base_$(VERSION)_$(release)_i386.deb
 	
 	cp -f debian/extra-control debian/control
 	cp -f debian/extra-changelog debian/changelog
@@ -247,7 +249,9 @@ deb-dist3:
 	fakeroot dh_shlibdeps
 	fakeroot dh_gencontrol 
 	fakeroot dh_md5sums
-	fakeroot dh_builddeb 
+	fakeroot dh_builddeb --filename=$(PACKAGE)-extra_$(VERSION)_$(release)_i386.deb
 	rm -fr debian/fvwm-themes-base
 	rm -fr debian/fvwm-themes-extra
+
+
 
