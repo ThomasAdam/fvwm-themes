@@ -13,7 +13,8 @@ AddToFunc    FuncFvwmButtons-XXPrev
 
 DestroyModuleConfig FvwmButtons-XX: *
 #*FvwmButtons-XX: Geometry 700x18+99-0
-PipeRead 'echo "*FvwmButtons-XX: Geometry 700x18+"`expr "(" $[vp.width] - 700 ")" / 2`"-0"'
+#PipeRead 'echo "*FvwmButtons-XX: Geometry 700x18+"`expr "(" $[vp.width] - 700 ")" / 2`"-0"'
+PipeRead 'if [ -n "$FT_XINERAMA_PWIDTH" ]; then echo "*FvwmButtons-XX: Geometry 700x18+"`expr "(" $FT_XINERAMA_PWIDTH - 700 ")" / 2`"-0"; else echo "*FvwmButtons-XX: Geometry 700x18+"`expr "(" $[vp.width] - 700 ")" / 2`"-0";fi'
 *FvwmButtons-XX: BoxSize fixed
 *FvwmButtons-XX: Columns 70
 *FvwmButtons-XX: Rows 18

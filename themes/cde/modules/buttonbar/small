@@ -33,7 +33,7 @@ DestroyModuleConfig FvwmButton-CenterPanel: *
 
 DestroyModuleConfig FvwmButtons-Panel: *
 
-PipeRead 'echo "*FvwmButtons-Panel: Geometry 573x51+"`expr "(" $[vp.width] - 573 ")" / 2`"-0"'
+PipeRead 'if [ -n "$FT_XINERAMA_PWIDTH" ]; then echo "*FvwmButtons-Panel: Geometry 573x51+"`expr "(" $FT_XINERAMA_PWIDTH - 573 ")" / 2`"-0"; else echo "*FvwmButtons-Panel: Geometry 573x51+"`expr "(" $[vp.width] - 573 ")" / 2`"-0";fi'
 *FvwmButtons-Panel: Colorset 10
 *FvwmButtons-Panel: Rows 9 
 *FvwmButtons-Panel: Columns 43

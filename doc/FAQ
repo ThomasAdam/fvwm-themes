@@ -73,6 +73,7 @@ which fvwm-themes manages are ~/.fvwm/themes* ones, more precisely:
   ~/.fvwm/themes/current - symbolic link to the actual current session theme
   ~/.fvwm/themes-rc - the .fvwm2rc equivalent
   ~/.fvwm/themes-rc-2 - additional rc used by themes-rc, symbolic link
+  ~/.fvwm/themes-rc-3 - additional rc used for theme switching
 
 The rc files themes-rc and themes-rc-2 are created by fvwm-themes-config.
 FVWM Themes should be loaded by fvwm-themes-start shell script, which
@@ -295,12 +296,19 @@ The mouse motion is drawn for your convention and if the the mouse motion is
 succeed (i.e., this motion is bound to some action) then the busy cursor is
 displayed during a fraction of second. See the Stroke and StrokeFunc entries
 of the fvwm2 man page for more information.
+You can add new stroke motions in ~/.fvwm/themes/personal/stroke-extra.
+Example:
+
+# A  forth and back from the top to execute FuncFvwmGame
+Stroke	N85258		0	R	A	FuncFvwmGame
+Stroke	N85258		0	W	M	FuncFvwmGame
+
+Redefining existing motion bindings is easy by redefining the above FuncFvwm*
+functions.
 
 Q: Can I draw a penguin (using mouse strokes) to compile a kernel?
 A: Maybe. If you are a perfect painter. :) If not, stick to simple figures
-- line, 2 lines, triangle, square. Currently it is not easy to add new
-stroke motions, although we are working on making everything configurable.
-But redefining existing motion bindings is easy.
+- line, 2 lines, triangle, square.
 ==============================================================================
 
 ------------------------------------------------------------------------------
@@ -357,6 +365,33 @@ This can be solved by symlinking some themes and sessions, like:
 
 	ln -s ../../.fvwm/themes/personal $HOME/.fvwm:0.0/themes/personal
 	ln -s ../../.fvwm/themes/personal $HOME/.fvwm:0.1/themes/personal
+
+3) If your X server have the Xinerama extension and FVWM is compiled with
+Xinerama support (or if you have a "single logical screen" multi-screen
+implementation) you should run fvwm-themes-start as usual and select the
+appropriated option in the theme management menu (current -> settings ->
+Xinerama support -> *). Moreover, you may (must in the single logical screen
+case) create an xinerama-extra file in your personal theme to define your
+primary screen (the screen where the modules are started) if it is not
+screen 0, define FT_XINERAMA_PWIDTH to the width of your primary screen
+and define your sls layout.
+Example for Xinerama:
+
+	# I prefer that my modules start on screen 1:
+	XineramaPimaryScreen 1
+	# The width of this screen is 800
+	SetEnv FT_XINERAMA_PWIDTH 800
+
+Example for single logical screen:
+
+	#                                         __ __
+	# I have two 800x600 screens as follows: |  |  |
+	#                                         -- --
+	XineramaSlsSize 2x1
+	SetEnv FT_XINERAMA_PWIDTH 800
+
+If you want a pager or/and a window list module in your "secondary" screen
+you should define it in your personal modules-extra component.  
 ==============================================================================
 
 ------------------------------------------------------------------------------

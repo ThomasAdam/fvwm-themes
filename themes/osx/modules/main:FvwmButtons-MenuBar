@@ -1,6 +1,11 @@
 DestroyModuleConfig FvwmButtons-MenuBar: *
 
+ifelse(len(FT_XINERAMA_PWIDTH),0,{
 define({TWIDTH},eval(WIDTH-2))
+},{
+define({TWIDTH},eval(FT_XINERAMA_PWIDTH-2))
+})
+
 define({GEOMETRY},TWIDTH{x25+0+0})
 # this is not perfect (say for WIDTH=1280), larger offset for right submenus
 define({X_DELTA},eval(TWIDTH/32))
