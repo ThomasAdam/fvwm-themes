@@ -54,15 +54,15 @@
 #
 DestroyFunc FuncFvwmTitleBackground
 AddToFunc   FuncFvwmTitleBackground
-+ I TitleStyle	ActiveUp   (Solid rgb:CC/BA/99 -- Raised)
-+ I TitleStyle	ActiveDown (Solid rgb:CC/BA/99 -- Raised)
-+ I TitleStyle	Inactive   (Solid rgb:88/7C/66 -- Raised)
-+ I TitleStyle	ToggledActiveUp   (Solid rgb:CC/BA/99 -- Raised)
-+ I TitleStyle	ToggledActiveDown (Solid rgb:CC/BA/99 -- Raised)
-+ I TitleStyle	ToggledInactive   (Solid rgb:88/7C/66 -- Raised)
++ I TitleStyle ActiveUp   (Solid rgb:CC/BA/99 -- Raised)
++ I TitleStyle ActiveDown (Solid rgb:CC/BA/99 -- Raised)
++ I TitleStyle Inactive   (Solid rgb:88/7C/66 -- Raised)
++ I TitleStyle ToggledActiveUp   (Solid rgb:CC/BA/99 -- Raised)
++ I TitleStyle ToggledActiveDown (Solid rgb:CC/BA/99 -- Raised)
++ I TitleStyle ToggledInactive   (Solid rgb:88/7C/66 -- Raised)
 
-+ I ButtonStyle	All Pixmap 16x16-general/empty.xpm
-+ I ButtonStyle	All -- UseTitleStyle
++ I ButtonStyle All Pixmap 16x16-general/empty.xpm
++ I ButtonStyle All -- UseTitleStyle
 
 # -------------------
 # I.3. Menu Colorsets
