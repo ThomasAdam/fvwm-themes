@@ -1,0 +1,53 @@
+# Place this file into ~/.fvwm/themes/personal/ and edit it before using.
+# Usually only MenuFvwmPersonal and its submenus should be defined here.
+# You may use the Menu Editor GUI instead of editing this file.
+
+# If your menus use icons not included in fvwm-themes, define ImagePath.
+#ImagePath +:/usr/share/icons/mini:$KDEDIR/share/icons
+#ImagePath +:/usr/local/mini-icons:/usr/share/icons/mini
+
+# Personal
+#     Remote Shells
+#     WWW
+#     --------------
+#     Private
+#     My Backgrounds
+
+# Define the standard root submenu "Personal".
+DestroyMenu MenuFvwmPersonal
+AddToMenu   MenuFvwmPersonal "Personal" Title
+#+ "Shells%menu/terminal.xpm%"			Popup MenuFvwmShells
++ "Remote Shells%menu/terminal-remote.xpm%"	Popup MenuFvwmRemoteShells
++ "WWW%menu/www.xpm%"				Popup MenuWWW
++ "" Nop
++ "Private%menu/home.xpm%"			Popup MenuPrivate
++ "My Backgrounds%menu/display.xpm%"		Popup MenuSetMyBg
+
+# The menu items and windows for remote terminals use different icons.
+DestroyMenu MenuFvwmRemoteShells
+AddToMenu   MenuFvwmRemoteShells "Remote Shells" Title
++ "%menu/terminal-remote.xpm%univer"		Exec exec xterm -n univer -T univer -name rxterm -e telnet univer.bc.edu
++ "%menu/terminal-remote.xpm%unilab"		Exec exec xterm -n unilab -T unilab -name rxterm -e telnet unilab.bc.edu
++ "" Nop
++ "%menu/terminal-remote.xpm%$[USER]@otaku"	Exec exec xterm -n otaku  -T otaku  -name rxterm -e ssh -l $USER otaku.freeshell.org
++ "%menu/terminal-remote.xpm%$[USER]@sdf"	Exec exec xterm -n sdf    -T sdf    -name rxterm -e ssh -l $USER sdf.lonestar.org
+
+# You may redefine FuncFvwmOpenURL in functions-appbind-extra, f.e. use galeon.
+DestroyMenu MenuWWW
+AddToMenu   MenuWWW
++ "SourceForge login%menu/www.xpm%"		Exec exec FuncFvwmOpenURL 'https://sourceforge.net/account/login.php'
++ "SourceForge fvwm-themes%menu/www.xpm%"	Exec exec FuncFvwmOpenURL 'http://sourceforge.net/projects/fvwm-themes/'
++ "SourceForge fvwm-themes cvs%menu/www.xpm%"	Exec exec FuncFvwmOpenURL 'http://cvs.sourceforge.net/cgi-bin/cvsweb.cgi/fvwm-themes/?cvsroot=fvwm-themes'
+
+# Phone numbers.
+DestroyMenu MenuPrivate
+AddToMenu   MenuPrivate "Private" Title
++ "PhoneBook%menu/help.xpm"			Exec exec ${HOME}/bin/phonenum
++ "Gnotices%menu/information.xpm"		Exec exec gnotices
+
+# Set root wallpapers.
+DestroyMenu MenuSetMyBg
+AddToMenu   MenuSetMyBg "My Backgrounds" Title
++ "%menu/item.xpm%Dancing"	Exec exec fvwm-root $HOME/bg/dancing.png
++ "%menu/item.xpm%Flaming"	Exec exec xv -root -quit $HOME/bg/flaming.jpg -geometry $[vp.width]x$[vp.height]
+

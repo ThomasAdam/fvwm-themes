@@ -1,3 +1,9 @@
+2002-06-02  migo  <migo@homemail.com>
+
+	* doc/menus-extra:
+	* doc/Makefile.am:
+	added an example personal component
+
 2002-06-02  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings.cfg: 
