@@ -26,6 +26,8 @@
   + use "," color delimiter, not ":"; use "/" in dec rgb color instead of ","
   + it would be nice to have --border[color] like in ImageMagick
 
+* Check fvwm-themes and fvwm with kde2.
+
 Optional items to do:
 --------------------
 
@@ -53,6 +55,15 @@ Optional items to do:
 * Creating fvwm-themes-qt. Someone?
 
 * settings@default: think which subcomponents to remove/move.
+
+* Rewrite fvwm-themes-menuapp: use a database for building menu-user
+and (mini)icons styles. These database may have the power to use
+the other database about menus in the machine (kde, gnome, wmconfig,
+debian sys menu, ...). Rename menu-user by menus-programs.
+
+* Wrok on the menu editor. By default only edit "MenuFvwmPersonal"
+because menus-programs have to be regenerated after (un)installation
+of applications on the machine.
 
 Ideas:
 -----

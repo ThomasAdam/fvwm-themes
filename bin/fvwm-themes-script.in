@@ -32,6 +32,7 @@ my $currentThemeName = 'current';
 my $themesSubDir = 'themes';
 my $currentThemeSubDir = "$themesSubDir/$currentThemeName";
 my $personalDirName = 'personal';
+my $localeDir = "$datadir/fvwm/locale/";
 
 my $scriptName = ($0 =~ m:([^/]+)$:, $1);
 my $dirs = "";
@@ -46,6 +47,9 @@ my $checkExec = "";
 my $configCenter = 0;
 my $comName = "script";
 my $comPid = 0;
+# in line doc
+my $inLineDoc = "";
+my $lineLength = 70;
 
 GetOptions(
 	"help"               => \&showHelp,
@@ -58,6 +62,8 @@ GetOptions(
 	"check-exec=s"       => \$checkExec,
 	"config-center"      => \$configCenter,
 	"com-name=s"         => \$comName,
+	"in-line-doc=s"      => \$inLineDoc,
+	"line-length=i"      => \$lineLength,
 ) || wrongUsage();
 
 
@@ -68,8 +74,7 @@ if ($configCenter) {
 	configCenterComLoop()
 	# we never return here
 }
-
-if ($command_ls) {
+elsif ($command_ls) {
 	if ("$type" eq "dir") { $dirOnly = 1;}
 	elsif ( "$type" eq "file" ) { $fileOnly =1; }
 	my $return = getLsList($item);
@@ -78,6 +83,113 @@ if ($command_ls) {
 elsif ($checkExec ne "") {
 	my $r = checkExecInPath($checkExec);
 	print "$r\n";
+}
+elsif ($inLineDoc ne "") {
+	buildDoc();
+}
+
+#----------------------------------------------------------------------------
+# build the doc for FvwmScript-Help
+
+sub buildDoc {
+
+	my $lang = $ENV{'LANG'};
+	my $txtExt = "txt";
+	#$lang = "en";
+	#$lang = "ru";
+	my $doc = "";
+	my $file = "";
+	$lang = substr($lang,0,2);
+	if ($inLineDoc =~ /^\//) {
+		$file = $inLineDoc;
+	}
+	else {
+		$file = "$localeDir/$lang/$inLineDoc.$txtExt";
+		$file = "$localeDir/C/$inLineDoc.$txtExt" if (! -f $file);
+		$file = "$localeDir/en/$inLineDoc.$txtExt" if (! -f $file);
+	}
+	if (! -f $file) {
+		print "Documentation in progress ...";
+		exit 0;
+	}
+	#$doc = `fmt -w $lineLength $file`;
+	#$doc =~ s/\n/|/g;
+	#print $doc;
+	open(DOC,"$file") || die "cannot open the doc for $inLineDoc";
+	my $l = 0;
+	my $isFirstLine = 1;
+	my $inVerb = 0;
+	while(<DOC>) {
+		next if /^\#/;
+		chomp;
+		my $line = $_;
+
+		if ($line =~ /^<verb>/) {
+			$inVerb = 1;
+			$doc .= "|";
+			next;
+		}
+		if ($line =~ /^<\/verb>/) {
+			$inVerb = 0;
+			next;
+		}
+		if ($inVerb) {
+			$doc .= $line . "|";
+			next;
+		}
+
+		if ($isFirstLine) {
+			next if $line =~ /^\s*$/;
+			$line =~ s/\s+$//;
+			$line =~ s/^\s+//;
+			$l = length($line);
+			my $t = int (($lineLength - $l) / 2);
+			$t = 0 if $t <= -1;
+			$doc .= " "x$t . $line . "|" . " "x$t . "-"x$l;
+			$l = 0;
+			$isFirstLine = 0;
+			next;
+		}
+
+		if ($line =~ /^\s*$/) {
+			$l = 0;
+			if ($doc =~ /\|$/) {
+				$doc .= "|";
+			} else {
+				$doc .= "||";
+			}
+			next;
+		}
+	  	$line =~ s/\s+$//;
+		#my $space = substr($line,0,index($line," ")+1);
+		$line =~ s/^\s+//;
+		my $cl = length($line);
+		if ($cl + $l <= $lineLength) {
+  		$doc .= " " if $doc !~ /\|$/;
+			$doc .= $line;
+			$l = $cl + $l;
+			next;
+		}
+		my @larray = split(" ",$line);
+		
+		foreach (@larray) {
+			my $wl = length($_);
+			if ($wl + $l + 1 <= $lineLength) {
+				$doc .= " " if $doc !~ /\|$/;
+				$doc .= $_;
+				$l = $wl + $l + 1
+			} else {
+				$doc .= "|$_";
+				$l = $wl;
+			}
+		}
+	}
+	close(DOC);
+	#$doc =~ s/\|/\n/g;
+	print $doc . "\n";
+
+	exit 0;	
+	
 }
 
 #----------------------------------------------------------------------------

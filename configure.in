@@ -92,10 +92,12 @@ fi
 #FT_FVWMFORM_DIR='${FT_DATADIR}/forms'
 FT_FVWMSCRIPT_DIR='${FT_DATADIR}'
 FT_FVWMFORM_DIR='${FT_DATADIR}'
+FT_LOCALE_DIR='${FT_DATADIR}/locale'
 
 AC_SUBST(FT_DATADIR)dnl
 AC_SUBST(FT_FVWMSCRIPT_DIR)dnl
 AC_SUBST(FT_FVWMFORM_DIR)dnl
+AC_SUBST(FT_LOCALE_DIR)dnl
 
 #FT_VERSION_INFO="FVWM Themes version $VERSION from `date +'%d-%b-%Y %T'`"
 # migo: to match the one in FVWM...
@@ -111,6 +113,10 @@ AC_OUTPUT(
 	doc/Makefile
 	forms/Makefile
 	scripts/Makefile
+	locale/Makefile
+	locale/en/Makefile
+	locale/fr/Makefile
+	locale/ru/Makefile
 	bin/fvwm-themes-config
 	bin/fvwm-themes-start
 	bin/fvwm-themes-xrdb

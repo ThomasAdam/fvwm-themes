@@ -1,3 +1,20 @@
+2000-11-15  olicha  <olivier.chapuis@free.fr>
+
+	* configure.in:
+	* Makefile.am:
+	* locale/*:
+	Start the "locale" stuff
+
+	* fvwm-themes-script.in:
+	new option --in-line-doc and --line-length for creating inline doc
+	for FvwmScript from locale/LANG/*.doc
+
+	* scripts/FvwmScript-ColorSelector:
+	Help use the new "locale" stuff
+
+	* TODO:
+	update
+
 2000-11-14  migo  <migo@homemail.com>
 
 	* TODO: minor change
