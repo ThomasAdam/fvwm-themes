@@ -11,7 +11,7 @@
 
 %define _sourcedir /tmp
 
-Summary:   FVWM Themes, configurational framework for FVWM
+Summary:   FVWM Themes, configuration framework for FVWM
 Name:      fvwm-themes
 Version:   %{ver}
 Release:   %{rel}
