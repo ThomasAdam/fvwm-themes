@@ -24,6 +24,7 @@ FVWM Themes Frequently Asked Questions and Answers.
   3.1  Can I use fvwm-themes on my multi-headed display system?
   3.2  Can I use fvwm-themes with a session manager?
   3.3  Can I use fvwm-themes with GNOME?
+  3.4  I installed more applications, how can I rebuild application menus?
 
 4. More info
 
@@ -174,13 +175,14 @@ Here are several useful components that you may put into this directory.
 
   * menus-programs:
 
+    This file defines application menus, like Shells, Programs, System.
     You may copy this file from themes/default/ directory to your
     ~/.fvwm/themes/personal/ directory and edit it how ever you like.
 
   * menus-programs-extra:
 
     But rather than edit the entire menus-programs file you may redefine
-    only several menus in menus-programs-extra instead.
+    or extend only several menus in menus-programs-extra instead.
 
   and so on... We suggest to create only *-extra files, but it is up to you.
 
@@ -483,6 +485,34 @@ may just login later as the same user that ran "make install" and run
 ==============================================================================
 
 ------------------------------------------------------------------------------
+3.4  I installed more applications, how can I rebuild application menus?
+
+A: The menus "Shells", "Programs", "System", "Screen Saver" and some others
+are created at the installation time ("make install") by executing this:
+
+  fvwm-themes-menuapp --site --build-menus --remove-popup
+
+This command is also executed when rpm package is installed.
+Just reissue this command as the correct user (usually root) to recreate
+all system-wide menus in the default theme. After that, either use "Restart"
+or "Refresh the current theme" to see updated menus.
+
+If your application is not listed in the menus, grep the system's file
+default/menus-programs to see if it is there. Write to fvwm-themes-devel and
+supply some info like the application name (as should be seen in the menus),
+its full path and starting arguments, and we may add it in the next versions.
+
+There is also support for Debian/Mandrake application menus and GNOME/KDE
+application menus, check out "Theme Management / Current / settings".
+
+Some theme components and settings are hidden if no corresponding utilities
+are found on your system. If you install such utilities (for example you
+upgrade your KDE or GNOME, or remove them, or install such utilities as
+esdplay), try "Refresh the current theme", then some more components or their
+options may appear in the "Theme Management" menus.
+==============================================================================
+
+------------------------------------------------------------------------------
 4.1  How can I submit my own theme?
 
 A: First, you should create a very clear theme. Test all possible
@@ -499,10 +529,10 @@ or contact one of the main fvwm-themes developers.
 ------------------------------------------------------------------------------
 4.2  Where can I find documentations on fvwm-themes and its shell scripts?
 
-A: All fvwm-themes perl/shell scripts (fvwm-themes-config,
-fvwm-themes-start, fvwm-themes-menuapp, fvwm-themes-images, fvwm-themes-com)
-have manual pages. They are, together with fvwm manual pages are accessible
-from the Help menu.
+A: All fvwm-themes perl/shell scripts (fvwm-themes-config, fvwm-themes-start,
+fvwm-themes-root, fvwm-themes-menuapp, fvwm-themes-images, fvwm-themes-com)
+have manual pages. They are, together with the fvwm manual pages, are
+accessible from the Help menu.
 
 See also other files in the doc/ directory, especially doc/creating-themes.
 ==============================================================================
