@@ -1250,8 +1250,9 @@ Case message of
     Set $ComponentIndex = (GetValue 12)
     If $ThemeName <> {} Then
     Begin
-	# 14 and 15 are not yet avaiable
+	# 15 is not yet avaiable
 	ChangeFont 13 $SelFont
+	ChangeFont 14 $SelFont
 	Set $cmd = $SendMsgAndGet{"component-name }$ThemeName{ }$ComponentIndex{"}
 	Set $ComponentName = (GetOutput $cmd 1 -1)
 	Set $NullMessage = 1
@@ -1303,7 +1304,8 @@ Case message of
     End
     Else
     Begin
-    	ChangeTitle 95 $l_NoHelp
+    	#ChangeTitle 95 $l_NoHelp
+	Do {FuncFvwmShowComponentInfo }$ComponentName{@}$ThemeName
     End
  End
 End

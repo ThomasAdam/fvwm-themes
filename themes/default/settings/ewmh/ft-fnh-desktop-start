@@ -1,6 +1,10 @@
+# destroy the normal bindings (- does not work at all)
 Mouse 1 R A 
 Mouse 2 R A
 Mouse 3 R A
+
+MouseXX 2 3 R MC   
+MouseXX 2 3 R MCS
 
 Mouse 1 R M Menu MenuFvwmRoot
 Mouse 2 R M FuncFvwmEWMHButton2OnRootWindow

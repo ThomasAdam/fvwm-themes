@@ -1,7 +1,15 @@
+# destroy the desktop-start bindings
+Mouse 1 R M -
+Mouse 2 R M -
+Mouse 3 R M -
 
+MouseXX 2 3 R MC  -
+MouseXX 2 3 R MCS -
+
+# restablish the normal bindings
 Mouse 1 R A Menu MenuFvwmRoot
 Mouse 2 R A FuncFvwmEWMHButton2OnRootWindow
-FuncFvwmEWMHBindingsButton3OnRootWindow
+FuncFvwmNoEWMHBindingsButton3OnRootWindow
 
 MouseXX 2 3 R C   FuncFvwmEWMHCtlButtonXXOnRootWindow
 MouseXX 2 3 R CS  FuncFvwmEWMHShiftCtlButtonXXOnRootWindow

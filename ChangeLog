@@ -1,3 +1,16 @@
+2001-10-22  olicha  <olivier.chapuis@free.fr>
+
+	* scripts/FvwmScript-ThemesCenter:
+	Implement the "Info" button
+
+	* themes/default/theme.cfg:
+	* themes/default/settings.cfg:
+	* themes/default/bindings*:
+	* themes/default/settings/ewmh/*:
+	* themes/default/settings/stroke/enabled:
+	Fixed (reduce) ewmh and bindings dependences. Added support for
+	autoraise extra (do we have to add support for sound-player extra?)
+	
 2001-10-21  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in (getOwnThemeSubMenusRc):

@@ -14,6 +14,10 @@ DestroyFunc FuncFvwmEWMHBindingsButton3OnRootWindow
 AddToFunc   FuncFvwmEWMHBindingsButton3OnRootWindow
 + I Mouse 3 R M StrokeFunc FeedBack DrawMotion StrokeWidth 2
 
+DestroyFunc FuncFvwmNoEWMHBindingsButton3OnRootWindow
+AddToFunc   FuncFvwmNoEWMHBindingsButton3OnRootWindow
++ I Mouse 3 R A StrokeFunc FeedBack DrawMotion StrokeWidth 2
+
 # ----------------------------------------------------------------------------
 # The stroke bindings
 #

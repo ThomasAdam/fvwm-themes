@@ -1635,7 +1635,7 @@ sub setUsedFlags($) {
 				  ref($cc->{'weakdepends'}) eq 'ARRAY';
 			push @dependsComp, @{$cc->{'depends'}}
 			   if defined $cc->{'depends'} && ref($cc->{'depends'}) eq 'ARRAY';
-			
+		
 			foreach $comp (@symStrongComp) {
 				next if !defined $self->{'cc'}->{$comp};
 				my $dd = $self->getComponentCfg($comp);
