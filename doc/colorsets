@@ -1,33 +1,33 @@
                     COLORSETS USED BY FVWM-THEMES
 
-This is simply the default colors file (I, II and III) plus somme
-comments on where these colorset are used (IV, V and VI).
-Fvwm-themes use internaly colorset 0 to 39 (some colorsets
-are reserved for future use). So, the colorset that are free
-for the users begin with colorset 40
- 
+This file includes the default colors@ component file (I, II and III) plus
+some comments on where these colorsets are used (IV, V and VI). Fvwm-themes
+use internaly colorsets 0 to 39 (some colorsets are reserved for future use).
+So, a user can freely use colorsets starting from 40, for example, in his
+colors-extra@ component.
+
 # ----------------------------------------------------------------------------
 #
-# I.   Fvwm Colorsets (colorsets 0 to 9)
+# I.   Fvwm Colorsets (0 to 9)
 #	I.1. Default Colorsets
 #	I.2. Window Decorations
-#	I.3. Menus Colorsets
+#	I.3. Menu Colorsets
 #
-# II.  Modules Colorsets (colorsets 10 to 29)
+# II.  Module Colorsets (10 to 29)
 #	II.1. "Common" Colorsets
-#	II.2. Window List Modules Colorset
+#	II.2. Window List Module Colorsets
 #       II.3. Other Modules
 #       II.4. External Colorsets
 #
-# III. Applications Colorsets (colorsets 30 to 35)
+# III. Application Colorsets (30 to 35)
 #
 # IV.  Fixed Part of the Configuaration (themes-rc)
 #
-# V.   Modules configurations (under modules/)
+# V.   Module Configurations (under modules/)
 #
-# VI.  Misc. Configurations
+# VI.  Miscellaneous Configurations
 #
-#----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------
 # I. Fvwm Colorsets
@@ -37,8 +37,8 @@ for the users begin with colorset 40
 # I.1. Default Colorsets
 # ----------------------
 
-# mainly for feedback windows (geometry window and NoteMessage)
-# we use this also these colors for FvwmScroll, this may change
+# mainly for feedback windows (geometry window and NoteMessage),
+# these colors are now also used for FvwmScroll scrollbars
 
 *FvwmThemeColorset 0 fg black, bg #908090
 
@@ -46,19 +46,17 @@ for the users begin with colorset 40
 # I.2. Window Decorations
 # -----------------------
 
-# title bar shade/hilight colors of inactive and active windows
-# (this colors are computed from the fg and bg colors, you can
-# set its using sh and hi). the "plain" color is defined below using 
-# TitleStyle. These are also the colors for the icon titles and 
-# are used in FvwmPager for the window colors.
+# The following colors are used in FvwmPager for the window colors
+# and in a title bar of windows (shade/hilight colors, computed from the
+# fg and bg colors, but might be specified directly by sh and hi).
+# The title bar background color is defined below using TitleStyle.
 
-# inactive 
+# inactive window
 *FvwmThemeColorset 1 fg black, bg rgb:80/80/80, Plain, NoShape
-# active
+# active window
 *FvwmThemeColorset 2 fg black, bg rgb:C0/C0/C0, Plain, NoShape
 
-
-# borders of the windows active and inactive:
+# borders of the window, active and inactive:
 *FvwmThemeColorset 3 fg black, bg rgb:80/80/80, Plain, NoShape
 *FvwmThemeColorset 4 fg black, bg rgb:C0/C0/C0, Plain, NoShape
 
@@ -71,9 +69,9 @@ TitleStyle	Inactive   (Solid rgb:80/80/80 -- Raised)
 ButtonStyle	All Pixmap mini/empty.xpm
 ButtonStyle	All -- UseTitleStyle
 
-# ------------------
-# 3. Menus Colorests
-# ------------------
+# -----------------
+# 3. Menu Colorsets
+# -----------------
 
 # inactive menu item fg+bg and menu face
 
@@ -99,35 +97,35 @@ ButtonStyle	All -- UseTitleStyle
 #-------------------------
 
 # default for modules
-# FvwmButtonsColorset, FvwmPagerColorset, can be use for:
+# FvwmButtonsColorset, FvwmPagerColorset, can be used also for:
 # FvwmIconMan*Colorset, FvwmIconBoxColorset
 
 *FvwmThemeColorset 10 fg black, bg #908090, Plain, NoShape
 
-# default hilight colorset. for hilightning a part of a
-# buttons (some swallowed apps for example).
+# default hilight colorset. for hilighting a part of a
+# button bar (some swallowed apps for example).
 
 *FvwmThemeColorset 11 fg black, bg white, Plain, NoShape
 
-# special, a gradient, a pixmap, a "funy colorset", may be
-# use in certain FvwmButtons, FvwmIconMan*Colorset, FvwmIconBoxColorset
+# special, a gradient, a pixmap, a "funny colorset", may be
+# used in certain FvwmButtons, FvwmIconMan*Colorset, FvwmIconBoxColorset
 
 *FvwmThemeColorset 12 fg black, bg #908090, \
 	VGradient 20 #908090 #cab3ca, NoShape
 
 # swallowed window: the hilight and shadow colors can be used
-# (-hd xclock and -hl xload use sh and -hl xclock use hi; perhaps
+# (-hd of xclock and -hl of xload use sh and -hl of xclock use hi; perhaps
 # strange but this is xload fault :)
 
 *FvwmThemeColorset 13 fg black, bg #c0a0c0, hi black, sh gray40, Plain, NoShape
 
-# default2 (FvwmPager or to get more colors in Buttons)
-# can be set to 10
+# default #2 (FvwmPager or to get more colors in Buttons)
+# can be set to the same as 10
 
 *FvwmThemeColorset 14 fg black, bg #908090, Plain, NoShape
 
-# default hilight2: (FvwmPager or to get more colors in a Buttons)
-# can be set to 11
+# default hilight #2: (FvwmPager or to get more colors in a Buttons)
+# can be set to the same as 11
 
 *FvwmThemeColorset 15 fg black, bg #cab3ca, Plain, NoShape
 
@@ -171,29 +169,26 @@ ButtonStyle	All -- UseTitleStyle
 
 # reserved for modules@: 24-25
 
-# reserved for future use: 26-29
+# reserved for the future use: 26-29
 
 # ----------------------------------------------------------------------------
 # III. Applications Colorsets
 # ----------------------------------------------------------------------------
 
-# Terminals
-
+# regular terminal (xterm, rxvt, Eterm)
 *FvwmThemeColorset 30 fg white, bg rgb:00/00/60, Plain, NoShape
 
-# Administrations (eg, su xterm)
+# viewer terminal (man, less, tail -f, ...)
+*FvwmThemeColorset 31 fg white, bg rgb:00/60/00, Plain, NoShape
 
-*FvwmThemeColorset 31 fg white, bg rgb:00/60/60, Plain, NoShape
+# remote terminal
+*FvwmThemeColorset 32 fg white, bg rgb:60/00/00, Plain, NoShape
 
-# Remote Terminals
-
-*FvwmThemeColorset 32 fg white, bg rgb:00/60/00, Plain, NoShape
-
-# "Viewer" Colorset (man, less, tail -f, ...)
-
-*FvwmThemeColorset 33 fg white, bg black, Plain, NoShape
+# admin terminal (su xterm)
+*FvwmThemeColorset 33 fg white, bg rgb:00/60/60, Plain, NoShape
 
 # Small Text Input file or Hilighting some Items
+
 # (for Script and Form Items, ft-xres)
 
 *FvwmThemeColorset 34 fg black, bg white, Plain, NoShape
@@ -207,7 +202,7 @@ ButtonStyle	All -- UseTitleStyle
 *FvwmThemeColorset 35 fg black, bg MediumPurple, Plain, NoShape
 
 # ------------------
-# Note: Colorset 36 to 39 are reserved for future use.
+# Note: Colorset 36 to 39 are reserved for the future use.
 
 # ---------------------------------------------------------------------------
 # IV. Fixed part of the configuration
@@ -229,6 +224,7 @@ Style "*"	HilightBorderColorset 4
 MenuStyle * MenuFace
 MenuStyle * MenuColorset 5, ActiveColorset 6, GreyedColorset 7
 # I have no time now to check whether (or why) the folowing is needed.
+# Hey, this should be verified, needed or not!
 MenuStyle * ActiveFore, HilightBack
 
 DestroyModuleConfig FvwmIdent*
@@ -240,15 +236,15 @@ DestroyModuleConfig FvwmFormDefaultColorset*
 *FvwmFormDefaultColorset 35
 
 # ---------------------------------------------------------------------------
-# V. Modules Configurations
+# V. Module Configurations
 # ---------------------------------------------------------------------------
 
 # Configuration of the "themes modules" modules colorsets are done
 # under modules/ in the files main:ModuleName
 
 # ---------------------------------------------------------------------------
-# VI. Miscenallous Configurations
+# VI. Miscellaneous Configurations
 # ---------------------------------------------------------------------------
 
-# the applications colorset are used in functions-appbin, menus@default
-# and menus-users@default
+# the applications colorset are used in functions-appbind@default,
+# menus@default and menus-users@default
