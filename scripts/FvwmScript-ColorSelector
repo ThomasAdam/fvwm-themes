@@ -22,8 +22,6 @@ Begin
 	    Set $Lang = (GetScriptArgument $j)
 	If $arg == {--color} Then
 	    Set $Color = (GetScriptArgument $j)
-	 If $arg == {--return-type} Then
-	    Set $ReturnType = (GetScriptArgument $j)   
 	Set $i = (Add $i 2)
 	Set $arg = (GetScriptArgument $i)
     End
@@ -49,6 +47,13 @@ Begin
     End
     If $Lang == {fr} Then
     Begin
+	ChangeTitle 1 {Sélectionnez une Couleur avec les Palettes}
+	ChangeTitle 14 {Couleur Sélectionnée:}
+	ChangeTitle 994 {Aide}
+	ChangeTitle 994 {Annuler}
+	# it will better to put the documentations file under 
+	# datadir/fvwm/local ?
+	ChangeTitle 998 {   Documentation du Sélecteur de Couleurs|   -------------------------------------- ||En  premier  lieu,  la  seule  manière  de|sélectionner une  couleur est d'utiliser la|4ème palette. Les autres palettes permettent|de la modifier.|Si vous choisissez une "couleur" avec la 1er|palette, alors la 4ème sera un gradient noir|"couleur" blanc.|Si vous choisissez une couleur avec la 2ème|ou 3ème  palette, la 4ème palette  sera un|gradient  de cette  couleur à la  couleur|sélectionnée.|De plus un clic sur la couleur sélectionnée|transforme la 4ème palette en un gradient de|noir à blanc avec cette couleur au milieu.|Finalement, vous pouvez modifier les valeurs|du rouge (R), du vert (G) et du bleu (B)|avec les petit boutons.||Pour les Bugs:|  fvwm-themes-devel@lists.sourceforge.net}
     End
     If $Lang == {ru} Then
     Begin
@@ -56,30 +61,19 @@ Begin
     If $locateSet == 0 Then
     Begin
     End
-
-    Set $RainbowFile = {/home/olivier/rainbow.xpm}
-    Set $GreyFile = {/home/olivier/grey.xpm}
+    
+    Set $cmd = {echo "$FT_DATADIR"}
+    Set $FtDataDir = (GetOutput $cmd 1 -1)
+    Set $RainbowFile = $FtDataDir{/images/scripts/rainbow.xpm}
+    Set $GreyFile = $FtDataDir{/images/scripts/grey.xpm}
 
     Set $cmd = {cat }$RainbowFile
     Set $ColorLine = (GetOutput $cmd 283 -1)
     Set $cmd = {cat }$GreyFile
     Set $GreyColorLine = (GetOutput $cmd 277 -1)
 
-    If $ReturnType == {pixels} Then
-    Begin
-	Set $SignBits = 6
-	Set $cmd = {xdpyinfo | grep "significant bits"}
-	Set $tmp = (GetOutput $cmd 1 -1)
-	Set $cmd = {perl -e '$in ="}$tmp{"; @out = $in =~ /.*(\d+)/; print "$out[0]" if $out[0] =~ /^\d+$/'}
-	Set $tmp = {}
-	Set $tmp = (GetOutput $cmd 1 -1)
-	If $tmp <> {} Then
-	    Set $SignBits  = $tmp
-	Do {Echo }$tmp
-    End
-
     If $Color <> {} Then
-	Set $CurrentColor = $Color	
+	Set $CurrentColor = $Color
     Else
 	Set $CurrentColor = {#02EEFF}
 
@@ -128,7 +122,7 @@ Property
     Position 10 5
     Size 296 20
     Type ItemDraw
-    Title {Select a Color with the Pallet:}
+    Title {Select a Color with the Pallets:}
 Main
 Case message of
  SingleClic :
@@ -158,7 +152,7 @@ Property
     Size 257 20
     Type ItemDraw
     Title {}
-    Icon /home/olivier/rainbow.xpm
+    Icon scripts/rainbow.xpm
 Main
 Case message of
  SingleClic :
@@ -202,7 +196,7 @@ Property
     Size 257 20
     Type ItemDraw
     Title {}
-    Icon /home/olivier/rainbow.xpm
+    Icon scripts/rainbow.xpm
 Main
 Case message of
  SingleClic :
@@ -249,7 +243,7 @@ Property
     Size 256 20
     Type ItemDraw
     Title {}
-    Icon /home/olivier/grey.xpm
+    Icon scripts/grey.xpm
 Main
 Case message of
  SingleClic :
@@ -343,8 +337,8 @@ End
 Widget 14
 Property
     Flags NoReliefString
-    Position 20 152
-    Size 70 20
+    Position 5 152
+    Size 145 20
     Type ItemDraw
     Title {Selcted Color:}
 Main
@@ -358,7 +352,7 @@ End
 Widget 15
 Property
     Flags NoReliefString
-    Position 133 153
+    Position 158 153
     Size 50 20
     Type ItemDraw
     Title {}
@@ -381,7 +375,7 @@ End
 Widget 16
 Property
     Flags NoReliefString
-    Position 132 152
+    Position 157 152
     Size 52 22
     Type Rectangle
     Title {}
@@ -396,7 +390,7 @@ End
 Widget 17
 Property
     Flags NoReliefString
-    Position 210 155
+    Position 220 155
     Size 70 15
     Type ItemDraw
     Title {}
@@ -603,10 +597,6 @@ Case message of
     If $Launched <> {} Then
     Begin
 	Set $ret = $CurrentColor
-	If $return == {pixels} Then
-	Begin
-	    
-	End
 	SendToScript (GetScriptFather) $ret
     End
     Quit
@@ -668,12 +658,14 @@ End
 
 Widget 998
 Property
-    Position 10 10
-    Size 296 225
+    Position 5 5
+    Size 306 230
     Type List
     Font fixed
     Flags NoReliefString Hidden
-    Title {       Color Selector Documentation       |       -----------------------------        ||First of all, the only way to select a    |color is to use the 4th pallet.  The other|bands can modify this last band. |If you choose a "color" with the 1st band|then the 4th band will be a black "color" |white gradien. If you choose a "color"|with the 2nd or the 3rd band, then the 4th|band will be gradient from this "color"|to the selected color.|Moreover, if you click on the selected|color, then the 4th band will be a black|to white gradient with the selected color|in the center.|Finally, you can modify the Red Green and|Blue value of the selected color with the|mini scrolls.||Report Bug to:|  fvwm-themes-devel@lists.sourceforge.net}
+    # it will better to put the documentations file under 
+    # datadir/fvwm/local ?
+    Title {       Color Selector Documentation       |       -----------------------------        ||First of all, the only way to select a    |color is to use the 4th pallet.  The other|bands can modify this last band. |If you choose a "color" with the 1st band|then the 4th band will be a black "color" |white gradien. If you choose a "color"|with the 2nd or the 3rd band, then the 4th|band will be gradient from this "color"|to the selected color.|Moreover, if you click on the selected|color, then the 4th band will be a black|to white gradient with the selected color|in the center.|Finally, you can modify the Red Green and|Blue value of the selected color with the|mini scrolls.||Report Bugs to:|  fvwm-themes-devel@lists.sourceforge.net}
 Main
 Case message of
  SingleClic :
@@ -685,7 +677,7 @@ End
 
 Widget 999
 Property
-    Position 120 245
+    Position 220 245
     Size 80 20
     #Font fixed
     Type PushButton

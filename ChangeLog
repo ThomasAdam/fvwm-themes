@@ -1,3 +1,9 @@
+2000-10-24  olicha  <olivier.chapuis@free.fr>
+	
+	* scripts/FvwmScript-ColorSelector: 
+	Fixes and french support. Mikhael can you try it? (there is an entries
+	in the utilities menu).
+	
 2000-10-23  migo  <migo@homemail.com>
 
 	* configure.in:
