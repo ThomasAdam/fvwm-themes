@@ -3,4 +3,4 @@
 # GNU does not support installing pure text documentation...
 
 EXTRA_DIST = FAQ README.1st colorsets creating-themes fvwm-themes.lsm \
-	menus-extra
+	menus-extra functions-appbind-extra
