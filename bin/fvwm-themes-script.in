@@ -207,6 +207,9 @@ sub configCenterComLoop {
 	#my ($redMask,$greenMask,$blueMask) = ("63488", "2016", "31");
 	#print STDERR "RGB Mask: ($redMask,$greenMask,$blueMask)\n";
 
+	# persistante fvwm Config:
+	my $internalConfig = { };
+
 	chdir($userDir) || die "No FvwmConfigHome $userDir";
 	unlink($lockFifo);
 	unlink($inFifo);
@@ -1066,7 +1069,6 @@ sub parse_globalfeel_Config {
 			$line= $multiline . $_;
 			$multiline = "";
 		}
-		print STDERR "$line\n";
 		# remove starting blanc:
 		$line =~ s/^\s+//;
 		# removing comments
@@ -1550,6 +1552,69 @@ sub default_globalfeel_Config {
 	$config->{'BackingStoreOff'} = 0;
 	$config->{'ModuleTimeout'} = 30;
 	$config->{'module_timeout'} = 6;
+
+}
+
+# -----------------------------------------------------------------------------
+# parsing bindings
+
+sub parse_bindings_Config {
+	my $file = shift;
+	my $configForScript = shift;
+	my $keys = shift;
+	my $config = shift;
+
+	my ($keyIndex, $mouseIndex) = (0,0);
+	my $config = {};
+	default_globalfeel_Config($config);
+	@$keys = ("Key", "Mouse");
+
+	open(FILE,"$file") || return "Err: cannot open $file";
+	my $multiline = "";
+	my $line;
+
+	while(<FILE>) {
+		chomp;		
+		if ( /\\$/ && ! /\\\\$/) {
+			s/\\$//;
+			$multiline = $multiline . $_;
+			next;
+	  	} else {
+			$line= $multiline . $_;
+			$multiline = "";
+		}
+		# remove starting blanc:
+		$line =~ s/^\s+//;
+		# removing comments
+		next if $line =~ /^\#/;
+		# humm ...
+		$line =~ s/\s+\#.*$//;
+		$line =~ s/\s+$//;
+
+		if ($line =~ (/^Key\s+(.*)\s+(.*)\s+(.*)\s+(.*)$/)) {
+			$config->{'Key'}->[$keyIndex]->{'key'} = $1;
+			$config->{'Key'}->[$keyIndex]->{'context'} = $2;
+			$config->{'Key'}->[$keyIndex]->{'modifier'} = $3;
+			$config->{'Key'}->[$keyIndex]->{'action'} = $4;
+			$keyIndex++;
+		}
+		if ($line =~ (/^Mouse(X*X*)\s+(.*)\s+(.*)\s+(.*)\s+(.*)$/)) {
+			$config->{'Mouse'}->[$mouseIndex]->{'xx'} = (defined $1) ? 1 : 0;
+			$config->{'Mouse'}->[$mouseIndex]->{'button'} = $1;
+			$config->{'Mouse'}->[$mouseIndex]->{'context'} = $2;
+			$config->{'Mouse'}->[$mouseIndex]->{'modifier'} = $3;
+			$config->{'Mouse'}->[$mouseIndex]->{'action'} = $4;
+			$mouseIndex++;
+		}
+
+	}
+	
+	my $keysBindings = $config->{'Key'};
+	foreach $b (@$keysBindings) {
+		$configForScript .= $b->{'key'};
+		$l = length($b->{'key'});
+	}
+		
 
 }
 
