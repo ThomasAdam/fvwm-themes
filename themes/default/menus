@@ -6,7 +6,7 @@ AddToMenu   MenuFvwmRoot "Root Menu" Title
 + "Person&al%menu/home.xpm%"			Popup MenuFvwmPersonal
 + "" Nop
 + "&Theme Management%menu/themes.xpm%"		Popup MenuFvwmThemes
-+ "Fvwm &Configuration%menu/configuration.xpm%"	Popup MenuFvwmConfiguration
++ "&Configuration%menu/configuration.xpm%"	Popup MenuFvwmConfiguration
 + "&Help%menu/help.xpm%"			Popup MenuFvwmHelp
 + "" Nop
 + "Fvwm &Modules%menu/modules.xpm%"		Popup MenuFvwmModules
@@ -18,22 +18,22 @@ AddToMenu   MenuFvwmRoot "Root Menu" Title
 # ----------------------------------------------------------------------------
 # ---------- Shells
 
-# This menu is in the separated file menus-user
+# This menu is in the separated component menus-user
 
 # ----------------------------------------------------------------------------
 # ---------- Programs
 
-# This menu is in the separated file menus-user
+# This menu is in the separated component menus-user
 
 # ----------------------------------------------------------------------------
 # ---------- System
 
-# This menu is in the separated file menus-user
+# This menu is in the separated component menus-user
 
 # ----------------------------------------------------------------------------
 # ---------- Personal
 
-# Define this menus in your personal theme: themes/personal/menus-extra
+# Define this menus in your personal theme: ~/.fvwm/themes/personal/menus-extra
 AddToMenu   MenuFvwmPersonal
 
 # ----------------------------------------------------------------------------
@@ -193,7 +193,7 @@ AddToFunc   FuncFvwmGtkThemeSettings
 + I SendToModule FvwmGtk-Themes SettingsDialog
 
 DestroyMenu MenuFvwmConfiguration
-AddToMenu   MenuFvwmConfiguration "Fvwm Configuration" Title
+AddToMenu   MenuFvwmConfiguration "Configuration" Title
 + "Themes Center GUI%menu/themes.xpm%" \
   FvwmScript FvwmScript-ThemesCenter --text-colorset 34 --viewer-colorset 33
 + "Configuration Center%menu/configuration.xpm%" FvwmScript \
@@ -203,6 +203,7 @@ AddToMenu   MenuFvwmConfiguration "Fvwm Configuration" Title
 + "Theme Settings (gtk)%menu/themes.xpm%"  FuncFvwmWithGtk FuncFvwmGtkThemeSettings
 + "&Menu Editor (Personal)%menu/editor.xpm%"	  FvwmScript FvwmScript-Menus \
 		--text-colorset 34 --icon-colorset 5 --viewer-colorset 33
++ "" Nop
 + "&Root Cursor%menu/display.xpm%"	Module FvwmForm FvwmForm-RootCursor
 + "Form &Defaults%menu/configuration.xpm%"	Module FvwmForm FvwmForm-Form
 + "Control &Animation%menu/window-iconify.xpm%"	Popup MenuFvwmAnimate
@@ -212,7 +213,6 @@ AddToMenu   MenuFvwmConfiguration "Fvwm Configuration" Title
 + "" Nop
 + "Restore Theme &Background%menu/display.xpm%"	FuncFvwmStartThemeBackground
 + "Restore Theme &Cursors%menu/display.xpm%"	PipeRead `printf 'Read '; fvwm-themes-config --component cursors --show-value read-file`
-+ "" Nop
 
 DestroyMenu MenuFvwmXConfiguration
 AddToMenu   MenuFvwmXConfiguration "X Configuration" Title

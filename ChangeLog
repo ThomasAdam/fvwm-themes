@@ -1,3 +1,9 @@
+2001-03-27  migo  <migo@homemail.com>
+
+	* themes/default/menus:
+	s/Fvwm Configuration/Configuration/, this menu contains configuration
+	items for fvwm, fvwm-themes, X, wm-icons
+
 2001-03-24  olicha  <olivier.chapuis@free.fr>
 
 	* themes/{olicha,luthien,redmond98}/menustyle:
