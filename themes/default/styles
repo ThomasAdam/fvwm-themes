@@ -12,6 +12,8 @@ Style "FvwmScript-Browser"	NoTitle, StaysOnTop, NoHandles
 Style "XNoteMessage"    NoTitle, Sticky, StaysOnTop, UsePPosition, \
 	BorderWidth 0, NoHandles, WindowListSkip
 Style "xclock"		Sticky, WindowListSkip, NeverFocus
+# Applets are in general swallowed so:
+Style "FvwmApplet*" RandomPlacement
 # gnome panel and icons
 Style "panel"		NeverFocus, Sticky, NoTitle, WindowListSkip, \
 	CirculateSkip, UsePPosition

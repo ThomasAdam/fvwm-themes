@@ -1,7 +1,7 @@
 DestroyModuleConfig FvwmButtons-DaLo: *
 *FvwmButtons-DaLo: Colorset 10
 
-*FvwmButtons-DaLo: Font -b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1
+*FvwmButtons-DaLo: Font -b&h-lucida-medium-r-normal-sans-8-*-75-75-p-45-iso8859-1
 *FvwmButtons-DaLo: Geometry 792x77+0-0
 *FvwmButtons-DaLo: Rows 11
 *FvwmButtons-DaLo: Columns 20
@@ -44,14 +44,16 @@ Action(mouse 3) 'Exec tkps', Frame -1)
 *FvwmButtons-DaLo: (9x1, Swallow(UseOld) "kLo_mix" 'Exec kLo_mix', Frame -2)
 *FvwmButtons-DaLo: (End)
 
-*FvwmButtons-DaLo: (7x4, Container (Rows 1, Columns 13))
-*FvwmButtons-DaLo: (1x1, Title "move", Icon 16x16/window-move.xpm, Action Move, Frame -1, Padding 0 0)
-*FvwmButtons-DaLo: (1x1, Title "resize", Icon 16x16/window-resize.xpm, Action Resize, Frame -1, Padding 0 0)
-*FvwmButtons-DaLo: (1x1, Title "stick", Icon 16x16/window-stick.xpm, Action Stick, Back grey75, Frame -1, Padding 0 0)
-*FvwmButtons-DaLo: (1x1, Title "close", Icon 16x16/window-close.xpm, Action Close, Back grey60, Frame -1, Padding 0 0)
-*FvwmButtons-DaLo: (2x1, Center, Swallow(UseOld) "xbiff" "Exec xbiff -bg $[bg.cs13] -fg $[fg.cs13]", Frame -1)
-*FvwmButtons-DaLo: (7x1, Title "Set DATE/TIME", Swallow(UseOld,kill) "xdaliclock" "Exec xdaliclock -12 -font '-adobe-times-*-*-*-*-24-*-*-*-*-*-*-*' -fg red -bg grey75", \
-+ Action(mouse 1) 'Module FvwmScript ScriptFvwmDate', Action(mouse 3) "Exec xalarm", Frame -1, Padding 0 0)
+*FvwmButtons-DaLo: (7x4, Container (Rows 5, Columns 13))
+*FvwmButtons-DaLo: (1x5, Title "move", Icon 16x16/window-move.xpm, Action Move, Frame -1, Padding 0 0)
+*FvwmButtons-DaLo: (1x5, Title "resize", Icon 16x16/window-resize.xpm, Action Resize, Frame -1, Padding 0 0)
+*FvwmButtons-DaLo: (1x5, Title "stick", Icon 16x16/window-stick.xpm, Action Stick, Back grey75, Frame -1, Padding 0 0)
+*FvwmButtons-DaLo: (1x5, Title "close", Icon 16x16/window-close.xpm, Action Close, Back grey60, Frame -1, Padding 0 0)
+*FvwmButtons-DaLo: (2x5, Center, Swallow(UseOld) "xbiff" "Exec xbiff -bg $[bg.cs13] -fg $[fg.cs13] -geometry +580-0", Frame -1)
+*FvwmButtons-DaLo: (7x3, Frame -1, Padding 0 0, Swallow(UseOld,kill) "xdaliclock" "Exec exec xdaliclock -12 -font -adobe-times-*-*-*-*-24-*-*-*-*-*-*-* -fg red -bg grey75 -geometry -0-0")
+*FvwmButtons-DaLo: (7x2, Frame -1, Padding 0 0, Title "Set DATE/TIME", \
+	Action(mouse 1) 'Module FvwmScript ScriptFvwmDate', \
+	Action(mouse 3) "Exec xalarm")
 *FvwmButtons-DaLo: (End)
 *FvwmButtons-DaLo: (End)
 

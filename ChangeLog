@@ -1,3 +1,14 @@
+2000-10-20  olicha  <olivier.chapuis@free.fr>
+
+	* themes/awol/modules/main:{FvwmIconMan,FvwmButton*}
+	Add some geometries. Do kLo_mix have a geo option?
+	Note: Need to check that all swallowed apps use a geometry.
+	If the app has no geometry option we need to use RandomPlacement
+	Style
+
+	* themes/default/styles
+	Add Style "FvwmApplet*" RandomPlacement
+	
 2000-10-18  migo  <migo@homemail.com>
 
 	* fvwm-themes-config.in:
