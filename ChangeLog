@@ -9,6 +9,10 @@
 	The original buttons are from (more button faces in the same dir):
 	http://redhat.oz-online.net/images/screenshots/lvbogaert.gif
 
+	* themes/default/windowlook:
+	use HandleWidth 6 just to be a bit different from windowlook@migo. :)
+	I am not very sure here, since the real default is 7.
+
 2001-06-01  migo  <migo@homemail.com>
 
 	* themes/default/menus:

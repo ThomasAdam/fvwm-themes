@@ -1,7 +1,7 @@
 FuncFvwmSetFont-WindowTitle * variable
 FuncFvwmSetFont-IconTitle   * fixed
 
-Style "*"	BorderWidth 5, HandleWidth 7
+Style "*"	BorderWidth 5, HandleWidth 6
 Style "*"	FvwmBorder, FirmBorder
 
 BorderStyle	Simple
