@@ -10,8 +10,8 @@ AddToFunc   WindowListFunc
 DestroyFunc FuncFvwmSelectWindow
 AddToFunc   FuncFvwmSelectWindow
 + I Focus
-#+ I Raise
-#+ I WindowId $0 WarpToWindow 50 50
++ I Raise
++ I WarpToWindow 50 50
 
 # ----------------------------------------------------------------------------
 

@@ -28,6 +28,9 @@
 	* themes/default/menus-programs:
 	added a window sitting toy actx
 
+	* themes/default/functions:
+	make FuncFvwmSelectWindow to Raise by a user request
+
 2002-10-30  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
