@@ -1,0 +1,12 @@
+MenuStyle * Hilight3DThickness 1
+MenuStyle * PopupDelayed, PopupDelay 150, PopdownDelayed, PopdownDelay 150
+MenuStyle * PopupOffset 1 100, TitleWarpOff
+MenuStyle * TitleUnderlines2, SeparatorsLong, TrianglesSolid
+MenuStyle * AnimationOff, AutomaticHotkeysOff, DoubleClickTime
+MenuStyle * BorderWidth 1, SidePic, SideColor
+MenuStyle * PopupAsSubmenu, HoldSubmenus, SubmenusRight
+MenuStyle * ItemFormat "%.4s%.1|%.5i%.5l%.5l%.5r%.5i%2.3>%1|"
+MenuStyle * VerticalTitleSpacing 1 1 VerticalItemSpacing 1 1
+
+FuncFvwmSetFont-Menu * "Shadow=1 b bl r br r :xft:verdana:bold:pixelsize=12:minspace=True"
+BusyCursor DynamicMenu True

@@ -1,0 +1,80 @@
+FuncFvwmDecorBackground
+
+Style "*" Button 1, Button 2, Button 4
+Style "*" MWMButtons  # button relief follows the state
+
+
+AddTitleStyle         TiledPixmap button/title_top.png    -- Flat Top
+AddTitleStyle         TiledPixmap button/title_bottom.png -- Flat Bottom
+AddTitleStyle         Pixmap      button/title_left.png   -- Flat Left
+AddTitleStyle         Pixmap      button/title_right.png  -- Flat Right
+ButtonStyle    All  simple -- Flat UseTitleStyle
+  AddButtonStyle 1  Pixmap    button/close.png
+  AddButtonStyle 2  Pixmap    button/maximize.png
+  AddButtonStyle 4  Pixmap    button/iconify.png
+
+ButtonStyle 1 - Clear
+ButtonStyle 2 - Clear MWMDecorMax
+ButtonStyle 4 - Clear MWMDecorMin
+
+TitleStyle	Height 17
+
+#     button	context	modifie	function
+Mouse 1 	1	A	FuncFvwmDeleteOrDestroy
+Mouse 1 	1	S	MenuFvwmWindowOps2 Close
+MouseXX 2 3	1	A       Menu MenuFvwmWindowMove
+MouseXX 3 2	1	A	Menu MenuFvwmWindowGroupOps
+Mouse 1 	2	A	FuncFvwmMaximize
+Mouse 2 	2	A	FuncFvwmMaximizeVertically
+Mouse 3 	2	A	FuncFvwmMaximizeHorizontally
+Mouse 1 	2	M	Maximize grow grow
+Mouse 2 	2	M	Maximize 0 grow
+Mouse 3 	2	M	Maximize grow 0
+Mouse 1 	4	A	FuncFvwmIconify
+Mouse 2 	4	A	FuncFvwmIconifySameResource on
+Mouse 3 	4	A	FuncFvwmIconifySameResource toggle
+Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Delete on click^nDestroy on double click^nWith Shift - Window Ops menu, or Close on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
+Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tfully on click^n^tmenu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
+Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^nMouse 3 - Iconify toggle resource group"
+
+DestroyFunc FuncFvwmUnReloadDecor
+AddToFunc   FuncFvwmUnReloadDecor
+
+DestroyFunc FuncFvwmReloadDecor
+AddToFunc   FuncFvwmReloadDecor
++ I FuncFvwmDecorBackground
++ I ButtonStyle    All  simple -- Flat UseTitleStyle
++ I   AddButtonStyle 1  Pixmap    button/close.png
++ I   AddButtonStyle 2  Pixmap    button/maximize.png
++ I   AddButtonStyle 4  Pixmap    button/iconify.png
++ I AddTitleStyle         TiledPixmap button/title_top.png    -- Flat Top
++ I AddTitleStyle         TiledPixmap button/title_bottom.png -- Flat Bottom
++ I AddTitleStyle         Pixmap      button/title_left.png   -- Flat Left
++ I AddTitleStyle         Pixmap      button/title_right.png  -- Flat Right
+
+DestroyFunc FuncFvwmOverRideWindowLook
+AddToFunc   FuncFvwmOverRideWindowLook
+
+DestroyFunc FuncFvwmStartWindowButtons
+AddToFunc   FuncFvwmStartWindowButtons
+
+DestroyFunc FuncFvwmStopWindowButtons
+AddToFunc   FuncFvwmStopWindowButtons
++ I FuncFvwmRemoveAllButtons
++ I Mouse 1 	1	A	-
++ I Mouse 1 	1	S	-
++ I Mouse 2 	1	A	-
++ I Mouse 3 	1	A	-
++ I Mouse 0 	2	A	-
++ I Mouse 1 	4	A	-
++ I Mouse 2 	4	A	-
++ I Mouse 3 	4	A	-
++ I Mouse 1 	4	S	-
++ I Mouse 2 	4	S	-
++ I Mouse 3 	4	S	-
++ I Mouse 1 	6	A	-
++ I Mouse 2 	6	A	-
++ I Mouse 3 	6	A	-
++ I Mouse 0 	1	CM	-
++ I Mouse 0 	2	CM	-
++ I Mouse 0 	4	CM	-
