@@ -19,6 +19,10 @@
 	* *:
 	converted DestroyModuleConfig to a new non-conflicting syntax
 
+	* themes/default/menus:
+	* themes/default/settings/iconstyles/wm-icons:menu:
+	moved "" Nop delimeter to the main menu
+
 2000-09-11  migo  <migo@homemail.com>
 
 	* scripts/FvwmScript-ThemesCenter:

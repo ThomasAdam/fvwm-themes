@@ -170,6 +170,7 @@ AddToMenu   MenuFvwmConfiguration "Fvwm Configuration" Title
 + "" Nop
 + "Restore Theme &Background"	FuncFvwmStartThemeBackground
 + "Restore Theme &Cursors"	PipeRead `printf 'Read '; fvwm-themes-config --component cursors --show-value read-file`
++ "" Nop
 
 DestroyMenu MenuFvwmXConfiguration
 AddToMenu   MenuFvwmXConfiguration "X Configuration" Title

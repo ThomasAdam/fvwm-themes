@@ -4,11 +4,10 @@
 #
 
 # Needs to be read after menus!
-# On the other iconstyles/style-icon-miniicon should be read before menus.
+# On the other side iconstyles/style-icon-miniicon should be read before menus.
 # Also, MenuFvwmIconSets is not Destroyed when you quit this component...
 
 AddToFunc FuncFvwmStartAllHooks
-+ I AddToMenu MenuFvwmConfiguration "" Nop
 + I AddToMenu MenuFvwmConfiguration "wm-icons Icons" Popup MenuFvwmIconSets
 
 DestroyMenu MenuFvwmIconSets
