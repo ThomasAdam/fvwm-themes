@@ -3,6 +3,9 @@
 	* themes/multichoice/fonts*:
 	added Japanese, Korean, Chinese font filters
 
+	* themes/migo/modules/buttonbar/astime:
+	small color change, astime just is not configurable enough...
+
 2001-05-29  olicha  <olivier.chapuis@free.fr>
 
 	* themes/multichoice/buttons/images/warpluc.tar.gz:
