@@ -3,8 +3,9 @@
 configdir = @FT_LOCALE_DIR@/ru
 
 config_DATA = \
-	FvwmScript-ThemesCenter.msg \
+	FvwmScript-ColorSelector.html FvwmScript-ColorSelector.msg \
+	FvwmScript-ThemesCenter.html FvwmScript-ThemesCenter.msg \
 	FvwmScript-ComponentProperties.msg \
-	FvwmScript-ColorSelector.msg
+	FvwmScript-ConfigCenter.msg
 
 EXTRA_DIST = $(config_DATA)

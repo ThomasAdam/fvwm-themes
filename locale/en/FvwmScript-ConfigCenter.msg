@@ -45,9 +45,9 @@ GeoTopLeft	{On the top left        }
 HideGeoWin	{Hide the geometry window for:             }
 HideResize	{Resizing               }
 HideMove	{Moving                 }
-BugyMove	{ Activate this option only if your windows flash when moved }
+BuggyMove	{ Activate this option only if your windows flash when moved }
 # Snap attraction
-SnapAtract	{ Attraction of the Windows during a Move }
+SnapAttract	{ Attraction of the Windows during a Move }
 # Same size for the next 2
 SnapDist	{Distance:     }
 SnapContext	{Context:      }
@@ -55,7 +55,7 @@ SnapContext	{Context:      }
 SnapPopup	{Icons & Windows|Same type|Windows|Icons|Icons, Windows & screen|Same type & screen|Windows & screen|Icons & screen}
 #  be exact for the next 6 but the 2nd
 SnapGrid	{Attraction Grid:      }
-ColorOrXOR	{ Color or Pixmap XOR for the Lines (and Stroke) }
+ColorOrPix	{ Color or Pixmap XOR for the Lines (and Stroke) }
 UseAColor	{Use a Color                  }
 UseAPixmap	{Use a Pixmap (xpm)                 }
 OneColor	{A Color (pixels):         }
@@ -68,13 +68,13 @@ StartImages	{Images}
 Paging		{ Paging }
 # exact
 HPaging		{Horizontal Paging:            }
+VPaging		{Vertical Paging:              }
 CirPaging	{Circular Paging               }
-VPaging		{Vertical Paging               }
 PagingDelay	{Delay before a page switching:                     }
 EdgeResist	{Resistance for moving a window between pages:      }
 PanFrame	{Edge thickness when paging (if enabled):              }
 # check
-PagingList	{Disabled|100 %|90 %|75 %|66 %|50 %|33 %|25 %|10 %|5%}
+PagingList	{Disabled|100%|90%|75%|66%|50%|33%|25%|10%|5%}
 Msec		{msec}
 Pixels		{pixels}
 ### Mouse Parameters

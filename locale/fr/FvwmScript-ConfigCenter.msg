@@ -45,9 +45,9 @@ GeoTopLeft	{En Haut à gauche       }
 HideGeoWin	{Cacher la fenètre de géometrie pour:      }
 HideResize	{Redimensionnement      }
 HideMove	{Déplacement            }
-BugyMove	{Activer cette option seulment si les fenètres "flash" lors du déplacement}
+BuggyMove	{Activer cette option seulment si les fenètres "flash" lors du déplacement}
 # Snap attraction
-SnapAtract	{Attraction des Fenètres lors du Déplacement}
+SnapAttract	{Attraction des Fenètres lors du Déplacement}
 # Same size for the next 2
 SnapDist	{Distance:     }
 SnapContext	{Contexte:     }
@@ -55,7 +55,7 @@ SnapContext	{Contexte:     }
 SnapPopup	{Icones & Fenètres|Même type|Fenètres|Icones|Icones, Fenètres & écran|Même type & écran|Fenètres & écran|Icones & écran}
 #  be exact for the next 6
 SnapGrid	{Grille d'attraction:      }
-ColorOrXOR	{Couleur ou Pixmap XOR pour les "lignes" (et Stroke)}
+ColorOrPix	{Couleur ou Pixmap XOR pour les "lignes" (et Stroke)}
 UseAColor	{Utiliser une couleur          }
 UseAPixmap	{Utiliser un pixmap (xpm)           }
 OneColor	{Une couleur (pixels):      }
@@ -68,13 +68,13 @@ StartImages	{Images}
 Paging		{ Pagination }
 # exact
 HPaging		{Pagination Horizontale:       }
-CirPaging	{Pagination Ciculaire          }
 VPaging		{Pagination Verticale:         }
+CirPaging	{Pagination Ciculaire          }
 PagingDelay	{Délais avant le changement de page:                }
 EdgeResist	{Résistance pour changer de page une fenètre:       }
 PanFrame	{Épaisseur des fenètres de pagination (si active):     }
 # check
-PagingList	{Non active|100 %|90 %|75 %|66 %|50 %|33 %|25 %|10 %|5%}
+PagingList	{Non active|100%|90%|75%|66%|50%|33%|25%|10%|5%}
 Msec		{ms}
 Pixels		{pixels}
 ### Mouse Parameters

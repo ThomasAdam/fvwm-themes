@@ -23,6 +23,19 @@
 	* themes/cde/modules/buttonbar/{large,small}:
 	added a transient desker arrow
 
+	* locale/ru/FvwmScript-ThemesCenter.html:
+	* locale/ru/FvwmScript-ColorSelector.html:
+	* locale/ru/FvwmScript-ConfigCenter.msg:
+	* locale/ru/Makefile.am:
+	Added initial translations (only ColorSelector is finished).
+	Nothing really works because of fonts.
+	Probably FvwmScript-Help should get --font.., or maybe we should have
+	one file locale/LANG/fonts.msg used in all scripts, I am not sure
+
+	* locale/*/FvwmScript-ConfigCenter.msg:
+	* scripts/FvwmScript-ConfigCenter:
+	small renamings
+
 2000-11-29  olicha  <olivier.chapuis@free.fr>
 
 	* locale/{en,fr}/FvwmScript-ConfigCenter.msg:

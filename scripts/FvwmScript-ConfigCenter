@@ -271,11 +271,11 @@ Begin
 	    ChangeTitle 41 $msg
 	If $id == {HideMove    } Then
 	    ChangeTitle 42 $msg
-	If $id == {BugyMove    } Then
+	If $id == {BuggyMove   } Then
 	    ChangeTitle 43 $msg
 
 	### Snap attraction
-	If $id == {SnapAtract  } Then
+	If $id == {SnapAttract } Then
 	    ChangeTitle 44 $msg
 	If $id == {SnapDist    } Then
 	    ChangeTitle 45 $msg
@@ -285,7 +285,7 @@ Begin
 	    ChangeTitle 48 $msg
 	If $id == {SnapGrid    } Then
 	    ChangeTitle 49 $msg
-	If $id == {ColorOrXOR  } Then
+	If $id == {ColorOrPix  } Then
 	    ChangeTitle 54 $msg
 	If $id == {UseAColor   } Then
 	    ChangeTitle 55 $msg
@@ -311,7 +311,7 @@ Begin
 	    ChangeTitle 63 $msg
 	    ChangeTitle 66 $msg
 	End
-	If $id == {Vpaging     } Then
+	If $id == {VPaging     } Then
 	    ChangeTitle 64 $msg
 	If $id == {PagingList  } Then
 	Begin
