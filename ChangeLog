@@ -1,3 +1,13 @@
+2000-07-28  migo  <migo@homemail.com>
+
+	* themes/multichoice/background/6:
+	commented in 'bggen | xv' variant
+
+	* themes/multichoice/images/background/fvwm-tiger-tail.xpm:
+	* themes/multichoice/images/banner/fvwm-red.xpm:
+	I forgot we have http://fvwm.org/generated/icon_shots/banner2.gif .
+	Added these 2 big files, I am not sure where to use them if at all.
+
 2000-07-28  olicha <olivier.chapuis@free.fr>
 
 	* themes/multichoice/backgrounds/*
