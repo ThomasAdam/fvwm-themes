@@ -3,13 +3,13 @@ static char *panel-iconify[] = {
 /* width height num_colors chars_per_pixel */
 "    9      5        3            1",
 /* colors */
-". c None",
-"# c #bdbdbd",
-"a c #636363",
+"  c None",
+"# c #505050",
+". c #d0d0d0",
 /* pixels */
-"....#....",
-"...#.a...",
-"..#...a..",
-".#.....a.",
-"#aaaaaaaa",
+"    #    ",
+"   # .   ",
+"  #   .  ",
+" #     . ",
+"#........",
 };
