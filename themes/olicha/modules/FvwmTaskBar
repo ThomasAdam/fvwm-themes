@@ -11,7 +11,7 @@ DestroyModuleConfig FvwmTaskBar: *
 
 *FvwmTaskBar: Action Click1 FuncFvwmDeiconifyFocusAndRaise
 *FvwmTaskBar: Action Click2 Iconify
-*FvwmTaskBar: Action Click3 Popup MenuFvwmWindowOps2 Mouse c -102m
+*FvwmTaskBar: Action Click3 Popup MenuFvwmWindowOps2 rectangle $widthx$height+$left+$top c -100m
 
 *FvwmTaskBar: UseSkipList
 #*FvwmTaskBar: UseIconNames
