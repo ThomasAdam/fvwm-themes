@@ -1,5 +1,7 @@
 AddToMenu gnome-redhat
-+ DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop gnome-redhat'
++ DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop gnome-redhat --enable-mini-icons --menu-style MenuStyleFvwmGnomeAL'
+
+CopyMenuStyle "*" MenuStyleFvwmGnomeAL
 
 AddToMenu MenuFvwmPrograms
 + "AnotheLevel%menu/gnome.xpm" popup gnome-redhat

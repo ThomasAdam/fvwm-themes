@@ -1,5 +1,7 @@
 AddToMenu gnome-user
-+ DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop gnome-user'
++ DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop gnome-user --enable-mini-icon --menu-style MenuStyleFvwmGnomeUser'
+
+CopyMenuStyle "*" MenuStyleFvwmGnomeUser
 
 AddToMenu MenuFvwmPrograms
 + "User Gnome menus%menu/gnome.xpm" popup gnome-user

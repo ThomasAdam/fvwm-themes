@@ -1,3 +1,13 @@
+2001-03-21  olicha  <olivier.chapuis@free.fr>
+	
+	* themes/default/settings/{kde,gnome}/*menu*/*:
+	Added CopyMenuStyle "*" MenuStyleFvwm{KdeSystem,KdeUser,GnomeSystem,
+	GnomeUser,GnomeAL} where needed so that the use can change the font
+	(charset) of these menus in settings-extra.
+
+	* doc/FAQ:
+	Very few update
+
 2001-03-21  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

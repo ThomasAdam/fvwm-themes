@@ -1,6 +1,8 @@
 AddToMenu MenuFvwmPrograms "" Nop
 + "&Kde menu%menu/kde.xpm" Popup kde-sys
 
-PipeRead 'fvwm-menu-desktop --desktop kde-sys --enable-mini-icons --enable-style'
+CopyMenuStyle "*" MenuStyleFvwmKdeSystem
+
+PipeRead 'fvwm-menu-desktop --desktop kde-sys --enable-mini-icons --enable-style --menu-style MenuStyleFvwmKdeSystem'
 
 #Style "k*" IconOverride

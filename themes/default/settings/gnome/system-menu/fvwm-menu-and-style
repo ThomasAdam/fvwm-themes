@@ -1,4 +1,6 @@
-PipeRead 'fvwm-menu-desktop --desktop gnome-sys --enable-tran-mini-icons --enable-style  --tran-mini-icons-path $FT_DATADIR/images/mini-gnome --tran-icons-path $FT_DATADIR/images/norm-gnome'
+PipeRead 'fvwm-menu-desktop --desktop gnome-sys --enable-tran-mini-icons --enable-style  --tran-mini-icons-path $FT_DATADIR/images/mini-gnome --tran-icons-path $FT_DATADIR/images/norm-gnome  --menu-style MenuStyleFvwmGnomeSystem'
+
+CopyMenuStyle "*" MenuStyleFvwmGnomeSystem
 
 AddToMenu MenuFvwmPrograms
 + "" Nop

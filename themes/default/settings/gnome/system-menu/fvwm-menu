@@ -1,5 +1,7 @@
 AddToMenu gnome-sys
-+ DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop gnome-sys --wm-icons'
++ DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop gnome-sys --wm-icons --menu-style MenuStyleFvwmGnomeSystem'
+
+CopyMenuStyle "*" MenuStyleFvwmGnomeSystem
 
 AddToMenu MenuFvwmPrograms
 + "" Nop
