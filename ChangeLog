@@ -2,6 +2,16 @@
 
 	* TODO: updated
 
+	* bin/fvwm-themes-images.in:
+	support also one color in --sky-colors, from Jos
+
+	* themes/cde/menustyle:
+	* themes/cde/windowlook:
+	* themes/cde/background/main:
+	* themes/cde/background/pattern:
+	* themes/cde/colors/main:
+	updates in cde from Jos (menustyle & colors slightly edited)
+
 2000-10-22  olicha  <olivier.chapuis@free.fr>
 
 	* themes/{default,lutien,migo,osx,redmond98}/modules/*

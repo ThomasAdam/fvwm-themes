@@ -1,0 +1,12 @@
+Style "*"	Font     -*-lucidabright-medium-r-*-*-14-*-*-*-*-*-*-*
+Style "*"	IconFont -*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*
+
+Style "*"	BorderWidth 5, HandleWidth 6
+Style "*"	MWMBorder
+
+BorderStyle	Simple
+
+TitleStyle	Centered
+TitleStyle	-- Raised
+
+ButtonStyle	All -- Raised

@@ -732,6 +732,20 @@ sub cdeSky() {
 
 	my $nbrColors = 0;
 	my $gradColors = [];
+
+	## this is hilightColor() with a different factor...
+	if ($gradColorsOpt !~ /:/) {
+		my $color = encode16bpp($gradColorsOpt);
+		my $a = bppTo3intArray($color);
+		my $i;
+		for ($i = 0; $i < 3; $i++) {
+			$a->[$i] = max(255/5, $a->[$i]);
+			$a->[$i] = min(255, ($a->[$i] * 180) / 100);  # was 110
+			$a->[$i] = int($a->[$i]);
+		}
+		$gradColorsOpt = encode16bpp($a) . ":$gradColorsOpt";
+	}
+
 	my @tmp = split(':', $gradColorsOpt);
 	my $c;
 	foreach $c (@tmp) {

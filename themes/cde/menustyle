@@ -1,0 +1,11 @@
+MenuStyle * Hilight3DThickness 2
+MenuStyle * Font -*-lucidabright-medium-r-*-*-14-*-*-*-*-*-*-*
+MenuStyle * PopupDelayed, PopupDelay 100, PopupOffset -3 100, TitleWarpOff
+MenuStyle * TitleUnderlines2, SeparatorsLong, TrianglesRelief
+MenuStyle * AnimationOff, AutomaticHotkeysOff, DoubleClickTime
+MenuStyle * BorderWidth 2, SidePic, SideColor
+MenuStyle * PopupAsSubmenu, HoldSubmenus, SubmenusRight
+MenuStyle * ItemFormat "%.4s%.1|%.5i%.5l%.5l%.5r%.5i%2.3>%1|"
+MenuStyle * VerticalItemSpacing, VerticalTitleSpacing
+
+BusyCursor DynamicMenu True
