@@ -30,6 +30,7 @@ Begin
     Set $Title = {}
     Set $InLineDoc = {}
     Set $Lang = {}
+    Set $font = {fixed}
 
     # Arguments
     Set $i = 1
@@ -47,6 +48,8 @@ Begin
 	    Set $TextColorset = (GetScriptArgument $j)
 	If $arg == {--in-line-doc} Then
 	    Set $InLineDoc = (GetScriptArgument $j)
+	If $arg == {--text-font} Then
+	    Set $TextFont = (GetScriptArgument $j)
 	Set $i = (Add $i 2)
 	Set $arg = (GetScriptArgument $i)
     End
@@ -64,9 +67,32 @@ Begin
 	If $Lang <> {} Then
 	    Set $cmd = $cmd { --lang }$Lang
  	Set $Doc = (GetOutput $cmd 1 -1)
+	# first "line" give the font:
+	Set $font = {}
+	Set $index = 1
+	Set $done = 0
+	While $done <> 1 Do
+	Begin
+	    Set $tmp = (StrCopy $Doc $index $index)
+	    If $tmp == {|} Then
+		Set $done = 1
+	    Else
+		Set $font = $font $tmp
+	    Set $index = (Add $index 1)
+	    If $index == 300 Then
+	    Begin
+		Set $font = "fixed"
+		Set $done = 1
+	    End
+	End
+	Set $Doc = (StrCopy $Doc $index 32000)
  	ChangeTitle 2 $Doc
     End
-    
+
+    If $TextFont <> {} Then
+	Set $font = $TextFont	
+    ChangeFont 2 $font
+
 End
 
 # Title

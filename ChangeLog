@@ -1,3 +1,14 @@
+2000-12-08  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-script.in:
+	* scripts/FvwmScript-Help:
+	ru in line doc should work now
+
+	* themes/default/menus-user:
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	Added xftree and xfclock
+	More kde styles (will be in a separted file in a near future)
+
 2000-12-04  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-script.in:

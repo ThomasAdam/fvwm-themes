@@ -83,6 +83,9 @@ Style "usernet"                Icon norm/network.xpm,         MiniIcon mini/netw
 Style "VIM"                    Icon norm/editor.xpm,          MiniIcon mini/editor.xpm
 Style "vmware"                 Icon norm/utility.xpm,         MiniIcon mini/utility.xpm
 Style "wmCalClock"             Icon norm/clock.xpm,           MiniIcon mini/clock.xpm
+Style "vppp*"                  Icon norm/network.xpm,         MiniIcon mini/network.xpm
+# for vppp:
+Style "conx"                   Icon norm/network.xpm,         MiniIcon mini/network.xpm
 Style "workman"                Icon norm/cd-player.xpm,       MiniIcon mini/cd-player.xpm
 Style "X11Amp"                 Icon norm/music.xpm,           MiniIcon mini/music.xpm
 Style "X3270xad"               Icon norm/terminal.xpm,        MiniIcon mini/terminal.xpm
@@ -207,16 +210,87 @@ Style "gxedit"                 Icon norm/editor.xpm,          MiniIcon mini/edit
 Style "vumeter"                Icon norm/sound.xpm,           MiniIcon mini/sound.xpm
 Style "X-Chat"                 Icon norm/chat.xpm,            MiniIcon mini/chat.xpm
 
+# XFCE Apps
+Style "xfclock"                 Icon norm/clock.xpm,           MiniIcon mini/clock.xpm
+Style "xftree"                    Icon norm/folders.xpm,         MiniIcon mini/folders.xpm
+
 # KDE Apps
+# note: I've also indicate the KDE2 some Icon Name before the style if the
+# Resource is used (for KDE 1/2 compatibility) and if the Icon Name seems ok.
+# In my opinion this must go in a separated file (as GNOME styles and we can
+# have variants: disabled, wm/ft-icons, kde-icons, kde2-icons).
+# Abbrowser
+Style "kcontrol"               Icon norm/kde.xpm              MiniIcon mini/kde.xpm
+Style "abbrowser"              Icon norm/information.xpm      MiniIcon mini/information.xpm
+# aKtion!
+Style "aktion"                 Icon norm/viewer.xpm           MiniIcon mini/viewer.xpm
+# Archiver
+Style "ark"                    Icon norm/folders.xpm,         MiniIcon mini/folders.xpm
+Style "kab"                    Icon norm/information.xpm      MiniIcon mini/information.xpm
+# Kaiman
+Style "kaiman"                 Icon norm/sound.xpm,           MiniIcon mini/sound.xpm
+# Personal Time Tracker
+Style "karm"                   Icon norm/clock.xpm,           MiniIcon mini/clock.xpm
 Style "kdf"                    Icon norm/disk.xpm,            MiniIcon mini/disk.xpm
 Style "kedit"                  Icon norm/editor.xpm,          MiniIcon mini/editor.xpm
 Style "kfind"                  Icon norm/todo.xpm,            MiniIcon mini/todo.xpm
 Style "kfm"                    Icon norm/folders.xpm,         MiniIcon mini/folders.xpm
+# kviewshell (Ressource)
+Style "Fax Viewer"             Icon norm/viewer.xpm,          MiniIcon mini/viewer.xpm
+# Fractals Generator
+Style "kfract"                 Icon norm/viewer.xpm,          MiniIcon mini/viewer.xpm
 Style "kdehelp"                Icon norm/help.xpm,            MiniIcon mini/help.xpm
+Style "kdvi"                   Icon norm/viewer.xpm,          MiniIcon mini/viewer.xpm
+# kviewshell (Ressource)
+Style "DVI Viewer"             Icon norm/viewer.xpm,          MiniIcon mini/viewer.xpm
+Style "kit"                    Icon norm/chat.xpm,            MiniIcon mini/chat.xpm
+Style "kjots"                  Icon norm/editor.xpm,          MiniIcon mini/editor.xpm
+Style "klpq"                   Icon norm/information.xpm,     MiniIcon mini/information.xpm
+Style "kljettool"              Icon norm/information.xpm,     MiniIcon mini/information.xpm
+Style "knode"                  Icon norm/mail.xpm,            MiniIcon mini/mail.xpm
+Style "kmail"                  Icon norm/mail.xpm,            MiniIcon mini/mail.xpm
 Style "kmid"                   Icon norm/sound.xpm,           MiniIcon mini/sound.xpm
+# Sound Mixer
+Style "kmix"                   Icon norm/sound.xpm,           MiniIcon mini/sound.xpm
+Style "artsbuilder"            Icon norm/sound.xpm,           MiniIcon mini/sound.xpm
+Style "artscontrol"            Icon norm/sound.xpm,           MiniIcon mini/sound.xpm
+# PS/PDF Viewer
+Style "kghostview"             Icon norm/viewer.xpm,          MiniIcon mini/viewer.xpm
+Style "konqueror"              Icon norm/folders.xpm,         MiniIcon mini/folders.xpm
+# KOrganizer
+Style "korganizer"             Icon norm/information.xpm      MiniIcon mini/information.xpm
+# Terminal
+Style "konsole"                Icon norm/shell.xpm,           MiniIcon mini/shell.xpm
+Style "koshell"                Icon norm/home.xpm,            MiniIcon mini/home.xpm
+# KWord
+Style "kword"                  Icon norm/word-processor.xpm   MiniIcon norm/word-processor.xpm
+# KSpread
+Style "kspread"                Icon norm/calculator.xpm       MiniIcon norm/calculator.xpm
+# KPresenter
+Style "kpresenter"             Icon norm/information.xpm      MiniIcon mini/information.xpm
+# KChart
+Style "kchart"                 Icon norm/information.xpm      MiniIcon mini/information.xpm
+# KIllustrator
+Style "killustrator"           Icon norm/image-viewer.xpm     MiniIcon mini/image-viewer.xpm
+# kPixmap2Bitmap
+Style "kpixmao2bitmap"         Icon norm/image-viewer.xpm     MiniIcon mini/image-viewer.xpm
+Style "kpm"                    Icon norm/todo.xpm,            MiniIcon mini/todo.xpm
 Style "kppp"                   Icon norm/network.xpm,         MiniIcon mini/network.xpm
 Style "kscd"                   Icon norm/cd-player.xpm,       MiniIcon mini/cd-player.xpm
+# KSnapshot
+Style "ksnapshot"              Icon norm/window.xpm,         MiniIcon mini/window.xpm
+# KSysGuard
+Style "ksysgaurd"              Icon norm/todo.xpm,            MiniIcon mini/todo.xpm
+# kView
+Style "kview"                  Icon norm/image-viewer.xpm     MiniIcon mini/image-viewer.xpm
 Style "kvt"                    Icon norm/shell.xpm,           MiniIcon mini/shell.xpm
+# KWorldWatch
+Style "kworldwatch"            Icon norm/clock.xpm,           MiniIcon mini/clock.xpm
+Style "kwrite"                 Icon norm/editor.xpm,          MiniIcon mini/editor.xpm
+Style "keystone"               Icon norm/shell.xpm,          MiniIcon mini/shell.xpm
+
+# others apps which is take in acount by previous general inco styles:
+# ksirc (KSirc), kcalculator
 
 # Games
 Style "SDL_App"                Icon norm/game.xpm,            MiniIcon mini/game.xpm
@@ -285,7 +359,13 @@ Style "gfpoken"                Icon norm/game.xpm,            MiniIcon mini/game
 # KDE Games  # these ones have own 16x16 & 32x32 xpm's included with kdebase
 Style "kabalone"               Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "kasteroids"             Icon norm/game.xpm,            MiniIcon mini/game.xpm
+# Atomic Entertainment
+Style "katomic"                Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "kblackbox"              Icon norm/game.xpm,            MiniIcon mini/game.xpm
+# Foul Eggs
+Style "kfouleggs"              Icon norm/game.xpm,            MiniIcon mini/game.xpm
+# KJumpingCube
+Style "kjumpingcube"           Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "kmahjongg"              Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "kmines"                 Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "konquest"               Icon norm/game.xpm,            MiniIcon mini/game.xpm
@@ -296,6 +376,12 @@ Style "ksame"                  Icon norm/game.xpm,            MiniIcon mini/game
 Style "kshisen"                Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "ksirtet"                Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "ksmiletris"             Icon norm/game.xpm,            MiniIcon mini/game.xpm
+# SpaceDuel
+Style "kspaceduel"             Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "ksnake"                 Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "ksokoban"               Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "ktetris"                Icon norm/game.xpm,            MiniIcon mini/game.xpm
+# Potato Guy
+Style "ktuberling"              Icon norm/game.xpm,            MiniIcon mini/game.xpm
+# LSkat
+Style "lskat"                   Icon norm/game.xpm,            MiniIcon mini/game.xpm

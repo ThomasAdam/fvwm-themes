@@ -46,6 +46,7 @@ AddToMenu   MenuFvwmSystem "System" Title
 + "&Midnight-Commander%menu/folders.xpm%" FuncFvwmRunInXterm "Midnight-Commander" "mc -x"
 + "File Runner%menu/folders.xpm%"	Exec exec fr
 + "xfm%menu/folders.xpm%"		Exec exec xfm
++ "xftree%menu/folders.xpm%"		Exec exec xftree
 + "gmc%menu/folders.xpm%"		Exec exec gmc
 + "kfm%menu/folders.xpm%"		Exec exec kfmclient openURL $HOME
 + "Dtfile%menu/folders.xpm%"		Exec exec /usr/dt/bin/dtfile 
@@ -176,7 +177,8 @@ AddToMenu   MenuFvwmUtilities "Utilities" Title
 + "&Oclock%menu/clock.xpm%"		Exec exec oclock
 + "&Bclock%menu/clock.xpm%"		Exec exec bclock
 + "&Xdaliclock%menu/clock.xpm%" 	Exec exec xdaliclock
-+ "X&FontSel%menu/font.xpm%"		Exec exec xfontsel
++ "&xfclock%menu/clock.xpm%"		Exec exec xfclock
++ "XFontSel%menu/font.xpm%"		Exec exec xfontsel
 + "X&ColorSel%menu/unknown.xpm%"	Exec exec xcolorsel
 + "Fvwm &ColorSel%menu/unknown.xpm%"	FvwmScript FvwmScript-ColorSelector --text-colorset 34 --viewer-colorset 33
 + "&Color List%menu/unknown.xpm%"	FuncFvwmViewFile /usr/X11R6/lib/X11/rgb.txt
