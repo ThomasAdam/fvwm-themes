@@ -211,6 +211,7 @@ Style "kscd"                   Icon norm/cd-player.xpm,       MiniIcon mini/cd-p
 Style "kvt"                    Icon norm/shell.xpm,           MiniIcon mini/shell.xpm
 
 # Games
+Style "SDL_App"                Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "*angband"               Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "gcfclient"              Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "MirrorMagic"            Icon norm/game.xpm,            MiniIcon mini/game.xpm
