@@ -1,7 +1,7 @@
 Style "FvwmButtons-XtMix" NoTitle, NoIcon, NoHandles, Sticky, WindowListSkip, \
-	BorderWidth 4, CirculateSkip, MouseFocus, TitleAtBottom
-Style "FvwmButtons-Default" NoTitle, NoIcon, NoHandles, Sticky, \
-	WindowListSkip, BorderWidth 4, CirculateSkip, MouseFocus, TitleAtBottom
+	BorderWidth 4, CirculateSkip, NeverFocus, TitleAtBottom
+Style "FvwmButtons-Default" NoTitle, NoIcon, NoHandles, Sticky, WindowListSkip, \
+	BorderWidth 4, CirculateSkip, NeverFocus, TitleAtBottom
 Style "FvwmIconMan" NoTitle, WindowListSkip, Sticky, \
 	NoHandles, BorderWidth 0
 Style "FvwmPager-Single" NoHandles, NoTitle, Sticky, WindowListSkip, \
