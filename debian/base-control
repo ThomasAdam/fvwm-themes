@@ -7,7 +7,11 @@ Standards-Version: 3.5.8
 
 Package: fvwm-themes
 Architecture: any
-Depends: ${shlibs:Depends} ${misc:Depends} ${perl:Depends}
+Suggests: fvwm-themes-extra
+Conflicts: fvwm-themes-full
+Replaces: fvwm-themes-full
+Depends: ${shlibs:Depends}
+Recommends: fvwm
 Description: Nice look, feel and menusystem for FVWM (base themes)
  FVWM Themes is a powerful configuration framework for FVWM,
  designed to be easily extendible and configurable, includes
