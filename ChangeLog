@@ -1,3 +1,13 @@
+2000-08-03  migo  <migo@homemail.com>
+
+	* NEWS:
+	updated version numbers of very old releases retroactivelly,
+	since they are in SF archives
+
+	* bin/fvwm-themes-config.in:
+	fixed warnings when running under perl 5.6.0;
+	We should test all our scripts to work with at least 5.004 (or 5.002).
+
 2000-08-03  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-menuapp.in:

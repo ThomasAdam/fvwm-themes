@@ -1,3 +1,7 @@
+fvwm-themes-0.3.14 - not released yet (cvs)
+
+* more backrounds using fvwm logos in multichoice theme
+
 fvwm-themes-0.3.13 - 20000729 (cvs)
 
 * fixed theme switching
@@ -105,7 +109,7 @@ fvwm-themes-20000227 - 0.2.1 (olicha)
 * First implementation of "colors" for themes
 * An afterstep modules theme
 * An osx modules theme
- 
+
 fvwm-themes-20000215 - 0.2.0 (migo)
 
 * the first public alpha version
@@ -140,12 +144,13 @@ fvwm-themes-20000125 - 0.1.1 (migo)
 * fvwm-themes-config: --expand
 * menu icons for most menus (initial)
 
-fvwm-themes-20000124 - 0.0.0 (olicha)
+fvwm-themes-20000124 - 0.1.0 (olicha)
 
-* added support for options (orthigonal to themes)
+* added support for options (orthogonal to themes)
 * fvwm-themes-config: --use-option
+* moved developement to SourceForge
 
-fvwm-themes-20000118 - 0.0.0 (migo)
+fvwm-themes-20000118 - 0.0.5 (migo)
 
 * fvwm-themes-config: --generate-rc option, --xmessage (internal)
 * individual components are supported (initial)
@@ -153,24 +158,24 @@ fvwm-themes-20000118 - 0.0.0 (migo)
 * the themes (or components) are switched immediately (one click)
 * new theme: osx
 
-fvwm-themes-20000115 - 0.0.0 (olicha)
+fvwm-themes-20000115 - 0.0.4 (olicha)
 
 * initial support for modules and backgrounds
 * new themes: olicha, redmond98
 * additional content
 
-fvwm-themes-20000108 - 0.0.0 (migo)
+fvwm-themes-20000108 - 0.0.3 (migo)
 
 * fvwm-themes-config: --reset, --info options
 * themes menu now contains component submenus
 * used components (and their themes) are marked in menus
 
-fvwm-themes-20000106 - 0.0.0 (migo)
+fvwm-themes-20000106 - 0.0.2 (migo)
 
 * added makefile (install, uninstall)
 * new theme: afterstep
 
-fvwm-themes-20000103 - 0.0.0 (migo)
+fvwm-themes-20000103 - 0.0.1 (migo)
 
 * the first very initial pre-alpha release
 * themes: default, migo, wm-icons

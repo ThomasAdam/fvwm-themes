@@ -98,7 +98,7 @@ sub dumpPerlValue ($;$$) {
 		@subValues = @$value;
 	} elsif ($ref eq 'HASH') {
 		@subValues = map {
-			"$_\t" . dumpPerlValue($value->{$_}, $level + 1, 1)
+			"$_\t" . &dumpPerlValue($value->{$_}, $level + 1, 1)
 		} sort keys %$value;
 	} elsif ($ref eq 'SCALAR') {
 		@subValues = ($$value);
@@ -107,7 +107,7 @@ sub dumpPerlValue ($;$$) {
 	}
 	$str = ("\t" x $level) . "$str\n" unless $inline;
 	my $str2 = "";
-	foreach (@subValues) { $str2 .= dumpPerlValue($_, $level + 1); }
+	foreach (@subValues) { $str2 .= &dumpPerlValue($_, $level + 1); }
 	if ($inline && $str2 =~ /^(.*)\n$/s) { $str .= "\n"; $str2 = $1; }
 	return "$str$str2";
 }
@@ -119,11 +119,11 @@ sub clonePerlValue ($) {
 	if (!$ref) {
 		return $value;
 	} elsif ($ref eq 'ARRAY') {
-		my $array = [ map { clonePerlValue($_) } @$value ];
+		my $array = [ map { &clonePerlValue($_) } @$value ];
 		return $array;
 	} elsif ($ref eq 'HASH') {
 		my $hash = {};
-		foreach (keys %$value) { $hash->{$_} = clonePerlValue($value->{$_}); }
+		foreach (keys %$value) { $hash->{$_} = &clonePerlValue($value->{$_}); }
 		return $hash;
 	} elsif ($ref eq 'SCALAR') {
 		my $scalar = $$value;
@@ -182,7 +182,7 @@ sub makePath ($;$) {
 	return if -d $dirName;
 
 	my $parentDir = $dirName; $parentDir =~ s:(^|/)[^/]+/?$::;
-	makePath($parentDir, $perm) unless -d $parentDir;
+	&makePath($parentDir, $perm) unless -d $parentDir;
 	mkdir($dirName, $perm) || sysDie("Can't mkdir $dirName");
 }
 
@@ -205,7 +205,7 @@ sub getExpandedRc ($) {
 		chomp; $_ .= "\n";
 		/^read\s+['`"]?([^\s'`"]+)/i && do {
 			$output .= "#.---- start: $_";
-			$output .= getExpandedRc($1);
+			$output .= &getExpandedRc($1);
 			$output .= "#`====== end: $_\n";
 			next;
 		};
@@ -312,7 +312,7 @@ sub encodeCfgEntry ($) {
 			} elsif ($ref eq 'HASH') {
 				# ARRAY of HASH's in HASH
 				foreach (@$value) {
-					my $subStr = encodeCfgEntry($_);
+					my $subStr = &encodeCfgEntry($_);
 					my ($d, $c) = ('+', '.');
 					$subStr =~ s/^(.*)$/my $a = "$key$d$1"; $d = $c; $a/mge;
 					$str .= $subStr;
@@ -322,7 +322,7 @@ sub encodeCfgEntry ($) {
 			}
 		} elsif (ref($value) eq 'HASH') {
 			# HASH in HASH
-			my $subStr = encodeCfgEntry($value);
+			my $subStr = &encodeCfgEntry($value);
 			my $d = ':';
 			$subStr =~ s/^(.*)$/$key$d$1/mg;
 			$str .= $subStr;
