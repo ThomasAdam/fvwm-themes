@@ -18,10 +18,9 @@ Colorset 0 fg rgb:f8/f8/f3, bg rgb:50/50/78, Plain, NoShape
 # Window decorations
 
 # window title, inactive and active
-Colorset 1 fg black, bg rgb:ce/ce/9c, \
-	TiledPixmap decor/rose.xpm, Tint black 22, bgTint black 22, NoShape
-Colorset 2 fg black, bg rgb:ce/ce/9c, \
-	TiledPixmap decor/rose.xpm, NoShape
+Colorset 1 fg black, bg rgb:ce/ce/9c, TiledPixmap decor/rose.xpm, NoShape, \
+	Tint black 22, bgTint black 22, fgAlpha 80
+Colorset 2 fg black, bg rgb:ce/ce/9c, TiledPixmap decor/rose.xpm, NoShape
 
 # window borders, inactive and active
 Colorset 3 fg black, bg rgb:ce/ce/9c, bgTint black 20, Plain, NoShape
@@ -150,7 +149,7 @@ AddToFunc   FuncFvwmStartColors
 DestroyFunc FuncFvwmStopColors
 AddToFunc   FuncFvwmStopColors
 # temporarily until we have Colorset Clear
-+ I Colorset  1 Tint, bgTint
++ I Colorset  1 Tint, bgTint, fgAlpha
 + I Colorset  3 Tint, bgTint
 + I Colorset 19 Tint, bgTint
 + I Colorset 20 Tint, bgTint
