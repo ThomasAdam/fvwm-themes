@@ -1,3 +1,8 @@
+2001-08-08  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	added globallook to getReloadDependency
+	
 2001-08-08  migo  <migo@homemail.com>
 
 	* themes/brushedmetal/colors:
