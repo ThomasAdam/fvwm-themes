@@ -17,7 +17,7 @@ install-data-local:
 
 	$(mkinstalldirs) $(FT_DATADIR)
 	for dir in $(FT_DATA_SUBDIRS); do \
-		chmod -R o-w,go+rX $$dir 2>/dev/null; \
+		chmod -R o-w,go+rX $$dir 2>/dev/null || true; \
 		rm -rf "$(FT_DATADIR)/$$dir"; \
 		(if test -f $$dir.tar.gz; then gzip -dc $$dir.tar.gz; else \
 		tar cpf - $$dir; fi) | (cd "$(FT_DATADIR)" && tar xfBp -); \

@@ -1,3 +1,7 @@
+2001-03-10  migo  <migo@homemail.com>
+
+	* Makefile.am: minor fix, may help with non-gnu make
+
 2001-03-09  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ColorSelector: fixed core dump
