@@ -1,3 +1,12 @@
+2001-08-04  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	* themes/default/settings.cfg:
+	* themes/multichoice/fonts.cfg:
+	renamed 'system-requires' to 'unhide-if', 'font' to 'has-fonts' etc.;
+	when checking 'hidden' remove "defined" to allow theoretical hidden=0;
+	small bug fixes and other code changes
+
 2001-08-03  migo  <migo@homemail.com>
 
 	* themes/default/colors:
