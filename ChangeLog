@@ -1,3 +1,8 @@
+2002-12-05  olicha  <olivier.chapuis@free.fr>
+
+	* scripts/FvwmScript-ThemesCenter:
+	Safety check
+
 2002-12-03  migo  <migo@homemail.com>
 
 	* themes/default/settings/wheel/enabled:

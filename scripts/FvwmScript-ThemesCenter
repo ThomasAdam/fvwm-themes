@@ -572,19 +572,22 @@ Begin
 	Set $CMD = {apply-ts-cmd-opts|}
 	# execute the CMD
 	SendSignal 999 2
-	Set $SwitchCmd = $RES
-	If $SwitchCmd <> {} Then
+	If $RES <> {0000} Then
 	Begin
-	    # fs
-	    Do $SwitchCmd
-	    Set $UpdateAllTSLists = 1
-	    Set $UpdateSettingsListAndVariants = 1
-	    Set $SendUpdateMsg = 1
-	    Set $NullMessage = 1
-	End
-	Else
-	Begin
-	    ChangeTitle 95 $l_NoChanges
+	    Set $SwitchCmd = $RES
+	    If $SwitchCmd <> {} Then
+	    Begin
+		# fs
+		Do $SwitchCmd
+		Set $UpdateAllTSLists = 1
+		Set $UpdateSettingsListAndVariants = 1
+		Set $SendUpdateMsg = 1
+		Set $NullMessage = 1
+	    End
+	    Else
+	    Begin
+		ChangeTitle 95 $l_NoChanges
+	    End
 	End
     End
 
@@ -617,26 +620,29 @@ Begin
 	Set $CMD = {all-ts-lists }$ThemeIndex{ }$CSCompIndex{|}
 	# execute the CMD
 	SendSignal 999 2
-	Set $ThemesList = (Parse $RES 1)
-	ChangeTitle 6 $ThemesList
-	Set $tmp = (Parse $RES 2)
-	If $ThemeIndex <> 0 Then
+	If $RES <> {0000} Then
 	Begin
-	    Set $ThemeComponents = $tmp
-	    ChangeTitle 12 $ThemeComponents
-	End
-	Set $CurrentConfig = (Parse $RES 3)
-	ChangeTitle 17 $CurrentConfig
-	If $CSCompIndex <> 0 Then
-	Begin
-	    Set $CSCompName = (Parse $RES 4)
-	    Set $CSThemeName = (Parse $RES 5)
-	    Set $tmp = (Parse $RES 6)
-	    Set $CSCompHasOpt = (StrCopy $tmp 1 1)
-	    Set $CSCompIsSet = (StrCopy $tmp 2 2)
-	    Set $CSCompCanBeDropped = (StrCopy $tmp 3 3)
-	    Set $CSCompIsLocked = (StrCopy $tmp 4 4)
-	    Set $UpdateCSButtons = 1
+	    Set $ThemesList = (Parse $RES 1)
+	    ChangeTitle 6 $ThemesList
+	    Set $tmp = (Parse $RES 2)
+	    If $ThemeIndex <> 0 Then
+	    Begin
+		Set $ThemeComponents = $tmp
+		ChangeTitle 12 $ThemeComponents
+	    End
+	    Set $CurrentConfig = (Parse $RES 3)
+	    ChangeTitle 17 $CurrentConfig
+	    If $CSCompIndex <> 0 Then
+	    Begin
+		Set $CSCompName = (Parse $RES 4)
+		Set $CSThemeName = (Parse $RES 5)
+		Set $tmp = (Parse $RES 6)
+		Set $CSCompHasOpt = (StrCopy $tmp 1 1)
+		Set $CSCompIsSet = (StrCopy $tmp 2 2)
+		Set $CSCompCanBeDropped = (StrCopy $tmp 3 3)
+		Set $CSCompIsLocked = (StrCopy $tmp 4 4)
+		Set $UpdateCSButtons = 1
+	    End
 	End
     End
 
@@ -646,18 +652,21 @@ Begin
 	Set $CMD = {current-config }$CSCompIndex{|}
 	# execute the CMD
 	SendSignal 999 2
-	Set $CurrentConfig = (Parse $RES 1)
-	ChangeTitle 17 $CurrentConfig
-	If $CSCompIndex <> 0 Then
+	If $RES <> {0000} Then
 	Begin
-	    Set $CSCompName = (Parse $RES 2)
-	    Set $CSThemeName = (Parse $RES 3)
-	    Set $tmp = (Parse $RES 4)
-	    Set $CSCompHasOpt = (StrCopy $tmp 1 1)
-	    Set $CSCompIsSet = (StrCopy $tmp 2 2)
-	    Set $CSCompCanBeDropped = (StrCopy $tmp 3 3)
-	    Set $CSCompIsLocked = (StrCopy $tmp 4 4)
-	    Set $UpdateCSButtons = 1
+	    Set $CurrentConfig = (Parse $RES 1)
+	    ChangeTitle 17 $CurrentConfig
+	    If $CSCompIndex <> 0 Then
+	    Begin
+		Set $CSCompName = (Parse $RES 2)
+		Set $CSThemeName = (Parse $RES 3)
+		Set $tmp = (Parse $RES 4)
+		Set $CSCompHasOpt = (StrCopy $tmp 1 1)
+		Set $CSCompIsSet = (StrCopy $tmp 2 2)
+		Set $CSCompCanBeDropped = (StrCopy $tmp 3 3)
+		Set $CSCompIsLocked = (StrCopy $tmp 4 4)
+		Set $UpdateCSButtons = 1
+	    End
 	End
     End
 
@@ -669,14 +678,17 @@ Begin
 	    Set $CMD = {current-comp-name }$CSCompIndex{|}
 	    # execute the CMD
 	    SendSignal 999 2
-	    Set $CSCompName = (Parse $RES 1)
-	    Set $CSThemeName = (Parse $RES 2)
-	    Set $tmp = (Parse $RES 3)
-	    Set $CSCompHasOpt = (StrCopy $tmp 1 1)
-	    Set $CSCompIsSet = (StrCopy $tmp 2 2)
-	    Set $CSCompCanBeDropped = (StrCopy $tmp 3 3)
-	    Set $CSCompIsLocked = (StrCopy $tmp 4 4)
-	    Set $UpdateCSButtons = 1
+	    If $RES <> {0000} Then
+	    Begin
+		Set $CSCompName = (Parse $RES 1)
+		Set $CSThemeName = (Parse $RES 2)
+		Set $tmp = (Parse $RES 3)
+		Set $CSCompHasOpt = (StrCopy $tmp 1 1)
+		Set $CSCompIsSet = (StrCopy $tmp 2 2)
+		Set $CSCompCanBeDropped = (StrCopy $tmp 3 3)
+		Set $CSCompIsLocked = (StrCopy $tmp 4 4)
+		Set $UpdateCSButtons = 1
+	    End
 	End
     End
 
@@ -718,12 +730,15 @@ Begin
 	End
 	# execute the CMD
 	SendSignal 999 2
-	Set $SettingsConfig = (Parse $RES 1)
-	ChangeTitle 22 $SettingsConfig
-	If $SettingsComponent <> {} Then
+	If $RES <> {0000} Then
 	Begin
-	    Set $SettingsVariants = (Parse $RES 2)
-	    ChangeTitle 27 $SettingsVariants
+	    Set $SettingsConfig = (Parse $RES 1)
+	    ChangeTitle 22 $SettingsConfig
+	    If $SettingsComponent <> {} Then
+	    Begin
+		Set $SettingsVariants = (Parse $RES 2)
+		ChangeTitle 27 $SettingsVariants
+	    End
 	End
     End
 
@@ -733,8 +748,11 @@ Begin
 	Set $CMD = {settings-config|}
 	# execute the CMD
 	SendSignal 999 2
-	Set $SettingsConfig = $RES
-	ChangeTitle 22 $SettingsConfig
+	If $RES <> {0000} Then
+	Begin
+	    Set $SettingsConfig = $RES
+	    ChangeTitle 22 $SettingsConfig
+	End
     End
 
 #----------------------------------------------------------------------------
@@ -752,9 +770,12 @@ Begin
 	Set $CMD = {session-uptime|}
 	# execute the CMD
 	SendSignal 999 2
-	Set $SessionUpTime = $RES
-	Set $tmp = $l_CurrentSession{: }$CurrentSession{                 }$l_UpTime{:  }$SessionUpTime
-	ChangeTitle 39 $tmp
+	If $RES <> {0000} Then
+	Begin
+	    Set $SessionUpTime = $RES
+	    Set $tmp = $l_CurrentSession{: }$CurrentSession{                 }$l_UpTime{:  }$SessionUpTime
+	    ChangeTitle 39 $tmp
+	End
     End
 
     If $ShowSMEditor == 1 Then
@@ -811,14 +832,17 @@ Begin
 	Set $CMD = {session-info|}
 	# execute the CMD
 	SendSignal 999 2
-	Set $CurrentSession = (Parse $RES 1)
-	Set $SessionUpTime = (Parse $RES 2)
-	Set $tmp = {Current Session: }$CurrentSession{                 Up Time:  }$SessionUpTime
-	ChangeTitle 39 $tmp
-	Set $SessionList = (Parse $RES 3)
-	ChangeTitle 41 $SessionList
-	Set $ConfigurationList = (Parse $RES 4)
-	ChangeTitle 52 $ConfigurationList
+	If $RES <> {0000} Then
+	Begin
+	    Set $CurrentSession = (Parse $RES 1)
+	    Set $SessionUpTime = (Parse $RES 2)
+	    Set $tmp = {Current Session: }$CurrentSession{                 Up Time:  }$SessionUpTime
+	    ChangeTitle 39 $tmp
+	    Set $SessionList = (Parse $RES 3)
+	    ChangeTitle 41 $SessionList
+	    Set $ConfigurationList = (Parse $RES 4)
+	    ChangeTitle 52 $ConfigurationList
+	End
     End
 
 #----------------------------------------------------------------------------
@@ -890,19 +914,22 @@ Case message of
 	Set $CMD = {apply-ts-cmd-opts|}
 	# execute the CMD
 	SendSignal 999 2
-	Set $SwitchCmd = $RES
-	If $SwitchCmd <> {} Then
+	If $RES <> {0000} Then
 	Begin
-	    # fs
-	    Do $SwitchCmd
-	    Set $UpdateAllTSLists = 1
-	    Set $UpdateSettingsListAndVariants = 1
-	    Set $SendUpdateMsg = 1
-	    Set $NullMessage = 1
-	End
-	Else
-	Begin
-	    ChangeTitle 95 $l_NoChanges
+	    Set $SwitchCmd = $RES
+	    If $SwitchCmd <> {} Then
+	    Begin
+		# fs
+		Do $SwitchCmd
+		Set $UpdateAllTSLists = 1
+		Set $UpdateSettingsListAndVariants = 1
+		Set $SendUpdateMsg = 1
+		Set $NullMessage = 1
+	    End
+	    Else
+	    Begin
+		ChangeTitle 95 $l_NoChanges
+	    End
 	End
     End
 
@@ -917,7 +944,7 @@ Case message of
 	    If $count == 10 Then
 	    Begin
 		If $tmp == {} Then
-		    Set $tmp = {0}
+		    Set $tmp = {0000}
 	    End
 	End
 	Set $RES = $tmp
@@ -1097,31 +1124,34 @@ SingleClic :
 	Set $CMD = {theme-components }$index{|}
 	# execute the CMD
 	SendSignal 999 2
-	Set $safe = (Parse $RES 1)
-	If $safe <> {None} Then
+	If $RES <> {0000} Then
 	Begin
-	    Set $tmp = 7
-	    While $tmp <> 10 Do
+	    Set $safe = (Parse $RES 1)
+	    If $safe <> {None} Then
 	    Begin
-		ChangeFont $tmp $SelFont
-		Set $tmp = (Add $tmp 1)
-	    End
-	    Set $ThemeIndex = $index
-	    Set $ThemeComponents = $safe
-	    Set $ThemeName = (Parse $RES 2)
-	    Set $ThemeDir = (Parse $RES 3)
-	    ChangeTitle 12 $ThemeComponents
-	    Set $t = $l_B_Component $ThemeName $l_A_Component
-	    ChangeTitle 11 $t
+		Set $tmp = 7
+		While $tmp <> 10 Do
+		Begin
+		    ChangeFont $tmp $SelFont
+		    Set $tmp = (Add $tmp 1)
+		End
+		Set $ThemeIndex = $index
+		Set $ThemeComponents = $safe
+		Set $ThemeName = (Parse $RES 2)
+		Set $ThemeDir = (Parse $RES 3)
+		ChangeTitle 12 $ThemeComponents
+		Set $t = $l_B_Component $ThemeName $l_A_Component
+		ChangeTitle 11 $t
 
-	    Set $NullMessage = 1
-	    Set $ComponentName = {}
-	    ChangeValue 12 0
-	    Set $tmp = 13
-	    While $tmp <> 16 Do
-	    Begin
-		ChangeFont $tmp $ShadeFont
-		Set $tmp = (Add $tmp 1)
+		Set $NullMessage = 1
+		Set $ComponentName = {}
+		ChangeValue 12 0
+		Set $tmp = 13
+		While $tmp <> 16 Do
+		Begin
+		    ChangeFont $tmp $ShadeFont
+		    Set $tmp = (Add $tmp 1)
+		End
 	    End
 	End
     End
@@ -1241,22 +1271,25 @@ Case message of
 	Set $CMD = {component-name }$ThemeName{ }$index{|}
 	# execute the CMD
 	SendSignal 999 2
-	If $RES <> {1} Then
+	If $RES <> {0000} Then
 	Begin
-	    Set $ComponentIndex = $index
-	    # 15 is not yet avaiable
-	    ChangeFont 13 $SelFont
-	    ChangeFont 14 $SelFont
-	    Set $ComponentName = $RES
-	    Set $NullMessage = 1
-	End
-	Else
-	Begin
-	    Set $ComponentName = {}
-	    # 15 is not yet avaiable
-	    ChangeFont 13 $ShadeFont
-	    ChangeFont 14 $ShadeFont
-	    Set $NullMessage = 1
+	    If $RES <> {1} Then
+	    Begin
+		Set $ComponentIndex = $index
+		# 15 is not yet avaiable
+		ChangeFont 13 $SelFont
+		ChangeFont 14 $SelFont
+		Set $ComponentName = $RES
+		Set $NullMessage = 1
+	    End
+	    Else
+	    Begin
+		Set $ComponentName = {}
+		# 15 is not yet avaiable
+		ChangeFont 13 $ShadeFont
+		ChangeFont 14 $ShadeFont
+		Set $NullMessage = 1
+	    End
 	End
     End
  End
@@ -1387,6 +1420,22 @@ SingleClic :
     Begin
 	ChangeTitle 95 $l_MustSelectCurrentComp
 	Set $break = 0
+    End
+    If $break == 1 Then
+    Begin
+	If $CSCompName == {} Then
+	Begin
+	    Set $break = 0
+	    ChangeTitle 95 {Internal error: no component name for Properties}
+	End
+    End
+    If $break == 1 Then
+    Begin
+	If $CSThemeName == {} Then
+	Begin
+	    Set $break = 0
+	    ChangeTitle 95 {Internal error: no theme name for Properties}
+	End
     End
     If $CSCompHasOpt == 0 Then
 	Set $test = 1
@@ -1609,21 +1658,24 @@ Case message of
 	Set $CMD = {settings-comp }$SettingsIndex{|}
 	# execute the CMD
 	SendSignal 999 2
-	Set $SettingsName = (Parse $RES 1)
-	Set $tmp = $l_VariantsFor{ }$SettingsName
-	ChangeTitle 26 $tmp
-	Set $SettingsComponent = (Parse $RES 2)
-	Set $SettingsComponentIsSet = (Parse $RES 3)
-	Set $SettingsVariants = (Parse $RES 4)
-	ChangeTitle 27 $SettingsVariants
-	If $SettingsComponentIsSet == 1 Then
-	    ChangeFont 23 $SelFont
-	Else
-	    ChangeFont 23 $ShadeFont
-	Set $SettingsVariantsIndex = 0
-	ChangeValue 27 0
-	ChangeFont 28 $ShadeFont
-	Set $NullMessage = 1
+	If $RES <> {0000} Then
+	Begin
+	    Set $SettingsName = (Parse $RES 1)
+	    Set $tmp = $l_VariantsFor{ }$SettingsName
+	    ChangeTitle 26 $tmp
+	    Set $SettingsComponent = (Parse $RES 2)
+	    Set $SettingsComponentIsSet = (Parse $RES 3)
+	    Set $SettingsVariants = (Parse $RES 4)
+	    ChangeTitle 27 $SettingsVariants
+	    If $SettingsComponentIsSet == 1 Then
+		ChangeFont 23 $SelFont
+	    Else
+		ChangeFont 23 $ShadeFont
+	    Set $SettingsVariantsIndex = 0
+	    ChangeValue 27 0
+	    ChangeFont 28 $ShadeFont
+	    Set $NullMessage = 1
+	End
     End
  End
 End
@@ -1816,17 +1868,20 @@ SingleClic :
 	Set $CMD = {session-name }$SessionIndex{|}
 	# execute the CMD
 	SendSignal 999 2
-	Set $SelectedSession = $RES
-	If $SelectedSession <> {1} Then
-	    Set $tmp = $l_SelectedSession{ }$SelectedSession
-	Else
+	If $RES <> {0000} Then
 	Begin
-	    Set $tmp = $l_SelectedSession 
-	    Set $SessionIndex = 0
-	    Set $SelectedSession = {}
+	    Set $SelectedSession = $RES
+	    If $SelectedSession <> {1} Then
+		Set $tmp = $l_SelectedSession{ }$SelectedSession
+	    Else
+	    Begin
+		Set $tmp = $l_SelectedSession 
+		Set $SessionIndex = 0
+		Set $SelectedSession = {}
+	    End
+	    ChangeTitle 45 $tmp
+	    Set $NullMessage = 1
 	End
-	ChangeTitle 45 $tmp
-	Set $NullMessage = 1
     End
  End
 End
@@ -2159,53 +2214,56 @@ SingleClic :
     End
     # execute the CMD
     SendSignal 999 2
-    If $RES == {Err1} Then
+    If $RES <> {0000} Then
     Begin
-	Set $break = 0
-	ChangeTitle 95 $l_NameNotValid
-    End
-    If $RES == {Err2} Then
-    Begin
-	Set $break = 0
-	ChangeTitle 95 $l_NameAlreadyUse
-    End
-    If $RES == {Err3} Then
-    Begin
-	Set $break = 0
-	ChangeTitle 95 $l_SysErr
-    End
-    If $break == 1 Then
-    Begin
-	# Maybe need to do the translation one day
-	If $SMEditorType == {Add} Then
+	If $RES == {Err1} Then
 	Begin
-	    Set $msg = {Adding }$session{ FVWM Themes Session}
-	    ChangeTitle 95 $msg
+	    Set $break = 0
+	    ChangeTitle 95 $l_NameNotValid
 	End
-	If $SMEditorType == {Edit} Then
+	If $RES == {Err2} Then
 	Begin
-	    Set $msg = {Applying Changes To }$session{ FVWM Themes Session}
-	    ChangeTitle 95 $msg
+	    Set $break = 0
+	    ChangeTitle 95 $l_NameAlreadyUse
 	End
-	If $SMEditorType == {Remove} Then
+	If $RES == {Err3} Then
 	Begin
-	    Set $msg = {Removing }$SelectedSession{ FVWM Themes Session}
-	    ChangeTitle 95 $msg
-	    Set $session = (Parse $RES 1)
-	    Set $RES = (Parse $RES 2)
+	    Set $break = 0
+	    ChangeTitle 95 $l_SysErr
 	End
-	ChangeValue 41 $RES
-	Set $SessionIndex = $RES
-	Set $SelectedSession = $session
-	Set $t = {Selected Session: }$SelectedSession
-	ChangeTitle 45 $t
-	If $SMEditorType <> {Remove} Then
-	    Set $SpecialMessage = $l_ClickNewSession
-	Else
-	    Set $NullMessage = 1
-	Set $HideSMEditor = 1
-	# this update also the current session ...
-	Set $UpdateSMLists = 1
+	If $break == 1 Then
+	Begin
+	    # Maybe need to do the translation one day
+	    If $SMEditorType == {Add} Then
+	    Begin
+		Set $msg = {Adding }$session{ FVWM Themes Session}
+		ChangeTitle 95 $msg
+	    End
+	    If $SMEditorType == {Edit} Then
+	    Begin
+		Set $msg = {Applying Changes To }$session{ FVWM Themes Session}
+		ChangeTitle 95 $msg
+	    End
+	    If $SMEditorType == {Remove} Then
+	    Begin
+		Set $msg = {Removing }$SelectedSession{ FVWM Themes Session}
+		ChangeTitle 95 $msg
+		Set $session = (Parse $RES 1)
+		Set $RES = (Parse $RES 2)
+	    End
+	    ChangeValue 41 $RES
+	    Set $SessionIndex = $RES
+	    Set $SelectedSession = $session
+	    Set $t = {Selected Session: }$SelectedSession
+	    ChangeTitle 45 $t
+	    If $SMEditorType <> {Remove} Then
+		Set $SpecialMessage = $l_ClickNewSession
+	    Else
+		Set $NullMessage = 1
+	    Set $HideSMEditor = 1
+	    # this update also the current session ...
+	    Set $UpdateSMLists = 1
+	End
     End
  End
 End
