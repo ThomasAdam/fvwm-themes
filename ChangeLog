@@ -1,5 +1,10 @@
 2001-10-07  olicha  <olivier.chapuis@free.fr>
 
+	* themes/default/bindings:
+	Ooops ...
+	
+2001-10-07  olicha  <olivier.chapuis@free.fr>
+
 	* scripts/FvwmScrit-GlobalFeel (renamed file):
 	* locale/*/Makefile.am:
 	* locale/*/FvwmScrit-GlobalFeel.msg (renamed files):
