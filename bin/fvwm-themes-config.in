@@ -84,6 +84,8 @@ sub showHelp {
 	print "\t--install theme..  install theme.tar.gz or theme.tar.bz2 files\n";
 	print "\t--force-install    replace old themes without prompting\n";
 	print "\t--create-pack pack theme..   create a pack from given themes\n";
+	print "\t--pack-prefix pre  replace ft by pre in the name of the pack\n";
+	print "\t--pack-extra-version x.x   add _x.x to the version of the pack\n";
 	print "\t--tmp-dir          full path to a temporary directory\n";
 	exit 0;
 }
@@ -2071,6 +2073,8 @@ my $comName = "config";
 my $comPid = 0;
 my $install = 0;
 my $createPack = undef;
+my $packPrefix = "ft";
+my $packExtraVersion = "0";
 my $tmpDir = "/tmp";
 my $forceInstall = 0;
 my $fvwmscript = 0;
@@ -2105,6 +2109,8 @@ GetOptions(
 	"install"       => \$install,
 	"force-install" => \$forceInstall,
 	"create-pack=s" => \$createPack,
+	"pack-extra-version=s" => \$packExtraVersion,
+	"pack-prefix=s" => \$packPrefix,
 	"tmp-dir=s"     => \$tmpDir,
 	"com-mode"    => \$comMode,
 	"com-name=s"  => \$comName,
@@ -2131,9 +2137,11 @@ if ($install) {
 		$file = "$dir/$file" unless $file =~ m:^/:;
 		errDie("No such file $file") unless -f $file;
 		my ($dir,$outDir,$ext) = $file =~ m:^(.*/|)([^/]+)\.tar\.(gz|bz2)$:;
-		my ($ver) = $outDir =~ /^[\w-]*[\w\d]*[-]+([\.\d]+)$/;
 		errDie("File '$file' is not a .tar.gz or .tar.bz2")
-			unless defined $dir || defined $outDir || defined $ext || defined $ver;
+			unless defined $dir || defined $outDir || defined $ext;
+		my ($ver,$extraVer) = $outDir =~ /^[\w-]*[\w\d]*[-]+([\.\d]+)([_\d\.]+|)$/;
+		errDie("File '$file' does not follow fvwm-themes naming convention")
+			unless defined $ver || defined $extraVer;
 		if ("$ver" ne "$version") {
 			print "WARNING: fvwm-themes version and tarball version differ\n";
 			if (!$forceInstall) {
@@ -2141,7 +2149,7 @@ if ($install) {
 					"install this tarball.\n";
 				exit(0);
 			}
-		} 
+		}
 		errDie("Theme name '$outDir' contains unacceptable symbols")
 			unless $outDir =~ /^[.\w\d-]+$/;
 		my $zcatProg = $ext eq 'gz'? "gzip -cd": "bzip2 -cd";
@@ -2197,7 +2205,11 @@ if (defined $createPack) {
 		unless $createPack =~ /^[\w\d-]+$/;
 	my $version = '@VERSION@';
 	my $themesDir = "$workDir/$themesSubDir";
-	my $tarName = "ft-$createPack-$version";
+	my $tarName = "$createPack-$version";
+	$tarName = $tarName . "_$packExtraVersion"
+	  if ("$packExtraVersion" ne "0" && $packExtraVersion !~ /^[.\d]$/);
+	$tarName = $packPrefix . "-" . $tarName
+	  if ("$packPrefix" ne "" && $packPrefix !~ /^[\w\d]$/);
 	my $tarDir = "$tmpDir/$tarName";
 	errDie("$tmpDir must exist for creating themes pack " .
 		"(see --tmp-dir option)") unless -d $tmpDir;
@@ -3463,7 +3475,9 @@ B<fvwm-themes-config>
 [ B<--set-locked> I<component=0|1> ]
 [ B<--install>|B<-i> I<file ...> ]
 [ B<--force-install>|B<-fo> ]
-[ B<--create-themes> I<name> I<file ...>]
+[ B<--create-pack> I<name> I<file ...>]
+[ B<--pack-prefix> I<prefix> ]
+[ B<--pack-extra-version> I<x.x> ]
 [ B<--tmp-dir> I<dir> ]
 [ B<--com-mode> ]
 [ B<--com-name> I<name> ]
@@ -3586,13 +3600,19 @@ B<--install> I<theme.tar.{gz,bz2} ...> - install the specified tarballs
 into the site (if B<--site> is alos given) or into the user's I<themes>
 directory by verifying and unpacking the contents of the tarballs.
 
-B<--force-install> - During the installation of a theme remove existing
+B<--force-install> - during the installation of a theme remove existing
 theme with the same name without prompting.
 
-B<--create-pack> I<pack> I<theme ...> - create a gzipped tarball named
-ft-name-VERSION.tar.gz made of the specified themes found in the
+B<--create-pack> I<pack> I<theme1 theme2 ...> - create a gzipped tarball named
+ft-pack-VERSION.tar.gz made of the specified theme(s) found in the
 user's themes directory or in the site directory if B<--site> is
-also given.
+also given. VERSION is the version of FVWM Themes.
+
+B<--pack-prefix> I<prefix> - replace "ft" by "prefix" in the name of
+the gzipped tarball created via the B<--create-pack> option.
+
+B<--pack-extra-version> I<x.x> - add I<_x.x> to VERSION in the name of
+the gzipped tarball created via the B<--create-pack> option.
 
 B<--tmp-dir> I<dir> - full path to a directory that can be use as a
 temporary working directory. Default is /tmp. This option is used only with

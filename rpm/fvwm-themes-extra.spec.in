@@ -1,0 +1,77 @@
+%define prefix /usr
+%define ver @VERSION@
+%define rel 1
+%define c_p --disable-gnome-icons
+%define m_p CFLAGS="-O2"
+
+%define _sourcedir /tmp
+
+Summary:   FVWM Themes, configurational framework for FVWM
+Name:      fvwm-themes-extra
+Version:   %{ver}
+Release:   %{rel}
+Copyright: GPL
+Group:     X11/Window Managers
+Source:    %{name}-%{version}.tar.gz
+URL:       http://fvwm-themes.sourceforge.org/
+BuildRoot: %{_tmppath}/%{name}-%{version}-root
+Packager:  FVWM Themes Developers <fvwm-themes-devel@lists.sourceforge.net>
+Autoreq:   1
+
+Requires:  fvwm-themes = @VERSION@
+
+Provides:  fvwm-themes-extra
+
+Docdir:    %{prefix}/share/doc
+
+%description
+FVWM Themes is a powerful configurational framework for FVWM,
+designed to be easily extendible and configurable, includes
+several pre-built themes, a pack of images and sounds.
+
+This package contains 6 themes for use with the base FVWM Themes
+package.
+
+%description -l fr
+FVWM Themes est un systХme de configuration puissant pour FVWM.
+Il est extansible, facilement configurable et contient des
+thХmes, des images et des fichiers sons.
+
+Ce paquet contient 6 themes fait pour Йtre utilisИ avec le paquet
+base de FVWM Themes.
+
+%description -l ru
+Пакет FVWM Themes является мощным окружением для FVWM, которое
+спроектированно с учетом легкости расширения и конфигурации.
+Пакет включает в себя готовые темы, графические и звуковые файлы.
+
+%prep
+%setup
+
+%build
+
+%install
+mkdir $RPM_BUILD_ROOT
+mkdir $RPM_BUILD_ROOT%{prefix}
+mkdir $RPM_BUILD_ROOT%{prefix}/share
+mkdir $RPM_BUILD_ROOT%{prefix}/share/fvwm
+mkdir $RPM_BUILD_ROOT%{prefix}/share/fvwm/themes
+cp -ard ./ $RPM_BUILD_ROOT%{prefix}/share/fvwm/themes
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-, root, root)
+
+%{prefix}/share/*/*
+
+%post
+echo ""
+echo "    Refresh with no cache with the themes management menu"
+echo "    and have fun!"
+echo ""
+
+
+#* 21 May 2001 FVWM Themes Developers  <fvwm-themes-devel@lists.sourceforge.net>
+#- First try at making the extra package
