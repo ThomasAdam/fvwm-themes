@@ -23,6 +23,14 @@ use Getopt::Long;
 
 my $version = '@VERSION@';
 my $fvwmVersion = '@FVWM_VERSION@';
+my $prefix = $ENV{'prefix'} || '@prefix@';
+my $datadir = "@datadir@";
+my $userHome = $ENV{'HOME'} || "./.";
+my $userDir = $ENV{'FVWM_USERDIR'} || "$userHome/.fvwm";
+my $currentThemeName = 'current';
+my $themesSubDir = 'themes';
+my $currentThemeSubDir = "$themesSubDir/$currentThemeName";
+my $personalDirName = 'personal';
 
 my $scriptName = ($0 =~ m:([^/]+)$:, $1);
 my $item = -1;
@@ -31,18 +39,32 @@ my $type = "";
 my $fileOnly = 0;
 my $dirOnly = 0;
 my $checkExec = "";
+# config center com loop
+my $configCenter = 0;
+my $comName = "script";
+my $comPid = 0;
 
 GetOptions(
-	"help"          => \&showHelp,
-	"version"       => \&showVersion,
-	"dirs=s"        => \$dirs,
-	"ls"            => \$command_ls,
-	"ls-opt:s"      => \$lsOptions,
-	"type:s"        => \$type,
-	"item=i"        => \$item,
-	"check-exec=s"    => \$checkExec,
+	"help"               => \&showHelp,
+	"version"            => \&showVersion,
+	"dirs=s"             => \$dirs,
+	"ls"                 => \$command_ls,
+	"ls-opt:s"           => \$lsOptions,
+	"type:s"             => \$type,
+	"item=i"             => \$item,
+	"check-exec=s"       => \$checkExec,
+	"config-center"      => \$configCenter,
+	"com-name=s"         => \$comName,
 ) || wrongUsage();
 
+
+if ($configCenter) {
+	$comPid = $comName;
+	$comPid =~ s/script-//;
+	$comPid = 0 if ($comPid !~ /^\d+$/);
+	configCenterComLoop()
+	# we never return here
+}
 
 if ($command_ls) {
 	if ("$type" eq "dir") { $dirOnly = 1;}
@@ -133,4 +155,1510 @@ sub checkExecInPath {
 		if ( -x "$dir/$app" ) { return 1 }
 	}
 	return 0;
+}
+
+#----------------------------------------------------------------------------
+#
+# the configuration center com loop
+#
+#----------------------------------------------------------------------------
+
+sub configCenterComLoop {
+
+	my $outFifo = ".tmp-com-out-" . $comName;
+	my $inFifo = ".tmp-com-in-"  . $comName;
+	my $lockFifo = ".tmp-com-lock-" . $comName;
+	my $command = "";
+	my $return = "";
+
+	my @components = ("globalfeel");
+
+	# "files" and "script" config
+	my $lastBuild = "";
+	my $lastHardRead = "";
+	my $lastComp = "";
+	my $saveState = { };
+	my $hardRead = { };
+	foreach (@components) {
+		$saveState->{$_}->{'file'} = "$userDir/$themesSubDir/personal/$_";
+		$saveState->{$_}->{'theme'} = "personal";
+		$hardRead->{$_} = "";
+	}
+
+	# "themes" config
+	my $personalThemes = [ ];
+	$personalThemes->[0] = "personal";
+	my $themesConfig = { };
+	my $currentConfig = { };
+	getThemesConfig($personalThemes,$themesConfig,$currentConfig,$hardRead);
+	
+	my $tmp;
+	foreach $tmp (@components) {
+		foreach (@$personalThemes) {
+			if ($currentConfig->{$tmp} eq $_) {
+				$saveState->{$tmp}->{'file'} = "$userDir/$themesSubDir/$_/$tmp";
+				$saveState->{$tmp}->{'theme'} = "$_"; 
+			}
+		}
+	}
+
+	chdir($userDir) || die "No FvwmConfigHome $userDir";
+	unlink($lockFifo);
+	unlink($inFifo);
+	myMakeFifo($lockFifo);
+
+	while(1) {
+
+		eval {
+			local $SIG{ALRM} = \&checkScript;
+			alarm(10);
+			# block until com want to communicate
+			open(LOCK,">$lockFifo") || die "cannot write fifo $lockFifo";
+			alarm(0);
+			close(LOCK);
+		};
+		if ($@ =~ /^cannot/) {
+			print STDERR "$comName: cannot write fifo $lockFifo\n";
+			unlink("$lockFifo");
+			exit(0);
+		}
+		if ($@ =~ /^NoScript/) {
+			print STDERR "$comName: No more FvwmScript-ConfigCenter: exit!\n";
+			unlink("$lockFifo");
+			exit(0);
+		}
+		if ($@ =~ /^Script/) {
+			next;
+		}
+
+		# read the command.
+		eval {
+			local $SIG{ALRM} = sub { die "Timeout" };
+			alarm(10);
+			# block unless com is ready to write on $outFifo
+			open(IN,"$outFifo") || die "cannot open $outFifo";
+			alarm(0);
+			($command)=(<IN>);
+			close(IN);
+		};
+		if ($@ =~ /^cannot/) {
+			print STDERR "$comName: cannot read fifo $lockFifo\n";
+			exit(0);
+		}
+		if ($@ =~ /^Timeout/) {
+			print STDERR "$comName: com give an unvalide unlock!\n";
+			next;
+		}
+		#------------------------------------------------------------------------
+		# build the answer
+		chomp($command);
+		my $return = "";
+		#-----------------------------------
+		if ($command eq "get-themes-info") {
+			foreach (@$personalThemes) {
+				$return .= "$_|";
+			}
+			$return =~ s/\|$//;
+			$return .= "\n";
+			my $c;
+			foreach $c (@components) {
+				$return .= "$saveState->{$c}->{'theme'}!";
+				$return .= "$currentConfig->{$c}!";
+				my $compCfg = $themesConfig->{$c};
+				my $themesList = "";
+				my $key;
+				foreach $key (sort keys %$compCfg) {
+					$themesList .= "$key|";
+				}
+				$themesList =~ s/\|$//;
+				$return .= "$themesList" . "!\n";
+			}
+		}
+		#--------------------------------------------------------
+		elsif ($command =~ /^get-config\s+(.+)\s+(.+)\s+(.+)$/) {
+			my $theme = $1;
+			my $comp = $2;
+			my $whichPart = $3;
+			my @list = ();
+			if ($comp eq "All") {
+				@list = @components;
+				$whichPart = "All";
+			} else {
+				@list = ("$comp");
+			}
+			my $ct;
+			foreach $ct (@list) {
+				my $t = "";
+				my $themeshash = $themesConfig->{$ct};
+				if ($theme eq "current") {
+					$t = $currentConfig->{$ct};
+				}
+				elsif ($theme =~ /^\d+$/) {
+					my $i = 1;
+					foreach (sort keys %$themeshash) {
+						$t = $_  if $i == $theme;
+						$i++;
+					}
+				} 
+				else { $t = $theme; }
+				my $file;
+				$file = $themeshash->{$t}->{'file'};
+				my $parse = "parse_" . $ct . "_Config";
+				my $configForScript = { };
+				my $error = { };
+				my $keys = [ ];
+				#print STDERR "$file, $theme, $ct\n";
+				$error = $parse->($file,$configForScript,$keys);
+				$return .= "$error\n";
+				foreach (@$keys) {
+				 	$return .= "$configForScript->{$_}" 
+						if $_ eq $whichPart || $whichPart eq "All";
+				}
+				$return .= "\n"; 
+			}
+		}
+		#-------------------------------------------------------------
+		elsif ($command =~ /^save-try-config\s+([A-Za-z0-9]+)\s+([A-Za-z0-9]+)\s+(\d)\s+(.+)$/) {
+			my $comp = $1;
+			my $whichPart = $2;
+			my $configFromScript = $4;
+			my $how = $3; # 0: check, 1: try, 2:save, 3: try and save
+			my $buildFunc = "build_" . $comp . "_Config";
+			my $fvwmConfig = { };
+			my $error = { };
+			my $keys = [ ];
+			$buildFunc->($configFromScript,$fvwmConfig,$error,$keys);
+			my $err = "";
+			$err .= "$error->{All}|" 
+				if defined $error->{'All'} &&  $error->{'All'} ne "";
+			foreach (@$keys) {
+				$err .= "$error->{$_}|" 
+					if defined $error->{$_} &&  $error->{$_} ne "" && 
+						($_ eq $whichPart || $whichPart eq "All");
+			}
+			$err =~ s/\|//;
+			$err = "ok" if $err eq "";
+			$lastHardRead = $hardRead->{$comp};
+			$lastComp = $comp;
+			$lastBuild = "";
+			foreach (@$keys) {
+				$lastBuild .= "$fvwmConfig->{$_}";
+			}
+			$lastHardRead = $hardRead->{$comp}; 
+			if ($how == 0) {
+				$return = $err;
+			}
+			if ($how == 1 || $how == 3) {
+				$return = $lastBuild;
+			}
+			if ($how == 2 || $how == 3) {
+				saveToFile($lastBuild,$saveState->{$comp}->{'file'});
+				my $theme = $saveState->{$lastComp}->{'theme'};
+				system("fvwm-themes-config --load $lastComp\@$theme &");
+			}
+			
+		}
+		#---------------------------------------------------
+		elsif ($command =~ /^save-try-last-build\s+(\d)$/) {
+			$how = $1;
+			if ($how == 1 || $how == 3) {
+				$return = $lastBuild . $lastHardRead;
+			}
+			if ($how == 2 || $how == 3) {
+				saveToFile($lastBuild,$saveState->{$lastComp}->{'file'});
+				my $theme = $saveState->{$lastComp}->{'theme'};
+				system("fvwm-themes-config --load $lastComp\@$theme &");
+			}
+		}
+		# ---------------------------------------------------
+		elsif ($command =~ /^set-save-file\s+(.+)\s+(\d+)$/) {
+			my $comp = $1;
+			my $i = $2;
+			$return = $personalThemes->[$i-1];
+			$saveState->{$comp}->{'file'} = 
+				"$userDir/$themesSubDir/$return/$comp";
+			$saveState->{$comp}->{'theme'} = $return; 
+		}
+		# ---------------------------------------------------
+		elsif ($command =~ /^hexcolor-2-value\s+\#([a-fA-F0-9][a-fA-F0-9])([a-fA-F0-9][a-fA-F0-9])([a-fA-F0-9][a-fA-F0-9])$/) {
+			my $blueMask = 31;
+			my $greenMask = 2016;
+			my $redMask = 63488;
+			my $r = hex($1);
+			my $g = hex($2);
+			my $b = hex($3);
+			print "hex: $r,$g,$b\n";
+			$b = int( $b * ($blueMask+1) / 256);
+			$g = $g * ( (1+($greenMask/($blueMask+1))) / 256 );
+			$g = int($g) * ($blueMask + 1);
+			#$r = int( $r * $redMask / 255 );
+			$r = $r * ( (1+($redMask/($greenMask+$blueMask+1)))  / 256 );
+			$r = int($r) * ($greenMask + $blueMask + 1);
+			$return = $r + $g +$b;
+			$return = 1 if $return == 0;
+		}
+		# ---------------------------------------------------
+		elsif ($command =~ /^value-2-hexcolor\s+(.*)$/) {
+			my $sinBits = 6;
+			my $blueMask = 31;
+			my $greenMask = 2016;
+			my $redMask = 63488;
+			my $d = $1;
+			if ($d !~ /^\d+/) {
+				$return = "#aaaaaa";
+			}
+			else {
+				my ($r,$g,$b) = (0, 0, 0);
+				$r = int ( $d / ($greenMask + $blueMask + 1));
+				$d = $d - $r * ($greenMask + $blueMask + 1);
+				$r = int( $r*255 / ($redMask/($greenMask + $blueMask + 1)) );
+				$g = int ( $d / ($blueMask + 1));
+				$d = $d - $g * ($blueMask + 1);
+				$g =  int ( $g*255 / ($greenMask/($blueMask + 1)) );
+				$b = int ( $d*255 / $blueMask );
+				print STDERR "hop: $r, $g, $b\n";
+				$r = 255 if $r > 255;
+				$g = 255 if $g > 255;
+				$b = 255 if $b > 255;
+				$return = "#". int2hex($r) . int2hex($g) . int2hex($b);
+			}
+		}
+		# --------------------------
+		elsif ($command eq "exit") {
+			unlink($lockFifo);
+			exit(0);
+		}
+		else {
+			print STDERR "$comName: unknown command $command\n";
+			$return = "0";
+		}
+
+		#------------------------------------------------------------------------
+		# answer
+		myMakeFifo($inFifo);
+		eval {
+			local $SIG{ALRM} = sub { die "Timeout" };
+			alarm(10);
+			# this line block until com take the answer
+			open(OUT,">$inFifo") || die "cannot write fifo $inFifo";
+			alarm(0);
+			print OUT "ok\n" . $return;
+			close(OUT);
+			unlink($inFifo);
+		};
+		if ($@ =~ /cannot/) {
+			print STDERR "$comName: cannot write on fifo $inFifo\n";
+			exit(0);
+		}
+		if ($@ =~ /Timeout/) {
+			print STDERR "$comName: com do not read my answer!\n";
+		}
+
+	}
+}
+
+#----------------------------------------------------------------------------
+# An alarm handler (called from eval block):
+sub checkScript {
+
+	die "Script" unless ($comPid);
+
+	my $test = 0;
+	my $lockFifo = ".tmp-com-lock-" . $comName;
+
+	open(PS,"ps ax|");
+	while (<PS>) {
+		$test=1 if (/^\s*$comPid\s+/);
+	}
+	close(PS);
+
+	if ($test) { die "Script"; }
+	else { unlink($lockFifo);die "NoScript"; }
+}
+
+#-----------------------------------------------------------------------------
+# 
+sub myMakeFifo {
+	my ($fifo) = @_;
+	system("mknod '$fifo' p");
+}
+
+#-----------------------------------------------------------------------------
+# For killing FvwmScript-ConfigCenter if an error happen in this script!
+END {
+	if ($configCenter) {
+		if ($?) {
+			my $lockFifo = ".tmp-com-lock-" . $comName;
+			my $inFifo = ".tmp-com-in-" . $comName;
+			my $message = "fvwm-themes-script: internal error $?";
+
+			unlink($lockFifo);
+			unlink($inFifo);
+		  	if ($comPid) {
+				kill(9, $comPid);
+				$message .= ", killing FvwmScript-ConfigCenter";
+			}
+			print STDERR "$message\n";
+		}
+	}
+}
+
+# -----------------------------------------------------------------------------
+# get the themes info from fvwm-themes-config
+
+sub getThemesConfig {
+	my $personalThemes = shift;
+	my $themesConfig = shift;
+	my $currentConfig = shift;
+	my $hardRead = shift;
+
+	my $in = `fvwm-themes-config --config-center`;
+	chomp($in);
+	my @input = split(/\n/, $in);
+	my $i = 0;
+	my $j = 0;
+	my $k = 1;
+	my $comp = "";
+	my $theme = "";
+	my $inHardRead = 1;
+	while(defined $input[$i]) {
+		if ($input[$i] =~ /^configuration of (.+) for the Config Center$/) {
+			$comp = $1;
+			$j = 0;
+			$i++;
+			next
+		}
+		if ($inHardRead) {
+			if ($input[$i] =~ /END/) { $inHardRead = 0 }
+			else { $hardRead->{'globalfeel'} .= "Read $input[$i]\n" }
+			$i++;
+			next
+		}
+		if ($comp eq "") {
+			$personalThemes->[$k] = $input[$i] if $input[$i] ne "personal";
+			$i++; $k++;
+			next
+		}
+		if ($j == 0) {
+			$currentConfig->{$comp} = $input[$i];
+			$j++; $i++;
+			next
+		}
+		elsif ($j == 1) {
+			$theme = $input[$i];
+			$j=2; $i++;
+			next
+		}
+		elsif ($j == 2) {
+			$themesConfig->{$comp}->{$theme}->{'file'} = "$input[$i]";
+			$j=1; $i++;
+			next
+		}
+		$i++;
+	}
+}
+
+#----------------------------------------------------------------------------
+# build globalfeel from a sequence
+
+sub  build_globalfeel_Config {
+	my $configFromScript = shift;
+	my $fvwmConfig = shift;
+	my $err = shift;
+	my $keys = shift;
+	my $index = 0;
+	my @list = ();
+	my ($tmp,$tmp2,$hide,$x,$y);
+	my $impossible = "An Impossible error happen, GASP!";
+
+	@$keys = ("Focus", "Move", "Paging", "Transient", "Hints");
+
+	# check for the good number of "!"
+	my @test = split(/!/,$configFromScript);
+	if ($#test != 12) {
+		$err->{'All'} = 
+			"Why do you enter a ! in a field where you have to enter numberss? ($#test)|";
+	}
+
+	# -------------------------------------------- Focus
+	$fvwmConfig->{'Focus'} .= 
+		"\n# -------------------------- Focus and Placement ".
+		"--------------------------\n\n";
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 1) { $fvwmConfig->{'Focus'} .= "Style * ClickToFocus" }
+	elsif ($tmp == 2) { $fvwmConfig->{'Focus'} .= "Style * MouseFocus" }
+	elsif ($tmp == 3) { $fvwmConfig->{'Focus'} .= "Style * SloppyFocus" }
+	else { $err->{'Focus'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 1) { $fvwmConfig->{'Focus'} .= ", ClickToFocusPassesClick" }
+	elsif ($tmp == 0) { $fvwmConfig->{'Focus'} .= ", ClickToFocusPassesClickOff"}
+	else { $err->{'Focus'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 1) {
+		$fvwmConfig->{'Focus'} .= ", ClickToFocusRaises, MouseFocusClickRaises"
+	} 
+	elsif ($tmp == 0) {
+		$fvwmConfig->{'Focus'} .= 
+			", ClickToFocusRaisesOff, MouseFocusClickRaisesOff"
+	}
+	else { $err->{'Focus'} .= "$impossible|" }
+	$fvwmConfig->{'Focus'} .= "\n";
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 1) { $fvwmConfig->{'Focus'} .= "ColormapFocus FollowsFocus\n" }
+	elsif ($tmp == 0) { $fvwmConfig->{'Focus'} .= "ColormapFocus FollowsMouse\n"}
+	else { $err->{'Focus'} .= "$impossible|" }
+	# 
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 1) {
+		$fvwmConfig->{'Focus'} .= 
+			"Style * SmartPlacement, RandomPlacement, CleverPlacementOff"
+	}
+	elsif ($tmp == 2) {
+		$fvwmConfig->{'Focus'} .= 
+			"Style * SmartPlacement, ActivePlacement, CleverPlacementOff"
+	}
+	elsif ($tmp == 3) {
+		$fvwmConfig->{'Focus'} .= 
+			"Style * SmartPlacement, RandomPlacement, CleverPlacement"
+	}
+	elsif ($tmp == 4) {
+		$fvwmConfig->{'Focus'} .= 
+			"Style * DumbPlacement, ActivePlacement, CleverPlacementOff"
+	}
+	elsif ($tmp == 5) {
+		$fvwmConfig->{'Focus'} .= 
+			"Style * DumbPlacement, RandomPlacement, CleverPlacementOff"
+	}
+	else { $err->{'Focus'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 1) { $fvwmConfig->{'Focus'} .= ", GrabFocus" }
+	elsif ($tmp == 0) { $fvwmConfig->{'Focus'} .= ", GrabFocusOff" }
+	else { $err->{'Focus'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 1) { $fvwmConfig->{'Focus'} .= ", UsePPosition" }
+	elsif ($tmp == 0) { $fvwmConfig->{'Focus'} .= ", NoPPosition" }
+	else { $err->{'Focus'} .= "$impossible|" }
+	$fvwmConfig->{'Focus'} .= "\n";
+
+	# ----------------------------------------------- Move
+	$fvwmConfig->{'Move'} .= 
+		"\n# ---------------------------- Move and Resize ".
+		"----------------------------\n\n";
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Move'} .= "Style * ResizeOpaque\n" } 
+	elsif ($tmp == 1) { $fvwmConfig->{'Move'} .= "Style * ResizeOutLine\n" } 
+	else { $err->{'Move'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,index($configFromScript,"!")-$index);
+	$index += length($tmp)+1;
+	$configFromScript = substr($configFromScript,$index);
+	$index = 0;
+	if ($tmp =~ /^\d+$/) { $fvwmConfig->{'Move'} .= "OpaqueMoveSize $tmp\n" } 
+	else {
+		$err->{'Move'} = "Percentage for opaque move size must be an integer|";
+		return $err;
+	}
+	#
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Move'} .= "Emulate MWM\n" } 
+	elsif ($tmp == 1) { $fvwmConfig->{'Move'} .= "Emulate FVWM\n" } 
+	else { $err->{'Move'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	$hide = 0;
+	if ($tmp == 1) { $hide = 1 } 
+	elsif ($tmp == 0) {}
+	else { $err->{'Move'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 1) { $hide = ($hide) ? 3 : 2 } 
+	elsif ($tmp == 0) {}
+	else { $err->{'Move'} .= "$impossible|" }
+	if ($hide == 0) {$fvwmConfig->{'Move'} .= "HideGeometryWindow Never\n" }
+	elsif ($hide == 1) {$fvwmConfig->{'Move'} .= "HideGeometryWindow Resize\n" }
+	elsif ($hide == 2) {$fvwmConfig->{'Move'} .= "HideGeometryWindow Move\n" }
+	else { $fvwmConfig->{'Move'} .= "HideGeometryWindow\n" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) {
+		$fvwmConfig->{'Move'} .= "BugOpts FlickeringMoveWorkaround Off\n"
+	}
+	elsif ($tmp == 1) {
+		$fvwmConfig->{'Move'} .= "BugOpts FlickeringMoveWorkaround On\n"
+	}
+	else { $err->{'Move'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,index($configFromScript,"!")-$index);
+	$index += length($tmp)+1;
+	$configFromScript = substr($configFromScript,$index);
+	$index = 0;
+	$tmp = 0 if $tmp eq "";
+	if ($tmp =~ /^\d+$/) { $fvwmConfig->{'Move'} .= "SnapAttraction $tmp " } 
+	else {
+		$err->{'Move'} = "Distance for snap attraction must be an integer >= 0|";
+	}
+	#
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 1 || $tmp == 5) { $fvwmConfig->{'Move'} .= "All" }
+	elsif ($tmp == 2 || $tmp == 6) { $fvwmConfig->{'Move'} .= "SameType" }
+	elsif ($tmp == 3 || $tmp == 7) { $fvwmConfig->{'Move'} .= "Windows" }
+	elsif ($tmp == 4 || $tmp == 8) { $fvwmConfig->{'Move'} .= "Icons" }
+	else { $err->{'Move'} .= "$impossible" }
+	if ($tmp >= 5) { $fvwmConfig->{'Move'} .= " Screen" }
+	$fvwmConfig->{'Move'} .= "\n";
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,index($configFromScript,"!")-$index);
+	$index += length($tmp)+1;
+	$configFromScript = substr($configFromScript,$index);
+	$index = 0;
+	$tmp = 0 if $tmp eq "";
+	if ($tmp =~ /^\d+$/) { $fvwmConfig->{'Move'} .= "SnapGrid $tmp " }
+	else {
+		$err->{'Move'} .= "X attraction grid coordinate must be an integer >= 0|";
+	}
+	#
+	$tmp = substr($configFromScript,$index,index($configFromScript,"!")-$index);
+	$index += length($tmp)+1;
+	$configFromScript = substr($configFromScript,$index);
+	$index = 0;
+	$tmp = 0 if $tmp eq "";
+	if ($tmp =~ /^\d+$/) { $fvwmConfig->{'Move'} .= "$tmp" }
+	else {
+		$err->{'Move'} .= "Y attraction grid coordinate must be an integer >= 0|";
+	}
+	$fvwmConfig->{'Move'} .= "\n";
+	#
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Move'} .= "XorValue " } 
+	elsif ($tmp == 1) { $fvwmConfig->{'Move'} .= "XorPixmap " } 
+	else { $err->{'Move'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,index($configFromScript,"!")-$index);
+	$index += length($tmp)+1;
+	$configFromScript = substr($configFromScript,$index);
+	$index = 0;
+	$fvwmConfig->{'Move'} .= "$tmp\n";
+
+	# ------------------------------------------ Paging
+	$fvwmConfig->{'Paging'} .= 
+		"\n# ---------------------- Paging and Mouse Parameters ".
+		"----------------------\n\n";
+	$tmp = substr($configFromScript,$index,1);
+	$index++;
+	$tmp2 = substr($configFromScript,$index,1);
+	$tmp2 = ($tmp2) ? 1000 : 1;
+	$x = 0;
+	if ($tmp == 0) { $x = 0 }
+	elsif ($tmp == 1) { $x = 100 * $tmp2 }
+	elsif ($tmp == 2) { $x = 90 * $tmp2 }
+	elsif ($tmp == 3) { $x = 75 * $tmp2 }
+	elsif ($tmp == 4) { $x = 66 * $tmp2 }
+	elsif ($tmp == 5) { $x = 50 * $tmp2 }
+	elsif ($tmp == 6) { $x = 33 * $tmp2 }
+	elsif ($tmp == 7) { $x = 25 * $tmp2 }
+	elsif ($tmp == 8) { $x = 10 * $tmp2 }
+	elsif ($tmp == 9) { $x = 5 * $tmp2 }
+	else { $err->{'Paging'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	$index++;
+	$tmp2 = substr($configFromScript,$index,1);
+	$tmp2 = ($tmp2) ? 1000 : 1;
+	$y = 0;
+	if ($tmp == 0) { $y = 0 }
+	elsif ($tmp == 1) { $y = 100 * $tmp2 }
+	elsif ($tmp == 2) { $y = 90 * $tmp2 }
+	elsif ($tmp == 3) { $y = 75 * $tmp2 }
+	elsif ($tmp == 4) { $y = 66 * $tmp2 }
+	elsif ($tmp == 5) { $y = 50 * $tmp2 }
+	elsif ($tmp == 6) { $y = 33 * $tmp2 }
+	elsif ($tmp == 7) { $y = 25 * $tmp2 }
+	elsif ($tmp == 8) { $y = 10 * $tmp2 }
+	elsif ($tmp == 9) { $y = 5 * $tmp2 }
+	else { $err->{'Paging'} .= "$impossible|" }
+	$fvwmConfig->{'Paging'} .= "EdgeScroll $x $y\n";
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,index($configFromScript,"!")-$index);
+	$index += length($tmp)+1;
+	$configFromScript = substr($configFromScript,$index);
+	$index = 0;
+	$tmp = 0 if $tmp eq "";
+	if ($tmp =~ /^\d+$/) { $x = "$tmp " }
+	else { $err->{'Paging'} = "Paging delay must be an integer >= 0|" }
+	#
+	$tmp = substr($configFromScript,$index,index($configFromScript,"!")-$index);
+	$index += length($tmp)+1;
+	$configFromScript = substr($configFromScript,$index);
+	$index = 0;
+	$tmp = 0 if $tmp eq "";
+	if ($tmp =~ /^\d+$/) { $y = "$tmp " }
+	else { $err->{'Paging'} = "Moving resistance must be an integer >= 0|" }
+	$fvwmConfig->{'Paging'} .= "EdgeResistance $x $y\n";
+	#
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 1) { $fvwmConfig->{'Paging'} .= "EdgeThickness 1\n" }
+	elsif ($tmp == 2) { $fvwmConfig->{'Paging'} .= "EdgeThickness 1\n" }
+	else { $err->{'Paging'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,index($configFromScript,"!")-$index);
+	$index += length($tmp)+1;
+	$configFromScript = substr($configFromScript,$index);
+	$index = 0;
+	$tmp = 150 if $tmp eq "";
+	if ($tmp =~ /^\d+$/) { $fvwmConfig->{'Paging'} .= "ClickTime $tmp\n" }
+	else { $err->{'Paging'} = "Double Click time must be an integer >= 0|" }
+	#
+	$tmp = substr($configFromScript,$index,index($configFromScript,"!")-$index);
+	$index += length($tmp)+1;
+	$configFromScript = substr($configFromScript,$index);
+	$index = 0;
+	$tmp = 3 if $tmp eq "";
+	if ($tmp =~ /^\d+$/) { $fvwmConfig->{'Paging'} .= "MoveThreshold $tmp\n" }
+	else { $err->{'Paging'} = "Move Threshold must be an integer >= 0|" }
+
+	# ----------------------------------------------- Transient
+	$fvwmConfig->{'Transient'} .= 
+		"\n# -------------------- Transient Windows and Animation ".
+		"--------------------\n\n";
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { 
+		$fvwmConfig->{'Transient'} .= "Style * DecorateTransient" 
+	} 
+	elsif ($tmp == 1) { 
+		$fvwmConfig->{'Transient'} .= "Style * NakedTransient" 
+	} 
+	else { $err->{'Transient'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Transient'} .= ", DontRaiseTransient" } 
+	elsif ($tmp == 1) { $fvwmConfig->{'Transient'} .= ", RaiseTransient" }
+	else { $err->{'Transient'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Transient'} .= ", DontLowerTransient" }
+	elsif ($tmp == 1) { $fvwmConfig->{'Transient'} .= ", LowerTransient" }
+	else { $err->{'Transient'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Transient'} .= ", DontStackTransientParent"} 
+	elsif ($tmp == 1) { $fvwmConfig->{'Transient'} .= ", StackTransientParent" }
+	else { $err->{'Transient'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Transient'} .= ", GrabFocusTransientOff" }
+	elsif ($tmp == 1) { $fvwmConfig->{'Transient'} .= ", GrabFocusTransient" }
+	else { $err->{'Transient'} .= "$impossible|" }
+	$fvwmConfig->{'Transient'} .= "\n";
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,index($configFromScript,"!")-$index);
+	$index += length($tmp)+1;
+	$configFromScript = substr($configFromScript,$index);
+	$index = 0;
+	$tmp = 20 if $tmp eq "";
+	if ($tmp =~ /^\d+$/) { 
+		$fvwmConfig->{'Transient'} .= "Style * WindowShadeSteps $tmp" 
+	}
+	else { $err->{'Transient'} = "Shade step must be an integer >= 0|" }
+	#
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 1) { $fvwmConfig->{'Transient'} .= ", WindowShadeScrolls" }
+	elsif ($tmp == 0) { $fvwmConfig->{'Transient'} .= ", WindowShadeShrinks" }
+	else { $err->{'Transient'} .= "$impossible|" }
+	$fvwmConfig->{'Transient'} .= "\n";
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,index($configFromScript,"!")-$index);
+	$index += length($tmp)+1;
+	$configFromScript = substr($configFromScript,$index);
+	$index = 0;
+	$tmp = 10 if $tmp eq "";
+	if ($tmp =~ /^\d+$/) { $fvwmConfig->{'Transient'} .= "SetAnimation  $tmp " }
+	else { $err->{'Transient'} = "Animation speed must be an integer >= 0|" }
+	#
+	$tmp = substr($configFromScript,$index,index($configFromScript,"!")-$index);
+	$index += length($tmp)+1;
+	$configFromScript = substr($configFromScript,$index);
+	$index = 0;
+	@list = split(/\s+/,$tmp);
+	$tmp2 = 1;
+	foreach (@list) { $tmp2 = 0 if $_ !~ /^-?\d*\.?\d*$/ }
+	if ($tmp2) { $fvwmConfig->{'Transient'} .= " $tmp" }
+	else { 
+		$err->{'Transient'} = 
+			"Animation Setps must be a sequence of < 17 rationnals around 0 to 1|"
+	}
+	$fvwmConfig->{'Transient'} .= "\n";
+
+	# ----------------------------------------------- Hints
+	$fvwmConfig->{'Hints'} .= 
+		"\n# --------------------- Hints, Busy Cursor and Avanced ".
+		"---------------------\n\n";
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= "Style * NoDecorHint" }
+	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= "Style * MwmDecor" }
+	else { $err->{'Hints'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= ", NoOLDecor" }
+	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= ", OLDecor" }
+	else { $err->{'Hints'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= ", NoOverride" }
+	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= ", HintOverride" }
+	else { $err->{'Hints'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= ", NoFuncHint" }
+	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= ", MwmFunctions" }
+	else { $err->{'Hints'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= ", GNOMEIgnoreHints" }
+	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= ", GNOMEUseHints" }
+	else { $err->{'Hints'} .= "$impossible|" }
+	$fvwmConfig->{'Hints'} .= "\n";
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= "BugOpts ModalityIsEvil off\n" }
+	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= "BugOpts ModalityIsEvil on\n" }
+	else { $err->{'Hints'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= "BusyCursor Read off" }
+	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= "BusyCursor Read on" }
+	else { $err->{'Hints'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= ", Recapture off" }
+	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= ", Recapture on" }
+	else { $err->{'Hints'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= ", Wait off" }
+	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= ", Wait on" }
+	else { $err->{'Hints'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= ", ModuleSynchronous off" }
+	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= ", ModuleSynchronous on" }
+	else { $err->{'Hints'} .= "$impossible|" }
+	$fvwmConfig->{'Hints'} .= "\n";
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 1) { $fvwmConfig->{'Hints'} .= "# Automatic detection of the color limit\n" }
+	elsif ($tmp == 2) { $fvwmConfig->{'Hints'} .= "ColorLimit 2\n" }
+	elsif ($tmp == 3) { $fvwmConfig->{'Hints'} .= "ColorLimit 9\n" }
+	elsif ($tmp == 4) { $fvwmConfig->{'Hints'} .= "ColorLimit 19\n" }
+	elsif ($tmp == 5) { $fvwmConfig->{'Hints'} .= "ColorLimit 29\n" }
+	elsif ($tmp == 6) { $fvwmConfig->{'Hints'} .= "ColorLimit 39\n" }
+	elsif ($tmp == 7) { $fvwmConfig->{'Hints'} .= "ColorLimit 49\n" }
+	elsif ($tmp == 8) { $fvwmConfig->{'Hints'} .= "ColorLimit 61\n" }
+	elsif ($tmp == 9) { $fvwmConfig->{'Hints'} .= "ColorLimit 0\n" }
+	else { $err->{'Hints'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { 
+		$fvwmConfig->{'Hints'} .= "BugOpts MixedVisualWorkaround off\n" 
+	}
+	elsif ($tmp == 1) { 
+		$fvwmConfig->{'Hints'} .= "BugOpts MixedVisualWorkaround on\n" 
+	}
+	else { $err->{'Hints'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { 
+		$fvwmConfig->{'Hints'} .= "BugOpts RaiseOverNativeWindows off\n" 
+	}
+	elsif ($tmp == 1) { 
+		$fvwmConfig->{'Hints'} .= "BugOpts RaiseOverNativeWindows on\n" 
+	}
+	else { $err->{'Hints'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= "Style * SaveUnderOff" } 
+	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= "Style * SaveUnder"} 
+	else { $err->{'Hints'} .= "$impossible|" }
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= ", BackingStoreOff" }
+	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= ", BackingStore" }
+	else { $err->{'Hints'} .= "$impossible|" }
+	$fvwmConfig->{'Hints'} .= "\n";
+	#
+	$index++;
+	$tmp = substr($configFromScript,$index,1);
+	if ($tmp == 1) { $fvwmConfig->{'Hints'} .= "ModuleTimeout 2\n" }
+	elsif ($tmp == 2) { $fvwmConfig->{'Hints'} .= "ModuleTimeout 5\n" }
+	elsif ($tmp == 3) { $fvwmConfig->{'Hints'} .= "ModuleTimeout 7\n" }
+	elsif ($tmp == 4) { $fvwmConfig->{'Hints'} .= "ModuleTimeout 10\n" }
+	elsif ($tmp == 5) { $fvwmConfig->{'Hints'} .= "ModuleTimeout 15\n" }
+	elsif ($tmp == 6) { $fvwmConfig->{'Hints'} .= "ModuleTimeout 30\n" }
+	elsif ($tmp == 7) { $fvwmConfig->{'Hints'} .= "ModuleTimeout 45\n" }
+	elsif ($tmp == 8) { $fvwmConfig->{'Hints'} .= "ModuleTimeout 60\n" }
+	elsif ($tmp == 8) { $fvwmConfig->{'Hints'} .= "ModuleTimeout 120\n" }
+
+	else { $err->{'Hints'} .= "$impossible|" }
+}
+
+
+#-----------------------------------------------------------------------------
+# Parse globalfeel file and build a sequence "for" FvwmScript 
+
+sub parse_globalfeel_Config {
+	my $file = shift;
+	my $configForScript = shift;
+	my $keys = shift;
+
+	my $config = {};
+	default_globalfeel_Config($config);
+	@$keys = ("Focus", "Move", "Paging", "Transient", "Hints");
+
+	open(FILE,"$file") || return "Err: cannot open $file";
+	my $multiline = "";
+	my $line;
+
+	while(<FILE>) {		
+		if ( /\\$/ && ! /\\\\$/) {
+			s/\\$//;
+			chomp;
+			$multiline = $multiline . $_;
+			next;
+	  	} else {
+			$line= $multiline . $_;
+			$multiline = "";
+		}
+
+		# remove starting blanc:
+		$line =~ s/^\s+//;
+		# removing comments
+		next if $line =~ /^\#/;
+		# humm ...
+		$line =~ s/\s+\#.*$//;
+		$line =~ s/\s+$//;
+
+		if ($line =~ /^ColormapFocus\s+FollowsMouse/i) {
+			$config->{'colormapmouse'} = 0		
+		}
+		elsif ($line =~ /^ColormapFocus\s+FollowsFocus/i) {
+			$config->{'colormapmouse'} = 1
+		}
+		elsif ($line =~ /^OpaqueMoveSize/i) {
+			if ($line =~ /^OpaqueMoveSize\s+(\d+)/i) {
+				$config->{'OpaqueMoveSize'} = $1
+			}
+			else {
+				$config->{'OpaqueMoveSize'} = 5
+			}
+		}
+		elsif ($line =~ /^Emulate/i) {
+			if ($line =~ /^Emulate\s+mwm/i) {
+				$config->{'emulate'} = 0
+			}
+			else {
+				$config->{'emulate'} = 1
+			}
+		}
+		elsif ($line =~ /^HideGeometryWindow\s+(.*)/i) {
+			my @opt = split $1;
+			foreach (@opt) {
+				s/\s//g;
+				if (/^Never/i) { 
+					$config->{'hidemove'} = 0; $config->{'hideresize'} = 0
+				} 
+				elsif (/^Move/) {  $config->{'hidemove'} = 1 }
+				elsif (/^Resize/) {  $config->{'hideresize'} = 1 }
+			}
+		}
+		elsif ($line =~ /^SnapAttraction\s+([-]*\d+)\s*(\w*)\s*(.*)/i) {
+			my $type = "";
+			my $screen = 0;
+			$config->{'snapdistance'} = $1;
+			$type = $2 if defined $2;
+			$screen = 1 if defined $3 && $3 =~ /^screen/i;
+			if ($type =~ /^All$/i) {
+				$config->{'snapbehavior'} = 1
+			}
+			elsif ($type =~ /^SameType$/i) {
+				$config->{'snapbehavior'} = 2
+			}
+			elsif ($type =~ /^Windows$/i) {
+				$config->{'snapbehavior'} = 3
+			}
+			elsif ($type =~ /^Icons$/i) {
+				$config->{'snapbehavior'} = 4
+			}
+			$config->{'snapbehavior'} += 4 if ($screen eq "1");
+		}
+		elsif ($line =~ /^SnapGrid\s+(\d+)\s+(\d+)/i) {
+			$config->{'snap_X'} = $1;
+			$config->{'snap_Y'} = $2;
+		}
+		elsif ($line =~ /^BugOpts\s+(.+)$/i) {
+			my $token = $1; 
+			while($token ne "") {
+				my $opt = getNextToken(\$token);
+				my $bool = getBoolArg(\$token);
+				if ($opt =~ /^FlickeringMoveWorkaround$/i) {
+					$config->{'FlickeringMoveWorkaround'} = ($bool eq "1") ? 1:0;
+				}
+				elsif ($opt =~ /^ModalityIsEvil$/i) {
+					$config->{'ModalityIsEvil'} = ($bool eq "0") ? 0:1;
+				}
+				elsif ($opt =~ /^MixedVisualWorkaround$/i) {
+					$config->{'MixedVisualWorkaround'} = ($bool eq "1") ? 1:0;
+				}
+				elsif ($opt =~ /^RaiseOverNativeWindow$/i) {
+					$config->{'RaiseOverNativeWindows'} = ($bool eq "1") ? 1:0;
+				}
+			}
+		}
+		elsif ($line =~ /^xorvalue\s+(\d+)$/i) {
+			$config->{'xor'}= 0;
+			$config->{'xor_value'}= $1;
+		}
+		elsif ($line =~ /^xorpixmap\s+(.+)$/i) {
+			$config->{'xor'}= 1;
+			$config->{'xor_pixmap'}= $1;
+		}
+		elsif ($line =~ /^BusyCursor\s+(.+)$/i) {
+			my $token = $1;
+			while($token ne "") {
+				my $opt = getNextToken(\$token);
+				my $bool = getBoolArg(\$token);
+				next if $bool != 0 && $bool != 1;
+				if ($opt =~ /^Read$/i) {
+					$config->{'Busy_Read'}=$bool;
+				}
+				elsif ($opt =~ /^Read$/i) {
+					$config->{'Busy_Recapture'}=$bool;
+				}
+				elsif ($opt =~ /^Recapture$/i) {
+					$config->{'Busy_Recapture'}=$bool;
+				}
+				elsif ($opt =~ /^Wait$/i) {
+					$config->{'Busy_Wait'}=$bool;
+				}
+				elsif ($opt =~ /^ModuleSynchronous$/i) {
+					$config->{'Busy_Module'}=$bool;
+				}
+			}
+		}
+		elsif ($line =~ /^ColorLimit\s+(\d+)/) {
+			$config->{'ColorLimit'} = $1
+		}
+		elsif ($line =~ /^ModuleTimeout\s+(\d+)/) {
+			$config->{'ModuleTimeout'} = $1
+		}
+		elsif ($line =~ /^EdgeScroll\s+(\d+)\s+(\d+)/) {
+			$config->{'EdgeScroll_H'} = $1;
+			$config->{'EdgeScroll_V'} = $2;
+		}
+		elsif ($line =~ /^EdgeThickness\s+(\d)/) {
+			$config->{'EdgeThickness'} = 2 if $1 == 2
+		}
+		elsif ($line =~ /EdgeResistance\s+(\d+)\s+(\d+)/) {
+			$config->{'EdgeResistance_delay'} = $1;
+			$config->{'EdgeResistance_move'} = $2;
+		}
+		elsif ($line =~ /^ClickTime\s+(\d*)\s*$/) {
+			$config->{'ClickTime'} = $1;
+		}
+		elsif ($line =~ /^MoveThreshold\s+(\d*)\s*$/) {
+			$config->{'MoveThreshold'} = $1;
+		}
+		elsif ($line =~ /^SetAnimation\s*(\d*)\s*(.*)/i) {
+			$config->{'SetAnimatin_speed'} = $1 if defined $1;
+			$config->{'SetAnimatin_frac'} = $2 if defined $2;
+		}
+		elsif ($line =~ /^Style\s+["]*[*]["]*\s+(.+)$/i) {
+			my $token = $1;
+			while($token ne "") {
+				my $style = getNextToken(\$token);
+				if ($style =~ /^ClickToFocus$/i) {
+					$config->{'focus'} = 1
+				} 
+				elsif ($style=~/^MouseFocus$/i || $style=~/^FocusFollowsMouse$/i) {
+					$config->{'focus'} = 2
+				}
+				elsif ($style =~ /^SloppyFocus$/i) {
+					$config->{'focus'} = 3
+				}
+				elsif ($style =~ /^ClickToFocusPassesClick$/i) {
+					$config->{'ClickToFocusPassesClick'} = 1
+				}
+				elsif ($style =~ /^ClickToFocusPassesClickOff$/i) {
+					$config->{'ClickToFocusPassesClick'} = 0
+				}
+				elsif ($style =~ /^ClickToFocusRaises$/i) {
+					$config->{'ClickToFocusRaises'} = 1
+				}
+				elsif ($style =~ /^ClickToFocusRaisesOff$/i) {
+					$config->{'ClickToFocusRaises'} = 0
+				}
+				elsif ($style =~ /^MouseFocusClickRaisesOff$/i) {
+					$config->{'MouseFocusClickRaisesOff'} = 1
+				}
+				elsif ($style =~ /^MouseFocusClickRaises$/i) {
+					$config->{'MouseFocusClickRaisesOff'} = 0
+				}
+				elsif ($style =~ /^SmartPlacement$/i) {
+					$config->{'SmartPlacement'} = 1 
+				}
+				elsif ($style =~ /^DumbPlacement$/i) {
+					$config->{'SmartPlacement'} = 0
+				}
+				elsif ($style =~ /^CleverPlacementOff$/i) {
+					$config->{'CleverPlacementOff'} = 1 
+				}
+				elsif ($style =~ /^CleverPlacement$/i) {
+					$config->{'CleverPlacementOff'} = 0
+				}
+				elsif ($style =~ /^RandomPlacement$/i) {
+					$config->{'RandomPlacement'} = 1
+				}
+				elsif ($style =~ /^ActivePlacement$/i) {
+					$config->{'RandomPlacement'} = 0
+				}
+				elsif ($style =~ /^GrabFocusOff$/i) {
+					$config->{'GrabFocusOff'} = 0
+				}
+				elsif ($style =~ /^GrabFocus$/i) {
+					$config->{'GrabFocusOff'} = 1
+				}
+				elsif ($style =~ /^NoPPosition$/i) {
+					$config->{'NoPPosition'} = 0
+				}
+				elsif ($style =~ /^UsePPosition$/i) {
+					$config->{'NoPPosition'} = 1
+				}
+				elsif ($style =~ /^ResizeOutLine$/i) {
+					$config->{'ResizeOutLine'} = 1
+				}
+				elsif ($style =~ /^ResizeOpaque$/i) {
+					$config->{'ResizeOutLine'} = 0
+				}
+				elsif ($style =~ /^SaveUnderOff$/i) {
+					$config->{'SaveUnderOff'} = 0
+				}
+				elsif ($style =~ /^SaveUnder$/i) {
+					$config->{'SaveUnderOff'} = 1
+				}
+				elsif ($style =~ /^BackingStoreOff$/i) {
+					$config->{'BackinStoreOff'} = 0
+				}
+				elsif ($style =~ /^BackingStore$/i) {
+					$config->{'BackingStoreOff'} = 1
+				}
+				elsif ($style =~ /^NakedTransient$/i) {
+					$config->{'NakedTransient'} = 1
+				}
+				elsif ($style =~ /^DecorateTransient$/i) {
+					$config->{'NakedTransient'} = 0
+				}
+				elsif ($style =~ /^DontRaiseTransient$/i) {
+					$config->{'DontRaiseTransient'} = 0
+				}
+				elsif ($style =~ /^RaiseTransient$/i) {
+					$config->{'DontRaiseTransient'} = 1
+				}
+				elsif ($style =~ /^DontLowerTransient$/i) {
+					$config->{'DontLowerTransient'} = 0
+				}
+				elsif ($style =~ /^LowerTransient$/i) {
+					$config->{'DontLowerTransient'} = 1
+				}
+				elsif ($style =~ /^DontStackTransientParent$/i) {
+					$config->{'DontStackTransientParent'} = 0
+				}
+				elsif ($style =~ /^StackTransientParent$/i) {
+					$config->{'DontStackTransientParent'} = 1
+				}
+				elsif ($style =~ /^GrabFocusTransientOff$/i) {
+					$config->{'GrabFocusTransientOff'} = 0
+				}
+				elsif ($style =~ /^GrabFocusTransient$/i) {
+					$config->{'GrabFocusTransientOff'} = 1
+				}
+				elsif ($style =~ /^WindowShadeSteps$/i) {
+					if ($line = /\s*(\d+)/) { 
+						$config->{'WindowShadeSteps'} = $1;
+						my $dummy = getNextToken(\$token);
+					}
+				}
+				elsif ($style =~ /^WindowShadeScrolls$/i) {
+					$config->{'WindowShadeScrolls'} = 1;
+				}
+				elsif ($style =~ /^WindowShadeShrinks$/i) {
+					$config->{'WindowShadeScrolls'} = 0;
+				}
+				elsif ($style =~ /^NoDecorHint$/i) {
+					$config->{'NoDecorHint'} = 0;
+				}
+				elsif ($style =~ /^MwmDecor$/i) {
+					$config->{'NoDecorHint'} = 1;
+				}
+				elsif ($style =~ /^NoOLDecor$/i) {
+					$config->{'NoOLDecor'} = 0;
+				}
+				elsif ($style =~ /^OLDecor$/i) {
+					$config->{'NoOLDecor'} = 1;
+				}
+				elsif ($style =~ /^NoOverride$/i) {
+					$config->{'NoOverride'} = 0;
+				}
+				elsif ($style =~ /^HintOverride$/i) {
+					$config->{'NoOverride'} = 1;
+				}
+				elsif ($style =~ /^NoFuncHint$/i) {
+					$config->{'NoFuncHint'} = 0;
+				}
+				elsif ($style =~ /^MwmFunctions$/i) {
+					$config->{'NoDecorHint'} = 1;
+				}
+				elsif ($style =~ /^GNOMEUseHints$/i) {
+					$config->{'GNOMEUseHints'} = 1;
+				}
+				elsif ($style =~ /^GNOMEIgnoreHints$/i) {
+					$config->{'GNOMEUseHints'} = 1;
+				}
+			}
+		}
+	}
+	close(FILE);
+
+	# compute clickraise
+	if ($config->{'focus'} == 1) {
+		$config->{'clickraise'} = $config->{'ClickToFocusRaises'}
+	}
+	else {
+		$config->{'clickraise'} = $config->{'MouseFocusClickRaisesOff'} ? 0:1
+	}
+	# compute placement
+	if ($config->{'SmartPlacement'}) {
+		if (!$config->{'RandomPlacement'}) {
+			$config->{'placement'} = 2
+		}
+		elsif ($config->{'CleverPlacementOff'}) {
+			$config->{'placement'} = 1
+		}				
+		else {
+			$config->{'placement'} = 3
+		}
+	}
+	elsif ($config->{'RandomPlacement'}) {
+		$config->{'placement'} = 5
+	}
+	else {
+		$config->{'placement'} = 4 
+	}
+	# compute EdgeScroll
+	my $scroll_h = int($config->{'EdgeScroll_H'}/1000);
+	if ($scroll_h <= 0) { $config->{'circular_h'} = 0 }
+	else { $config->{'EdgeScroll_H'} = $scroll_h; $config->{'circular_h'} = 1 }
+	if ($config->{'EdgeScroll_H'} <= 0) { $config->{'edgescroll_h'} = 0 }
+	elsif ($config->{'EdgeScroll_H'} <= 7) { $config->{'edgescroll_h'} = 9 }
+	elsif ($config->{'EdgeScroll_H'} <= 17) { $config->{'edgescroll_h'} = 8 }
+	elsif ($config->{'EdgeScroll_H'} <= 29) { $config->{'edgescroll_h'} = 7 }
+	elsif ($config->{'EdgeScroll_H'} <= 41) { $config->{'edgescroll_h'} = 6 }
+	elsif ($config->{'EdgeScroll_H'} <= 58) { $config->{'edgescroll_h'} = 5 }
+	elsif ($config->{'EdgeScroll_H'} <= 70) { $config->{'edgescroll_h'} = 4 }
+	elsif ($config->{'EdgeScroll_H'} <= 82) { $config->{'edgescroll_h'} = 3 }
+	elsif ($config->{'EdgeScroll_H'} <= 95) { $config->{'edgescroll_h'} = 2 }
+	else { $config->{'edgescroll_h'} = 1 }
+	my $scroll_v = int($config->{'EdgeScroll_V'}/1000);
+	if ($scroll_v <= 0) { $config->{'circular_v'} = 0 }
+	else { $config->{'EdgeScroll_V'} = $scroll_v; $config->{'circular_v'} = 1 }
+	if ($config->{'EdgeScroll_V'} <= 0) { $config->{'edgescroll_v'} = 0 }
+	elsif ($config->{'EdgeScroll_V'} <= 7) { $config->{'edgescroll_v'} = 9 }
+	elsif ($config->{'EdgeScroll_V'} <= 17) { $config->{'edgescroll_v'} = 8 }
+	elsif ($config->{'EdgeScroll_V'} <= 29) { $config->{'edgescroll_v'} = 7 }
+	elsif ($config->{'EdgeScroll_V'} <= 41) { $config->{'edgescroll_v'} = 6 }
+	elsif ($config->{'EdgeScroll_V'} <= 58) { $config->{'edgescroll_v'} = 5 }
+	elsif ($config->{'EdgeScroll_V'} <= 70) { $config->{'edgescroll_v'} = 4 }
+	elsif ($config->{'EdgeScroll_V'} <= 82) { $config->{'edgescroll_v'} = 3 }
+	elsif ($config->{'EdgeScroll_V'} <= 95) { $config->{'edgescroll_v'} = 2 }
+	else { $config->{'edgescroll_v'} = 1 }
+	# Compute Color Limit
+	if ($config->{'ColorLimit'} < 0) { $config->{'color_limit'} = 1 }
+	elsif ($config->{'ColorLimit'} == 0) { $config->{'color_limit'} = 9 }
+	elsif ($config->{'ColorLimit'} <= 2) { $config->{'color_limit'} = 2 }
+	elsif ($config->{'ColorLimit'} <= 14) { $config->{'color_limit'} = 3 }
+	elsif ($config->{'ColorLimit'} <= 24) { $config->{'color_limit'} = 4 }
+	elsif ($config->{'ColorLimit'} <= 34) { $config->{'color_limit'} = 5 }
+	elsif ($config->{'ColorLimit'} <= 44) { $config->{'color_limit'} = 6 }
+	elsif ($config->{'ColorLimit'} <= 54) { $config->{'color_limit'} = 7 }
+	else { $config->{'color_limit'} = 8 }
+	# Compute module timeout
+	if ($config->{'ModuleTimeout'} <= 0) { $config->{'module_timeout'} = 6 }
+	elsif ($config->{'ModuleTimeout'} <= 3) { $config->{'module_timeout'} = 1 }
+	elsif ($config->{'ModuleTimeout'} <= 6) { $config->{'module_timeout'} = 2 }
+	elsif ($config->{'ModuleTimeout'} <= 8) { $config->{'module_timeout'} = 3 }
+	elsif ($config->{'ModuleTimeout'} <= 12) { $config->{'module_timeout'} = 4 }
+	elsif ($config->{'ModuleTimeout'} <= 20) { $config->{'module_timeout'} = 5 }
+	elsif ($config->{'ModuleTimeout'} <= 38) { $config->{'module_timeout'} = 6 }
+	elsif ($config->{'ModuleTimeout'} <= 53) { $config->{'module_timeout'} = 7 }
+	elsif ($config->{'ModuleTimeout'} <= 90) { $config->{'module_timeout'} = 8 }
+	else { $config->{'module_timeout'} = 9 }
+
+	$configForScript->{'Focus'} = $config->{'focus'} . 
+		$config->{'ClickToFocusPassesClick'} . $config->{'clickraise'} . 
+		$config->{'colormapmouse'} . $config->{'placement'} . 
+		$config->{'GrabFocusOff'} . $config->{'NoPPosition'};
+	
+	$configForScript->{'Move'} = $config->{'ResizeOutLine'} . 
+		$config->{'OpaqueMoveSize'} . "!" . $config->{'emulate'} . 
+		$config->{'hideresize'} . $config->{'hidemove'} .
+		$config->{'FlickeringMoveWorkaround'} .
+		$config->{'snapdistance'} . "!" . $config->{'snapbehavior'} .
+		$config->{'snap_X'} . "!" . $config->{'snap_Y'} . "!" .
+		$config->{'xor'} . $config->{'xor_value'} . "!" .
+		$config->{'xor_pixmap'} . "!";
+
+	$configForScript->{'Paging'} = $config->{'edgescroll_h'} . 
+		$config->{'circular_h'} . $config->{'edgescroll_v'} . 
+		$config->{'circular_v'} . $config->{'EdgeResistance_delay'} ."!". 
+		$config->{'EdgeResistance_move'}."!". $config->{'EdgeThickness'} . 
+		$config->{'ClickTime'} ."!". $config->{'MoveThreshold'}."!";
+
+	$configForScript->{'Transient'} = $config->{'NakedTransient'} . 
+		$config->{'DontRaiseTransient'} . $config->{'DontLowerTransient'} . 
+		$config->{'DontStackTransientParent'} .
+		$config->{'GrabFocusTransientOff'} .
+	 	$config->{'WindowShadeSteps'}. "!" . $config->{'WindowShadeScrolls'} .
+		$config->{'SetAnimatin_speed'}. "!". $config->{'SetAnimatin_frac'}."!";
+
+	$configForScript->{'Hints'} = $config->{'NoDecorHint'} . 
+		$config->{'NoOLDecor'} . $config->{'NoOverride'} .
+		$config->{'NoFuncHint'} . $config->{'GNOMEUseHints'} . 
+		$config->{'ModalityIsEvil'} .
+		$config->{'Busy_Read'} . $config->{'Busy_Recapture'} .
+		$config->{'Busy_Wait'} . $config->{'Busy_Module'} .
+		$config->{'color_limit'} . $config->{'MixedVisualWorkaround'} .
+		$config->{'RaiseOverNativeWindow'} . $config->{'SaveUnderOff'} . 
+		$config->{'BackingStoreOff'} . $config->{'module_timeout'};
+	return 0
+}
+
+# ---------------------------------------------------------------------------
+# "default" config (but in theory the theme/default/* is loaded 
+
+sub default_globalfeel_Config {
+	my $config = shift;
+
+	$config->{'ClickToFocusPassesClick'} = 0;
+	$config->{'ClickToFocusRaises'} = 1;
+	$config->{'MouseFocusClickRaisesOff'} = 1;
+	$config->{'focus'} = 0;
+	$config->{'colormapmouse'} = 0;
+	$config->{'SmartPlacement'} = 1;
+	$config->{'RandomPlacement'} = 1;
+	$config->{'CleverPlacementOff'} = 1;
+	$config->{'placement'} = 0;
+	$config->{'GrabFocusOff'} = 0;
+	$config->{'NoPPosition'} = 0;
+	$config->{'ResizeOutLine'} = 1;
+	$config->{'OpaqueMoveSize'} = 5;
+	$config->{'emulate'} = 1;
+	$config->{'hideresize'} = 0;
+	$config->{'hidemove'} = 0;
+	$config->{'FlickeringMoveWorkaround'} = 0;
+	$config->{'snapdistance'} = 0;
+	$config->{'snapbehavior'} = 1;
+	$config->{'snap_X'} = 1;
+	$config->{'snap_Y'} = 1;
+	$config->{'xor'} = 0; # 0 Value, 1 Pixmap
+	$config->{'xor_value'} = 0; # fvwm default
+	$config->{'xor_pixmap'} = "";
+	$config->{'BackingStoreOff'} = 0;
+	$config->{'EdgeScroll_H'} = 0;
+	$config->{'EdgeScroll_V'} = 0;
+	$config->{'edgescroll_h'} = 1;
+	$config->{'edgescroll_v'} = 1;
+	$config->{'circular_h'} = 0;
+	$config->{'circilar_v'} = 0;
+	$config->{'EdgeResistance_delay'} = 0;
+	$config->{'EdgeResistance_move'} = 0;
+	$config->{'EdgeThickness'} = 1;
+	$config->{'ClickTime'} = 150;
+	$config->{'MoveThreshold'} = 3;
+	$config->{'NakedTransient'} = 1;
+	$config->{'DontRaiseTransient'} = 0;
+	$config->{'DontLowerTransient'} = 0;
+	$config->{'DontStackTransientParent'} = 0;
+	$config->{'GrabFocusTransientOff'} = 0;
+	$config->{'WindowShadeSteps'} = 20;
+	$config->{'WindowShadeScrolls'} = 1;
+	$config->{'EdgeResistance_delay'} = 0;
+	$config->{'EdgeResistance_move'} = 0;
+	$config->{'SetAnimatin_speed'} = 10;
+	$config->{'SetAnimatin_frac'} = "1 0 .01 .03 .08 .18 .3 .45 .6 .75 " .
+		".85 .90 .94 .97 .99 1.0";
+	$config->{'NoDecorHint'} = 1;
+	$config->{'NoOLDecor'} = 1;
+	$config->{'NoOverride'} = 1;
+	$config->{'NoFuncHint'} = 1;
+	$config->{'GNOMEUseHints'} = 1;
+	$config->{'ModalityIsEvil'} = 1;
+	$config->{'Busy_Read'} = 0;
+	$config->{'Busy_Recapture'} = 1;
+	$config->{'Busy_Wait'} = 0;
+	$config->{'Busy_Module'} = 0;
+	$config->{'ColorLimit'} = -1; # No color limit config command!
+	$config->{'color_limit'} = 1;
+	$config->{'MixedVisualWorkaround'} = 0;
+	$config->{'RaiseOverNativeWindow'} = 0;
+	$config->{'SaveUnderOff'} = 0;
+	$config->{'BackingStoreOff'} = 0;
+	$config->{'ModuleTimeout'} = 30;
+	$config->{'module_timeout'} = 6;
+
+}
+
+sub getNextToken {
+	my ($line) = @_;
+	my $token = "";
+
+	$$line =~ s/^\s*,\s*//;
+	my $quote = " ";
+	$quote = "\"" if ($$line =~ /^\"/);
+	$quote = "\'" if ($$line =~ /^\'/);
+	$quote = "\`" if ($$line =~ /^\`/);
+	$$line =~ s/^$quote//;
+	#print "$$line\n";
+	if ($$line =~ /$quote/) {
+		$token = substr($$line,0,index($$line,$quote));
+	} else {
+		$token = $$line;
+	}
+	$$line = substr($$line,length($token));
+	$token =~ s/$quote$//;
+	$token =~ s/,//g;
+	return $token;
+}
+
+sub getBoolArg {
+	my ($line) = @_;
+	my $t = "";
+	my $l = 0;
+	$$line =~ s/^\s*//;
+	if ($$line =~ /^(on\s*,*\s*)/i) {
+		$l = length($1);
+		$t = 1
+	}
+	elsif  ($$line =~ /^(off\s*,*\s*)/i) {
+		$l = length($1);
+		$t = 0
+	}
+	elsif  ($$line =~ /^(yes\s*,*\s*)/i) {
+		$l = length($1);
+		$t = 1
+	}
+	elsif  ($$line =~ /^(y\s*,*\s*)/i) {
+		$l = length($1);
+		$t = 1
+	}
+	elsif  ($$line =~ /^(no\s*,*\s*)/i) {
+		$l = length($1);
+		$t = 0
+	}
+	elsif  ($$line =~ /^(n\s*,*\s*)/i) {
+		$l = length($1);
+		$t = 0
+	}
+	elsif ($$line =~ /^(True\s*,*\s*)/i) {
+		$l = length($1);
+		$t = 1
+	}
+	elsif ($$line =~ /^(T\s*,*\s*)/i) {
+		$l = length($1);
+		$t = 1
+	}
+	elsif ($$line =~ /^(False\s*,*\s*)/i) {
+		$l = length($1);
+		$t = 0
+	}
+	elsif ($$line =~ /^(False\s*,*\s*)/i) {
+		$l = length($1);
+		$t = 0
+	}
+	# hummm ...
+	elsif ($$line =~ /^(toggle[,]\s*)/i) {
+		$l = length($1);
+		$t = -1
+	}
+	$$line = substr($$line,$l);
+	return $t;
+}
+
+#----------------------------------------------------------------------------
+sub saveToFile {
+	my $out = shift;
+	my $file = shift;
+
+
+	my $dir = substr($file,0,rindex($file,"/"));
+	mkdir($dir,755) if (! -d $dir);
+
+	my $date = `date`;
+	chomp($date);
+	my $user = $ENV{USER} || "unknown";
+	my $host = $ENV{HOSTNAME} || "unknown";
+	my $save = "# Automatically build by FVWM-Themes on $date \n" .
+	  "# for $user\@$host\n";
+	$out = $save . $out;
+	open(OUT, ">$file");
+	print OUT $out;
+	close(OUT);
+}
+
+#----------------------------------------------------------------------------
+
+sub int2hex {
+	my @Hex=(0 .. 9, "a" .. "f");
+	my $i= shift;
+ 	# modified for speed (olicha)
+	my $h = $Hex[$i/16] . $Hex[$i%16];
+  	return $h;
 }

@@ -1560,6 +1560,7 @@ my $install = 0;
 my $fvwmscript = 0;
 my $onlySite = 0;
 my $onlyUser = 0;
+my $configCenter = 0;
 
 GetOptions(
 	"help"        => \&showHelp,
@@ -1586,6 +1587,7 @@ GetOptions(
 	"fvwmscript"  => \$fvwmscript,
 	"only-site"	  => \$onlySite,
 	"only-user"	  => \$onlyUser,
+	"config-center" => \$configCenter,
 ) || wrongUsage();
 
 shift @searchPath if $site;
@@ -1630,7 +1632,7 @@ wrongUsage() unless
 	$fresh || $reset ||
 	@$loadComponents || @$dropComponents ||
 	keys %$options || keys %$variants ||
-	keys %$setLockeds || $comMode;
+	keys %$setLockeds || $comMode || $configCenter;
 
 my $cfg = Fvwm::ThemeCfg->new('current', $reset? 'default': 'current', $fresh);
 if ($comMode) {
@@ -1640,12 +1642,77 @@ if ($comMode) {
 	$cfg->comLoop($comName);
 	# we never return here
 }
+if ($configCenter) {
+	$cfg->getInfoForConfigCenter();
+	# we never return here
+}
 $cfg->useNewComponents($loadComponents, $dropComponents);
 $cfg->setNewComponentValues($options, $variants, $setLockeds);
 $cfg->generateThemesRc();
 $cfg->save() if $cfg->isModified();
 
 exit(0);
+
+#-----------------------------------------------------------------------------
+#
+# build info for the config center
+#
+#-----------------------------------------------------------------------------
+
+sub  getInfoForConfigCenter {
+	my $self = shift;
+	my $return = "";
+	my $user = "";
+	my $site = "";
+	my $cc;
+
+	my @components = ("globalfeel");
+	my $allThemes = getAllThemes();
+	my $userThemes = getAllThemes(0,1);
+
+	$return .= "$self->{'cc'}->{'styles'}->{'read-file'}\n"
+		if defined $self->{'cc'}->{'styles'}->{'read-file'};
+	$return .= "$self->{'cc'}->{'extra-styles'}->{'read-file'}\n"
+		if defined $self->{'cc'}->{'extra-styles'}->{'read-file'};
+	my $file = "";
+	$file = $self->{'cc'}->{'modules/main'}->{'read-file'}
+		if defined $self->{'cc'}->{'modules/main'}->{'read-file'};
+	$file = $self->{'cc'}->{'modules'}->{'read-file'}
+		if defined $self->{'cc'}->{'modules'}->{'read-file'} && $file eq "";
+	if ($file ne "") {
+		$file = "$file:styles";
+		$return .= "$file\n" if -f $file;
+	}
+	$file = "";
+	$file = $self->{'cc'}->{'settings/autoraise'}->{'read-file'}
+		if defined $self->{'cc'}->{'settings/autoraise'}->{'read-file'};
+	$return .= "$file\n" if $file =~ /modules$/ && -f $file;
+	$return .= "END\n";
+
+	foreach (@$userThemes) {
+		$return .= "$_\n";
+	}
+	my $c;
+	foreach $c (@components) {
+		$return .= "configuration of $c for the Config Center\n";
+		$cc = $self->{'cc'}->{$c}->{'theme'};
+		$return .=  (defined $c) ? "$cc\n" : "\n";
+		foreach $theme (@$allThemes) {
+			my ($comps, $groups) = getThemeComponentsAndGroups($theme);
+			my $test = 0;
+			foreach (@$comps) { $test = 1 if $_ eq $c }
+			next if ! $test;
+			$return .= "$theme\n";
+			my $themeCfg = new Fvwm::ThemeCfg($theme);
+			$dd = $themeCfg->getComponentCfg($c);
+			my $file = (defined $dd->{'read-file'}) ? $dd->{'read-file'} : "";
+			$return .= "$file\n";
+		}
+	}
+
+	print $return;
+	exit(0);
+}
 
 #-----------------------------------------------------------------------------
 #
@@ -2891,7 +2958,7 @@ Other examples:
   fvwm-themes-config --variant settings/stroke=2  # turn on stroke
   fvwm-themes-config --variant settings/stroke=0  # use default (1)
   fvwm-themes-config --option bindings:switch-mouse-2-3=no
-  fvwm-themes-config --set-locked colors=1 --set-locked desktop=0
+  fvwm-themes-config --set-locked colors=1 --set-locked globalfeel=0
 
   fvwm-themes-config --install --site metallic.tar.gz wooden.tar.gz
 

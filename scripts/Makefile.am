@@ -7,6 +7,6 @@ config_DATA = \
 	FvwmApplet-Mixer FvwmScript-IconBrowser FvwmScript-Menus \
 	FvwmScript-NoteMessage FvwmScript-Browser FvwmScript-Help \
 	FvwmScript-ThemesCenter FvwmScript-ThemeOptions \
-	FvwmScript-ColorSelector
+	FvwmScript-ColorSelector FvwmScript-ConfigCenter
 
 EXTRA_DIST = $(config_DATA)

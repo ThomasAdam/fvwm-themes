@@ -1,3 +1,18 @@
+2000-10-25  olicha  <olivier.chapuis@free.fr>
+
+	* themes/*/globalfeel:
+	* themes/default/theme.cfg:
+	rename desktop to globalfeel and use the new spec.
+
+	* scripts/FvwmScript-ConfigCenter:
+	* scripts/Makefile.am:
+	* bin/fvwm-themes-script.in:
+	* bin/fvwm-themes-config.in:
+	New FvwmScript for editing globalfeel (and other components in the
+	future). The script use a "com loop" in fvwm-themes-script. There is
+	a new option (not documented) to fvwm-themes-config which produce 
+	the information that fvwm-themes-script need for this "com loop".
+	
 2000-10-25  migo  <migo@homemail.com>
 
 	* themes/cde/images/module/{large,small}/panel-[ahim]*.xpm

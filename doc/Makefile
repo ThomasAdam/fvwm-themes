@@ -62,6 +62,7 @@ POST_UNINSTALL = :
 FT_DATADIR = ${ROOT_PREFIX}/usr/local/share/fvwm
 FT_FVWMFORM_DIR = ${FT_DATADIR}
 FT_FVWMSCRIPT_DIR = ${FT_DATADIR}
+FT_VERSION_INFO = FVWM Themes version 0.3.21 - on oct 23 2000 at 21:26:57
 FVWM_BINDIR = /usr/local/bin
 FVWM_CONFIG = /usr/local/bin/fvwm-config
 FVWM_DEFAULT_IMAGEPATH = /usr/include/X11/bitmaps:/usr/include/X11/pixmaps

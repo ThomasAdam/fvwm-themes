@@ -49,7 +49,7 @@ Begin
     Begin
 	ChangeTitle 1 {Sélectionnez une Couleur avec les Palettes}
 	ChangeTitle 14 {Couleur Sélectionnée:}
-	ChangeTitle 994 {Aide}
+	ChangeTitle 993 {Aide}
 	ChangeTitle 994 {Annuler}
 	# it will better to put the documentations file under 
 	# datadir/fvwm/local ?
