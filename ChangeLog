@@ -3,6 +3,12 @@
 	* bin/fvwm-themes-config.in:
 	enable dropping colors-decor@
 
+	* themes/default/menus:
+	Restore pure Maximize command in WindowOps menus, because otherwise
+	we loose mwm application hints. And I think it is good to have
+	unconfigurable actions in these menus. I think Alt-F10 should also
+	be pure Maximize, a user may always redefine it in bindings-extra...
+
 2001-05-30  migo  <migo@homemail.com>
 
 	* themes/multichoice/fonts*:

@@ -257,7 +257,7 @@ AddToMenu   MenuFvwmWindowOps "Window Operations" Title
 + "&Move%menu/window-move.xpm%"                 Move
 + "&Resize%menu/window-resize.xpm%"             Resize
 + "(De)&Iconify%menu/window-iconify.xpm%"       Iconify
-+ "(Un)Ma&ximize%menu/window-maximize.xpm%"     Pick FuncFvwmSimpleMaximize toggle
++ "(Un)Ma&ximize%menu/window-maximize.xpm%"     Maximize
 + "(Un)Shade%menu/window-shade.xpm%"            WindowShade
 + "(Un)Stick%menu/window-stick.xpm%"            Stick
 + "R&aise%menu/window-raise.xpm%"               Raise
@@ -285,7 +285,7 @@ AddToMenu   MenuFvwmWindowOps2
 + "&Move	Alt-F7%menu/window-move.xpm%"      Move
 + "&Resize	Alt-F8%menu/window-resize.xpm%"    Resize
 + "&Iconify	Alt-F9%menu/window-iconify.xpm%"   Iconify
-+ "Ma&ximize	Alt-F10%menu/window-maximize.xpm%" Pick FuncFvwmSimpleMaximize toggle
++ "Ma&ximize	Alt-F10%menu/window-maximize.xpm%" Maximize
 + "R&aise	Alt-F5%menu/window-raise.xpm%"     RaiseLower
 + "" Nop
 + "&Close	Alt-F4%menu/window-close.xpm%"     Close
@@ -300,7 +300,7 @@ AddToMenu   MenuFvwmWindowOps3
 + "&Move	Alt-F7"  Move
 + "&Resize	Alt-F8"  Resize
 + "&Iconify	Alt-F9"  Iconify
-+ "Ma&ximize	Alt-F10" Pick FuncFvwmSimpleMaximize toggle
++ "Ma&ximize	Alt-F10" Maximize
 + "R&aise	Alt-F5"  RaiseLower
 + "" Nop
 + "&Close	Alt-F4"  Close
