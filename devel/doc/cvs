@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# You may put this cvs wrapper to ~/bin.
+# Developers may put this cvs wrapper to ~/bin.
 
 $PASSWORD = 'MY_PASSWORD';
 $CVS_EXE = "/usr/bin/cvs";
