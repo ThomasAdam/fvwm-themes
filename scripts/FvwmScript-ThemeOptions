@@ -25,7 +25,7 @@ Font		-adobe-helvetica-bold-r-*-*-12-*
 Init
 Begin
 
-    # Arguments
+    # --------------------------------------- Arguments
     Set $i = 1
     Set $arg = (GetScriptArgument $i)
     While $arg <> {} Do
@@ -58,28 +58,61 @@ Begin
 
     #Set $Lang = {en}
     #Set $Lang = {ru}
-    # Internationalization. 
+    # ------------------------------- Internationalization. 
     If $Lang == {} Then
     Begin
 	Set $cmd = {echo "$LANG" | cut -c1-2}
 	Set $Lang = (GetOutput $cmd 1 -1)
     End
-    Set $locateSet = 0
-    If $Lang == {fr} Then
+
+
+    Set $msg = {}
+    Set $id = {}
+    Set $cmd = {fvwm-themes-script --get-msg }FvwmScript-ThemeOption{ --lang }$Lang
+    Set $MSG = (GetOutput $cmd 1 -1)
+    Set $index = 0
+    Set $notdone = 1
+    While $notdone == 1 Do
     Begin
-	Set $locateSet = 1
-	Set $l_for ={pour}
-	ChangeTitle 6 {Envoie des informations au sИlecteur de thХmes}
-	ChangeTitle 97 {SИlectionner}
-	ChangeTitle 98 {OK}
-	ChangeTitle 99 {Quitter}
-    End
-    If $Lang == {ru} Then
+	Set $index = (Add $index 1)
+	Set $id = (StrCopy $MSG $index (Add $index 11))
+	Set $index = (Add $index 12)
+	Set $tmp = (StrCopy $MSG $index (Add $index 3))
+	Set $index = (Add $index 4)
+	Set $pos = (Add $index $tmp)
+	Set $msg = (StrCopy $MSG $index $pos)
+	Set $index = (Add $index $tmp)
+	#Do {Echo id:}$id{:msg:}$msg{:}
+
+	If $index > 9999 Then
+	    Set $notdone = 0
+	If $id == {END         } Then
+	    Set $notdone = 0
+	If $id == {} Then
+	    Set $notdone = 0
+
+	If $id == {SendModif   } Then
+	    ChangeTitle 6 $msg
+	If $id == {Set         } Then
+	    ChangeTitle 97 $msg
+	If $id == {SetQuit     } Then
+	    ChangeTitle 98 $msg
+	If $id == {Quit        } Then
+	    ChangeTitle 99 $msg
+	If $id == {for         } Then
+	    Set $l_for = $msg
+	If $id == {ChangeFont  } Then
+	    Set $ChangeFont = $msg
+	If $id == {SelFont     } Then
+	    Set $SelFont = $msg
+	If $id == {ShadeFont   } Then
+	    Set $ShadeFont = $msg
+	If $id == {FixedFont   } Then
+	    Set $FixedFont = $msg
+	End
+
+    If $ChangeFont == 1 Then
     Begin
-	Set $locateSet = 1
-	Set $SelFont = {-cronyx-times-bold-r-*-*-14-*-*-*-*-*-koi8-*}
-	Set $ShadeFont = {-cronyx-times-medium-r-*-*-12-*-*-*-*-*-koi8-*}
-	Set $FixedFont = {-cronyx-fixed-medium-r-semicondensed--*-*-*-*-*-*-koi8-*}
 	ChangeFont 1 $SelFont
 	ChangeFont 2 $SelFont
 	ChangeFont 3 $SelFont
@@ -88,21 +121,9 @@ Begin
 	ChangeFont 97 $SelFont
 	ChangeFont 98 $SelFont
 	ChangeFont 99 $SelFont
-	Set $l_for ={для}
-	ChangeTitle 6 {Синхронизация изменений}
-	ChangeTitle 97 {Выбор}
-	ChangeTitle 98 {Согласие}
-	ChangeTitle 99 {Выход}
-    End
-    If $locateSet == 0 Then
-    Begin
-	Set $l_for ={for}
-	ChangeTitle 6 {Send Modifications to the Themes Selector}
-	ChangeTitle 97 {Set}
-	ChangeTitle 98 {Set & Quit}
-	ChangeTitle 99 {Quit}
     End
 
+    # ------------------------------------- com and init
     # to send fvwm-themes-com command
     Set $SendMsgAndGet = {fvwm-themes-com --name config-}$pid{ --lock-and-get --message=}
     Set $SendMsgAndGetBuff = {fvwm-themes-com --name config-}$pid{ --lock-and-get --buffer-name config-bis-}$pid{ --message=}

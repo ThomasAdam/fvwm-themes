@@ -74,7 +74,6 @@ Begin
 	Set $Lang = (GetOutput $cmd 1 -1)
     End
 
-    #Do {Echo New Methde}
     Set $msg = {}
     Set $id = {}
     Set $cmd = {fvwm-themes-script --get-msg }FvwmScript-ThemesCenter{ --lang }$Lang
@@ -276,7 +275,6 @@ Begin
 	If $id == {FixedFont   } Then
 	    Set $FixedFont = $msg
     End
-    Do {Echo END}	
 
     ChangeTitle 53 $l_Ok
     ChangeTitle 54 $l_Cancel

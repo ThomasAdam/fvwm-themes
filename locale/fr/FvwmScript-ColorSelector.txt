@@ -24,7 +24,7 @@ noir à blanc avec cette couleur au milieu.
 
 Finalement, vous pouvez modifier les valeurs
 du rouge (R), du vert (G) et du bleu (B)
-avec les petit boutons.
+avec les petits boutons.
 
 
 Pour les Bugs:

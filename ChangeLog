@@ -1,3 +1,19 @@
+2000-11-27  olicha  <olivier.chapuis@free.fr>
+
+	* locale/{fr,en,ru}/FvwmScript-ThemeOption.msg:
+	* script/FvwmScript-ThemesOption:
+	Use the new locale methode for ThemesOption
+
+	* locale/en/FvwmScript-ThemesCenter.txt:
+	An obvious misprint fix. Remove some debuging code
+
+	* scripts/FvwmScript-Help:
+	Fixed the --title option
+
+	* scripts/FvwmScript-Menu:
+	* themes/default/menus
+	Edit only MenuFvwmPersonal
+	
 2000-11-26  olicha  <olivier.chapuis@free.fr>
 
 	* locale/{fr,en}/FvwmScript-ColorSelector.msg:

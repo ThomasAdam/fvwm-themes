@@ -73,7 +73,8 @@ Begin
     Set $pid = (GetOutput $cmd 1 -1)
 
     # Run fvwm-themes-menuapp until the end of the script
-    Do {Exec fvwm-themes-menuapp --com-mode --com-name=menuapp-}$pid{ &}
+    Set $MenuFilesList={$FVWM_USERDIR/themes/personal/menus-extra}
+    Do {Exec fvwm-themes-menuapp --menu-files=}$MenuFilesList{ --com-mode --com-name=menuapp-}$pid{ &}
 
     # to send fvwm-themes-com command
     Set $SendMsgAndGet = {fvwm-themes-com --name menuapp-}$pid{ --lock-and-get --message=}

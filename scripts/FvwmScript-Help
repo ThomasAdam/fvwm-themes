@@ -38,7 +38,7 @@ Begin
 	Set $j = (Add $i 1)
 	If $arg == {--Message} Then
 	    Set $Message = (GetScriptArgument $j)
-  	If $arg == {--Title} Then
+  	If $arg == {--title} Then
 	    Set $Title = (GetScriptArgument $j)
 	If $arg == {--text-colorset} Then
 	    Set $TextColorset = (GetScriptArgument $j)
@@ -62,7 +62,6 @@ Begin
 	    Set $cmd = $cmd { --lang }$Lang
  	Set $Doc = (GetOutput $cmd 1 -1)
  	ChangeTitle 2 $Doc
-	ChangeTitle 1 $Doc
     End
     
 End

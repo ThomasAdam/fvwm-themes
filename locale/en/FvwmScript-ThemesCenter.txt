@@ -17,7 +17,7 @@ Contents:
 
 <sec>1. Themes Selector
 
-There is the the list of all found themes at the top left. When you select
+There is the list of all found themes at the top left. When you select
 one of these themes the list of the components of this theme are displayed
 at the top right. Then, you can either select all components of this
 theme using the left "Set" button, only the look components using the button
