@@ -1,0 +1,68 @@
+Here is an information regarding fvwm-themes project on SourceForge.
+This information is valid for other projects as well.
+
+Web Services
+------------
+
+The developement page is at https://sourceforge.net/projects/fvwm-themes/ .
+
+Shell account
+-------------
+
+If you are a fvwm-themes developer, you should have an account at
+shell1.sourceforge.net. Use ssh1 to connect. ssh2 on top of ssh1 is optional.
+You should be a member of fvwm-themes unix group on that and others machines.
+
+Home Page
+---------
+
+The URL is: http://fvwm-themes.sourceforge.net/ .
+It is located in /home/groups/fvwm-themes/htdocs/ on shell1.
+
+Public FTP
+----------
+
+The URL is: ftp://projects.sourceforge.net/pub/fvwm-themes/ .
+It is located in /home/groups/ftp/pub/fvwm-themes/ on shell1.
+
+File Releases
+-------------
+
+The URL is: http://download.sourceforge.net/fvwm-themes/?M=D .
+With counts: https://sourceforge.net/project/filelist.php?group_id=1738 .
+
+Creating new files
+------------------
+
+When you create new files in Home Page or Public FTP, make sure all files
+have group fvwm-themes and mode g+w, i.e. if needed execute:
+  chgrp fvwm-themes file
+  chmod 664 file  # 2775 for directories and executables
+
+If you put 'umask 2' command in your ~/.profile (bash) or ~/.login (tcsh)
+the second command (chmod 664 file) will not be needed. Also it is usually
+enough (if your umask is 2) to setup the main directory with mode 2775 and
+give it a group fvwm-themes, and all new files and subdirectories in it will
+be with correct permissions automatically.
+
+Compile Farm
+------------
+
+There are several machines on SourcForge with different linux distributions
+and FreeBSD: linux.compile.sourceforge.net & bsd.compile.sourceforge.net.
+You can test building, installing and running fvwm-themes on them, like:
+  make --prefix ../test-prefix install
+  ../test-prefix/bin/fvwm-themes-config --fresh
+
+CVS
+---
+
+Read instructions on https://sourceforge.net/cvs/?group_id=1738 and
+http://fvwm.org/cvs.html to learn how to use cvs.
+
+Every change should be documented in ChangeLog.
+When you commit, always use a one line (or several lines) log, i.e.:
+  cvs -m "updated X; added Y" commit
+  cvs -F file.log commit
+
+Good luck!
