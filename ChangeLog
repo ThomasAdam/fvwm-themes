@@ -7,6 +7,26 @@
 	* locale/*/.cvsignore:
 	added
 
+	* bin/fvwm-themes-images.in:
+	rewordings in documentation, option name changes, other changes;
+	renamed options are now: --sky, --colorschemes{,-fores,-ext},
+	--border*, --setroot{,-prog}; most of delimiters are changed
+	from colon to comma, most of the old syntax is still supported
+
+	* themes/cde/background/main"
+	* themes/default/background.d/stone-yellow:
+	* themes/multichoice/background/*:
+	* themes/redmond98/background/*:
+	changes to comply with the new fvwm-themes-images API
+
+	* themes/multichoice/theme.cfg:
+	* themes/multichoice/background/23:
+	added reversed fvwm banner, not quite what I wanted;
+	pity, we can't draw sky or tile on transparent color of the image;
+	also we can have a mode: transparent --border is applied before
+	--tile or --sky, this probably is always done for transparent border;
+	I will not implement this myself, though. :)
+
 2000-11-15  olicha  <olivier.chapuis@free.fr>
 
         * locale/en/FvwmScript-ColorSelector.txt:

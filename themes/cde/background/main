@@ -2,7 +2,7 @@ esyscmd({{awk '{ print "define(CDE_COLOR" NR ", {{" $1 "}})" }' }}CDE_COLORS_SCH
 
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground
-+ I Exec exec fvwm-themes-images --cde-sky --sky-colors "CDE_COLOR3" --set-background
++ I Exec exec fvwm-themes-images --sky --sky-colors "CDE_COLOR3" --setroot
 
 DestroyFunc FuncFvwmStopThemeBackground
 AddToFunc   FuncFvwmStopThemeBackground

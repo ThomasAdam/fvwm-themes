@@ -1,6 +1,6 @@
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground
-+ I Exec exec fvwm-themes-images --cde-sky --sky-colors "#000000:#ff0000:#ffff00:#00ff00:#0000ff:#a020f0:#000000" --pattern-type 1 --set-backg --be-fast
++ I Exec exec fvwm-themes-images --sky --sky-colors "#000000,#ff0000,#ffff00,#00ff00,#0000ff,#a020f0,#000000" --pattern-type 1 --setroot --be-fast
 #+ I Exec bggen black red yellow green blue purple black | xv -root -quit  -
 
 DestroyFunc FuncFvwmStopThemeBackground

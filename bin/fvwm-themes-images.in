@@ -751,7 +751,8 @@ sub processSky() {
 
 	## evaluate the second gradient color ourselves if only one is given
 	## this is hilightColor() with a different factor...
-	if ($skyColorsOpt && $skyColorsOpt !~ /,/) {
+	### migo: colon as a delimiter will be removed soon
+	if ($skyColorsOpt && $skyColorsOpt !~ /[,:]/) {
 		my $color = encode16bpp($skyColorsOpt);
 		my $a = bppTo3intArray($color);
 		my $i;
@@ -763,7 +764,7 @@ sub processSky() {
 		$skyColorsOpt = encode16bpp($a) . ",$skyColorsOpt";
 	}
 
-	my @tmp = split(',', $skyColorsOpt);
+	my @tmp = split('[,:]', $skyColorsOpt);
 	my $c;
 	foreach $c (@tmp) {
 		$skyColors->[$nbrColors] = bppTo3intArray(encode16bpp($c));

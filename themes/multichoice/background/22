@@ -1,6 +1,6 @@
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground
-+ I Exec exec fvwm-themes-images --in-file $FT_DATADIR/themes/multichoice/images/banner/fvwm-red.xpm -set-backg --tile $FT_DATADIR/images/background/as-back.xpm --colorize --colorize-colors "random:#ffffff" --be-fast
++ I Exec exec fvwm-themes-images --in-file $FT_DATADIR/themes/multichoice/images/banner/fvwm-red.xpm -setroot --tile $FT_DATADIR/images/background/as-back.xpm --colorize --colorize-colors "random,#ffffff" --be-fast
 
 DestroyFunc FuncFvwmStopThemeBackground
 AddToFunc   FuncFvwmStopThemeBackground

@@ -1,6 +1,6 @@
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground
-+ I Exec exec fvwm-themes-images --in-file $FT_DATADIR/themes/multichoice/images/background/fvwm-tiger-tail.xpm --colorize --colorize-colors "#ffffff:#000000" -set-backg
++ I Exec exec fvwm-themes-images --in-file $FT_DATADIR/themes/multichoice/images/background/fvwm-tiger-tail.xpm --colorize --colorize-colors "#ffffff,#000000" -setroot
 
 DestroyFunc FuncFvwmStopThemeBackground
 AddToFunc   FuncFvwmStopThemeBackground

@@ -1,6 +1,6 @@
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground
-+ I Exec exec fvwm-themes-images --cde-sky --sky-colors "random:random" --pattern-type square:50 --sky-comp c --set-backg --pattern-y 100
++ I Exec exec fvwm-themes-images --sky --sky-colors random,random --pattern-type square:50 --sky-comp c --setroot --pattern-y 100
 
 DestroyFunc FuncFvwmStopThemeBackground
 AddToFunc   FuncFvwmStopThemeBackground

@@ -1,6 +1,6 @@
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground
-+ I Exec exec fvwm-themes-images --colorize --colorize-colors "#505000:#e0e000" --set-background --in-file $FT_DATADIR/images/background/stone.xpm
++ I Exec exec fvwm-themes-images --colorize --colorize-colors "#505000,#e0e000" --setroot --in-file $FT_DATADIR/images/background/stone.xpm
 
 DestroyFunc FuncFvwmStopThemeBackground
 AddToFunc   FuncFvwmStopThemeBackground

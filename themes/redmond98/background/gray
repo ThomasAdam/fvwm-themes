@@ -1,3 +1,3 @@
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground
-+ I Exec exec fvwm-themes-images --colorize --colorize-colors "#000000:#ffffff" --colorize-rule min --set-background --in-file $FT_DATADIR/images/background/fvwm-flying.xpm
++ I Exec exec fvwm-themes-images --colorize --colorize-colors "#000000,#ffffff" --colorize-rule min --setroot --in-file $FT_DATADIR/images/background/fvwm-flying.xpm
