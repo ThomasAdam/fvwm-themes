@@ -17,6 +17,9 @@
 	removed debug prints (for minimal reload); reload kde and gnome
 	menu settings together with menustyle@ on minimal reload
 
+	* configure.in:
+	the version matching code didn't work with some sort, hopefully fixed
+
 2001-03-28  migo  <migo@homemail.com>
 
 	* migo/images/decor/title-{in,}active.xpm: restored 1 empty line
