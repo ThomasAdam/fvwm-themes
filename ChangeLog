@@ -17,6 +17,9 @@
 	* themes/redmond98/buttons:
 	small change in left/right alightment; I know, flat is not consistent
 
+	* themes/redmond98/windowlook:
+	minor change
+
 2001-04-02  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-start.in: fixed a typo

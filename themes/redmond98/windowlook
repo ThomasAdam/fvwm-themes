@@ -4,9 +4,7 @@ Style "*"	IconFont fixed
 Style "*"	BorderWidth 5, HandleWidth 5
 Style "*"	FvwmBorder, FirmBorder
 
-#BorderStyle	Simple
-BorderStyle	Inactive -- HiddenHandles NoInset Raised
-BorderStyle	Active   -- HiddenHandles NoInset Raised
+BorderStyle	Simple -- HiddenHandles NoInset Raised
 
 TitleStyle	LeftJustified
 TitleStyle	-- Flat
