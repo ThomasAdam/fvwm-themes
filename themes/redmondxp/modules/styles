@@ -1,5 +1,5 @@
-Style "FvwmButtons-*Panel" NoTitle, TitleAtBottom, NoHandles, Sticky, \
-	WindowListSkip, CirculateSkip, StaysPut, \
+Style "FvwmButtons-*Panel" NoTitle, TitleAtBottom, NoHandles, NoBorder, \
+	Sticky, WindowListSkip, CirculateSkip, StaysPut, \
 	NeverFocus, FixedSize, FixedPosition
 Style "FvwmIconMan" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
 	NoHandles, TitleAtBottom

@@ -3,6 +3,9 @@
 	* themes/redmondxp/modules/FvwmButtons-Panel:
 	correct size and make it independent from a screen resolution
 
+	* themes/redmondxp/modules/styles:
+	make panel without borders, but it should have a top border
+
 	* themes/default/settings.cfg:
 	fixed
 
