@@ -1,6 +1,3 @@
-Style "FvwmButtons-WMaker*Applets" NoTitle, NoHandles, BorderWidth 0, Sticky, \
-	WindowListSkip, CirculateHit, NoIcon, TitleAtTop
-
 DestroyModuleConfig FvwmButtons-WMaker*Applets*
 
 #-------------------------------------

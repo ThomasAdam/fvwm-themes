@@ -11,11 +11,11 @@ Style FvwmPager-Single NoTitle, Sticky, WindowListSkip, CirculateSkip, \
 Style FvwmIconMan NoTitle, NoHandles, Sticky, WindowListSkip, \
 	CirculateSkip, BorderWidth 0, StaysPut, TitleAtTop 
 
-#DestroyFunc FuncModulesThemeDestroyStyle
-#AddToFunc   FuncModulesThemeDestroyStyle
-#+ I DestroyStyle FvwmButtons-As
-#+ I DestroyStyle FvwmButtons-AsPanel
-#+ I DestroyStyle FvwmButtons-AsAppletsPanel
-#+ I DestroyStyle FvwmPager-Desker
-#+ I DestroyStyle FvwmPager-Single
-#+ I DestroyStyle FvwmIconMan
+DestroyFunc FuncFvwmDestroyModulesThemeStyle
+AddToFunc   FuncFvwmDestroyModulesThemeStyle
++ I DestroyStyle FvwmButtons-As
++ I DestroyStyle FvwmButtons-AsPanel
++ I DestroyStyle FvwmButtons-AsAppletsPanel
++ I DestroyStyle FvwmPager-Desker
++ I DestroyStyle FvwmPager-Single
++ I DestroyStyle FvwmIconMan

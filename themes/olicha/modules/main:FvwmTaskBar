@@ -1,6 +1,3 @@
-Style "FvwmTaskBar" NoTitle, Sticky, WindowListSkip, TitleAtBottom, \
-	CirculateSkip, NoHandles
-
 DestroyModuleConfig FvwmTaskBar: *
 
 *FvwmTaskBar: Geometry +0-0

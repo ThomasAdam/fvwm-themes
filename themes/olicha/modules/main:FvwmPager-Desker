@@ -1,6 +1,3 @@
-Style "FvwmPager-Desker" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
-	TitleAtBottom
-
 AddToMenu MenuFvwmWindowMove "" Nop
 + "Desk	One%menu/window-move.xpm%"	MoveToDesk 0 0
 + "Desk	Two%menu/window-move.xpm%"	MoveToDesk 0 1

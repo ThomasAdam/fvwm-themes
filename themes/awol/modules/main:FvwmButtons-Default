@@ -1,6 +1,3 @@
-Style "FvwmButtons-Default" NoTitle, NoIcon, NoHandles, Sticky, \
-	WindowListSkip, BorderWidth 4, CirculateSkip, MouseFocus, TitleAtBottom
-
 DestroyModuleConfig FvwmButtons-Default: *
 *FvwmButtons-Default: Colorset 10
 

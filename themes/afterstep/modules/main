@@ -34,9 +34,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmStartChosenPager
 + I DestroyFunc FuncFvwmStartChosenButtons
 + I DestroyFunc FuncFvwmStartNormalIcons
-# cause some core dump unfortunately ...
-#+ I FuncModulesThemeDestroyStyle
-#+ I DestroyFunc FuncModulesThemeDestroyStyle
++ I FuncFvwmDestroyModulesThemeStyle
++ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
 
 # ----------------------------------------------------------------------------
 # Theme module menus

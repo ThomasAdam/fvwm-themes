@@ -1,6 +1,3 @@
-Style "FvwmButtons-Dalo" NoTitle, NoIcon, NoHandles, Sticky, WindowListSkip, \
-	BorderWidth 4, CirculateSkip, MouseFocus, TitleAtBottom
-
 DestroyModuleConfig FvwmButtons-DaLo: *
 *FvwmButtons-DaLo: Colorset 10
 

@@ -58,6 +58,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmStopWMakerButtons
 + I DestroyFunc FuncFvwmStopXappletsButtons
 + I DestroyFunc FuncFvwmChangeApplets
++ I FuncFvwmDestroyModulesThemeStyle
++ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
 
 # ----------------------------------------------------------------------------
 # Theme module menus
@@ -223,6 +225,7 @@ AddToFunc   FuncFvwmChangeApplets
 # ----------------------------------------------------------------------------
 # Modules configuration
 
+Read themes/olicha/modules/main:styles
 Read themes/olicha/modules/main:FvwmButtons-StartApps
 Read themes/olicha/modules/main:FvwmButtons-Pager
 Read themes/olicha/modules/main:FvwmPager-Single

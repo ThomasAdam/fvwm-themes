@@ -1,3 +1,8 @@
+2000-10-09  olicha  <olivier.chapuis@free.fr>
+
+	* themes/{afterstep,awol,blackbox,olicha}/*
+	moving styles in a separted file main:styles
+	
 2000-10-07  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in (man page):

@@ -18,9 +18,6 @@ AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
 + "Page	2 2%menu/window-move.xpm%"	Pick All ($r) MoveToPage 1 1
 + "Page	3 2%menu/window-move.xpm%"	Pick All ($r) MoveToPage 2 1
 
-Style "FvwmPager-Single"  NoTitle, Sticky, NoHandles, WindowListSkip, \
-	CirculateSkip
-
 DestroyModuleConfig FvwmPager-Single: *
 *FvwmPager-Single: Geometry +5000+5000
 

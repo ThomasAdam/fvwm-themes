@@ -1,6 +1,3 @@
-Style "FvwmButtons-Fvwm*Applets" NoTitle, NoHandles, BorderWidth 0, Sticky, \
-	WindowListSkip, CirculateSkip, TitleAtTop
-
 DestroyModuleConfig FvwmButtons-FvwmApplets: *
 DestroyModuleConfig FvwmButtons-FvwmClockApplets: *
 

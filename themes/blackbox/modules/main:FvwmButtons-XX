@@ -1,8 +1,3 @@
-# BorderWidth 1 is useful for 800 vs 1024 screen ... do we need to use M4 ?
-Style "FvwmButtons-XX" BorderWidth 1, NoTitle, NoHandles, Sticky, FVWMBorder
-Style "FvwmButtons-XX" WindowListSkip
-Style "FvwmButtons-XX" NeverFocus, CirculateSkip, TitleAtBottom
-
 DestroyFunc  FuncFvwmButtons-XXNext
 AddToFunc    FuncFvwmButtons-XXNext
 + I Next (!Iconic CurrentPage) Focus

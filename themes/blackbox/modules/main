@@ -28,10 +28,13 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyModuleConfig FvwmPager-Single: *
 + I DestroyModuleConfig FvwmPager-Desker: *
 + I DestroyModuleConfig FvwmIconMan: *
-+ I DestroyFunc FuncFvwmStartChosenIconMan
-+ I DestroyFunc FuncFvwmStartChosenButtons
-+ I DestroyFunc FuncFvwmStartChosenPager
 + I DestroyFunc FuncFvwmStartNormalIcons
++ I DestroyFunc FuncFvwmButtons-XXNext
++ I DestroyFunc FuncFvwmButtons-XXPrev
++ I DestroyFunc FuncFvwmIconManWarpToMiddle
++ I DestroyFunc FuncFvwmIconFocusAndOptions
++ I FuncFvwmDestroyModulesThemeStyle
++ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
 
 # ----------------------------------------------------------------------------
 # Theme module menus
@@ -40,17 +43,16 @@ DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "BlackBox Modules" Title
 + "&XXButtons" 	FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-XX
 + "&Desker"     FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '0 3'
-+ "Icon&Man"    FuncFvwmRestartModule FvwmIconMan
 
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "BlackBox Modules" Title
 + "Stop &XXButtons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-XX
 + "Stop &Desker"    FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
-+ "Stop Icon&Man"   FuncFvwmStopModule FvwmIconMan
 
 # ----------------------------------------------------------------------------
 # Modules configuration
 
+Read themes/blackbox/modules/main:styles
 Read themes/blackbox/modules/main:FvwmPager-Single
 Read themes/blackbox/modules/main:FvwmPager-Desker
 Read themes/blackbox/modules/main:FvwmIconMan
