@@ -65,7 +65,8 @@ stable and unstable one, you should install fvwm-themes twice for each
 installation with different --with-fvwm-bindir parameters. Then run correct
 /path/[un]stable/fvwm-themes-start, everything else should work as expected.
 Just be aware that if you have different fvwm-themes versions installed,
-your ~/.fvwm/themes* files and directories may be out of sync. On problems
+your ~/.fvwm/themes* files and directories may be out of sync. If you
+always run fvwm-themes-start the problems should not happen. You may also
 do "Reset all to default", or "/path/[un]stable/fvwm-themes-config --reset".
 
 
