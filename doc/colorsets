@@ -6,6 +6,49 @@ internally colorsets 0 to 39, some colorsets are reserved for the future use.
 So, a user can freely use colorsets starting from 40 (for example, in his
 colors-extra@ component) if he ever needs any additional colorsets.
 
+Colorset N |          Meaning           |           Usage Examples
+-----------+----------------------------+-------------------------------------
+	 0 | default			| feedback windows
+	 1 | inactive window		| window/icon titles, windows in Pager
+	 2 | active window		| window/icon titles, windows in Pager
+	 3 | inactive borders		| window borders (may copy 1)
+	 4 | active borders		| window borders (may copy 2)
+	 5 | inactive menu item		| menus (may have pixmap or gradient)
+	 6 | active menu item		| menus (only bg/fg used)
+	 7 | greyed menu item		| menus (only fg used)
+	 8 | reserved			| for the fvwm-themes future use
+	 9 | reserved			| for the fvwm-themes future use
+	10 | modules, default		| Button Bar, Pager, other modules
+	11 | modules, default hilight	| Button Bar
+	12 | modules, special		| gradient for IconMan/IconBox
+	13 | 
+	14 | 
+	15 | 
+	16 | 
+	17 | 
+	18 | 
+	19 | 
+	20 | 
+	21 | 
+	22 | 
+	23 | 
+	24 | 
+	25 | 
+	26 | 
+	27 | 
+	28 | 
+	29 | 
+	30 | 
+	31 | 
+	32 | 
+	33 | 
+	34 | 
+	35 | 
+	36 | 
+	37 | 
+	38 | 
+	39 | 
+
 # ----------------------------------------------------------------------------
 #
 # I.   FVWM Colorsets (0 to 9)
