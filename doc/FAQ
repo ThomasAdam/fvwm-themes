@@ -79,10 +79,10 @@ The rc files themes-rc and themes-rc-2 are created by fvwm-themes-config.
 FVWM Themes should be loaded by fvwm-themes-start shell script, which
 initializes all needed files/directories if needed and starts fvwm as:
 
-  fvwm2 -f themes-rc
+  fvwm -f themes-rc
 
 To return to your .fvwm2rc configuration, replace a call to fvwm-themes-start
-with a call to fvwm2 executable in .xinitrc or other initialization file.
+with a call to fvwm executable in .xinitrc or other initialization file.
 
 See other questions if you want to extend menus, bindings, styles etc. used
 in fvwm-themes. You should create and edit files in ~/.fvwm/themes/personal/.
@@ -138,41 +138,71 @@ of creating new or changing existing components for more complex changes.
 
 A: You can either edit existing theme components (not recommended)
 or create your own theme 'personal' and put there the components
-that you like to overwrite or extend. Create ~/.fvwm/themes/personal dir.
+that you like to overwrite or extend.
 
-You may define your InitFunction (to start applications) and StartFunction
-in ~/.fvwm/themes/personal/startup file, just add to these functions.
-You may put other parts of FVWM configuration into this file as well,
-but this is not supported, use other files in personal directry for this.
-You should then load once startup component of personal theme using a menu.
+First create ~/.fvwm/themes/personal directory if you don't have it already.
+If you want you may create other theme directories than personal/ as well.
 
-Example: you want completely different menus. Copy themes/default/menus
-from your instalation to themes/personal/menus and edit this component.
-Generally it is recommended to leave the component 'menus' as is and
-only edit 'menus-programs' if you need to customize your applications.
+Here are several useful components that you may put into this directory.
 
-If you only want to extend (not overwrite) menus, create a file named
-themes/personal/menus-extra and use "AddToMenu SomeMenu". For example, in
-this file you can define entries of menu "MenuFvwmPersonal", which are not
-normally defined anywhere, they will be shown under the "Personal" submenu
-of the "Root Menu". After creating a new personal component, you need to
-choose 'Refresh with no cache' item from the theme management menu for
-your new created components to be reflected in the menu, then choose your
-component 'menus', 'menus-programs', 'menus-extra' or 'menus-programs-extra'
-from within the personal theme submenu. Use Ctrl-Alt-Mouse2 in case you
-didn't include MenuFvwmThemes menu in your root menu (MenuFvwmRoot).
+  * startup
 
-Another useful example is redefining customizable functions like
-FuncFvwmMaximize, FuncFvwmViewManPage and others in 'functions-appbind'
-component of your personal theme. To redefine only a few functions (not
-all), 'functions-extra' component can be used.
+    In this file you may define standard FVWM functions, InitFunction (to
+    start applications on FVWM startup) and StartFunction (to start modules
+    on startup and restart). Use "AddToFunc StartFunction" to do this.
+    You may put other parts of FVWM configuration into this file as well, but
+    this is not supported, use other files in personal/ directory for this.
 
-All these components 'startup', 'menus', 'menus-programs', 'menus-extra',
-'functions', 'functions-appbind', 'functions-extra' are standard, you don't
-need to define their dependences. In case you create non standard components
-you should also specify their dependences in theme.cfg of that theme.
+  * menus-extra
 
-See doc/creating-themes or ask on the lists if you still have problems.
+    This file may contain a definition of the MenuFvwmPersonal menu, that is
+    shown under the "Personal" submenu of the "Root Menu". For example, see
+    the supplied menus-extra file in the same directory as FAQ that you may
+    just copy and edit.
+
+  * functions-appbind
+
+    You may copy this file from themes/default/ directory to your
+    ~/.fvwm/themes/personal/ directory and edit it how ever you like.
+
+  * functions-appbind-extra
+
+    But rather than edit the entire functions-appbind file you may just
+    put the changed functions in functions-appbind-extra instead.
+    For example, you may customize functions like FuncFvwmMaximize,
+    FuncFvwmViewManPage in this file.
+
+  * menus-programs:
+
+    You may copy this file from themes/default/ directory to your
+    ~/.fvwm/themes/personal/ directory and edit it how ever you like.
+
+  * menus-programs-extra:
+
+    But rather than edit the entire menus-programs file you may redefine
+    only several menus in menus-programs-extra instead.
+
+  and so on... We suggest to create only *-extra files, but it is up to you.
+
+After creating a new personal component, you need to choose:
+
+  Themes Management -> Refresh -> Refresh with no cache
+
+from the menu. And then choose this new personal component:
+
+  Themes Management -> Personal -> menus-extra (or menus-programs-extra etc.)
+
+The "Themes Management" menu may be invoked either by clicking the
+mouse button 1 on the root window or by pressing Ctrl-Alt-Mouse2.
+
+All components mentioned above: 'startup', 'menus-extra', 'functions-bindapp',
+'functions-appbind-extra', 'menus-extra', 'menus-programs' and so on are
+standard, so you don't need to define their dependences. In more complex
+(and poweful) cases you may need to define component dependencies or/and
+component properties in theme.cfg file of that theme.
+
+Please read the doc/creating-themes file or ask on our lists if you need
+more help than that is answered here.
 ==============================================================================
 
 ------------------------------------------------------------------------------
@@ -295,7 +325,7 @@ Now the mouses motion:
 The mouse motion is drawn for your convention and if the the mouse motion is
 succeed (i.e., this motion is bound to some action) then the busy cursor is
 displayed during a fraction of second. See the Stroke and StrokeFunc entries
-of the fvwm2 man page for more information.
+of the fvwm man page for more information.
 You can add new stroke motions in ~/.fvwm/themes/personal/stroke-extra.
 Example:
 
@@ -303,8 +333,8 @@ Example:
 Stroke	N85258		0	R	A	FuncFvwmGame
 Stroke	N85258		0	W	M	FuncFvwmGame
 
-Redefining existing motion bindings is easy by redefining the above FuncFvwm*
-functions.
+Redefining the existing motion bindings is better be done by redefining the
+FuncFvwm* functions mentioned above.
 
 Q: Can I draw a penguin (using mouse strokes) to compile a kernel?
 A: Maybe. If you are a perfect painter. :) If not, stick to simple figures
@@ -333,7 +363,7 @@ You can skip the contents at the start responsible to manipulation of themes.
 2.6  Why changes done using X Configuration Scripts are not persistent?
 
 A: If you want the changes done using X Configuration Scripts (under the
-Fvwm Configuration submenu) to have effect your next fvwm sessions, just add
+Configuration submenu) to have effect your next fvwm sessions, just add
 the line
 
 	$HOME/.xinitrc-fvwm
@@ -397,32 +427,33 @@ you should define it in your personal modules-extra component.
 ------------------------------------------------------------------------------
 3.2  Can I use fvwm-themes under a session manager?
 
-A: Yes! First, you should start Fvwm-Themes in a special way. Put,
+A: Yes! First, you should start FVWM-Themes in a special way. Put,
 the following lines at the end of your "start X" file:
 
 	fvwm-themes-start --session a_name --no-start
 	exec the_sm_executable
 
 the --session option is optional, but this allows you to use a different
-Fvwm-Themes configuration when you use a given session manager and
-when you use Fvwm-Themes under a normal FVWM session.
+FVWM-Themes configuration when you use a given session manager and
+when you use FVWM-Themes under a normal FVWM session.
 
-Then start a window manager inside a session manager by fvwm-themes-start or
-(more correct) by 'fvwm2 -f themes-rc'.
+Then start a window manager inside your session manager by running
+fvwm-themes-start or (more correct) by 'fvwm -f themes-rc'.
 
 At the present time there is a special support for GNOME and a generic
-support (current->settings->Session Manager). If you want a special support
-for a given session manager ask the fvwm-themes developers.
+session support (current->settings->Session Manager). If you want/need a
+special (above the generic) support for a particular session manager, ask
+the fvwm-themes developers.
 ==============================================================================
 
 ------------------------------------------------------------------------------
 3.3  Can I use fvwm-themes with GNOME?
 
-A: Yes. You should have fvwm2 compiled with GNOME enabled (this a default)
+A: Yes. You should have fvwm compiled with GNOME enabled (this a default)
 and it is preferable to run fvwm under gnome-session. Start a gnome-session
-as explained in the question above (with, say, --session gnome) and use the
-control center to add fvwm-themes in your list of GNOME window manager
-(Name: Fvwm-Themes, Command: fvwm2 -f themes-rc, fvwm is a session managed
+as explained in the previous question (with, say, --session gnome) and use
+the Control Center to add fvwm-themes in your list of GNOME window manager
+(Name: FVWM-Themes, Command: fvwm -f themes-rc, fvwm is a session managed
 window manager). Then, you should select GNOME as Session Manager under
 (current->settings of the theme management menu). This gives to you the
 GNOME "button" menus: Shift-Mouse 1/2/3 and a special quit menu.
@@ -431,20 +462,20 @@ be used only under a fvwm-themes's gnome session. Moreover, this way, you
 can have a completely different configuration under a GNOME session (like
 starting different modules to take in account the GNOME panel, using GNOME
 background and thus disabling the theme backgrounds). In addition there are
-GNOME-specific fvwm settings (for menus, the panel) that you can use.
+GNOME-specific fvwm settings (for menus, the panel) that you can change.
 
-If you want a stays put  panel (i.e., a panel which can cover and be covered
-by normal windows) enable the panel stays put fvwm-themes option and
+If you want a stays put panel (i.e., a panel which can cover and be covered
+by normal windows) enable the "panel stays put" fvwm-themes option and
 disable any GNOME configuration options concerning such things (you may
 completely restart X for this panel setting to work fine).
 
-Also, do not forget that you can run GNOME applications with using neither
-the GNOME panel nor gnome-session. Again, Fvwm Themes has special components
-for this: you can get the system, user and "redhat" GNOME menu as well as
-Icon and MiniIcon Styles for GNOME applications. For GNOME icons to work
-with fvwm, you need to use the --enable-gnome-icons option to configure when
-you install fvwm-themes or you have to login later under the same user that
-ran "make install" and run "fvwm-themes-images --ft-install --gnome".
+You don't need GNOME panel or gnome-session to merely run GNOME applications.
+Again, FVWM Themes has special components for this: you can get the system,
+user and "redhat" GNOME menu as well as Icon and MiniIcon Styles for GNOME
+applications. For GNOME icons to work with fvwm, you need to use the
+--enable-gnome-icons option to configure when you install fvwm-themes or you
+may just login later as the same user that ran "make install" and run
+"fvwm-themes-images --ft-install --gnome".
 ==============================================================================
 
 ------------------------------------------------------------------------------
