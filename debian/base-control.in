@@ -1,11 +1,11 @@
-Source: fvwm-themes
+Source: fvwm-themes-@VERSION@
 Section: x11
 Priority: optional
 Maintainer: Andrei Mitrofanow <smilebef@web.de>
 Build-Depends: debhelper (>> 4.0.0)
 Standards-Version: 3.5.8
 
-Package: fvwm-themes
+Package: fvwm-themes-@VERSION@
 Architecture: any
 Suggests: xmessage, m4, awk, fvwm-themes-extra
 Conflicts: fvwm-themes-full
