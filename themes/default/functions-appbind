@@ -26,7 +26,7 @@ AddToFunc   FuncFvwmOpenURL
 
 DestroyFunc FuncFvwmRunInXterm
 AddToFunc   FuncFvwmRunInXterm
-+ I exec xterm -fg $[fg.cs35] -bg $[bg.cs35] -g 80x40 -fn 7x14 -fb 7x14bold +sb -ut -T "$0" -n "$0" -e $1
++ I exec xterm -fg $[fg.cs34] -bg $[bg.cs34] -g 80x40 -fn 7x14 -fb 7x14bold +sb -ut -T "$0" -n "$0" -e $1
 
 # ----------------------------------------------------------------------------
 # 'man fvwm-menu-directory' for details.

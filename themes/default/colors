@@ -192,17 +192,17 @@ AddToFunc   FuncFvwmTitleBackground
 #
 *FvwmTheme: Colorset 33 fg white, bg rgb:00/50/00, Plain, NoShape
 
-# dialog text area (FvwmScript, FvwmForm, xmessage, ft-xrdb)
-#
-*FvwmTheme: Colorset 34 fg black, bg rgb:A0/C8/A0, Plain, NoShape
-
 # application run in the terminal, text editor using ft-xrdb
 #
-*FvwmTheme: Colorset 35 fg rgb:FF/FF/E8, bg rgb:30/48/48, Plain, NoShape
+*FvwmTheme: Colorset 34 fg rgb:FF/FF/E8, bg rgb:30/48/48, Plain, NoShape
 
 # dialog main background (FvwmScript, FvwmForm, xmessage, ft-xrdb)
 #
-*FvwmTheme: Colorset 36 fg black, bg rgb:80/A0/80, Plain, NoShape
+*FvwmTheme: Colorset 35 fg black, bg rgb:80/A0/80, Plain, NoShape
+
+# dialog text area (FvwmScript, FvwmForm, xmessage, ft-xrdb)
+#
+*FvwmTheme: Colorset 36 fg black, bg rgb:A0/C8/A0, Plain, NoShape
 
 # --------------------------------------------------
 # Colorsets 37 to 39 are reserved for the future use.

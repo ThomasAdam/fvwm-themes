@@ -42,9 +42,9 @@ Colorset N |          Meaning           |           Usage Examples
         31 | admin terminal             | terminal for root (su)
         32 | remote terminal            | terminal with ssh/rsh/telnet
         33 | viewer terminal            | man, less, tail -f
-        34 | dialog text area           | FvwmScript, FvwmForm, xmessage
-        35 | console application        | top, editor
-        36 | dialog main area           | FvwmScript, FvwmForm, xmessage
+        34 | console application        | top, editor
+        35 | dialog main area           | FvwmScript, FvwmForm, xmessage
+        36 | dialog text area           | FvwmScript, FvwmForm, xmessage
         37 | reserved                   | for the fvwm-themes future use
         38 | reserved                   | for the fvwm-themes future use
         39 | reserved                   | for the fvwm-themes future use
@@ -245,17 +245,17 @@ AddToFunc   FuncFvwmTitleBackground
 #
 *FvwmTheme: Colorset 33 fg white, bg rgb:00/50/00, Plain, NoShape
 
-# dialog text area (FvwmScript, FvwmForm, xmessage, ft-xrdb)
-#
-*FvwmTheme: Colorset 34 fg black, bg rgb:A0/C8/A0, Plain, NoShape
-
 # application run in the terminal, text editor using ft-xrdb
 #
-*FvwmTheme: Colorset 35 fg rgb:FF/FF/E8, bg rgb:30/48/48, Plain, NoShape
+*FvwmTheme: Colorset 34 fg rgb:FF/FF/E8, bg rgb:30/48/48, Plain, NoShape
 
 # dialog main background (FvwmScript, FvwmForm, xmessage, ft-xrdb)
 #
-*FvwmTheme: Colorset 36 fg black, bg rgb:80/A0/80, Plain, NoShape
+*FvwmTheme: Colorset 35 fg black, bg rgb:80/A0/80, Plain, NoShape
+
+# dialog text area (FvwmScript, FvwmForm, xmessage, ft-xrdb)
+#
+*FvwmTheme: Colorset 36 fg black, bg rgb:A0/C8/A0, Plain, NoShape
 
 # --------------------------------------------------
 # Colorsets 37 to 39 are reserved for the future use.
@@ -331,5 +331,5 @@ AddToFunc   FuncFvwmStopColors
 # Exec exec xterm -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
 # Exec exec xterm -fg $[fg.cs32] -bg $[bg.cs32] -T "Remote" -e rsh tiger
 # Exec exec xterm -fg $[fg.cs33] -bg $[bg.cs33] -T "File Viewer" -e less "$0"
-# FvwmScript FvwmScript-ThemesCenter --text-colorset 34 --viewer-colorset 33
-# FvwmScript FvwmScript-IconBrowser --text-colorset 34 --icon-colorset 10
+# FvwmScript FvwmScript-ThemesCenter --text-colorset 36 --viewer-colorset 33
+# FvwmScript FvwmScript-IconBrowser --text-colorset 36 --icon-colorset 10

@@ -29,7 +29,7 @@ Begin
 
     Set $Lang = {}
     Set $ViewerColorset = 33
-    Set $TextColorset = 34
+    Set $TextColorset = 36
     Set $IconColorset = 5
     # Arguments
     Set $i = 1

@@ -7,6 +7,16 @@
 	* NEWS:
 	improved
 
+	* themes/*/colors{,/main}:
+	* doc/colorsets:
+	* locale/*/FvwmScript-ThemesCenter.html:
+	* scripts/FvwmScript-ConfigCenter:
+	* themes/default/functions:
+	* themes/default/functions-appbind:
+	* themes/default/globallook:
+	* themes/default/menus:
+	rearanged colorset numbers, old: 34, 35, 36; new: 36, 34, 35
+
 2001-08-07  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ThemesCenter:

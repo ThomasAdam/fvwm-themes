@@ -127,14 +127,14 @@ AddToFunc   FuncFvwmTitleBackground
 *FvwmTheme: Colorset 33 fg white, bg rgb:60/60/60, Plain, NoShape
 
 ### the next 3 colorsets are not good
-# dialog text area
+# application run in the terminal, text editor
 *FvwmTheme: Colorset 34 fg black, bg rgb:90/96/95, Plain, NoShape
 
-# application run in the terminal, text editor
-*FvwmTheme: Colorset 35 fg black, bg rgb:90/96/95, Plain, NoShape
-
 # dialog main area
-*FvwmTheme: Colorset 36 fg white, bg rgb:77/78/7b, Plain, NoShape
+*FvwmTheme: Colorset 35 fg white, bg rgb:77/78/7b, Plain, NoShape
+
+# dialog text area
+*FvwmTheme: Colorset 36 fg black, bg rgb:90/96/95, Plain, NoShape
 
 # ----------------------------------------------------------------------------
 # IV. Start/Stop Functions

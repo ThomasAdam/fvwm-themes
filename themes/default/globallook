@@ -16,13 +16,13 @@ DestroyModuleConfig FvwmIdent: *
 FuncFvwmSetFont-FvwmIdent
 *FvwmIdent: Colorset 21
 
-DestroyModuleConfig FvwmFormDefault: ItemColorset*
-*FvwmFormDefault: ItemColorset 34
-
 DestroyModuleConfig FvwmScript: DefaultColorset*
-*FvwmScript: DefaultColorset 36
+*FvwmScript: DefaultColorset 35
 
 DestroyModuleConfig FvwmFormDefault: Colorset*
-*FvwmFormDefault: Colorset 36
+*FvwmFormDefault: Colorset 35
+
+DestroyModuleConfig FvwmFormDefault: ItemColorset*
+*FvwmFormDefault: ItemColorset 36
 
 FuncFvwmTitleBackground

@@ -124,14 +124,14 @@ AddToFunc   FuncFvwmTitleBackground
 # viewer terminal
 *FvwmTheme: Colorset 33 fg yellow, bg navy, Plain, NoShape
 
-# dialog text area
-*FvwmTheme: Colorset 34 fg black, bg rgb:E4/D2/C0, Plain, NoShape
-
 # application run in the terminal, text editor
-*FvwmTheme: Colorset 35 fg black, bg grey70, Plain, NoShape
+*FvwmTheme: Colorset 34 fg black, bg grey70, Plain, NoShape
 
 # dialog main area
-*FvwmTheme: Colorset 36 fg white, bg DarkGreen, Plain, NoShape
+*FvwmTheme: Colorset 35 fg white, bg DarkGreen, Plain, NoShape
+
+# dialog text area
+*FvwmTheme: Colorset 36 fg black, bg rgb:E4/D2/C0, Plain, NoShape
 
 # ----------------------------------------------------------------------------
 # IV. Start/Stop Functions

@@ -196,14 +196,14 @@ AddToFunc   FuncFvwmGtkThemeSettings
 DestroyMenu MenuFvwmConfiguration
 AddToMenu   MenuFvwmConfiguration "Configuration" Title
 + "Themes Center GUI%menu/themes.xpm%" \
-  FvwmScript FvwmScript-ThemesCenter --text-colorset 34 --viewer-colorset 33
+  FvwmScript FvwmScript-ThemesCenter --text-colorset 36 --viewer-colorset 33
 + "Configuration Center%menu/configuration.xpm%" FvwmScript \
-	FvwmScript-ConfigCenter --text-colorset 34 --icon-colorset 5 \
+	FvwmScript-ConfigCenter --text-colorset 36 --icon-colorset 5 \
 	--viewer-colorset 33
 + "Theme Settings (form)%menu/themes.xpm%" FuncFvwmFormThemeSettings
 + "Theme Settings (gtk)%menu/themes.xpm%"  FuncFvwmWithGtk FuncFvwmGtkThemeSettings
 + "&Menu Editor (Personal)%menu/editor.xpm%"	  FvwmScript FvwmScript-Menus \
-		--text-colorset 34 --icon-colorset 5 --viewer-colorset 33
+		--text-colorset 36 --icon-colorset 5 --viewer-colorset 33
 + "" Nop
 + "&Root Cursor%menu/display.xpm%"	Module FvwmForm FvwmForm-RootCursor
 + "Form &Defaults%menu/configuration.xpm%"	Module FvwmForm FvwmForm-Form
@@ -225,14 +225,14 @@ AddToMenu   MenuFvwmXConfiguration "X Configuration" Title
 DestroyMenu MenuFvwmConfigUtilities
 AddToMenu   MenuFvwmConfigUtilities "Configuration Utilities" Title
 + "&Color Selector%menu/colors.xpm%"	FvwmScript FvwmScript-ColorSelector \
-	--text-colorset 34 --viewer-colorset 33
+	--text-colorset 36 --viewer-colorset 33
 + "&Font Selector%menu/font.xpm%"	FvwmScript FvwmScript-FontSelector \
-	--text-colorset 34 --viewer-colorset 33
+	--text-colorset 36 --viewer-colorset 33
 + "&Icon Browser%menu/image-viewer.xpm%" FvwmScript FvwmScript-IconBrowser \
-	--text-colorset 34 --icon-colorset 5 --launched 0 \
+	--text-colorset 36 --icon-colorset 5 --launched 0 \
 	--dir $[FT_DATADIR]/images/
 + "&Image Browser%menu/image-viewer.xpm%" FvwmScript FvwmScript-ImageBrowser \
-	--text-colorset 34 --launched 0 --dir $[FT_DATADIR]/images/
+	--text-colorset 36 --launched 0 --dir $[FT_DATADIR]/images/
 
 # -----------------------------------------------------------------------------
 # ---------- MenuFvwmQuit
