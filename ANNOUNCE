@@ -6,22 +6,37 @@
   (___)  * \/  . \/\/(_/\/\_) (___)(__(__)(____)(_/\/\_)(____)(___/
 
 
-The FVWM Themes workers are pleased to announce FVWM Themes version 0.4
-Available at http://fvwm-themes.sourceforge.net/
+We are pleased to announce FVWM Themes version 0.4.0.
+All info about FVWM Themes and sources are available at the Home Page:
 
-FVWM Themes is a powerful configurational framework for FVWM, designed 
-to be easily extendible and configurable, includes several pre-built 
-themes, a pack of images and sounds.
+  http://fvwm-themes.sourceforge.net/
 
-Version 0.4 is a pre-public release and is designed to work with the
-current FVWM beta release: 2.3.22. The aim of this version ... feed back,
-... testing ...
+FVWM Themes is a powerful configurational framework for the latest FVWM,
+designed to be easily extendible and configurable
 
-....
+fvwm-themes 0.4.0 requires fvwm 2.3.22, released yesterday (not earlier),
+so you should first upgrade your fvwm before trying fvwm-themes.
 
-Note: The main "bug" is that currently the entire configuration is
-reloaded on every single component switch. This will be fixed in the 
-next main version, aka the first public realese
+There are also rpm packages for both fvwm 2.3.22 and fvwm-themes 0.4.0 at:
 
+  ftp://fvwm-themes.sourceforge.net/pub/fvwm-themes/rpm/
 
-The FVWM Themes workers, xx November 2000
+Currently both fvwm and fvwm-themes are beta software, but should be
+stable enough. We invite you to test both.
+
+New features in fvwm-themes 0.4.0 as compared to fvwm-themes 0.2.6:
+
+  * configuring using autoconf/automake
+  * several new themes
+  * improvements in all (12) themes
+  * several kinds of configuration GUI's
+  * separation of user and site themes  
+  * complete rewrite of the theme engine
+  * plenty of documentation
+  * partial internationalization, supported french and russian
+  * sessions, variants, options, locks, drops and many more new things
+
+Note: currently the entire configuration is reloaded on every single
+component switch. This will be improved in the next major version 1.0.0.
+
+The FVWM Themes developers, 11 November 2000

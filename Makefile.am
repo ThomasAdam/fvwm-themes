@@ -12,7 +12,7 @@ install-data-local:
 	GNOME_IMAGES_DIR=@GNOME_IMAGES_DIR@
 	SETTINGS_FILE=@SETTINGS_FILE@
 	GNOME_ICONS=@GNOME_ICONS@
-	MENU_APP=@MENU_APP@
+	BUILD_MENUS=@BUILD_MENUS@
 
 	$(mkinstalldirs) $(FT_DATADIR)
 	for dir in $(FT_DATA_SUBDIRS); do \
@@ -28,10 +28,10 @@ install-data-local:
 	mv -f $(SETTINGS_FILE).tmp $(SETTINGS_FILE)
 
 	$(bindir)/fvwm-themes-config --site --reset
-	if test "$(MENU_APP)" = "yes"; then \
-		$(bindir)/fvwm-themes-menuapp --site --build-menus \
-		--remove-popup; \
-	fi	
+
+	if test "$(BUILD_MENUS)" = "yes"; then \
+		$(bindir)/fvwm-themes-menuapp --site --build-menus --remove-popup; \
+	fi
 
 	if test "$(GNOME_ICONS)" = "yes"; then \
 		$(bindir)/fvwm-themes-images --ft-install; \

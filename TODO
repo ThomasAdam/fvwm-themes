@@ -1,19 +1,16 @@
-                      Things to do before 0.4.0
+                      Things to do before 1.0.0
                       -------------------------
 
+* localization using locale/LANG/ directories
 
-Important items to do:
----------------------
+* internationalization (translations)
 
-* Test and port fvwm-themes to BSD and Solaris.
+* optimizing a reload needed for changes in components
+
+* Test and port fvwm-themes to native BSD's and Solaris.
   There are problems for sure, mkdir without -p, no killall etc.
 
-Optional items to do:
---------------------
-
 * Convert all hardcoded $FT_DATADIR/... paths to relative $./ .
-
-* Translations.
 
 * Fix a bug, when an option is removed, it is still here (due to 'current').
   The same if the option is added.
@@ -21,10 +18,10 @@ Optional items to do:
 * Fix a problem when the current component (say used in old session) does
   not exist anymore. Probably write a warning (xmessage), not fatal error.
 
-* Think where belong all functions sitting in different components.
+Optional items to do:
+--------------------
 
-Items not to do for now:
------------------------
+* Think where belong all functions sitting in different components.
 
 * Providing some ready to use functions for background@ components.
   Like functions dealing with image types and formats (tiles, gradients).
@@ -39,22 +36,7 @@ Items not to do for now:
 
 * Creating fvwm-themes-qt. Someone?
 
-* CCDS (component configuration & dependancy system, a better name?).
-  It may be surprizing, but I think that we don't really need to implement
-  something more than we have now before 0.4, It is difficult and time
-  consuming (see my another message). Hovewer we should think about
-  dependency types and syntax improvements in .cfg which we may need in
-  the future. The idea here is that a user should be able to create a
-  normal theme (no options) by providing only components, without .cfg.
-
-* colors@ components. Check if every things is ok with the new colors
-  files. migo: Maybe one colorset for swallowing is not enough?
-  I don't think xload's check-like can somehow be related to xclock
-  darts colors, probably a separate color would be ok, also hi, sh used
-  out of purpose. It is not very critical. Just a note.
-
 * settings@default: think which subcomponents to remove/move.
-  Move settings/stroke@ to bindings@ option.
 
 Ideas:
 -----
@@ -78,32 +60,3 @@ Problems without obvious soluton:
 * Rereading iconstyles/style-icon-miniicon file dynamically is not enough
   if someone (me) have icon style extentions. Should be solved using
   dependances somehow (using 'extends').
-
-Closed (will be deleted after 0.4.0):
-------------------------------------
-
-* modules@ components. Several things may be improved.
-
-* Add luthien theme. olicha: maybe add a Desker? 
-  migo: I an neutral here
-
-* Fix all crashes.
-
-* Fix FvwmForm-ThemeSettings (session is obsolete).
-
-* desktop@, we may leave this for now as is, but in the future it should
-  be more formalized.
-
-* It would be nice if someone enhance 'multichoice' theme.
-
-* Completing 'cde' theme. need a windowlook and a modules theme.
-
-* Increase speed of fvwm-themes-config.
-  Make current theme.cfg with one include line non needed.
-
-* Revise all existing docs.
-
-* Write some documentation about CCDS.
-
-* Add missing info to doc/creating-themes, info about how to create themes
-  from zero, what components to include, what to include in each component.
