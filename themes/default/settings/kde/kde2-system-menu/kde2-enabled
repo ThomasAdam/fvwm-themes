@@ -1,0 +1,6 @@
+AddToMenu MenuFvwmPrograms "" Nop
++ "&Kde menu%menu/kde.xpm" Popup kde-sys
+
+# use english because KDE2 use "binary code" for none english char
+# I will try to fix this
+AddToMenu kde-sys DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop kde-sys --enable-tran-mini-icons --tran-mini-icons-path $FT_DATADIR/images/mini-kde2 --lang en'

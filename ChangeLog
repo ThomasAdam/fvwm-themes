@@ -1,3 +1,32 @@
+2000-11-22  olicha  <olivier.chapuis@free.fr>
+
+	* themes/{cde,luthien}/colors.cfg
+	add -outfile .m4out_colors. The problem is that the tmp file is
+	not removed in this case! So I've got one million of fvwm tmp
+	file in my /tmp ...
+	~/.fvwm/.tmp-m4out_colors is not removed too but there is only one and
+	moreover this file may be useful in the future
+	Really I do not see why these files are not removed! This problem
+	do not seems to happen with the other "m4 fvwm-themes files"
+
+	* bin/fvwm-themes-images.in:
+	* configure.in:
+	* Makefile.am:
+	* INSTALL:
+	* NEWS:
+	ft-images new option kde2 to convert the kde2 PNG icons into XPM icons.
+	New install option --enable-kde2-icons.
+	I've commented "use strict", need to be fixed, note that 0.4.0 is
+	broken here: it cannot build the gnome icons I think ...
+	Need to add a KDE entries in the FAQ.
+
+	* themes/default/setttings/kde/kde2-system-menu/*
+	* themes/default/settings.cfg:
+	New settings for KDE2 menu. Menus must be reworked, currently add
+	temporary solution, We may add a "Debian/Mdk System menu" entry
+	which will replace our FvwmMenuPrograms (this is easy). What do
+	RedHat and Suse with menus?
+
 2000-11-22  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

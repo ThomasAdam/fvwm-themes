@@ -22,7 +22,7 @@
 # Filter this script to pod2man to get a man page:
 #   pod2man -c "Fvwm Utility" fvwm-themes-images | nroff -man | less -e
 
-use strict;
+#use strict;
 use Getopt::Long;
 
 my $prefix = '@prefix@';
@@ -56,6 +56,7 @@ my %rgb;
 # convert options
 my $convert = 0;
 my $gnome = 0;
+my $kde2 = 0;
 my $postfix = "";
 my $transFilter = 1;
 my @types = ();
@@ -169,6 +170,7 @@ GetOptions(
 	"magick-colorspace=s" => \$magickColorspace,
 	"convert"            => \$convert,
 	"gnome"              => \$gnome,
+	"kde2"               => \$kde2,
 	"postfix"            => \$postfix,
 	"trans-filter!"      => \$transFilter,
 	"48x48-size=s"       => \$size{"48x48"},
@@ -247,14 +249,18 @@ if ($verboseOpt != -1) {
 
 if ($install) {
 	$site = 1;
-	$gnome = 1;
 	$convert = 1;
 	$update = 1;
 	$createSymLink = "48x48,16x16";
+	die "--install need --gnome or --kde2 (not both)\n"
+		if !$gnome && !$kde2;
 }
 
 die "--convert and --setroot are incompatible\n"
 	if $convert && $setRoot;
+
+die "--gnome and --kde2 are incompatible\n"
+	if $gnome && $kde2;
 
 if ($xcolorsInfo || $xcolorsetsInfo) {
 	showXcolorsInfo($xcolorsetsInfo);
@@ -271,12 +277,12 @@ if ($sky) {
 	exit;
 }
 
+$convert = 1 if $gnome || $kde2;
+
 # see if we have to check magic:
 if ($convert || $tile =~ /expand/) {
 	($magickPath,$magickBpp) = checkMagick();
 }
-
-$convert = 1 if $gnome;
 
 if ($convert) {
 	foreach (keys %build) {
@@ -335,6 +341,14 @@ sub transform {
 		$postfix = "gnome";
 		$inFile = "";
 		$outFile = "";
+	}
+
+	if ($kde2) {
+		$postfix = "kde2";
+		$inDir = "";
+		my $kdeDir = $ENV{'KDEDIR'} || "";
+		die "KDEDIR must be set for --kde2" if $kdeDir eq "";
+		$inDir = "$kdeDir/share/icons";
 	}
 
 	$inDir = "$inDir/" unless $inDir =~ /\/$/ || $inDir eq "";
@@ -413,8 +427,20 @@ sub transform {
 			$sizeOpt = "-geometry $size{$type}" if $size{$type} ne "";
 		} else {
 			$dir = $inDir;
+			if ($kde2) {
+				if (-d "$inDir/locolor/$type/apps") {
+					$dir = "$inDir/locolor/$type/apps";
+				}
+				elsif (-d "$inDir/hicolor/$type/apps") {
+					$dir = "$inDir/hicolor/$type/apps";
+				}
+				else {
+					next 
+				}
+			}
 			$dirtype = "/$type$postfix";
 			$sizeOpt = "-geometry $size{$type}" if $size{$type} ne "";
+			$sizeOpt = "" if ($kde2);
 		}
 
 		-d "$outDir$dirtype" || mkdir("$outDir$dirtype", 0775) ||
@@ -468,7 +494,18 @@ sub transform {
 		my @fileList;
 		if ($inFile eq "") { @fileList = scanDir($dir);}
 		else { @fileList = ("$inFile"); }
-
+		
+		# bad hack:
+		if ($kde2) {
+			my @others = qw(filesystems actions devices  mimetypes);
+			my $o;
+			foreach $o (@others) {
+				if (-d "$dir/../$o/") {
+					my @l = scanDir("$dir/../$o/");
+					push @fileList, map {"../$o/$_"} @l;
+				}
+			}
+		}
 		my $file = "";
 
 		foreach $file (@fileList) {
@@ -478,6 +515,11 @@ sub transform {
 
 			if ($convert) {
 				$xpmFile = changeIconFilename($file);
+				# the back hack continued:
+				if ($xpmFile =~ /^\.\./) {
+					$xpmFile = substr($xpmFile,rindex($xpmFile,"/"));
+					next if -f "$outDir$dirtype/$xpmFile";
+				}
 				next if $update && -f "$outDir$dirtype/$xpmFile";
 			}
 			if ($convert) {
@@ -1927,6 +1969,7 @@ sub showHelp {
 	print "\t--in-dir dir        The input directory\n";
 	print "\t--out-dir dir       The main directory for output the images\n";
 	print "\t--gnome             short cut for converting GNOME icons\n";
+	print "\t--kde2             short cut for converting KDE2 icons\n";
 	print "\t--site              set the out dir to \$FT_DATADIR/tr-image\n";
 	print "\t--create-symlink n  Create symlink for use with fvwm-themes\n";
 	print "\t--update            only create images which are needed\n";
@@ -2046,6 +2089,7 @@ or B<--help> or B<--version>
 [ B<--in-file> file ]
 [ B<--out-file> file ]
 [ B<--gnome> ]
+[ B<--kde2> ]
 [ B<--site> ]
 [ B<--create-symlink> name ]
 [ B<--update> ]
@@ -2317,8 +2361,13 @@ B<--gnome> imply --convert, --postfix gnome, and try to find the GNOME icons
 directory to define the --in-dir, if GNOME is not found --in-dir is set
 to /usr/share/pixmaps
 
-B<--ft-install> equivalent to --gnome (so --convert) --site --update
---create-symlink
+B<--kde2> imply --convert, --postfix kde2, and try to find the KDE2 icons
+directory to define the a internal generalization of --in-dir, if these
+directories are not found or if the KDEDIR environement variable is not set
+nothing is done.
+
+B<--ft-install> equivalent to --site --update --create-symlink. This option
+must be use with --gnome or --kde2 (but not both).
 
 B<--create-symlink> A,B - where A and B are either 48x48, 16x16, 32x32.
 Create symbolic link from $FT_DATADIR/images/norm-postfix to OUT/A-postfix

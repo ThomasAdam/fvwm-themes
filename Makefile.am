@@ -12,6 +12,7 @@ install-data-local:
 	GNOME_IMAGES_DIR=@GNOME_IMAGES_DIR@
 	SETTINGS_FILE=@SETTINGS_FILE@
 	GNOME_ICONS=@GNOME_ICONS@
+	KDE2_ICONS=@KDE2_ICONS@
 	BUILD_MENUS=@BUILD_MENUS@
 
 	$(mkinstalldirs) $(FT_DATADIR)
@@ -34,7 +35,11 @@ install-data-local:
 	fi
 
 	if test "$(GNOME_ICONS)" = "yes"; then \
-		$(bindir)/fvwm-themes-images --ft-install; \
+		$(bindir)/fvwm-themes-images --ft-install --gnome; \
+	fi
+
+	if test "$(KDE2_ICONS)" = "yes"; then \
+		$(bindir)/fvwm-themes-images --ft-install --kde2; \
 	fi
 
 	@echo
