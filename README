@@ -30,7 +30,7 @@ have some inconsistences if you leave old version files in your ~/.fvwm.
 How to Start
 ------------
 
-Make sure you use one of the latest developement versions of fvwm >= 2.3.20.
+Make sure you use one of the latest developement versions of fvwm >= 2.3.22.
 Replace the last line of your ~/.Xclients (or ~/.xinirc or ~/.xsession):
 	fvwm2
 with:
@@ -49,11 +49,8 @@ Notes
 
 * WARNING, this is developement version based on developement fvwm version.
   Since fvwm is changing right now, we only test fvwm-themes against the
-  latest fvwm version as of fvwm-themes release date (2.3.21 for now).
+  latest fvwm version as of fvwm-themes release date (2.3.22 for now).
   This will be changed after the stable fvwm-2.4 is out.
-* WARNING, please don't use fvwm-themes with XFree86-4.0.0 or 4.0.1,
-  there is a bug: X is totally frozen when FvwmScript is used. We are working
-  to fix this. Or don't load afterstep, awol, olicha themes (modules).
 * For sound effects to work you need either esdplay or rplay to be installed.
   rplayd must be run for rplay. You should update your rplay.conf file with
   the sounds in .fvwm/sounds for rplayD.

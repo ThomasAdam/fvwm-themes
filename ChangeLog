@@ -16,6 +16,10 @@
 	* themes/default/colors:
 	colorset 29 is now temporary (was 23)
 
+	* README:
+	* NEWS:
+	prepare to a new release
+
 2000-10-02  migo  <migo@homemail.com>
 
 	* scripts/FvwmScript-ThemesCenter:
