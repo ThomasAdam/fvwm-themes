@@ -74,8 +74,8 @@ binary-indep: build install
 # Build architecture-dependent files here.
 
 binary-arch: build install
-	cp -f debian/full-control debian/control
-	cp -f debian/full-changelog debian/changelog
+	cp -f debian/base-control debian/control
+	cp -f debian/base-changelog debian/changelog
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs ChangeLog

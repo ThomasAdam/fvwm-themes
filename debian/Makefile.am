@@ -15,17 +15,13 @@ deb:
 	fullname=$(fullname); \
 	email=$(email); \
 	cp -f debian/full-control debian/control; \
-	if [ ! -f debian/newchangelog ]; then \
-		echo "fvwm-themes-full ($$version-$$release) unstable; urgency=low" > debian/newchangelog; \
-		echo ""  >> debian/newchangelog; \
-		echo "  * new upstream release" >> debian/newchangelog; \
-		echo "" >> debian/newchangelog; \
-		echo " -- $$fullname <$$email>  $$datum" >>  debian/newchangelog; \
-		echo "" >> debian/newchangelog; \
-		cat debian/full-changelog >> debian/newchangelog; \
-		vi debian/newchangelog; \
-	fi;
-	mv -f debian/newchangelog debian/changelog
+	echo "fvwm-themes-full ($$version-$$release) unstable; urgency=low" > debian/changelog; \
+	echo ""  >> debian/changelog; \
+	echo "  * new upstream release" >> debian/changelog; \
+	echo "" >> debian/changelog; \
+	echo " -- $$fullname <$$email>  $$datum" >>  debian/changelog; \
+	echo "" >> debian/changelog; \
+	cat debian/full-changelog >> debian/changelog; \
 	chmod 744 debian/rules
 	fakeroot debian/rules clean
 	fakeroot debian/rules install
@@ -50,7 +46,6 @@ deb:
 	fakeroot dh_md5sums;
 	fakeroot dh_builddeb
 	rm -f debian/control
-	mv -f debian/changelog debian/full-changelog
 
 
 deb-base:
@@ -59,17 +54,13 @@ deb-base:
 	datum=$(datum); \
 	release=$(release); \
 	cp -f debian/base-control debian/control; \
-	if [ ! -f debian/newchangelog ]; then \
-		echo "fvwm-themes ($$version-$$release) unstable; urgency=low" > debian/newchangelog; \
-		echo ""  >> debian/newchangelog; \
-		echo "  * new upstream release" >> debian/newchangelog; \
-		echo "" >> debian/newchangelog; \
-		echo " -- $$fullname <$$email>  $$datum" >>  debian/newchangelog; \
-		echo "" >> debian/newchangelog; \
-		cat debian/base-changelog >> debian/newchangelog; \
-		vi debian/newchangelog; \
-	fi
-	mv -f debian/newchangelog debian/changelog
+	echo "fvwm-themes ($$version-$$release) unstable; urgency=low" > debian/changelog; \
+	echo ""  >> debian/changelog; \
+	echo "  * new upstream release" >> debian/changelog; \
+	echo "" >> debian/changelog; \
+	echo " -- $$fullname <$$email>  $$datum" >>  debian/changelog; \
+	echo "" >> debian/changelog; \
+	cat debian/base-changelog >> debian/changelog; \
 	fakeroot make -f debian/rules clean
 	fakeroot make -f debian/rules install
 	-[ -d debian/fvwm-themes-extra ] || mkdir debian/fvwm-themes-extra
@@ -100,7 +91,6 @@ deb-base:
 	fakeroot dh_md5sums;
 	fakeroot dh_builddeb
 	-rm -f debian/control
-	-mv -f debian/changelog debian/base-changelog
 
 
 deb-extra:
@@ -109,17 +99,13 @@ deb-extra:
 	datum=$(datum); \
 	release=$(release); \
 	cp -f debian/extra-control debian/control; \
-	if [ ! -f debian/newchangelog ]; then \
-		echo "fvwm-themes-extra ($$version-$$release) unstable; urgency=low" > debian/newchangelog; \
-		echo " "  >> debian/newchangelog; \
-		echo "  * new upstream release" >> debian/newchangelog; \
-		echo " " >> debian/newchangelog; \
-		echo " -- $$fullname <$$email>  $$datum" >>  debian/newchangelog; \
-		echo " " >> debian/newchangelog; \
-		cat debian/extra-changelog >> debian/newchangelog; \
-		vi debian/newchangelog; \
-	fi
-	mv -f debian/newchangelog debian/changelog
+	echo "fvwm-themes-extra ($$version-$$release) unstable; urgency=low" > debian/changelog; \
+	echo " "  >> debian/changelog; \
+	echo "  * new upstream release" >> debian/changelog; \
+	echo " " >> debian/changelog; \
+	echo " -- $$fullname <$$email>  $$datum" >>  debian/changelog; \
+	echo " " >> debian/changelog; \
+	cat debian/extra-changelog >> debian/changelog; \
 	fakeroot make -f debian/rules clean
 	fakeroot make -f debian/rules install
 	-[ -d debian/fvwm-themes-extra ] || mkdir debian/fvwm-themes-extra
@@ -149,4 +135,4 @@ deb-extra:
 	fakeroot dh_md5sums
 	fakeroot dh_builddeb 
 	-rm -f debian/control
-	-mv -f debian/changelog debian/extra-changelog
+
