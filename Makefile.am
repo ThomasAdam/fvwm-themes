@@ -80,7 +80,7 @@ dist-hook:
 #    make distclean2  # instead of make distclean
 
 dist2: dist
-	gzip -dc $(distdir).tar.gz | bzip2 -9c >$(distdir).tar.bz2
+	gzip -dc $(distdir).tar.gz | bzip2 -9c - >$(distdir).tar.bz2
 
 distcheck2: dist2 distcheck
 	@banner="$(distdir).tar.bz2 - ready for distribution"; \
@@ -114,15 +114,15 @@ dist3: dist
 
 dist4: dist3
 	@echo "creating $(distdir).tar.bz2"
-	@gzip -dc $(distdir).tar.gz | bzip2 -9c >$(distdir).tar.bz2
+	@gzip -dc $(distdir).tar.gz | bzip2 -9c - >$(distdir).tar.bz2
 	@for t in $(EXTRA_THEMES); do \
 		echo "creating ft-$$t-$(VERSION).tar.bz2"; \
-		gzip -dc ft-$$t-$(VERSION).tar.gz | bzip2 -9c >ft-$$t-$(VERSION).tar.bz2; \
+		gzip -dc ft-$$t-$(VERSION).tar.gz | bzip2 -9c - >ft-$$t-$(VERSION).tar.bz2; \
 	done
 	@echo "creating $(PACKAGE)-extra-$(VERSION).tar.bz2"
-	@gzip -dc $(PACKAGE)-extra-$(VERSION).tar.gz | bzip2 -9c >$(PACKAGE)-extra-$(VERSION).tar.bz2
+	@gzip -dc $(PACKAGE)-extra-$(VERSION).tar.gz | bzip2 -9c - >$(PACKAGE)-extra-$(VERSION).tar.bz2
 	@echo "creating $(PACKAGE)-base-$(VERSION).tar.bz2"
-	@gzip -dc $(PACKAGE)-base-$(VERSION).tar.gz | bzip2 -9c >$(PACKAGE)-base-$(VERSION).tar.bz2
+	@gzip -dc $(PACKAGE)-base-$(VERSION).tar.gz | bzip2 -9c - >$(PACKAGE)-base-$(VERSION).tar.bz2
 
 ## ---------------------------------------------------------------------------
 ## Produce an rpm package using dist or from the given tarball

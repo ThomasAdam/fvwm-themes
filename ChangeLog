@@ -3,6 +3,12 @@
 	* rpm/fvwm-themes-*.spec.in:
 	rewordings and translation
 
+	* Makefile.am:
+	corrected a problem with some bzip2 versions
+
+	* doc/colorsets:
+	started to create a new compact colorset table, no time to finish
+
 2001-05-22  olicha  <olivier.chapuis@free.fr>
 
 	* configure.in:
