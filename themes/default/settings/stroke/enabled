@@ -4,10 +4,10 @@
 # Where/when stroke is taken into account
 
 # mouse 3 with no modifier on the root window
-Mouse	3	R	N	StrokeFunc FeedBack DrawMotion
+Mouse	3	R	N	StrokeFunc FeedBack DrawMotion StrokeWidth 2
 
 # mouse 3 with Alt on a window
-Mouse	3 	W 	M 	StrokeFunc FeedBack DrawMotion
+Mouse	3 	W 	M 	StrokeFunc FeedBack DrawMotion StrokeWidth 2
 
 # ----------------------------------------------------------------------------
 # The stroke bindings

@@ -2707,6 +2707,13 @@ B<--install> I<theme.tar.{gz,bz2} ...> - install the specified tarballs
 into the site (if B<--site> is alo given) or into the user's I<themes>
 directory by verifying and unpacking the contents of the tarballs.
 
+Four last parameters may be combined together and multiple parameters are
+possible. If B<--load> and B<--drop> parameters are given, first it will
+be unloaded all given components and then loaded all given components, not
+vice versus. After that B<--variant> and B<--option> parameters will take
+place, i.e. it is possible to load a component and immediately change its
+options.
+
 B<--com-mode> Run fvwm-themes-config under the "communication mode". See,
 the fvwm-themes-com and fvwm-themes-menuapp manual pages for more information
 on this option.
@@ -2720,13 +2727,6 @@ exit if this program exit and so that fvwm-themes-config can kill the program
 if an internal error happen in fvwm-themes-config. On the other hand,
 if you want to talk with fvwm-themes-config in, say, a terminal you must
 not give an name as "config-an_integer" as name.
-
-Four last parameters may be combined together and multiple parameters are
-possible. If B<--load> and B<--drop> parameters are given, first it will
-be unloaded all given components and then loaded all given components, not
-vice versus. After that B<--variant> and B<--option> parameters will take
-place, i.e. it is possible to load a component and immediately change its
-options.
 
 =head1 USAGE
 

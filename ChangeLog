@@ -1,5 +1,17 @@
 2000-10-07  olicha  <olivier.chapuis@free.fr>
 
+	* bin/fvwm-themes-config.in (man page):
+	A fix
+
+	* themes/luthien/modules/*
+	Some renaming
+
+	* themes/default/settings/stroke/enabled
+	Set StrokeWidth to 2. May be we can have different choices (width
+	1,2,3,5)?
+	
+2000-10-07  olicha  <olivier.chapuis@free.fr>
+
 	* themes/luthien/modules/winlist/{GlobalWinList,DeskWinList,disabled}:
 	* themes/luthien/modules.cfg:
 	new files for winlist options.
