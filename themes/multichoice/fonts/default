@@ -1,0 +1,11 @@
+DestroyFunc FuncFvwmSetFont-WindowTitle
+AddToFunc   FuncFvwmSetFont-WindowTitle
+
+DestroyFunc FuncFvwmSetFont-IconTitle
+AddToFunc   FuncFvwmSetFont-IconTitle
+
+DestroyFunc FuncFvwmSetFont-Menu
+AddToFunc   FuncFvwmSetFont-Menu
+
+DestroyFunc FuncFvwmSetFont-Module
+AddToFunc   FuncFvwmSetFont-Module

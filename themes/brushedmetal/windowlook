@@ -1,6 +1,9 @@
 Style "*"	Font     -*-lucida-bold-r-normal-*-10-*-*-*-p-*-*-*
 Style "*"	IconFont -*-lucida-medium-r-normal-*-10-*-*-*-p-*-*-*
 
+FuncFvwmSetFont-WindowTitle *
+FuncFvwmSetFont-IconTitle   *
+
 Style "*"	BorderWidth 3, HandleWidth 3  # maybe 4 better?
 Style "*"	MWMBorder, FirmBorder
 

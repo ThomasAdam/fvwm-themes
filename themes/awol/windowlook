@@ -2,6 +2,9 @@
 Style "*"	Font -adobe-times-*-*-*-*-18-*-*-*-*-*-*-*
 Style "*"	IconFont -adobe-times-*-*-*-*-14-*-*-*-*-*-*-*
 
+FuncFvwmSetFont-WindowTitle *
+FuncFvwmSetFont-IconTitle   *
+
 Style "*"	BorderWidth 8, HandleWidth 8
 Style "*"	FvwmBorder, FirmBorder
 

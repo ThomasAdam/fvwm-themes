@@ -1,3 +1,15 @@
+2001-05-17  migo  <migo@homemail.com>
+
+	* themes/*/menustyle:
+	* themes/*/windowlook:
+	* themes/default/fonts:
+	* themes/default/theme.cfg:
+	* themes/multichoice/fonts.cfg:
+	* themes/multichoice/fonts/default:
+	* themes/multichoice/fonts/koi8-r:
+	implemented an initial solution for fonts using a new component fonts@
+	(one of many possible solutions)
+
 2001-05-16  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

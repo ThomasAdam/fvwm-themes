@@ -11,4 +11,5 @@ MenuStyle * PopupAsSubmenu, HoldSubmenus, SubmenusRight
 MenuStyle * ItemFormat "%.1s%|%1.4i%1.4l%1.4l%1.4r%1.4i%2.3>%|"
 MenuStyle * VerticalItemSpacing 1 2, VerticalTitleSpacing 1 12
 
+FuncFvwmSetFont-Menu *
 BusyCursor DynamicMenu True

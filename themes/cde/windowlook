@@ -1,6 +1,9 @@
 Style "*"	Font     -*-lucidabright-medium-r-*-*-14-*-*-*-*-*-*-*
 Style "*"	IconFont -*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*
 
+FuncFvwmSetFont-WindowTitle *
+FuncFvwmSetFont-IconTitle   *
+
 Style "*"	BorderWidth 5, HandleWidth 6
 Style "*"	MWMBorder, DepressableBorder
 
