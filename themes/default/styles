@@ -9,7 +9,7 @@ Style "FvwmButtons"	NoTitle, NoHandles, WindowListSkip
 Style "FvwmIdent"	NoTitle, NoHandles, WindowListSkip
 Style "FvwmTaskBar"	NoTitle, NoHandles, WindowListSkip
 Style "FvwmIconMan"	NoTitle, NoHandles, WindowListSkip
-Style "FvwmConsole"	CirculateHit
+Style "FvwmConsole"	CirculateHit, GrabFocus
 Style "FvwmForm"	CirculateHit
 Style "FvwmScript"	Slippery, CirculateHit
 # Simulate transient; it is nicer with title.

@@ -17,6 +17,9 @@
 	* themes/redmond98/colors:
 	use violet not red for root terminal fg
 
+	* themes/default/styles:
+	add GrabFocus for FvwmConsole
+
 2001-07-05  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
