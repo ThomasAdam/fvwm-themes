@@ -1357,12 +1357,15 @@ END {
 			my $lockFifo = ".tmp-com-lock-" . $comName;
 			my $inFifo = ".tmp-com-in-" . $comName;
 			my $message = "fvwm-themes-script: internal error $?";
+			$message .= "\t perl error: $@\n";
+			$message .= "\t C lib error: $!\n";
+			$message .= "\t os error: $^E\n";
 
 			unlink($lockFifo);
 			unlink($inFifo);
 		  	if ($comPid) {
 				kill(9, $comPid);
-				$message .= ", killing FvwmScript-ConfigCenter";
+				$message .= "\t killing FvwmScript-ConfigCenter";
 			}
 			print STDERR "$message\n";
 		}

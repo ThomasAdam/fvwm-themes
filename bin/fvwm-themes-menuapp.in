@@ -128,13 +128,16 @@ END {
 		if ($?) {
 			my $lockFifo = ".tmp-com-lock-" . $comName;
 			my $inFifo = ".tmp-com-in-" . $comName;
-			my $message="fvwm-themes-menuapp: internal error $?";
-
+			my $message= "fvwm-themes-menuapp: internal error $?";
+			$message .= "\t perl error: $@\n";
+			$message .= "\t C lib error: $!\n";
+			$message .= "\t os error: $^E\n";
+			
 			unlink($lockFifo);
 			unlink($inFifo);
 		  	if ($comPid) {
 				kill(9,$comPid);
-				$message .= ", kill FvwmScript-Menus";
+				$message .= "\t killing FvwmScript-Menus";
 			}
 			print STDERR "$message\n"; 
 		}

@@ -1,3 +1,11 @@
+2001-02-20  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	* bin/fvwm-themes-menuapp.in:
+	* bin/fvwm-themes-script.in:
+	Better error description if an "internal" error happen in a
+	com loop
+
 2001-02-19  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/menus:
