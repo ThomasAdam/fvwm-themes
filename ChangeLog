@@ -9,6 +9,10 @@
 	* themes/default/bindings:
 	use improved MaximizeFullScreen, start to use 2.5.x features
 
+	* themes/default/settings/iconstyles/disabled:
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	use EWMH*Donate*Icon, not sure about this
+
 2002-12-24  migo  <migo@homemail.com>
 
 	* themes/*/modules/FvwmPager*:
