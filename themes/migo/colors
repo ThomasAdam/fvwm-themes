@@ -41,7 +41,7 @@ AddToFunc   FuncFvwmDecorBackground
 # Menu Colorsets
 
 # inactive menu item fg+bg and menu face
-Colorset 5 fg rgb:f8/f8/f3, bg average, \
+Colorset 5 fg rgb:f8/f8/f3, bg rgb:47/47/68, \
 	CGradient 50 rgb:50/50/78 rgb:40/40/5a, NoShape
 
 # active menu item fg+bg
