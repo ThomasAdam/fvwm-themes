@@ -2,7 +2,7 @@
 ## Process this file with automake to create Makefile.in
 
 EXTRA_THEMES = @EXTRA_THEMES@
-EXTRA_DIST = docs dirs postinst postrm fvwm-themes.menu
+EXTRA_DIST = docs dirs postinst postrm prerm copyright conffiles
 
 version = @VERSION@
 release = 0.`date +%Y%m%d`
@@ -54,6 +54,7 @@ inplace:
 	echo "  * new upstream release" >> debian/changelog
 	echo "" >> debian/changelog
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
+	echo '?package(fvwm-themes-full): needs=wm section=WindowManagers title="FVWM Themes" longtitle="FVWM Window Manager with Themes" command="/usr/bin/fvwm-themes-start"' > debian/fvwm-themes.menu
 	./configure --prefix=/usr --mandir='/$$'{prefix}/share/man $(cparams)
 	cp -f debian/full-control debian/control
 	fakeroot dh_clean -P$(fullinstdir)
@@ -93,6 +94,7 @@ inplace-base:
 	echo "  * new upstream release" >> debian/changelog
 	echo "" >> debian/changelog
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
+	echo '?package(fvwm-themes): needs=wm section=WindowManagers title="FVWM Themes" longtitle="FVWM Window Manager with Themes" command="/usr/bin/fvwm-themes-start"' > debian/fvwm-themes.menu
 	./configure --prefix=/usr --mandir='/$$'{prefix}/share/man $(cparams)
 	cp -f debian/base-control debian/control
 	fakeroot dh_clean -P$(fullinstdir)
@@ -165,6 +167,8 @@ inplace-extra:
 	fakeroot dh_md5sums -P$(fullinstdir)
 	-rm $(fullinstdir)/DEBIAN/postinst
 	-rm $(fullinstdir)/DEBIAN/postrm
+	-rm $(fullinstdir)/DEBIAN/prerm
+	-rm $(fullinstdir)/DEBIAN/conffiles
 	fakeroot dh_builddeb -P$(fullinstdir)
 	-dpkg-genchanges > ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes
 	-debsign  ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes

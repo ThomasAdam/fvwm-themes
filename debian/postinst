@@ -21,7 +21,7 @@ case "$1" in
 		fi
 
 		if [ -x /usr/bin/update-menus ]; then
-			then update-menus
+			update-menus
 		fi
 		;;
 

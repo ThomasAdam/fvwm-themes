@@ -4,11 +4,6 @@ set -e
 
 case "$1" in
 	purge|remove|upgrade)
-		if [ -x update-alternatives ]; then
-			update-alternatives --remove \
-				x-window-manager /usr/bin/fvwm-themes-start
-			update-alternatives --auto x-window-manager
-		fi
 		if [ -x /usr/bin/update-menus ]; then
 			update-menus
 		fi
