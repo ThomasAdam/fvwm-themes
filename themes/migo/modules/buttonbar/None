@@ -1,0 +1,5 @@
+DestroyFunc FuncFvwmStartChosenButtons
+AddToFunc   FuncFvwmStartChosenButtons
+
+DestroyFunc FuncFvwmButtons-CompactApps
+AddToFunc   FuncFvwmButtons-CompactApps

@@ -10,8 +10,8 @@ DestroyModuleConfig FvwmButtons-Compact: *
 FuncFvwmButtons-CompactApps
 
 #*FvwmButtons-Compact: (4x4, Padding 0 0, Swallow "FvwmPager-Compact" 'FvwmPager FvwmPager-Compact * *')
-#*FvwmButtons-Compact: (4x4, Padding 0 0, Colorset 23, Swallow "xclock" `Exec exec xclock -bg $[bg.cs13] -fg $[fg.cs13] -hd $[shadow.cs13] -hl $[hilight.cs13] -padding 2 -geometry 86x86-0+0`)
-#*FvwmButtons-Compact: (4x2, Padding 0 0, Colorset 23, Swallow "xload" `Exec exec xload -nolabel -bg $[bg.cs13] -fg $[fg.cs13] -hl $[shadow.cs13] -update 3 -geometry 86x43-0+99`)
+#*FvwmButtons-Compact: (4x4, Padding 0 0, Colorset 23, Swallow "xclock" `Exec exec xclock -bg $[bg.cs10] -fg $[fg.cs10] -hd $[shadow.cs13] -hl $[hilight.cs13] -padding 2 -geometry 86x86-0+0`)
+#*FvwmButtons-Compact: (4x2, Padding 0 0, Colorset 23, Swallow "xload" `Exec exec xload -nolabel -bg $[bg.cs10] -fg $[fg.cs10] -hl $[shadow.cs13] -update 3 -geometry 86x43-0+99`)
 
 *FvwmButtons-Compact: (Icon bar/terminal.xpm, \
 	Action(Mouse 1) `FuncFvwmTerminal`, \

@@ -42,6 +42,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmButtons-CompactApps
++ I DestroyFunc FuncFvwmButtons-CompactClock
++ I DestroyFunc FuncFvwmButtons-CompactLoad
 
 # ----------------------------------------------------------------------------
 # Theme module menus

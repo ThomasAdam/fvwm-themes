@@ -1,0 +1,3 @@
+DestroyFunc FuncFvwmButtons-CompactClock
+AddToFunc   FuncFvwmButtons-CompactClock
++ I *FvwmButtons-Compact: (4x4, Padding 0 0, Colorset 23, Swallow "astime" `Exec exec astime -bg $[bg.cs10] -fg $[fg.cs10] -sec $[fg.cs13] -min $[hilight.cs13] -hour $[fg.cs13] -day $[shadow.cs13] -date $[shadow.cs13] -fs -fh -standout -geometry 86x86-0+0`)

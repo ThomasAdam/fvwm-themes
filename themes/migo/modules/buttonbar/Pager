@@ -1,0 +1,2 @@
+AddToFunc   FuncFvwmButtons-CompactApps
++ I *FvwmButtons-Compact: (4x4, Padding 0 0, Swallow "FvwmPager-Compact" 'FvwmPager FvwmPager-Compact * *')

@@ -1,0 +1,6 @@
+DestroyFunc FuncFvwmStartChosenButtons
+AddToFunc   FuncFvwmStartChosenButtons
++ I Module FvwmButtons FvwmButtons-Compact
+
+DestroyFunc FuncFvwmButtons-CompactApps
+AddToFunc   FuncFvwmButtons-CompactApps
