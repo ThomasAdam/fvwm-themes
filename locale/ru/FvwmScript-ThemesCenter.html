@@ -4,7 +4,7 @@
 
 <h1 align=center>Документация по Центру FVWM Themes</h1>
 <div id="abstract">
-<p><em>Центер Тем</em> - это интерфейс на базе FvwmScript, позволяющий
+<p><em>Центр Тем</em> - это интерфейс на базе FvwmScript, позволяющий
 Вам управлять темами, общими установками и сессиями FVWM Themes.
 Вы можете запустить его из мену <em>Theme Management / Themes Center GUI</em>.
 </div>
@@ -20,14 +20,13 @@
 
 <h3>1. Выбор Тем</h3>
 
-<p>There is a list of all found themes at the top left. When you select one
-of these themes the list of the components of this theme are displayed at
-the top right. Then, you can either select all components of this theme
-using the left <em>Set</em> button, only the look components using the
-button <em>Look</em>, or you can select only one component by selecting a
-component in the top right list and using the right <em>Set</em> button. You
-can get information on the theme by using the <em>README</em> button (other
-buttons are not yet implemented).
+<p>Слева сверху показан список всех найденных тем. Когда одна из этих тем
+выбрана, список всех компоненетов данной темы показывается сверху справа.
+При этом вы можете выбрать все компоненты данной темы, используя
+кнопку <em>Взять Все</em>, выбрать только компоненты вида, используя
+кнопку <em>Взять Вид</em>, либо выбрать индивидуальный компонент данной темы
+и нажать кнопку <em>Взять</em>. Для получения информации о теме
+можно нажать на кнопку <em>Инфо</em>.
 
 
 <p>Your currently used configuration and all changes you are doing using the
@@ -97,20 +96,20 @@ method as described above.
 
 <h3>4. Разное</h3>
 
-<p>The Script has a few options, it is run as follows from the <em>Themes
-Management</em> menu:
+<p>Эта утилита может принимать несколько параметров. Она запускается
+из меню <em>Themes Management</em> следующим образом:
 
 <blockquote>
   FvwmScript FvwmScript-ThemesCenter
     --text-colorset 34 --viewer-colorset 33
 </blockquote>
 
-<p>I.e., colorset 34 is used for the field list or text area and colorset 33
-is used for a help line (and in addition any FvwmScript sample uses colorset
-36 for its main colors). The only other option is --lang xx, where xx is the
-first 2 letters of the unix LANG, like "ru_RU.koi8r". By default, the LANG
-is set to the environment variable $LANG or "en". The currently supported
-lang values are en, fr and ru.
+<p>Т.е., colorset 34 используется для списков или текстовых полей и colorset 33
+используется для строки подсказки (и в дополнении каждая утилита FvwmScript
+использует colorset 36 для своих основных цветов). Существует дополнительный
+параметер --lang xx, где xx это последние 2 буквы из unix LANG, как например
+в "ru_RU.koi8r". По умолчанию LANG устанавливается согласно переменной среды
+пользователя $LANG или "en". Пока поддерживаются значения en, fr и ru.
 
 
 <h3>5. Ошибки и Вопросы</h3>
