@@ -5,20 +5,20 @@ DestroyModuleConfig FvwmButtons-FvwmClockApplets: *
 *FvwmButtons-FvwmApplets: Columns 1
 *FvwmButtons-FvwmApplets: Colorset 10
 *FvwmButtons-FvwmApplets: (Title --->, Frame 3 Swallow(NoHints) "xclock" \
-	`Exec exec xclock -bg $[bg.cs13] -fg $[fg.cs13] \
-	-hd $[fg.cs13] -hl $[fg.cs13] -padding 0 -update 1 -geometry +5000+5000`, \
+	`Exec exec xclock -bg $$[bg.cs13] -fg $$[fg.cs13] -hd $$[fg.cs13] \
+	-hl $$[fg.cs13] -padding 0 -update 1 -geometry +5000+5000`, \
 	Action(Mouse 1) \
 	'FuncFvwmMyPopupPanel "FvwmButtons-FvwmClockApplets" "$right" "$top"', \
      	Action(Mouse 3) 'All (FvwmButtons-FvwmClockApplets) Delete')
 *FvwmButtons-FvwmApplets: (Title top, Frame 3, \
 	Swallow(UseOld,NoHints) "xload" \
-	`Exec exec xload -fg $[fg.cs13] -bg $[bg.cs13] -hl $[shadow.cs13] \
+	`Exec exec xload -fg $$[fg.cs13] -bg $$[bg.cs13] -hl $$[shadow.cs13] \
 	-update 5 -nolabel -geometry +5000+5000`, \
 	Action(Mouse 1) 'FuncFvwmProcess', \
 	Action(Mouse 2) 'FuncFvwm2Process', \
 	Action(Mouse 3) 'FuncFvwm3Process')
 *FvwmButtons-FvwmApplets: (Title mail, Frame 3 Swallow "xbiff" \
-	`Exec exec xbiff -bg $[bg.cs13] -fg $[fg.cs13] -geometry +5000+5000` \
+	`Exec exec xbiff -bg $$[bg.cs13] -fg $$[fg.cs13] -geometry +5000+5000` \
 	Action(Mouse 1) 'FuncFvwmMail', \
 	Action(Mouse 2) 'FuncFvwm2Mail', \
 	Action(Mouse 3) 'FuncFvwm3Mail')

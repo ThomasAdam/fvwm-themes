@@ -5,12 +5,12 @@ DestroyModuleConfig FvwmButtons: *
 	Swallow "FvwmPager-Single" "Module FvwmPager FvwmPager-Single * *")
 *FvwmButtons: (Frame 2, \
 	Swallow "xbiff" `Exec exec xbiff -geometry +5000+5000 \
-		-bg $[bg.cs13] -fg $[fg.cs13]`)
+		-bg $$[bg.cs13] -fg $$[fg.cs13]`)
 *FvwmButtons: (Frame 3, \
 	Swallow(NoHints) "xclock" `Exec exec xclock -geometry +5000+5000 \
-	-bg $[bg.cs13] -fg $[fg.cs13] -hd $[shadow.cs13] -hl $[hilight.cs13] \
-	-padding 0 -update 1`)
+	-bg $$[bg.cs13] -fg $$[fg.cs13] -hd $$[shadow.cs13] \
+	-hl $$[hilight.cs13] -padding 0 -update 1`)
 *FvwmButtons: (2x1, Frame 2,\
 	Swallow(UseOld,NoHints) "xload" `Exec exec xload \
-	-geometry +5000+5000 -bg $[bg.cs13] \
-	-fg $[fg.cs13] -hl $[shadow.cs13] -update 5 -nolabel`)
+	-geometry +5000+5000 -bg $$[bg.cs13] -fg $$[fg.cs13] \
+	-hl $$[shadow.cs13] -update 5 -nolabel`)

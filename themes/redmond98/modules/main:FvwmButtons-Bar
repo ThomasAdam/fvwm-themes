@@ -50,11 +50,11 @@ DestroyModuleConfig FvwmButtons-Bar: *
 *FvwmButtons-Bar: (End)
 *FvwmButtons-Bar: (1x1, Title "xload", \
 	Swallow "xload" "Exec exec nice -16 xload -nolabel -update 4 \
-		-fg $[fg.cs13] -bg $[bg.cs13] -hl $[shadow.cs13] \
+		-fg $$[fg.cs13] -bg $$[bg.cs13] -hl $$[shadow.cs13] \
 		-geometry -1500-1500")
 *FvwmButtons-Bar: (1x1, Title "xclock", \
-	Swallow "xclock" "Exec exec xclock -fg $[fg.cs13] -bg $[bg.cs13] \
-		-hd $[fg.cs13] -hl $[fg.cs13] -padding 0 \
+	Swallow "xclock" "Exec exec xclock -fg $$[fg.cs13] -bg $$[bg.cs13] \
+		-hd $$[fg.cs13] -hl $$[fg.cs13] -padding 0 \
 		-geometry -1500-1500")
 *FvwmButtons-Bar: (2x1, Swallow(UseOld) "FvwmPager-Single" \
 	'FvwmPager FvwmPager-Single * *')

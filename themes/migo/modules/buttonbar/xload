@@ -1,3 +1,3 @@
 DestroyFunc FuncFvwmButtons-CompactLoad
 AddToFunc   FuncFvwmButtons-CompactLoad
-+ I *FvwmButtons-Compact: (4x2, Padding 0 0, Colorset 23, Swallow "xload" `Exec exec xload -nolabel -bg $[bg.cs10] -fg $[fg.cs10] -hl $[shadow.cs13] -update 3 -geometry 86x43-0+99`)
++ I *FvwmButtons-Compact: (4x2, Padding 0 0, Colorset 23, Swallow "xload" `Exec exec xload -nolabel -bg $$[bg.cs10] -fg $$[fg.cs10] -hl $$[shadow.cs13] -update 3 -geometry 86x43-0+99`)

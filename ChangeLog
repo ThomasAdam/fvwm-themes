@@ -6,6 +6,9 @@
 	* themes/default/theme.cfg:
 	move requires+=FvwmIdentFont from menus@ to colors@
 
+	* themes/*/modules/*{FvwmButtons,buttonbar}*:
+	use $$ in "Exec $$[fg.cs11]"
+
 2001-07-18  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:

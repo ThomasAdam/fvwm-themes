@@ -10,8 +10,8 @@ DestroyModuleConfig FvwmButtons-Bar: *
 *FvwmButtons-Bar: Padding	1 1
 *FvwmButtons-Bar: Colorset	10
 
-*FvwmButtons-Bar: (3x2+18+1, Colorset 23, Swallow (Close) xload `Exec exec xload -g +32767+32767 -fg $[fg.cs10] -bg $[bg.cs10] -nolabel`)
-*FvwmButtons-Bar: (3x2+18+3, Colorset 23, Swallow (Close) BarXclock `Exec exec xclock -name BarXclock -geometry 16x16+2000+2000 -padding 2 -analog -bg $[bg.cs10] -chime`, Action (Mouse1) Beep)
+*FvwmButtons-Bar: (3x2+18+1, Colorset 23, Swallow (Close) xload `Exec exec xload -g +32767+32767 -fg $$[fg.cs10] -bg $$[bg.cs10] -nolabel`)
+*FvwmButtons-Bar: (3x2+18+3, Colorset 23, Swallow (Close) BarXclock `Exec exec xclock -name BarXclock -geometry 16x16+2000+2000 -padding 2 -analog -bg $$[bg.cs10] -chime`, Action (Mouse1) Beep)
 # Menu Popups
 *FvwmButtons-Bar: (6x1+0+0,  Padding 0, Title Root,    Action `Menu MenuFvwmRoot      rectangle $widthx$height+$left+$top o+30 -100m Nop`)
 *FvwmButtons-Bar: (6x1+6+0,  Padding 0, Title Modules, Action `Menu MenuFvwmModules   rectangle $widthx$height+$left+$top o+30 -100m Nop`)
@@ -67,4 +67,4 @@ AddToFunc   FuncFvwmStartBarXosview
 	+mem -net -cpu -int -swap +page -battery -disk \
 	-geometry 100x50+0-0 -font 5x7 \
 	2>/dev/null; if [ "$?" = 127 ]; then \
-	xlogo -fg $[fg.cs10] -bg $[bg.cs10] -g 100x50+0-0 -name BarXosview; fi
+	xlogo -fg $$[fg.cs10] -bg $$[bg.cs10] -g 100x50+0-0 -name BarXosview; fi

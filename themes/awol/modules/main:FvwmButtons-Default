@@ -29,8 +29,8 @@ DestroyModuleConfig FvwmButtons-Default: *
 
 *FvwmButtons-Default: (2x1, Swallow(UseOld) "FvwmPager-Single" 'Module FvwmPager FvwmPager-Single * *', Frame -1)
 
-*FvwmButtons-Default: (2x1, Title "LOAD", Swallow(UseOld,Respawn) "xload" 'Exec xload -hl $[shadow.cs13] -nolabel -bg $[bg.cs13] -fg $[fg.cs13] -update 5 -geometry -1500-1500' \
-Action(mouse 1) 'Exec xterm +sb -font 7x14 -bg $[bg.cs35] -fg $[fg.cs35] -T Top -n Top -e top', \
+*FvwmButtons-Default: (2x1, Title "LOAD", Swallow(UseOld,Respawn) "xload" 'Exec xload -hl $$[shadow.cs13] -nolabel -bg $$[bg.cs13] -fg $$[fg.cs13] -update 5 -geometry -1500-1500' \
+Action(mouse 1) 'Exec xterm +sb -font 7x14 -bg $$[bg.cs35] -fg $$[fg.cs35] -T Top -n Top -e top', \
 Action(mouse 3) 'Exec tkps', Frame -1)
 
 *FvwmButtons-Default: (7x1, Container (Rows 1, Columns 9), Padding 0 0)
@@ -46,7 +46,7 @@ Action(mouse 3) 'Exec tkps', Frame -1)
 *FvwmButtons-Default: (End)
 
 *FvwmButtons-Default: (6x1, Container (Rows 1, Columns 30), Frame 0)
-*FvwmButtons-Default: (8x1, Center, Swallow(UseOld) "xbiff" "Exec xbiff -bg $[bg.cs13] -fg $[fg.cs13] -geometry +5000+5000", Frame -1)
+*FvwmButtons-Default: (8x1, Center, Swallow(UseOld) "xbiff" "Exec xbiff -bg $$[bg.cs13] -fg $$[fg.cs13] -geometry +5000+5000", Frame -1)
 *FvwmButtons-Default: (11x1, Center, Swallow (Kill) "FvwmApplet-Mixer" \
 	'FvwmScript FvwmApplet-Mixer 10 13', Frame -1)
 *FvwmButtons-Default: (11x1, Center, Swallow (Kill) "FvwmApplet-DayClock" \

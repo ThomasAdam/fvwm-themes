@@ -18,7 +18,7 @@ DestroyModuleConfig FvwmButtons-AsBar: *
 #*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Swallow "xeyes" 'Exec exec xeyes -shape -geometry +5000+5000')
 *FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Title "load", \
 	Swallow(UseOld,NoHints) "xload" \
-	`Exec exec xload -bg $[bg.cs11] -fg $[fg.cs11] -hl $[shadow.cs11]\
+	`Exec exec xload -bg $$[bg.cs11] -fg $$[fg.cs11] -hl $$[shadow.cs11] \
 	-update 5 -nolabel -geometry +5000+5000`)
 *FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Icon 48x48-general/restart.xpm, Action 'Restart')
 *FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Icon 48x48-general/choice-no.xpm, Action 'Module FvwmForm FvwmForm-QuitVerify')
@@ -73,6 +73,6 @@ DestroyModuleConfig FvwmButtons-AsAppletsPanel: *
 	Swallow (Kill) "FvwmApplet-Mixer" \
 	'FvwmScript FvwmApplet-Mixer 10 13')
 #*FvwmButtons-AsAppletsPanel: (Size 64 64, Colorset 12, Swallow "asmail" 'Exec exec asmail -g +5000+5000')
-*FvwmButtons-AsAppletsPanel: (Size 64 64, Colorset 12, Swallow "xbiff" `Exec exec xbiff -bg $[bg.cs13] -fg $[fg.cs13] -geometry +5000+5000`)
+*FvwmButtons-AsAppletsPanel: (Size 64 64, Colorset 12, Swallow "xbiff" `Exec exec xbiff -bg $$[bg.cs13] -fg $$[fg.cs13] -geometry +5000+5000`)
 *FvwmButtons-AsAppletsPanel: (Size 64 64, Colorset 12, Swallow "xeyes" 'Exec exec xeyes -shape -geometry +5000+5000')
 #*FvwmButtons-AsAppletsPanel: (2x1, Swallow "FvwmPager-Single" 'Module FvwmPager FvwmPager-Single * *')
