@@ -81,7 +81,7 @@ Notes
   your rplay.conf file with the sounds in sounds/ and themes/awol/sounds
   for rplayD.
 * fvwm-themes is wm-icons compatible. If you want to use more icon sets
-  than included 16x16-kde and 48x48-general, you should install wm-icons
+  than included 16x16-kde and 48x48-infox, you should install wm-icons
   package and choose "External wm-icons" in current/settings/Icon Styles.
 
 Success to you and enjoy!
