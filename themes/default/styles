@@ -35,7 +35,7 @@ Style "XSm"		Sticky
 Style "xsm"		NeverFocus, NoTitle, WindowListSkip, CirculateSkip
 Style "xmessage"        UsePPosition
 
-Style "gkrellm" Sticky, WindowListSkip, CirculateSkip, UsePPosition
+Style "gkrellm" NeverFocus, Sticky, WindowListSkip, CirculateSkip, UsePPosition
 
 # this is to override all patterns related to file names that are edited
 Style XEmacs Slippery, Title, Handles, WindowListHit, CirculateHit
