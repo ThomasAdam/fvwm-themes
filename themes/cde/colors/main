@@ -64,7 +64,7 @@ ButtonStyle	All -- UseTitleStyle
 	bg CDE_COLOR1, Plain, NoShape
 
 # greyed menu item fg
-*FvwmThemeColorset 7 fg bg CDE_COLOR4, \
+*FvwmThemeColorset 7 fg CDE_COLOR4, \
 	bg CDE_COLOR4, Plain, NoShape
 
 MenuStyle * MenuFace
