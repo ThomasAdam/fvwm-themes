@@ -9,6 +9,11 @@ Mouse	3	R	A	StrokeFunc FeedBack DrawMotion StrokeWidth 2
 # mouse 3 with Alt on a window
 Mouse	3 	W 	M 	StrokeFunc FeedBack DrawMotion StrokeWidth 2
 
+# for ewmh
+DestroyFunc FuncFvwmEWMHButton3OnRootWindow
+AddToFunc   FuncFvwmEWMHButton3OnRootWindow
++ I StrokeFunc FeedBack DrawMotion StrokeWidth 2
+
 # ----------------------------------------------------------------------------
 # The stroke bindings
 #

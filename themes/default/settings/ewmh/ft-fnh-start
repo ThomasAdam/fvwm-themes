@@ -1,0 +1,100 @@
+# redefinition of the maximize functions:
+
+DestroyFunc FuncFvwmMaximize
+AddToFunc   FuncFvwmMaximize
++ M Nop
++ H Nop
++ C SendToModule FvwmNetHints Maximize
++ D Menu MenuFvwmWindowMaximize
+
+DestroyFunc FuncFvwmMaximizeVertically
+AddToFunc   FuncFvwmMaximizeVertically
++ H SendToModule FvwmNetHints Maximize 0 100
++ M SendToModule FvwmNetHints Maximize 0 100
++ C SendToModule FvwmNetHints Maximize 0 100
+
+DestroyFunc FuncFvwmMaximizeHorizontally
+AddToFunc   FuncFvwmMaximizeHorizontally
++ H SendToModule FvwmNetHints Maximize 100 0
++ M SendToModule FvwmNetHints Maximize 100 0
++ C SendToModule FvwmNetHints Maximize 100 0
+
+DestroyFunc FuncFvwmSimpleMaximize
+AddToFunc   FuncFvwmSimpleMaximize
++ I SendToModule FvwmNetHints Maximize $0
+
+DestroyFunc FuncFvwmSimpleMaximizeVertically
+AddToFunc   FuncFvwmSimpleMaximizeVertically
++ I SendToModule FvwmNetHints Maximize $0 0 100
+
+DestroyFunc FuncFvwmSimpleMaximizeHorizontally
+AddToFunc   FuncFvwmSimpleMaximizeHorizontally
++ I SendToModule FvwmNetHints Maximize $0 100 0
+
+DestroyFunc FuncFvwmSimplePartialMaximizeVertically
+AddToFunc   FuncFvwmSimplePartialMaximizeVertically
++ I SendToModule FvwmNetHints Maximize $0 0 95
+
+# A special menu for the Ping protocol
+
+
+# This defines all window operations
+DestroyMenu MenuFvwmWindowOps
+AddToMenu   MenuFvwmWindowOps "Window Operations" Title
++ "&Move%menu/window-move.xpm%"                 Move
++ "&Resize%menu/window-resize.xpm%"             Resize
++ "(De)&Iconify%menu/window-iconify.xpm%"       Iconify
+# here!
++ "(Un)Ma&ximize%menu/window-maximize.xpm%"   	FuncFvwmSimpleMaximize
++ "(Un)Shade%menu/window-shade.xpm%"            WindowShade
++ "(Un)Stick%menu/window-stick.xpm%"            Stick
++ "R&aise%menu/window-raise.xpm%"               Raise
++ "&Lower%menu/window-lower.xpm%"               Lower
++ "" Nop
++ "&Delete%menu/window-delete.xpm%"             Delete
++ "&Close%menu/window-close.xpm%"               Close
++ "Destroy%menu/window-destroy.xpm%"            Destroy
++ "" Nop
++ "Move to Page%menu/window-move.xpm%"          Popup MenuFvwmWindowMove
++ "Group Operations%menu/windows.xpm%"          Popup MenuFvwmWindowGroupOps
++ "Window Style%menu/window.xpm%"               Popup MenuFvwmWindowStyle
++ "Maximize Window%menu/window-maximize.xpm%"   Popup MenuFvwmWindowMaximize
++ "Refresh Window%menu/refresh.xpm%"         	Popup MenuFvwmWindowRefresh
++ "Rearrange All%menu/refresh.xpm%"          	Popup MenuFvwmRearrangeWindows
++ "Window Utility%menu/utility.xpm%"            Popup MenuFvwmWindowUtility
++ "" Nop
++ "Identify%menu/window-identify.xpm%"          Module FvwmIdent
++ "Switch to...%menu/windows.xpm%"              WindowList
+
+# A trimmed down version of MenuFvwmWindowOps, good for binding to decorations
+DestroyMenu MenuFvwmWindowOps2
+AddToMenu   MenuFvwmWindowOps2
++ "Restore	Alt-F6%menu/window.xpm%"           FuncFvwmRestore
++ "&Move	Alt-F7%menu/window-move.xpm%"      Move
++ "&Resize	Alt-F8%menu/window-resize.xpm%"    Resize
++ "&Iconify	Alt-F9%menu/window-iconify.xpm%"   Iconify
+# here
++ "Ma&ximize	Alt-F10%menu/window-maximize.xpm%" FuncFvwmSimpleMaximize
++ "R&aise	Alt-F5%menu/window-raise.xpm%"     RaiseLower
++ "" Nop
++ "&Close	Alt-F4%menu/window-close.xpm%"     Close
++ "" Nop
++ "Identify	Alt-F11%menu/window-identify.xpm%" Module FvwmIdent
++ "More&...	Alt-F3%menu/window.xpm%"           Menu MenuFvwmWindowOps This 0 0
+
+# Someone may prefer the version without menu icons, like in mwm
+DestroyMenu MenuFvwmWindowOps3
+AddToMenu   MenuFvwmWindowOps3
++ "Restore	Alt-F6"  FuncFvwmRestore
++ "&Move	Alt-F7"  Move
++ "&Resize	Alt-F8"  Resize
++ "&Iconify	Alt-F9"  Iconify
+# here
++ "Ma&ximize	Alt-F10" FuncFvwmSimpleMaximize
++ "R&aise	Alt-F5"  RaiseLower
++ "" Nop
++ "&Close	Alt-F4"  Close
++ "" Nop
++ "Identify	Alt-F11" Module FvwmIdent
++ "More&...	Alt-F3"  Menu MenuFvwmWindowOps This 0 0
+

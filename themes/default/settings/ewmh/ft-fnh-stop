@@ -1,0 +1,53 @@
+DestroyFunc FuncFvwmMaximize
+AddToFunc   FuncFvwmMaximize
++ M Nop
++ H Nop
++ C Maximize
++ D Menu MenuFvwmWindowMaximize
+
+DestroyFunc FuncFvwmMaximizeVertically
+AddToFunc   FuncFvwmMaximizeVertically
++ H Maximize 0 100
++ M Maximize 0 100
++ C Maximize 0 100
+
+DestroyFunc FuncFvwmMaximizeHorizontally
+AddToFunc   FuncFvwmMaximizeHorizontally
++ H Maximize 100 0
++ M Maximize 100 0
++ C Maximize 100 0
+
+DestroyFunc FuncFvwmSimpleMaximize
+AddToFunc   FuncFvwmSimpleMaximize
++ I Maximize $0
+
+DestroyFunc FuncFvwmSimpleMaximizeVertically
+AddToFunc   FuncFvwmSimpleMaximizeVertically
++ I Maximize $0 0 100
+
+DestroyFunc FuncFvwmSimpleMaximizeHorizontally
+AddToFunc   FuncFvwmSimpleMaximizeHorizontally
++ I Maximize $0 100 0
+
+DestroyFunc FuncFvwmSimplePartialMaximizeVertically
+AddToFunc   FuncFvwmSimplePartialMaximizeVertically
++ I Maximize $0 0 95
+
+# Destroy the Ping menu
+
+
+# A trimmed down version of MenuFvwmWindowOps, good for binding to decorations
+DestroyMenu MenuFvwmWindowOps2
+AddToMenu   MenuFvwmWindowOps2
++ "Restore	Alt-F6%menu/window.xpm%"           FuncFvwmRestore
++ "&Move	Alt-F7%menu/window-move.xpm%"      Move
++ "&Resize	Alt-F8%menu/window-resize.xpm%"    Resize
++ "&Iconify	Alt-F9%menu/window-iconify.xpm%"   Iconify
+# here
++ "Ma&ximize	Alt-F10%menu/window-maximize.xpm%" Maximize
++ "R&aise	Alt-F5%menu/window-raise.xpm%"     RaiseLower
++ "" Nop
++ "&Close	Alt-F4%menu/window-close.xpm%"     Close
++ "" Nop
++ "Identify	Alt-F11%menu/window-identify.xpm%" Module FvwmIdent
++ "More&...	Alt-F3%menu/window.xpm%"           Menu MenuFvwmWindowOps This 0 0

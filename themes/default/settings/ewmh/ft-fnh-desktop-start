@@ -1,0 +1,12 @@
+Mouse 1 R A 
+Mouse 2 R A
+Mouse 3 R A
+
+Mouse 1 R M Menu MenuFvwmRoot
+Mouse 2 R M FuncFvwmEWMHButton2OnRootWindow
+Mouse 3 R M FuncFvwmEWMHButton3OnRootWindow
+
+MouseXX 2 3 R MC   FuncFvwmEWMHCtlButtonXXOnRootWindow
+MouseXX 2 3 R MCS  FuncFvwmEWMHShiftCtlButtonXXOnRootWindow
+
+

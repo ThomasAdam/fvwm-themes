@@ -210,7 +210,14 @@ Mouse 1 	WI	CM	FuncFvwmMoveOrRaiseLower
 MouseXX 2 3	WI	M	FuncFvwmMoveOrRaiseLower
 MouseXX 3 2	WI	M	Menu MenuFvwmWindowOps
 
+# for ewmh
+DestroyFunc FuncFvwmEWMHCtlButtonXXOnRootWindow
+AddToFunc   FuncFvwmEWMHCtlButtonXXOnRootWindow
++ I Module FvwmPager -transient FvwmPager-Single * *
 
+DestroyFunc FuncFvwmEWMHShiftCtlButtonXXOnRootWindow
+AddToFunc   FuncFvwmEWMHShiftCtlButtonXXOnRootWindow
++ I Module FvwmPager -transient FvwmPager-Desker 0 3
 # ---------------------------------------------------------------------------
 # We need to destroy the bindings to avoid current problems with fvwm.
 

@@ -1,4 +1,27 @@
 2001-08-30  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	Fixed ThemesCenter switching if isMinimal().
+	Remove the theme switching script feedback for ThemesCenter switching
+	(feedback is given by the ThemesCenter itself).
+
+	* themes/default/settings/ewmh/ft-fnh-start (new file):
+	* themes/default/settings/ewmh/ft-fnh-stop (new file):
+	* themes/default/settings/ewmh/ft-fnh-desktop-start (new file):
+	* themes/default/settings/ewmh/ft-fnh-desktop-stop (new file):
+	* themes/default/settings/ewmh/enabled:
+	* themes/default/settings/stroke/enabled:
+	* themes/default/bindings*
+	* themes/theme.cfg:
+	* themes/settings.cfg:
+	Some progress in ewmh support ("needs" fvwm-ewmh-0.5 (not yet relesed)) 
+	
+	* themes/theme.cfg:
+	* themes/settings.cfg:
+	Fixed stroke vs bindings minimal (re)loading
+
+
+2001-08-30  olicha  <olivier.chapuis@free.fr>
 	
 	* themes/default/theme.cfg:
 	Added support extra components for settings/{stroke,iconstyles,ewmh}

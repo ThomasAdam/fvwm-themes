@@ -3,15 +3,16 @@ AddToFunc   FuncFvwmRestartFvwmNetHints
 + I SendToModule FvwmNetHints Quit
 + I Module FvwmNetHints
 
-DestroyFunc FuncFvwmNetHintsConfig
-AddToFunc   FuncFvwmNetHintsConfig
-+ I DestroyModuleConfig FvwmNetHints*
-+ I *FvwmNetHints: ActivateWindowCmd FuncFvwmDeiconifyFocusAndRaise
+DestroyModuleConfig FvwmNetHints*
+*FvwmNetHints: ActivateWindowCmd FuncFvwmDeiconifyFocusAndRaise
 # focus workaround
-+ I *FvwmNetHints: DockNetStyle Focus
-+ I *FvwmNetHints: DesktopNetStyle Focus
-+ I *FvwmNetHints: ToolBarNetStyle Focus
-+ I *FvwmNetHints: MenuNetStyle Focus
+*FvwmNetHints: DockNetStyle Focus
+*FvwmNetHints: DesktopNetStyle Focus
+*FvwmNetHints: ToolBarNetStyle Focus
+*FvwmNetHints: MenuNetStyle Focus
+# system fnh star-stop files
+*FvwmNetHints: SystemStartStopFiles $./ft-fnh
+*FvwmNetHints: SystemDesktopStartStopFiles $./ft-fnh-desktop
 
 *FvwmPager-Desker: UseListSkip
 *FvwmPager-Single: UseListSkip
@@ -35,7 +36,6 @@ AddToFunc   FuncFvwmUnReloadEWMH
 
 DestroyFunc FuncFvwmLoadEWMH
 AddToFunc   FuncFvwmLoadEWMH
-+ I FuncFvwmNetHintsConfig
 + I Module FvwmNetHints
 
 DestroyFunc FuncFvwmUnloadEWMH

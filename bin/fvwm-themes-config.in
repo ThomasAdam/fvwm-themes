@@ -2149,12 +2149,12 @@ AddToFunc   FuncFvwmThemesConfigAndUpdate
 
 DestroyFunc FuncFvwmThemesCenterUpdate
 AddToFunc   FuncFvwmThemesCenterUpdate
-+ I FvwmScript FvwmScript-NoteMessage "Theme switching"
-+ I Wait FvwmScript-NoteMessage
+#+ I FvwmScript FvwmScript-NoteMessage "Theme switching"
+#+ I Wait FvwmScript-NoteMessage
 #+ I FuncFvwmResetInitFunctions
 + I Read @$rcFile3@
 + I FuncFvwmStartAllHooks
-+ I All (FvwmScript-NoteMessage) Delete
+#+ I All (FvwmScript-NoteMessage) Delete
 
 DestroyFunc FuncFvwmThemesReset
 AddToFunc   FuncFvwmThemesReset
@@ -3036,17 +3036,9 @@ sub comLoop {
 			}
 			if ($return ne "") {
 				# old
-				#if ($self->isMinimalReload()) {
-				#	$return = 'FuncFvwmMinimalThemesConfigAndUpdate "'. $return .'"';
-				#} else {
-				#	$return = 'FuncFvwmThemesConfigAndUpdate "'. $return . '"';
-				#}
+				$return = 'FuncFvwmThemesConfigAndUpdate "'. $return . '"';
 				# new
-				if ($self->isMinimalReload()) {
-					$return = "FuncFvwmThemesCenterMinimalUpdate";
-				} else {
-					$return = "FuncFvwmThemesCenterUpdate";
-				}
+				$return = "FuncFvwmThemesCenterUpdate";
 			}
 			$self->setNewComponentValues(\%optLoad, \%variantLoad, \%compLock);
 			#fs 5
