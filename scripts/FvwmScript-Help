@@ -36,7 +36,7 @@ Begin
     While $arg <> {} Do
     Begin
 	Set $j = (Add $i 1)
-	If $arg == {--Message} Then
+	If $arg == {--message} Then
 	    Set $Message = (GetScriptArgument $j)
   	If $arg == {--title} Then
 	    Set $Title = (GetScriptArgument $j)
