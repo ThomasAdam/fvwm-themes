@@ -1,3 +1,9 @@
+2001-03-30  migo  <migo@homemail.com>
+
+	* configure.in:
+	* NEWS:
+	increased version to 0.4.3 after setting a cvs tag version-0_4_2;
+
 2001-03-29  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
