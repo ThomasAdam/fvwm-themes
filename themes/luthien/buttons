@@ -3,7 +3,7 @@ Style "*" MWMButtons  # button relief follows the state
 
 AddButtonStyle 1 5 22x39@1 78x39@1 78x61@0 22x61@0 22x39@1
 AddButtonStyle 2 5 25x25@1 75x25@1 75x75@0 25x75@0 25x25@1
-AddButtonStyle 3 5 32x45@0 68x45@0 68x55@1 32x55@1 32x45@0
+AddButtonStyle 3 5 32x45@1 68x45@1 68x55@0 32x55@0 32x45@1
 AddButtonStyle 4 5 39x39@1 61x39@1 61x61@0 39x61@0 39x39@1
 AddButtonStyle 6 5 25x35@1 75x35@1 75x40@0 25x40@0 25x35@1
 
