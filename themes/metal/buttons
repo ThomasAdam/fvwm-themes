@@ -2,19 +2,19 @@ Style "*" Button 1, Button 2, Button 4, Button 6
 Style "*" MwmButtons
 
 AddButtonStyle 1 Pixmap button/options.xpm
-AddButtonStyle 2 ActiveUp   Pixmap button/close-activeup.xpm
-AddButtonStyle 2 ActiveDown Pixmap button/close-activedown.xpm
-AddButtonStyle 2 Inactive   Pixmap button/close-inactive.xpm
-AddButtonStyle 4 ActiveUp   Pixmap button/maximize-activeup.xpm
-AddButtonStyle 4 ActiveDown Pixmap button/maximize-activedown.xpm
-AddButtonStyle 4 Inactive   Pixmap button/maximize-inactive.xpm
-AddButtonStyle 6 ActiveUp   Pixmap button/iconify-activeup.xpm   -- Right flat
-AddButtonStyle 6 ActiveDown Pixmap button/iconify-activedown.xpm -- Right flat
-AddButtonStyle 6 Inactive   Pixmap button/iconify-inactive.xpm   -- Right flat
+AddButtonStyle 2 ActiveUp   Pixmap button/close-activeup.xpm     -- Right
+AddButtonStyle 2 ActiveDown Pixmap button/close-activedown.xpm   -- Right
+AddButtonStyle 2 Inactive   Pixmap button/close-inactive.xpm     -- Right
+AddButtonStyle 4 ActiveUp   Pixmap button/maximize-activeup.xpm   -- Left
+AddButtonStyle 4 ActiveDown Pixmap button/maximize-activedown.xpm -- Left
+AddButtonStyle 4 Inactive   Pixmap button/maximize-inactive.xpm   -- Left
+AddButtonStyle 6 ActiveUp   Pixmap button/iconify-activeup.xpm   -- Right
+AddButtonStyle 6 ActiveDown Pixmap button/iconify-activedown.xpm -- Right
+AddButtonStyle 6 Inactive   Pixmap button/iconify-inactive.xpm   -- Right
 #
-AddButtonStyle 4 ToggledActiveUp   Pixmap button/unmaximize-activeup.xpm
-AddButtonStyle 4 ToggledActiveDown Pixmap button/unmaximize-activedown.xpm
-AddButtonStyle 4 ToggledInactive   Pixmap button/unmaximize-inactive.xpm
+AddButtonStyle 4 ToggledActiveUp   Pixmap button/unmaximize-activeup.xpm   -- Left
+AddButtonStyle 4 ToggledActiveDown Pixmap button/unmaximize-activedown.xpm -- Left
+AddButtonStyle 4 ToggledInactive   Pixmap button/unmaximize-inactive.xpm   -- Left
 
 ButtonStyle All - Clear
 ButtonStyle 4 - MwmDecorMax
