@@ -1,3 +1,8 @@
+2001-10-24  migo  <migo@homemail.com>
+
+	* themes/default/functions-appbind:
+	fixed FuncFvwmWmRestart
+
 2001-10-23  olicha  <olivier.chapuis@free.fr>
 
 	* themes/luthien/modules/main
