@@ -5,6 +5,7 @@
 
 use strict;
 use lib `fvwm-config -p | tr -d '\n'`;
+#use lib `fvwm-perllib dir`;
 use FVWM::Module;
 use General::FileSystem '-quiet';
 use General::Parse;
