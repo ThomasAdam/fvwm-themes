@@ -12,6 +12,13 @@
 	Used new name scheme for files, no more files with colon.
 	XEmacs bug for such names should be solved by adding Style XEmacs.
 
+	* themes/migo/colors:
+	tried to improve some black text shadow, probably it is possible
+	to twick default to be better for black color, but maybe impossible
+
+	* themes/migo/images/decor/title-*active.xpm:
+	increased title width to 30
+
 2002-05-22  migo  <migo@homemail.com>
 
 	* themes/redmondxp/README:
