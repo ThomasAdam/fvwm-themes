@@ -20,8 +20,7 @@ Colorset 0 fg rgb:f8/f8/f3, bg rgb:50/50/78, Plain, NoShape
 # window title, inactive and active
 Colorset 1 fg rgb:30/10/58, bg rgb:ce/ce/9c, fgsh rgb:a1/a1/7a, \
 	TiledPixmap decor/rose.xpm, bgTint black 22, Tint black 22, NoShape
-#Colorset 2 fg rgb:50/10/90, bg rgb:ce/ce/9c, fgsh rgb:91/9c/d1,
-Colorset 2 fg rgb:ff/ff/a0, bg rgb:ce/ce/9c, fgsh rgb:50/70/90, \
+Colorset 2 fg rgb:ff/ff/a0, bg rgb:ce/ce/9c, fgsh rgb:30/54/88, \
 	TiledPixmap decor/rose.xpm, NoShape
 
 # window borders, inactive and active
