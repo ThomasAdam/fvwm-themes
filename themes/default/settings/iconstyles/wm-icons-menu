@@ -18,36 +18,50 @@ AddToFunc    FuncFvwmUnLoadWMIcons
 
 DestroyMenu MenuFvwmIconSets
 AddToMenu   MenuFvwmIconSets "Change Icon Set" Title
-+ "%menu/item.xpm%menu	14x14-general"   Exec wm-icons-config -q -p -f menu 14x14-general
++ "%menu/item.xpm%menu	14x14-general	(old)" Exec wm-icons-config -q -p -f menu 14x14-general
++ "%menu/item.xpm%menu	16x16-aquafusion	(new)"  Exec wm-icons-config -q -p -f menu 16x16-aquafusion
 + "%menu/item.xpm%menu	16x16-general"   Exec wm-icons-config -q -p -f menu 16x16-general
 + "%menu/item.xpm%menu	16x16-gnome"     Exec wm-icons-config -q -p -f menu 16x16-gnome
 + "%menu/item.xpm%menu	16x16-kde"       Exec wm-icons-config -q -p -f menu 16x16-kde
++ "%menu/item.xpm%menu	16x16-kde3	(new)" Exec wm-icons-config -q -p -f menu 16x16-kde3
 + "%menu/item.xpm%menu	17x14-3dpixmaps" Exec wm-icons-config -q -p -f menu 17x14-3dpixmaps
 + "%menu/item.xpm%menu	20x20-martys"    Exec wm-icons-config -q -p -f menu 20x20-martys
 + "%menu/item.xpm%menu	20x20-martys2"   Exec wm-icons-config -q -p -f menu 20x20-martys2
 + "%menu/item.xpm%menu	21x18-3dpixmaps" Exec wm-icons-config -q -p -f menu 21x18-3dpixmaps
++ "%menu/item.xpm%menu	22x22-aquafusion	(new)" Exec wm-icons-config -q -p -f menu 22x22-aquafusion
 + "" Nop
-+ "%menu/item.xpm%mini	14x14-general"   Exec wm-icons-config -q -p -f mini 14x14-general
++ "%menu/item.xpm%mini	14x14-general	(old)" Exec wm-icons-config -q -p -f mini 14x14-general
++ "%menu/item.xpm%mini	16x16-aquafusion	(new)"  Exec wm-icons-config -q -p -f mini 16x16-aquafusion
 + "%menu/item.xpm%mini	16x16-general"   Exec wm-icons-config -q -p -f mini 16x16-general
 + "%menu/item.xpm%mini	16x16-gnome"     Exec wm-icons-config -q -p -f mini 16x16-gnome
 + "%menu/item.xpm%mini	16x16-kde"       Exec wm-icons-config -q -p -f mini 16x16-kde
++ "%menu/item.xpm%mini	16x16-kde3	(new)" Exec wm-icons-config -q -p -f mini 16x16-kde3
 + "%menu/item.xpm%mini	17x14-3dpixmaps" Exec wm-icons-config -q -p -f mini 17x14-3dpixmaps
 + "%menu/item.xpm%mini	20x20-martys"    Exec wm-icons-config -q -p -f mini 20x20-martys
 + "%menu/item.xpm%mini	20x20-martys2"   Exec wm-icons-config -q -p -f mini 20x20-martys2
 + "%menu/item.xpm%mini	21x18-3dpixmaps" Exec wm-icons-config -q -p -f mini 21x18-3dpixmaps
++ "%menu/item.xpm%mini	22x22-aquafusion	(new)" Exec wm-icons-config -q -p -f mini 22x22-aquafusion
 + "" Nop
++ "%menu/item.xpm%norm	32x32-aquafusion	(new)" Exec wm-icons-config -q -p -f norm 32x32-aquafusion
 + "%menu/item.xpm%norm	32x32-kde"       Exec wm-icons-config -q -p -f norm 32x32-kde
 + "%menu/item.xpm%norm	32x32-kde2"      Exec wm-icons-config -q -p -f norm 32x32-kde2
++ "%menu/item.xpm%norm	32x32-kde3	(new)" Exec wm-icons-config -q -p -f norm 32x32-kde3
 + "%menu/item.xpm%norm	44x52-penguins"  Exec wm-icons-config -q -p -f norm 44x52-penguins
++ "%menu/item.xpm%norm	48x48-aquafusion	(new)" Exec wm-icons-config -q -p -f norm 48x48-aquafusion
 + "%menu/item.xpm%norm	48x48-general"   Exec wm-icons-config -q -p -f norm 48x48-general
 + "%menu/item.xpm%norm	48x48-gnome"     Exec wm-icons-config -q -p -f norm 48x48-gnome
++ "%menu/item.xpm%norm	48x48-infox	(new)" Exec wm-icons-config -q -p -f norm 48x48-infox
 + "%menu/item.xpm%norm	48x48-kde2"      Exec wm-icons-config -q -p -f norm 48x48-kde2
++ "%menu/item.xpm%norm	48x48-kde3	(new)" Exec wm-icons-config -q -p -f norm 48x48-kde3
 + "%menu/item.xpm%norm	56x46-3dpixmaps" Exec wm-icons-config -q -p -f norm 56x46-3dpixmaps
 + "%menu/item.xpm%norm	56x56-martys"    Exec wm-icons-config -q -p -f norm 56x56-martys
 + "%menu/item.xpm%norm	56x56-martys2"   Exec wm-icons-config -q -p -f norm 56x56-martys2
++ "%menu/item.xpm%norm	64x64-aquafusion	(new)" Exec wm-icons-config -q -p -f norm 64x64-aquafusion
 + "" Nop
++ "%menu/item.xpm%16x16	16x16-aquafusion	(new)"  Exec wm-icons-config -q -p -f 16x16 16x16-aquafusion
 + "%menu/item.xpm%16x16	16x16-general"   Exec wm-icons-config -q -p -f 16x16 16x16-general
 + "%menu/item.xpm%16x16	16x16-gnome"     Exec wm-icons-config -q -p -f 16x16 16x16-gnome
 + "%menu/item.xpm%16x16	16x16-kde"       Exec wm-icons-config -q -p -f 16x16 16x16-kde
++ "%menu/item.xpm%16x16	16x16-kde3	(new)"  Exec wm-icons-config -q -p -f 16x16 16x16-kde3
 + "" Nop
 + "%menu/restart.xpm%Restart	to activate" Restart
