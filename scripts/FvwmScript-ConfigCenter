@@ -489,7 +489,6 @@ Begin
     Set $ThemeToLoad = {current}
     Set $InStart = 1
 
-    Set $MetaConfigTool = {CommonFeel}
     Set $ConfigTool = {Focus}
     
     # Preference
@@ -524,6 +523,7 @@ Begin
     If $GF_UpdateConfig == 1 Then
     Begin
 	Set $GF_UpdateConfig = 0
+	Set $GF_BuildConfig = 1
 	If $InStart == 1 Then
 	Begin
 	    Set $LoadFocus = 1
@@ -531,7 +531,6 @@ Begin
 	    Set $LoadPaging = 1
 	    Set $LoadTransient = 1
 	    Set $LoadHints = 1
-	    Set $GF_BuildConfig = 1
 	    Set $GF_BuildAllConfig = 1
 	End
 	Else
@@ -1174,8 +1173,7 @@ Begin
 		Set $GF_SaveConfigTransient = $GF_LastConfigTransient 
 		Set $GF_SaveConfigHints = $GF_LastConfigHints
 	    End
-	End
-	
+	End	
 	Else
 	Begin
 	    If $test1 == 1 Then
@@ -1209,7 +1207,7 @@ Begin
 	If $test1 == 1 Then 
 	    Set $GF_TryConfig = $GF_TryConfigFocus $GF_TryConfigMove $GF_TryConfigPaging $GF_TryConfigTransient $GF_TryConfigHints
 	If $test2 == 1 Then 
-	Set $GF_SaveConfig = $GF_SaveConfigFocus $GF_SaveConfigMove $GF_SaveConfigPaging $GF_SaveConfigTransient $GF_SaveConfigHints
+	    Set $GF_SaveConfig = $GF_SaveConfigFocus $GF_SaveConfigMove $GF_SaveConfigPaging $GF_SaveConfigTransient $GF_SaveConfigHints
 
 	If $InStart == 1 Then
 	Begin
@@ -1306,7 +1304,7 @@ Begin
 	Set $test = 1
 	If $GF_TryIsGlobal == 1 Then
 	Begin
-	    If $GF_TryConfig == $GF_LastBConfig Then
+	    If $GF_TryConfig == $GF_LastConfig Then
 		Set $test = 0
 	End
 	Else
@@ -1358,7 +1356,7 @@ Begin
 	Set $test = 1
 	If $GF_SaveIsGlobal == 1 Then
 	Begin
-	    If $GF_SaveConfig == $GF_LastBConfig Then
+	    If $GF_SaveConfig == $GF_LastConfig Then
 		Set $test = 0
 	End
 	Else

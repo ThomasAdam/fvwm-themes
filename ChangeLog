@@ -1,3 +1,8 @@
+2000-11-11  olicha  <olivier.chapuis@free.fr>
+
+	* scripts/FvwmScript-ConfigCenter:
+	Fixed a shade/Sel font problems when Apply/Try is global
+	
 2000-11-10  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
