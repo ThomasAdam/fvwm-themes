@@ -164,7 +164,7 @@ GNOME_IMAGES_DIR=`echo $GNOME_SESSION | sed -e "s,/[[^/]]*/gnome-session$,,"`/sh
 AC_SUBST(GNOME_IMAGES_DIR)dnl
 
 $UNSET ac_cv_path_FVWM_CONFIG
-AC_PATH_PROG(FVWM_CONFIG, fvwm-config --version, , "$FVWM_BINDIR:${PATH}")
+AC_PATH_PROG(FVWM_CONFIG, fvwm-config --version, , [$FVWM_BINDIR:${PATH}])
 if test -z "$FVWM_CONFIG"; then
 	AC_MSG_ERROR([
 	fvwm-config is not found; try --with-fvwm-bindir
@@ -229,7 +229,7 @@ AC_SUBST(FT_FVWMFORM_DIR)dnl
 AC_SUBST(FT_LOCALE_DIR)dnl
 
 # migo: to match the one in FVWM...
-FT_VERSION_INFO="FVWM Themes version $VERSION from `date +'%b %d %Y at %T'`"
+FT_VERSION_INFO="fvwm-themes $VERSION built on `date +'%b %d %Y at %T'`"
 AC_SUBST(FT_VERSION_INFO)dnl
 FT_BUILD_ID=`date '+build %d-%b-%Y %T'`
 AC_SUBST(FT_BUILD_ID)dnl

@@ -1,3 +1,8 @@
+2002-09-22  migo  <migo@homemail.com>
+
+	* configure.in:
+	fixed for autoconf-2.50+
+
 2002-09-13  migo  <migo@homemail.com>
 
 	* themes/redmondxp/modules/FvwmThemesPanelManager:
