@@ -1,0 +1,15 @@
+DestroyFunc FuncFvwmSetFont-WindowTitle
+AddToFunc   FuncFvwmSetFont-WindowTitle
++ I Style "$0" Font "-alias-variable-medium-r-*-*-14-*-*-*-*-*-ksc5601*-*"
+
+DestroyFunc FuncFvwmSetFont-IconTitle
+AddToFunc   FuncFvwmSetFont-IconTitle
++ I Style "$0" IconFont "-alias-fixed-medium-r-*-*-14-*-*-*-*-*-ksc5601*-*"
+
+DestroyFunc FuncFvwmSetFont-Menu
+AddToFunc   FuncFvwmSetFont-Menu
++ I MenuStyle "$0" Font "-narae-*-medium-r-*-*-14-*-*-*-*-*-ksc5601*-*"
+
+DestroyFunc FuncFvwmSetFont-Module
+AddToFunc   FuncFvwmSetFont-Module
++ I Nop
