@@ -692,23 +692,32 @@ sub showThemeComponentInfo ($) {
 
 	$theme = $cc->{'theme'} if $cc->{'theme'};
 	my $numComponents = @{getThemeComponents($theme)};
-	my ($str, @propStrs) = ("");
+	my ($str, @propStrs, @currStrs) = ("");
 	my $lockedStr = $cc->{'locked'}? " (locked)": "";
 	my $readFile = $cc->{'read-file'};
 
 	push @propStrs, quantifyString(0 + @{$cc->{'contains'}}, "subcomponent")
 		if $cc->{'contains'};
-	push @propStrs, quantifyString(0 + @{$cc->{'variant'}}, "variant")
-		if $cc->{'variant'};
-	if ($cc->{'option'}) {
-		my $num = @{$cc->{'option'}};
-		my $valuesStr = join(' * ', map { 0 + @{$_->{'value'}} } @{$cc->{'option'}});
+	my $variants = $cc->{'variant'};
+	if (ref($variants) eq 'ARRAY') {
+		push @propStrs, quantifyString(0 + @$variants, "variant");
+		push @currStrs, $variants->[$cc->{'current'} - 1]->{'name'} || '*error*';
+	}
+	my $options = $cc->{'option'};
+	if (ref($options) eq 'ARRAY') {
+		my $num = @$options;
+		my $valuesStr = join(' * ', map { 0 + @{$_->{'value'}} } @$options);
 		push @propStrs, quantifyString($num, "option") . " ($valuesStr choices)";
+		foreach (@$options) {
+			push @currStrs, $_->{'name'} . ": " .
+				($_->{'value'}->[$_->{'current'} - 1]->{'name'} || '*error*');
+		}
 	}
 
 	$str .= "Theme:      $theme ($numComponents components)\n";
 	$str .= "Component:  $component$lockedStr\n";
 	$str .= "Properties: " . (@propStrs? join(", ", @propStrs): "none") . "\n";
+	$str .= "Current:    " . join("; ", @currStrs) . "\n" if @currStrs;
 	$str .= "Read File:  $readFile\n" if $readFile;
 
 	$str = q(FuncFvwmShowMessage "Component Info" ') .
