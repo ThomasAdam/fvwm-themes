@@ -156,10 +156,8 @@ sub applyNewConfig () {
 			$module->send("*FvwmIconMan: resolution $newValue");
 		}
 		if ($key eq 'taskbar-normalicons') {
-			my $cmd = $newValue?
-				"Read themes/default/settings/iconstyles/style-icon-miniicon":
-			        "Style * NoIcon";
-			$module->send($cmd);
+			my $not = $newValue? "!": "";
+			$module->send("Style * ${not}NoIcon");
 		}
 		if ($key eq 'clockbar-field-order') {
 			if ($newValue < 0 || $newValue >= @$clockFieldOrder) {
@@ -308,8 +306,10 @@ sub updatePageLabel ($) {
 # ----------------------------------------------------------------------------
 # main
 
+$module->send("SendToModule FvwmAnimate push pause");  # avoid raise conditions
 loadConfig();
 applyNewConfig();
+$module->send("SendToModule FvwmAnimate pop");
 
 $module->addHandler(M_NEW_PAGE, sub {
 	my ($self, $event) = @_;

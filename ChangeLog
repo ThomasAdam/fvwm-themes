@@ -1,3 +1,8 @@
+2003-10-27  migo  <migo@homemail.com>
+
+	* themes/redmondxp/modules/FvwmThemesPanelManager:
+	work around FvwmAnimate deadlock freeze
+
 2003-10-25  migo  <migo@homemail.com>
 
 	* themes/redmondxp/README:
