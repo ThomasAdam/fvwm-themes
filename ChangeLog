@@ -19,6 +19,9 @@
 	* themes/default/theme.cfg:
 	fixed a typo caused event-handler to be loaded after menus
 
+	* themes/migo/modules/main:
+	minor clean up
+
 2003-10-20  migo  <migo@homemail.com>
 
 	* themes/*/colors*:
