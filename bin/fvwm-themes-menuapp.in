@@ -334,11 +334,7 @@ sub checkScript {
 	my $test = 0;
 	my $lockFifo = ".tmp-com-lock-" . $comName;
 	
-	open(PS,"ps ax|");
-	while (<PS>) {
-		$test=1 if (/^\s*$comPid\s+/);
-	}
-	close(PS);
+	$test = 1 if kill 0 => $comPid;
 	
 	if ($test) { die "Script"; }
 	else { unlink($lockFifo);die "NoScript"; }

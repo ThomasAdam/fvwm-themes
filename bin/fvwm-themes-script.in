@@ -571,7 +571,7 @@ sub configCenterComLoop {
 			print STDERR "$comName: com give an unvalide unlock!\n";
 			next;
 		}
-		print STDERR "msg com 2\n";
+		#print STDERR "msg com 2\n";
 		#------------------------------------------------------------------------
 		# build the answer
 		chomp($command);
@@ -803,11 +803,7 @@ sub checkScript {
 	die "OSes without BSD-compatible 'ps' are currently not supported, sorry\n"
 		if `ps h >/dev/null 2>&1; echo $?` ne "0\n";
 
-	open(PS,"ps ax|");
-	while (<PS>) {
-		$test=1 if (/^\s*$comPid\s+/);
-	}
-	close(PS);
+	$test = 1 if kill 0 => $comPid;
 
 	if ($test) { die "Script"; }
 	else { unlink($lockFifo);die "NoScript"; }

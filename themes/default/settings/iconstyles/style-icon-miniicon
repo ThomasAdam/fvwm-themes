@@ -18,6 +18,12 @@ Style * IconOverride
 Style "*"                      Icon norm/unknown.xpm,         MiniIcon mini/unknown.xpm
 Style "NoResource"             Icon norm/unknown.xpm,         MiniIcon mini/unknown.xpm
 
+# Terminal, (it is better to put the terminal at the beginning)
+Style "xterm*"                 Icon norm/xterm.xpm,           MiniIcon mini/xterm.xpm
+Style "?xterm*"                Icon norm/xterm.xpm,           MiniIcon mini/xterm.xpm
+Style "rxvt"                   Icon norm/shell.xpm,           MiniIcon mini/shell.xpm
+Style "Eterm*"                 Icon norm/xterm.xpm,           MiniIcon mini/xterm.xpm
+
 # These are not all mine, most of globs must be removed.
 Style "DDD*"                   Icon norm/debugger.xpm,        MiniIcon mini/debugger.xpm
 Style "GRASP*"                 Icon norm/folders.xpm,         MiniIcon mini/folders.xpm
@@ -44,18 +50,19 @@ Style "Dayview"                Icon norm/clock.xpm,           MiniIcon mini/cloc
 Style "Dialogue"               Icon norm/www.xpm,             MiniIcon mini/www.xpm
 Style "Display"                Icon norm/image-viewer.xpm,    MiniIcon mini/image-viewer.xpm
 Style "dosemu*"                Icon norm/todo.xpm,            MiniIcon mini/todo.xpm
-Style "Image Viewer"           Icon norm/image-viewer.xpm,    MiniIcon mini/image-viewer.xpm
+Style "Image Viewer*"          Icon norm/image-viewer.xpm,          MiniIcon mini/image-viewer.xpm
 Style "emacs"                  Icon norm/editor.xpm,          MiniIcon mini/editor.xpm
-Style "Eterm*"                 Icon norm/xterm.xpm,           MiniIcon mini/xterm.xpm
 Style "Explorer"               Icon norm/folders.xpm,         MiniIcon mini/folders.xpm
 Style "fr"                     Icon norm/folders.xpm,         MiniIcon mini/folders.xpm
 Style "freeamp"                Icon norm/music.xpm,           MiniIcon mini/music.xpm
+Style "File Viewer*"           Icon norm/viewer.xpm,          MiniIcon mini/viewer.xpm
 Style "ghostview"              Icon norm/ghostview.xpm,       MiniIcon mini/ghostview.xpm
 Style "ghostscript"            Icon norm/ghostview.xpm,       MiniIcon mini/ghostview.xpm
 Style "gifview"                Icon norm/image-viewer.xpm,    MiniIcon mini/image-viewer.xpm
 Style "GV"                     Icon norm/ghostview.xpm,       MiniIcon mini/ghostview.xpm
 Style "Help_popup"             Icon norm/help.xpm,            MiniIcon mini/help.xpm
 Style "ixset"                  Icon norm/todo.xpm,            MiniIcon mini/todo.xpm
+Style "Manual Page*"           Icon norm/help.xpm,            MiniIcon mini/help.xpm
 Style "matlab"                 Icon norm/todo.xpm,            MiniIcon mini/todo.xpm
 # too general
 Style "mgv*"                   Icon norm/ghostview.xpm,       MiniIcon mini/ghostview.xpm
@@ -75,10 +82,11 @@ Style "panel"                  Icon norm/home.xpm,            MiniIcon mini/home
 Style "pine"                   Icon norm/mail.xpm,            MiniIcon mini/mail.xpm
 Style "pixmap*"                Icon norm/image-viewer.xpm,    MiniIcon mini/image-viewer.xpm
 Style "qps*"                   Icon norm/mail.xpm,            MiniIcon mini/mail.xpm
-Style "rxvt"                   Icon norm/shell.xpm,           MiniIcon mini/shell.xpm
 Style "sxpm"                   Icon norm/image-viewer.xpm,    MiniIcon mini/image-viewer.xpm
+Style "Tail File*"             Icon norm/viewer.xpm,          MiniIcon mini/viewer.xpm
 Style "textedit"               Icon norm/editor.xpm,          MiniIcon mini/editor.xpm
 Style "thot*"                  Icon norm/www.xpm,             MiniIcon mini/www.xpm
+Style "Top"                    Icon norm/todo.xpm,            MiniIcon mini/todo.xpm
 Style "usernet"                Icon norm/network.xpm,         MiniIcon mini/network.xpm
 Style "VIM"                    Icon norm/editor.xpm,          MiniIcon mini/editor.xpm
 Style "vmware"                 Icon norm/utility.xpm,         MiniIcon mini/utility.xpm
@@ -126,8 +134,6 @@ Style "xpdf"                   Icon norm/viewer.xpm,          MiniIcon mini/view
 Style "xplaycd"                Icon norm/cd-player.xpm,       MiniIcon mini/cd-player.xpm
 Style "xsysinfo*"              Icon norm/information.xpm,     MiniIcon mini/information.xpm
 Style "xtar*"                  Icon norm/todo.xpm,            MiniIcon mini/todo.xpm
-Style "xterm*"                 Icon norm/xterm.xpm,           MiniIcon mini/xterm.xpm
-Style "?xterm*"                Icon norm/xterm.xpm,           MiniIcon mini/xterm.xpm
 Style "xv"                     Icon norm/xv.xpm,              MiniIcon mini/xv.xpm
 Style "xvgr"                   Icon norm/image-viewer.xpm,    MiniIcon mini/image-viewer.xpm
 Style "xvmount"                Icon norm/disk.xpm,            MiniIcon mini/disk.xpm
@@ -248,6 +254,7 @@ Style "kjots"                  Icon norm/editor.xpm,          MiniIcon mini/edit
 Style "klpq"                   Icon norm/information.xpm,     MiniIcon mini/information.xpm
 Style "kljettool"              Icon norm/information.xpm,     MiniIcon mini/information.xpm
 Style "knode"                  Icon norm/mail.xpm,            MiniIcon mini/mail.xpm
+Style "knews"                  Icon norm/mail.xpm,            MiniIcon mini/mail.xpm
 Style "kmail"                  Icon norm/mail.xpm,            MiniIcon mini/mail.xpm
 Style "kmid"                   Icon norm/sound.xpm,           MiniIcon mini/sound.xpm
 # Sound Mixer
