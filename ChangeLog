@@ -1,3 +1,29 @@
+2001-12-17  olicha  <olivier.chapuis@free.fr>
+
+	* themes/default/styles:
+	comment out (in fact it should be removed) Style "*" NoPPosition
+	because NoPPosition / UsePPostion is in globalfeel (set to NoPPosition
+	in default/globalfile) and in fact I think that styles should contain
+	only specific application styles and not "*" styles (so maybe the
+	Netscape line should be uncommented, I do not know if this is
+	a good idea since I do not use it anymore).
+
+	* locale/*/FvwmScript-GlobalFeel.msg:
+	* bin/fvwm-themes-script.in (parse_globalfeel_Config):
+	(parse_globalfeel_Config): 
+	(default_globalfeel_Config): 
+	* themes/*/globalfeel:
+	Change the default for NoOverride / HintOverride to NoOverride.
+	Really this seems resonable for me; for example, in a lot of case,
+	if you iconify a transient it disappear totally.
+
+	* themes/unsafe/buttons: 
+	* themes/redmond98/buttons:
+	* themes/metal/buttons:
+	* themes/afterstep/buttons:
+	* themes/olicha/buttons:
+	Fixed MwmDecor flags
+
 2001-10-29  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

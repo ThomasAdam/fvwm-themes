@@ -108,7 +108,7 @@ HintsTitle	{ Accèpter les Indications du type suivant: (dites oui à tout!)}
 # no more that 39 characteres for the next 6
 MWMDecor	{Décores MWM}
 OLDHints	{OLD}
-ButShade	{À l'exception de l'ombrage}
+ButShade	{Actions MWM}
 MWMFunctions	{Fonctions MWM}
 GNOMEHints	{GNOME}
 ButModal	{À l'exception des fenètres modales}

@@ -8,6 +8,10 @@ AddButtonStyle 2	Pixmap button/mac-window-shade.xpm
 AddButtonStyle 3	Pixmap button/mac-window-iconify.xpm
 AddButtonStyle 4	Pixmap button/mac-window-maximize.xpm
 
+ButtonStyle 1	- Clear 
+ButtonStyle 2	- Clear MwmDecorShade
+ButtonStyle 3	- Clear MwmDecorMin
+ButtonStyle 4	- Clear MWMDecorMax
 TitleStyle	Height 17
 
 Mouse 1 	1	A	Menu MenuFvwmWindowOps2 Close

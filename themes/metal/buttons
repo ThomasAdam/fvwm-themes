@@ -19,6 +19,7 @@ AddButtonStyle 4 ToggledActiveDown Pixmap button/unmaximize-activedown.xpm -- Le
 AddButtonStyle 4 ToggledInactive   Pixmap button/unmaximize-inactive.xpm   -- Left
 
 ButtonStyle All - Clear
+ButtonStyle 1 - MwmDecorMenu
 ButtonStyle 4 - MwmDecorMax
 ButtonStyle 6 - MwmDecorMin
 

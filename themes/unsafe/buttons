@@ -15,6 +15,10 @@ AddButtonStyle 4 ActiveDown Pixmap button/shade-pressed.xpm
 AddButtonStyle 6 ActiveDown Pixmap button/iconify-pressed.xpm
 
 ButtonStyle All - Clear
+ButtonStyle 3 - MWMDecorMenu
+ButtonStyle 4 - MWMDecorShade
+ButtonStyle 6 - MWMDecorMin MWMDecorMax
+
 TitleStyle	Height 20
 
 #     button	context	modifie	function

@@ -116,7 +116,7 @@ HintsTitle	{ Use the hints of the following types (say yes to all!) }
 # no more that 39 characteres for the next 6
 MWMDecor	{MWM Decor}
 OLDHints	{OLD Hints}
-ButShade	{Ignore shading hints}
+ButShade	{MWM Action}
 MWMFunctions	{MWM Function}
 GNOMEHints	{GNOME Hints}
 ButModal	{Ignore modality hints}

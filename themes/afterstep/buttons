@@ -8,7 +8,11 @@ AddButtonStyle 2 Pixmap button/as-window-close.xpm
 AddButtonStyle 3 Pixmap button/as-window-options.xpm
 AddButtonStyle 4 Pixmap button/as-window-iconify.xpm
 
-ButtonStyle All - Clear
+ButtonStyle 1 - Clear
+ButtonStyle 2 - Clear
+ButtonStyle 3 - Clear MWMDecorMenu
+ButtonStyle 4 - Clear MWMDecorMin MWMDecorMax
+
 TitleStyle	Height 19
 
 #     button	context	modifie	function

@@ -19,6 +19,8 @@ AddButtonStyle 4 ToggledActiveDown Pixmap button/win-window-restore-pressed.xpm
 AddButtonStyle 4 ToggledInactive   Pixmap button/win-window-restore.xpm
 
 ButtonStyle All - Clear
+ButtonStyle 1 - MwmDecorMenu
+ButtonStyle 6 - MwmDecorMin
 ButtonStyle 4 - MwmDecorMax
 
 TitleStyle	Height 20

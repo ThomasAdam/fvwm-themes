@@ -1875,8 +1875,8 @@ sub  build_globalfeel_Config {
 	#
 	$index++;
 	$tmp = substr($configFromScript,$index,1);
-	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= ", NoOverride" }
-	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= ", HintOverride" }
+	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= ", HintOverride" }
+	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= ", NoOverride" }
 	else { $err->{'Hints'} .= "$impossible|" }
 	#
 	$index++;
@@ -2325,10 +2325,10 @@ sub parse_globalfeel_Config {
 					$config->{'NoOLDecor'} = 1;
 				}
 				elsif ($style =~ /^NoOverride$/i) {
-					$config->{'NoOverride'} = 0;
+					$config->{'NoOverride'} = 1;
 				}
 				elsif ($style =~ /^HintOverride$/i) {
-					$config->{'NoOverride'} = 1;
+					$config->{'NoOverride'} = 0;
 				}
 				elsif ($style =~ /^NoFuncHint$/i) {
 					$config->{'NoFuncHint'} = 0;
@@ -2518,7 +2518,7 @@ sub default_globalfeel_Config {
 		".85 .90 .94 .97 .99 1.0";
 	$config->{'NoDecorHint'} = 1;
 	$config->{'NoOLDecor'} = 1;
-	$config->{'NoOverride'} = 1;
+	$config->{'NoOverride'} = 0;
 	$config->{'NoFuncHint'} = 1;
 	$config->{'GNOMEUseHints'} = 1;
 	$config->{'ModalityIsEvil'} = 1;

@@ -1,7 +1,8 @@
 # Experimental, not too successful.
+# The UsePPosition / NoPPosition for "*" is in globalfeel
 #Style "*"		UsePPosition
 #Style "Netscape"	NoPPosition
-Style "*"		NoPPosition
+#Style "*"		NoPPosition
 
 Style "Fvwm*"		Sticky, Title, Handles, WindowListHit, CirculateSkip
 Style "FvwmBanner"	NoTitle, StaysOnTop, WindowListSkip, NeverFocus
