@@ -9,6 +9,9 @@
 	* themes/default/styles:
 	added XEmacs entry, not sure about this
 
+	* themes/migo/globalfeel:
+	HintOverride
+
 2002-05-29  migo  <migo@homemail.com>
 
 	* themes/redmondxp/modules/FvwmButtons-Panel:
