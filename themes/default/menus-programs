@@ -483,9 +483,10 @@ AddToMenu   MenuFvwmAmusements "Amusements" Title
 + "Start O.J.S. emulator%menu/amusement.xpm"	Exec exec xoj
 + "Stop O.J.S. emulator%menu/window-delete.xpm"	Exec exec killall xoj
 + "" Nop
-+ "Mesa Demo%menu/amusement.xpm%"	Popup MenuFvwmMesaDemos
-+ "Xeyes%menu/amusement.xpm%"		Exec exec xeyes
-+ "&X logo%menu/amusement.xpm%"		Exec exec xlogo
++ "&Mesa Demo%menu/amusement.xpm%"	Popup MenuFvwmMesaDemos
++ "&UnClutter%menu/mouse.xpm%"		Exec exec unclutter
++ "X&Eyes%menu/amusement.xpm%"		Exec exec xeyes
++ "&XLogo%menu/amusement.xpm%"		Exec exec xlogo
 + "X&roach%menu/amusement.xpm%"		Exec exec xroach
 
 DestroyMenu MenuFvwmMesaDemos
