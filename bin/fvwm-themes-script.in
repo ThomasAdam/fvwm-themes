@@ -50,6 +50,15 @@ my $inLineDoc = "";
 my $lineLength = 70;
 my $getMsg = "";
 my $lang = "";
+# font selector
+my $fontOpt = 0;
+my $fontFilter = "";
+my $fontCache = "";
+my $fontIndex = 0;
+my $fontCurrent = "";
+my $fontStart = 0;
+my $fontOnlyAdjustable = 0;
+my $fontInfo = 0;
 
 GetOptions(
 #	"help"               => \&showHelp,
@@ -66,6 +75,14 @@ GetOptions(
 	"line-length=i"      => \$lineLength,
 	"get-msg=s"          => \$getMsg,
 	"lang=s"             => \$lang,
+	"font"               => \$fontOpt,
+	"font-filter:s"      => \$fontFilter,
+	"font-cache=s"       => \$fontCache,
+	"font-index=s"       => \$fontIndex,
+	"font-current=s"     => \$fontCurrent,
+	"font-start"         => \$fontStart,
+	"font-only-adj"      => \$fontOnlyAdjustable,
+	"font-info"          => \$fontInfo,
 ); # || wrongUsage();
 
 
@@ -90,7 +107,12 @@ elsif ($inLineDoc ne "") {
 elsif ($getMsg ne "") {
 	buildMsg();
 }
-
+elsif ($fontOpt) {
+	buildFontLists();
+}
+elsif ($fontInfo) {
+	buildFontInfo();
+}
 # ----------------------------------------------------------------------------
 
 sub loadFile ($) {
@@ -100,6 +122,350 @@ sub loadFile ($) {
 	my $fileContent = join("", <FILE>);
 	close(FILE) || die("Can't close $fileName: [$!]\n");
 	return \$fileContent;
+}
+
+#----------------------------------------------------------------------------
+# For FvwmScript-FontSelector
+
+sub buildFontLists {
+	my $return = "";
+	my $list;
+	my @fontList;
+	my $cacheFile = "$userDir/.tmp-font-cache";
+	my $foudryFromIndex = "";
+	my $familyFromIndex = "";
+	my $i = 0;
+	my $j;
+	my $prev = "";
+	my $ffFilter = "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*";
+	my @filterList = qw(* * * * * * * * * * * * * *);
+	my @keys = qw (Weight Slant Width Style PixSize PtSize XRes YRes Spacing 
+		AvgWidth Charset);
+	my @allKeys = qw(Foundry Family);
+	push @allKeys, @keys;
+	my $key;
+	my %current;
+	my %real;
+	my $realFont = "";
+	my @s;
+	my $adjustable = 0;
+	my $ffHasChanged = 0;
+
+	$fontFilter = "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" if $fontFilter eq "";
+	$fontCurrent = "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" if $fontCurrent eq "";
+	$ffFilter = "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*";
+
+	@s = split('-',$fontCurrent);
+	$current{'Foundry'} = $s[1];
+	$current{'Family'} = $s[2];
+	$current{'Weight'} = $s[3];
+	$current{'Slant'} = $s[4];
+	$current{'Width'} = $s[5];
+	$current{'Style'} = $s[6];
+	$current{'PixSize'} = $s[7];
+	$current{'PtSize'} = $s[8];
+	$current{'XRes'} = $s[9];
+	$current{'YRes'} = $s[10];
+	$current{'Spacing'} = $s[11];
+	$current{'AvgWidth'} = $s[12];
+	$current{'Charset'} = $s[13] . "-" .$s[14];
+
+	if ($fontIndex != 0) {
+		my $file = "$cacheFile";
+		my $c = loadFile ($file);
+		my @f = split(/\n/,$$c);
+		if (defined $f[$fontIndex-1] && $f[$fontIndex-1] =~ /^(.+) \((.+)\)$/) {
+			$ffFilter = "-$2-$1-*-*-*-*-*-*-*-*-*-*-*-*";
+			$current{'Foundry'} = $2;
+			$current{'Family'} = $1;
+		} else {
+			print "00No fonts!";
+			exit 0;
+		}
+	}
+
+	# Merge the filter
+	my @trueFontFilter = split('-',$fontFilter);
+
+	for($i = 1; $i < 14; $i++) {
+		$current{"$allKeys[$i-1]"} = $trueFontFilter[$i] 
+			if $trueFontFilter[$i] ne '*';
+		$current{"$allKeys[$i-1]"} .= '-' . $trueFontFilter[14] 
+			if ($i == 13 && $trueFontFilter[$i] ne '*')
+	}
+
+	%real = %current;
+	my @f2 = split('-',$ffFilter);
+	my @f3 = split('-',$fontCurrent);
+	$ffHasChanged = 1 if $current{'Foundry'} ne $f3[1] 
+		|| $current{'Family'} ne $f3[2];
+	for($i = 0; $i < 15; $i++) {
+		my $f = "*";
+		$f = $trueFontFilter[$i] if $trueFontFilter[$i] ne '*';
+		$f = $f2[$i] if $f2[$i] ne '*';
+		$f = $f3[$i] if $f3[$i] ne '*' && $i > 2;
+		$filterList[$i] = $f;
+	}
+
+	if ($type =~ /^font-list/) {
+
+		open(XLS,"xlsfonts -fn '$fontFilter'|") || 
+		  ($return = "Impossible to open xlsfont\n");
+		$i = 0;
+		while(<XLS>) {
+			chomp;
+			@s = split('-',$_);
+			$list->[$i]->{Foundry} = $s[1];
+			$list->[$i]->{Family} = $s[2];
+			$list->[$i]->{'Weight'} = $s[3];
+			$list->[$i]->{'Slant'} = $s[4];
+			$list->[$i]->{'Width'} = $s[5];
+			$list->[$i]->{'Style'} = $s[6];
+			$list->[$i]->{'PixSize'} = $s[7];
+			$list->[$i]->{'PtSize'} = $s[8];
+			$list->[$i]->{'XRes'} = $s[9];
+			$list->[$i]->{'YRes'} = $s[10];
+			$list->[$i]->{'Spacing'} = $s[11];
+			$list->[$i]->{'AvgWidth'} = $s[12];
+			$list->[$i]->{'Charset'} = $s[13] . "-" .$s[14];
+			$i++;
+		}
+		close(XLS);
+		
+		
+		$prev = "";
+		for($i = 0; defined $list->[$i]; $i++) {
+			my $a = $list->[$i]->{'Family'};
+			my $b = $list->[$i]->{'Foundry'};
+			my $newFont = $a . " (" . $b . ")";
+			push @fontList, $newFont if $newFont ne $prev;
+			$prev = $newFont;
+		}
+		@fontList = sort @fontList;
+		if ($fontCache eq "create") {
+			chdir($userDir) || die "cannot change dir to $userDir";
+			open(FC,">$cacheFile") || die "cannot write on $cacheFile";
+			foreach (@fontList) { print FC "$_\n" }
+			close(FC);
+		}
+		my $tmp = 0;
+		my $ff = "$current{'Family'} ($current{'Foundry'})";
+		for($i = 0; defined $fontList[$i] && $tmp == 0; $i++) {
+			$tmp = $i+1 
+				if $fontList[$i] eq $ff;
+		}
+		$tmp = "0" x (3 - length($tmp)) . $tmp;
+		$return .= $tmp;
+		foreach (@fontList) { $return .=  $_ . "|" }
+		$return =~ s/\|$/!/;
+	}
+
+	if ($type =~ /all-list$/) {
+		my $k;
+
+		# check consitency if foundry and/or family have changed:
+		if ($ffHasChanged) {
+			# remove: Spacing Width Slant Weight Charset if font is not found ...
+			my @prefKeys = qw(11 5 4 3 13);
+			# the size is computed later
+			$filterList[7] = '*';
+			$j = 0;
+			my $notdone = 1;
+			while ($notdone) {
+				$fontFilter = "";	
+				for ($k = 1; $k < 15; $k++) {
+					$fontFilter .= '-' . $filterList[$k]; 
+				}
+				open(XLS,"xlsfonts -fn '$fontFilter' 2>/dev/null |") || 
+		 			($return = "Impossible to open xlsfont\n");
+				while(<XLS> && $notdone) { $notdone = 0 }
+				close(XLS);
+				if ($notdone) {
+					$filterList[$prefKeys[$j]] = '*' 
+						if $trueFontFilter[$prefKeys[$j]] eq '*'; 
+					if ($j == 4 && $trueFontFilter[$prefKeys[$j]] eq '*') {
+								$filterList[13] = '*';
+								$filterList[14] = '*';
+					}
+				}
+				$j++;
+				$notdone = 0 if $j == 5;
+			}
+		}
+
+		# see if we are ajustable (what follows seems false but this work, I do
+		# not know really why :o)
+		$fontFilter = "";
+		for ($k = 1; $k < 7; $k++) {
+			$fontFilter .= '-' . $filterList[$k];
+		}
+		$fontFilter .= '-0-0-0-0';
+		for ($k = 12; $k < 15; $k++) {
+			$fontFilter .= '-' . $filterList[$k];
+		}
+		open(XLS,"xlsfonts -fn '$fontFilter' 2>/dev/null |") || 
+		 	($return = "Impossible to open xlsfont\n");
+		while(<XLS> && $adjustable !=2) { $adjustable = 2 }
+		close(XLS);
+	
+		# now build the lists
+		$j = 3;
+		foreach $key (@keys) {
+			$i = 0;
+			$k = 0;
+			$fontFilter = "";
+			if ($adjustable == 2 && $fontOnlyAdjustable) {
+				for ($k = 1; $k < 7; $k++) {
+					if ($k == $j) { $fontFilter .= '-*'; } 		
+					else { $fontFilter .= '-' . $filterList[$k]; }
+				}
+				$fontFilter .= '-0-0-0-0';
+				for ($k = 12; $k < 15; $k++) {
+					$fontFilter .= '-' . $filterList[$k];
+				}
+		 	} else {
+				for ($k = 1; $k < 15; $k++) {
+					if ($k == $j && $trueFontFilter[$k] eq '*') { 
+						$fontFilter .= '-*'; 
+						if ($key eq "Charset") {
+							$fontFilter .= '-*'; 
+							$k++;
+						}
+					}
+					else { $fontFilter .= '-' . $filterList[$k] }
+				}
+			}
+			open(XLS,"xlsfonts -fn '$fontFilter'|") || 
+				($return = "Impossible to open xlsfont\n");
+		
+			$i = 0;
+			while(<XLS>) {
+				chomp;
+				@s = split('-',$_);
+				$list->[$i]->{"$key"} = $s[$j];
+				$list->[$i]->{"$key"} .= "-" . $s[$j+1] if $key eq "Charset";
+				$i++;
+			}
+			close(XLS);
+			$j++;
+		}
+
+	}
+
+	if ($type =~ /all-list$/ || $type eq "font-list-and-filter") {
+
+		unshift @keys, "Foundry" if ($type eq "font-list-and-filter");
+		$j = 3;
+		foreach $key (@keys) {
+			my @l = ();
+
+			if ($adjustable == 2 && $key eq "PixSize") {
+				@l = qw(4 5 6 7 8 9 10 11 12 13 14 15 16 18 20 22 24 26 28 30 
+						  34 40 50 60)
+			}
+			for($i = 0; defined $list->[$i]->{"$key"}; $i++) {
+				push @l, $list->[$i]->{"$key"}
+			}
+			if ($key =~ /Size$/ || $key =~ /Res$/ || $key =~ /^AvgWidth$/) {
+				@l = sort {$a <=> $b} @l;
+			}
+			else {
+				@l = sort @l;
+			}
+
+			my @newl = ();
+			$prev = "";
+			foreach (@l) {
+				next if $_ eq '0';
+				push @newl, $_ if $_ ne $prev;
+				$prev = $_;
+			}
+
+			if ($key eq "Charset") {
+				unshift @newl, '*-*' if $trueFontFilter[$j] eq '*';
+			} else {
+				unshift @newl, '*' if $trueFontFilter[$j] eq '*';
+			}
+
+			# now adjust the index and compute the real font:
+			$i = 0;
+			my $index = 0;
+			my $diff = 1000;
+			my $memDiff;
+			if ($type eq "all-list") {
+				foreach ($i = 0; defined $newl[$i]; $i++) {
+					$index = $i+1 if $newl[$i] eq $current{"$key"};
+					if ($key eq "PixSize" && $newl[$i] ne '*' &&
+						$current{"$key"} ne '*' &&
+						$diff > abs($newl[$i] - $current{"$key"})) {
+						$index = $i+1;
+						$real{"$key"} =  $newl[$i];
+						$diff =  abs($newl[$i] - $current{"$key"});
+					}
+				}
+			}
+			if ($index eq "0") {
+				$index = "01";
+				$real{"$key"} =  $newl[0];
+			}
+			$index = "0" . $index if length($index) == 1;
+
+			$return .= $index;
+ 
+			foreach (@newl) {
+				$return .= $_ . "|";
+			}
+			$return =~ s/\|$/!/;
+			$j++;
+		}
+		$i = 0;
+		foreach (@allKeys) { 
+			$i++;
+			if ($trueFontFilter[$i] eq '*') { 
+				$realFont .= $real{"$_"} . "!" 
+			} else {
+				$realFont .= $trueFontFilter[$i];
+				if ($i == 13) {
+					$realFont .= "-" . $trueFontFilter[$i+1];
+					$i++;
+				}
+				$realFont .= "!";
+			}
+		}
+		$return .= $realFont;
+		$return .= $adjustable . "!\n";
+
+	}
+
+	print $return;
+	exit 0;
+}
+
+# -------------------
+
+sub buildFontInfo {
+	my $return .= "";
+	my $obtained = "";
+
+	open(XLS,"xlsfonts -fn '$fontCurrent'|") || 
+				($return = "Impossible to open xlsfont\n");
+	while(<XLS>) { chomp; $obtained = $_ if $obtained eq ""; } 
+	close(XLS);
+	open(XLS,"xlsfonts -ll -fn '$obtained'|") || 
+				($return = "Impossible to open xlsfont\n");
+	my $count = 1;
+	my $a;
+	while(<XLS>) { 
+		chomp;
+		next if !(/^\s*name.+/ || /^\s*[A-Z].+/ || /^\s*$/); 
+		s/^\s*//;
+		s/\s{1}/ /g; 
+		$return .= $_ . "|" if $count;
+		$count = 0 if /^$/; 
+	}
+	close(XLS);
+	$return =~ s/\|$//;
+	print $return . "\n";
 }
 
 #----------------------------------------------------------------------------

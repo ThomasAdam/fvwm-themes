@@ -1317,9 +1317,6 @@ sub getMenusAndHooksAndReadsRc ($) {
 	$rc .= qq(+ "" Nop\n);
 	$rc .= $allThemeListRc;
 	$rc .= qq(+ "" Nop\n);
-	$rc .= qq(+ "Themes Center GUI" FvwmScript FvwmScript-ThemesCenter );
-	$rc .= qq(--text-colorset 34 --viewer-colorset 33\n);
-	$rc .= qq(+ "" Nop\n);
 	$rc .= qq(+ "&Reset all to the default" FuncFvwmThemesReset\n);
 	$rc .= qq(+ "Re&fresh the current theme" FuncFvwmThemesFresh\n);
 	$rc .= "\n";

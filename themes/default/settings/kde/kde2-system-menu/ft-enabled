@@ -1,4 +1,5 @@
 AddToMenu MenuFvwmPrograms "" Nop
 + "&Kde menu%menu/kde.xpm" Popup kde-sys
 
-AddToMenu kde-sys DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop kde-sys --enable-mini-icons --wm-icons --utf8'
+#AddToMenu kde-sys DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop kde-sys --enable-mini-icons --wm-icons --utf8'
+AddToMenu kde-sys DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop kde-sys --enable-mini-icons --wm-icons --lang en'

@@ -1,4 +1,5 @@
 AddToMenu MenuFvwmPrograms "" Nop
 + "&Kde menu%menu/kde.xpm" Popup kde-sys
 
-AddToMenu kde-sys DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop kde-sys --enable-tran-mini-icons --tran-mini-icons-path $FT_DATADIR/images/mini-kde2 --utf8'
+#AddToMenu kde-sys DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop kde-sys --enable-tran-mini-icons --tran-mini-icons-path $FT_DATADIR/images/mini-kde2 --utf8'
+AddToMenu kde-sys DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop kde-sys --enable-tran-mini-icons --tran-mini-icons-path $FT_DATADIR/images/mini-kde2 --lang en'

@@ -4,6 +4,8 @@ fvwm-themes-0.4.1 - not released yet
 * background improvements in @default and @migo
 * added modular i18n; more languages may be easily added now
 * Some progress for BSD's and Solaris support
+* Fixed fvwm-themes-images png icons transformation
+* A font selector
 
 fvwm-themes-0.4.0 - 20001111
 

@@ -180,7 +180,6 @@ AddToMenu   MenuFvwmUtilities "Utilities" Title
 + "&xfclock%menu/clock.xpm%"		Exec exec xfclock
 + "XFontSel%menu/font.xpm%"		Exec exec xfontsel
 + "X&ColorSel%menu/unknown.xpm%"	Exec exec xcolorsel
-+ "Fvwm &ColorSel%menu/unknown.xpm%"	FvwmScript FvwmScript-ColorSelector --text-colorset 34 --viewer-colorset 33
 + "&Color List%menu/unknown.xpm%"	FuncFvwmViewFile /usr/X11R6/lib/X11/rgb.txt
 + "Xcolormap%menu/unknown.xpm%"		Exec exec xcolormap
 + "Xx&gdb%menu/debugger.xpm%"		Exec exec xxgdb

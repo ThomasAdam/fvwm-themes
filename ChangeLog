@@ -1,9 +1,28 @@
+2000-12-20  olicha  <olivier.chapuis@free.fr>
+
+	* scripts/FvwmScript-FontSelector:
+	* bin/fvwm-themes-scripts.in:
+	* scripts/Makefile.am:
+	* themes/default/menus
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	* NEWS
+	A font selector
+
+	* themes/default/menus:
+	* bin/fvwm-themes-scripts.in:
+	Finally move the Themes Center menu entries in MenuFvwmConfiguration;
+	added a Utilities sub menu in MenuFvwmConfiguration
+
+	* default/settings/kde/kde2-system-menu/*
+	Rereplace --utf8 by --lang en so that fvwm-themes work with
+	fvwm-2.3.22
+	
 2000-12-14  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-*:
 	* scripts/fvwm-themes-scripts.in:
 	Fixes for those with LANG=""
-	
+
 2000-12-13  olicha  <olivier.chapuis@free.fr>
 
 	* configure.in:
@@ -75,7 +94,7 @@
 	Speed up startup as it is possible (i.e., almost all the times
 	is spent in fvwm-themes-config).
 
-	* default/settings/kde/ kde2-system-menu/*
+	* default/settings/kde/kde2-system-menu/*
 	Added --utf8 option
 
 2000-12-08  migo  <migo@homemail.com>

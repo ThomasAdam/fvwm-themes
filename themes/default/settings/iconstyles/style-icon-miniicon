@@ -172,6 +172,7 @@ Style "*kps"                   Icon norm/todo.xpm,            MiniIcon mini/todo
 Style "Fvwm*"                  Icon norm/utility.xpm,         MiniIcon mini/utility.xpm
 Style "FVWM Themes*"           Icon norm/desktop.xpm,         MiniIcon mini/desktop.xpm
 Style "FVWM Themes Doc*"       Icon norm/help.xpm,            MiniIcon mini/help.xpm
+Style "Font Selector"          Icon norm/font.xpm,            MiniIcon mini/font.xpm
 Style "FvwmForm-ThemeSettings" Icon norm/desktop.xpm,         MiniIcon mini/desktop.xpm
 Style "FvwmScript-BellSetup"   Icon norm/sound.xpm,           MiniIcon mini/sound.xpm
 Style "FvwmScript-Keyboard"    Icon norm/keyboard.xpm,        MiniIcon mini/keyboard.xpm

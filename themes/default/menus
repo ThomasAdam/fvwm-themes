@@ -190,14 +190,20 @@ AddToFunc   FuncFvwmGtkThemeSettings
 
 DestroyMenu MenuFvwmConfiguration
 AddToMenu   MenuFvwmConfiguration "Fvwm Configuration" Title
-+ "Configuration Center" FvwmScript FvwmScript-ConfigCenter --text-colorset 34 --icon-colorset 5 --viewer-colorset 33
++ "Themes Center GUI"    FvwmScript FvwmScript-ThemesCenter \
+		--text-colorset 34 --viewer-colorset 33
++ "Configuration Center" FvwmScript FvwmScript-ConfigCenter \
+		--text-colorset 34 --icon-colorset 5 --viewer-colorset 33
 + "Theme Settings (form)"	FuncFvwmFormThemeSettings
 + "Theme Settings (gtk)"	FuncFvwmGtkThemeSettings
-+ "&Menu Editor (Personal)"	FvwmScript FvwmScript-Menus --text-colorset 34 --icon-colorset 5 --viewer-colorset 33
++ "&Menu Editor (Personal)"	FvwmScript FvwmScript-Menus \
+		--text-colorset 34 --icon-colorset 5 --viewer-colorset 33
 + "&Root Cursor"	Module FvwmForm FvwmForm-RootCursor
 + "Form &Defaults"	Module FvwmForm FvwmForm-Form
 + "Control &Animation"	Popup MenuFvwmAnimate
 + "&X Configuration"	Popup MenuFvwmXConfiguration
++ "" Nop
++ "&Utilities"		Popup MenuFvwmConfigUtilities
 + "" Nop
 + "Restore Theme &Background"	FuncFvwmStartThemeBackground
 + "Restore Theme &Cursors"	PipeRead `printf 'Read '; fvwm-themes-config --component cursors --show-value read-file`
@@ -209,6 +215,13 @@ AddToMenu   MenuFvwmXConfiguration "X Configuration" Title
 + "KeyBoard%menu/keyboard.xpm%" FvwmScript FvwmScript-KeyboardSetup
 + "Screen%menu/display.xpm%"    FvwmScript FvwmScript-ScreenSetup
 + "Mouse%menu/mouse.xpm%"       FvwmScript FvwmScript-PointerSetup
+
+DestroyMenu MenuFvwmConfigUtilities
+AddToMenu   MenuFvwmConfigUtilities "Configuration Utilities" Title
++ "&Colors Selector"		FvwmScript FvwmScript-ColorSelector \
+		--text-colorset 34 --viewer-colorset 33
++ "&Fonts Selector"		FvwmScript FvwmScript-FontSelector \
+		--text-colorset 34 --viewer-colorset 33
 
 # -----------------------------------------------------------------------------
 # ---------- MenuFvwmQuit
