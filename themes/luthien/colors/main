@@ -27,8 +27,8 @@ DestroyModuleConfig FvwmScroll: Colorset*
 
 # Text and sh/hi windows title bar colors, icons title and Pager mini-win.
 # inactive:
-*FvwmTheme: Colorset 1 fg CDE_COLOR2_FG, \
-	bg CDE_COLOR2_BG, Plain, NoShape
+*FvwmTheme: Colorset 1 fg CDE_COLOR3_FG, \
+	bg CDE_COLOR3_BG, Plain, NoShape
 Style "*"	Colorset 1
 # active:
 *FvwmTheme: Colorset 2 fg CDE_COLOR1_FG, \
@@ -36,17 +36,30 @@ Style "*"	Colorset 1
 Style "*"	HilightColorset 2
 
 # borders of the windows inactive/active:
-*FvwmTheme: Colorset 3 fg CDE_COLOR2_FG, \
-	bg CDE_COLOR2_BG, Plain, NoShape
+*FvwmTheme: Colorset 3 fg CDE_COLOR3_FG, \
+	bg CDE_COLOR3_BG, Plain, NoShape
 Style "*"	BorderColorset 3
 *FvwmTheme: Colorset 4 fg CDE_COLOR1_FG, \
 	bg CDE_COLOR1_BG, Plain, NoShape
 Style "*"	HilightBorderColorset 4
 
 # title
-TitleStyle	ActiveUp   (Solid CDE_COLOR1_BG -- Raised)
-TitleStyle	ActiveDown (Solid CDE_COLOR1_BG -- Raised)
-TitleStyle	Inactive   (Solid CDE_COLOR2_BG -- Raised)
+TitleStyle	Inactive   VGradient 20 CDE_COLOR6_BG \
+	CDE_COLOR2_BG
+TitleStyle	ActiveUp   VGradient 20 CDE_COLOR1_BG \
+	CDE_COLOR5_BG
+TitleStyle	ActiveDown VGradient 20 CDE_COLOR1_BG \
+	CDE_COLOR5_BG
+TitleStyle	ToggledInactive   VGradient 20 CDE_COLOR6_BG \
+	CDE_COLOR2_BG
+TitleStyle	ToggledActiveUp   VGradient 20 CDE_COLOR1_BG \
+	CDE_COLOR5_BG
+TitleStyle	ToggledActiveDown VGradient 20 CDE_COLOR1_BG \
+	CDE_COLOR5_BG
+
+#TitleStyle	Inactive   (Solid CDE_COLOR2_BG -- Raised)
+#TitleStyle	ActiveUp   (Solid CDE_COLOR1_BG -- Raised)
+#TitleStyle	ActiveDown (Solid CDE_COLOR1_BG -- Raised)
 
 # window button background
 ButtonStyle     All Pixmap mini/empty.xpm

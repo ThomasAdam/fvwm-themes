@@ -29,6 +29,11 @@
 	* NEWS:
 	prepare to a new release
 
+	* themes/luthien/colors/main:
+	Last minute change - added gradients to window titles.
+	Note, colorsets 1 & 3 use CDE_COLOR3_FG not CDE_COLOR2_FG like in @cde.
+	Other colors for menus and modules are not correct yet. Shift-Ctrl-F2.
+
 2000-09-15  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in (comLoop): 
