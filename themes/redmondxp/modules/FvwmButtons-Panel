@@ -99,22 +99,23 @@ AddToFunc   ToggleFvwmPager
 	ActionOnPress, \
 	Action `SendToModule $./FvwmThemesPanelManager popup taskbar-config rectangle $widthx$height+$left+$top 0 -100m`, \
 )
-PipeRead `echo -n "SetEnv IconManWidth "; expr $[vp.width] / 4 - 88`
+PipeRead `echo -n "SetEnv IconManWidth "; expr $[vp.width] / 4 - 90`
 *FvwmButtons-Panel: ($[IconManWidth]x1, Swallow FvwmIconMan 'Module FvwmIconMan')
 
 # ---- clock/dock bar ----
 
 # TODO: Should use another colorset for clock
 
-*FvwmButtons-Panel: (15x1, Container(Columns 1, Colorset 14, \
+*FvwmButtons-Panel: (1x1, Icon module/panel-sep.xpm)
+*FvwmButtons-Panel: (16x1, Container(Columns 1, Colorset 14, \
 	Font "shadow=1:xft:Luxi Sans:Bold:pixelsize=9:minspace=true" \
 ))
-*FvwmButtons-Panel: (Title " ", \
+*FvwmButtons-Panel: (Title " ", Colorset 14, \
 	ActionOnPress, \
 	Action `SendToModule $./FvwmThemesPanelManager popup clockbar-config rectangle $widthx$height+$left+$top -0 -100m`, \
 	Action(Mouse 3) `SendToModule $./FvwmThemesPanelManager circulate clockbar-field1-format`, \
 )
-*FvwmButtons-Panel: (Title " ", \
+*FvwmButtons-Panel: (Title " ", Colorset 14, \
 	ActionOnPress, \
 	Action `SendToModule $./FvwmThemesPanelManager popup clockbar-config rectangle $widthx$height+$left+$top -0 -100m`, \
 	Action(Mouse 3) `SendToModule $./FvwmThemesPanelManager circulate clockbar-field2-format`, \

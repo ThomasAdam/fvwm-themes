@@ -66,16 +66,15 @@ Colorset 11 fg white, bg average, \
 	VGradient 300 3 rgb:06/3d/c6 2 rgb:00/0d/86 6 rgb:06/3d/c6 1 rgb:00/0d/86, NoShape
 
 # special
-#Colorset 12 CopyAll 5
-Colorset 12 fg rgb:d0/f8/ff, bg rgb:14/58/bc, fgsh rgb:40/30/a8, NoShape, \
-	DGradient 300 3 rgb:14/58/bc 1 rgb:10/60/d0 6 rgb:20/50/a8 1 rgb:14/58/bc
+Colorset 12 fg rgb:d0/f8/ff, bg rgb:14/58/bc, fgsh rgb:40/30/a8, \
+	VGradient 300 rgb:a0/e0/f0 rgb:30/70/a8, NoShape
 
 # swallowed window
 Colorset 13 fg black, bg rgb:98/B0/C8, hi black, sh blue, \
 	Plain, NoShape
 
 # default2 (FvwmPager or to get more colors in Buttons)
-Colorset 14 fg rgb:ff/ff/f0, bg average, \
+Colorset 14 fg rgb:ff/ff/ff, bg average, fgsh rgb:22/48/7a, \
 	VGradient 300 5 rgb:0d/5b/ca 1 rgb:12/84/de 4 rgb:15/87/df 12 rgb:0d/82/e2 4 rgb:13/9a/ec 3 rgb:19/53/bf, NoShape
 
 # default hilight2: (FvwmPager or to get more colors in a Buttons)

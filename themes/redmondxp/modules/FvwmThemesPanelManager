@@ -43,6 +43,7 @@ my $clockFieldOrder = [
 
 my $config = {
 	'taskbar-resolution' => 'page',
+	'taskbar-normalicons' => 0,
 	'pagebar-show-single' => 0,
 	'pagebar-show-desker' => 0,
 	'clockbar-field-order' => 0,
@@ -50,6 +51,10 @@ my $config = {
 	'clockbar-date-format' => 0,
 };
 my $newConfig = {};
+
+my $iconboxPadding = 10;
+my $iconboxPagerSpace = 110;
+my $clockButtonIndex = 15;
 my $pageButtonIndexes = [ 8, 9, 10, 11 ];
 my $currPageNum = -1;  # support 4 pages 2x2
 my $currDeskNum = 0;
@@ -80,10 +85,11 @@ sub saveConfig () {
 }
 
 local $SIG{ALRM} = \&showClockNowAndRegularly;
+my $clockStarted = 0;
 sub showClockNowAndRegularly () {
 	alarm(0);
+	$clockStarted = 1;
 
-	my $clockButtonIndex = 14;
 	my @formats = ();
 	foreach (@{$clockFieldOrder->[$config->{'clockbar-field-order'}]}) {
 		push @formats, $clockFormats->{$_}->
@@ -94,15 +100,19 @@ sub showClockNowAndRegularly () {
 	my $output = `$command`;
 	chomp($output);
 	my @strings = split(/\n/s, $output);
+	my $bi = $clockButtonIndex;
 	foreach (@strings) {
-		$module->send("SendToModule FvwmButtons-Panel Title $clockButtonIndex $_");
-		$clockButtonIndex++;
+		$module->send("SendToModule FvwmButtons-Panel Title $bi $_");
+		$bi++;
 	}
 
 	alarm(20);
 }
 
 sub applyNewConfig () {
+	my $updateClock = 0;
+	my $updateIconbox = 0;
+
 	my $key;
 	foreach $key (keys %$newConfig) {
 		my $newValue = $newConfig->{$key};
@@ -119,22 +129,30 @@ sub applyNewConfig () {
 				"FvwmPager FvwmPager-Single * *":
 				"KillModule FvwmPager FvwmPager-Single";
 			$module->send($cmd);
+			$updateIconbox = 1;
 		}
 		if ($key eq 'pagebar-show-desker') {
 			my $cmd = $newValue?
 				"FvwmPager FvwmPager-Desker 0 3":
 				"KillModule FvwmPager FvwmPager-Desker";
 			$module->send($cmd);
+			$updateIconbox = 1;
 		}
 		if ($key eq 'taskbar-resolution') {
 			$module->send("*FvwmIconMan: resolution $newValue");
+		}
+		if ($key eq 'taskbar-normalicons') {
+			my $cmd = $newValue?
+				"Read themes/default/settings/iconstyles/style-icon-miniicon":
+			        "Style * NoIcon";
+			$module->send($cmd);
 		}
 		if ($key eq 'clockbar-field-order') {
 			if ($newValue < 0 || $newValue >= @$clockFieldOrder) {
 				$isBadValue = 1;
 				$module->send('FuncFvwmShowMessage "Sorry" "Internal problem #1"');
 			} elsif ($newValue < 2) {
-				showClockNowAndRegularly();
+				$updateClock = 1;
 			} else {
 				$isBadValue = 1;
 				$module->send('FuncFvwmShowMessage "Sorry" "This choice is not supported yet"');
@@ -148,12 +166,24 @@ sub applyNewConfig () {
 				# ensure a value is in range
 				$newValue = $newValue % @$formats;
 				$config->{$key} = $newValue;
-				showClockNowAndRegularly();
+				$updateClock = 1;
 			}
 		}
 
 		$config->{$key} = $oldValue if $isBadValue;
 	}
+
+	if ($updateClock) {
+		showClockNowAndRegularly();
+	}
+	if ($updateIconbox) {
+		my $x1 = $iconboxPadding;
+		my ($y1, $x2, $y2) = ($x1, -$x1, -30 - $x1);
+		$x1 += $iconboxPagerSpace if $config->{'pagebar-show-single'};
+		$x2 -= $iconboxPagerSpace if $config->{'pagebar-show-desker'};
+		$module->send("Style * IconBox screen w $x1 $y1 $x2 $y2 p");
+	}
+
 	saveConfig();
 }
 
@@ -192,6 +222,7 @@ sub popupPageBarConfigMenu ($) {
 
 sub popupTaskBarConfigMenu ($) {
 	my $addition = shift;
+	my $iconSNI = checkBoxIcon($config->{'taskbar-normalicons'});
 	my $iconTRP = radioBoxIcon($config->{'taskbar-resolution'} eq 'page');
 	my $iconTRD = radioBoxIcon($config->{'taskbar-resolution'} eq 'desk');
 	my $iconTRS = radioBoxIcon($config->{'taskbar-resolution'} eq 'screen');
@@ -200,6 +231,8 @@ sub popupTaskBarConfigMenu ($) {
 	$module->send(qq{
 		DestroyMenu PanelTaskBarConfigMenu
 		AddToMenu   PanelTaskBarConfigMenu
+		+ "%menu/$iconSNI.xpm%Show Normal Icons" $backCmd toggle taskbar-normalicons
+		+ "" Nop
 		+ "%menu/$iconTRP.xpm%Resolution: page" $backCmd set taskbar-resolution page
 		+ "%menu/$iconTRD.xpm%Resolution: desk" $backCmd set taskbar-resolution desk
 		+ "%menu/$iconTRS.xpm%Resolution: screen" $backCmd set taskbar-resolution screen
@@ -309,7 +342,7 @@ $module->addHandler(M_STRING, sub {
 
 $module->send("Deschedule 34543");
 
-showClockNowAndRegularly();
+showClockNowAndRegularly() unless $clockStarted;
 
 END {
 	$module->send("FuncFvwmShowMessage 'Sorry' '$name: Woops, I am going to die'");

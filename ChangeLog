@@ -4,8 +4,9 @@
 	* themes/redmondxp/colors:
 	* themes/redmondxp/modules/*:
 	clockbar now almost fully works in the panel;
-	except that Colorset 14 is not respected and there is no currently
-	posibility to add/remove button (time/date) in container
+	except that Colorset 14 is not respected in container and there is no
+	currently posibility to add/remove button (time/date) in container;
+	added "Show Normal Icons" option
 
 2002-06-05  olicha  <olivier.chapuis@free.fr>
 

@@ -6,8 +6,8 @@
 # ----------------------------------------------------------------------------
 # Icon related configuration
 
-#Style "*" IconBox screen w 10 10 -10 -40 p, IconGrid 64 10, IconFill top right
-#Style "*" SlipperyIcon, IconTitle
+Style "*" IconBox screen w 10 10 -10 -40 p, IconGrid 64 10, IconFill top right
+Style "*" SlipperyIcon, IconTitle
 
 # No icons at all...
 
@@ -65,8 +65,9 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyModuleConfig FvwmIconMan: *
 + I FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmDestroyModulesThemeStyle
-### very incorrect!
-+ I Read $./../colors
+# This is very bad, but we should restore modified colorsets
++ I PipeRead `fvwm-themes-config --component colors --show-value read-file | xargs cat`
++ I PipeRead `fvwm-themes-config --component colors-decor --show-value read-file 2>/dev/null | xargs cat`
 
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules
