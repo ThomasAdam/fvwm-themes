@@ -58,7 +58,7 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmButtons-CompactApps
 + I DestroyFunc FuncFvwmButtons-CompactClock
 + I DestroyFunc FuncFvwmButtons-CompactLoad
-+ I Style IconTitleColorset, HilightIconTitleColorset, IconTitleRelief
++ I Style * IconTitleColorset, HilightIconTitleColorset, IconTitleRelief
 
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules
