@@ -1800,7 +1800,7 @@ AddToFunc   FuncFvwmThemesFresh
 
 DestroyFunc FuncFvwmThemesFreshUncached
 AddToFunc   FuncFvwmThemesFreshUncached
-+ I FuncFvwmThemesConfigAndUpdate "--fresh --rm-cfg-cache"
++ I FuncFvwmThemesConfigAndUpdate "--fresh --no-cfg-cache"
 
 DestroyFunc FuncFvwmThemesSetMinimalReload
 AddToFunc   FuncFvwmThemesSetMinimalReload
