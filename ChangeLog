@@ -1,6 +1,12 @@
+2000-09-31  migo  <migo@homemail.com>
+
+	* themes/default/modules/main:FvwmPager-Desker:
+	* themes/default/modules/main:FvwmWinList:
+	minor changes
+
 2000-09-30  olicha  <olivier.chapuis@free.fr>
 
-	* scripts/FvwmApplets-Mixer:
+	* scripts/FvwmApplet-Mixer:
 	All widgets are now in the windows
 	
 2000-09-30  migo  <migo@homemail.com>
