@@ -45,8 +45,8 @@ TitleStyle \
 	ToggledInactive   (TiledPixmap $./images/decor/title-inactive.xpm)
 
 # window button background
-#ButtonStyle	All Pixmap 16x16-general/empty.xpm
-#ButtonStyle	All -- UseTitleStyle
+ButtonStyle	All Pixmap 16x16-general/empty.xpm
+ButtonStyle	All -- UseTitleStyle
 
 # -----
 # Menus
