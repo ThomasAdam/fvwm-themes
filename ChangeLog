@@ -1,5 +1,14 @@
 2000-11-29  olicha  <olivier.chapuis@free.fr>
 
+	* locale/{en,fr}/FvwmScript-ConfigCenter.msg:
+	* scripts/FvwmScript-ConfigCenter
+	* bin/fvwm-themes-config.in:
+	* bin/fvwm-themes-config.in:
+	Start "Bindings" implementation in the Config Center. Currently
+	I would like that the users can see the default bindings that's all.
+
+2000-11-29  olicha  <olivier.chapuis@free.fr>
+
 	* locale/ru/FvwmScript-ColorSelector.msg:
 	* scripts/FvwmScript-ColorSelector:
 	Do so that ru works with the ColorSelector
