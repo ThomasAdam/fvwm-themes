@@ -300,7 +300,6 @@ AddToMenu   MenuFvwmWindowStyle "Window Style" Title
 + "%menu/mouse.xpm%SloppyFocus"           Pick (CirculateHit) Style $n SloppyFocus
 + "%menu/mouse.xpm%ClickToFocus"          Pick (CirculateHit) Style $n ClickToFocus
 + "%menu/mouse.xpm%MouseFocus"            Pick (CirculateHit) Style $n MouseFocus
-+ "%menu/mouse.xpm%FocusFollowsMouse"     Pick (CirculateHit) Style $n FocusFollowsMouse
 + "%menu/mouse.xpm%NeverFocus"            Pick (CirculateHit) Style $n NeverFocus
 
 DestroyMenu MenuFvwmWindowMaximize
