@@ -26,7 +26,7 @@ DestroyModuleConfig FvwmScroll: Colorset*
 *FvwmTheme: Colorset 1 fg white, bg grey51, Plain, NoShape
 Style "*"	Colorset 1
 # active:
-*FvwmTheme: Colorset 2 fg white, bg DarkBlue, Plain, NoShape
+*FvwmTheme: Colorset 2 fg white, bg Blue3, Plain, NoShape
 Style "*"	HilightColorset 2
 
 # borders of the windows inactive/active:
@@ -36,15 +36,26 @@ Style "*"	BorderColorset 3
 Style "*"	HilightBorderColorset 4
 
 # title
-TitleStyle	ActiveUp   Solid DarkBlue
-TitleStyle	ActiveDown Solid DarkBlue
+TitleStyle     ActiveUp HGradient 128 Blue4 DeepSkyBlue
+TitleStyle     ActiveDown HGradient 128 Blue4 DeepSkyBlue
 TitleStyle	Inactive   Solid grey51
 
 # window button background
 ButtonStyle	All Pixmap mini/empty.xpm
-ButtonStyle	All ToggledActiveUp   Solid DarkBlue
-ButtonStyle	All ToggledActiveDown Solid DarkBlue
-ButtonStyle	All ToggledInactive   Solid grey51
+
+AddButtonStyle  All     Inactive solid grey51
+AddButtonStyle  All     ToggledInactive solid grey51
+
+AddButtonStyle  Left    ActiveUp solid Blue4 
+AddButtonStyle  Left    ActiveDown solid Blue4
+AddButtonStyle  Left    ToggledActiveUP solid Blue4
+AddButtonStyle  Left    ToggledActiveDown solid Blue4
+
+AddButtonStyle  Right   ActiveUp solid DeepSkyBlue 
+AddButtonStyle  Right   ActiveDown solid DeepSkyBlue 
+AddButtonStyle  Right   ToggledActiveUp solid DeepSkyBlue 
+AddButtonStyle  Right   ToggledActiveDown solid grey51
+
 ButtonStyle	All -- UseTitleStyle
 
 # -----
@@ -54,7 +65,7 @@ ButtonStyle	All -- UseTitleStyle
 *FvwmTheme: Colorset 5 fg black, bg grey80, Plain, NoShape
 
 # active menu item fg+bg
-*FvwmTheme: Colorset 6 fg white, bg DarkBlue, Plain, NoShape
+*FvwmTheme: Colorset 6 fg white, bg Blue3, Plain, NoShape
 
 # greyed menu item fg
 *FvwmTheme: Colorset 7 fg grey60, bg grey60, Plain, NoShape
@@ -97,7 +108,7 @@ MenuStyle * ActiveFore, HilightBack
 *FvwmTheme: Colorset 17 fg black, bg #c0c0c0, Plain, NoShape
 
 # active item
-*FvwmTheme: Colorset 18 fg white, bg DarkBlue, Plain, NoShape
+*FvwmTheme: Colorset 18 fg white, bg Blue3, Plain, NoShape
 
 # iconified item
 *FvwmTheme: Colorset 19 fg black, bg grey51, Plain, NoShape
@@ -109,7 +120,7 @@ MenuStyle * ActiveFore, HilightBack
 # Others Modules Colorsets
 
 # FvwmIdent
-*FvwmTheme: Colorset 21 fg yellow, bg darkblue, Plain, NoShape
+*FvwmTheme: Colorset 21 fg yellow, bg blue3, Plain, NoShape
 
 DestroyModuleConfig FvwmIdent: *
 *FvwmIdent: Colorset 21
