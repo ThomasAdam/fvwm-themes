@@ -12,9 +12,9 @@ arch ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
 sdir ?= $(shell pwd | sed 's,.*/,,')
 
 deb:
-	make clean;
+	make clean
 	echo "fvwm-themes-full ($(version)-$(release)) unstable; urgency=low" > debian/changelog
-	echo ""  >> debian/changelog
+	echo "" >> debian/changelog
 	echo "  * new upstream release" >> debian/changelog
 	echo "" >> debian/changelog
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
@@ -51,9 +51,9 @@ deb:
 
 
 deb-base:
-	make clean;
+	make clean
 	echo "fvwm-themes ($(version)-$(release)) unstable; urgency=low" > debian/changelog
-	echo ""  >> debian/changelog
+	echo "" >> debian/changelog
 	echo "  * new upstream release" >> debian/changelog
 	echo "" >> debian/changelog
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
@@ -104,7 +104,7 @@ deb-base:
 deb-extra:
 	make clean
 	echo "fvwm-themes-extra ($(version)-$(release)) unstable; urgency=low" > debian/changelog
-	echo ""  >> debian/changelog
+	echo "" >> debian/changelog
 	echo "  * new upstream release" >> debian/changelog
 	echo "" >> debian/changelog
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog

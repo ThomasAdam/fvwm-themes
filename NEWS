@@ -1,12 +1,12 @@
 fvwm-themes-0.7.0 - not released yet
 
-* New full-featured theme: RedmondXP.
-* New themes: Sa, PlainBow, CelticBow.
+* New full-featured theme RedmondXP.
+* New themes: Sa, PlainBow, CelticBow, E17, Ice, QNX.
 * Improvements in several existing themes.
 * Better backgrounds for several existing themes.
 * New set of nice backgrounds in background@underground.
-* Added graphical colorset viewer/info.
-* German translations.
+* Added graphical colorset viewer/info (Shift-Ctrl-F8).
+* German and Polish translations.
 * Debian packages.
 
 fvwm-themes-0.6.2 - 20021206

@@ -1,0 +1,40 @@
+   _______________________________________________________________
+  (   _________________________   ________________________________)
+   ) (__  _  _  _    _  .      ) (  __ __  ____       .  ____* ___
+  (   __)( \/ )( \/\/ )/\/\ * (   )(  )  )(  __)* /\/\  (  __)/ __)
+   ) ( .  \  /* \    //    \ . ) (  ) _ ( *) _). /    \* ) _).\__ \
+  (___)  * \/  . \/\/(_/\/\_) (___)(__(__)(____)(_/\/\_)(____)(___/
+
+We are pleased to announce the long awaited FVWM Themes version 0.7.0.
+
+FVWM Themes is a powerful configuration framework for the modern FVWM,
+designed to be easily extensible and configurable.
+
+Here are screenshots featuring this release (a must to see):
+
+  http://fvwm-themes.sourceforge.net/screenshots/
+
+fvwm-themes 0.7.0 requires unstable fvwm 2.5.8. You may download sources,
+rpm and deb packages for both projects from the FVWM Themes Home Page:
+
+  http://fvwm-themes.sourceforge.net/
+
+The main new visible featires in this release:
+
+  * New full-featured theme RedmondXP with a configurable reusable panel.
+  * New themes: Sa, PlainBow, CelticBow, E17, Ice, QNX.
+  * Improvements in all existing themes, ugly things replaced.
+  * Better backgrounds for several existing themes.
+  * New set of nice backgrounds in Underground theme.
+  * German and Polish translations.
+
+This release would not be possible without direct help from
+Kathryn Andersen, Andrei Mitrofanow, Shawn Anderson, Alex Wallis and
+Olivier Chapuis.
+
+In this release, indirectly used some art works of Anna MacLachlan,
+Suzanne Britton, Dorothy Robinson, Maciej Szymanski and Phil Harper.
+
+You are welcome to join us as a user or a developer.
+
+The FVWM Themes team.

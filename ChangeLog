@@ -5,6 +5,13 @@
 	* doc/ANNOUNCE:
 	* updated
 
+	* debian/Makefile.am:
+	* debian/base-control.in:
+	* debian/copyright:
+	* debian/extra-control.in:
+	* debian/full-control.in:
+	updated
+
 2003-10-12  migo  <migo@homemail.com>
 
 	* themes/awol/modules/main:
