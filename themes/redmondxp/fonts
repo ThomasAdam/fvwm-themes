@@ -5,7 +5,7 @@
 
 DestroyFunc FuncFvwmSetFont-WindowTitle
 AddToFunc   FuncFvwmSetFont-WindowTitle
-+ I Style "$0" Font "shadowsize=2:$1"
++ I Style "$0" Font "shadowsize=1:$1"
 
 DestroyFunc FuncFvwmSetFont-IconTitle
 AddToFunc   FuncFvwmSetFont-IconTitle
@@ -13,7 +13,7 @@ AddToFunc   FuncFvwmSetFont-IconTitle
 
 DestroyFunc FuncFvwmSetFont-Menu
 AddToFunc   FuncFvwmSetFont-Menu
-+ I MenuStyle "$0" Font "shadowsize=2:$1"
++ I MenuStyle "$0" Font "shadowsize=1:$1"
 
 # for FvwmIdent (called in colors ... maybe not a very good thing) 
 DestroyFunc FuncFvwmSetFont-FvwmIdent
