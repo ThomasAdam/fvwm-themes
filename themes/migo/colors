@@ -82,7 +82,7 @@ MenuStyle * ActiveFore, HilightBack
 	VGradient 30 grey50 rgb:E4/D2/C0, NoShape
 
 # swallowed window
-*FvwmTheme: Colorset 13 fg black, bg rgb:E4/D2/C0, hi black, sh yellow, \
+*FvwmTheme: Colorset 13 fg black, bg rgb:E4/D2/C0, hi black, sh rgb:F0/F0/80, \
 	Plain, NoShape
 
 # default2 (FvwmPager or to get more colors in Buttons)
