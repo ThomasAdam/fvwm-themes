@@ -1,3 +1,8 @@
+2002-10-05  migo  <migo@homemail.com>
+
+	* themes/redmondxp/modules/FvwmThemesPanelManager:
+	fixed for the latest perllib API
+
 2002-10-02  migo  <migo@homemail.com>
 
 	* themes/default/menus-programs:
