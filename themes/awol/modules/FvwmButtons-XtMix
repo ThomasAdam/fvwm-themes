@@ -10,9 +10,9 @@ DestroyModuleConfig FvwmButtons-XtMix: *
 *FvwmButtons-XtMix: (20x11, Container (Rows 12, Columns 20), Frame 0)
 
 *FvwmButtons-XtMix: (20x3, Container (Rows 1, Columns 20), Frame 0)
-*FvwmButtons-XtMix: (1x1, Icon module/isn_prev.xpm, Action 'GotoDesk -1 0 7', Frame -1)
+*FvwmButtons-XtMix: (1x1, Icon module/isn_prev.png, Action 'GotoDesk -1 0 7', Frame -1)
 *FvwmButtons-XtMix: (18x1, Swallow(UseOld,Respawn) "FvwmIconMan" 'Module FvwmIconMan', NoSize, Padding 0 0, Frame -1)
-*FvwmButtons-XtMix: (1x1, Icon module/isn_next.xpm, Action 'GotoDesk 1 0 7', Frame -1)
+*FvwmButtons-XtMix: (1x1, Icon module/isn_next.png, Action 'GotoDesk 1 0 7', Frame -1)
 *FvwmButtons-XtMix: (End)
 
 *FvwmButtons-XtMix: (20x9, Container (Rows 1, Columns 20), NoSize, Frame 0, Padding 0 0)
@@ -35,7 +35,7 @@ Action(mouse 1) 'Exec xterm +sb -font 7x14 -bg $$[bg.cs35] -fg $$[fg.cs35] -T To
 Action(mouse 3) 'Exec tkps', Frame -1)
 
 *FvwmButtons-XtMix: (7x1, Container (Rows 1, Columns 9), Padding 0 0)
-*FvwmButtons-XtMix: (3x1, Container (Rows 2, Columns 4), Frame 0)
+*FvwmButtons-XtMix: (3x1, Container (Rows 2, Columns 4, Colorset 10), Frame 0)
 *FvwmButtons-XtMix: (1x1,Title "isp", Icon module/mini-isp.xpm, Action  FuncFvwm3WWW)
 *FvwmButtons-XtMix: (1x1,Title "www", Icon 16x16/netscape.xpm, Action  FuncFvwmWWW)
 *FvwmButtons-XtMix: (1x1,Title "edit", Icon 16x16/editor.xpm, Action  FuncFvwmEditor)

@@ -4,6 +4,12 @@
 	* themes/migo/colors:
 	minor improvements
 
+	* themes/awol/images/module/isn_prev.png:
+	* themes/awol/images/module/isn_next.png:
+	* themes/awol/modules/FvwmButtons-Default:
+	* themes/awol/modules/FvwmButtons-XtMix:
+	replaced arrow images with the ones that look better with other colors
+
 2003-10-11  migo  <migo@homemail.com>
 
 	* themes/awol/sound.cfg:
