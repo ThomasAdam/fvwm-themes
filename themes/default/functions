@@ -44,12 +44,19 @@ AddToFunc   FuncFvwmDeleteOrDestroy
 + C Delete
 + D Destroy
 
+#DestroyFunc FuncFvwmMaximize
+#AddToFunc   FuncFvwmMaximize
+#+ M Nop
+#+ H Maximize 0 95
+#+ C Maximize 100 95
+#+ D Maximize 100 100
+
 DestroyFunc FuncFvwmMaximize
 AddToFunc   FuncFvwmMaximize
 + M Nop
-+ H Maximize 0 95
-+ C Maximize 100 95
-+ D Maximize 100 100
++ H Nop
++ C Maximize
++ D Menu MenuFvwmWindowMaximize
 
 DestroyFunc FuncFvwmMaximizeVertically
 AddToFunc   FuncFvwmMaximizeVertically

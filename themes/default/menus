@@ -358,9 +358,16 @@ AddToMenu   MenuFvwmWindowStyle "Window Style" Title
 
 DestroyMenu MenuFvwmWindowMaximize
 AddToMenu   MenuFvwmWindowMaximize "Maximize Window" Title
-+ "%menu/window-maximize.xpm%Maximize Vertically"   Maximize 0 100
-+ "%menu/window-maximize.xpm%Maximize Horizontally" Maximize 100 0
-+ "%menu/window-maximize.xpm%Maximize Grow"         Maximize grow grow
++ "%menu/window-maximize.xpm%Maximize Fully	Alt-F10" Maximize 100 100
++ "%menu/window-maximize.xpm%Unmaximize 	Alt-F10" Maximize false
++ "" Nop
++ "%menu/window-maximize.xpm%Maximize Vertically"        Maximize   0 100
++ "%menu/window-maximize.xpm%Maximize Horizontally"      Maximize 100   0
++ "%menu/window-maximize.xpm%Maximize Vertically 95%%"   Maximize   0  95
++ "" Nop
++ "%menu/window-maximize.xpm%Maximize Grow"              Maximize grow grow
++ "%menu/window-maximize.xpm%Maximize Grow Vert."        Maximize    0 grow
++ "%menu/window-maximize.xpm%Maximize Grow Horiz."       Maximize grow    0
 + "" Nop
 + "%menu/window-maximize.xpm%Maximize Full Screen	Shift-Ctrl-F11" Pick FuncFvwmMaximizeFullScreen
 + "%menu/window-maximize.xpm%Unmaximize Full Screen	Shift-Ctrl-F12" Pick FuncFvwmUnmaximizeFullScreen
