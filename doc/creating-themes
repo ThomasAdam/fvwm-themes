@@ -133,17 +133,21 @@ about such things as division to files/directories, images, other resources.
 Feel free to ask your questions on fvwm-themes-devel@ mailing list.
 
 If you did it right, you get mytheme directory with several components.
+Use this command to pack a theme (or even several themes):
+
+  % fvwm-themes-config --create-pack john_themes theme1 theme2
+
 You can tar/gzip your directory (please ensure you include the directory
 mytheme/ as the top directory of your archive).
 
 Now you can distribute your mytheme.tar.gz file to others, to install
 this new theme, one should execute:
 
-  fvwm-themes-config --install mytheme.tar.gz
+  fvwm-themes-config --install ft-john_themes-0.6.x.tar.gz
 
 or to install it to a system wide place (usually as root):
 
-  fvwm-themes-config --install mytheme.tar.gz
+  fvwm-themes-config --site --install ft-john_themes-0.6.x.tar.gz
 
 Good luck in creating new themes.
 
@@ -151,7 +155,7 @@ Good luck in creating new themes.
 CCDS (Component Configuration and Dependancy System)
 ----------------------------------------------------
 
-Theme components behave differently, one can be a simple file, other ca have
+Theme components behave differently, one can be a simple file, other can have
 several options or go in several variants, or even both. Some options are
 only fvwm configurations to be read (in this case it is important to specify
 whether the option files are read before or after the main component file),

@@ -47,7 +47,7 @@
     * comma-like (, : ; ? "dot in english"): trailing space required.
     * minus-like (- + = . "other dual-operators"): 2 surrounding spaces.
 
-* Usually there is no need for more then one consecutive space, except
+* Usually there is no need for more than one consecutive space, except
   for a side comment (2 spaces separate a comment better).
 
 * Try to fit your paragraph and code lines to 74-78 characters per line
