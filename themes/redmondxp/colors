@@ -18,11 +18,11 @@
 # Window decorations
 
 # window title, inactive and active
-Colorset 1 fg rgb:e8/f5/f5, bg rgb:3d/60/90, fgsh rgb:26/36/5d, Plain, NoShape
-Colorset 2 fg rgb:df/ff/ff, bg rgb:03/56/cc, fgsh rgb:00/25/84, Plain, NoShape
+Colorset 1 fg rgb:e8/f5/f5, bg rgb:3d/60/90, fgsh rgb:22/48/7a, Plain, NoShape
+Colorset 2 fg rgb:df/ff/ff, bg rgb:03/56/cc, fgsh rgb:3a/2b/bf, Plain, NoShape
 
 # window borders, inactive and active
-Colorset 3 bg rgb:45/61/9e, sh rgb:4a/5e/7e, hi rgb:4c/6f/af, Plain, NoShape
+Colorset 3 bg rgb:45/61/9e, sh rgb:4a/5e/7d, hi rgb:4c/6f/af, Plain, NoShape
 Colorset 4 bg rgb:07/49/de, sh rgb:25/56/a3, hi rgb:06/5b/f6, Plain, NoShape
 
 # background for window title, buttons and border
