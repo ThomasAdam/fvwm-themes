@@ -29,7 +29,7 @@
 
 # for feedback windows (like geometry window and NoteMessage) and FvwmScroll
 #
-*FvwmTheme: Colorset 0 fg black, bg #908090
+*FvwmTheme: Colorset 0 fg black, bg #70A0A0
 
 # -----------------------
 # I.2. Window Decorations
@@ -42,27 +42,27 @@
 
 # window title, inactive and active
 #
-*FvwmTheme: Colorset 1 fg black, bg rgb:80/80/80, Plain, NoShape
-*FvwmTheme: Colorset 2 fg black, bg rgb:C0/C0/C0, Plain, NoShape
+*FvwmTheme: Colorset 1 fg black, bg rgb:88/7C/66, Plain, NoShape
+*FvwmTheme: Colorset 2 fg black, bg rgb:CC/BA/99, Plain, NoShape
 
 # window borders, inactive and active
 #
-*FvwmTheme: Colorset 3 fg black, bg rgb:80/80/80, Plain, NoShape
-*FvwmTheme: Colorset 4 fg black, bg rgb:C0/C0/C0, Plain, NoShape
+*FvwmTheme: Colorset 3 fg black, bg rgb:88/7C/66, Plain, NoShape
+*FvwmTheme: Colorset 4 fg black, bg rgb:CC/BA/99, Plain, NoShape
 
 # background for window title and buttons
 #
 DestroyFunc FuncFvwmTitleBackground
 AddToFunc   FuncFvwmTitleBackground
-+ I TitleStyle ActiveUp   (Solid rgb:C0/C0/C0 -- Raised)
-+ I TitleStyle ActiveDown (Solid rgb:C0/C0/C0 -- Raised)
-+ I TitleStyle Inactive   (Solid rgb:80/80/80 -- Raised)
-+ I TitleStyle ToggledActiveUp   (Solid rgb:C0/C0/C0 -- Raised)
-+ I TitleStyle ToggledActiveDown (Solid rgb:C0/C0/C0 -- Raised)
-+ I TitleStyle ToggledInactive   (Solid rgb:80/80/80 -- Raised)
++ I TitleStyle	ActiveUp   (Solid rgb:CC/BA/99 -- Raised)
++ I TitleStyle	ActiveDown (Solid rgb:CC/BA/99 -- Raised)
++ I TitleStyle	Inactive   (Solid rgb:88/7C/66 -- Raised)
++ I TitleStyle	ToggledActiveUp   (Solid rgb:CC/BA/99 -- Raised)
++ I TitleStyle	ToggledActiveDown (Solid rgb:CC/BA/99 -- Raised)
++ I TitleStyle	ToggledInactive   (Solid rgb:88/7C/66 -- Raised)
 
-+ I ButtonStyle All Pixmap 16x16-general/empty.xpm
-+ I ButtonStyle All -- UseTitleStyle
++ I ButtonStyle	All Pixmap 16x16-general/empty.xpm
++ I ButtonStyle	All -- UseTitleStyle
 
 # -------------------
 # I.3. Menu Colorsets
@@ -70,15 +70,15 @@ AddToFunc   FuncFvwmTitleBackground
 
 # inactive menu item fg+bg and menu face if any
 #
-*FvwmTheme: Colorset 5 fg black, bg grey70, Plain, NoShape
+*FvwmTheme: Colorset 5 fg black, bg rgb:80/98/B0, Plain, NoShape
 
 # active menu item fg+bg
 #
-*FvwmTheme: Colorset 6 fg black, bg grey80, Plain, NoShape
+*FvwmTheme: Colorset 6 fg black, bg rgb:90/A9/C2, Plain, NoShape
 
 # greyed menu item fg
 #
-*FvwmTheme: Colorset 7 fg grey40, bg grey40, Plain, NoShape
+*FvwmTheme: Colorset 7 fg grey48, bg grey48, Plain, NoShape
 
 # -------------------------------------------------
 # Colorsets 8 and 9 are reserved for the future use.
@@ -95,7 +95,7 @@ AddToFunc   FuncFvwmTitleBackground
 # for FvwmButtonsColorset, FvwmPagerColorset, can be also used for
 # FvwmIconMan*Colorset, FvwmIconBoxColorset
 #
-*FvwmTheme: Colorset 10 fg black, bg #908090, Plain, NoShape
+*FvwmTheme: Colorset 10 fg black, bg rgb:80/A0/A0, Plain, NoShape
 
 # default hilight colorset. for hilighting a part of a
 # button bar (some swallowed apps for example).
@@ -105,8 +105,8 @@ AddToFunc   FuncFvwmTitleBackground
 # special, a gradient, a pixmap a "funny colorset", may be
 # used in certain FvwmButtons, FvwmIconMan*Colorset, FvwmIconBoxColorset
 #
-*FvwmTheme: Colorset 12 fg black, bg #908090, \
-	VGradient 20 #908090 #cab3ca, NoShape
+*FvwmTheme: Colorset 12 fg black, bg rgb:80/A0/A0, \
+	VGradient 20 rgb:80/A0/A0 rgb:C0/F0/F0, NoShape
 
 # swallowed window: the hilight and shadow colors can be used
 # (-hd of xclock and -hl of xload use sh, and -hl of xclock use hi;
@@ -117,32 +117,32 @@ AddToFunc   FuncFvwmTitleBackground
 # default #2 (FvwmPager or to get more colors in FvwmButtons)
 # can be set to 10
 #
-*FvwmTheme: Colorset 14 fg black, bg #908090, Plain, NoShape
+*FvwmTheme: Colorset 14 fg black, bg rgb:80/A0/A0, Plain, NoShape
 
 # default hilight #2: (FvwmPager or to get more colors in FvwmButtons)
 # can be set to 11
 #
-*FvwmTheme: Colorset 15 fg black, bg #cab3ca, Plain, NoShape
+*FvwmTheme: Colorset 15 fg black, bg rgb:C0/F0/F0, Plain, NoShape
 
 # tips/balloons (TaskBar and FvwmPager)
 #
-*FvwmTheme: Colorset 16 fg black, bg yellow, Plain, NoShape
+*FvwmTheme: Colorset 16 fg black, bg rgb:F0/F0/C0, Plain, NoShape
 
 # ----------------------------------
 # II.2. Window List Module Colorsets
 # ----------------------------------
 
 # standard item
-*FvwmTheme: Colorset 17 fg black, bg #908090, Plain, NoShape
+*FvwmTheme: Colorset 17 fg black, bg rgb:80/A0/A0, Plain, NoShape
 
 # active item
-*FvwmTheme: Colorset 18 fg black, bg #cab3ca, Plain, NoShape
+*FvwmTheme: Colorset 18 fg black, bg rgb:C0/F0/F0, Plain, NoShape
 
 # iconified item
-*FvwmTheme: Colorset 19 fg white, bg pink3, Plain, NoShape
+*FvwmTheme: Colorset 19 fg white, bg rgb:60/78/78, Plain, NoShape
 
 # pointed item
-*FvwmTheme: Colorset 20 fg black, bg #9f8f9f, Plain, NoShape
+*FvwmTheme: Colorset 20 fg black, bg rgb:88/AA/AA, Plain, NoShape
 
 # ----------------------------
 # II.3. Other Module Colorsets
@@ -150,11 +150,11 @@ AddToFunc   FuncFvwmTitleBackground
 
 # FvwmIdent
 #
-*FvwmTheme: Colorset 21 fg yellow, bg black, Plain, NoShape
+*FvwmTheme: Colorset 21 fg black, bg bisque, Plain, NoShape
 
 # FvwmConsole
 #
-*FvwmTheme: Colorset 22 fg black, bg bisque, Plain, NoShape
+*FvwmTheme: Colorset 22 fg white, bg rgb:00/30/60, Plain, NoShape
 
 # transparent
 #*FvwmTheme: Colorset 23 fg $[fg.cs10], bg $[bg.cs10], Transparent, Plain, NoShape
@@ -177,31 +177,31 @@ AddToFunc   FuncFvwmTitleBackground
 
 # regular terminal (xterm, rxvt, Eterm)
 #
-*FvwmTheme: Colorset 30 fg white, bg rgb:00/00/60, Plain, NoShape
+*FvwmTheme: Colorset 30 fg white, bg rgb:00/00/50, Plain, NoShape
 
 # admin terminal (su xterm)
 #
-*FvwmTheme: Colorset 31 fg white, bg rgb:00/60/60, Plain, NoShape
+*FvwmTheme: Colorset 31 fg white, bg rgb:00/50/50, Plain, NoShape
 
 # remote terminal (ssh, telnet)
 #
-*FvwmTheme: Colorset 32 fg white, bg rgb:00/60/00, Plain, NoShape
+*FvwmTheme: Colorset 32 fg white, bg rgb:50/00/00, Plain, NoShape
 
 # viewer terminal (man, less, tail -f)
 #
-*FvwmTheme: Colorset 33 fg white, bg rgb:00/60/00, Plain, NoShape
+*FvwmTheme: Colorset 33 fg white, bg rgb:00/50/00, Plain, NoShape
 
 # dialog text area (FvwmScript, FvwmForm, xmessage, ft-xrdb)
 #
-*FvwmTheme: Colorset 34 fg black, bg gray80, Plain, NoShape
+*FvwmTheme: Colorset 34 fg black, bg rgb:A0/C8/A0, Plain, NoShape
 
 # application run in the terminal, text editor using ft-xrdb
 #
-*FvwmTheme: Colorset 35 fg black, bg gray, Plain, NoShape
+*FvwmTheme: Colorset 35 fg rgb:FF/FF/E8, bg rgb:30/48/48, Plain, NoShape
 
-# dialog main area (FvwmScript, FvwmForm, xmessage, ft-xrdb)
+# dialog main background (FvwmScript, FvwmForm, xmessage, ft-xrdb)
 #
-*FvwmTheme: Colorset 36 fg black, bg MediumPurple, Plain, NoShape
+*FvwmTheme: Colorset 36 fg black, bg rgb:80/A0/80, Plain, NoShape
 
 # --------------------------------------------------
 # Colorsets 37 to 39 are reserved for the future use.
