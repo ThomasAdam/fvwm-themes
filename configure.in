@@ -4,7 +4,7 @@ AC_REVISION(0.2.3)
 AC_INIT(themes/default/README)
 AM_INIT_AUTOMAKE(fvwm-themes, 0.3.19)
 
-REQUIRED_FVWM_VERSION=2.3.21
+REQUIRED_FVWM_VERSION=2.3.22
 AC_SUBST(REQUIRED_FVWM_VERSION)dnl
 
 mg_ARG_WITH(fvwm-bindir, [  --with-fvwm-bindir DIR  specify fvwm bin directory, if not in PATH], FVWM_BINDIR, "")

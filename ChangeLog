@@ -1,3 +1,13 @@
+2000-09-09  migo  <migo@homemail.com>
+
+	* configure.in:
+	increase required fvwm version to the current unreleased one, since
+	I fixed one bug there (shown with *FvwmTheme: Colorset), but at least
+	it is possible to move DestroyModuleConfig to a new syntax now.
+
+	* TODO:
+	2 Dominik notes and 1 mine.
+
 2000-09-08  migo  <migo@homemail.com>
 
 	* configure.in:

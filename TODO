@@ -5,8 +5,14 @@
 Important items to do:
 ---------------------
 
+* migo: I think, 'Opt/Cho/Sub' button should be renamed to 'Properties',
+this especially needed when I add scalar property (similar to option).
+
 * colors@ components. Check if every things is ok with the new colors
-files.
+files. migo: Maybe one colorset for swallowing is not enough?
+I don't think xload's check-like can somehow be related to xclock
+darts colors, probably a separate color would be ok, also hi, sh used
+out of purpose. It is not very critical. Just a note.
 
 * settings@default: think which subcomponents to remove/move.
   Move settings/stroke@ to bindings@ option.
@@ -15,6 +21,8 @@ files.
   Probably rename functions-appbind to functions-user. [migo]
 
 * Write some documentation about CCDS. [migo]
+
+* FvwmApplet-Mixer should check for aumix availability first?
 
 * Fix all crashes.
 
