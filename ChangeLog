@@ -6,6 +6,9 @@
 	* themes/default/background.cfg:
 	add 3+3 more color choices
 
+	* themes/default/bindings:
+	use improved MaximizeFullScreen, start to use 2.5.x features
+
 2002-12-24  migo  <migo@homemail.com>
 
 	* themes/*/modules/FvwmPager*:

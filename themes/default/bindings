@@ -31,24 +31,13 @@ AddToFunc   FuncFvwmMoveOrIconify
 + M	Move
 + D	Iconify
 
-#DestroyFunc FuncFvwmMaximizeFullScreen
-#AddToFunc   FuncFvwmMaximizeFullScreen
-#+ I ThisWindow (Maximized) Style $n Title, Border
-#+ I CondCase (NoMatch) Style $n NoTitle, NoBorder
-#+ I CondCase (NoMatch) Raise
-#+ I CondCase (NoMatch) UpdateStyles
-#+ I Maximize
-
 DestroyFunc FuncFvwmMaximizeFullScreen
 AddToFunc   FuncFvwmMaximizeFullScreen
-+ I Style $n NoTitle, NoHandles, BorderWidth 0
-+ I UpdateStyles
-+ I WindowId "$w" Maximize true
-
-DestroyFunc FuncFvwmUnmaximizeFullScreen
-AddToFunc   FuncFvwmUnmaximizeFullScreen
-+ I WindowId "$w" Maximize false
-+ I Style $n Title, Handles, BorderWidth 5
++ I ThisWindow (Maximized) Style $n Title, Borders
++ I CondCase (NoMatch) Style $n NoTitle, !Borders
++ I CondCase (NoMatch) Raise
++ I CondCase (NoMatch) UpdateStyles
++ I Maximize
 
 DestroyFunc FuncFvwmWindowOpsOrAction
 AddToFunc   FuncFvwmWindowOpsOrAction
@@ -207,7 +196,7 @@ Key Tab 	A	SCM	Next FuncFvwmSelectWindow
 Key Prior	A	M	Prev FuncFvwmSelectWindow
 Key Next	A	M	Next FuncFvwmSelectWindow
 Key F11 	A	SC	Pick FuncFvwmMaximizeFullScreen
-Key F12 	A	SC	Pick FuncFvwmUnmaximizeFullScreen
+Key F12 	A	SC	Pick FuncFvwmMaximizeFullScreen
 
 # misc.
 Key F9		A	SC	FuncFvwmShowColourTable
