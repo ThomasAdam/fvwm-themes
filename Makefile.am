@@ -2,7 +2,7 @@
 ## Makefile.am for fvwm-themes.
 
 AUTOMAKE_OPTIONS = foreign
-SUBDIRS = bin doc rpm scripts forms locale menu-system
+SUBDIRS = bin debian doc rpm scripts forms locale menu-system
 FT_DATA_SUBDIRS = themes images sounds
 EXTRA_DIST = images.tar.gz sounds.tar.gz
 release = 0.`date +%Y%m%d`
@@ -202,59 +202,20 @@ rpm-themes-this:
 #    make deb-dist3 - creates -base and -extra debs
 
 
-#
-#this is for original build debian with debian/rules
-#
+deb-dist: deb-this
 
-# first the original rule to build for debian
-# it includes all
+deb-dist3: deb-base-this deb-extra-this
 
-deb-dist: 
-#	cp fvwm-themes-full-$(VERSION).tar.gz ../fvwm-themes-full-$(VERSION)-0.tar.gz
-	cp -f debian/full-control debian/control
-	cp -f debian/full-changelog debian/changelog
-	fakeroot debian/rules clean
-	fakeroot debian/rules binary-archfull
-	fakeroot dh_builddeb --filename=$(PACKAGE)-full_$(VERSION)-$(release)_i386.deb
+deb-this:
+	($(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) deb) || exit 1
 
-# build base and extra debs
-deb-dist3:
+deb-base-this:
+	($(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) deb-base) || exit 1
+
+deb-extra-this:
+	($(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) deb-extra) || exit 1
 
 
-	release=$(release); 
-	@echo "creating $(PACKAGE)_base/extra_$(VERSION).deb"
-	cp -f debian/base-control debian/control
-	cp -f debian/base-changelog debian/changelog
-	fakeroot debian/rules clean
-	fakeroot debian/rules binary3
-	-[ -d debian/fvwm-themes-extra ] || mkdir debian/fvwm-themes-extra
-	-[ -d debian/fvwm-themes-extra/usr ] || mkdir debian/fvwm-themes-extra/usr
-	-[ -d debian/fvwm-themes-extra/usr/share ] || mkdir debian/fvwm-themes-extra/usr/share
-	-[ -d debian/fvwm-themes-extra/usr/share/fvwm ] || mkdir debian/fvwm-themes-extra/usr/share/fvwm
-	-[ -d debian/fvwm-themes-extra/usr/share/fvwm/themes ] || mkdir debian/fvwm-themes-extra/usr/share/fvwm/themes
-	-[ -d debian/fvwm-themes/DEBIAN ] || mkdir debian/fvwm-themes-extra/DEBIAN
-	@for t in $(EXTRA_THEMES); do \
-	mv -f debian/fvwm-themes-base/usr/share/fvwm/themes/$$t\
-	debian/fvwm-themes-extra/usr/share/fvwm/themes/; \
-	done
-	fakeroot dh_md5sums
-	fakeroot dh_builddeb --filename=$(PACKAGE)_$(VERSION)-$(release)_i386.deb
-	
-	cp -f debian/extra-control debian/control
-	cp -f debian/extra-changelog debian/changelog
-	fakeroot dh_installdocs
-	fakeroot dh_install
-	fakeroot dh_link
-	fakeroot dh_strip
-	fakeroot dh_compress
-	fakeroot dh_fixperms
-	fakeroot dh_installdeb
-	fakeroot dh_shlibdeps
-	fakeroot dh_gencontrol 
-	fakeroot dh_md5sums
-	fakeroot dh_builddeb --filename=$(PACKAGE)-extra_$(VERSION)-$(release)_i386.deb
-	rm -fr debian/fvwm-themes-base
-	rm -fr debian/fvwm-themes-extra
 
 
 

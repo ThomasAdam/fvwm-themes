@@ -1,12 +1,8 @@
 fvwm-themes for Debian
 ----------------------
 
-   * change menu entry submenu Programs to /Debian
-   * to activate you must place "fvwm-themes-start" line into ~/.xinitrc
-   * to build package: dpkg-buildpackage -rfakeroot
-   * you can also say: make deb-dist or make deb-dist3
-   * to build ./configure you must say: aclocal ; autoheader ; automake --add-missing ; autoreconf
-   * it could be a problem to build debs without my gpgkey (don't know)
-   * i think the base and the extra package work without gpg-mantra
+   * to activate fvwm-themes you must write command "fvwm-themes-start" into the ~/.xinitrc
+   * it is posible to get the debian_menu
+   * you must look in menu: Theme Management/Current/settings/Menu System
 
  -- Andrei Mitrofanow <smilebef@web.de>, Mon, 14 Apr 2003 16:24:36 +0200

@@ -26,17 +26,16 @@ configure:
 
 
 
-
 config.status: configure
 	dh_testdir
 	# Add here commands to configure the package.
 	./configure --prefix=/usr --disable-run-updatemenu
 
+
 build: build-stamp
 
 build-stamp:  config.status
 	dh_testdir
-
 	# Add here commands to compile the package.
 	$(MAKE)
 	#/usr/bin/docbook-to-man debian/fvwm-themes.sgml > fvwm-themes.1
@@ -47,7 +46,6 @@ clean:
 	rm -f build-stamp 
 	# Add here commands to clean up after the build process.
 	-$(MAKE) distclean
-	-test ! -x  ./configure  && ( aclocal; autoheader; automake --add-missing; autoreconf )
  
 ifneq "$(wildcard /usr/share/misc/config.sub)" ""
 	cp -f /usr/share/misc/config.sub config.sub
@@ -69,53 +67,17 @@ install: build
 
 
 
-install3: build
-	dh_testdir
-	dh_testroot
-	dh_clean -k
-	dh_installdirs
-
-	# Add here commands to install the package into debian/fvwm-themes.
-	$(MAKE) prefix=$(CURDIR)/debian/fvwm-themes-base/usr ROOT_PREFIX=$(CURDIR)/debian/fvwm-themes-base mandir=$(CURDIR)/debian/fvwm-themes-base/usr/share/man install
-
-
 # Build architecture-independent files here.
 binary-indep: build install
 	chmod 0644 $(CURDIR)/debian/fvwm-themes/usr/share/fvwm/themes/cde/background/pattern
 	
 
 # We have nothing to do by default.
-
-
-binary-indepfull: build install
-	chmod 0644 $(CURDIR)/debian/fvwm-themes/usr/share/fvwm/themes/cde/background/pattern
-	 
-
-
-
-
-binary-indep3: install3
-	chmod 0644 $(CURDIR)/debian/fvwm-themes/usr/share/fvwm/themes/cde/background/pattern
-	
-
-# We have nothing to do by default.
-
 # Build architecture-dependent files here.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 binary-arch: build install
+	cp -f debian/full-control debian/control
+	cp -f debian/full-changelog debian/changelog
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs ChangeLog
@@ -147,72 +109,5 @@ binary-arch: build install
 
 
 
-
-
-
-
-
-binary-archfull: build install
-	dh_testdir
-	dh_testroot
-	dh_installchangelogs ChangeLog
-	dh_installdocs
-#	dh_installexamples
-	dh_install
-	dh_installmenu
-#	dh_installdebconf	
-#	dh_installlogrotate
-#	dh_installemacsen
-#	dh_installpam
-#	dh_installmime
-#	dh_installinit
-#	dh_installcron
-#	dh_installinfo
-	dh_installman
-	dh_link
-	dh_strip
-	dh_compress
-	dh_fixperms
-	dh_perl
-#	dh_python
-#	dh_makeshlibs
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-#	dh_builddeb
-
-
-binary-arch3: install3
-	dh_testdir
-	dh_testroot
-	dh_installchangelogs ChangeLog
-	dh_installdocs
-#	dh_installexamples
-	dh_install
-	dh_installmenu
-#	dh_installdebconf	
-#	dh_installlogrotate
-#	dh_installemacsen
-#	dh_installpam
-#	dh_installmime
-#	dh_installinit
-#	dh_installcron
-#	dh_installinfo
-	dh_installman
-	dh_link
-	dh_strip
-	dh_compress
-	dh_fixperms
-	dh_perl
-#	dh_python
-#	dh_makeshlibs
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-
 binary: binary-indep binary-arch
-binaryfull: binary-indepfull binary-archfull
-binary3: binary-arch3
 .PHONY: build clean binary-indep binary-arch binary install 

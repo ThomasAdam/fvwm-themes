@@ -1,11 +1,11 @@
-Source: fvwm-themes-base
+Source: fvwm-themes
 Section: x11
 Priority: optional
 Maintainer: Andrei Mitrofanow <smilebef@web.de>
 Build-Depends: debhelper (>> 4.0.0)
 Standards-Version: 3.5.8
 
-Package: fvwm-themes-base
+Package: fvwm-themes
 Architecture: any
 Depends: ${shlibs:Depends} ${misc:Depends} ${perl:Depends}
 Description: Nice look, feel and menusystem for FVWM (base themes)
