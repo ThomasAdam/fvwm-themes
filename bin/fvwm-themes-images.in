@@ -793,7 +793,7 @@ sub createPattern {
 	elsif ($type eq "rand") {
 		for ($i=0;$i<$coef;$i++) {
 			my $p = ""; my $j; my $r;
-			for ($j=0; $j<$coef2; $j++) { $r= rand 1; $p = $r > 0.5 ? "+" : "-" }
+			for ($j=0; $j<$coef2; $j++) { $r= rand 1; $p .= $r > 0.5 ? "+" : "-" }
 			push @pattern, "$p\n";
 		}
 	}

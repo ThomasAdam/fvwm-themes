@@ -1,6 +1,6 @@
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground
-+ I Exec exec fvwm-themes-images --cde-sky --sky-colors "random:random:random" --pattern-type 1 --set-backg --rotate 90 --be-fast
++ I Exec exec fvwm-themes-images --cde-sky --sky-colors "random:grey10" --pattern-type random:50:50 --sky-comp c --set-backg
 
 DestroyFunc FuncFvwmStopThemeBackground
 AddToFunc   FuncFvwmStopThemeBackground

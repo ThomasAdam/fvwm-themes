@@ -1,3 +1,11 @@
+2000-07-28  olicha <olivier.chapuis@free.fr>
+
+	* themes/multichoice/backgrounds/*
+	Add some fvwm-themes-images background and replace xv + bggen when
+	this is possible (ft-images + xsetroot seem more fast :)
+
+	* bin/fvwm-themes-images.in: fix a random pattern bug
+     
 2000-07-28  migo  <migo@homemail.com>
 
 	* Makefile.am:
@@ -23,8 +31,6 @@
 	* themes/redmond98/background/*
 	use 8bits hex nbr in the place of the X name for colors 
 	(for speed: win 5%).
- 	
-2000-07-28  olicha <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-images.in:
 	clean up and speed the code (note the --be-fast option for
