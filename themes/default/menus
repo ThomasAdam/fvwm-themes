@@ -97,10 +97,11 @@ AddToMenu   MenuFvwmManPages "FVWM Man Pages" Title
 + "%menu/help.xpm%FvwmWharf"           FuncFvwmViewManPage FvwmWharf
 + "%menu/help.xpm%FvwmWinList"         FuncFvwmViewManPage FvwmWinList
 + "" Nop
++ "%menu/help.xpm%fvwm-config"         FuncFvwmViewManPage fvwm-config
++ "%menu/help.xpm%fvwm-root"           FuncFvwmViewManPage fvwm-root
 + "%menu/help.xpm%fvwmbug"             FuncFvwmViewManPage fvwmbug
 + "%menu/help.xpm%fvwmrc_convert"      FuncFvwmViewManPage fvwmrc_convert
 + "%menu/help.xpm%fvwm24_convert"      FuncFvwmViewManPage fvwm24_convert
-+ "%menu/help.xpm%fvwm-root"           FuncFvwmViewManPage fvwm-root
 + "" Nop
 + "%menu/help.xpm%fvwm-menu-desktop"   FuncFvwmViewManPage fvwm-menu-desktop
 + "%menu/help.xpm%fvwm-menu-directory" FuncFvwmViewManPage fvwm-menu-directory
