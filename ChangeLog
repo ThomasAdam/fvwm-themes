@@ -1,3 +1,8 @@
+2001-04-26  migo  <migo@homemail.com>
+
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	s/program.xpm/programs.xpm/g
+
 2001-04-25  migo  <migo@homemail.com>
 
 	* themes/migo/modules/main: add missing gnome icon sets to menu

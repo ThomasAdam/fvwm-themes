@@ -314,7 +314,7 @@ Style "artsbuilder"            Icon norm/music.xpm,            MiniIcon mini/mus
 Style "artscontrol"            Icon norm/sound.xpm,            MiniIcon mini/sound.xpm
 Style "kmoon"                  Icon norm/science.xpm,          MiniIcon mini/science.xpm
 Style "kodo"                   Icon norm/mouse.xpm,            MiniIcon mini/mouse.xpm
-Style "kpackage"               Icon norm/program.xpm,          MiniIcon mini/program.xpm
+Style "kpackage"               Icon norm/programs.xpm,         MiniIcon mini/programs.xpm
 Style "kppp"                   Icon norm/network.xpm,          MiniIcon mini/network.xpm
 Style "kppplogview"            Icon norm/information.xpm,      MiniIcon mini/information.xpm
 Style "kghostview"             Icon norm/viewer.xpm,           MiniIcon mini/viewer.xpm
@@ -354,7 +354,7 @@ Style "Dtcalc"                 Icon norm/calculator.xpm,       MiniIcon mini/cal
 Style "Dticon*"                Icon norm/image-processor.xpm,  MiniIcon mini/image-processor.xpm
 Style "Dtprint*"               Icon norm/printing.xpm,         MiniIcon mini/printing.xpm
 Style "Dtstyle*"               Icon norm/configuration.xpm,    MiniIcon mini/configuration.xpm
-Style "Applications Manager"   Icon norm/program.xpm,          MiniIcon mini/program.xpm
+Style "Applications Manager"   Icon norm/programs.xpm,         MiniIcon mini/programs.xpm
 Style "Trash Can"              Icon norm/file.xpm,             MiniIcon mini/file.xpm
 
 # Games
