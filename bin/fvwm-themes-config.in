@@ -435,7 +435,7 @@ sub getThemeComponents ($) {
 	foreach (@allComponents) {
 		next if m:/:; ### for now
 		my $file = "$themeDir/$_";
-		push @components, $_ if -e $file;
+		push @components, $_ if -e $file || -d "$file.d";
 	}
 	return [sort @components];
 

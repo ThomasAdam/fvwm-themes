@@ -40,7 +40,7 @@
 	So, I have added themes/default/background.d instead...
 
 	* bin/fvwm-themes-config.in:
-	Added ".d" suffix support for read-file directories (2 lines);
+	Added ".d" suffix support for read-file directories;
 	removed commented FuncFvwmIfModules function.
 
 	* themes/default/theme.cfg:
