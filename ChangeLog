@@ -1,3 +1,8 @@
+2000-12-12  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-script.in (checkScript):
+	removed not needed now test for correct ps
+
 2000-12-12  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-*.in:

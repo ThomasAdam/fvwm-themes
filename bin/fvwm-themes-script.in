@@ -800,9 +800,6 @@ sub checkScript {
 	my $test = 0;
 	my $lockFifo = ".tmp-com-lock-" . $comName;
 
-	die "OSes without BSD-compatible 'ps' are currently not supported, sorry\n"
-		if `ps h >/dev/null 2>&1; echo $?` ne "0\n";
-
 	$test = 1 if kill 0 => $comPid;
 
 	if ($test) { die "Script"; }
