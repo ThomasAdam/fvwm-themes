@@ -22,6 +22,7 @@ DestroyModuleConfig FvwmGtk-Themes: *
 *FvwmGtk-Themes: CheckButton background Background 2 1 on
 *FvwmGtk-Themes: CheckButton banner Banner 2 1 on
 *FvwmGtk-Themes: CheckButton stroke Stroke 2 1 
+*FvwmGtk-Themes: CheckButton headlines Headlines 2 1 on
 *FvwmGtk-Themes: EndBox
 *FvwmGtk-Themes: EndFrame
 
@@ -155,6 +156,7 @@ DestroyModuleConfig FvwmGtk-Themes: *
 	--variant settings/background=$(background) \
 	--variant settings/banner=$(banner) \
 	--variant settings/stroke=$(stroke) \
+	--variant settings/automenus/headlines=$(headlines) \
 	--variant settings/sound-player=$(sound-player) \
 	--variant settings/autoraise=$(autoraise) \
 	--variant settings/iconstyles=$(iconstyles) \

@@ -13,6 +13,9 @@
 	* themes/default/settings.cfg:
 	fixed
 
+	* forms/FvwmGtk-Themes:
+	added Headlines variant in settings
+
 2002-06-05  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings/iconstyles/style-icon-miniicon:
