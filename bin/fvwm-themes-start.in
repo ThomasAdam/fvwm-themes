@@ -22,7 +22,8 @@ isNewSession=0
 fvwmArgs=""
 whoseArgs="my"
 start=yes
-fvwm="fvwm2"
+### to be autoconfigured
+fvwmExe="fvwm2"
 session="main"
 
 while [ "x$1" != "x" ]; do
@@ -36,9 +37,11 @@ while [ "x$1" != "x" ]; do
 			case "$1" in
 			--no-start|-no-start|-n)
 				start=no ;;
+			# leave -f for compatibility only, to be removed
 			--fvwm|-fvwm|-f)
+			--fvwm-exe|-fvwm-exe|-e)
 				shift
-				fvwm="$1" ;;
+				fvwmExe="$1" ;;
 			--session|-session|-s)
 				# fvwm-2.2.x adds -s on 'Restart fvwm-themes-start'
 				if [ $# -gt 1 ]; then
@@ -110,5 +113,5 @@ fi
 cd $startDir
 echo "[FVWM-Themes]: Starting FVWM under the $session fvwm-themes session"
 if [ "$start" = "yes" ]; then
-	exec $fvwm -f "$rcName" $fvwmArgs
+	exec $fvwmExe -f "$rcName" $fvwmArgs
 fi

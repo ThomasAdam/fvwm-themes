@@ -4,7 +4,7 @@ fvwm-themes-start \- FVWM Themes starter
 .SH "SYNOPSIS"
 \fBfvwm-themes-start\fR
 [ \fB--session\fR|\fB\-s\fR name ] [ \fB--no-start|-n\fR ] 
-[ \fB--\fR fvwm-args ]
+[ \fB--fvwm-exe|-e\fR ] [ \fB--\fR fvwm-args ]
 
 .SH "DESCRIPTION"
 This script runs fvwm with FVWM Themes.  It should be run under X.
@@ -19,19 +19,20 @@ is "main". This allows to have and run different FVWM Themes configuration.
 for starting it. This is usefull to start FVWM Themes with a session
 manager.
 
-\fB--fvwm\fR - changes a default executable, which is currently \fIfvwm2\fR.
+\fB--fvwm-exe\fR - changes the default executable, which is \fIfvwm2\fR
+or whatever \fIfvwm-config --fvwm-exe\fR returns.
 
-\fB--\fR everything after \fB--\fR is be passed to fvwm2.
+\fB--\fR everything after \fB--\fR is passed to FVWM.
 See the \fBfvwm2\fR(1) man page for the fvwm2 options.
 
 .SH "EXAMPLES"
-Most user just have to put:
+Most users just should put:
 .nf
 .sp
 	fvwm-themes-start
 .sp
 .fi
-as the last line of his/her .Xclients, .xinitrc or .xsession file.
+as the last line of their .Xclients, .xinitrc or .xsession file.
 If you want to use FVWM Themes with a real session manager, say
 GNOME, you need to use the --no-start option and put:
 .nf
@@ -40,11 +41,11 @@ GNOME, you need to use the --no-start option and put:
 	gnome-session
 .sp
 .fi
-as the last line of your .Xclients, .xinitrc or .xsession file.
-The session option allows to use FVWM Themes with different configuration.
-Say, you want to use different configuration under a normal FVWM session, 
-a gnome-session and under a normal FVWM session but the
-shell test FOO is true. Then, your .xinitrc/.xsession file can look 
+as the last lines of your .Xclients, .xinitrc or .xsession file.
+The session option allows to use FVWM Themes with different configurations.
+Say, you want to use 3 different configurations under a normal FVWM session
+when FOO test is false, under gnome-session and under a normal FVWM session
+when FOO test is true. Then, your .xinitrc/.xsession file may look
 as follows (where $1 is the "first" argument given by startx, or by kdm or 
 gdm ...):
 .nf
@@ -56,7 +57,7 @@ gdm ...):
 	      fvwm-themes-start --session special 
 	    else
 	      fvwm-themes-start 
-            fi
+       fi
 	  ;;
 	  gnome)
 	    fvwm-themes-start --session gnome --no-start
@@ -67,8 +68,8 @@ gdm ...):
 .sp
 .fi
 Note that with most session managers (e.g., GNOME or XSM) it is
-preferable to give "fvwm2 -f themes-rc" as starting window manager
-command for the session manager.
+preferable to give "fvwm2 -f themes-rc" as the starting window manager
+command in the session manager.
 
 .SH "COPYING"
 The script is distributed by the same terms as fvwm-themes itself.
