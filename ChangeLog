@@ -1,3 +1,12 @@
+2002-06-06  migo  <migo@homemail.com>
+
+	* themes/redmondxp/background:
+	* themes/redmondxp/colors:
+	* themes/redmondxp/modules/*:
+	clockbar now almost fully works in the panel;
+	except that Colorset 14 is not respected and there is no currently
+	posibility to add/remove button (time/date) in container
+
 2002-06-05  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/theme.cfg:

@@ -53,11 +53,10 @@ AddToFunc   ToggleFvwmPager
 + I None ($0, CirculateHit) FvwmPager $*
 + I Next ($0, CirculateHit) Close
 
-# Ohhh...
-PipeRead "echo '*FvwmButtons-Panel: (3x1, Icon module/panel-holder.png, \
+*FvwmButtons-Panel: (3x1, Icon module/panel-holder.png, \
 	ActionOnPress, \
-	Action `SendToModule $./FvwmThemesPanelManager popup pagebar-config rectangle $$widthx$$height+$$left+$$top 0 -100m`, \
-)'"
+	Action `SendToModule $./FvwmThemesPanelManager popup pagebar-config rectangle $widthx$height+$left+$top 0 -100m`, \
+)
 *FvwmButtons-Panel: (8x1, Container(Rows 2, \
 	Font "shadow=1:xft:Luxi Sans:Bold:pixelsize=8:minspace=true" \
 ))
@@ -96,10 +95,10 @@ PipeRead "echo '*FvwmButtons-Panel: (3x1, Icon module/panel-holder.png, \
 *FvwmButtons-Panel: (End)
 
 # ---- task bar ----
-PipeRead "echo '*FvwmButtons-Panel: (3x1, Icon module/panel-holder.png, \
+*FvwmButtons-Panel: (3x1, Icon module/panel-holder.png, \
 	ActionOnPress, \
-	Action `SendToModule $./FvwmThemesPanelManager popup taskbar-config rectangle $$widthx$$height+$$left+$$top 0 -100m`, \
-)'"
+	Action `SendToModule $./FvwmThemesPanelManager popup taskbar-config rectangle $widthx$height+$left+$top 0 -100m`, \
+)
 PipeRead `echo -n "SetEnv IconManWidth "; expr $[vp.width] / 4 - 88`
 *FvwmButtons-Panel: ($[IconManWidth]x1, Swallow FvwmIconMan 'Module FvwmIconMan')
 
@@ -107,7 +106,21 @@ PipeRead `echo -n "SetEnv IconManWidth "; expr $[vp.width] / 4 - 88`
 
 # TODO: Should use another colorset for clock
 
-*FvwmButtons-Panel: (15x1, Swallow FvwmApplet-DigitalClock 'Module FvwmScript FvwmApplet-DigitalClock 23')
+*FvwmButtons-Panel: (15x1, Container(Columns 1, Colorset 14, \
+	Font "shadow=1:xft:Luxi Sans:Bold:pixelsize=9:minspace=true" \
+))
+*FvwmButtons-Panel: (Title " ", \
+	ActionOnPress, \
+	Action `SendToModule $./FvwmThemesPanelManager popup clockbar-config rectangle $widthx$height+$left+$top -0 -100m`, \
+	Action(Mouse 3) `SendToModule $./FvwmThemesPanelManager circulate clockbar-field1-format`, \
+)
+*FvwmButtons-Panel: (Title " ", \
+	ActionOnPress, \
+	Action `SendToModule $./FvwmThemesPanelManager popup clockbar-config rectangle $widthx$height+$left+$top -0 -100m`, \
+	Action(Mouse 3) `SendToModule $./FvwmThemesPanelManager circulate clockbar-field2-format`, \
+)
+*FvwmButtons-Panel: (End)
+#Swallow FvwmApplet-DigitalClock 'Module FvwmScript FvwmApplet-DigitalClock 23')
 
 # ----------------------------------------------------------------------------
 

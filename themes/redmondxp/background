@@ -1,7 +1,7 @@
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground
 + I Colorset 12 fg rgb:ff/ff/da, bg average, Pixmap background/lightsky.png, NoShape
-+ I Colorset 14 fg rgb:ff/ff/da, bg average, Pixmap background/lightsky.png, NoShape
++ I Colorset 15 fg rgb:ff/ff/da, bg average, Pixmap background/lightsky.png, NoShape
 + I DestroyModuleConfig FvwmBacker: *
 + I *FvwmBacker: Command (Desk *, Page * *) Colorset 12
 + I FuncFvwmRestartModule FvwmBacker

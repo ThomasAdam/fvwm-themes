@@ -13,10 +13,41 @@ use General::Parse;
 my $fullName = $0;
 my $name = $fullName; $name =~ s|.*/||g;
 my $configFile = ".$name.cfg";
+
+my $clockFormats = {
+	time => [
+		'%H:%M',
+		'%I:%M %P',
+		'%I:%M %p',
+	],
+	date => [
+		'%d %h',
+		'%h %d',
+		'%a, %d %h',
+		'%h %d, %a',
+		'%a %d',
+		'%x',
+		'%d-%b-%Y',
+		'%1d %b %Y',
+		'%b %1d %Y',
+		'%b/%d/%Y',
+		'%d/%m/%y',
+		'%m/%d/%y',
+		'%Y-%m-%d',
+	],
+};
+
+my $clockFieldOrder = [
+	[ 'time', 'date' ], [ 'date', 'time' ], [ 'time' ], [ 'date' ],
+];
+
 my $config = {
 	'taskbar-resolution' => 'page',
 	'pagebar-show-single' => 0,
 	'pagebar-show-desker' => 0,
+	'clockbar-field-order' => 0,
+	'clockbar-time-format' => 0,
+	'clockbar-date-format' => 0,
 };
 my $newConfig = {};
 my $pageButtonIndexes = [ 8, 9, 10, 11 ];
@@ -26,6 +57,7 @@ my $currDeskNum = 0;
 my $module = new FVWM::Module(
 	Name => $name,
 	Mask => M_NEW_PAGE | M_NEW_DESK | M_STRING,
+#	Debug => 1,
 );
 
 sub loadConfig () {
@@ -47,6 +79,29 @@ sub saveConfig () {
 	saveFile($configFile, \$text);
 }
 
+local $SIG{ALRM} = \&showClockNowAndRegularly;
+sub showClockNowAndRegularly () {
+	alarm(0);
+
+	my $clockButtonIndex = 14;
+	my @formats = ();
+	foreach (@{$clockFieldOrder->[$config->{'clockbar-field-order'}]}) {
+		push @formats, $clockFormats->{$_}->
+			[$config->{"clockbar-$_-format"}];
+	}
+	# optimization, call date only once for both time and date
+	my $command = "date '+" . join('%n', @formats) . "'";
+	my $output = `$command`;
+	chomp($output);
+	my @strings = split(/\n/s, $output);
+	foreach (@strings) {
+		$module->send("SendToModule FvwmButtons-Panel Title $clockButtonIndex $_");
+		$clockButtonIndex++;
+	}
+
+	alarm(20);
+}
+
 sub applyNewConfig () {
 	my $key;
 	foreach $key (keys %$newConfig) {
@@ -57,6 +112,7 @@ sub applyNewConfig () {
 		delete $newConfig->{$key};
 		next if $newValue eq $oldValue;
 		$config->{$key} = $newValue;
+		my $isBadValue = 0;
 
 		if ($key eq 'pagebar-show-single') {
 			my $cmd = $newValue?
@@ -73,18 +129,50 @@ sub applyNewConfig () {
 		if ($key eq 'taskbar-resolution') {
 			$module->send("*FvwmIconMan: resolution $newValue");
 		}
+		if ($key eq 'clockbar-field-order') {
+			if ($newValue < 0 || $newValue >= @$clockFieldOrder) {
+				$isBadValue = 1;
+				$module->send('FuncFvwmShowMessage "Sorry" "Internal problem #1"');
+			} elsif ($newValue < 2) {
+				showClockNowAndRegularly();
+			} else {
+				$isBadValue = 1;
+				$module->send('FuncFvwmShowMessage "Sorry" "This choice is not supported yet"');
+			}
+		}
+		if ($key =~ /^clockbar-(\w+)-format$/) {
+			my $formats = $clockFormats->{$1};
+			unless (ref($formats) eq 'ARRAY' && @$formats) {
+				$isBadValue = 1;
+			} else {
+				# ensure a value is in range
+				$newValue = $newValue % @$formats;
+				$config->{$key} = $newValue;
+				showClockNowAndRegularly();
+			}
+		}
+
+		$config->{$key} = $oldValue if $isBadValue;
 	}
 	saveConfig();
 }
 
+sub checkBoxIcon ($) {
+	return $_[0]? "item": "empty";
+}
+
+sub radioBoxIcon ($) {
+	return $_[0]? "choice-yes": "empty";
+}
+
 sub popupPageBarConfigMenu ($) {
 	my $addition = shift;
-	my $iconSSP = $config->{'pagebar-show-single'}? "choice-yes": "empty";
-	my $iconSDP = $config->{'pagebar-show-desker'}? "choice-yes": "empty";
-	my $iconGD0 = $currDeskNum == 0? "choice-yes": "empty";
-	my $iconGD1 = $currDeskNum == 1? "choice-yes": "empty";
-	my $iconGD2 = $currDeskNum == 2? "choice-yes": "empty";
-	my $iconGD3 = $currDeskNum == 3? "choice-yes": "empty";
+	my $iconSSP = checkBoxIcon($config->{'pagebar-show-single'});
+	my $iconSDP = checkBoxIcon($config->{'pagebar-show-desker'});
+	my $iconGD0 = radioBoxIcon($currDeskNum == 0);
+	my $iconGD1 = radioBoxIcon($currDeskNum == 1);
+	my $iconGD2 = radioBoxIcon($currDeskNum == 2);
+	my $iconGD3 = radioBoxIcon($currDeskNum == 3);
 	my $backCmd = "SendToModule $fullName";
 
 	$module->send(qq{
@@ -104,9 +192,9 @@ sub popupPageBarConfigMenu ($) {
 
 sub popupTaskBarConfigMenu ($) {
 	my $addition = shift;
-	my $iconTRP = $config->{'taskbar-resolution'} eq 'page'? "choice-yes": "empty";
-	my $iconTRD = $config->{'taskbar-resolution'} eq 'desk'? "choice-yes": "empty";
-	my $iconTRS = $config->{'taskbar-resolution'} eq 'screen'? "choice-yes": "empty";
+	my $iconTRP = radioBoxIcon($config->{'taskbar-resolution'} eq 'page');
+	my $iconTRD = radioBoxIcon($config->{'taskbar-resolution'} eq 'desk');
+	my $iconTRS = radioBoxIcon($config->{'taskbar-resolution'} eq 'screen');
 	my $backCmd = "SendToModule $fullName";
 
 	$module->send(qq{
@@ -117,6 +205,26 @@ sub popupTaskBarConfigMenu ($) {
 		+ "%menu/$iconTRS.xpm%Resolution: screen" $backCmd set taskbar-resolution screen
 
 		Popup PanelTaskBarConfigMenu $addition
+	});
+}
+
+sub popupClockBarConfigMenu ($) {
+	my $addition = shift;
+	my $iconFO0 = radioBoxIcon($config->{'clockbar-field-order'} == 0);
+	my $iconFO1 = radioBoxIcon($config->{'clockbar-field-order'} == 1);
+	my $iconFO2 = radioBoxIcon($config->{'clockbar-field-order'} == 2);
+	my $iconFO3 = radioBoxIcon($config->{'clockbar-field-order'} == 3);
+	my $backCmd = "SendToModule $fullName";
+
+	$module->send(qq{
+		DestroyMenu PanelClockBarConfigMenu
+		AddToMenu   PanelClockBarConfigMenu
+		+ "%menu/$iconFO0.xpm%Order: time, date" $backCmd set clockbar-field-order 0
+		+ "%menu/$iconFO1.xpm%Order: date, time" $backCmd set clockbar-field-order 1
+		+ "%menu/$iconFO2.xpm%Order: time"       $backCmd set clockbar-field-order 2
+		+ "%menu/$iconFO3.xpm%Order: date"       $backCmd set clockbar-field-order 3
+
+		Popup PanelClockBarConfigMenu $addition
 	});
 }
 
@@ -182,7 +290,29 @@ $module->addHandler(M_STRING, sub {
 		if ($menu eq 'taskbar-config') {
 			popupTaskBarConfigMenu($string);
 		}
+		if ($menu eq 'clockbar-config') {
+			popupClockBarConfigMenu($string);
+		}
+	}
+	elsif ($action eq 'circulate') {
+		my $var = getToken($string);
+		if ($var =~ /^clockbar-field(\d)-format$/) {
+			my $fieldName = $clockFieldOrder->
+				[$config->{"clockbar-field-order"}]->[$1 - 1];
+			return unless defined $fieldName;
+			$newConfig->{"clockbar-$fieldName-format"} =
+				$config->{"clockbar-$fieldName-format"} + 1;
+		}
+		applyNewConfig();
 	}
 });
+
+$module->send("Deschedule 34543");
+
+showClockNowAndRegularly();
+
+END {
+	$module->send("FuncFvwmShowMessage 'Sorry' '$name: Woops, I am going to die'");
+}
 
 $module->eventLoop;
