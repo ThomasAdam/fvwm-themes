@@ -35,11 +35,16 @@ FVWM Themes is a powerful configurational framework for FVWM,
 designed to be easily extendible and configurable, includes
 several pre-built themes, a pack of images and sounds.
 
+%description -l fr
+FVWM Themes est un système de configuration puissant pour FVWM.
+Il est extansible, facilement configurable et contient des
+thèmes, des images et des fichiers sons.
+
 %prep
 %setup
 
 %build
-./configure --prefix=%{prefix} %{c_p}
+./configure --disable-menuapp --prefix=%{prefix} %{c_p}
 #./configure %{c_p}
 make %{m_p}
 
@@ -63,6 +68,9 @@ rm -rf $RPM_BUILD_ROOT
 #%{bindir}/*
 #%{mandir}/*/*
 #%{FT_DATADIR}/*
+
+%post
+[ -x %{prefix}/bin/fvwm-themes-menuapp ] && fvwm-themes-menuapp --site --build-menus --remove-popup || true
 
 ## TODO: how to specify the current date in .spec? Or how to run a `command`?
 #%changelog

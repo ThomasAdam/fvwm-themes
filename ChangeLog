@@ -1,3 +1,16 @@
+2000-11-07  olicha  <olivier.chapuis@free.fr>
+
+	* rpm/Makefile.am:
+	* rpm/fvwm-themes.spec.in:
+	* configure.in:
+	* Makefile.am:
+	New option --disable-menuapp to configure so that we can build
+	rpm with the all menus-users. ft-menuapp is run only when you
+	rpm install the package (%post).
+	Replace noarch-fvwm-gnu target by noarch only (mdk says that
+	gnu is not linux ...)
+	Added french %description
+	
 2000-11-09  migo  <migo@homemail.com>
 
 	* themes/afterstep/modules/main:FvwmButtons-As:

@@ -28,6 +28,6 @@ rpm: @PACKAGE@.spec
 		-e "s/%define c_p /&$$cparams  %define old_c_p /" \
 		-e "s/%define m_p /&$$mparams  %define old_m_p /" \
 	; \
-	rpm -ba tmp-@PACKAGE@.spec --clean --target=noarch-fvwm-gnu; \
+	rpm -ba tmp-@PACKAGE@.spec --clean --target=noarch-fvwm-linux; \
 	rm /tmp/$$tarball; \
 	rm tmp-@PACKAGE@.spec
