@@ -13,25 +13,22 @@ email = fvwm-themes-devel@lists.sourceforge.net
 arch ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
 
 dist:
-	(cd debian && tar -xzf ../fvwm-themes-$(version).tar.gz)
-	-cp debian/* debian/fvwm-themes-$(version)/debian
-	(cd debian/fvwm-themes-$(version) && ./configure)
-	(cd debian/fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-this)
-	-(cd debian && rm -rf fvwm-themes-$(version))
+	tar -xzf ../fvwm-themes-$(version).tar.gz
+	(cd fvwm-themes-$(version) && ./configure) || exit 1
+	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-this) || exit 1
+	-rm -rf fvwm-themes-$(version)
 
 dist-base:
-	(cd debian && tar -xzf ../fvwm-themes-$(version).tar.gz)
-	-cp debian/* debian/fvwm-themes-$(version)/debian
-	(cd debian/fvwm-themes-$(version) && ./configure)
-	(cd debian/fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-base-this)
-	-(cd debian && rm -rf fvwm-themes-$(version))
+	tar -xzf ../fvwm-themes-$(version).tar.gz
+	(cd fvwm-themes-$(version) && ./configure) || exit 1
+	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-base-this) || exit 1
+	-rm -rf fvwm-themes-$(version)
 
 dist-extra:
-	(cd debian && tar -xzf ../fvwm-themes-$(version).tar.gz)
-	-cp debian/* debian/fvwm-themes-$(version)/debian
-	(cd debian/fvwm-themes-$(version) && ./configure)
-	(cd debian/fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-extra-this)
-	-(cd debian && rm -rf fvwm-themes-$(version))
+	tar -xzf ../fvwm-themes-$(version).tar.gz
+	(cd fvwm-themes-$(version) && ./configure) || exit 1
+	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-extra-this) || exit 1
+	-rm -rf fvwm-themes-$(version)
 
 this:
 	$(MAKE) clean
@@ -47,7 +44,7 @@ this:
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE) $(mparams)
-	$(MAKE) prefix=$(CURDIR)/debian/fvwm-themes-full/usr ROOT_PREFIX=$(CURDIR)/debian/fvwm-themes-full install
+	$(MAKE) prefix=$(CURDIR)/debian/fvwm-themes-full/usr ROOT_PREFIX=$(CURDIR)/debian/fvwm-themes-full mandir=$(CURDIR)/debian/fvwm-themes-full/usr/share/man install
 	chmod 0644 debian/fvwm-themes-full/usr/share/fvwm/themes/cde/background/pattern
 	fakeroot dh_testdir
 	fakeroot dh_testroot
@@ -83,7 +80,7 @@ this-base:
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE) $(mparams)
-	$(MAKE) prefix=$(CURDIR)/debian/fvwm-themes/usr ROOT_PREFIX=$(CURDIR)/debian/fvwm-themes install
+	$(MAKE) prefix=$(CURDIR)/debian/fvwm-themes/usr ROOT_PREFIX=$(CURDIR)/debian/fvwm-themes mandir=$(CURDIR)/debian/fvwm-themes/usr/share/man install
 	-[ -d debian/fvwm-themes-extra ] || mkdir debian/fvwm-themes-extra
 	-[ -d debian/fvwm-themes-extra/usr ] || mkdir debian/fvwm-themes-extra/usr
 	-[ -d debian/fvwm-themes-extra/usr/share ] || mkdir debian/fvwm-themes-extra/usr/share
@@ -130,7 +127,7 @@ this-extra:
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE) $(mparams)
-	$(MAKE) prefix=$(CURDIR)/debian/fvwm-themes/usr ROOT_PREFIX=$(CURDIR)/debian/fvwm-themes install
+	$(MAKE) prefix=$(CURDIR)/debian/fvwm-themes/usr ROOT_PREFIX=$(CURDIR)/debian/fvwm-themes mandir=$(CURDIR)/debian/fvwm-themes/usr/share/man install
 	-[ -d debian/fvwm-themes-extra ] || mkdir debian/fvwm-themes-extra 
 	-[ -d debian/fvwm-themes-extra/usr ] || mkdir debian/fvwm-themes-extra/usr
 	-[ -d debian/fvwm-themes-extra/usr/share ] || mkdir debian/fvwm-themes-extra/usr/share

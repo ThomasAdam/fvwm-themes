@@ -209,15 +209,15 @@ deb-regenerate:
 	(cd debian && $(MAKE) $(AM_MAKEFLAGS) Makefile *-control) || exit 1
 
 deb-dist: dist deb-regenerate
-	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) dist || exit 1
+	(cd debian && $(MAKE) $(AM_MAKEFLAGS) dist) || exit 1
 
 deb-dist3: dist deb-base-dist deb-extra-dist
 
 deb-base-dist: deb-regenerate
-	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) dist-base || exit 1
+	(cd debian && $(MAKE) $(AM_MAKEFLAGS) dist-base) || exit 1
 
 deb-extra-dist: deb-regenerate
-	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) dist-extra || exit 1
+	(cd debian && $(MAKE) $(AM_MAKEFLAGS) dist-extra) || exit 1
 
 deb-this: deb-regenerate
 	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) this || exit 1
