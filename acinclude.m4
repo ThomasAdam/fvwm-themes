@@ -27,3 +27,17 @@ else
 fi
 case "[$]$1" in "") echo "No value for $1. Failed."; exit 1;; esac
 ])
+
+dnl mg_LIST_MINUS(LIST1-VAR, LIST2-VAR, LIST3-VAR)
+AC_DEFUN(mg_LIST_MINUS,
+[list1=`echo [$]$1`
+list2=`echo [$]$2`
+$3=`awk -v l1="${list1}" -v l2="${list2}" 'BEGIN {
+	split(l1, a1, / +/); split(l2, a2, / +/); l3 = "";
+	for (i1 in a1) {
+		u = 1; for (i2 in a2) { if (a1[[i1]] == a2[[i2]]) u = 0; }
+		if (u) l3 = l3 a1[[i1]] " ";
+	} print l3;
+}' | xargs -n 1 echo | sort`
+$3=`echo [$]$3`
+])
