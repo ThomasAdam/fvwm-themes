@@ -63,6 +63,7 @@ AddToFunc   ToggleFvwmConsole
 
 DestroyFunc FuncFvwmStartBarXosview
 AddToFunc   FuncFvwmStartBarXosview
++ I All (BarXosview) Close
 + I Exec xosview -name BarXosview -xrm 'xosview*background:$[bg.cs10]' +load \
 	+mem -net -cpu -int -swap +page -battery -disk \
 	-geometry 100x50+0-0 -font 5x7 \

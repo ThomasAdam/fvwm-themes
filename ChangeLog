@@ -7,6 +7,9 @@
 	* bin/fvwm-themes-start.in:
 	don't use -p for mkdir
 
+	* themes/luthien/modules/main:FvwmButtons:
+	I had problems with swallowing xosview (not sure this solves this)
+
 2000-11-11  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ConfigCenter:
