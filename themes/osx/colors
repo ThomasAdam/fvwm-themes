@@ -51,10 +51,11 @@ ButtonStyle	All -- UseTitleStyle
 # Menus
 
 # inactive menu item fg+bg and menu face
-*FvwmTheme: Colorset 5 fg black, bg white, sh rgb:30/30/30, hi rgb:50/50/50, TiledPixmap menuback/face.xpm, NoShape
+*FvwmTheme: Colorset 5 fg rgb:20/20/20, bg white, \
+	sh rgb:30/30/30, hi rgb:50/50/50, TiledPixmap menuback/face.xpm, NoShape
 
 # active menu item fg+bg
-*FvwmTheme: Colorset 6 fg black, bg rgb:98/B0/C8, Plain, NoShape
+*FvwmTheme: Colorset 6 fg black, bg rgb:6f/a9/e5, Plain, NoShape
 
 # greyed menu item fg
 *FvwmTheme: Colorset 7 fg grey, bg grey, Plain, NoShape
