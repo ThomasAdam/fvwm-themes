@@ -6,6 +6,9 @@
 	* scripts/FvwmScript-ConfigCenter:
 	spelling and more
 
+	* bin/fvwm-themes-script.in:
+	'use strict' and saveToFile() corrections
+
 2000-10-25  olicha  <olivier.chapuis@free.fr>
 
         * bin/fvwm-themes-script.in:
@@ -16,7 +19,7 @@
 	* themes/default/settings/autoraise/modules: fixed
 
 	* bin/fvwm-themes-config.in:
-	'no strict' and other corrections
+	'use strict' and other corrections
 
 2000-10-25  olicha  <olivier.chapuis@free.fr>
 
@@ -28,7 +31,6 @@
 	* themes/default/settings/autoraise/modules:
 	put the menu entries in the start func since we cannot
 	destroy it (may be a bad idea, we will see with the CCD).
-
 
 2000-10-25  olicha  <olivier.chapuis@free.fr>
 
@@ -101,7 +103,7 @@
 	* themes/luthien/colors/main:
 	implemented %o1c, %o2f in component's read-command value;
 	converted cde-like color scheme configs from SetEnv to a new format;
-	expend all macros on line; added support for 4 colors in colors@cde
+	expand all macros on line; added support for 4 colors in colors@cde
 
 	* themes/cde/colors/schemes/*.dp:
 	regenerated with a pass-filter 192 (75%) instead of 128, Jos wants 200
