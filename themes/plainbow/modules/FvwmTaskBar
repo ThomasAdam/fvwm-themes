@@ -1,0 +1,31 @@
+DestroyModuleConfig FvwmTaskBar: *
+*FvwmTaskBar: Geometry +0+0
+
+*FvwmTaskBar: Colorset 17
+*FvwmTaskBar: FocusColorset 18
+*FvwmTaskBar: IconColorset 19
+*FvwmTaskBar: TipsColorset 16
+
+*FvwmTaskBar: Action Click1 FuncFvwmDeiconifyFocusAndRaise
+*FvwmTaskBar: Action Click2 Iconify
+*FvwmTaskBar: Action Click3 Menu MenuFvwmWindowOps2 Mouse c +1p
+
+*FvwmTaskBar: UseSkipList
+*FvwmTaskBar: UseIconNames
+*FvwmTaskBar: AutoStick
+*FvwmTaskBar: ShowTips
+
+*FvwmTaskBar: ButtonWidth 180
+*FvwmTaskBar: BellVolume 20
+*FvwmTaskBar: MailCommand FuncFvwmMail
+*FvwmTaskBar: ClockFormat %H:%M
+
+*FvwmTaskBar: StartName Menu
+# olicha: IMHO the position is good!
+# migo: I don't think so.
+#*FvwmTaskBar: StartMenu MenuFvwmRoot Mouse c
+*FvwmTaskBar: StartMenu MenuFvwmRoot Root +1p +27p
+*FvwmTaskBar: StartIcon 16x16/linux.xpm
+
+# Animation
+*FvwmTaskBar: NoIconAction SendToModule FvwmAnimate animate

@@ -1,0 +1,9 @@
+DestroyFunc FuncFvwmStartThemeBackground
+AddToFunc   FuncFvwmStartThemeBackground
++ I Exec xsetroot -mod 2 4 -fg rgb:4cc/199/800  -bg rgb:828/2b8/d99 
+
+DestroyFunc FuncFvwmStopThemeBackground
+AddToFunc   FuncFvwmStopThemeBackground
++ I Nop
+
+

@@ -1,0 +1,6 @@
+*FvwmIconBox: Resolution Desk
+# Problems!!
+Style * NoIcon
+
+AddToFunc   FuncFvwmStartThemeModules
++ I Module FvwmIconBox

@@ -1,0 +1,21 @@
+/* XPM */
+static char *dark_3bars[] = {
+/* columns rows colors chars-per-pixel */
+"85 11 4 1",
+"  c #260c3f",
+". c #856b9e",
+"X c #a58cbf",
+"o c None",
+/* pixels */
+"ooooooooooooXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXoo",
+"ooooooooooooo......................................................................oo",
+"ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+"ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+"oooooooooooooooooooooXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXoo",
+"oooooooooooooooooooooo.............................................................oo",
+"ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+"ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+"ooooooooooooooooooooooooooooXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXoo",
+"ooooooooooooooooooooooooooooo......................................................oo",
+"ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
+};

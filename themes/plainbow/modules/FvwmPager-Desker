@@ -1,0 +1,30 @@
+DeskTopSize 4 2
+AddToMenu MenuFvwmWindowMove "" Nop
++ "Desk 0%menu/window-move.xpm%"	MoveToDesk 0 0
++ "Desk 1%menu/window-move.xpm%"	MoveToDesk 0 1
++ "Desk 2%menu/window-move.xpm%"	MoveToDesk 0 2
++ "Desk 3%menu/window-move.xpm%"	MoveToDesk 0 3
+
+AddToMenu MenuFvwmWindowGroupQuickMove "" Nop
++ "Desk 0%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 0
++ "Desk 1%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 1
++ "Desk 2%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2
++ "Desk 3%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
+
+DestroyModuleConfig FvwmPager-Desker: *
+*FvwmPager-Desker: Geometry -0+100
+*FvwmPager-Desker: DeskTopScale 32
+*FvwmPager-Desker: Columns 1
+
+*FvwmPager-Desker: Colorset * 14
+*FvwmPager-Desker: HilightColorset * 15
+*FvwmPager-Desker: BalloonColorset * 16
+*FvwmPager-Desker: WindowColorsets 1 2
+
+*FvwmPager-Desker: Balloons            All
+*FvwmPager-Desker: BalloonYOffset      +2
+
+*FvwmPager-Desker: Label 0 Main
+*FvwmPager-Desker: Label 1 Web & Mail
+*FvwmPager-Desker: Label 2 Devel
+*FvwmPager-Desker: Label 3 Games

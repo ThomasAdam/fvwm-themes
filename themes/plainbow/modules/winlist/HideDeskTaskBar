@@ -1,0 +1,5 @@
+*FvwmTaskBar: DeskOnly 
+*FvwmTaskBar: AutoHide
+
+AddToFunc   FuncFvwmStartThemeModules
++ I Module FvwmTaskBar

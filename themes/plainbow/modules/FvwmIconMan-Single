@@ -1,0 +1,28 @@
+DestroyModuleConfig FvwmIconMan-Single: *
+*FvwmIconMan-Single: numManagers 1
+
+*FvwmIconMan-Single: colorset		12
+*FvwmIconMan-Single: iconcolorset	19
+*FvwmIconMan-Single: plaincolorset	17
+*FvwmIconMan-Single: selectcolorset	20
+*FvwmIconMan-Single: focuscolorset	18
+*FvwmIconMan-Single: focusandselectcolorset 20
+
+*FvwmIconMan-Single: resolution      global
+*FvwmIconMan-Single: format      "%t"
+*FvwmIconMan-Single: action   Mouse   1 N sendcommand Focus, sendcommand "Iconify"
+
+*FvwmIconMan-Single: action  Mouse   2 N sendcommand "FvwmIdent"
+*FvwmIconMan-Single: action  Mouse   3 N sendcommand Focus
+*FvwmIconMan-Single: followfocus true
+*FvwmIconMan-Single: sort        none
+#*FvwmIconMan-Single: iconbutton		up
+*FvwmIconMan-Single: plainbutton	up
+*FvwmIconMan-Single: selectbutton	down
+*FvwmIconMan-Single: focusbutton	up
+*FvwmIconMan-Single: focusandselectbutton down
+#*FvwmIconMan-Single: drawicons true
+*FvwmIconMan-Single: dontshow icon=Untitled resource=Untitled
+*FvwmIconMan-Single: buttongeometry  300x0
+*FvwmIconMan-Single: managergeometry 1x5
+#*FvwmIconMan-Single: NoIconAction "SendToModule FvwmAnimate animate"

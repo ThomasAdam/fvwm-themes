@@ -1,0 +1,23 @@
+FuncFvwmSetFont-WindowTitle * -b&h-lucida-bold-r-*-*-12-*-*-*-*-*-*-*
+FuncFvwmSetFont-IconTitle   * -*-fixed-medium-r-semicondensed-*-12-*
+
+Style "*"	BorderWidth 6, HandleWidth 6
+Style "*"	FvwmBorder, FirmBorder
+
+BorderStyle	Simple -- HiddenHandles
+
+TitleStyle	Centered -- Flat
+
+ButtonStyle	All ActiveUp -- Raised
+ButtonStyle	All ActiveDown -- Raised
+ButtonStyle	All Inactive -- Flat
+
+AddToFunc   FuncFvwmReloadDecor
++ I FuncFvwmSetFont-WindowTitle * -b&h-lucida-bold-r-*-*-12-*-*-*-*-*-*-*
++ I FuncFvwmSetFont-IconTitle   * -*-fixed-medium-r-semicondensed-*-12-*
++ I BorderStyle	Simple -- HiddenHandles
++ I TitleStyle	-- Flat
++ I ButtonStyle	All ActiveUp -- Raised
++ I ButtonStyle	All ActiveDown -- Raised
++ I ButtonStyle	All Inactive -- Flat
++ I FuncFvwmOverRideWindowLook

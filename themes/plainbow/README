@@ -1,0 +1,51 @@
+PlainBow theme by Kathryn Andersen
+==================================
+
+This theme is a reconstruction of my own personal desktop look-and-feel
+(converted from my old traditional Fvwm2 setup)
+The reason it's called PlainBow is a pun on rainbow, because I use
+my "rainbow" script to create the colours, but it's a pretty plain
+sleek sort of look.  It's also meant to match my PlainBow GTK theme,
+which is also processed by my rainbow script.
+
+background
+	Very plain, in the same colours as the theme.
+
+buttons
+	5 buttons: menu, maximize, pin(sticky) on the left, and
+	iconize, kill on the right.
+
+colors
+	There are two main sets of colours, default, and active, plus a
+	little bit of highlight colours (like used in the Pager
+	highlighting).  This means there is a lot more unity of look
+	than in the default colors, since a fair few of the Colorsets
+	are identical.
+	This also sets the titlebars to a vertical gradient, so it looks
+	curved.
+
+globalfeel
+	The main difference between this and the default globalfeel
+	is that it uses MouseFocus rather than SloppyFocus.  SloppyFocus
+	drives me nuts.
+
+menustyle
+	The main difference between this and the default menustyle
+	is that I've changed the font.
+
+modules
+	I copied these from default, and then altered FvwmButtons so
+	that it contains a pager and an icon manager and that's all.
+	(Since I normally use gkrellm, I don't need xbiff or xload
+	or xclock swallowed apps).
+	Also I prefer an 4x2 desk to a 3x3 one.
+
+windowlook
+	This windowlook looks rather strange without the colors,
+	because the VGradient in the colors makes the Flat titlebar
+	look curved, wheras with a solid colour the titlebar
+	looks inset.  But with the colors, I think it looks rather cool,
+	the way the active buttons pop out and the inactive buttons
+	blend into the background.
+
+See: <http://www.katspace.com/tools>

@@ -1,0 +1,37 @@
+FuncFvwmSetFont-ModuleWindowList FvwmTaskBar Font \
+	"-adobe-helvetica-medium-r-*-*-12-*"
+
+FuncFvwmSetFont-ModuleSelectedWindowList FvwmTaskBar SelFont \
+	"-adobe-helvetica-bold-r-*-*-12-*"
+
+FuncFvwmSetFont-ModuleWindowList FvwmWinList Font \
+	"-adobe-helvetica-bold-r-*-*-12-*"
+
+FuncFvwmSetFont-ModuleWindowList FvwmIconBox Font \
+	" -adobe-helvetica-medium-r-*-*-12-*"
+
+FuncFvwmSetFont-ModuleWindowList FvwmIconMan-Desker *font \
+	"7x13bold"
+
+FuncFvwmSetFont-ModuleWindowList FvwmIconMan-Single *font \
+	"7x13bold"
+
+FuncFvwmSetFont-ModuleTips FvwmTaskBar StatusFont \
+	"-*-fixed-medium-r-semicondensed-*-13-*"
+
+FuncFvwmSetFont-ModuleTips FvwmPager-Single BalloonFont \
+	"-*-lucidatypewriter-medium-r-normal-sans-10-*"
+FuncFvwmSetFont-ModuleTips FvwmPager-Desker BalloonFont \
+	"-*-lucidatypewriter-medium-r-normal-sans-12-*"
+
+FuncFvwmSetFont-ModuleSmall FvwmPager-Single SmallFont \
+	"5x8"
+FuncFvwmSetFont-ModuleSmall FvwmPager-Desker SmallFont \
+	"5x8"
+
+FuncFvwmSetFont-ModuleLabel FvwmPager-Single Font \
+	"-adobe-helvetica-bold-r-*-*-10-*"
+
+FuncFvwmSetFont-ModuleLabel FvwmPager-Desker Font \
+	"-adobe-helvetica-bold-r-*-*-10-*"
+

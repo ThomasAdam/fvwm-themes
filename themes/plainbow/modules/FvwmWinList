@@ -1,0 +1,14 @@
+DestroyModuleConfig FvwmWinList: *
+
+*FvwmWinList: Geometry +0-0
+*FvwmWinList: Colorset 17
+*FvwmWinList: FocusColorset 18
+*FvwmWinList: IconColorset 19
+*FvwmWinList: Action Click1 FuncFvwmDeiconifyFocusAndRaise
+*FvwmWinList: Action Click2 Iconify
+*FvwmWinList: Action Click3 Popup MenuFvwmWindowOps2 Mouse -102m c
+*FvwmWinList: UseSkipList
+*FvwmWinList: MaxWidth 180
+*FvwmWinList: MinWidth 150
+# Animation
+*FvwmWinList: NoIconAction SendToModule FvwmAnimate animate

@@ -1,0 +1,46 @@
+# Automatically build by FVWM-Themes on mar oct 24 18:07:17 CEST 2000 
+# and a little bit edited!
+
+# -------------------------- Focus and Placement --------------------------
+
+Style * MouseFocus
+ColormapFocus FollowsMouse
+Style * SmartPlacement, RandomPlacement, GrabFocusOff, NoPPosition
+
+# ---------------------------- Move and Resize ----------------------------
+
+Style * ResizeOutLine
+OpaqueMoveSize 50
+Emulate FVWM
+HideGeometryWindow Never
+BugOpts FlickeringMoveWorkaround Off
+SnapAttraction 0 SameType
+SnapGrid 1 1
+XorValue
+
+# ---------------------- Paging and Mouse Parameters ----------------------
+
+EdgeScroll 100 100
+EdgeResistance 400  0 
+EdgeThickness 1
+ClickTime 300
+MoveThreshold 3
+
+# -------------------- Transient Windows and Animation --------------------
+
+Style * DecorateTransient, DontRaiseTransient, DontLowerTransient, \
+	DontStackTransientParent, GrabFocusTransient
+Style * WindowShadeSteps 25, WindowShadeScrolls
+SetAnimation  10  -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
+
+# -------------------- Hints, Busy Cursor and Advanced --------------------
+
+Style * MwmDecor, OLDecor, NoOverride, MwmFunctions, GNOMEUseHints
+BugOpts ModalityIsEvil on
+BusyCursor Read on, Wait on, ModuleSynchronous on
+# Automatic detection of the color limit
+BugOpts MixedVisualWorkaround off
+BugOpts RaiseOverNativeWindows off
+Style * SaveUnderOff, BackingStoreOff
+ModuleTimeout 30
+

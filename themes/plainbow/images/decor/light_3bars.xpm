@@ -1,0 +1,21 @@
+/* XPM */
+static char *light_3bars[] = {
+/* columns rows colors chars-per-pixel */
+"85 11 4 1",
+"  c #563972",
+". c #b598d1",
+"X c #d5b8f2",
+"o c None",
+/* pixels */
+"ooooooooooooXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXoo",
+"ooooooooooooo......................................................................oo",
+"ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+"ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+"oooooooooooooooooooooXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXoo",
+"oooooooooooooooooooooo.............................................................oo",
+"ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+"ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+"ooooooooooooooooooooooooooooXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXoo",
+"ooooooooooooooooooooooooooooo......................................................oo",
+"ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
+};

@@ -1,0 +1,5 @@
+*FvwmIconMan: Resolution page
+*FvwmIconMan: title "Page IconMan"
+
+AddToFunc   FuncFvwmStartThemeModules
++ I Module FvwmIconMan

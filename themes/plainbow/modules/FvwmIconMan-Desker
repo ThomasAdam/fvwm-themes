@@ -1,0 +1,27 @@
+DestroyModuleConfig FvwmIconMan-Desker: *
+*FvwmIconMan-Desker: numManagers 1
+
+*FvwmIconMan-Desker: colorset		12
+*FvwmIconMan-Desker: iconcolorset	19
+*FvwmIconMan-Desker: plaincolorset	17
+*FvwmIconMan-Desker: selectcolorset	20
+*FvwmIconMan-Desker: focuscolorset	18
+*FvwmIconMan-Desker: focusandselectcolorset 20
+
+*FvwmIconMan-Desker: format      "%t"
+*FvwmIconMan-Desker: action  Mouse   1 N sendcommand "FuncFvwmDeiconifyFocusAndRaise"
+*FvwmIconMan-Desker: action  Mouse   2 N sendcommand "Iconify"
+*FvwmIconMan-Desker: action  Mouse   3 N sendcommand \
+	"Popup MenuFvwmWindowOps2 Mouse c -102m"
+*FvwmIconMan-Desker: followfocus true
+*FvwmIconMan-Desker: sort        none
+*FvwmIconMan-Desker: iconbutton		up
+*FvwmIconMan-Desker: plainbutton	up
+*FvwmIconMan-Desker: selectbutton	down
+*FvwmIconMan-Desker: focusbutton	up
+*FvwmIconMan-Desker: focusandselectbutton down
+*FvwmIconMan-Desker: dontshow icon=Untitled resource=Untitled
+#*FvwmIconMan-Desker: drawicons true
+*FvwmIconMan-Desker: buttongeometry  180x0
+*FvwmIconMan-Desker: managergeometry 2x0+0-0
+*FvwmIconMan-Desker: NoIconAction "SendToModule FvwmAnimate animate"

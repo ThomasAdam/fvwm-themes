@@ -1,0 +1,6 @@
+DestroyModuleConfig FvwmIconBox: Resolution
+# Problems!!
+Style * NoIcon
+
+AddToFunc   FuncFvwmStartThemeModules
++ I Module FvwmIconBox

@@ -1,0 +1,7 @@
+DestroyModuleConfig FvwmButtons: *
+*FvwmButtons: Geometry 510x100-0-0
+*FvwmButtons: Colorset 10
+*FvwmButtons: (6x2, Frame 2, \
+	Swallow "FvwmIconMan-Single" "Module FvwmIconMan FvwmIconMan-Single")
+*FvwmButtons: (4x2, Frame 2, \
+	Swallow "FvwmPager-Single" "Module FvwmPager FvwmPager-Single * *")
