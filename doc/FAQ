@@ -254,9 +254,13 @@ consistent and functional. Here is a list of some useful global bindings:
 Key bindings using numbers (on the left keyboard side and on the key pad):
 
   Ctrl-Alt-1 .. 4       - Go to desk 0 to 3
+  Ctrl-Alt-0            - Go to the previous desk and page
   Shift-Ctrl-1 .. 4     - Move the active window to desk 0 to 3
+  Shift-Ctrl-0          - Move the active window to the previous desk
   Ctrl-Alt-KP1 .. KP9   - Go to page (like in 3x3 pager, 7 - the first page)
+  Ctrl-Alt-KP0          - Go to the previous page
   Shift-Ctrl-KP1 .. KP9 - Move the active window to page (like in 3x3 pager)
+  Shift-Ctrl-KP0        - Move the active window to the previous page
   Ctrl-KP_1 .. KP_9     - Switch to window in this direction (8 - up)
 
 Key bindings using arrows:
