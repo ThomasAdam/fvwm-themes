@@ -99,14 +99,14 @@ AddToMenu   MenuFvwmManPages "FVWM Man Pages" Title
 + "%menu/help.xpm%FvwmTheme"           FuncFvwmViewManPage FvwmTheme
 + "%menu/help.xpm%FvwmWharf"           FuncFvwmViewManPage FvwmWharf
 + "%menu/help.xpm%FvwmWinList"         FuncFvwmViewManPage FvwmWinList
-+ "%menu/help.xpm%FvwmWindowLister"    FuncFvwmViewManPage FvwmWindowLister
++ "%menu/help.xpm%FvwmWindowMenu"      FuncFvwmViewManPage FvwmWindowMenu
 + "" Nop
 + "%menu/help.xpm%fvwm-config"         FuncFvwmViewManPage fvwm-config
 + "%menu/help.xpm%fvwm-perllib"        FuncFvwmViewManPage fvwm-perllib
 + "%menu/help.xpm%fvwm-root"           FuncFvwmViewManPage fvwm-root
-#+ "%menu/help.xpm%fvwm-bug"            FuncFvwmViewManPage fvwm-bug
-#+ "%menu/help.xpm%fvwm-convert-2.2"    FuncFvwmViewManPage fvwm-convert-2.2
-#+ "%menu/help.xpm%fvwm-convert-2.4"    FuncFvwmViewManPage fvwm-convert-2.4
++ "%menu/help.xpm%fvwm-bug"            FuncFvwmViewManPage fvwm-bug
++ "%menu/help.xpm%fvwm-convert-2.2"    FuncFvwmViewManPage fvwm-convert-2.2
++ "%menu/help.xpm%fvwm-convert-2.4"    FuncFvwmViewManPage fvwm-convert-2.4
 + "" Nop
 + "%menu/help.xpm%fvwm-menu-desktop"   FuncFvwmViewManPage fvwm-menu-desktop
 + "%menu/help.xpm%fvwm-menu-directory" FuncFvwmViewManPage fvwm-menu-directory
@@ -117,6 +117,7 @@ AddToMenu   MenuFvwmManPages "FVWM Man Pages" Title
 + "%menu/help.xpm%fvwm-themes-com"     FuncFvwmViewManPage fvwm-themes-com
 + "%menu/help.xpm%fvwm-themes-images"  FuncFvwmViewManPage fvwm-themes-images
 + "%menu/help.xpm%fvwm-themes-menuapp" FuncFvwmViewManPage fvwm-themes-menuapp
++ "%menu/help.xpm%fvwm-themes-root"    FuncFvwmViewManPage fvwm-themes-root
 + "%menu/help.xpm%fvwm-themes-start"   FuncFvwmViewManPage fvwm-themes-start
 
 # ----------------------------------------------------------------------------

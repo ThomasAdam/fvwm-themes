@@ -262,6 +262,7 @@ AC_OUTPUT(
 	bin/fvwm-themes-com
 	bin/fvwm-themes-script
 	bin/fvwm-themes-images
+	bin/fvwm-themes-root
 	doc/fvwm-themes.lsm
 	rpm/fvwm-themes.spec
 	rpm/fvwm-themes-base.spec

@@ -1,0 +1,187 @@
+#!@PERL@ -w
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+use strict;
+use Getopt::Long;
+
+my $version = '@VERSION@';
+my $scriptName = ($0 =~ m:([^/]+)$:, $1);
+
+my $type = 'tile';
+my $bg = 'rgb:c0/c0/c0';
+my $fg = 'rgb:40/40/40';
+
+GetOptions(
+	"help|h|?"     => \&showHelp,
+	"version|V"    => \&showVersion,
+	"tile|t"       => sub { $type = 'tile' },
+	"center|c"     => sub { $type = 'center' },
+	"adjust|fit|f" => sub { $type = 'adjust' },
+	"aspect|a"     => sub { $type = 'aspect' },
+	"solid|s"      => sub { $type = 'solid' },
+	"bg"           => \$bg,
+	"fg"           => \$fg,
+);
+
+# the additional argument should be either image or color
+my $image = $type ne 'solid'? shift: undef;
+my $color = $type eq 'solid'? shift: undef;
+
+unless (defined $image || defined $color) {
+	print STDERR "Usage: fvwm-themes-root [options] image|color\n";
+	print STDERR "Try fvwm-themes-root --help for more information.\n";
+	exit(0);
+}
+
+my $HelperImageTypeSupport = {
+	'fvwm-root' => 'png|xpm|xbm',
+	'xsetroot'  => 'xbm',
+	'display'   => '*',
+	'xv'        => '*',
+};
+
+my $HelperSetRootCommands = {
+	tile => [
+		'fvwm-root -r $image',
+		'xsetroot -bg $bg -fg $fg -bitmap $image',
+		'xv -root -quit $image',
+	],
+	center => [
+		'display -window root -backdrop -foreground $color0 $image',
+		'xv -root -quit -rmode 5 -rfg $color0 $image',
+	],
+	adjust => [
+		'xv -root -quit -max $image',
+	],
+	aspect => [
+		'xv -root -quit -maxpect $image',
+	],
+	solid => [
+		'xsetroot -bg $bg -fg $fg -solid $color',
+		'xv -root -quit -crop 0 0 0 0 -rmode 5 -rfg $color',  # 1x1 pixel
+	],
+};
+
+sub isExeInPath ($) { 1 }
+
+my $commands = $HelperSetRootCommands->{$type};
+die "Internal error #1\n" unless defined $commands;
+
+my $found = 0;
+my $command0;  # seems like a bug in 5.8.0 regarding scoping, so separate var
+foreach my $command (@$commands) {
+	my ($exe, $args) = split(/ /, $command, 2);
+
+	# check if exists in $PATH, nothing for now
+	next unless isExeInPath($exe);
+	if ($type eq 'solid') {
+		$command0 = $command;
+		$found = 1;
+		last;
+	} else {
+		$image =~ /\.([^\.]+)(?:\.gz|\.bz2)?$/;
+		my $ext = $1;
+		my $regexp = $HelperImageTypeSupport->{$exe};
+		die "Internal error #2\n" unless defined $regexp;
+		if ($regexp eq "*" || defined $ext && $ext =~ /^$regexp$/) {
+			$command0 = $command;
+			$found = 1;
+			last;
+		}
+	}
+}
+
+if (!$found) {
+	my $what = defined $color? "solid color $color": "image $image";
+	die "[fvwm-themes-root]: No utilities found to set root $what\n";
+}
+
+$command0 = eval "qq($command0)";
+print $command0, "\n" if $ENV{DEBUG};
+system($command0);
+
+#-----------------------------------------------------------------------------
+# The starndard functions
+
+sub showHelp {
+	print "The fvwm-themes root utility.\n";
+	print "Usage: $scriptName [OPTIONS] image|color\n";
+	print "Options:\n";
+	print "\t--help              show this help and exit\n";
+	print "\t--version           show the version and exit\n";
+	print "\t--tile              display image tiled\n";
+	print "\t--center            display image centered\n";
+	print "\t--adjust            display image adjusted to the full size\n";
+	print "\t--aspect            display image adjusted keeping aspect\n";
+	print "\t--solid             display solid color\n";
+	print "\t--bg color          use bg in some modes that need it\n";
+	print "\t--fg color          use fg in some modes that need it\n";
+	exit 0;
+}
+
+sub showVersion {
+	print "$version\n";
+	exit 0;
+}
+
+sub wrongUsage {
+	print STDERR "Try '$scriptName --help' for more information.\n";
+	exit -1;
+}
+
+__END__
+
+# ---------------------------------------------------------------------------
+
+=head1 NAME
+
+fvwm-themes-root - fvwm-themes utility for setting root image/color
+
+=head1 SYNOPSIS
+
+B<fvwm-themes-root>
+[ B<--help|h> ]
+[ B<--version|V> ]
+I<image> | I<color>
+
+=head1 DESCRIPTION
+
+The aim of this script is to set the root image in fvwm-themes without
+worrying about exact image viewer installed on a user system.
+
+=head1 OPTIONS
+
+B<--help>    - show the help and exit
+
+B<--version> - show the version and exit
+
+=head1 AUTHORS
+
+Mikhael Goikhman <migo@homemail.com>.
+
+=head1 COPYING
+
+The script is distributed by the same terms as fvwm-themes itself.
+See GNU General Public License for details.
+
+=head1 BUGS
+
+Report bugs to fvwm-themes-devel@lists.sourceforge.net.
+
+=cut
+
+# ==========================================================================
+

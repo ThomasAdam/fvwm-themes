@@ -1,11 +1,11 @@
 ## Process this file with automake to create Makefile.in
 
-bin_SCRIPTS = fvwm-themes-config fvwm-themes-start fvwm-themes-xrdb \
-	fvwm-themes-menuapp fvwm-themes-com fvwm-themes-script \
-	fvwm-themes-images
+bin_SCRIPTS = fvwm-themes-config fvwm-themes-start fvwm-themes-root \
+	fvwm-themes-xrdb fvwm-themes-menuapp fvwm-themes-com \
+	fvwm-themes-script fvwm-themes-images
 
-man_MANS = fvwm-themes-config.1 fvwm-themes-menuapp.1 fvwm-themes-com.1 \
-	fvwm-themes-images.1 fvwm-themes-start.1
+man_MANS = fvwm-themes-config.1 fvwm-themes-root.1 fvwm-themes-menuapp.1 \
+	fvwm-themes-com.1 fvwm-themes-images.1 fvwm-themes-start.1
 
 EXTRA_DIST = $(man_MANS)
 
@@ -16,15 +16,23 @@ fvwm-themes-config.1: fvwm-themes-config.in
 	@TMP=tmp-$$$$ && (\
 	mkdir $$TMP && \
 	cp fvwm-themes-config.in $$TMP/fvwm-themes-config && \
-	pod2man --center "Fvwm Utility" $$TMP/fvwm-themes-config >$$TMP/fvwm-themes-config.1 2>/dev/null && \
+	pod2man --center "FVWM Utility" $$TMP/fvwm-themes-config >$$TMP/fvwm-themes-config.1 2>/dev/null && \
 	mv $$TMP/fvwm-themes-config.1 .; \
+	rm -rf $$TMP)
+
+fvwm-themes-root.1: fvwm-themes-root.in
+	@TMP=tmp-$$$$ && (\
+	mkdir $$TMP && \
+	cp fvwm-themes-root.in $$TMP/fvwm-themes-root && \
+	pod2man --center "FVWM Utility" $$TMP/fvwm-themes-root >$$TMP/fvwm-themes-root.1 2>/dev/null && \
+	mv $$TMP/fvwm-themes-root.1 .; \
 	rm -rf $$TMP)
 
 fvwm-themes-menuapp.1: fvwm-themes-menuapp.in
 	@TMP=tmp-$$$$ && (\
 	mkdir $$TMP && \
 	cp fvwm-themes-menuapp.in $$TMP/fvwm-themes-menuapp && \
-	pod2man --center "Fvwm Utility" $$TMP/fvwm-themes-menuapp >$$TMP/fvwm-themes-menuapp.1 2>/dev/null && \
+	pod2man --center "FVWM Utility" $$TMP/fvwm-themes-menuapp >$$TMP/fvwm-themes-menuapp.1 2>/dev/null && \
 	mv $$TMP/fvwm-themes-menuapp.1 .; \
 	rm -rf $$TMP)
 
@@ -32,7 +40,7 @@ fvwm-themes-com.1: fvwm-themes-com.in
 	@TMP=tmp-$$$$ && (\
 	mkdir $$TMP && \
 	cp fvwm-themes-com.in $$TMP/fvwm-themes-com && \
-	pod2man --center "Fvwm Utility" $$TMP/fvwm-themes-com >$$TMP/fvwm-themes-com.1 2>/dev/null && \
+	pod2man --center "FVWM Utility" $$TMP/fvwm-themes-com >$$TMP/fvwm-themes-com.1 2>/dev/null && \
 	mv $$TMP/fvwm-themes-com.1 .; \
 	rm -rf $$TMP)
 
@@ -42,7 +50,7 @@ fvwm-themes-images.1: fvwm-themes-images.in
 	@TMP=tmp-$$$$ && (\
 	mkdir $$TMP && \
 	cp fvwm-themes-images.in $$TMP/fvwm-themes-images && \
-	pod2man --center "Fvwm Utility" $$TMP/fvwm-themes-images >$$TMP/fvwm-themes-images.1 2>/dev/null && \
+	pod2man --center "FVWM Utility" $$TMP/fvwm-themes-images >$$TMP/fvwm-themes-images.1 2>/dev/null && \
 	mv $$TMP/fvwm-themes-images.1 .; \
 	rm -rf $$TMP)
 
