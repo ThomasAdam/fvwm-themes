@@ -1505,7 +1505,7 @@ if ($install) {
 	my $file;
 	foreach $file (@ARGV) {
 		errDie("No such file $file") unless -f $file;
-		my ($dir, $theme, $ext) = $file =~ m:^(.*/|)+([^/]+)\.tar\.(gz|bz2)$:;
+		my ($dir, $theme, $ext) = $file =~ m:^(.*/|)([^/]+)\.tar\.(gz|bz2)$:;
 		errDie("File '$file' is not a .tar.gz or .tar.bz2")
 			unless defined $dir || defined $theme || defined $ext;
 		errDie("Theme name '$theme' contains unacceptable symbols")

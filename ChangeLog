@@ -1,3 +1,11 @@
+2000-08-31  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in {--install}:
+	fixed a bug, which is a fatal error in perl's less than 5.00503
+
+	* themes/migo/modules/main:FvwmButtons-Compact:
+	added missing "I" in a function, this fixes the freeze from 2000-08-27
+
 2000-08-29  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in (comLoop):
