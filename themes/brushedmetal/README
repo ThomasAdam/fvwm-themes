@@ -1,6 +1,3 @@
 This theme tries to mimic BrushedMetal look from different window managers.
 Based on a configuration contributed by Kristian Peters <kristian@korseby.net>.
 
-This theme currently uses colors-extra component, which is not common.
-To drop it you should explicitely go to "current -> colors-extra -> Drop".
-
