@@ -1,0 +1,173 @@
+# colors@brushedmetal
+
+# more details and comments can be found in colors@default
+# I.   Fvwm Colorsets
+# II.  Modules Colorsets
+# III. Applications Colorsets
+# IV.  Start/Stop Functions
+
+# ----------------------------------------------------------------------------
+# I. Fvwm Colorsets
+
+# ----------------
+# Default colorset
+
+*FvwmTheme: Colorset 0 fg rgb:30/30/30, bg rgb:80/80/80, Plain, NoShape
+
+DefaultColorset 0
+DestroyModuleConfig FvwmScroll: Colorset*
+*FvwmScroll: Colorset 0
+
+# ------------------
+# Window decorations
+
+# Text and sh/hi windows title bar colors, icons title and Pager mini-win.
+# inactive:
+*FvwmTheme: Colorset 1 fg rgb:30/30/30, bg rgb:80/80/80, Plain, NoShape
+Style "*"	Colorset 1
+# active:
+*FvwmTheme: Colorset 2 fg rgb:00/00/00, bg rgb:d0/d0/d0, Plain, NoShape
+Style "*"	HilightColorset 2
+
+# borders of the windows inactive/active:
+*FvwmTheme: Colorset 3 fg rgb:30/30/30, bg rgb:80/80/80, Plain, NoShape
+Style "*"	BorderColorset 3
+*FvwmTheme: Colorset 4 fg rgb:00/00/00, bg rgb:d0/d0/d0, Plain, NoShape
+Style "*"	HilightBorderColorset 4
+
+# title
+TitleStyle \
+	ActiveUp   (TiledPixmap $./images/decor/title-activeup.xpm) \
+	ActiveDown (TiledPixmap $./images/decor/title-activedown.xpm) \
+	Inactive   (TiledPixmap $./images/decor/title-inactive.xpm) \
+	ToggledActiveUp   (TiledPixmap $./images/decor/title-activeup.xpm) \
+	ToggledActiveDown (TiledPixmap $./images/decor/title-activedown.xpm) \
+	ToggledInactive   (TiledPixmap $./images/decor/title-inactive.xpm)
+
+# window button background
+#ButtonStyle	All Pixmap 16x16-general/empty.xpm
+#ButtonStyle	All -- UseTitleStyle
+
+# -----
+# Menus
+
+# inactive menu item fg+bg and menu face
+*FvwmTheme: Colorset 5 fg black, bg rgb:d6/d6/d6, \
+	TiledPixmap decor/border-activeup.xpm, NoShape
+
+# active menu item fg+bg
+*FvwmTheme: Colorset 6 fg white, bg rgb:70/70/70, Plain, NoShape
+
+# greyed menu item fg
+*FvwmTheme: Colorset 7 fg rgb:60/60/60, bg gray, Plain, NoShape
+
+MenuStyle * MenuFace
+MenuStyle * MenuColorset 5, ActiveColorset 6, GreyedColorset 7
+MenuStyle * ActiveFore, HilightBack
+
+# ----------------------------------------------------------------------------
+# II. Modules Colorsets 
+
+#-----------------
+# Common Colorsets
+
+# default for modules
+*FvwmTheme: Colorset 10 fg black, bg rgb:c2/c2/c2, \
+	TiledPixmap decor/border-inactive.xpm, NoShape
+
+# default hilight
+*FvwmTheme: Colorset 11 fg black, bg rgb:d6/d6/d6, \
+	TiledPixmap decor/border-activedown.xpm, NoShape
+
+# special
+*FvwmTheme: Colorset 12 fg black, bg rgb:d6/d6/d6, \
+	TiledPixmap decor/border-activedown.xpm, NoShape
+
+# swallowed window
+*FvwmTheme: Colorset 13 fg black, bg rgb:c2/c2/c2, \
+	hi black, sh rgb:d6/d6/d6, Plain, NoShape
+
+# default2 (FvwmPager or to get more colors in Buttons)
+*FvwmTheme: Colorset 14 fg black, bg rgb:c2/c2/c2, \
+	TiledPixmap decor/border-inactive.xpm, NoShape
+
+# default hilight2: (FvwmPager or to get more colors in a Buttons)
+*FvwmTheme: Colorset 15 fg black, bg rgb:d6/d6/d6, \
+	TiledPixmap decor/border-activedown.xpm, NoShape
+
+# tips/balloons
+*FvwmTheme: Colorset 16 fg black, bg rgb:c2/c2/c2, \
+	TiledPixmap decor/border-inactive.xpm, NoShape
+
+# ----------------------
+# Window Lists Colorsets
+
+### the next 4 colorsets are not good
+# standard item
+*FvwmTheme: Colorset 17 fg black, bg rgb:7d/83/81, Plain, NoShape
+
+# active item
+*FvwmTheme: Colorset 18 fg black, bg rgb:c6/c5/c7, Plain, NoShape
+
+# iconified item
+*FvwmTheme: Colorset 19 fg white, bg rgb:77/78/7b, Plain, NoShape
+
+# pointed item
+*FvwmTheme: Colorset 20 fg black, bg rgb:98/90/96, Plain, NoShape
+
+# ------------------------
+# Others Modules Colorsets
+
+# FvwmIdent
+*FvwmTheme: Colorset 21 fg black, bg rgb:d6/d6/d6, \
+	Pixmap decor/border-activeup.xpm, NoShape
+
+DestroyModuleConfig FvwmIdent: *
+*FvwmIdent: Colorset 21
+
+# FvwmConsole
+*FvwmTheme: Colorset 22 fg white, bg rgb:60/60/60, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# III. Applications Colorsets
+
+# Terminals
+*FvwmTheme: Colorset 30 fg white, bg rgb:00/00/60, Plain, NoShape
+
+# Administrations
+*FvwmTheme: Colorset 31 fg white, bg rgb:00/60/60, Plain, NoShape
+
+# Remote Terminals
+*FvwmTheme: Colorset 32 fg white, bg rgb:60/00/00, Plain, NoShape
+
+# "Viewer" Colorset
+*FvwmTheme: Colorset 33 fg white, bg rgb:60/60/60, Plain, NoShape
+
+### the next 3 colorsets are not good
+# Small Text Input file or Hilighting some Items
+*FvwmTheme: Colorset 34 fg black, bg rgb:90/96/95, Plain, NoShape
+
+DestroyModuleConfig FvwmFormDefault: ItemColorset*
+*FvwmFormDefault: ItemColorset 34
+
+# Application run in a terminal, text file of an editor for xres ...
+*FvwmTheme: Colorset 35 fg black, bg rgb:90/96/95, Plain, NoShape
+
+# Not in one of the above category (for Script and Form, ft-xres)
+*FvwmTheme: Colorset 36 fg white, bg rgb:77/78/7b, Plain, NoShape
+
+DestroyModuleConfig FvwmScript: DefaultColorset*
+*FvwmScript: DefaultColorset 36
+DestroyModuleConfig FvwmFormDefault: Colorset*
+*FvwmFormDefault: Colorset 36
+
+# ----------------------------------------------------------------------------
+# IV. Start/Stop Functions
+
+DestroyFunc FuncFvwmStartColors
+AddToFunc   FuncFvwmStartColors
+# This should be in menustyle@, but I don't know what else should be in it.
++ I MenuStyle * Font -*-lucida-medium-r-normal-*-*-100-*-*-p-*-iso8859-1
+
+DestroyFunc FuncFvwmStopColors
+AddToFunc   FuncFvwmStopColors

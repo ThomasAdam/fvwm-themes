@@ -1,3 +1,9 @@
+2001-04-14  migo  <migo@homemail.com>
+
+	* themes/brushedmetal/colors:
+	added a full component instead of colors-extra;
+	some marked colorsets remained from luthien, should be replaced
+
 2001-04-13  migo  <migo@homemail.com>
 
 	* TODO: updated
