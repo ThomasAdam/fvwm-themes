@@ -17,7 +17,7 @@ Style "FvwmScript"	Slippery, CirculateHit
 Style "FvwmScript-IconBrowser"	StaysOnTop, NoHandles
 Style "FvwmScript-Browser"	StaysOnTop, NoHandles
 # Applets are usually swallowed, so disable ActivePlacement if any.
-Style "FvwmApplet*"	RandomPlacement
+Style "FvwmApplet*"	CascadePlacement
 # 
 Style FvwmButtons-ColourTable HandleWidth 2, Title, TitleAtTop
 
