@@ -22,6 +22,9 @@
 	* themes/migo/modules/main:
 	use IconGrid to be good for 64x64-aquafusion
 
+	* themes/default/bindings:
+	added several GotoPage/MoveToPage prev bindings; Ctrl-Alt-0 rules ;)
+
 2002-10-30  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

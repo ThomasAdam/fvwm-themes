@@ -112,7 +112,7 @@ Key Right	A	SM	CursorMove +1 +0
 Key Up  	A	SM	CursorMove +0 -1
 Key Down	A	SM	CursorMove +0 +1
 
-# direction commands, Ctrl+KP_N
+# direction commands, Ctrl+KP_N (do not always work)
 Key KP_1	A	C	Direction SouthWest FuncFvwmSelectWindow
 Key KP_2	A	C	Direction South     FuncFvwmSelectWindow
 Key KP_3	A	C	Direction SouthEast FuncFvwmSelectWindow
@@ -125,7 +125,7 @@ Key KP_9	A	C	Direction NorthEast FuncFvwmSelectWindow
 
 # These {move,go} to {page,desk} bindings are experimental, may be changed.
 
-# go to page, Ctrl+Alt+KP_N
+# go to page, Ctrl+Alt+KP_N (these keys do not always work)
 Key KP_1	A	CM	GotoPage 0 2
 Key KP_2	A	CM	GotoPage 1 2
 Key KP_3	A	CM	GotoPage 2 2
@@ -135,6 +135,18 @@ Key KP_6	A	CM	GotoPage 2 1
 Key KP_7	A	CM	GotoPage 0 0
 Key KP_8	A	CM	GotoPage 1 0
 Key KP_9	A	CM	GotoPage 2 0
+Key KP_0	A	CM	GotoPage prev
+
+Key 1   	A	SCM	GotoPage 0 2
+Key 2   	A	SCM	GotoPage 1 2
+Key 3   	A	SCM	GotoPage 2 2
+Key 4   	A	SCM	GotoPage 0 1
+Key 5   	A	SCM	GotoPage 1 1
+Key 6   	A	SCM	GotoPage 2 1
+Key 7   	A	SCM	GotoPage 0 0
+Key 8   	A	SCM	GotoPage 1 0
+Key 9   	A	SCM	GotoPage 2 0
+Key 0   	A	SCM	GotoPage prev
 
 # move to page, Shift+Ctrl+KP_N
 Key KP_1	A	SC	MoveToPage 0 2
@@ -146,6 +158,7 @@ Key KP_6	A	SC	MoveToPage 2 1
 Key KP_7	A	SC	MoveToPage 0 0
 Key KP_8	A	SC	MoveToPage 1 0
 Key KP_9	A	SC	MoveToPage 2 0
+Key KP_0	A	SC	MoveToPage prev
 
 # move without the cursor, Shift+Alt+KP_N
 Key KP_1	A	SM	Move w-1 w+1
@@ -163,12 +176,14 @@ Key 1   	A	CM	GotoDesk 0 0
 Key 2   	A	CM	GotoDesk 0 1
 Key 3   	A	CM	GotoDesk 0 2
 Key 4   	A	CM	GotoDesk 0 3
+Key 0   	A	CM	GotoDeskAndPage prev
 
 # move to desk, Shift+Ctrl+N
 Key 1   	A	SC	MoveToDesk 0 0
 Key 2   	A	SC	MoveToDesk 0 1
 Key 3   	A	SC	MoveToDesk 0 2
 Key 4   	A	SC	MoveToDesk 0 3
+Key 0   	A	SC	MoveToDesk prev
 
 # keyboard accelerators
 # Shift is needed to let apps (xwe, dosemu, kcalc) to handle Alt-FN keys
@@ -280,6 +295,17 @@ AddToFunc   FuncFvwmStopBindings
 + I Key KP_7	A	CM	-
 + I Key KP_8	A	CM	-
 + I Key KP_9	A	CM	-
++ I Key KP_0	A	CM	-
++ I Key 1	A	SCM	-
++ I Key 2	A	SCM	-
++ I Key 3	A	SCM	-
++ I Key 4	A	SCM	-
++ I Key 5	A	SCM	-
++ I Key 6	A	SCM	-
++ I Key 7	A	SCM	-
++ I Key 8	A	SCM	-
++ I Key 9	A	SCM	-
++ I Key 0	A	SCM	-
 + I Key KP_1	A	SC	-
 + I Key KP_2	A	SC	-
 + I Key KP_3	A	SC	-
@@ -289,6 +315,7 @@ AddToFunc   FuncFvwmStopBindings
 + I Key KP_7	A	SC	-
 + I Key KP_8	A	SC	-
 + I Key KP_9	A	SC	-
++ I Key KP_0	A	SC	-
 + I Key KP_1	A	SM	-
 + I Key KP_2	A	SM	-
 + I Key KP_3	A	SM	-
@@ -302,10 +329,12 @@ AddToFunc   FuncFvwmStopBindings
 + I Key 2   	A	CM	-
 + I Key 3   	A	CM	-
 + I Key 4   	A	CM	-
++ I Key 0   	A	CM	-
 + I Key 1   	A	SC	-
 + I Key 2   	A	SC	-
 + I Key 3   	A	SC	-
 + I Key 4   	A	SC	-
++ I Key 0   	A	SC	-
 + I KeyMM F1  	A	M SM	-
 + I KeyMM F2  	A	M SM	-
 + I KeyMM F3  	A	M SM	-
