@@ -507,7 +507,7 @@ sub transform {
 		
 		# bad hack:
 		if ($kde2) {
-			my @others = qw(filesystems actions devices  mimetypes);
+			my @others = qw(filesystems actions devices mimetypes);
 			if ($kde2Hi) {
 				push @others, ("../../locolor/$type/apps",
 									"../../locolor/$type/filesystems",
@@ -1997,7 +1997,7 @@ sub showHelp {
 	print "\t--out-dir dir       The main directory for output the images\n";
 	print "\t--gnome             short cut for converting GNOME icons\n";
 	print "\t--kde2              short cut for converting KDE2 icons\n";
-	print "\t--kde2Hi            convert hight colors KDE2 icons\n";
+	print "\t--kde2-hi           convert hight colors KDE2 icons\n";
 	print "\t--site              set the out dir to \$FT_DATADIR/tr-image\n";
 	print "\t--create-symlink n  Create symlink for use with fvwm-themes\n";
 	print "\t--update            only create images which are needed\n";
@@ -2118,7 +2118,7 @@ or B<--help> or B<--version>
 [ B<--out-file> file ]
 [ B<--gnome> ]
 [ B<--kde2> ]
-[ B<--kde2Hi> ]
+[ B<--kde2-hi> ]
 [ B<--site> ]
 [ B<--create-symlink> name ]
 [ B<--update> ]
@@ -2180,7 +2180,8 @@ The aim of this script is to build images to be used by fvwm-themes.
 =head2 Convert Images to XPM Images
 
 fvwm-themes-images can convert images in various format
-(especially PNG GNOME icons) into XPM images of various sizes. This
+(especially PNG GNOME or KDE version 2 icons) into XPM images of various 
+sizes. This
 use ImageMagick plus some internal XPM manipulations (to get
 better results). For example, if you run:
 
@@ -2393,13 +2394,20 @@ to /usr/share/pixmaps
 B<--kde2> imply --convert, --postfix kde2, and try to find the KDE2 icons
 directory to define the internal generalization of --in-dir, if these
 directories are not found or if the KDEDIR environement variable is not set
-nothing is done.
+nothing is done. Low colors icons under apps/ filesystems/ actions/ devices/ 
+mimetypes/ and hight colors icons under the same directories are converted.
+If two icons to be converted have the same name, then the first found is
+converted (relatively to the above directories list). You can reverse the
+low/hight colors priority by using the next option. Note that there is a
+bug here: the only way to really rebuild the KDE2 icons is to remove the
+output directory; if not only the low (hight, with --kde2-hi) colors icons
+under apps/ will be rebuild.
 
-B<--kde2Hi> if --kde2 is used convert the KDE2 "hight" colors icons in the
-place of the KDE2 low colors icons.
+B<--kde2-hi> if --kde2 is used convert the KDE2 hight color icons before the
+low color icons.
 
-B<--ft-install> equivalent to --site --update --create-symlink. This option
-must be use with --gnome or --kde2 (but not both).
+B<--ft-install> equivalent to --site --update --create-symlink 48x48,16x16.
+This option must be use with --gnome or --kde2 (but not both).
 
 B<--create-symlink> A,B - where A and B are either 48x48, 16x16, 32x32.
 Create symbolic link from $FT_DATADIR/images/norm-postfix to OUT/A-postfix
