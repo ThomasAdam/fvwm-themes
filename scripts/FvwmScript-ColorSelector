@@ -153,7 +153,7 @@ Begin
 
     Set $UpdateColors = 1
     Set $IsSecond = 0
-    Do {*FvwmTheme: Colorset 29 fg black, bg #908090, HGradient 190 2 #000000 50 }$CurrentColor{ 50 #ffffff, NoShape}
+    Do {Colorset 29 fg black, bg #908090, HGradient 190 2 #000000 50 }$CurrentColor{ 50 #ffffff, NoShape}
     Set $LightColor = $CurrentColor
     Set $LightNumRed = (HexToNum (StrCopy $LightColor 2 3))
     Set $LightNumGreen = (HexToNum (StrCopy $LightColor 4 5))
@@ -260,7 +260,7 @@ Case message of
     Set $LightGreen = (StrCopy $LightColor 6 7)
     Set $LightBlue = (StrCopy $LightColor 10 11)
     Set $LightColor = {#} $LightRed $LightGreen $LightBlue
-    Do {*FvwmTheme: Colorset 29 fg black, bg #908090, HGradient 256 2 #000000 50 }$LightColor{ 50 #ffffff, NoShape}
+    Do {Colorset 29 fg black, bg #908090, HGradient 256 2 #000000 50 }$LightColor{ 50 #ffffff, NoShape}
     Set $LightNumRed = (HexToNum $LightRed)
     Set $LightNumGreen = (HexToNum $LightGreen)
     Set $LightNumBlue = (HexToNum $LightBlue)
@@ -304,7 +304,7 @@ Case message of
     Set $SecondGreen = (StrCopy $SecondColor 6 7)
     Set $SecondBlue = (StrCopy $SecondColor 10 11)
     Set $SecondColor = {#} $SecondRed $SecondGreen $SecondBlue
-    Do {*FvwmTheme: Colorset 29 fg black, bg #908090, HGradient 256 }$SecondColor{ }$CurrentColor{, NoShape}
+    Do {Colorset 29 fg black, bg #908090, HGradient 256 }$SecondColor{ }$CurrentColor{, NoShape}
     Set $SecondNumRed = (HexToNum $SecondRed)
     Set $SecondNumGreen = (HexToNum $SecondGreen)
     Set $SecondNumBlue = (HexToNum $SecondBlue)
@@ -351,7 +351,7 @@ Case message of
     Set $SecondGreen = (StrCopy $SecondColor 6 7)
     Set $SecondBlue = (StrCopy $SecondColor 10 11)
     Set $SecondColor = {#} $SecondRed $SecondGreen $SecondBlue
-    Do {*FvwmTheme: Colorset 29 fg black, bg #908090, HGradient 256 }$SecondColor{ }$CurrentColor{, NoShape}
+    Do {Colorset 29 fg black, bg #908090, HGradient 256 }$SecondColor{ }$CurrentColor{, NoShape}
     Set $IsSecond = 1
     Set $SecondNumRed = (HexToNum $SecondRed)
     Set $SecondNumGreen = (HexToNum $SecondGreen)
@@ -445,7 +445,7 @@ Case message of
     Set $LightGreen = $Green
     Set $LightBlue = $Blue
     Set $LightColor = {#} $LightRed $LightGreen $LightBlue
-    Do {*FvwmTheme: Colorset 29 fg black, bg #908090, HGradient 256 2 #000000 50 }$LightColor{ 50 #ffffff, NoShape}
+    Do {Colorset 29 fg black, bg #908090, HGradient 256 2 #000000 50 }$LightColor{ 50 #ffffff, NoShape}
     Set $LightNumRed = $NumRed
     Set $LightNumGreen = $NumGreen
     Set $LightNumBlue = $NumBlue

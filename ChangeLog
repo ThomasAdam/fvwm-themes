@@ -1,7 +1,10 @@
 2002-12-05  olicha  <olivier.chapuis@free.fr>
 
+	* scripts/FvwmScript-ColorSelector:
+	*FvwmTheme: Colorset --> Colorset
+
 	* scripts/FvwmScript-ThemesCenter:
-	Safety check
+	Added safety check
 
 2002-12-03  migo  <migo@homemail.com>
 
