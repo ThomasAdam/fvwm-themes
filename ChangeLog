@@ -6,6 +6,17 @@
 	* acinclude.m4:
 	converted from autoconf-2.13 only to autoconf-2.50+ only
 
+	* themes/cde/buttons:
+	* themes/default/buttons:
+	* themes/luthien/buttons:
+	* themes/migo/buttons:
+	* themes/spruce/buttons:
+	use TitleStyle MinHeight for vector buttons
+
+	* themes/multichoice/buttons.cfg:
+	* themes/multichoice/buttons/main:
+	added an option for titlebar height: exact, minimal or user defined
+
 2002-01-09  migo  <migo@homemail.com>
 
 	* themes/migo/colors:

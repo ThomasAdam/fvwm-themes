@@ -16,7 +16,7 @@ ButtonStyle 1 - Clear MWMDecorMenu
 ButtonStyle 2 - Clear MWMDecorMax
 ButtonStyle 4 - Clear MWMDecorMin
 
-TitleStyle Height 20 
+TitleStyle Height MinHeight 20
 
 #     button	context	modifie	function
 Mouse 1 	1	A	FuncFvwmWindowOpsOrAction Delete
@@ -41,12 +41,12 @@ AddToFunc   FuncFvwmUnReloadDecor
 DestroyFunc FuncFvwmReloadDecor
 AddToFunc   FuncFvwmReloadDecor
 + I FuncFvwmDecorBackground
-+ I AddButtonStyle 1 3 23x58@0 77x58@0 77x42@0 
-+ I AddButtonStyle 1 3 23x58@1 23x42@1 77x42@1 
++ I AddButtonStyle 1 3 23x58@0 77x58@0 77x42@0
++ I AddButtonStyle 1 3 23x58@1 23x42@1 77x42@1
 + I AddButtonStyle 2 3 21x79@0 79x79@0 79x21@0
-+ I AddButtonStyle 2 3 21x79@1 21x21@1 79x21@1 
-+ I AddButtonStyle 4 3 42x58@0 58x58@0 58x42@0 
-+ I AddButtonStyle 4 3 42x58@1 42x42@1 58x42@1 
++ I AddButtonStyle 2 3 21x79@1 21x21@1 79x21@1
++ I AddButtonStyle 4 3 42x58@0 58x58@0 58x42@0
++ I AddButtonStyle 4 3 42x58@1 42x42@1 58x42@1
 
 DestroyFunc FuncFvwmOverRideWindowLook
 AddToFunc   FuncFvwmOverRideWindowLook
