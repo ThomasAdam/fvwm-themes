@@ -1170,11 +1170,11 @@ sub getSortedComponentsToRead ($) {
 					# $cmp is not evaluated yet, evaluate now
 					$cmp = 0;
 					foreach (@{$requires->{$c1}}) {
-						$cmp = -1 if $_ eq $c2 || exists $provides->{$c2}
+						$cmp = -1 if $_ eq $c2 #|| exists $provides->{$c2}
 							&& $provides->{$c2}->{$_};
 					}
 					foreach (@{$requires->{$c2}}) {
-						$cmp = 1 if $_ eq $c1 || exists $provides->{$c1}
+						$cmp = 1 if $_ eq $c1 #|| exists $provides->{$c1}
 							&& $provides->{$c1}->{$_};
 					}
 				}
@@ -1567,9 +1567,9 @@ my $onlyUser = 0;
 my $configCenter = 0;
 
 GetOptions(
-	"help"        => \&showHelp,
+	"help|h"      => \&showHelp,
 	"version"     => \&showVersion,
-	"site"        => \$site,
+	"site|s"      => \$site,
 	"theme=s@"    => $themes,
 	"show-themes!"     => \$showThemes,
 	"show-components!" => \$showComponents,
@@ -1577,15 +1577,15 @@ GetOptions(
 	"component=s"      => \$component,
 	"show-value=s@"    => $showValues,
 	"expand-rc:s" => \$expandFile,
-	"fresh"       => \$fresh,
-	"reset"       => \$reset,
-	"load=s@"     => $loadComponents,
-	"drop=s@"     => $dropComponents,
+	"fresh|f"     => \$fresh,
+	"reset|r"     => \$reset,
+	"load|l=s@"   => $loadComponents,
+	"drop|d=s@"   => $dropComponents,
 	"option=s%"   => $options,
 	"variant=s%"  => $variants,
 	"set-locked=s%" => $setLockeds,
 	"pipe"        => \$pipe,
-	"install"     => \$install,
+	"install|i"   => \$install,
 	"com-mode"    => \$comMode,
 	"com-name=s"  => \$comName,
 	"fvwmscript"  => \$fvwmscript,

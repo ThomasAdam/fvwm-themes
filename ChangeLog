@@ -12,6 +12,12 @@
 	* themes/default/settings/gnome/system-menu/fvwm-menu[-gnome]:
 	fixed
 
+	* bin/fvwm-themes-config.in:
+	added one-letter option aliases, like -f
+
+	* themes/default/{theme,settings}.cfg:
+	some workarounds
+
 2000-10-25  olicha  <olivier.chapuis@free.fr>
 
         * bin/fvwm-themes-script.in:
