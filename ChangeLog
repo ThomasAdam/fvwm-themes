@@ -35,6 +35,7 @@
 	* doc/README.1st:
 	* themes/default/menus-programs:
 	* doc/fvwm-themes.lsm.in:
+	* menu-system/fvwm_themes_data.h.in:
 	s/developement/development/
 
 	* scripts/FvwmScript-ColorSelector:

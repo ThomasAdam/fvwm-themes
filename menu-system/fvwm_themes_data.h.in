@@ -21,15 +21,15 @@ function ftGetSectionIcon($s)= \
   ifeqelse($s,rootsection()"/Applications",\
 	"programs.xpm",\
   ifeqelse($s,rootsection()"/Applications/Development",\
-	"developement.xpm",\
+	"development.xpm",\
   ifeqelse($s,rootsection()"/Applications/Development/Interpreters",\
-	"developement.xpm",\
+	"development.xpm",\
   ifeqelse($s,rootsection()"/Applications/Development/Code generators",\
-	"developement.xpm",\
+	"development.xpm",\
   ifeqelse($s,rootsection()"/Applications/Development/Development environments",\
-	"developement.xpm",\
+	"development.xpm",\
   ifeqelse($s,rootsection()"/Applications/Development/Tools",\
-	"developement.xpm",\
+	"development.xpm",\
   ifeqelse($s,rootsection()"/Applications/Sciences",\
 	"science.xpm",\
   ifeqelse($s,rootsection()"/Applications/Archiving",\
@@ -170,7 +170,7 @@ function ftIsWmIconsTable($n) = \
   ifeqelse($n,"clock.xpm","clock.xpm",\
   ifeqelse($n,"colors.xpm","colors.xpm",\
   ifeqelse($n,"configuration.xpm","configuration.xpm",\
-  ifeqelse($n,"developement.xpm","developement.xpm",\
+  ifeqelse($n,"development.xpm","development.xpm",\
   ifeqelse($n,"disk.xpm","disk.xpm",\
   ifeqelse($n,"disk-cd.xpm","disk-cd.xpm",\
   ifeqelse($n,"disk-floppy.xpm","disk-floppy.xpm",\
