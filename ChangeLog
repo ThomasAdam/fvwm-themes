@@ -1,3 +1,9 @@
+2001-04-15  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-images.in:
+	extended --pattern-type altern to accept multiple row values;
+	some man page improvements
+
 2001-04-14  migo  <migo@homemail.com>
 
 	* themes/brushedmetal/colors:

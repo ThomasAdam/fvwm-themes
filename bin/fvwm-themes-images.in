@@ -808,7 +808,7 @@ sub processSky() {
 	$patternGap = 1 if ($patternGap <= 0 || $patternGap !~ /^\d+$/);
 	foreach $p (@pattern) {
 		$test++;
-		next if ($test/$patternGap != int($test/$patternGap));
+		next if ($test % $patternGap != 0);
 		chomp($p);
 		push @consPar, split("",$p);
 		$Y=$Y+1;
@@ -881,12 +881,12 @@ sub processSky() {
 # Can one create the "cde-like" like pattern?
 
 sub createPattern () {
-
 	my $type = "uniform";
 	my @pattern = ();
-	my $i;
+	my ($i, $n);
 	my $coef = 1;
 	my $coef2 = undef;
+	my @coefs = ();
 
 	# perl: '?:' may be ommited, but then $2 should be $3.
 	if ($patternType =~ /^random:(\d+)(?::(\d+))?$/) {
@@ -901,16 +901,17 @@ sub createPattern () {
 		$type = "square";
 		$coef = $1;
 		$coef2 = $2 || $coef;
-	} elsif ($patternType =~ /^altern:(\d+)(?::(\d*))?$/) {
+	} elsif ($patternType =~ /^altern:(\d+(?:,\d+)*)(?::(\d+))?$/) {
 		$type = "altern";
-		$coef = $1;
+		@coefs = split(/,/, $1);
+		push @coefs, $coefs[0] if @coefs == 1;  # for backward compatibility
 		$coef2 = $2 || 8;
-	} elsif ($patternType =~ /^(\d+)(?::(\d+))?$/) {
+	} elsif ($patternType =~ /^(\d+)(?:[:,](\d+))?$/) {
 		$type = "uniform";
 		$coef = $1;
 		$coef2 = $2 || 8;
 	} else {
-		die "bad pattern-type option";
+		die "Bad --pattern-type argument\n";
 	}
 
 	if ($type eq "uniform") {
@@ -918,10 +919,11 @@ sub createPattern () {
 		for ($i=0; $i < $coef; $i++) { push @pattern, $p }
 	}
 	elsif ($type eq "altern") {
-		my $p = "+" x $coef2 ."\n";
-		for ($i=0; $i < $coef; $i++) { push @pattern, $p }
-		$p = "-" x $coef2 ."\n";
-		for ($i=0; $i < $coef; $i++) { push @pattern, $p }
+		my @v = ("+", "-");
+		for ($n = 0; $n < @coefs; $n++) {
+			my $p = $v[$n % 2] x $coef2 . "\n";
+			for ($i = 0; $i < $coefs[$n]; $i++) { push @pattern, $p }
+		}
 	}
 	elsif ($type eq "square") {
 		my $p = "+" x $coef2 . "-"x$coef2 ."\n";
@@ -2046,7 +2048,7 @@ sub showHelp {
 	print "\t--pattern-file f    use pattern in file f for sky\n";
 	print "\t--pattern-type t    create some patterns\n";
 	print "\t--pattern-xpm f     create a pattern from an XPM\n";
-	print "\t--pattern-gap int   jump into the pattern\n";
+	print "\t--pattern-gap n     jump into the pattern\n";
 	print "\t--sky-comp t        interpolation computation type for sky\n";
 	print "\t--be-fast           try to be faster by using more memory\n";
 	print "Set Root Image\n";
@@ -2264,8 +2266,8 @@ option: --pattern-type uniform:1, try also the --pattern-type
 option with square:50 or altern:20 and random:50 for examples.
 If you want an horizontal gradient just rotate: --rotate 90.
 You can also control the gradient computation. Try: --pattern-type
-square:50 --sky-comp c for a chess like background, --pattern-type
-altern:50 --sky-comp c for a band background, --pattern-type 1
+square:64 --sky-comp c for a chess like background, --pattern-type
+altern:64,64 --sky-comp c for a band background, --pattern-type 1
 --sky-comp r for an irregular gradient, and --pattern-type 1
 --sky-comp t for an horrible background.
 Note that if your sky contains a lot of coulours you can speed a
@@ -2594,20 +2596,22 @@ the sky gradient.
 
 B<--pattern-file> file - use the pattern file "file" as pattern.
 
-B<--pattern-type> type[[:x]:y] - where type can be uniform, altern,
-square, random and where x and y are positive integers. If no type
-is specified uniform is used, default x is 1 and default y is 8
-but for square which is x. uniform creates a pattern with x rows
-of y '+', altern creates a pattern with x rows of y '+' followed
-by y rows of '-', square create a pattern of x rows constituted
-of y '+' followed by y '-', random create a pattern with x random rows
-of length y.
+B<--pattern-type> type[[:y]:x] - where type can be I<uniform>, I<altern>,
+I<square>, I<random> and where y and x are positive integers. If no type
+is specified uniform is used, default y is 1 and default x is 8,
+for square the default for x is y. I<uniform> creates a pattern with y rows
+of x '+'. I<altern> creates a pattern with y rows of x '+' followed
+by y rows of x '-' (a comma-separated value for y may be used; altern:10
+and altern:10,10,0,0:8 are the same). I<square> creates a pattern of y rows
+constituted of x '+' followed by x '-'. I<random> creates a pattern with
+y random rows of length x.
 
 B<--pattern-xpm> file - Produce the pattern file from an xpm file.
-Set to - the transparent color and to + the other colors.
+Set the transparent color to '-' and all other colors to '+'.
 
-B<--pattern-gap> n - where n is a positive integer. Take in account
-only the xnth lines of the pattern.
+B<--pattern-gap> n - where n is a positive integer. Take into account
+only every n-th lines of the pattern. Default is 1, so all pattern lines
+are taken.
 
 B<--pattern-y> y - where y is a positive integer. By default, the
 XPM file produced by --sky has the same height of your screen
