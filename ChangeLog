@@ -3,6 +3,9 @@
 	* bin/fvwm-themes-config.in:
 	work around (?) for perl-5.8.0 and utf8 locale
 
+	* bin/fvwm-themes-images.in:
+	use the fvwm-root name
+
 2002-10-05  migo  <migo@homemail.com>
 
 	* themes/redmondxp/modules/FvwmThemesPanelManager:

@@ -118,7 +118,8 @@ my $patternY = "";
 
 # set the background
 my $setRoot = 0;
-my $setRootProg = "xpmroot";
+#my $setRootProg = "fvwm-root --retain-pixmap";
+my $setRootProg = "fvwm-root";
 my $setRootTmpFile = "/tmp/$userName-ft-back.xpm";
 
 # rotate
@@ -179,7 +180,7 @@ GetOptions(
 	"size-56x56=s"       => \$size{"56x56"},
 	"size-32x32=s"       => \$size{"32x32"},
 	"size-16x16=s"       => \$size{"16x16"},
-	"tiles-size=s"       => \$size{"tiles"},
+	"size-tiles=s"       => \$size{"tiles"},
 	"build-16x16!"       => \$build{"16x16"},
 	"build-48x48!"       => \$build{"48x48"},
 	"build-56x56!"       => \$build{"56x56"},
@@ -270,17 +271,17 @@ die "$scriptName: --gnome and --kde2 are incompatible\n"
 	if $gnome && $kde2;
 
 if ($xcolorsInfo || $xcolorsetsInfo) {
-	showXcolorsInfo($xcolorsetsInfo);
+	&showXcolorsInfo($xcolorsetsInfo);
 	exit;
 }
 
 if (defined $colorToShow) {
-	showColorInfo($colorToShow);
+	&showColorInfo($colorToShow);
 	exit;
 }
 
 if ($sky) {
-	processSky();
+	&processSky();
 	exit;
 }
 
@@ -296,29 +297,29 @@ if ($convert) {
 		push @types, $_ if $build{$_};
 	}
 	@types = ("preserve") if $preserve;
-	transform();
+	&transform();
 	exit;
 }
 
 if ($tile || $addBorder || $colorize || $rotate ne "0") {
 	@types = ("preserve");
-	transform();
+	&transform();
 	exit;
 }
 
 if ($createSymLink ne "") {
 	@types = ();
-	transform();
+	&transform();
 	exit;
 }
 
 if ($colorSchemes || $colorSchemesFores ne "") {
-	processColorSchemes();
+	&processColorSchemes();
 	exit;
 }
 
 if ($setRoot && $inFile) {
-	setRoot($inFile);
+	&setRoot($inFile);
 	exit;
 }
 
@@ -2053,7 +2054,7 @@ sub showHelp {
 	print "\t--be-fast           try to be faster by using more memory\n";
 	print "Set Root Image\n";
 	print "\t--setroot           set the root window with the built XPM\n";
-	print "\t--setroot-prog prog the command to set the root window (xpmroot)\n";
+	print "\t--setroot-prog prog command to set the root ($setRootProg)\n";
 	print "Color schemes\n";
 	print "\t--colorschemes      process color schemes\n";
 	print "\t--colorschemes-fores evaluate fore from back for colors schemes\n";
@@ -2219,10 +2220,10 @@ options :o)
 
 fvwm-themes-images can colorize an XPM image (or a family of images
 in a directory). The main aim of "colorize" is to produce an infinite
-number of backgrounds with only one xpm. For examples:
+number of backgrounds with only one xpm. For example:
 
     fvwm-themes-images --colorize --colorize-colors black,red \
-    --trans-color yellow --in-file My.xpm --setroot
+      --trans-color yellow --in-file My.xpm --setroot
 
 will tile your root window with an XPM build from My.xpm, such that
 the darkest pixels in My.xpm are replaced by black pixels, the lightest
@@ -2231,8 +2232,8 @@ interpolated between black and red and the transparent pixels are
 replaced by yellow pixels. Moreover, you can use more than 2 colors
 and some options allows you to control the interpolation.
 You can also rotate, tile and borderize your XPM.
-By default, fvwm-themes-images uses xpmroot as "background setter
-program", you can specify an other program using the --setroot-prog
+By default, fvwm-themes-images uses "fvwm-root" to
+set background, you can specify an other program using the --setroot-prog
 option, e.g., if you want to use xv just add the option
 
     --setroot-prog "xv -root -quit"
@@ -2633,8 +2634,9 @@ B<--setroot> - Set the root image (background) with the XPM file produced.
 Of course, this works only for a "transformation" which produces
 only one file, i.e., with --sky or with --in-file without --convert.
 
-B<--setroot-prog> prog - a program to execute "prog out.xpm" to set the root
-window. Default is xpmroot.
+B<--setroot-prog> I<prog> - a program with arguments to be executed
+as "I<prog> out.xpm" that sets the root window.
+Default is "fvwm-root".
 
 =head2 Evaluating foregrounds from backgrounds in color schemes
 
