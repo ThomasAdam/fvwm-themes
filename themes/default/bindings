@@ -212,8 +212,16 @@ MouseXX 3 2	R	A	Menu MenuFvwmWindowOps
 MouseXX 2 3	R	C	Module FvwmPager -transient FvwmPager-Single * *
 MouseXX 2 3	R	SC	Module FvwmPager -transient FvwmPager-Desker 0 3
 
+# pointer on a EWMH desktop
+
 # pointer in Window Buttons
 # now in 'buttons' component
+Mouse 1 	D	M	Menu MenuFvwmRoot
+MouseXX 2 3	D	M	WindowList
+MouseXX 3 2	D	M	Menu MenuFvwmWindowOps
+
+MouseXX 2 3	D	MC	Module FvwmPager -transient FvwmPager-Single * *
+MouseXX 2 3	D	MSC	Module FvwmPager -transient FvwmPager-Desker 0 3
 
 # pointer in Window Decorations
 FuncFvwmSetTitleBindings TSF
@@ -347,6 +355,11 @@ AddToFunc   FuncFvwmStopBindings
 + I MouseXX 3 2	R	A	-
 + I MouseXX 2 3	R	C	-
 + I MouseXX 2 3	R	SC	-
++ I Mouse 1 	D	M	-
++ I MouseXX 2 3	D	M	-
++ I MouseXX 3 2	D	M	-
++ I MouseXX 2 3	D	MC	-
++ I MouseXX 2 3	D	MSC	-
 + I FuncFvwmUnsetTitleBindings TSF
 + I Mouse 1 	SF	A	-
 + I Mouse 1 	I	A	-

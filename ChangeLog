@@ -1,3 +1,9 @@
+2003-06-06  olicha  <olivier.chapuis@free.fr>
+
+	* themes/default/settings/stroke/enabled:
+	* themes/default/bindings:
+	Added Mouse bindings on a desktop window
+
 2002-06-06 migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-*.in:

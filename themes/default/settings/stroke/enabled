@@ -7,16 +7,7 @@
 Mouse	3	R	A	StrokeFunc FeedBack DrawMotion StrokeWidth 2
 
 # mouse 3 with Alt on a window
-Mouse	3 	W 	M 	StrokeFunc FeedBack DrawMotion StrokeWidth 2
-
-# for ewmh
-DestroyFunc FuncFvwmEWMHBindingsButton3OnRootWindow
-AddToFunc   FuncFvwmEWMHBindingsButton3OnRootWindow
-+ I Mouse 3 R M StrokeFunc FeedBack DrawMotion StrokeWidth 2
-
-DestroyFunc FuncFvwmNoEWMHBindingsButton3OnRootWindow
-AddToFunc   FuncFvwmNoEWMHBindingsButton3OnRootWindow
-+ I Mouse 3 R A StrokeFunc FeedBack DrawMotion StrokeWidth 2
+Mouse	3 	WD 	M 	StrokeFunc FeedBack DrawMotion StrokeWidth 2
 
 # ----------------------------------------------------------------------------
 # The stroke bindings
@@ -49,31 +40,31 @@ AddToFunc   FuncFvwmNoEWMHBindingsButton3OnRootWindow
 
 # Redefine the default bindings
 Stroke	0		0 	R	A 	FuncFvwmButton3OnRootWindow
-Stroke	0		0	W	M	FuncFvwmButton3OnWindow
+Stroke	0		0	WD	M	FuncFvwmButton3OnWindow
 
 # A | from the top to the bottom
 Stroke	N852		0	R	A	FuncFvwmTerminal
-Stroke	N852		0	W	M	FuncFvwmTerminal
+Stroke	N852		0	WD	M	FuncFvwmTerminal
 
 # A / from the top to the bottom
 Stroke	N951		0	R	A	FuncFvwm2Terminal
-Stroke	N951		0	W	M	FuncFvwm2Terminal
+Stroke	N951		0	WD	M	FuncFvwm2Terminal
 
 # A \ from the top to the bottom
 Stroke	N753		0	R	A	FuncFvwm3Terminal
-Stroke	N753		0	W	M	FuncFvwm3Terminal
+Stroke	N753		0	WD	M	FuncFvwm3Terminal
 
 # A | from the bottom to the top
 Stroke	N258		0	R	A	FuncFvwmEditor
-Stroke	N258		0	W	M	FuncFvwmEditor
+Stroke	N258		0	WD	M	FuncFvwmEditor
 
 # A / from the bottom to the top
 Stroke	N159		0	R	A	FuncFvwmFileManager
-Stroke	N159		0	W	M	FuncFvwmFileManager
+Stroke	N159		0	WD	M	FuncFvwmFileManager
 
 # A \ from the bottom to the top
 Stroke	N357		0	R	A	FuncFvwmDocView
-Stroke	N357		0	W	M	FuncFvwmDocView
+Stroke	N357		0	WD	M	FuncFvwmDocView
 
 # A N (from the bottom left)
 Stroke	7415963		0	R	A	FuncFvwmWWW
@@ -83,72 +74,72 @@ Stroke	74158963	0	R	A	FuncFvwmWWW
 Stroke	7418963		0	R	A	FuncFvwmWWW
 Stroke	415963		0	R	A	FuncFvwmWWW
 #
-Stroke	7415963		0	W	M	FuncFvwmWWW
-Stroke	7415863		0	W	M	FuncFvwmWWW
-Stroke	74148963	0	W	M	FuncFvwmWWW
-Stroke	74158963	0	W	M	FuncFvwmWWW
-Stroke	7418963		0	W	M	FuncFvwmWWW
-Stroke	415963		0	W	M	FuncFvwmWWW
+Stroke	7415963		0	WD	M	FuncFvwmWWW
+Stroke	7415863		0	WD	M	FuncFvwmWWW
+Stroke	74148963	0	WD	M	FuncFvwmWWW
+Stroke	74158963	0	WD	M	FuncFvwmWWW
+Stroke	7418963		0	WD	M	FuncFvwmWWW
+Stroke	415963		0	WD	M	FuncFvwmWWW
 
 # A - from the right to the left
 Stroke	N654		0	R	A	FuncFvwm2WWW
-Stroke	N654		0	W	M	FuncFvwm2WWW
+Stroke	N654		0	WD	M	FuncFvwm2WWW
 
 # A - from the left to the right
 Stroke	N456		0	R	A	FuncFvwm3WWW
-Stroke	N456		0	W	M	FuncFvwm3WWW
+Stroke	N456		0	WD	M	FuncFvwm3WWW
 
 # A C from the top
 Stroke	N9874123	0	R	A	FuncFvwmCalculator
 Stroke	N987423		0	R	A	FuncFvwmCalculator
-Stroke	N9874123	0	W	M	FuncFvwmCalculator
-Stroke	N987423		0	W	M	FuncFvwmCalculator
+Stroke	N9874123	0	WD	M	FuncFvwmCalculator
+Stroke	N987423		0	WD	M	FuncFvwmCalculator
 
 # A C from the bottom
 Stroke	N3214789	0	R	A	FuncFvwmProcess
-Stroke	N3214789	0	W	M	FuncFvwmProcess
+Stroke	N3214789	0	WD	M	FuncFvwmProcess
 
 # A L from the top left
 Stroke	N74123		0	R	A	FuncFvwmHelp
-Stroke	N74123		0	W	M	FuncFvwmHelp
+Stroke	N74123		0	WD	M	FuncFvwmHelp
 
 # A L from the bootom right
 Stroke	N32147		0	R	A	FuncFvwm2Help
-Stroke	N32147		0	W	M	FuncFvwm2Help
+Stroke	N32147		0	WD	M	FuncFvwm2Help
 
 # A _| from the bottom left
 Stroke	N12369		0	R	A	FuncFvwmImageView
-Stroke	N12369		0	W	M	FuncFvwmImageView
+Stroke	N12369		0	WD	M	FuncFvwmImageView
 
 # A |_| from the top left
 Stroke	N7412369	0	R	A	FuncFvwm2ImageView
-Stroke	N7412369	0	W	M	FuncFvwm2ImageView
+Stroke	N7412369	0	WD	M	FuncFvwm2ImageView
 
 # A _| from the top right
 Stroke	N96321		0	R	A	FuncFvwmImageEdit
-Stroke	N96321		0	W	M	FuncFvwmImageEdit
+Stroke	N96321		0	WD	M	FuncFvwmImageEdit
 
 # A |_| from the top right
 Stroke	N9632147	0	R	A	FuncFvwm2ImageEdit
-Stroke	N9632147	0	W	M	FuncFvwm2ImageEdit
+Stroke	N9632147	0	WD	M	FuncFvwm2ImageEdit
 
 # A |-| (an arch) form the bottom left
 Stroke	N1478963	0	R	A	FuncFvwmMail
-Stroke	N1478963	0	W	M	FuncFvwmMail
+Stroke	N1478963	0	WD	M	FuncFvwmMail
 
 # A back and forth - starting from the left
 Stroke	N45654		0	R	A	FuncFvwmCdPlayer
-Stroke	N45654		0	W	M	FuncFvwmCdPlayer
+Stroke	N45654		0	WD	M	FuncFvwmCdPlayer
 
 # A back and forth - starting from the right
 Stroke	N65456		0	R	A	FuncFvwmSound
-Stroke	N65456		0	W	M	FuncFvwmSound
+Stroke	N65456		0	WD	M	FuncFvwmSound
 
 # A clockwise box from the top left
 Stroke	N78963214	0	R	A	FuncFvwmQuitVerify
 Stroke	N789632147	0	R	A	FuncFvwmQuitVerify
-Stroke	N78963214	0	W	M	FuncFvwmQuitVerify
-Stroke	N789632147	0	W	M	FuncFvwmQuitVerify
+Stroke	N78963214	0	WD	M	FuncFvwmQuitVerify
+Stroke	N789632147	0	WD	M	FuncFvwmQuitVerify
 
 # ----------------------------------------------------------------------------
 # Don't forget to destroy the bindings
@@ -160,60 +151,60 @@ AddToFunc   FuncFvwmStopStroke
 #+ I Mouse	3	R	A	-
 #+ I Mouse	3 	W 	M 	-
 + I Stroke	0 		0	R	A	-
-+ I Stroke	0 		0	W	M	-
++ I Stroke	0 		0	WD	M	-
 + I Stroke	N852		0	R	A	-
-+ I Stroke	N852		0	W	M	-
++ I Stroke	N852		0	WD	M	-
 + I Stroke	N951		0	R	A	-
-+ I Stroke	N951		0	W	M	-
++ I Stroke	N951		0	WD	M	-
 + I Stroke	N753		0	R	A	-
-+ I Stroke	N753		0	W	M	-
++ I Stroke	N753		0	WD	M	-
 + I Stroke	N258		0	R	A	-
-+ I Stroke	N258		0	W	M	-
++ I Stroke	N258		0	WD	M	-
 + I Stroke	N159		0	R	A	-
-+ I Stroke	N159		0	W	M	-
++ I Stroke	N159		0	WD	M	-
 + I Stroke	N357		0	R	A	-
-+ I Stroke	N357		0	W	M	-
++ I Stroke	N357		0	WD	M	-
 + I Stroke	7415963		0	R	A	-
 + I Stroke	7415863		0	R	A	-
 + I Stroke	74148963	0	R	A	-
 + I Stroke	74158963	0	R	A	-
 + I Stroke	7418963		0	R	A	-
 + I Stroke	415963		0	R	A	-
-+ I Stroke	7415963		0	W	M	-
-+ I Stroke	7415863		0	W	M	-
-+ I Stroke	74148963	0	W	M	-
-+ I Stroke	74158963	0	W	M	-
-+ I Stroke	7418963		0	W	M	-
-+ I Stroke	415963		0	W	M	-
++ I Stroke	7415963		0	WD	M	-
++ I Stroke	7415863		0	WD	M	-
++ I Stroke	74148963	0	WD	M	-
++ I Stroke	74158963	0	WD	M	-
++ I Stroke	7418963		0	WD	M	-
++ I Stroke	415963		0	WD	M	-
 + I Stroke	N654		0	R	A	-
-+ I Stroke	N654		0	W	M	-
++ I Stroke	N654		0	WD	M	-
 + I Stroke	N456		0	R	A	-
-+ I Stroke	N456		0	W	M	-
++ I Stroke	N456		0	WD	M	-
 + I Stroke	N9874123	0	R	A	-
 + I Stroke	N987423		0	R	A	-
-+ I Stroke	N9874123	0	W	M	-
-+ I Stroke	N987423		0	W	M	-
++ I Stroke	N9874123	0	WD	M	-
++ I Stroke	N987423		0	WD	M	-
 + I Stroke	N3214789	0	R	A	-
-+ I Stroke	N3214789	0	W	M	-
++ I Stroke	N3214789	0	WD	M	-
 + I Stroke	N74123		0	R	A	-
-+ I Stroke	N74123		0	W	M	-
++ I Stroke	N74123		0	WD	M	-
 + I Stroke	N32147		0	R	A	-
-+ I Stroke	N32147		0	W	M	-
++ I Stroke	N32147		0	WD	M	-
 + I Stroke	N12369		0	R	A	-
-+ I Stroke	N12369		0	W	M	-
++ I Stroke	N12369		0	WD	M	-
 + I Stroke	N7412369	0	R	A	-
-+ I Stroke	N7412369	0	W	M	-
++ I Stroke	N7412369	0	WD	M	-
 + I Stroke	N96321		0	R	A	-
-+ I Stroke	N96321		0	W	M	-
++ I Stroke	N96321		0	WD	M	-
 + I Stroke	N9632147	0	R	A	-
-+ I Stroke	N9632147	0	W	M	-
++ I Stroke	N9632147	0	WD	M	-
 + I Stroke	N1478963	0	R	A	-
-+ I Stroke	N1478963	0	W	M	-
++ I Stroke	N1478963	0	WD	M	-
 + I Stroke	N45654		0	R	A	-
-+ I Stroke	N45654		0	W	M	-
++ I Stroke	N45654		0	WD	M	-
 + I Stroke	N45654		0	R	A	-
-+ I Stroke	N45654		0	W	M	-
++ I Stroke	N45654		0	WD	M	-
 + I Stroke	N78963214	0	R	A	-
 + I Stroke	N789632147	0	R	A	-
-+ I Stroke	N78963214	0	W	M	-
-+ I Stroke	N789632147	0	W	M	-
++ I Stroke	N78963214	0	WD	M	-
++ I Stroke	N789632147	0	WD	M	-
