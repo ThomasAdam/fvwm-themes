@@ -1,3 +1,17 @@
+2000-07-28  migo  <migo@homemail.com>
+
+	* Makefile.am:
+	Removed --remove-popup in fvwm-themes-menuapp when creating menus
+	(I am not really sure why this was needed).
+	Remove CVS directories (if any) on installing, not the best solution.
+
+	* cvs:
+	updates to the cvs wrapper.
+
+	* bin/fvwm-themes-menuapp.in:
+	Nothing important, maybe spaces, I will not comment trivial
+	changes like these in the future.
+
 2000-07-28  olicha <olivier.chapuis@free.fr>
 	
 	* themes/modules/Applets/fvwm:

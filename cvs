@@ -1,10 +1,25 @@
-#!/bin/sh
+#!/usr/bin/perl
 
-# Put this cvs wrapper to ~/bin. You need it for working also with fvwm's cvs.
+# You may put this cvs wrapper to ~/bin.
 
-case "`pwd`" in
-	*fvwm-themes*)
-		export CVS_RSH=ssh ;;
-esac
+$PASSWORD = 'MY_PASSWORD';
+$CVS_EXE = "/usr/bin/cvs";
+$CVS_PRM = join('" "', (map { s/\\/\\\\/g; s/"/\\"/g; $_ } @ARGV));
+$CVS_CMD = qq($CVS_EXE "$CVS_PRM");
 
-/usr/bin/cvs "$@"
+if (`pwd` =~ /fvwm-themes/) {
+	$ENV{'CVS_RSH'} = 'ssh';
+	# For some reasons stty -echo does not work, I wonder why.
+	my $EXPECT_CMD = qq(
+		expect -c 'spawn -noecho $CVS_CMD; stty -echo -echonl;
+			expect "assword: "; send "$PASSWORD\\n"; \
+			stty echo echonl; send_tty "\\n"; interact'
+	);
+	$EXPECT_CMD =~ s/\n/ /sg;
+	$| = 1;
+	#print "[$EXPECT_CMD]\n";
+	system($EXPECT_CMD);
+} else {
+	#print "[exec $CVS_CMD]\n";
+	system(qq(exec $CVS_CMD));
+}

@@ -19,6 +19,7 @@ install-data-local:
 		rm -rf "$(FT_DATADIR)/$$dir"; \
 		(if test -f $$dir.tar.gz; then gzip -dc $$dir.tar.gz; else \
 		tar cpf - $$dir; fi) | (cd "$(FT_DATADIR)" && tar xfBp -); \
+		find "$(FT_DATADIR)/$$dir" -name CVS -exec rm -r {} \; 2>/dev/null ; \
 	done
 
 	sed -e "s,xGNOME_IMAGES_DIRx,$(GNOME_IMAGES_DIR),g" \
@@ -26,7 +27,9 @@ install-data-local:
 	mv -f $(SETTINGS_FILE).tmp $(SETTINGS_FILE)
 
 	$(bindir)/fvwm-themes-config --site --reset
-	$(bindir)/fvwm-themes-menuapp --site --build-menus --remove-popup
+#	# I see no reason to remove Popup / with MissingSubmenuFunc.
+#	$(bindir)/fvwm-themes-menuapp --site --build-menus --remove-popup
+	$(bindir)/fvwm-themes-menuapp --site --build-menus
 
 	if test "$(GNOME_ICONS)" = "yes"; then \
 		$(bindir)/fvwm-themes-images --ft-install; \

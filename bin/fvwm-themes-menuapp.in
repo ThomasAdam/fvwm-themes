@@ -1697,11 +1697,11 @@ sub showHelp {
 	print "Options:\n";
 	print "\t--help            show this help and exit\n";
 	print "\t--version         show the version and exit\n";
-	print "\t--build-menu		build clean menus\n"; 
+	print "\t--build-menu      build clean menus\n"; 
 	print "\t--com-mode        run under communication mode\n";
 	print "\t--site            use site files\n";
 	print "\t--menu-files f,f2 files to read and wrote\n";
-	print "\t--remove-popup		remove certain popup in the building case\n";
+	print "\t--remove-popup    remove certain popup in the building case\n";
 	print "\t--com-name name   name for communication\n";
 	exit 0;
 }
