@@ -1,4 +1,13 @@
-2000-07-29  olicha  <olivier.chapuis@free.fr>
+2000-07-30  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-images.in (createPatternXpm):
+	Fix --pattern-xpm
+
+	* themes/multichoice/background.cfg
+	* themes/multichoice/background/{15,...21}
+	Some new backgrounds with the "tiger" and "banner".
+
+2000-07-30  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-menuapp.in:
 	* Makefile.am:

@@ -1,0 +1,7 @@
+DestroyFunc FuncFvwmStartThemeBackground
+AddToFunc   FuncFvwmStartThemeBackground
++ I Exec exec fvwm-themes-images --in-file $FT_DATADIR/themes/multichoice/images/banner/fvwm-red.xpm -set-backg --tile $FT_DATADIR/images/background/as-back.xpm --colorize --colorize-colors "#8b8b00:#ffffff" --be-fast
+
+DestroyFunc FuncFvwmStopThemeBackground
+AddToFunc   FuncFvwmStopThemeBackground
++ I Nop

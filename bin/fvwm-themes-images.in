@@ -846,7 +846,7 @@ sub createPatternXpm () {
 	}
 	for ($i=0; $i<$r; $i++) {
 		my $pm = ""; my $j;
-		for ($j=0;$j<$c;$j++) { $pm = $pixels->[$i]->[$j] eq $id ? "+" :"-"; }
+		for ($j=0;$j<$c;$j++) { $pm .= $pixels->[$i]->[$j] eq $id ? "+" :"-"; }
 		push @pattern, "$pm\n";
 	}
 	return @pattern;

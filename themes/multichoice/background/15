@@ -1,0 +1,7 @@
+DestroyFunc FuncFvwmStartThemeBackground
+AddToFunc   FuncFvwmStartThemeBackground
++ I Exec exec xpmroot $FT_DATADIR/themes/multichoice/images/background/fvwm-tiger-tail.xpm
+
+DestroyFunc FuncFvwmStopThemeBackground
+AddToFunc   FuncFvwmStopThemeBackground
++ I Nop
