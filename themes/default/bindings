@@ -34,7 +34,7 @@ AddToFunc   FuncFvwmMoveOrIconify
 DestroyFunc FuncFvwmMaximizeFullScreen
 AddToFunc   FuncFvwmMaximizeFullScreen
 + I Style $n NoTitle, NoHandles, BorderWidth 0
-+ I WindowId "$w" RefreshWindow
++ I UpdateStyles
 + I WindowId "$w" Maximize true
 
 DestroyFunc FuncFvwmUnmaximizeFullScreen

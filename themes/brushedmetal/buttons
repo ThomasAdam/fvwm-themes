@@ -107,7 +107,6 @@ AddToFunc   FuncFvwmOverRideWindowLook
 + I TitleStyle -- flat
 + I ButtonStyle All -- flat
 
-AddToFunc   FuncFvwmStartWindowButtons
 DestroyFunc FuncFvwmStartWindowButtons
 AddToFunc   FuncFvwmStartWindowButtons
 # This is usually not in this component, but these buttons can't be non-flat
