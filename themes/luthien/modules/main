@@ -74,7 +74,7 @@ AddToMenu   MenuFvwmStartThemeModules "Default Modules" Title
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "Default Modules" Title
 + "%menu/quit.xpm%Stop &Buttons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Bar
-+ "%menu/quit.xpm%Stop &Desker"  FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
+#+ "%menu/quit.xpm%Stop &Desker"  FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
 + "%menu/quit.xpm%Stop &WinList" KillModule FvwmWinList
 
 # ----------------------------------------------------------------------------

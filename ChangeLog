@@ -4,6 +4,9 @@
 	experimental (I am not sure), use MAJOR.MINOR.x as a version,
 	i.e. a literal "x" instead of MICRO, when packing and installing
 
+	* themes/luthien/modules/main:
+	remove stopping desker
+
 2001-10-25  olicha  <olivier.chapuis@free.fr>
 
 	* configure.in:
