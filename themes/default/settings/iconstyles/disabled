@@ -1,6 +1,7 @@
 # This does not work!
 Style "*" Icon -
 Style "*" MiniIcon -
+Style * EWMHDontDonateIcon, EWMHDontDonateMiniIcon
 
 DestroyFunc  FuncFvwmAddToMenusWMIcons
 AddToFunc    FuncFvwmAddToMenusWMIcons

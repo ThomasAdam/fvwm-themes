@@ -3,6 +3,16 @@
 	* rpm/Makefile.am:
 	fixed a build with rpm-4.0.3
 
+	* themes/default/settings/iconstyles/disabled:
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	added EWMH[Dont]DonateIcon and EWMH[Dont]DonateMiniIcon
+
+	* themes/default/bindings:
+	added ResizeMaximize binding
+
+	* themes/default/menus:
+	added 2 games
+
 2001-12-20  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in (comLoop): 

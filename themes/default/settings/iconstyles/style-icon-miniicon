@@ -4,6 +4,7 @@
 #  Send your comments to fvwm-themes-devel@lists.sourceforge.net.
 ###
 
+Style * EWMHDonateIcon, EWMHDonateMiniIcon
 #Style Eterm* IconOverride
 Style * IconOverride
 Style XTerm NoActiveIconOverride  # enable: xterm +at
@@ -68,6 +69,7 @@ Style "Help_popup"             Icon norm/help.xpm,             MiniIcon mini/hel
 Style "Image Viewer*"          Icon norm/image-viewer.xpm,     MiniIcon mini/image-viewer.xpm
 Style "isdn-config"            Icon norm/network.xpm,          MiniIcon mini/network.xpm
 Style "ixset"                  Icon norm/todo.xpm,             MiniIcon mini/todo.xpm
+Style "licq-bin"               Icon norm/chat.xpm,             MiniIcon mini/chat.xpm
 Style "Lynx"                   Icon norm/www.xpm,              MiniIcon mini/www.xpm
 Style "Manual Page*"           Icon norm/help.xpm,             MiniIcon mini/help.xpm
 Style "matlab"                 Icon norm/science.xpm,          MiniIcon mini/science.xpm
@@ -364,8 +366,10 @@ Style "Trash Can"              Icon norm/file.xpm,             MiniIcon mini/fil
 Style "SDL_App"                Icon norm/game.xpm,             MiniIcon mini/game.xpm
 Style "*angband"               Icon norm/game.xpm,             MiniIcon mini/game.xpm
 Style "gcfclient"              Icon norm/game.xpm,             MiniIcon mini/game.xpm
+Style "Heroes ?.*"             Icon norm/game-action.xpm,      MiniIcon mini/game-action.xpm
 Style "Maelstrom"              Icon norm/game-action.xpm,      MiniIcon mini/game-action.xpm
 Style "MirrorMagic"            Icon norm/game-logic.xpm,       MiniIcon mini/game-logic.xpm
+Style "PowerManga*"            Icon norm/game-action.xpm,      MiniIcon mini/game-action.xpm
 Style "PySol"                  Icon norm/game-cards.xpm,       MiniIcon mini/game-cards.xpm
 Style "Rocks'n'Diamonds"       Icon norm/game-action.xpm,      MiniIcon mini/game-action.xpm
 Style "XGammon"                Icon norm/game.xpm,             MiniIcon mini/game.xpm
