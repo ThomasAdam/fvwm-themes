@@ -58,7 +58,7 @@ DestroyFunc FuncFvwmSetFont-ModuleSmallLabel
 AddToFunc   FuncFvwmSetFont-ModuleSmallLabel
 + I $0 $1 $2
 
-# big "Label" font for Buttons and Pager (or Window List modules)
-DestroyFunc FuncFvwmSetFont-ModuleBigLabel
-AddToFunc   FuncFvwmSetFont-ModuleBigLabel
+# large "Label" font for Buttons and Pager (or Window List modules)
+DestroyFunc FuncFvwmSetFont-ModuleLargeLabel
+AddToFunc   FuncFvwmSetFont-ModuleLargeLabel
 + I $0 $1 $2

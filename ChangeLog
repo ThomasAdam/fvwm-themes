@@ -1,6 +1,10 @@
+2001-07-11  migo  <migo@homemail.com>
+
+	* themes/*/fonts[/*]:
+	renamed BigLabel to LargeLabel
+
 2001-07-05  olicha  <olivier.chapuis@free.fr>
 
-	
 	* bin/fvwm-themes-config.in:
 	updated "minimal" reloading with the new components
 
