@@ -47,9 +47,10 @@ my $checkExec = "";
 my $configCenter = 0;
 my $comName = "script";
 my $comPid = 0;
-# in line doc
+# in line doc and script msg
 my $inLineDoc = "";
 my $lineLength = 70;
+my $getMsg = "";
 my $lang = "";
 
 GetOptions(
@@ -65,6 +66,7 @@ GetOptions(
 	"com-name=s"         => \$comName,
 	"in-line-doc=s"      => \$inLineDoc,
 	"line-length=i"      => \$lineLength,
+	"get-msg=s"          => \$getMsg,
 	"lang=s"             => \$lang,
 ) || wrongUsage();
 
@@ -88,6 +90,57 @@ elsif ($checkExec ne "") {
 }
 elsif ($inLineDoc ne "") {
 	buildDoc();
+}
+elsif ($getMsg ne "") {
+	buildMsg();
+}
+
+#----------------------------------------------------------------------------
+# build MSG for scripts
+
+sub buildMsg {
+
+	$lang = $ENV{'LANG'} if $lang eq "";
+	my $msgExt = "msg";
+	#$lang = "en";
+	#$lang = "ru";
+	my $return = "";
+	my $file = "";
+	$lang = substr($lang,0,2);
+	if ($getMsg =~ /^\//) {
+		$file = $getMsg;
+	}
+	else {
+		$file = "$localeDir/$lang/$getMsg.$msgExt";
+		$file = "$localeDir/C/$getMsg.$msgExt" if (! -f $file);
+		$file = "$localeDir/en/$getMsg.$msgExt" if (! -f $file);
+	}
+	if (! -f $file) {
+		print "END0003end\n";
+		exit 0;
+	}
+
+	open(MSG,"$file") || die "cannot open the msg for $getMsg";
+
+	while(<MSG>) {
+		chomp;
+		if (/([A-Za-z0-9]+)\s+\{(.*)\}\s*/) {
+			my $id = $1;
+			my $msg= $2;
+			my $l1 = length($id);
+			my $l2 = length($msg) - 1;
+			my $l3 = length($l2);
+			# illegal line!
+			next if $l1 > 12;
+			$id = $id . " " x (12 - $l1);
+			next if $l2 > 9999;
+			$l2 = "0" x (4-$l3) . $l2;
+			$return .= $id . $l2 . $msg;
+		}
+	}
+	print $return . "END         0003end\n";
+	close(MSG);
+	exit 0;
 }
 
 #----------------------------------------------------------------------------

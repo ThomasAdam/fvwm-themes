@@ -46,7 +46,18 @@ be alone on the line, the others concern only the line where they occur.
 	any line which begin with a # is ignored
 
 
-2. The .msg file
-----------------
+2. The .msg files
+-----------------
 
-We work on this ... even on the name ".msg" ...
+This files are used for the internationalization of the messages used
+by the FVWM Themes "programs". The format may change with the nature
+of the programs.
+For FvwmScript such a file consists of lines of the form:
+
+id[TAB or space]{text}
+
+where id is a word of at most 12 characters in [a-zA-Z0-9] (any line which
+do not start with such a word will be ignored). The id is followed by some
+"spaces" characters and the text must be in between { and } and can contain
+any character but "{" and "}". These lines can also be used to change the
+default font.

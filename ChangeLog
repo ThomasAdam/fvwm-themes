@@ -1,3 +1,12 @@
+2000-11-26  olicha  <olivier.chapuis@free.fr>
+
+	* locale/{fr,en,ru}/FvwmScript-ThemesCenter.msg:
+	* script/FvwmScript-ThemesCenter:
+	* locale/README:
+	* bin/fvwm-themes-script.in:
+	* bin/fvwm-themes-config.in:
+	Starting locale implementation for Script "messages"
+	
 2000-11-24  migo  <migo@homemail.com>
 
 	* locale/en/FvwmScript-ThemesCenter.txt:

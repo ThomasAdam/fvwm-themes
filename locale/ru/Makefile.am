@@ -2,6 +2,7 @@
 
 configdir = @FT_LOCALE_DIR@/ru
 
-config_DATA =
+config_DATA = \
+	FvwmScript-ThemesCenter.msg	
 
 EXTRA_DIST = $(config_DATA)

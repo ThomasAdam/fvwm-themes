@@ -66,283 +66,220 @@ Begin
 
     #Set $Lang = {en}
     #Set $Lang = {ru}
-    # Internationalization. Not a definitive solution: FVWM can have in
-    # the future (version 2.5) a command Local(text) and LocalFile file.
-    # The methode below is a ok for 3 or 4 languages ...
+    # ------------------------------- Internationalization.
+
     If $Lang == {} Then
     Begin
 	Set $cmd = {echo "$LANG" | cut -c1-2}
 	Set $Lang = (GetOutput $cmd 1 -1)
     End
-    Set $localeSet = 0
-    If $Lang == {fr} Then
+
+    Do {Echo New Methde}
+    Set $msg = {}
+    Set $id = {}
+    Set $cmd = {fvwm-themes-script --get-msg }FvwmScript-ThemesCenter{ --lang }$Lang
+    Set $MSG = (GetOutput $cmd 1 -1)
+    Set $index = 0
+    Set $notdone = 1
+    While $notdone == 1 Do
     Begin
-	Set $localeSet = 1
-	ChangeTitle 1 {Outils de Configurations:}
-	ChangeTitle 2 {       SИlecteur de ThХmes        |       Configuration GИnИrale        |        Sessions FVWM Themes     }
-	ChangeTitle 5 {Liste des ThХmes}
-	ChangeTitle 7 {LisezMoi}
-	ChangeTitle 8 {SИlectionner}
-	ChangeTitle 9 {Le look}
-	Set $l_msg_MustSelecteTheme = {Vous devez sИlectionner un theme !}
-	Set $l_B_Component = {Composantes de }
-	Set $l_A_Component = {:}
-	ChangeTitle 11 {Pas de thХme sИlectionnИ}
-	ChangeTitle 13 {SИlectionner}
-	ChangeTitle 14 {Info}
-	ChangeTitle 15 {AperГu}
-	Set $l_MustSelectThemeComp = {Vous devez sИlectionner une composante !}
-	Set $l_MustSelectCurrentComp = {Vous devez sИlectionner une composante !}
-	Set $l_NoScreenShot = {Les AperГus ne sont pas encore implИmentИs}
-	Set $l_NoHelp = {L'aide n'est pas encore implИmentИs}
-	ChangeTitle 16 {Composantes des ThХmes UtilisИes et SИlectionnИes}
-	ChangeTitle 18 {PropriИtИs}
-	ChangeTitle 19 {RИtablir}
-	ChangeTitle 20 {Enlever}
-	Set $l_Lock = {Bloquer}
-	Set $l_Unlock = {DИbloquer}
-	Set $l_NoProperties = {Cette composente n'a pas d'options ni de sous composantes}
-	Set $l_OnlyThreeEditor = {Vous pouvez utilisez seulement 3 Иditeurs de PropriИtИs}
-	Set $l_PropertyEditor = {L'Иditeur de PropriИtИs pour}
-	Set $l_AlreadyActive = {est dИjЮ utilisИ}
-	Set $l_CompNotSet = {Cette composente n'est pas sИlectionnИe}
-	Set $l_DropNotImp = {"Supprimer" sera implИmentИ un jour!}
-	Set $l_NoDrop = {Vous ne pouvez pas supprimer cette composente}
+	Set $index = (Add $index 1)
+	Set $id = (StrCopy $MSG $index (Add $index 11))
+	Set $index = (Add $index 12)
+	Set $tmp = (StrCopy $MSG $index (Add $index 3))
+	Set $index = (Add $index 4)
+	Set $pos = (Add $index $tmp)
+	Set $msg = (StrCopy $MSG $index $pos)
+	Set $index = (Add $index $tmp)
+	#Do {Echo id:}$id{:msg:}$msg{:}
+
+	If $index > 9999 Then
+	    Set $notdone = 0
+	If $id == {END         } Then
+	    Set $notdone = 0
+	If $id == {} Then
+	    Set $notdone = 0
+	# TS
+	If $id == {CT          } Then
+	    ChangeTitle 1 $msg
+	If $id == {CTList      } Then
+	    ChangeTitle 2 $msg
+	If $id == {ThemesList  } Then
+	    ChangeTitle 5 $msg
+	If $id == {Readme      } Then
+	    ChangeTitle 7 $msg
+	If $id == {LoadAll     } Then
+	    ChangeTitle 8 $msg
+	If $id == {LoadLook    } Then
+	    ChangeTitle 9 $msg
+	If $id == {MSelTheme   } Then
+	    Set $l_MustSelecteTheme = $msg
+	If $id == {AComponent  } Then
+	    Set $l_A_Component = $msg
+	If $id == {AComponent  } Then
+	    Set $l_A_Component = $msg
+	If $id == {NoThemeSel  } Then
+	    ChangeTitle 11 $msg
+	If $id == {Load        } Then
+	    ChangeTitle 13 $msg
+	If $id == {Info        } Then
+	Begin
+	    ChangeTitle 14 $msg
+	    ChangeTitle 24 $msg
+	End
+	If $id == {View        } Then
+	    ChangeTitle 15 $msg
+   	If $id == {MSelThemeCp } Then
+	    Set $l_MustSelectThemeComp = $msg
+   	If $id == {MSelCC      } Then
+	    Set $l_MustSelectCurrentComp = $msg
+	If $id == {NoScreenShot} Then
+	    Set $l_NoScreenShot = $msg
+	If $id == {NoHelp      } Then
+	    Set $l_NoHelp = $msg
+	If $id == {USThemeComp } Then
+	    ChangeTitle 16 $msg	    
+	If $id == {Properties  } Then
+	    ChangeTitle 18 $msg
+	If $id == {Restore     } Then
+	Begin
+	    ChangeTitle 19 $msg
+	    ChangeTitle 23 $msg
+	End
+	If $id == {Drop        } Then
+	Begin
+	    ChangeTitle 20 $msg
+	    ChangeTitle 25 $msg
+	End
+	If $id == {Lock        } Then
+	    Set $l_Lock = $msg
+	If $id == {UnLock      } Then
+	    Set $l_UnLock = $msg
+	If $id == {NoProp      } Then
+	    Set $l_NoProperties = $msg
+	If $id == {ThreeEditor } Then
+	    Set $l_OnlyThreeEditor = $msg
+	If $id == {PropEditor  } Then
+	    Set $l_PropertyEditor = $msg
+	If $id == {AActive     } Then
+	    Set $l_AlreadyActive = $msg
+	If $id == {CompNotSet  } Then
+	    Set $l_CompNotSet = $msg
+	If $id == {DropNotImp  } Then
+	    Set $l_DropNotImp = $msg
+	If $id == {NoDrop      } Then
+	    Set $l_NoDrop = $msg
 	# GS
-	ChangeTitle 21 {Composantes UtilisИes et SИlectionnИes}
-	ChangeTitle 23 {RИtablir}
-	ChangeTitle 24 {Info}
-	ChangeTitle 25 {Enlever}
-	ChangeTitle 26 {SИlectionnez une composante}
-	Set $l_VariantsFor = {Variante pour}
-	ChangeTitle 28 {SИlectionner}
-	Set $l_MustSelectVariant = {Vous devez sИlectionner une Variante !}
+	If $id == {SetUSComp   } Then
+	    ChangeTitle 21 $msg
+	If $id == {SelAComp    } Then
+	    ChangeTitle 26 $msg
+	If $id == {VariantsFor } Then
+	    Set $l_VariantsFor = $msg
+	If $id == {Set         } Then
+	    ChangeTitle 28 $msg
+	If $id == {MSelVar     } Then
+	    Set $l_MustSelectVariant = $msg
 	# SM
-	Set $l_CurrentSession = {Session Courante}
-	Set $l_UpTime = {Up Time}
-	ChangeTitle 40 {Liste des Sessions de FVWM Themes}
-	Set $l_FinishEdit = {Vous n'avez pas fini d'Иditer la session}
-	Set $l_SelectedSession = {Session SИlectionnИe:}
-	Set $l_MustSelectSession = {Vous devez sИlectionner une session}
-	Set $l_B_Edit = {Edition de la session }
-	Set $l_A_Edit = {}
-	ChangeTitle 42 {иditer}
-	ChangeTitle 43 {Ajouter}
-	ChangeTitle 44 {Supprimer}
-	ChangeTitle 45 {Session SИlectionnИe:}
-	ChangeTitle 46 {* Pour charger une session, sИlectionnИ la et cliquer sur Appliquer            }
-	ChangeTitle 47 {* Pour recharger la session courante Cliquer sur "RafrИchire"                  }
-	ChangeTitle 48 {* Cliquer sur "Mise Ю Jour" pour reconstruire la liste des sessions            }
-	ChangeTitle 58 {* Si vous Appliquer, les changements non sauvИs des autres outils seront perdus}
-	Set $l_AddSession = {Ajoue d'une session}
-	Set $l_NotRemoveMain = {Vous ne pouvez pas supprimer la session "main"}
-	Set $l_NotRemoveCur = {Vous ne pouvez pas supprimer la session courante}
-	Set $l_B_ReallyRemove = {On supprime vraiment }
-	Set $l_A_ReallyRemove = { ?}
-	ChangeTitle 50 {Nom de la Session:}
-	Set $l_Ok = {OK}
-	Set $l_Cancel = {Annuler}
-	Set $l_Yes = {Oui}
-	Set $l_No = {Non}
-	Set $l_NameNotValid = {Le nom pour la session n'est pas correct}
- 	Set $l_NameAlreadyUse = {Le nom pour la session est dИjЮ utilisИ!}
-	Set $l_SysErr = {Une erreure "system" inconnu a eu lieu, GASP!}
-	Set $l_ClickNewSession = {Cliquer sur "Appliquer" pour charger votre nouvelle session}
-	ChangeTitle 53 $l_Ok
-	ChangeTitle 54 $l_Cancel
-	
-	# End
-	ChangeTitle 95 {Les messages d'erreurs et d'informations s'affichent ici}
-	Set $l_NoNewComp = {Aucune composante n'est sИlectionnИes}
-	Set $l_ApplyThemeConfig = {Chargement de la nouvelle configurartion}
-	Set $l_ApplyNewSession = {Chargement de la nouvelle session}
-	Set $l_Refresh = {RafrИchisement de la configuration}
-	Set $l_Update = {Mise Ю jour de la configuration}
-	ChangeTitle 96 {Appliquer}
-	ChangeTitle 97 {RafrИchire}
-	ChangeTitle 94 {Mise Ю jour}
-	ChangeTitle 98 {Aide}
-	ChangeTitle 99 {Quitter}
-    End
-    If $Lang == {ru} Then
-    Begin
-	Set $localeSet = 1
-	Set $SelFont = {-cronyx-times-bold-r-*-*-12-*-*-*-*-*-koi8-*}
-	Set $ShadeFont = {-cronyx-times-medium-r-*-*-12-*-*-*-*-*-koi8-*}
-	Set $FixedFont = {-cronyx-fixed-medium-r-semicondensed--*-*-*-*-*-*-koi8-*}
-	Set $nonDefaultFont = 1
-	ChangeTitle 1 {Раздел Конфигурации:}
-	ChangeTitle 2 {       Выбор Тем              |       Общие Установки       |       Сессии FVWM Themes      }
-	ChangeTitle 5 {Список Тем:}
-	ChangeTitle 7 {Инфо}
-	ChangeTitle 8 {Взять Все}
-	ChangeTitle 9 {Взять Вид}
-	Set $l_msg_MustSelecteTheme = {Сначала выберите тему}
-	Set $l_B_Component = {Компоненты темы }
-	Set $l_A_Component = {:}
-	ChangeTitle 11 {Не выбрана тема}
-	ChangeTitle 13 {Взять}
-	ChangeTitle 14 {Инфо}
-	ChangeTitle 15 {Снимок}
-	Set $l_MustSelectThemeComp = {Сначала выберите компонент темы}
-	Set $l_MustSelectCurrentComp = {Сначала выберите использ. или установ. компонент}
-	Set $l_NoScreenShot = {Снимки пока не доступны}
-	Set $l_NoHelp = {Help пока не доступен}
-	ChangeTitle 16 {Используемые и установленные компоненты:}
-	ChangeTitle 18 {Свойства}
-	ChangeTitle 19 {Возврат}
-	ChangeTitle 20 {Удалить}
-	Set $l_Lock = {Запереть}
-	Set $l_Unlock = {Отпереть}
-	Set $l_NoProperties = {Этот компонент не имеет опций, вариантов или под-компонентов}
-	Set $l_PropertyEditor = {Редактор свойств для}
-	Set $l_AlreadyActive = {уже активный}
-	Set $l_OnlyThreeEditor = {Число редакторов опций ограничено тремя}
-	Set $l_CompNotSet = {Этот компонент не пере-установлен}
-	Set $l_DropNotImp = {Пока не доступно}
-	Set $l_NoDrop = {Этот компонент не может быть удален}
-	# GS
-	ChangeTitle 21 {Установки: Используемые и установленные компоненты:}
-	ChangeTitle 23 {Возврат}
-	ChangeTitle 24 {Инфо}
-	ChangeTitle 25 {Убрать}
-	ChangeTitle 26 {Выберите Компонент}
-	Set $l_VariantsFor = {Варианты для}
-	ChangeTitle 28 {Установить}
-	Set $l_MustSelectVariant = {Сначала выберите вариант}
+	If $id == {CurSession  } Then
+	    Set $l_CurrentSession = $msg
+	If $id == {UpTime      } Then
+	    Set $l_UpTime = $msg
+	If $id == {SessionsList} Then
+	    ChangeTitle 40 $msg
+	If $id == {FinishEdit  } Then
+	    Set $l_FinishEdit = $msg
+	If $id == {SelSession  } Then
+	Begin
+	    Set $l_SelectedSession = $msg
+	    ChangeTitle 45 $msg
+	End
+	If $id == {MSelSession } Then
+	    Set $l_MustSelectSession = $msg
 	# SM
-	Set $l_CurrentSession = {Текущая Сессия}
-	Set $l_UpTime = {Время Работы}
-	ChangeTitle 40 {Список Сессий FVWM Themes}
-	Set $l_FinishEdit = {Вы не закончили редактировать сессию}
-	Set $l_SelectedSession = {Выбранная сессия:}
-	Set $l_MustSelectSession = {Сначала выберите сессию}
-	Set $l_B_Edit = {Редактор сессии }
-	Set $l_A_Edit = {}
-	ChangeTitle 42 {Изменить}
-	ChangeTitle 43 {Добавить}
-	ChangeTitle 44 {Удалить}
-	ChangeTitle 45 {Выбранная сессия:}
-	ChangeTitle 46 {* Для загрузки сессии, выберите её и нажмите на "Применить"                    }
-	ChangeTitle 47 {* Для перезагрузки текущей сессии, нажмите на "Освежить"                       }
-	ChangeTitle 48 {* Нажатие на "Обновить" перестроит текущую конфигурацию                        }
-	ChangeTitle 58 {* При выборе "Применить" потеряются неприменнённые изменения в других разделах }
-	Set $l_AddSession = {Добавить новую сессию}
-	Set $l_NotRemoveMain = {Вы не можете удалить сессию main}
-	Set $l_NotRemoveCur = {Вы не можете удалить текущую сессию!}
-	Set $l_B_ReallyRemove = {Действительно удалить сессию }
-	Set $l_A_ReallyRemove = {?}
-	ChangeTitle 50 {Название сессии:}
-	Set $l_Ok = {Согласие}
-	Set $l_Cancel = {Отмена}
-	Set $l_Yes = {Да}
-	Set $l_No = {Нет}
-	Set $l_NameNotValid = {Такое название сессии не может быть использованно}
-	Set $l_NameAlreadyUse = {Название сессии уже используется!}
-	Set $l_SysErr = {Неизвестная "системная" ошибка, Караул!}
-	Set $l_ClickNewSession = {Выберите "Применить" для загрузки вашей новой сессии}
-	ChangeTitle 53 $l_Ok
-	ChangeTitle 54 $l_Cancel
-	# End
-	ChangeTitle 95 {Место для информационных и предупреждающих сообщений}
-	Set $l_ApplyThemeConfig = {Применить новую конфигурацию тем}
-	Set $l_ApplyNewSession = {Загрузка новой сессии}
-	Set $l_Refresh = {Перегрузка текущей конфигурации}
-	Set $l_Update = {Обновление текущей конфигурации}
-	ChangeTitle 96 {Применить}
-	ChangeTitle 97 {Освежить}
-	ChangeTitle 94 {Обновить}
-	ChangeTitle 98 {Помощь}
-	ChangeTitle 99 {Выход}
+	If $id == {BEdit       } Then
+	    Set $l_B_Edit = $msg
+	If $id == {AEdit       } Then
+	    Set $l_A_Edit = $msg
+	If $id == {Edit        } Then
+	    ChangeTitle 42 $msg
+	If $id == {Add         } Then
+	    ChangeTitle 43 $msg
+	If $id == {Remove      } Then
+	    ChangeTitle 44 $msg
+	If $id == {SessionH1   } Then
+	    ChangeTitle 46 $msg
+	If $id == {SessionH2   } Then
+	    ChangeTitle 47 $msg
+	If $id == {SessionH3   } Then
+	    ChangeTitle 48 $msg
+	If $id == {SessionH4   } Then
+	    ChangeTitle 58 $msg
+	If $id == {AddSession  } Then
+	    Set $l_AddSession = $msg
+	If $id == {NRemoveMain } Then
+	    Set $l_NotRemoveMain = $msg
+	If $id == {NRemoveCur  } Then
+	    Set $l_NotRemoveCur = $msg
+	If $id == {BReallyRem  } Then
+	    Set $l_B_ReallyRemove = $msg
+	If $id == {AReallyRem  } Then
+	    Set $l_A_ReallyRemove = $msg
+	If $id == {SessionName } Then
+	    ChangeTitle 50 $msg
+	If $id == {ConfigOf    } Then
+	    ChangeTitle 51 $msg
+	If $id == {Ok          } Then
+	    Set $l_Ok = $msg
+	If $id == {Cancel      } Then
+	    Set $l_Cancel = $msg
+	If $id == {Yes         } Then
+	    Set $l_Yes = $msg
+	If $id == {No          } Then
+	    Set $l_No = $msg
+	If $id == {NameNotValid} Then
+	    Set $l_NameNotValid = $msg
+	If $id == {NameAlreadyU} Then
+	    Set $l_NameAlreadyUse = $msg
+	If $id == {SysErr      } Then
+	    Set $l_SysErr = $msg
+	If $id == {CNewSession } Then
+	    Set $l_ClickNewSession = $msg
+	If $id == {NoNewComp   } Then
+	    Set $l_NoNewComp = $msg
+	If $id == {AThemeConf  } Then
+	    Set $l_ApplyThemeConfig = $msg
+	If $id == {ANewSession } Then
+	    Set $l_ApplyNewSession= $msg
+	If $id == {RefreshConf } Then
+	    Set $l_Refresh = $msg
+	If $id == {UpdateConf  } Then
+	    Set $l_Update = $msg
+	If $id == {MsgInfo     } Then
+	    ChangeTitle 95 $msg
+	If $id == {Apply       } Then
+	    ChangeTitle 96 $msg
+	If $id == {Refresh     } Then
+	    ChangeTitle 97 $msg
+	If $id == {Update      } Then
+	    ChangeTitle 94 $msg
+	If $id == {Help        } Then
+	    ChangeTitle 98 $msg
+	If $id == {Quit        } Then
+	    ChangeTitle 99 $msg
+	If $id == {ChangeFont  } Then
+	    Set $nonDefaultFont = $msg
+	If $id == {SelFont     } Then
+	    Set $SelFont = $msg
+	If $id == {ShadeFont   } Then
+	    Set $ShadeFont = $msg
+	If $id == {FixedFont   } Then
+	    Set $FixedFont = $msg
     End
-    If $localeSet == 0 Then
-    Begin
-	Set $Lang = {en}
-	ChangeTitle 1 {Configuration Tools:}
-	ChangeTitle 2 {       Themes Selector        |       General Settings        |       FVWM Themes Sessions      }
-	ChangeTitle 5 {List of Themes:}
-	ChangeTitle 7 {ReadMe}
-	ChangeTitle 8 {Load All}
-	ChangeTitle 9 {Load Look}
-	Set $l_msg_MustSelecteTheme = {You must select a theme first}
-	Set $l_B_Component = {}
-	Set $l_A_Component = { Components:}
-	ChangeTitle 11 {No Theme Selected}
-	ChangeTitle 13 {Load}
-	ChangeTitle 14 {Info}
-	ChangeTitle 15 {View}
-	Set $l_MustSelectThemeComp = {You must select a theme component first}
-	Set $l_MustSelectCurrentComp = {You must select a used or set component first}
-	Set $l_NoScreenShot = {ScreenShots are not available yet}
-	Set $l_NoHelp = {Help is not available yet}
-	ChangeTitle 16 {Used and Set Theme Components:}
-	ChangeTitle 18 {Properties}
-	ChangeTitle 19 {Restore}
-	ChangeTitle 20 {Drop}
-	Set $l_Lock = {Lock}
-	Set $l_Unlock = {Unlock}
-	Set $l_NoProperties = {This used or set component has no options, variants or subcomponents}
-	Set $l_PropertyEditor = {Property editor for}
-	Set $l_AlreadyActive = {already active}
-	Set $l_OnlyThreeEditor = {Number of Property editors is limited to 3}
-	Set $l_CompNotSet = {This used component is not re-set}
-	Set $l_DropNotImp = {Dropping currently is not available}
-	Set $l_NoDrop = {This component cannot be dropped}
-	# GS
-	ChangeTitle 21 {Settings: Used and Set Components}
-	ChangeTitle 23 {Restore}
-	ChangeTitle 24 {Info}
-	ChangeTitle 25 {Drop}
-	ChangeTitle 26 {Select a Component}
-	Set $l_VariantsFor = {Variants for}
-	ChangeTitle 28 {Set}
-	Set $l_MustSelectVariant = {You must select a variant}
-	# SM
-	Set $l_CurrentSession = {Current Session}
-	Set $l_UpTime = {Up Time}
-	ChangeTitle 40 {List of FVWM Themes Sessions}
-	Set $l_FinishEdit = {You didn't finish to edit the session}
-	Set $l_SelectedSession = {Selected Session:}
-	Set $l_MustSelectSession = {You must select a session}
-	Set $l_B_Edit = {Edit }
-	Set $l_A_Edit = { session}
-	ChangeTitle 42 {Edit}
-	ChangeTitle 43 {Add}
-	ChangeTitle 44 {Remove}
-	ChangeTitle 45 {Selected Session:}
-	ChangeTitle 46 {* To load a session, select it and click on Apply                              }
-	ChangeTitle 47 {* To Reload the current session, click on Refresh                              }
-	ChangeTitle 48 {* A click on "Update" will rebuild the current configuration                   }
-	ChangeTitle 58 {* If you Apply, the not applied changes in the others config tools will be lost}
-	Set $l_AddSession = {Add a new session}
-	Set $l_NotRemoveMain = {You cannot remove the main session}
-	Set $l_NotRemoveCur = {You cannot remove the currently used session!}
-	Set $l_B_ReallyRemove = {Really Remove }
-	Set $l_A_ReallyRemove = {?}
-	ChangeTitle 50 {Session Name:}
-	Set $l_Ok = {OK}
-	Set $l_Cancel = {Cancel}
-	Set $l_Yes = {Yes}
-	Set $l_No = {No}
-	Set $l_NameNotValid = {The name of the session is not valid}
-	Set $l_NameAlreadyUse = {The name of the session is already used!}
-	Set $l_SysErr = {An Unknown "system" error happen, GASP!}
-	Set $l_ClickNewSession = {Click on Apply to load your new session}
-	ChangeTitle 53 $l_Ok
-	ChangeTitle 54 $l_Cancel
-	# End
-	ChangeTitle 95 {Warning and infomation messages are displayed here}
-	Set $l_ApplyThemeConfig = {Applying new theme configurations}
-	Set $l_ApplyNewSession = {Loading the new session}
-	Set $l_Refresh = {Refreshing the current configuration}
-	Set $l_Update = {Updating the current configuration}
-	ChangeTitle 96 {Apply}
-	ChangeTitle 97 {Refresh}
-	ChangeTitle 94 {Update}
-	ChangeTitle 98 {Help}
-	ChangeTitle 99 {Quit}
-    End
-    
+    Do {Echo END}	
+
+    ChangeTitle 53 $l_Ok
+    ChangeTitle 54 $l_Cancel
     ChangeTitle 100 $l_Lock
 
     # found the FvwmScript pid
@@ -464,7 +401,8 @@ Begin
 	ChangeFont 48 $FixedFont
 	ChangeFont 58 $FixedFont
 	ChangeFont 49 $SelFont
-	ChangeFont 50 $SelFont
+	ChangeFont 50 $FixedFont
+	ChangeFont 51 $FixedFont
 	ChangeFont 53 $SelFont
 	ChangeFont 54 $SelFont
 	ChangeFont 57 $SelFont
@@ -1960,10 +1898,10 @@ End
 Widget 50
 Property
     Flags NoReliefString
-    Position 30 325
-    Size 130 20
+    Position 20 331
+    Font fixed
     Type ItemDraw
-    Title {}
+    Title {                       }
 Main
 Case message of
     SingleClic :
@@ -1990,7 +1928,7 @@ Property
     Flags NoReliefString
     Position 160 330
     Type ItemDraw
-    Title {                }
+    Title {main}
 Main
 Case message of
     SingleClic :
@@ -1998,13 +1936,14 @@ Case message of
     End
 End
 
-# Need to translate 51, 52 and 53
+# Configurtaion of ...
 Widget 51
 Property
     Flags NoReliefString
-    Position 320 330
+    Position 310 331
     Type ItemDraw
-    Title {Config:}
+    Font fixed
+    Title {                      }
 Main
 Case message of
     SingleClic :
@@ -2015,9 +1954,9 @@ End
 Widget 52
 Property
     Flags NoReliefString
-    Position 370 325
+    Position 450 325
     Type PopupMenu
-    Title {   Default Configuration   }
+    Title {   Default   }
 Main
 Case message of
     SingleClic :
@@ -2029,7 +1968,7 @@ End
 Widget 53
 Property
     Flags NoReliefString
-    Position  185 365
+    Position  185 370
     Size 70 20
     Type PushButton
     Title {}
@@ -2106,7 +2045,7 @@ End
 Widget 54
 Property
     Flags NoReliefString
-    Position 345 365
+    Position 345 370
     Size 70 20
     Type PushButton
     Title {}

@@ -2339,10 +2339,10 @@ sub comLoop {
 		# SM
 		elsif ($command =~ /^session-info$/) {
 			$return = "$currentSession\n$uptime\n";
-			my $configList = "Default Configuration|";
+			my $configList = "Default|";
 			foreach(@$sessionList) {
 				$return .= "$_";
-				$configList .= "$_ Configuration|";
+				$configList .= "$_|";
 				$return .= " "x10 . "(Current)" if $_ eq $currentSession;
 				$return .= "|";
 			}
