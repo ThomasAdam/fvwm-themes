@@ -54,7 +54,7 @@ PipeRead 'if [ -n "$FT_XINERAMA_PWIDTH" ]; then echo "*FvwmButtons-Panel: Geomet
 *FvwmButtons-Panel: (3x7+1+2, Frame 0, Padding 0 0, Swallow xclock `Exec xclock -padding 5 -geometry +5000+5000 -bg $$[bg.cs10] -fg $$[fg.cs10] -hd $$[shadow.cs13] -hl $$[hilight.cs13]`)
 *FvwmButtons-Panel: (3x2+4+0, Frame 1, Colorset 11)
 #*FvwmButtons-Panel: (3x7+4+2, Frame 0, Icon module/large/date.xpm, Padding 0 0)
-*FvwmButtons-Panel: (3x7+4+2, Frame 0,Padding 0 0, Swallow FvwmApplet-CDEDayLarge `FvwmScript themes/cde/scripts/FvwmApplet-CDEDayLarge 10`)
+*FvwmButtons-Panel: (3x7+4+2, Frame 0, Padding 0 0, Swallow FvwmApplet-CDEDayLarge `FvwmScript themes/cde/scripts/FvwmApplet-CDEDayLarge 10`)
 *FvwmButtons-Panel: (3x2+7+0, Frame 1, Icon module/large/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmShells rectangle $widthx$height+$left+$top@g o+50 -100m')
 *FvwmButtons-Panel: (3x7+7+2, Frame 0, Icon module/large/terminal.xpm, Padding 0 0, Action FuncFvwmTerminal, Action (Mouse 2) FuncFvwm2Terminal, Action (Mouse 3) FuncFvwm3Terminal)
 *FvwmButtons-Panel: (3x2+10+0, Frame 1, Icon module/large/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmPrograms rectangle $widthx$height+$left+$top@g o+50 -100m')
