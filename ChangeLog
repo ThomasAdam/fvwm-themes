@@ -20,6 +20,10 @@
 	* themes/default/menus-programs:
 	added Web Browser submenu, it is in both Programs and Web Browsing
 
+	* themes/migo/globalfeel:
+	restored MwmDecors (needed for panel/xmms), but I want NoDecorHints
+	for transients...
+
 2002-06-10  migo  <migo@homemail.com>
 
 	* scripts/FvwmApplet-DayClock:
