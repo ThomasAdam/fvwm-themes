@@ -1,3 +1,8 @@
+2000-10-12  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	fixed reseting component lock on refresh
+
 2000-10-11  migo  <migo@homemail.com>
 
 	* themes/default/settings/iconstyles/style-icon-miniicon: updated

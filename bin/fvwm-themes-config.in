@@ -606,6 +606,8 @@ sub new ($$;$$) {
 
 			$cc->{'memory'} = $componentCfg->{'memory'}
 				if exists $componentCfg->{'memory'};
+			$cc->{'locked'} = $componentCfg->{'locked'}
+				if exists $componentCfg->{'locked'};
 			$cc->{'current'} = $componentCfg->{'current'}
 				if exists $componentCfg->{'current'};
 			if (ref($componentCfg->{'option'}) eq 'ARRAY') {
