@@ -472,11 +472,10 @@ sub transform {
 		my $haveToAddBorder = 0;
 		my ($xBorder, $yBorder) = (0, 0);
 		my $borderColor = "Gray0";
-		### migo: colon as a delimiter will be removed soon
-		if ($convert && $addBorderOpt{$type} =~ /^\+(\d+)\+(\d+)[,:]*(.*)/) {
+		if ($convert && $addBorderOpt{$type} =~ /^\+(\d+)\+(\d+)[,]*(.*)/) {
 			$xBorder = $1; $yBorder = $2;
 			$borderColor = $3; $haveToAddBorder = 1;
-		} elsif ($addBorder =~ /^\+(\d+)\+(\d+)[,:]*(.*)/) {
+		} elsif ($addBorder =~ /^\+(\d+)\+(\d+)[,]*(.*)/) {
 			$xBorder = $1; $yBorder = $2;
 			$borderColor = $3; $haveToAddBorder = 1;
 		}
@@ -640,15 +639,14 @@ sub getTile($) {
 
 	if ($tile =~ /^\s*color:(.*)\s*/) {
 		my $color = $1;
-		### migo: colon as a delimiter will be removed soon
-		if ($color =~ /^\+(\d+)\+(\d+)[,:](.*)/) {
+		if ($color =~ /^\+(\d+)\+(\d+)[,](.*)/) {
 			$color = encode16bpp($3);
 			$x=$1; $y=$2;
 		}
 		$xpm = createMonoXpm(1,1,$color);
 	} elsif ($tile =~ /^\s*expand:(.*)\s*/) {
 		$xpm = $1;
-		if ($xpm =~ /^\+(\d+)\+(\d+)[,:](.*)/) {
+		if ($xpm =~ /^\+(\d+)\+(\d+)[,](.*)/) {
 			$xpm = $3;
 			$x=$1; $y=$2;
 		}
@@ -656,7 +654,7 @@ sub getTile($) {
 		$type = "expand";
 	} elsif ($tile =~ /^\s*center:(.*)\s*/) {
 		$tile = $1;
-		if ($tile =~ /^\+(\d+)\+(\d+)[,:](.*)/) {
+		if ($tile =~ /^\+(\d+)\+(\d+)[,](.*)/) {
 			$tile = $3;
 		}
 		die "no tile xpm $tile" unless -f $tile;
@@ -664,14 +662,14 @@ sub getTile($) {
 		$type = "center";
 	}  elsif ($tile =~ /^\s*tile:(.*)\s*/) {
 		$tile = $1;
-		if ($tile =~ /^\+(\d+)\+(\d+)[,:](.*)/) {
+		if ($tile =~ /^\+(\d+)\+(\d+)[,](.*)/) {
 			$tile = $3;
 			$x=$1; $y=$2;
 		}
 		die "no tile xpm $tile" unless -f $tile;
 		$xpm = loadXpm($tile);
 	} else {
-		if ($tile =~ /^\+(\d+)\+(\d+)[,:](.*)/) {
+		if ($tile =~ /^\+(\d+)\+(\d+)[,](.*)/) {
 			$tile = $3;
 			$x=$1; $y=$2;
 		}
@@ -822,8 +820,7 @@ sub processSky() {
 
 	## evaluate the second gradient color ourselves if only one is given
 	## this is hilightColor() with a different factor...
-	### migo: colon as a delimiter will be removed soon
-	if ($skyColorsOpt && $skyColorsOpt !~ /[,:]/) {
+	if ($skyColorsOpt && $skyColorsOpt !~ /[,]/) {
 		my $color = encode16bpp($skyColorsOpt);
 		my $a = bppTo3intArray($color);
 		my $i;
@@ -835,7 +832,7 @@ sub processSky() {
 		$skyColorsOpt = encode16bpp($a) . ",$skyColorsOpt";
 	}
 
-	my @tmp = split('[,:]', $skyColorsOpt);
+	my @tmp = split('[,]', $skyColorsOpt);
 	my $c;
 	foreach $c (@tmp) {
 		$skyColors->[$nbrColors] = bppTo3intArray(encode16bpp($c));
@@ -1560,8 +1557,7 @@ sub colorizeXpm() {
 
   	my $nbrColors = 0;
 	my $rizeColors = [];
-	### migo: colon as a delimiter will be removed soon
-	@tmp = split('[,:]', $rizeColorsOpt);
+	@tmp = split('[,]', $rizeColorsOpt);
 
 	if ($tmp[0] =~ /^\s*top\s*[[#A-Za-z]/) {
 		$min = int($min);

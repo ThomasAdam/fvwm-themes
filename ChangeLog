@@ -1,6 +1,15 @@
 2001-03-20  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-image.in:
+	remove ":" as seprator
+
+	* bin/fvwm-themes-config.in:
+	s/wm-lock/lock/ also add menu icons in the Themes management menu
+	do not know if this a good idea.
+
+2001-03-20  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-image.in:
 	definitive version of --kde2-hi option
 
 2001-03-20  migo  <migo@homemail.com>

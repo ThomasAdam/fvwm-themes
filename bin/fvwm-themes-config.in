@@ -1111,7 +1111,7 @@ sub getAllThemeSubMenusRc ($) {
 			my $groupAction = !@$groupComponents? "Nop":
 				'FuncFvwmThemesConfigAndUpdate "' . join(' ',
 					map { "--load $_\@$theme" } @$groupComponents) . '"';
-			$menuRc .= qq(+ "[ $name ]"\t$groupAction\n);
+			$menuRc .= qq(+ "[ $name ]%menu/folder-open.xpm%"\t$groupAction\n);
 		}
 		$menuRc .= qq(+ "" Nop\n);
 		$menuRc .= join('', map {
@@ -1120,16 +1120,16 @@ sub getAllThemeSubMenusRc ($) {
 			$used ||= $used0;
 			my $label = "$_"; $label .= "\t(used)" if $used0;
 #			m:/:? "":  # ignore contained components for now
-			qq(+ "$label"\tFuncFvwmThemesLoad "$_\@$theme"\n)
+			qq(+ "$label%menu/item.xpm%"\tFuncFvwmThemesLoad "$_\@$theme"\n)
 		} @$components);
 
 		my $readmeFile = getThemeDir($theme) . "/README";
 		if (-r $readmeFile) {
 			$menuRc .= qq(+ "" Nop\n);
-			$menuRc .= qq(+ "README"\tFuncFvwmViewFile "$readmeFile"\n);
+			$menuRc .= qq(+ "README%menu/information.xpm%"\tFuncFvwmViewFile "$readmeFile"\n);
 		}
 		my $label = "$theme"; $label .= "\t(used)" if $used;
-		$listRc .= qq(+ "$label"\tPopup "MenuFvwmTheme-$theme"\n);
+		$listRc .= qq(+ "$label%menu/folder.xpm%"\tPopup "MenuFvwmTheme-$theme"\n);
 	}
 	return ($listRc, $menuRc);
 }
@@ -1140,7 +1140,7 @@ sub getOwnThemeSubMenusRc ($) {
 	my $name = $self->{'name'};
 	my $id = $self->{$idKey};
 	my $selfMenuName = "MenuFvwmTheme-$id";
-	my $listRc = qq(+ "$id"\tPopup "$selfMenuName"\n);
+	my $listRc = qq(+ "$id%menu/folder.xpm%"\tPopup "$selfMenuName"\n);
 	my @menuRc = ("", "", "");  # 3 parts of the component menu
 	my $menusRc = "";
 	my $dropExtraArgs = "";
@@ -1247,12 +1247,12 @@ sub getOwnThemeSubMenusRc ($) {
 		my $lockCommand = qq(FuncFvwmThemesSetLocked "$_=$nonLocked");
 		my $infoCommand = 'Exec exec xmessage "Help is not available yet"';
 		$menusRc .= qq(+ "%menu/choice-no.xpm%&Drop this component"\t$dropCommand\n);
-		$menusRc .= qq(+ "%menu/wm-lock.xpm%&$lockLabel this component"\t$lockCommand\n);
+		$menusRc .= qq(+ "%menu/lock.xpm%&$lockLabel this component"\t$lockCommand\n);
 		$menusRc .= qq(+ "%menu/information.xpm%&Info for $_\@$cc->{'theme'}"\t$infoCommand\n);
 
-		my $lockIcon = $cc->{'locked'}? "wm-lock": "empty";
+		my $lockIcon = $cc->{'locked'}? "menu/lock": "16x16-general/empty";
 		# use $name instead of $_?
-		$menuRc[$m] .= qq(+ "%menu/$lockIcon.xpm%$_"\tPopup "$selfMenuName/$_"\n) unless m:/:;
+		$menuRc[$m] .= qq(+ "%$lockIcon.xpm%$_"\tPopup "$selfMenuName/$_"\n) unless m:/:;
 	}
 	if ($dropExtraArgs) {
 		push @menuRc, qq(+ "%menu/choice-no.xpm%&Drop all extra"\tFuncFvwmThemesConfigAndUpdate "$dropExtraArgs"\n);
@@ -1706,12 +1706,12 @@ sub getMenusAndHooksAndReadsRc ($) {
 	my $minimalSwitch = "";
 	if ($self->isMinimalReload()) {
 		$minimalSwitch =
-			qq(+ "&Use full reloading" FuncFvwmThemesSetMinimalReload 0\n);
+			qq(+ "&Use full reloading%menu/restart.xpm%" FuncFvwmThemesSetMinimalReload 0\n);
 		$ownThemeMenuRc =~ s/FuncFvwmThemes/FuncFvwmMinimalThemes/g;
 		$allThemeMenuRc =~ s/FuncFvwmThemes/FuncFvwmMinimalThemes/g;
 	} else {
 		$minimalSwitch =
-			qq(+ "&Use experimental reloading" FuncFvwmThemesSetMinimalReload 1\n);
+			qq(+ "&Use experimental reloading%menu/restart.xpm%" FuncFvwmThemesSetMinimalReload 1\n);
 	}
 	$menu .= qq(\n\n);
 	$menu .= qq(DestroyMenu "MenuFvwmThemes"\n);
@@ -1720,14 +1720,14 @@ sub getMenusAndHooksAndReadsRc ($) {
 	$menu .= qq(+ "" Nop\n);
 	$menu .= $allThemeListRc;
 	$menu .= qq(+ "" Nop\n);
-	$menu .= qq(+ "&Refresh and Reload" Popup MenuFvwmThemesRefreshReload\n);
+	$menu .= qq(+ "&Refresh and Reload%menu/restart.xpm%" Popup MenuFvwmThemesRefreshReload\n);
 	$menu .= qq(DestroyMenu "MenuFvwmThemesRefreshReload"\n);
 	$menu .= qq(AddToMenu   "MenuFvwmThemesRefreshReload" "Refresh and Reload" Title\n);
-	$menu .= qq(+ "&Refresh the current theme" FuncFvwmThemesFresh\n);
-	$menu .= qq(+ "Refresh with no &cache" FuncFvwmThemesFreshUncached\n);
+	$menu .= qq(+ "&Refresh the current theme%menu/restart.xpm%" FuncFvwmThemesFresh\n);
+	$menu .= qq(+ "Refresh with no &cache%menu/restart.xpm%" FuncFvwmThemesFreshUncached\n);
 	$menu .= $minimalSwitch;
 	$menu .= qq(+ "" Nop\n);
-	$menu .= qq(+ "Reset all to the &default" FuncFvwmThemesReset\n);
+	$menu .= qq(+ "Reset all to the &default%menu/restart.xpm%" FuncFvwmThemesReset\n);
 	$menu .= "\n";
 
 	# add own theme menus
