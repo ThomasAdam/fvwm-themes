@@ -130,6 +130,11 @@ my $xcolorsInfo = 0;
 my $xcolorsetsInfo = 0;
 my $colorToShow = undef;
 
+# colors shemes
+my $colorsSchemes = 0;
+my $createTextColors = "";
+my $schemePostfix = "dp";
+
 # others
 my $verbose = 1;
 my $verboseOpt = -1;
@@ -211,6 +216,9 @@ GetOptions(
 	"update"             => \$update,
 	"ft-install"         => \$install,
 	"be-fast"            => \$beFast,
+	"colors-schemes"     => \$colorsSchemes,
+	"text-colors=s"      => \$createTextColors,
+	"schemes-ext=s"      => \$schemePostfix,
 ) || wrongUsage();
 
 # compute verbosity!
@@ -275,7 +283,10 @@ if ($createSymLink ne "") {
 	exit;
 }
 
-
+if ($colorsSchemes) {
+	colorsSchemes();
+	exit;
+}
 
 #------------------------------------------------------------------------------
 # Transform, main "convert" procedure
@@ -850,6 +861,82 @@ sub createPatternXpm () {
 		push @pattern, "$pm\n";
 	}
 	return @pattern;
+}
+
+#------------------------------------------------------------------------------
+# colors shemes
+#------------------------------------------------------------------------------
+
+sub colorsSchemes () {
+	my ($lines, $value, $white, $black) = ("","","","");
+	my $createText = 0;
+	my @files = ();
+	my $file;
+
+	$inDir = "$inDir/" unless $inDir =~ /\/$/ || $inDir eq "";
+	if ($inDir !~ /^\//) {
+		my $tmp =`pwd`;
+		chomp($tmp);
+		$inDir ="$tmp/$inDir";
+	}
+	$inDir =~ s/\/$//;
+
+	if ($outDir !~ /^\//) {
+		my $tmp =`pwd`;
+		chomp($tmp);
+		$outDir ="$tmp/$outDir";
+	}
+	$outDir =~ s/\/$// unless $outDir eq "/";
+
+	-d $outDir || mkdir("$outDir", 0775) ||
+		die "impossible to create $outDir \n\t (we do not create more than one".
+			" level of directory).\n";
+
+	opendir(DIR, "$inDir") || die "cannot open dir $inDir\n";
+	foreach (readdir(DIR)) {
+		push @files, $_ if  /\.$schemePostfix$/;
+	}
+
+	if ($createTextColors ne "") {
+		$createText = 1;
+		($lines, $value, $white, $black) = split(":",$createTextColors);
+		die "Bad --create-text-colors options" 
+			if ($lines !~ /^\d+$/ || (defined $value && $value !~ /^\d+$/));
+		$value = 128 if !defined $value  || $value eq "";
+		$white = "#ffffff" if !defined $white || $white eq "";
+		$black = "#000000" if !defined $black || $black eq "";
+	}
+
+	myPrint(1,"\ntransform colors schemes *.$schemePostfix in\n".
+		"\t$inDir into\n\t$outDir\n\n");
+
+	foreach $file (@files) {
+		myPrint(2,"transform $file ... ");
+		open(FILE, "$inDir/$file") || die "cannot open $inDir/$file\n";
+		my @f = <FILE>;
+		close(FILE);
+		foreach (@f) { chomp }
+		my @g = ();
+
+		if ($createText) {
+			my $i = 0;
+			while (defined $f[$i] && $i < $lines) {
+				#chomp($f[$i]);
+				$g[$i] = $f[$i];
+				my $t = bppTo3intArray(encode16bpp($f[$i]));
+				my $grey = greyval($t);
+				if ($grey >= $value) { $g[$i+$lines] = $black }
+				else { $g[$i+$lines] = $white }
+				$i++;
+	  	 	}
+		} 
+		else { @g = @f; }
+
+		open(OUT,">$outDir/$file") || die "cannot write on $outDir/$file\n";
+		foreach (@g) { print OUT ; print OUT "\n"}
+		close(OUT);
+		myPrint(2,"done\n");
+	}
 }
 
 #------------------------------------------------------------------------------
@@ -1853,6 +1940,10 @@ sub showHelp {
 	print "Background\n";
 	print "\t--set-background    set the root window with the XPM builded\n";
 	print "\t--set-back-prog ex  set the command to set the root window\n";
+	print "Colors Schemes\n";
+	print "\t--colors-schemes    parse and create colors schemes\n";
+	print "\t--text-colors       create text colors for colors schemes\n";
+   print "\t--schemes-ext       file extention for a colors file\n";
 	print "Colors\n";
 	print "\t--show-xcolors      show a list of all xcolors\n";
 	print "\t--show-xcolorsets   show a list of all xcolor sets\n";
@@ -1903,9 +1994,9 @@ fvwm-themes-images - fvwm-themes images utility
 
 B<fvwm-themes-images>
 B<--convert> or/and B<--rotate> value or/and B<--colorize> or/and
-B<--tile> or/and B<--add-border> or B<--cde-sky> or B<--show-xcolors>
-or B<--show-xcolors-set> or B<--show-color-info> color or B<--help>
-or B<--version>
+B<--tile> or/and B<--add-border> or B<--cde-sky> or B<--colors-schemes>
+or B<--show-xcolors> or B<--show-xcolors-set> or B<--show-color-info> color 
+or B<--help> or B<--version>
 [ B<--in-dir> dir ]
 [ B<--out-dir> dir ]
 [ B<--in-file> file ]
@@ -1954,6 +2045,8 @@ or B<--version>
 [ B<--be-fast> ]
 [ B<--set-background> ]
 [ B<--set-back-prog> exec ]
+[ B<--text-colors> value ]
+[ B<--schemes-ext> ext ]
 
 =head1 DESCRIPTION
 
@@ -2057,6 +2150,27 @@ altern:50 --sky-comp c for a band background, --pattern-type 1
 Note that if your sky contains a lot of coulours you can speed a
 lot the construction of you sky by using the --be-fast option
 (but this will build a bigger XPM).
+
+=head2 COLORS SCHEMES
+
+A color scheme file is a file constituted of one color by line.
+At the present time fvwm-themes-images can add to a color scheme
+file the text colors. For example, if you have in a directory DIR 
+some color scheme files with .dp as extension if you run:
+
+	fvwm-themes-images --colors-schemes --text-colors 8:128:color1:color2
+	--in-dir DIR --out-dir DIR
+
+then the 8 first colors of the color schemes files will be unchanged
+and 8 new colors will be added (if your original colors files have more
+than 8 colors these colors are ignored/removed). So, you get colors
+files with 16 colors. The ith new color (the color of the (i+8)th line)
+is the "text color" of the ith original color. The new colors are either
+color1 or color2. The ith new color is color1 if the ith original color
+have a grey value <= 128 and is color2 if not. A grey value of 255 
+correspond to white and a grey value of 0 correspond to black. So, the
+idea is to use a light color for color1 (as white) and a dark color for
+color2 (as black).
 
 =head2 COLORS
 
@@ -2379,6 +2493,23 @@ only one file (I.e., with the --in-file without --convert or with
 
 B<--set-back-prog> exec - to execute "exec out.xpm" to set the background.
 Default is xpmroot.
+
+=head2 COLORS SCHEMES
+
+B<--colors-scheme> - Parse and modify colors scheme files in a directory.
+A color scheme file is a file constituted of one color by line.
+
+B<--text-colors> l:g:color1:color2 - where l and g are integer. Transform
+a colors scheme file "orig" to a color scheme file "new" as follows: 
+1. the l first colors (i.e., lines) of "new" are the l first colors of 
+"orig"; 
+2. "new" have 2l lines the l new lines are the text colors of the
+l first colors "respectively".
+3. the text color of a color is color1 if the color has a grey value
+which is <= g and is color2 if not.
+
+B<--schemes-ext> ext - consider only the files with ".ext" at the end of
+its name as a colors scheme file. Default is "dp".
 
 =head2 Colors Informations
 
