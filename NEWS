@@ -7,6 +7,7 @@ fvwm-themes-0.5.0 - not released yet
 * Component menus-user@ renamed to menus-programs@, you should "Reset all".
 * New component colors-decor@, may be used to define only a part of colors@.
 * New component fonts@, may be used to control fonts using filter functions.
+* Added font variants for several euro-asian charsets in fonts@multichoice.
 * Components or variants not supported by the user's system are hidden.
 * Improved default theme.
 

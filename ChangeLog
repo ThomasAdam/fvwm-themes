@@ -4,6 +4,9 @@
 	* scripts/README:
 	use the default FvwmScript colors for the main area; fixed README
 
+	* NEWS:
+	improved
+
 2001-08-07  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ThemesCenter:
