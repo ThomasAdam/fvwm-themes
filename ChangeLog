@@ -1,3 +1,20 @@
+2001-10-20  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	minimal (partial or experimental) reload is now the default
+
+	* themes/default/settings.cfg:
+	* themes/default/themes.cfg:
+	A few fixes
+
+	* bin/fvwm-themes-config.in (getAllHooksRc):
+	* themes/*/modules.cfg:
+	the functions FuncFvwm(Un)ReloadColorsModules are executed only if
+	colors is load-reload and modules need to be (only) reload-unreload
+	(so I think the name "ColorsModules" is ok). This is semi-hardcoded:
+	the existence/needs of the func should be indicated by a new ft cfg
+	command: hints+=reload-unreload-ColorsModules
+
 2001-10-19  olicha  <olivier.chapuis@free.fr>
 
 	* themes/migo/modules/buttonbar/{xclock,xload,astime,xloadtime}:

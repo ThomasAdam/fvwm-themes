@@ -1005,21 +1005,25 @@ sub setModified ($;$) {
 	$self->{'_isModified'} = @_? shift: 1;
 }
 
-#ccds: new function
 sub setMinimalReload ($;$) {
 	my $self = shift;
-	my $value = shift || 0;
-	my $mr = $self->{'cc'}->{'_core'}->{'minimalReload'} || 0;
+	my $value = shift;
+	my $mr = 1;
+	if (defined $self->{'cc'}->{'_core'}->{'minimalReload'}) {
+		$mr = $self->{'cc'}->{'_core'}->{'minimalReload'}
+	}
 	if ($value != $mr) {
 		$self->{'cc'}->{'_core'}->{'minimalReload'} = $value;
 		$self->setModified();
 	}
 }
 
-#ccds: new function
 sub isMinimalReload ($) {
 	my $self = shift;
-	my $value = $self->{'cc'}->{'_core'}->{'minimalReload'} || 0;
+	my $value = 1;
+	if (defined $self->{'cc'}->{'_core'}->{'minimalReload'}) {
+		$value = $self->{'cc'}->{'_core'}->{'minimalReload'}
+	}
 	return $value;
 }
 
@@ -1774,6 +1778,8 @@ sub getAllHooksRc ($) {
 	my $startItems = [];
 	my $stopItems = [];
 	my $loadItems = [];
+	my $colorsIsChanged = 0;
+	my $colorsModules = 0;
 
 	my $_c = $self->getComponentCfg("_core");
 	my $saveStop = ( $_c->{'stop'} ||= {} );
@@ -1787,7 +1793,7 @@ sub getAllHooksRc ($) {
 		"DestroyFunc FuncFvwmLoadAllHooks\n" .
 		"AddToFunc   FuncFvwmLoadAllHooks\n";
 	my $hardCodedStopHooks = "";
-
+	my $hardCodedStartHooks = "";
 	my $c;
 	foreach $c (@$currentComponents) {
 		my $cc = $self->getComponentCfg($c);
@@ -1813,9 +1819,28 @@ sub getAllHooksRc ($) {
 			delete $saveStop->{$c};
 		}
 
+		# for "ColorsModules" be independent of the order
 		if ($c eq "colors" && $cc->{'used'} >= 2) {
-			$hardCodedStopHooks = "FuncFvwmRestartFvwmTheme\n";
+			$hardCodedStopHooks .= "FuncFvwmRestartFvwmTheme\n";
+			$colorsIsChanged = 1;
+			if ($colorsModules) {
+				$hardCodedStopHooks .= "FuncFvwmUnReloadColorsModules\n";
+				$hardCodedStartHooks .= "+ I FuncFvwmReloadColorsModules\n";
+			}
 		}
+		if ($c eq "modules" && $cc->{'used'} == 2) {
+			my $hints = $self->getComponentNamedValue($c,'hints');
+			if (defined $hints) {
+				foreach(@$hints) {
+					$colorsModules = 1 if $_ eq "reload-unreload-ColorsModules";
+				}
+			}
+			if ($colorsIsChanged && $colorsModules) {
+				$hardCodedStopHooks .= "FuncFvwmUnReloadColorsModules\n";
+				$hardCodedStartHooks .= "+ I FuncFvwmReloadColorsModules\n";
+			}
+		}
+
 		my $startStop = $self->getComponentNamedValue($c,'start-stop');
 		my $loadUnload = $self->getComponentNamedValue($c,'load-unload');
 		my $reloadUnreload = $self->getComponentNamedValue($c,'reload-unreload');
@@ -1946,7 +1971,9 @@ sub getAllHooksRc ($) {
 	# save the stop functions
 	$_c->{'stop'} = $cs;
 
-	return ("$loadHooksRc\n","$stopHooksRc$hardCodedStopHooks\n$startHooksRc\n");
+	return ("$loadHooksRc\n",
+			  "$stopHooksRc" . "$hardCodedStopHooks\n" . "$startHooksRc" .
+			  "$hardCodedStartHooks\n");
 }
 
 sub getMenusAndHooksAndReadsRc ($) {
@@ -2050,7 +2077,7 @@ sub getMenusAndHooksAndReadsRc ($) {
 			qq(+ "&Use full reloading%menu/restart.xpm%" FuncFvwmThemesSetMinimalReload 0\n);
 	} else {
 		$minimalSwitch =
-			qq(+ "&Use experimental reloading%menu/restart.xpm%" FuncFvwmThemesSetMinimalReload 1\n);
+			qq(+ "&Use partial reloading%menu/restart.xpm%" FuncFvwmThemesSetMinimalReload 1\n);
 	}
 	$menu .= qq(\n\n);
 	$menu .= qq(DestroyMenu "MenuFvwmThemes"\n);
