@@ -1,0 +1,5 @@
+DestroyFunc FuncFvwmStartWheel
+AddToFunc   FuncFvwmStartWheel
+
+DestroyFunc FuncFvwmStopWheel
+AddToFunc   FuncFvwmStopWheel

@@ -1,0 +1,8 @@
+# Stroke bindings
+
+# Don't forget to destroy the bindings
+DestroyFunc FuncFvwmStartWheel
+AddToFunc   FuncFvwmStartWheel
+
+DestroyFunc FuncFvwmStopWheel
+AddToFunc   FuncFvwmStopWheel
