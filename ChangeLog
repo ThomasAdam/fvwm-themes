@@ -1,10 +1,15 @@
+2002-04-30 migo  <migo@homemail.com>
+
+	* themes/default/menus:
+	added FvwmGtkDebug
+
 2002-04-12 migo  <migo@homemail.com>
 
 	* locale/de/*.msg:
 	* configure.in:
 	* NEWS:
 	* AUTHORS:
-	added German translations
+	added German translations by Smiler
 
 2002-03-27  migo  <migo@homemail.com>
 

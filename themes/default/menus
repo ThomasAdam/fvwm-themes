@@ -142,6 +142,7 @@ AddToMenu   MenuFvwmStartRegularModules "Regular Modules" Title
 + "Ba&nner%menu/display.xpm%"		Module FvwmBanner
 + "Co&mmandS%menu/terminal-special.xpm%" FuncFvwmRestartModule FvwmCommandS
 + "&Console%menu/terminal-special.xpm%"		FuncFvwmConsole
++ "&GtkDebug%menu/developement.xpm%"		Module FvwmGtkDebug
 + "&Identify%menu/window-identify.xpm%"		Module FvwmIdent
 + "&ScrollBar (1/2 app)%menu/window-resize.xpm%"  Module FvwmScroll 2 2
 # FVWM has problems with '%' escaping...
@@ -165,6 +166,7 @@ AddToMenu   MenuFvwmStopRegularModules "Regular Modules" Title
 + "Stop Backe&r%menu/quit.xpm%"		KillModule FvwmBacker
 + "Stop Co&mmandS%menu/quit.xpm%"	KillModule FvwmCommandS
 + "Stop &Console%menu/quit.xpm%"	KillModule FvwmConsole
++ "Stop &GtkDebug%menu/quit.xpm%"	KillModule FvwmGtkDebug
 + "Stop &Identify%menu/quit.xpm%"	KillModule FvwmIdent
 + "Stop &ScrollBar%menu/quit.xpm%"	KillModule FvwmScroll
 + "Stop Auto Rais&e%menu/quit.xpm%"	KillModule FvwmAuto
