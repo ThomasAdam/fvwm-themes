@@ -11,6 +11,7 @@
 	caps letters
 
 	* rpm/fvwm-themes.spec.in:
+	* rpm/Makefile.am:
 	synchronize with fvwm-themes-base.spec
 
 	* rpm/fvwm-themes-extra.spec.in:

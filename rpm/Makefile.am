@@ -18,8 +18,14 @@ rpm: @PACKAGE@.spec
 	mparams='$(mparams)'; \
 	tarball=@PACKAGE@-$$version.tar.gz; \
 	tarball_full=`cd $(top_srcdir) && pwd`/$$tarball; \
+	rpm_wa=rpm-wa.tar.gz; \
+	rpm_wa_full=`cd $(top_srcdir) && pwd`/rpm/$$rpm_wa; \
+	ins_ms=install-menu-system.sh; \
+	ins_ms_full=`cd $(top_srcdir) && pwd`/rpm/$$ins_ms; \
 	if [ ! -f $$tarball_full ]; then echo "No $$tarball"; exit -1; fi; \
 	ln -sf $$tarball_full /tmp/$$tarball || exit -1; \
+	ln -sf $$rpm_wa_full /tmp/$$rpm_wa || exit -1; \
+	ln -sf $$ins_ms_full /tmp/$$ins_ms || exit -1; \
 	echo ""; \
 	echo "==== Creating rpm from /tmp/$$tarball, release $$release ===="; \
 	echo ""; \
@@ -32,6 +38,8 @@ rpm: @PACKAGE@.spec
 	; \
 	rpm -ba tmp-@PACKAGE@.spec --clean --target=noarch-fvwm-linux; \
 	rm /tmp/$$tarball; \
+	rm /tmp/$$rpm_wa; \
+	rm /tmp/$$ins_ms; \
 	rm tmp-@PACKAGE@.spec
 
 rpm-base: @PACKAGE@-base.spec
