@@ -424,7 +424,9 @@ my @dependencyKeys = qw(
 sub checkUnhideIf ($) {
 	my $check = shift;
 
-	my ($cmd, $arg) = split(/[\s:]+/, $check, 2);
+	my ($cmd, $arg) = split(':', $check, 2);
+	$cmd =~ s/\s+//g;
+	$arg =~ s/^\s+//; $arg =~ s/\s+$//;
 	if ($cmd eq 'in-path') {
 		my $dir;
 		my @pathDirs = split(':', $ENV{'PATH'});
@@ -441,8 +443,9 @@ sub checkUnhideIf ($) {
 		return system("fvwm-config --supports-$arg") == 0;
 	}
 	if ($cmd eq 'has-fonts') {
-		my @fonts = split(/[\s,]+/, $arg);
+		my @fonts = split(',', $arg);
 		foreach (@fonts) {
+			s/^\s+//; s/\s+$//;
 			return 0 if `xlsfonts -fn '$_' 2> /dev/null` eq "";
 		}
 		return 1;

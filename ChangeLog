@@ -1,3 +1,8 @@
+2001-08-09  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	fixed unhide-if cmd:arg parsing (a font name can contain spaces)
+	
 2001-08-08  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
