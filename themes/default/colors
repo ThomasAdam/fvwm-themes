@@ -1,82 +1,72 @@
 # colors@default
 
-# ----------------------------------------------------------------------------
+# ****************************************************************************
 #
 # I.   FVWM Colorsets (0 to 9)
-#	I.1. Default Colorsets
-#	I.2. Window Decorations
-#	I.3. Menu Colorsets
+#       I.1. Default Colorsets
+#       I.2. Window Decorations
+#       I.3. Menu Colorsets
 #
 # II.  Module Colorsets (10 to 29)
-#	II.1. Common Colorsets
-#	II.2. Window List Module Colorsets
-#       II.3. Other Modules
+#       II.1. Common Colorsets
+#       II.2. Window List Module Colorsets
+#       II.3. Other Module Colorsets
 #       II.4. External Colorsets
 #
 # III. Application Colorsets (30 to 35)
 #
 # IV.  Start/Stop functions
 #
-# ============================================================================
+# ****************************************************************************
 
-# ----------------------------------------------------------------------------
+# ============================================================================
 # I. FVWM Colorsets
 # ============================================================================
 
 # ----------------------
 # I.1. Default Colorsets
-# ======================
+# ----------------------
 
-# mainly for feedback windows (geometry window and NoteMessage)
+# for feedback windows (like geometry window and NoteMessage) and FvwmScroll
 #
 *FvwmTheme: Colorset 0 fg black, bg #908090
-DefaultColorset 0
-
-# use this colorset also for FvwmScroll
-#
-DestroyModuleConfig FvwmScroll: Colorset*
-*FvwmScroll: Colorset 0
 
 # -----------------------
 # I.2. Window Decorations
-# =======================
+# -----------------------
 
 # The following colors are used in FvwmPager for the window colors
 # and in a title bar of windows (shade/hilight colors, computed from
 # the bg color, but might be specified directly by sh and hi).
-# The title bar background color is defined below using TitleStyle.
+# The title bar background is defined below using TitleStyle.
 
-# window, inactive and active
+# window title, inactive and active
 #
 *FvwmTheme: Colorset 1 fg black, bg rgb:80/80/80, Plain, NoShape
-Style "*"	Colorset 1
 *FvwmTheme: Colorset 2 fg black, bg rgb:C0/C0/C0, Plain, NoShape
-Style "*"	HilightColorset 2
 
-# borders of the window, inactive and active:
+# window borders, inactive and active
 #
 *FvwmTheme: Colorset 3 fg black, bg rgb:80/80/80, Plain, NoShape
-Style "*"	BorderColorset 3
 *FvwmTheme: Colorset 4 fg black, bg rgb:C0/C0/C0, Plain, NoShape
-Style "*"	HilightBorderColorset 4
 
-# title bar colors
+# background for window title and buttons
 #
-TitleStyle	ActiveUp   (Solid rgb:C0/C0/C0 -- Raised)
-TitleStyle	ActiveDown (Solid rgb:C0/C0/C0 -- Raised)
-TitleStyle	Inactive   (Solid rgb:80/80/80 -- Raised)
-TitleStyle	ToggledActiveUp   (Solid rgb:C0/C0/C0 -- Raised)
-TitleStyle	ToggledActiveDown (Solid rgb:C0/C0/C0 -- Raised)
-TitleStyle	ToggledInactive   (Solid rgb:80/80/80 -- Raised)
+DestroyFunc FuncFvwmTitleBackground
+AddToFunc   FuncFvwmTitleBackground
++ I TitleStyle ActiveUp   (Solid rgb:C0/C0/C0 -- Raised)
++ I TitleStyle ActiveDown (Solid rgb:C0/C0/C0 -- Raised)
++ I TitleStyle Inactive   (Solid rgb:80/80/80 -- Raised)
++ I TitleStyle ToggledActiveUp   (Solid rgb:C0/C0/C0 -- Raised)
++ I TitleStyle ToggledActiveDown (Solid rgb:C0/C0/C0 -- Raised)
++ I TitleStyle ToggledInactive   (Solid rgb:80/80/80 -- Raised)
 
-# window button background
-#
-ButtonStyle	All Pixmap 16x16-general/empty.xpm
-ButtonStyle	All -- UseTitleStyle
++ I ButtonStyle All Pixmap 16x16-general/empty.xpm
++ I ButtonStyle All -- UseTitleStyle
 
 # -------------------
 # I.3. Menu Colorsets
-# ===================
+# -------------------
 
 # inactive menu item fg+bg and menu face if any
 #
@@ -90,22 +80,16 @@ ButtonStyle	All -- UseTitleStyle
 #
 *FvwmTheme: Colorset 7 fg grey40, bg grey40, Plain, NoShape
 
-MenuStyle * MenuFace
-MenuStyle * MenuColorset 5, ActiveColorset 6, GreyedColorset 7
-# I have no time now to check whether (or why) the folowing is needed.
-# This should be determined, needed or not, as soon as possible.
-MenuStyle * ActiveFore, HilightBack
-
 # -------------------------------------------------
 # Colorsets 8 and 9 are reserved for the future use.
 
-# ----------------------------------------------------------------------------
+# ============================================================================
 # II. Module Colorsets
 # ============================================================================
 
 # ----------------------
 # II.1. Common Colorsets
-# ======================
+# ----------------------
 
 # default for modules
 # for FvwmButtonsColorset, FvwmPagerColorset, can be also used for
@@ -126,7 +110,7 @@ MenuStyle * ActiveFore, HilightBack
 
 # swallowed window: the hilight and shadow colors can be used
 # (-hd of xclock and -hl of xload use sh, and -hl of xclock use hi;
-# perhaps strange but this is xload's fault. :)
+# perhaps strange but this is xload's fault. :) )
 #
 *FvwmTheme: Colorset 13 fg black, bg #c0a0c0, hi black, sh gray40, Plain, NoShape
 
@@ -144,9 +128,9 @@ MenuStyle * ActiveFore, HilightBack
 #
 *FvwmTheme: Colorset 16 fg black, bg yellow, Plain, NoShape
 
-# ---------------------------
-# II.2. Window List Colorsets
-# ---------------------------
+# ----------------------------------
+# II.2. Window List Module Colorsets
+# ----------------------------------
 
 # standard item
 *FvwmTheme: Colorset 17 fg black, bg #908090, Plain, NoShape
@@ -168,10 +152,6 @@ MenuStyle * ActiveFore, HilightBack
 #
 *FvwmTheme: Colorset 21 fg yellow, bg black, Plain, NoShape
 
-DestroyModuleConfig FvwmIdent: *
-*FvwmIdent: Colorset 21
-FuncFvwmSetFont-FvwmIdent
-
 # FvwmConsole
 #
 *FvwmTheme: Colorset 22 fg black, bg bisque, Plain, NoShape
@@ -191,8 +171,8 @@ FuncFvwmSetFont-FvwmIdent
 
 # temporary colorset: 29, has no static definition, used dynamically
 
-# ----------------------------------------------------------------------------
-# III. Applications Colorsets
+# ============================================================================
+# III. Application Colorsets
 # ============================================================================
 
 # regular terminal (xterm, rxvt, Eterm)
@@ -211,38 +191,29 @@ FuncFvwmSetFont-FvwmIdent
 #
 *FvwmTheme: Colorset 33 fg white, bg rgb:00/60/00, Plain, NoShape
 
-# Small Text Input file or Hilighting some Items
-# (for Script and Form items, xmessage, ft-xres)
+# dialog text area (FvwmScript, FvwmForm, xmessage, ft-xrdb)
 #
 *FvwmTheme: Colorset 34 fg black, bg gray80, Plain, NoShape
 
-DestroyModuleConfig FvwmFormDefault: ItemColorset*
-*FvwmFormDefault: ItemColorset 34
-
-# application run in a terminal, text file of an editor for ft-xres
+# application run in the terminal, text editor using ft-xrdb
 #
 *FvwmTheme: Colorset 35 fg black, bg gray, Plain, NoShape
 
-# Not in one of the above category (for Script and Form, xmessage, ft-xres)
+# dialog main area (FvwmScript, FvwmForm, xmessage, ft-xrdb)
 #
 *FvwmTheme: Colorset 36 fg black, bg MediumPurple, Plain, NoShape
-
-DestroyModuleConfig FvwmScript: DefaultColorset*
-*FvwmScript: DefaultColorset 36
-DestroyModuleConfig FvwmFormDefault: Colorset*
-*FvwmFormDefault: Colorset 36
 
 # --------------------------------------------------
 # Colorsets 37 to 39 are reserved for the future use.
 
-# ----------------------------------------------------------------------------
+# ============================================================================
 # IV. Start/Stop Functions:
 # ============================================================================
 
 # These functions are executed when you enter (Start) and when you leave
-# (Stop) a colors theme. At the present time these are only really used
-# in colors@blackbox for setting/unsetting the good "transparency" style:
-# ParentalRelativity/Opacity.
+# (Stop) this component. For example, in colors@blackbox they are used to
+# set/unset a good window "transparency" style ParentalRelativity/Opacity;
+# in colors@cde and colors@luthien these functions are used for more things.
 
 DestroyFunc FuncFvwmStartColors
 AddToFunc   FuncFvwmStartColors

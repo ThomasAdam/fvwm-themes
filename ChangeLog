@@ -1,3 +1,14 @@
+2001-07-30  migo  <migo@homemail.com>
+
+	* themes/default/globallook:
+	* themes/default/theme.cfg:
+	rename FuncFvwmTitleStyle to FuncFvwmTitleBackground
+
+	* doc/colorsets:
+	* themes/*/colors{,-decor,/main}:
+	complete colors@ reorganization to only colorsets and functions,
+	other clean ups and syncronizations; colors@ now looks much better
+
 2001-07-28  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

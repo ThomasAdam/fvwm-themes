@@ -1,9 +1,9 @@
 # colors@awol
 
 # more details and comments can be found in colors@default
-# I.   Fvwm Colorsets
-# II.  Modules Colorsets
-# III. Applications Colorsets
+# I.   FVWM Colorsets
+# II.  Module Colorsets
+# III. Application Colorsets
 # IV.  Start/Stop Functions
 
 # ----------------------------------------------------------------------------
@@ -14,43 +14,34 @@
 
 *FvwmTheme: Colorset 0 fg blue4, bg grey77, hi grey88, sh grey65, Plain, NoShape
 
-DefaultColorset 0
-DestroyModuleConfig FvwmScroll: Colorset*
-*FvwmScroll: Colorset 0
-
 # ------------------
 # Window decorations
 
-# Text and sh/hi windows title bar colors, icons title and Pager mini-win.
-# inactive:
+# window title, inactive and active
 *FvwmTheme: Colorset 1 fg yellow, bg DarkGreen, hi lightgreen, \
 	Plain, NoShape
-Style "*"	Colorset 1
-# active:
 *FvwmTheme: Colorset 2 fg yellow, bg red3, hi red1, sh red4, Plain, NoShape
-Style "*"	HilightColorset 2
 
-# borders of the windows inactive/active:
+# window borders, inactive and active
 *FvwmTheme: Colorset 3 fg yellow, bg DarkGreen, hi lightgreen, \
 	Plain, NoShape
-Style "*"	BorderColorset 3
 *FvwmTheme: Colorset 4 fg yellow, bg red3, hi red1, sh red4, Plain, NoShape
-Style "*"	HilightBorderColorset 4
 
-# title
-TitleStyle	ActiveUp   Pixmap mini/empty.xpm
-TitleStyle	ActiveDown HGradient 128 3 Blue 1000 Green 1 Yellow 1000 Red
-TitleStyle	Inactive   Pixmap mini/empty.xpm
-TitleStyle	ToggledActiveUp   Pixmap mini/empty.xpm
-TitleStyle	ToggledActiveDown HGradient 128 3 Blue 1000 Green 1 Yellow 1000 Red
-TitleStyle	ToggledInactive   Pixmap mini/empty.xpm
+# background for window title and buttons
+DestroyFunc FuncFvwmTitleBackground
+AddToFunc   FuncFvwmTitleBackground
++ I TitleStyle ActiveUp   Pixmap mini/empty.xpm
++ I TitleStyle ActiveDown HGradient 128 3 Blue 1000 Green 1 Yellow 1000 Red
++ I TitleStyle Inactive   Pixmap mini/empty.xpm
++ I TitleStyle ToggledActiveUp   Pixmap mini/empty.xpm
++ I TitleStyle ToggledActiveDown HGradient 128 3 Blue 1000 Green 1 Yellow 1000 Red
++ I TitleStyle ToggledInactive   Pixmap mini/empty.xpm
 
-# window button background
-ButtonStyle	All Pixmap 16x16-general/empty.xpm
-ButtonStyle	All -- UseTitleStyle
++ I ButtonStyle All Pixmap 16x16-general/empty.xpm
++ I ButtonStyle All -- UseTitleStyle
 
-# -----
-# Menus
+# --------------
+# Menu Colorsets
 
 # inactive menu item fg+bg and menu face
 *FvwmTheme: Colorset 5 fg DarkGreen, bg grey77, hi grey88, sh grey65, \
@@ -62,14 +53,10 @@ ButtonStyle	All -- UseTitleStyle
 # greyed menu item fg
 *FvwmTheme: Colorset 7 fg DarkSeaGreen, bg DarkSeaGreen, Plain, NoShape
 
-MenuStyle * MenuFace
-MenuStyle * MenuColorset 5, ActiveColorset 6, GreyedColorset 7
-MenuStyle * ActiveFore, HilightBack
-
 # ----------------------------------------------------------------------------
-# II. Modules Colotsets 
+# II. Module Colotsets
 
-#-----------------
+# ----------------
 # Common Colorsets
 
 # default for modules
@@ -96,8 +83,8 @@ MenuStyle * ActiveFore, HilightBack
 *FvwmTheme: Colorset 16 fg black, bg average, \
 	YGradient 400 3 cyan4 100 cyan1 1 cyan4 100 cyan1, NoShape
 
-# ----------------------
-# Window Lists Colorsets
+# ----------------------------
+# Window List Module Colorsets
 
 # standard item
 *FvwmTheme: Colorset 17 fg blue4, bg grey77, hi grey88, sh grey65, Plain, NoShape
@@ -113,50 +100,38 @@ MenuStyle * ActiveFore, HilightBack
 *FvwmTheme: Colorset 20 fg DarkGreen, bg grey77, hi grey88, sh grey65, \
 	Plain, NoShape
 
-# ------------------------
-# Others Modules Colorsets
+# ----------------------
+# Other Module Colorsets
 
 # FvwmIdent
 *FvwmTheme: Colorset 21 fg black, bg rgb:FF/FF/D0, Plain, NoShape
-
-DestroyModuleConfig FvwmIdent: *
-*FvwmIdent: Colorset 21
-FuncFvwmSetFont-FvwmIdent
 
 # FvwmConsole
 *FvwmTheme: Colorset 22 fg DarkBlue, bg lightblue, Plain, NoShape
 
 # ----------------------------------------------------------------------------
-# III. Applications Colorsets
+# III. Application Colorsets
 
-# Terminals
+# regular terminal
 *FvwmTheme: Colorset 30 fg white, bg DarkBlue, Plain, NoShape
 
-# Administrations
+# admin terminal
 *FvwmTheme: Colorset 31 fg white, bg Red4, Plain, NoShape
 
-# Remote Terminals
+# remote terminal
 *FvwmTheme: Colorset 32 fg white, bg yellow4, Plain, NoShape
 
-# "Viewer" Colorset
+# viewer terminal
 *FvwmTheme: Colorset 33 fg yellow, bg navy, Plain, NoShape
 
-# Small Text Input file or Hilighting some Items
+# dialog text area
 *FvwmTheme: Colorset 34 fg black, bg rgb:E4/D2/C0, Plain, NoShape
 
-DestroyModuleConfig FvwmFormDefault: ItemColorset*
-*FvwmFormDefault: ItemColorset 34
-
-# Application run in a terminal, text file of an editor for xres ...
+# application run in the terminal, text editor
 *FvwmTheme: Colorset 35 fg black, bg grey70, Plain, NoShape
 
-# Not in one of the above category (for Script and Form, ft-xres)
+# dialog main area
 *FvwmTheme: Colorset 36 fg white, bg DarkGreen, Plain, NoShape
-
-DestroyModuleConfig FvwmScript: DefaultColorset*
-*FvwmScript: DefaultColorset 36
-DestroyModuleConfig FvwmFormDefault: Colorset*
-*FvwmFormDefault: Colorset 36
 
 # ----------------------------------------------------------------------------
 # IV. Start/Stop Functions
