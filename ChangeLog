@@ -3,6 +3,9 @@
 	* themes/migo/modules/main:FvwmPager-Single:
 	more MoveToPage menu items
 
+	* bin/fvwm-themes-start.in:
+	ignore a single -s, this helps a bit with fvwm-2.2.x
+
 2001-01-11  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:

@@ -40,11 +40,14 @@ while [ "x$1" != "x" ]; do
 				shift
 				fvwm="$1" ;;
 			--session|-session|-s)
-				shift
- 				if [ "$1" = "--" ]; then
-					whoseArgs="fvwm"
-				else
-					session="$1"
+				# fvwm-2.2.x adds -s on 'Restart fvwm-themes-start'
+				if [ $# -gt 1 ]; then
+					shift
+	 				if [ "$1" = "--" ]; then
+						whoseArgs="fvwm"
+					else
+						session="$1"
+					fi
 				fi ;;
 			esac
 		fi ;;
@@ -104,4 +107,4 @@ cd $startDir
 echo "[FVWM-Themes]: Starting FVWM under the $session fvwm-themes session"
 if [ "$start" = "yes" ]; then
     exec $fvwm -f "$rcName" $fvwmArgs
-fi;
+fi
