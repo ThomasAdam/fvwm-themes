@@ -1,3 +1,8 @@
+2002-08-01 migo  <migo@homemail.com>
+
+	* NEWS:
+	mention Debian packages
+
 2003-07-20  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings/session-manager/none:
@@ -13,7 +18,6 @@
 	* themes/default/settings/session-manager/generic:
 	Fixed Save Session Only
 
-	
 2003-07-16  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/bindings:
