@@ -1,0 +1,16 @@
+DestroyModuleConfig FvwmEvent-Sound: *
+
+*FvwmEvent-Sound: StartDelay 5
+*FvwmEvent-Sound: Delay 0
+
+*FvwmEvent-Sound: startup        $./../sounds/random/arpeggio.wav
+*FvwmEvent-Sound: windowshade    $[FT_DATADIR]/sounds/windowshade.au
+*FvwmEvent-Sound: dewindowshade  $[FT_DATADIR]/sounds/dewindowshade.au
+*FvwmEvent-Sound: add_window     $./../sounds/random/fingersnap.wav
+*FvwmEvent-Sound: destroy_window $./../sounds/random/Bubbles.wav
+*FvwmEvent-Sound: unknown        $./../sounds/random/error.wav
+#*FvwmEvent-Sound: raise_window   $./../sounds/random/drip.wav
+*FvwmEvent-Sound: error          $./../sounds/random/error.wav
+*FvwmEvent-Sound: iconify        $[FT_DATADIR]/sounds/iconify.au
+*FvwmEvent-Sound: deiconify      $[FT_DATADIR]/sounds/deiconify.au
+*FvwmEvent-Sound: new_desk       $./../sounds/random/laser.wav

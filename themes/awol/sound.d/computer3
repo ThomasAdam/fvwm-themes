@@ -1,0 +1,15 @@
+DestroyModuleConfig FvwmEvent-Sound: *
+
+*FvwmEvent-Sound: StartDelay 4
+*FvwmEvent-Sound: Delay 1
+
+*FvwmEvent-Sound: startup          $./../sounds/computer/startup.wav
+*FvwmEvent-Sound: error            $./../sounds/computer/error.wav
+*FvwmEvent-Sound: add_window       $./../sounds/computer/add_window.wav
+*FvwmEvent-Sound: destroy_window   $./../sounds/computer/destroy_window2.wav
+*FvwmEvent-Sound: iconify          $./../sounds/computer/iconify2.wav
+*FvwmEvent-Sound: deiconify        $./../sounds/computer/deiconify.wav
+*FvwmEvent-Sound: windowshade      $./../sounds/computer/windowshade.wav
+*FvwmEvent-Sound: dewindowshade    $./../sounds/computer/dewindowshade.wav
+*FvwmEvent-Sound: new_page         $./../sounds/computer/iconify.wav
+*FvwmEvent-Sound: new_desk         $./../sounds/computer/iconify.wav

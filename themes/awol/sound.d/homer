@@ -1,0 +1,18 @@
+DestroyModuleConfig FvwmEvent-Sound: *
+
+*FvwmEvent-Sound: StartDelay 5
+*FvwmEvent-Sound: Delay 0
+
+*FvwmEvent-Sound: startup        $./../sounds/homer/AnyKey.wav
+*FvwmEvent-Sound: windowshade    $./../sounds/homer/WhyYouLittle.wav
+*FvwmEvent-Sound: dewindowshade  $./../sounds/homer/Wahoo.wav
+*FvwmEvent-Sound: shutdown       $./../sounds/homer/NoTime.wav
+*FvwmEvent-Sound: add_window     $./../sounds/homer/AhHa.wav
+*FvwmEvent-Sound: destroy_window $./../sounds/homer/Shutup.wav
+*FvwmEvent-Sound: unknown        $./../sounds/homer/Doh2.wav
+#*FvwmEvent-Sound: raise_window   $./../sounds/homer/AhHa.wav
+*FvwmEvent-Sound: error          $./../sounds/homer/carramba.wav
+*FvwmEvent-Sound: iconify        $./../sounds/homer/WhyYouLittle.wav
+*FvwmEvent-Sound: deiconify      $./../sounds/homer/Shutup.wav
+*FvwmEvent-Sound: new_page       $./../sounds/homer/Belch.wav
+*FvwmEvent-Sound: new_desk       $./../sounds/homer/Boring.wav
