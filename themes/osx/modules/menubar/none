@@ -1,0 +1,2 @@
+DestroyFunc FuncFvwmStartChosenMenuBar
+AddToFunc   FuncFvwmStartChosenMenuBar

@@ -1,0 +1,42 @@
+/* XPM */
+static char *osx-inactive[] = {
+/* width height num_colors chars_per_pixel */
+"    21    21       14            1",
+/* colors */
+". c #a0bcd8",
+"# c #a0b8d8",
+"a c #98bcd8",
+"b c #a0b8d0",
+"c c #98b0c8",
+"d c #a0b0c8",
+"e c #98acd0",
+"f c #98acc8",
+"g c #98b0d0",
+"h c #98b4c8",
+"i c #a0b4d0",
+"j c #90acc8",
+"k c #90a8c8",
+"l c #90a8c0",
+/* pixels */
+"......########aaaaaaa",
+"bbbbbbbbbbbbbbbbbbbbb",
+"ccccccddddddddccccccc",
+"eeeeeeeeeeeeeefffffff",
+"ggggggeeeeeeeeggggggg",
+"#####################",
+"hhhhhhhhhhhhhhccccccc",
+"fffffffffffffffffffff",
+"ccccccccccccccccccccc",
+"bbbbbbbbbbbbbbbbbbbbb",
+"ccccccfffffffffffffff",
+"fffffffffffffffffffff",
+"fffffffffffffffffffff",
+"iiiiiiiiiiiiiiiiiiiii",
+"fffffffffffffffffffff",
+"jjjjjjjjjjjjjjjjjjjjj",
+"fffffffffffffffffffff",
+"ddddddddddddddddddddd",
+"kkkkkkkkkkkkkkkkkkkkk",
+"kkkkkkkkkkkkkkkkkkkkk",
+"kkkkkkkkkkkkkklllllll"
+};

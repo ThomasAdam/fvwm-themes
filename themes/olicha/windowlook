@@ -1,0 +1,14 @@
+Style "*"	Font     fixed
+Style "*"	IconFont fixed
+
+Style "*"	BorderWidth 5, HandleWidth 5
+Style "*"	FvwmBorder  # MWMBorder
+
+BorderStyle	Simple
+BorderStyle	Inactive -- HiddenHandles
+BorderStyle	Active   -- HiddenHandles
+
+TitleStyle	Centered
+TitleStyle	-- Raised
+
+ButtonStyle	All -- Raised

@@ -1,0 +1,81 @@
+DeskTopSize 3x2
+
+DestroyMenu  MenuFvwmWindowMove
+AddToMenu    MenuFvwmWindowMove "Move to ..." Title
++ "&Right	Page%menu/window-move.xpm%"     AnimatedMove w+100 w
++ "&Left	Page%menu/window-move.xpm%"     AnimatedMove w-100 w
++ "&Down	Page%menu/window-move.xpm%"     AnimatedMove w w+100
++ "&Up  	Page%menu/window-move.xpm%"     AnimatedMove w w-100
+
+AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
++ "&Right	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +1p +0p
++ "&Left	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage -1p +0p
++ "D&own	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p +1p
++ "&Up  	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p -1p
+
+Style "FvwmPager-Single" Handles, Sticky, WindowListSkip, BorderWidth 0
+
+DestroyModuleConfig FvwmPager-Single*
+
+*FvwmPager-SingleColorset * 16
+*FvwmPager-SingleHilightColorset * 8
+*FvwmPager-SingleWindowColorsets 1 2
+*FvwmPager-SingleBalloonColorset * 9
+
+*FvwmPager-SingleGeometry 800x48+0-80
+#*FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-SingleFont -b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1
+*FvwmPager-SingleDeskHilight
+*FvwmPager-SingleMiniIcons
+*FvwmPager-SingleLabel -8 Furthest!
+*FvwmPager-SingleLabel -5 Furtherer
+*FvwmPager-SingleLabel -4 Further
+*FvwmPager-SingleLabel -3 Heaps Far
+*FvwmPager-SingleLabel -2 Too Far
+*FvwmPager-SingleLabel -1 Root
+*FvwmPager-SingleLabel 0 WorkDesk   
+*FvwmPager-SingleLabel 1 Internet
+*FvwmPager-SingleLabel 2 Play
+*FvwmPager-SingleLabel 3 Misc
+*FvwmPager-SingleLabel 4 Junk
+*FvwmPager-SingleLabel 5 Crap
+*FvwmPager-SingleLabel 6 More Crap
+*FvwmPager-SingleLabel 7 Whatever
+*FvwmPager-SingleSmallFont 8x12
+*FvwmPager-SingleIconGeometry 48x48+0-100
+*FvwmPager-SingleBalloons All
+*FvwmPager-SingleBalloonYOffset -2
+*FvwmPager-SingleWindow3DBorders 
+
+DestroyModuleConfig FvwmPager-Desker*
+
+*FvwmPager-DeskerColorset * 16
+*FvwmPager-DeskerHilightColorset * 8
+*FvwmPager-DeskerWindowColorsets 1 2
+*FvwmPager-DeskerBalloonColorset * 9
+
+*FvwmPager-DeskerGeometry -0+0
+#*FvwmPager-DeskerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-DeskerFont -b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1
+*FvwmPager-DeskerDeskHilight
+*FvwmPager-DeskerMiniIcons
+*FvwmPager-DeskerLabel -8 Furthest!
+*FvwmPager-DeskerLabel -5 Furtherer
+*FvwmPager-DeskerLabel -4 Further
+*FvwmPager-DeskerLabel -3 Heaps Far
+*FvwmPager-DeskerLabel -2 Too Far
+*FvwmPager-DeskerLabel -1 Root
+*FvwmPager-DeskerLabel 0 WorkDesk   
+*FvwmPager-DeskerLabel 1 Internet
+*FvwmPager-DeskerLabel 2 Play
+*FvwmPager-DeskerLabel 3 Misc
+*FvwmPager-DeskerLabel 4 Junk
+*FvwmPager-DeskerLabel 5 Crap
+*FvwmPager-DeskerLabel 6 More Crap
+*FvwmPager-DeskerLabel 7 Whatever
+*FvwmPager-DeskerSmallFont 8x12
+*FvwmPager-DeskerIconGeometry 48x48+0-100
+*FvwmPager-DeskerBalloons All
+*FvwmPager-DeskerBalloonYOffset -2
+*FvwmPager-DeskerWindow3DBorders 
+

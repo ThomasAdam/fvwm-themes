@@ -1,0 +1,6 @@
+AddToMenu gnome-sys
++ "" Nop
++ DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop gnome-sys --wm-icons'
+
+AddToMenu MenuFvwmPrograms
++ "Gnome menu%menu/gnome.xpm" popup gnome-sys

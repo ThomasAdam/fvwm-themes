@@ -1,0 +1,296 @@
+# You may want to copy this file in your personal theme directory and there
+# choose (edit) your preferred applications. The default is ok thought.
+
+# ----------------------------------------------------------------------------
+# The following functions are used in many places.
+
+DestroyFunc FuncFvwmViewManPage
+AddToFunc   FuncFvwmViewManPage
++ I Exec exec xterm -fg $[fg.cs22] -bg $[bg.cs22] -g 80x40 -fn 7x14 -fb 7x14bold -n "Manual page - $0" -T "Manual page - $0" -e man "$0"
+
+DestroyFunc FuncFvwmViewFile
+AddToFunc   FuncFvwmViewFile
++ I Exec exec xterm -fg $[fg.cs22] -bg $[bg.cs22] -g 80x24 -fn 7x14 -fb 7x14bold -n "File Viewer - $0" -T "File Viewer - $0" -e less -e "$0"
+
+DestroyFunc FuncFvwmEditFile
+AddToFunc   FuncFvwmEditFile
++ I Exec exec emacs "$0"
+
+DestroyFunc FuncFvwmViewFileTail
+AddToFunc   FuncFvwmViewFileTail
++ I Exec exec xterm -fg $[fg.cs22] -bg $[bg.cs22] -g 80x40 -fn 7x14 -fb 7x14bold -n "Tail - $0" -T "Tail - $0" -e less -f "$1"
+
+DestroyFunc FuncFvwmOpenURL
+AddToFunc   FuncFvwmOpenURL
++ I Exec exec netscape -remote 'openURL($0, new-window)' || netscape '$0'
+
+DestroyFunc FuncFvwmRunInXterm
+AddToFunc   FuncFvwmRunInXterm
++ I exec xterm -fg $[fg.cs22] -bg $[bg.cs22] -g 80x40 -fn 7x14 -fb 7x14bold +sb -ut -T "$0" -n "$0" -name xxterm -e $1
+
+# ----------------------------------------------------------------------------
+# 'man fvwm-menu-directory' for details.
+
+DestroyFunc FuncFvwmMenuDirectory
+AddToFunc   FuncFvwmMenuDirectory
++ I PipeRead 'fvwm-menu-directory -d "$0" --exec-file ^emacs --check-subdir --links --wm-icons'
+
+# ----------------------------------------------------------------------------
+# The following functions are mostly used in FvwmButtons modules and stroke.
+# FuncFvwm[mouse-button][icon-name]
+# When you click with the mouse button [mouse-button] on a button with an icon
+# which is named [icon-name] then the coresponding command is executed.
+ 
+# Used in aftersep, migo, olicha, redmond98
+DestroyFunc FuncFvwmFileManager
+AddToFunc   FuncFvwmFileManager
++ I Exec exec xterm -g 80x40 -sb +sk -si -sl 500 -j -ls -fn 7x14 -fb 7x14bold -n Midnight-Commander -T Midnight-Commander -e mc -x
+
+DestroyFunc FuncFvwm2FileManager
+AddToFunc   FuncFvwm2FileManager
++ I Exec exec gmc
+
+DestroyFunc FuncFvwm3FileManager
+AddToFunc   FuncFvwm3FileManager
++ I Exec exec kfmclient openURL $HOME
+
+# Used in aftersep, migo, olicha, redmond98, osx
+DestroyFunc FuncFvwmTerminal
+AddToFunc   FuncFvwmTerminal
++ I Exec exec xterm -fg $[fg.cs20] -bg $[bg.cs20] -n $USER@$HOST -T $USER@$HOST
+
+DestroyFunc FuncFvwm2Terminal
+AddToFunc   FuncFvwm2Terminal
++ I Exec exec xterm -fg $[fg.cs21] -bg $[bg.cs21] -n root@$HOST  -T root@$HOST  -e su -l
+
+DestroyFunc FuncFvwm3Terminal
+AddToFunc   FuncFvwm3Terminal
++ I Exec exec Eterm
+
+# Used in aftersep, migo, olicha, redmond98, osx
+DestroyFunc FuncFvwmEditor
+AddToFunc   FuncFvwmEditor
++ I Exec exec emacs
+
+DestroyFunc FuncFvwm2Editor
+AddToFunc   FuncFvwm2Editor
++ I Exec exec gvim
+
+DestroyFunc FuncFvwm3Editor
+AddToFunc   FuncFvwm3Editor
++ I Exec exec xemacs
+
+# Used in aftersep, migo, olicha, redmond98, osx
+DestroyFunc FuncFvwmDocView
+AddToFunc   FuncFvwmDocView
++ I Exec exec ghostview
+
+DestroyFunc FuncFvwm2DocView
+AddToFunc   FuncFvwm2DocView
++ I Exec exec xpdf
+
+DestroyFunc FuncFvwm3DocView
+AddToFunc   FuncFvwm3DocView
++ I Exec exec xdvi
+
+# Used in aftersep, migo, olicha, redmond98, osx
+DestroyFunc FuncFvwmImageView
+AddToFunc   FuncFvwmImageView
++ I Exec exec xv
+
+DestroyFunc FuncFvwm2ImageView
+AddToFunc   FuncFvwm2ImageView
++ I Exec exec gqview
+
+DestroyFunc FuncFvwm3ImageView
+AddToFunc   FuncFvwm3ImageView
++ I Exec exec ee
+
+# Used in aftersep, migo, olicha, redmond98, osx
+DestroyFunc FuncFvwmImageEdit
+AddToFunc   FuncFvwmImageEdit
++ I Exec exec gimp
+
+DestroyFunc FuncFvwm2ImageEdit
+AddToFunc   FuncFvwm2ImageEdit
++ I Exec exec xpaint
+
+DestroyFunc FuncFvwm3ImageEdit
+AddToFunc   FuncFvwm3ImageEdit
++ I Exec exec xfig
+
+# Used in migo, olicha
+DestroyFunc FuncFvwmProcess
+AddToFunc   FuncFvwmProcess
++ I FuncFvwmRunInXterm "Top" "top"
+
+DestroyFunc FuncFvwm2Process
+AddToFunc   FuncFvwm2Process
++ I Exec exec gpm
+
+DestroyFunc FuncFvwm3Process
+AddToFunc   FuncFvwm3Process
++ I Exec exec kpm
+
+# Used in olicha
+DestroyFunc FuncFvwmMail
+AddToFunc   FuncFvwmMail
++ I  FuncFvwmRunInXterm "Mail" "mail"
+
+DestroyFunc FuncFvwm2Mail
+AddToFunc   FuncFvwm2Mail
++ I FuncFvwmRunInXterm "Mail" "mutt"
+
+DestroyFunc FuncFvwm3Mail
+AddToFunc   FuncFvwm3Mail
++ I Exec exec kmail
+
+
+# Used in olicha
+DestroyFunc FuncFvwmHelp
+AddToFunc   FuncFvwmHelp
++ I Exec exec xman
+
+DestroyFunc FuncFvwm2Help
+AddToFunc   FuncFvwm2Help
++ I Exec exec gnome-help-browser
+
+DestroyFunc FuncFvwm3Help
+AddToFunc   FuncFvwm3Help
++ I Exec exec kdehelp
+
+# Used in migo, olicha
+DestroyFunc FuncFvwmCalculator
+AddToFunc   FuncFvwmCalculator
++ I Exec exec xcalc
+
+DestroyFunc FuncFvwm2Calculator
+AddToFunc   FuncFvwm2Calculator
++ I Exec exec gcalc
+
+DestroyFunc FuncFvwm3Calculator
+AddToFunc   FuncFvwm3Calculator
++ I Exec exec kcalc
+
+# Used in aftersep, migo, olicha, redmond98, osx
+DestroyFunc FuncFvwmWWW
+AddToFunc   FuncFvwmWWW
++ I Exec exec netscape
+
+DestroyFunc FuncFvwm2WWW
+AddToFunc   FuncFvwm2WWW
++ I Exec exec gppp
+
+DestroyFunc FuncFvwm3WWW
+AddToFunc   FuncFvwm3WWW
++ I Exec exec kppp
+
+# Used in migo
+DestroyFunc FuncFvwmIrc
+AddToFunc   FuncFvwmIrc
++ I Exec exec xterm -g 80x40 -sb +sk -si -sl 500 -j -ls -fn 7x14 -fb 7x14bold -n irc -T irc -e irc
+
+DestroyFunc FuncFvwm2Irc
+AddToFunc   FuncFvwm2Irc
++ I Exec exec tkirc
+
+DestroyFunc FuncFvwm3Irc
+AddToFunc   FuncFvwm3Irc
++ I Exec exec licq
+
+# Used in migo
+DestroyFunc FuncFvwmGame
+AddToFunc   FuncFvwmGame
++ I Exec exec xmahjongg
+
+DestroyFunc FuncFvwm2Game
+AddToFunc   FuncFvwm2Game
++ I Exec exec gnomine
+
+DestroyFunc FuncFvwm3Game
+AddToFunc   FuncFvwm3Game
++ I Exec exec kpat
+
+# Used in migo
+DestroyFunc FuncFvwmCdPlayer
+AddToFunc   FuncFvwmCdPlayer
++ I Exec exec xplaycd
+
+DestroyFunc FuncFvwm2CdPlayer
+AddToFunc   FuncFvwm2CdPlayer
++ I Exec exec gtcd
+
+DestroyFunc FuncFvwm3CdPlayer
+AddToFunc   FuncFvwm3CdPlayer
++ I Exec exec kscd
+
+# Used in migo
+DestroyFunc FuncFvwmSound
+AddToFunc   FuncFvwmSound
++ I Exec exec xmixer
+
+DestroyFunc FuncFvwm2Sound
+AddToFunc   FuncFvwm2Sound
++ I Exec exec gmix
+
+DestroyFunc FuncFvwm3Sound
+AddToFunc   FuncFvwm3Sound
++ I Exec exec kmix
+
+# Used in migo
+DestroyFunc FuncFvwmKeyboard
+AddToFunc   FuncFvwmKeyboard
++ I Exec exec xkeycaps
+
+DestroyFunc FuncFvwm2Keyboard
+AddToFunc   FuncFvwm2Keyboard
++ I Exec exec xrus
+
+DestroyFunc FuncFvwm3Keyboard
+AddToFunc   FuncFvwm3Keyboard
++ I FvwmScript ScriptFvwmKeyboardSetup
+
+# Used in migo
+DestroyFunc FuncFvwmWmLock
+AddToFunc   FuncFvwmWmLock
++ I Exec xlock -nice 20 -mode random
+
+DestroyFunc FuncFvwm2WmLock
+AddToFunc   FuncFvwm2WmLock
++ I Exec xlock -nolock -nice 20 -mode random
+
+DestroyFunc FuncFvwm3WmLock
+AddToFunc   FuncFvwm3WmLock
++ I Nop
+
+# Used in migo
+DestroyFunc FuncFvwmWindowClose
+AddToFunc   FuncFvwmWindowClose
++ I Close
+
+DestroyFunc FuncFvwm2WindowClose
+AddToFunc   FuncFvwm2WindowClose
++ I Iconify
+
+DestroyFunc FuncFvwm3WindowClose
+AddToFunc   FuncFvwm3WindowClose
++ I Destroy
+
+# Used in migo
+DestroyFunc FuncFvwmWmRestart
+AddToFunc   FuncFvwmWmRestart
++ I Restart
+
+DestroyFunc FuncFvwm2WmRestart
+AddToFunc   FuncFvwm2WmRestart
++ I Refresh
+
+DestroyFunc FuncFvwm3WmRestart
+AddToFunc   FuncFvwm3WmRestart
++ I Recapture
+
+# used in stroke; IMHO, both beep and grab are very annoying
+DestroyFunc FuncFvwmQuitVerify
+AddToFunc   FuncFvwmQuitVerify
++ I FvwmForm FormFvwmQuitVerify.
+#+ I Quit

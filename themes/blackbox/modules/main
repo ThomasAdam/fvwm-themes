@@ -1,0 +1,78 @@
+# 1. Icon related configuration
+# 2. Initialization functions
+# 3. Switch functions
+# 4. Theme module menus
+# 5. Modules configuration
+
+#-----------------------------------------------------------------------------
+# Icon related configuration
+
+Style "*"	IconBox 10 5 -130 700, IconGrid 64 64, IconFill left top
+Style "*" 	SlipperyIcon, IconTitle
+
+#-----------------------------------------------------------------------------
+# Initialization functions
+
+# migo: temporary
+#
+#AddToFunc InitFunction
+#+ I FuncFvwmStartThemeModules
+#
+#AddToFunc RestartFunction
+#+ I FuncFvwmStartThemeModules
+#
+## When used with a session manager fvwm uses SessionInitFunction and 
+## SessionRestartFunction
+#
+#AddToFunc SessionInitFunction
+#+ I FuncFvwmSessionStartThemeModules
+#
+#AddToFunc SessionRestartFunction
+#+ I FuncFvwmSessionStartThemeModules
+
+#-----------------------------------------------------------------------------
+# Switch functions
+
+DestroyFunc FuncFvwmStartThemeModules
+AddToFunc   FuncFvwmStartThemeModules
++ I FuncFvwmStartChosenIconMan
++ I FuncFvwmStartChosenButtons
++ I FuncFvwmStartChosenPager
++ I FuncFvwmStartNormalIcons
+
+DestroyFunc FuncFvwmStopThemeModules
+AddToFunc   FuncFvwmStopThemeModules
++ I KillModule FvwmButtons
++ I KillModule FvwmPager
++ I KillModule FvwmIconMan
++ I DestroyModuleConfig FvwmButtons-XX*
++ I DestroyModuleConfig FvwmPager-Single*
++ I DestroyModuleConfig FvwmPager-Desker*
++ I DestroyModuleConfig FvwmIconMan*
++ I DestroyFunc FuncFvwmStartChosenIconMan
++ I DestroyFunc FuncFvwmStartChosenButtons
++ I DestroyFunc FuncFvwmStartChosenPager
++ I DestroyFunc FuncFvwmStartNormalIcons
+
+# ----------------------------------------------------------------------------
+# Theme module menus
+
+DestroyMenu MenuFvwmStartThemeModules
+AddToMenu   MenuFvwmStartThemeModules "BlackBox Modules" Title
++ "&XXButtons" 	FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-XX
++ "&Desker"     FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '0 3'
++ "Icon&Man"    FuncFvwmRestartModule FvwmIconMan
+
+DestroyMenu MenuFvwmStopThemeModules
+AddToMenu   MenuFvwmStopThemeModules "BlackBox Modules" Title
++ "Stop &XXButtons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-XX
++ "Stop &Desker"    FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
++ "Stop Icon&Man"   FuncFvwmStopModule FvwmIconMan
+
+# -----------------------------------------------------------------------------
+# Modules configuration
+
+Read themes/blackbox/modules/main:FvwmPager-Single
+Read themes/blackbox/modules/main:FvwmPager-Desker
+Read themes/blackbox/modules/main:FvwmIconMan
+Read themes/blackbox/modules/main:FvwmButtons-XX

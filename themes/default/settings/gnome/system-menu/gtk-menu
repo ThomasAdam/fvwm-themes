@@ -1,0 +1,15 @@
+*FvwmGtkDestroy gnome-sys
+*FvwmGtkIconSize 18 18
+PipeRead 'fvwm-menu-desktop --desktop gnome-sys --type gtk --enable-mini-icons'
+
+AddToMenu MenuFvwmPrograms
++ "" Nop
++ "&Gnome menu%menu/gnome.xpm" SendToModule FvwmGtk gnome-sys
+
+DestroyFunc FuncFvwmStartFvwmGtk
+AddToFunc   FuncFvwmStartFvwmGtk
++ I Module FvwmGtk
+
+DestroyFunc FuncFvwmStopFvwmGtk
+AddToFunc   FuncFvwmStopFvwmGtk
++ I KillModule FvwmGtk

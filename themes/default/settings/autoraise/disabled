@@ -1,0 +1,5 @@
+DestroyFunc FuncFvwmStartFvwmAutoRaise
+AddToFunc   FuncFvwmStartFvwmAutoRaise
+
+DestroyFunc FuncFvwmStopFvwmAutoRaise
+AddToFunc   FuncFvwmStopFvwmAutoRaise

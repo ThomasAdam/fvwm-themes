@@ -1,0 +1,153 @@
+###
+#  Icon related configuration
+###
+
+Style * IconBox 130 5 -130 700, IconGrid 64 64, IconFill left top
+Style * SlipperyIcon, IconTitle
+
+# Change this to the real path of wm-icons (this is a default).
+ImagePath $HOME/.wm-icons:/usr/local/share/icons/wm-icons:+
+
+# Create alias 'bar' if it does not exist yet (actually needed only once).
+Exec test \! -d $HOME/.wm-icons || wm-icons-config -q -p -w bar || wm-icons-config -q -p -f bar 14x14-general
+
+###
+#  Initialization & Switch functions
+###
+
+### Initialization functions
+
+# migo: temporary
+#
+#AddToFunc InitFunction
+#+ I FuncFvwmStartThemeModules
+#
+#AddToFunc RestartFunction
+#+ I FuncFvwmStartThemeModules
+#
+## When used with a session manager fvwm uses SessionInitFunction and 
+## SessionRestartFunction
+#
+#AddToFunc SessionInitFunction
+#+ I FuncFvwmSessionStartThemeModules
+#
+#AddToFunc SessionRestartFunction
+#+ I FuncFvwmSessionStartThemeModules
+
+### Switch functions
+
+DestroyFunc FuncFvwmStartThemeModules
+AddToFunc   FuncFvwmStartThemeModules
++ I FuncFvwmStartChosenPager
++ I FuncFvwmStartChosenButtons
++ I FuncFvwmStartNormalIcons
+
+# I don't think we need this, because we have options.
+#DestroyFunc FuncFvwmSessionStartThemeModules
+#AddToFunc   FuncFvwmSessionStartThemeModules
+#+ I FuncFvwmStartChosenPager
+#+ I FuncFvwmStartChosenButtons
+
+DestroyFunc FuncFvwmStopThemeModules
+AddToFunc   FuncFvwmStopThemeModules
++ I FuncFvwmStopMyPager
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Compact
++ I DestroyModuleConfig FvwmButtons-Compact*
++ I DestroyModuleConfig FvwmButtons-Pager*
++ I DestroyModuleConfig FvwmPager-Single*
++ I DestroyModuleConfig FvwmPager-Desker*
++ I DestroyFunc FuncFvwmStartMyPager
++ I DestroyFunc FuncFvwmStopMyPager
++ I DestroyFunc FuncFvwmSwitchBarIconSet
++ I DestroyMenu MenuFvwmBarIconSet
+
+###
+#  Theme module menus
+###
+
+DestroyMenu MenuFvwmStartThemeModules
+AddToMenu   MenuFvwmStartThemeModules "Migo Modules" Title
++ "Compact Buttons" \
+	FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Compact
++ "" Nop
++ "Pager && Desker"   FuncFvwmStartMyPager \
+	`FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Pager`
++ "Pager only"  FuncFvwmStartMyPager \
+	`FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Single '* *'`
++ "Desker only" FuncFvwmStartMyPager \
+	`FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '0 3'`
++ "" Nop
++ "No normal icons" Style * NoIcon  # needed to use NoIcon modules
++ "Normal icons"    Read themes/default/settings/iconstyles/style-icon-miniicon
++ "IconB&ox"        FuncFvwmRestartModule FvwmIconBox
++ "Icon&Man"        FuncFvwmRestartModule FvwmIconMan
++ "&TaskBar"        FuncFvwmRestartModule FvwmTaskBar
++ "&WinList"        FuncFvwmRestartModule FvwmWinList
+
+DestroyMenu MenuFvwmStopThemeModules
+AddToMenu   MenuFvwmStopThemeModules "Migo Modules" Title
++ "Stop Compact Buttons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Compact
++ "" Nop
++ "Stop Pager/Desker" FuncFvwmStopMyPager
++ "" Nop
++ "Stop IconB&ox" FuncFvwmStopModule FvwmIconBox
++ "Stop Icon&Man" FuncFvwmStopModule FvwmIconMan
++ "Stop &TaskBar" FuncFvwmStopModule FvwmTaskBar
++ "Stop &WinList" FuncFvwmStopModule FvwmWinList
+
+DestroyFunc FuncFvwmStopMyPager
+AddToFunc   FuncFvwmStopMyPager
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Pager
++ I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Single
++ I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
+
+DestroyFunc FuncFvwmStartMyPager
+AddToFunc   FuncFvwmStartMyPager
++ I FuncFvwmStopMyPager
++ I $0
+
+AddToMenu   MenuFvwmConfiguration "" Nop
++ "wm-icons &Bar Icons" Popup MenuFvwmBarIconSet
+
+###
+#  Change bar icon set submenu
+###
+
+DestroyFunc FuncFvwmSwitchBarIconSet
+AddToFunc   FuncFvwmSwitchBarIconSet
++ I PipeRead 'wm-icons-config -q -p -f bar $0'
++ I FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Compact
+
+DestroyMenu MenuFvwmBarIconSet
+AddToMenu   MenuFvwmBarIconSet "Change Icon Set" Title
++ "%menu/display.xpm%bar	14x14-general"   FuncFvwmSwitchBarIconSet 14x14-general
++ "%menu/display.xpm%bar	16x16-general"   FuncFvwmSwitchBarIconSet 16x16-general
++ "%menu/display.xpm%bar	16x16-kde"       FuncFvwmSwitchBarIconSet 16x16-kde
++ "%menu/display.xpm%bar	17x14-3dpixmaps" FuncFvwmSwitchBarIconSet 17x14-3dpixmaps
++ "%menu/display.xpm%bar	20x20-martys"    FuncFvwmSwitchBarIconSet 20x20-martys
++ "%menu/display.xpm%bar	20x20-martys2"   FuncFvwmSwitchBarIconSet 20x20-martys2
++ "%menu/display.xpm%bar	21x18-3dpixmaps" FuncFvwmSwitchBarIconSet 21x18-3dpixmaps
++ "%menu/display.xpm%bar	32x32-kde"       FuncFvwmSwitchBarIconSet 32x32-kde
++ "%menu/display.xpm%bar	32x32-kde2"      FuncFvwmSwitchBarIconSet 32x32-kde2
++ "%menu/display.xpm%bar	44x52-penguins"  FuncFvwmSwitchBarIconSet 44x52-penguins
++ "%menu/display.xpm%bar	48x48-general"   FuncFvwmSwitchBarIconSet 48x48-general
++ "%menu/display.xpm%bar	48x48-kde2"      FuncFvwmSwitchBarIconSet 48x48-kde2
++ "%menu/display.xpm%bar	56x46-3dpixmaps" FuncFvwmSwitchBarIconSet 56x46-3dpixmaps
++ "%menu/display.xpm%bar	56x56-martys"    FuncFvwmSwitchBarIconSet 56x56-martys
++ "%menu/display.xpm%bar	56x56-martys2"   FuncFvwmSwitchBarIconSet 56x56-martys2
+
+Mouse 3 R SCM Menu MenuFvwmBarIconSet Nop
+
+###
+#  Modules configuration
+###
+
+Read themes/migo/modules/main:FvwmButtons-Compact
+Read themes/migo/modules/main:FvwmPager-Single
+Read themes/migo/modules/main:FvwmPager-Desker
+Read themes/migo/modules/main:FvwmButtons-Pager
+# We should think how one theme can reuse module configs of other theme.
+Read themes/olicha/modules/main:FvwmIconBox
+Read themes/olicha/modules/main:FvwmIconMan
+Read themes/olicha/modules/main:FvwmTaskBar
+Read themes/olicha/modules/main:FvwmWinList

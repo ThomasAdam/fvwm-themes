@@ -1,0 +1,12 @@
+Style "FvwmButtons" NoTitle, Sticky, WindowListSkip, CirculateSkip, NoHandles
+
+DestroyModuleConfig FvwmButtons*
+*FvwmButtonsGeometry 200x90-0-0
+*FvwmButtonsColorset 6
+*FvwmButtons(2x2, Frame 2, Swallow "FvwmPager-Single" "Module FvwmPager FvwmPager-Single * *")
+*FvwmButtons(Frame 2, Swallow "xbiff" `Exec exec xbiff -bg $[bg.cs7] -fg $[fg.cs7]`)
+*FvwmButtons(Frame 3, Swallow(NoHints) "xclock" \
+	`Exec exec xclock -bg $[bg.cs7] -fg $[fg.cs7] -hd $[fg.cs7] -hl $[fg.cs7]\
+	 -padding 0 -update 1`)
+*FvwmButtons(2x1, Frame 2, Swallow(UseOld,NoHints) "xload" \
+	`Exec exec xload -bg $[bg.cs7] -fg $[fg.cs7] -hl grey40 -update 5 -nolabel`)

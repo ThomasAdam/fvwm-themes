@@ -1,0 +1,45 @@
+Style "*" Button 1, Button 2, Button 4, Button 6
+Style "*" MWMButtons  # button relief follows the state
+
+AddButtonStyle 1 MiniIcon
+AddButtonStyle 2 Vector 16 20x20@1 30x20@1 50x40@1 70x20@1 80x20@1 80x30@0 60x50@0 80x80@0 70x80@0 50x60@0 30x80@0 20x80@0 20x70@0 40x50@1 20x30@0 20x20@1
+AddButtonStyle 4 Vector 4 50x25@1 75x75@0 25x75@0 50x25@1
+AddButtonStyle 6 Vector 4 50x75@1 25x25@1 75x25@1 50x75@0
+
+ButtonStyle 1 - Clear MWMDecorMenu
+ButtonStyle 2 - Clear
+ButtonStyle 4 - Clear MWMDecorMax
+ButtonStyle 6 - Clear MWMDecorMin
+
+TitleStyle	Height 20
+
+#     button	context	modifie	function
+Mouse 1 	1	A	FuncFvwmWindowsOpsOrAction Delete
+#Mouse 2 	1	A	Menu MenuFvwmWindowMove
+#Mouse 3 	1	A	Menu MenuFvwmWindowGroupOps
+MouseXX 2 3	1	A       Menu MenuFvwmWindowMove
+MouseXX 3 2	1	A	Menu MenuFvwmWindowGroupOps
+Mouse 0 	2	A	FuncFvwmDeleteOrDestroy
+Mouse 0 	4	A	FuncFvwmMaximize
+Mouse 1 	6	A	FuncFvwmIconify
+Mouse 2 	6	A	FuncFvwmIconifySameResource on
+Mouse 3 	6	A	FuncFvwmIconifySameResource toggle
+Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu, or Delete on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
+Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Delete on click^nDestroy on double click"
+Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Maximize:^n^tpartially on click^n^tfully on double click^n^tvertically on hold"
+Mouse 0 	6	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^nMouse 3 - Iconify toggle resource group"
+
+DestroyFunc FuncFvwmRemoveButtonsBindings
+AddToFunc   FuncFvwmRemoveButtonsBindings
++ I Mouse 1 	1	A	-
++ I Mouse 2	1	A	-
++ I Mouse 3	1	A       -
++ I Mouse 0 	2	A	-
++ I Mouse 0 	4	A	-
++ I Mouse 1 	6	A	-
++ I Mouse 2 	6	A	-
++ I Mouse 3 	6	A	-
++ I Mouse 0 	1	CM	-
++ I Mouse 0 	2	CM	-
++ I Mouse 0 	4	CM	-
++ I Mouse 0 	6	CM	-

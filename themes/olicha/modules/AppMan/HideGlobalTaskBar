@@ -1,0 +1,9 @@
+DestroyModuleConfig FvwmTaskBarDeskOnly*
+*FvwmTaskBarAutoHide
+
+DestroyFunc FuncFvwmStartNormalIcons
+AddToFunc   FuncFvwmStartNormalIcons
++ I Style * NoIcon
+
+AddToFunc   FuncFvwmStartThemeModules
++ I Module FvwmTaskBar

@@ -1,0 +1,44 @@
+Style "FvwmTaskBar" NoTitle, Sticky, WindowListSkip
+DestroyModuleConfig FvwmTaskBar*
+
+*FvwmTaskBarGeometry +0-0
+*FvwmTaskBarColorset 11
+*FvwmTaskBarIconColorset 13
+*FvwmTaskBarTipsColorset 9
+*FvwmTaskBarFocusColorset 12
+#*FvwmTaskBarNoBrightFocus
+*FvwmTaskBarFont -b&h-lucida-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmTaskBarSelFont -b&h-lucida-bold-r-*-*-10-*-*-*-*-*-*-*
+
+*FvwmTaskBarAction Click1 FuncFvwmDeiconifyFocusAndRaise
+*FvwmTaskBarAction Click2 Iconify
+*FvwmTaskBarAction Click3 Popup MenuFvwmWindowOps2 Mouse c -102m
+
+#*FvwmTaskBarShowTransients
+#*FvwmTaskBarHighlightFocus
+#*FvwmTaskBarAutoFocus
+  
+#*FvwmTaskBarAutoStick
+#*FvwmTaskBarAutoHide
+
+#*FvwmTaskBarButtonWidth 180
+
+*FvwmTaskBarUseSkipList
+*FvwmTaskBarUseIconNames
+
+#*FvwmTaskBarDeskOnly
+
+*FvwmTaskBarShowTips
+
+*FvwmTaskBarStartName 
+*FvwmTaskBarStartMenu MenuFvwmRoot Root +4p o100-26p
+*FvwmTaskBarStartIcon 16x16/penguin.xpm
+
+#
+#*FvwmTaskBarClockFormat
+
+*FvwmTaskBarMailCommand FuncFvwmMail
+*FvwmTaskBarMailCheck 30
+*FvwmTaskBarBellVolume 20
+
+*FvwmTaskBarNoIconAction SendToModule FvwmAnimate animate

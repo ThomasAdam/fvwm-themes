@@ -1,0 +1,6 @@
+DestroyFunc FuncFvwmStartChosenAppsMan
+AddToFunc   FuncFvwmStartChosenAppsMan
+
+DestroyFunc FuncFvwmStartNormalIcons
+AddToFunc   FuncFvwmStartNormalIcons
++ I Style * NoIcon

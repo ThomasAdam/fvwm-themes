@@ -1,0 +1,2 @@
+DestroyFunc FuncFvwmStartChosenApplets
+AddToFunc   FuncFvwmStartChosenApplets

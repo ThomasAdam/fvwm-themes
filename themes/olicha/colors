@@ -1,0 +1,135 @@
+# ----------------------------------------------------------------------------
+# 1. Default colorset
+# 2. Window decorations
+# 3. Menus
+# 4. Common modules
+# 5. Application managers
+# 6. FvwmForm and FvwmScript
+# 7. FvwmIdent and FvwmScroll
+# 8. Terminals
+
+# ----------------------------------------------------------------------------
+# 1. Default colorset
+
+# mainly for feedback windows
+*FvwmThemeColorset 0 fg black, bg grey60, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# 2. Window decorations
+
+# These window colorsets are actually used in modules (pager).
+
+# inactive windows
+*FvwmThemeColorset 1 fg white, bg grey60, Plain, NoShape
+
+# active windows
+*FvwmThemeColorset 2 fg white, bg blue, Plain, NoShape
+
+
+# Here we do not actually use the colorsets for technical reasons.
+# In fact these colors are the colors of the border.
+Style "*"	ForeColor   white, BackColor   grey60
+Style "*"	HilightFore white, HilightBack blue
+
+# title
+TitleStyle	ActiveUp   HGradient 20 LightSlateBlue MidnightBlue
+TitleStyle	ActiveDown HGradient 20 LightSlateBlue MidnightBlue
+TitleStyle	Inactive   HGradient 20 grey60 grey30
+
+# window button background
+ButtonStyle	All Pixmap mini/empty.xpm
+
+AddButtonStyle	Left  ActiveUp           Solid LightSlateBlue
+AddButtonStyle	Left  ActiveDown         Solid LightSlateBlue
+AddButtonStyle	Left  ToggledActiveUp    Solid LightSlateBlue
+AddButtonStyle	Left  ToggledActiveDown  Solid LightSlateBlue
+AddButtonStyle	Left  ToggledInactive    Solid grey60
+AddButtonStyle	Left  Inactive           Solid grey60
+
+AddButtonStyle	Right ActiveUp           Solid MidnightBlue
+AddButtonStyle	Right ActiveDown         Solid MidnightBlue
+AddButtonStyle	Right ToggledActiveUp    Solid MidnightBlue
+AddButtonStyle	Right ToggledActiveDown  Solid MidnightBlue
+AddButtonStyle	Right ToggledInactive    Solid grey30
+AddButtonStyle	Right Inactive           Solid grey30
+
+# ----------------------------------------------------------------------------
+# 3. Menus
+
+# inactive menu item fg+bg and menu face
+*FvwmThemeColorset 3 fg white, bg grey40, Plain, NoShape
+
+# active menu item fg+bg
+*FvwmThemeColorset 4 fg black, bg grey50, Plain, NoShape
+
+# greyed menu item fg
+*FvwmThemeColorset 5 fg grey55, bg grey55, Plain, NoShape
+
+MenuStyle * MenuFace
+MenuStyle * MenuColorset 3, ActiveColorset 4, GreyedColorset 5
+# I have no time now to check whether (or why) the following is needed.
+MenuStyle * ActiveFore, HilightBack
+
+# ----------------------------------------------------------------------------
+# 4. Common modules
+
+# default for modules
+*FvwmThemeColorset 6 fg black, bg grey60, Plain, NoShape
+
+# default for Pager/Desker
+*FvwmThemeColorset 16 fg black, bg grey50, Plain, NoShape
+
+# swallowed window
+*FvwmThemeColorset 7 fg black, bg grey50, Plain, NoShape
+
+# hilight (Pager/Desker and others)
+*FvwmThemeColorset 8 fg black, bg white, Plain, NoShape
+
+# tips/balloons
+*FvwmThemeColorset 9 fg yellow, bg RoyalBlue3, Plain, NoShape
+
+# special
+*FvwmThemeColorset 10 fg white, bg grey40, VGradient 26 grey25 grey60, NoShape
+
+# ----------------------------------------------------------------------------
+# 5. Application managers
+
+# standard item
+*FvwmThemeColorset 11 fg white, bg grey45, Plain, NoShape
+
+# active item
+*FvwmThemeColorset 12 fg white, bg RoyalBlue3, Plain, NoShape
+
+# iconified item
+*FvwmThemeColorset 13 fg black, bg grey60, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# 6. FvwmForm and FvwmScript
+
+*FvwmThemeColorset 14 fg white, bg grey45, Plain, NoShape
+*FvwmThemeColorset 15 fg black, bg white, Plain, NoShape
+
+*FvwmScriptDefaultColorset 14
+
+*FvwmFormDefaultColorset 14
+*FvwmFormDefaultItemColorset 15
+
+# ----------------------------------------------------------------------------
+# 7. FvwmIdent and FvwmScroll
+
+*FvwmThemeColorset 17 fg orange, bg blue, Plain, NoShape
+*FvwmIdentColorset 17
+
+*FvwmThemeColorset 18 fg grey30, bg grey30, Plain, NoShape
+*FvwmScrollColorset 18
+
+# ----------------------------------------------------------------------------
+# 8. Terminals
+
+# normal term, root term, special term, remote term, reserved
+
+*FvwmThemeColorset 20 fg white, bg DarkBlue, Plain, NoShape
+*FvwmThemeColorset 21 fg white, bg DarkCyan, Plain, NoShape
+*FvwmThemeColorset 22 fg white, bg DarkGreen, Plain, NoShape
+*FvwmThemeColorset 23 fg white, bg DarkRed, Plain, NoShape
+*FvwmThemeColorset 24 fg yellow, bg navy, Plain, NoShape

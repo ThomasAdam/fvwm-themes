@@ -1,0 +1,4 @@
+*FvwmWinListShowCurrentDesk
+
+AddToFunc   FuncFvwmStartThemeModules
++ I Module FvwmWinList

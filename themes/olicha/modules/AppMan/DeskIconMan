@@ -1,0 +1,9 @@
+*FvwmIconMan*Resolution desk
+*FvwmIconMan*title "Desk IconMan"
+
+DestroyFunc FuncFvwmStartNormalIcons
+AddToFunc   FuncFvwmStartNormalIcons
++ I Style * NoIcon
+
+AddToFunc   FuncFvwmStartThemeModules
++ I Module FvwmIconMan

@@ -1,0 +1,232 @@
+# Binding Functions
+#
+# "I" stands for Immediate
+# "M" stands for Motion
+# "C" stands for Click
+# "H" stands for Hold
+# "D" stands for Double Click
+
+DestroyFunc FuncFvwmMoveOrRaiseOrShade
+AddToFunc   FuncFvwmMoveOrRaiseOrShade
++ H	Move
++ M	Move
++ C	Raise
++ D	WindowShade
+
+DestroyFunc FuncFvwmResizeOrRaiseOrShade
+AddToFunc   FuncFvwmResizeOrRaiseOrShade
++ H	Resize
++ M	Resize
++ C	Raise
++ D	WindowShade
+
+DestroyFunc FuncFvwmMoveOrRaiseLower
+AddToFunc   FuncFvwmMoveOrRaiseLower
++ H	Move
++ M	Move
++ C	RaiseLower
+
+DestroyFunc FuncFvwmMoveOrIconify
+AddToFunc   FuncFvwmMoveOrIconify
++ M	Move
++ D	Iconify
+
+DestroyFunc FuncFvwmMaximizeFullScreen
+AddToFunc   FuncFvwmMaximizeFullScreen
++ I Style $n NoTitle, NoHandles, BorderWidth 0
++ I WindowId "$w" RefreshWindow
++ I WindowId "$w" Maximize true
+
+DestroyFunc FuncFvwmUnmaximizeFullScreen
+AddToFunc   FuncFvwmUnmaximizeFullScreen
++ I WindowId "$w" Maximize false
++ I Style $n Title, Handles, BorderWidth 5
+
+DestroyFunc FuncFvwmWindowsOpsOrAction
+AddToFunc   FuncFvwmWindowsOpsOrAction
++ C Menu MenuFvwmWindowOps2 $*
+#+ C Menu MenuFvwmWindowOps2
+#+ D $*
+
+# ---------------------------------------------------------------------------
+# Contexts:
+#     R = Root Window                 rrrrrrrrrrrrrrrrrrrrrr
+#     W = Application Window          rIrrrrFSSSSSSSSSFrrrrr
+#     F = Frame Corners               rrrrrrS13TTTT642Srrrrr
+#     S = Frame Sides                 rIrrrrSwwwwwwwwwSrrrrr
+#     T = Title Bar                   rrrrrrSwwwwwwwwwSrrrrr
+#     I = Icon                        rIrrrrFSSSSSSSSSFrrrrr
+#                                     rrrrrrrrrrrrrrrrrrrrrr
+# Numbers are buttons: 1 3 5 7 9   0 8 6 4 2
+#
+# Modifiers: (A)ny, (C)ontrol, (S)hift, (M)eta, (N)othing
+
+# ---------------------------------------------------------------------------
+#     key	context	modifie	function
+
+# press Shift-Ctrl-Alt arrow anywhere, and scroll by 1 page
+Key Left	A	SCM	Scroll -100   +0
+Key Right	A	SCM	Scroll +100   +0
+Key Up  	A	SCM	Scroll   +0 -100
+Key Down	A	SCM	Scroll   +0 +100
+
+# press Ctrl-Alt arrow anywhere, and scroll by 1/10 of a page
+Key Left	A	CM	Scroll -10  +0
+Key Right	A	CM	Scroll +10  +0
+Key Up  	A	CM	Scroll  +0 -10
+Key Down	A	CM	Scroll  +0 +10
+
+# press Shift-Ctrl arrow anywhere, and move the pointer by 1% of a page
+Key Left	A	SC	CursorMove -1 +0
+Key Right	A	SC	CursorMove +1 +0
+Key Up  	A	SC	CursorMove +0 -1
+Key Down	A	SC	CursorMove +0 +1
+
+# press Shift+Alt arrow anywhere, and move the pointer by 1/10 of a page
+Key Left	A	SM	CursorMove -10  +0
+Key Right	A	SM	CursorMove +10  +0
+Key Up  	A	SM	CursorMove  +0 -10
+Key Down	A	SM	CursorMove  +0 +10
+
+# Keyboard accelerators
+# Shift is needed to let some apps to handle keys
+Key F1  	A	SM	Menu MenuFvwmRoot
+Key F2  	A	SM	WindowList
+Key F3  	A	SM	Menu MenuFvwmWindowOps
+Key F4  	A	SM	Close
+Key F5  	A	SM	RaiseLower
+Key F6  	A	SM	FuncFvwmRestore
+Key F7  	A	SM	Move
+Key F8  	A	SM	Resize
+Key F9  	A	SM	Iconify
+Key F10  	A	SM	Maximize
+Key F11 	A	SM	Module FvwmIdent
+Key F12 	A	SM	Module FvwmConsole -fg $[fg.cs21] -bg $[bg.cs21]
+
+Key Tab 	A	SM	WindowList Root c c OnlyListSkip, NoDeskSort, SelectOnRelease
+Key Tab 	A	CM	Prev Focus
+Key Tab 	A	SCM	Next Focus
+Key F11 	A	SC	Pick FuncFvwmMaximizeFullScreen
+Key F12 	A	SC	Pick FuncFvwmUnmaximizeFullScreen
+
+# ---------------------------------------------------------------------------
+#     button	context	modifie	function
+
+# pointer in Root
+Mouse 1 	R	A	Menu MenuFvwmRoot
+#Mouse 2 	R	A	WindowList
+#Mouse 3 	R	A	Menu MenuFvwmWindowOps
+MouseXX 2 3	R	A	WindowList
+MouseXX 3 2	R	A	Menu MenuFvwmWindowOps
+
+#Mouse 2 	R	C	Module FvwmPager -transient FvwmPager-Single * *
+#Mouse 2 	R	SC	Module FvwmPager -transient FvwmPager-Desker 0 3
+MouseXX 2 3	R	C	Module FvwmPager -transient FvwmPager-Single * *
+MouseXX 2 3	R	SC	Module FvwmPager -transient FvwmPager-Desker 0 3
+
+# Under session bind Shift Mouse * to gnomebutton
+#FuncFvwmFvwmOrSessionOrGnome 'Nop' 'Nop' 'Mouse 1 R S GnomeButton'
+#FuncFvwmFvwmOrSessionOrGnome 'Nop' 'Nop' 'Mouse 2 R S GnomeButton'
+#FuncFvwmFvwmOrSessionOrGnome 'Nop' 'Nop' 'Mouse 3 R S GnomeButton'
+
+# pointer in Window Buttons
+# now in 'buttons' component
+
+# pointer in Window Decorations
+Mouse 1 	T	A	FuncFvwmMoveOrRaiseOrShade
+Mouse 1 	SF	A	FuncFvwmResizeOrRaiseOrShade
+Mouse 1 	TSF	C	FuncFvwmMoveOrRaiseLower
+#Mouse 2 	TSF	A	FuncFvwmMoveOrRaiseLower
+#Mouse 3 	TSF	A	Menu MenuFvwmWindowOps2
+#Mouse 3 	TSF	M	Menu MenuFvwmWindowOps
+MouseXX 2 3	TSF	A	FuncFvwmMoveOrRaiseLower
+MouseXX 3 2	TSF	A	Menu MenuFvwmWindowOps2
+MouseXX 3 2	TSF	M	Menu MenuFvwmWindowOps
+
+# pointer in Window
+Mouse 1 	W	M	Menu MenuFvwmRoot
+Mouse 1 	W	CM	FuncFvwmMoveOrRaiseLower
+#Mouse 2 	W	M	FuncFvwmMoveOrRaiseLower
+#Mouse 3 	W	M	Menu MenuFvwmWindowOps
+MouseXX 2 3	W	M	FuncFvwmMoveOrRaiseLower
+MouseXX 3 2	W	M	Menu MenuFvwmWindowOps
+
+# pointer in Icon
+Mouse 1 	I	A	FuncFvwmMoveOrIconify
+#Mouse 2 	I	A	FuncFvwmIconify
+#Mouse 3 	I	A	Menu MenuFvwmWindowOps2
+MouseXX 2 3	I	A	FuncFvwmIconify
+MouseXX 3 2	I	A	Menu MenuFvwmWindowOps2
+Mouse 1 	I	S	FuncFvwmIconify
+#Mouse 2 	I	S	FuncFvwmIconifySameResource off
+#Mouse 3 	I	S	FuncFvwmIconifySameResource toggle
+MouseXX 2 3	I	S	FuncFvwmIconifySameResource off
+MouseXX 3 2	I	S	FuncFvwmIconifySameResource toggle
+
+
+# ---------------------------------------------------------------------------
+# We need to destroy the bindings to avoid current problems with fvwm.
+
+DestroyFunc FuncFvwmRemoveBindings
+AddToFunc   FuncFvwmRemoveBindings
++ I Key Left	A	SCM	-
++ I Key Right	A	SCM	-
++ I Key Up  	A	SCM	-
++ I Key Down	A	SCM	-
++ I Key Left	A	CM	-
++ I Key Right	A	CM	-
++ I Key Up  	A	CM	-
++ I Key Down	A	CM	-
++ I Key Left	A	SC	-
++ I Key Right	A	SC	-
++ I Key Up  	A	SC	-
++ I Key Down	A	SC	-
++ I Key Left	A	SM	-
++ I Key Right	A	SM	-
++ I Key Up  	A	SM	-
++ I Key Down	A	SM	-
++ I Key F1  	A	SM	-
++ I Key F2  	A	SM	-
++ I Key F3  	A	SM	-
++ I Key F4  	A	SM	-
++ I Key F5  	A	SM	-
++ I Key F6  	A	SM	-
++ I Key F7  	A	SM	-
++ I Key F8  	A	SM	-
++ I Key F9  	A	SM	-
++ I Key F10 	A	SM	-
++ I Key F11 	A	SM	-
++ I Key F12 	A	SM	-
++ I Key Tab 	A	SM	-
++ I Key Tab 	A	CM	-
++ I Key Tab 	A	SCM	-
++ I Key Enter	A	CM	-
++ I Key Enter	A	SM	-
++ I Mouse 1 	R	A	-
++ I MouseXX 2 3	R	A	-
++ I MouseXX 3 2	R	A	-
++ I MouseXX 2 3	R	C	-
++ I MouseXX 2 3	R	SC	-
+#+ I FuncFvwmFvwmOrSessionOrGnome 'Nop' 'Nop' 'Mouse 1 R S -'
+#+ I FuncFvwmFvwmOrSessionOrGnome 'Nop' 'Nop' 'Mouse 2 R S -'
+#+ I FuncFvwmFvwmOrSessionOrGnome 'Nop' 'Nop' 'Mouse 3 R S -'
++ I Mouse 1 	T	A	-
++ I Mouse 1 	SF	A	-
++ I Mouse 1 	TSF	C	-
++ I MouseXX 2 3	TSF	A	-
++ I MouseXX 3 2	TSF	A	-
++ I MouseXX 3 2	TSF	M	-
++ I Mouse 1 	W	M	-
++ I Mouse 1 	W	CM	-
++ I MouseXX 2 3	W	M	-
++ I MouseXX 3 2	W	M	-
++ I Mouse 1 	I	A	-
++ I MouseXX 2 3	I	A	-
++ I MouseXX 3 2	I	A	-
++ I Mouse 1 	I	S	-
++ I MouseXX 2 3	I	S	-
++ I MouseXX 3 2	I	S	-
+
+#-----------------------------------------------------------------------------
+# stroke support
+#Read options/current/stroke

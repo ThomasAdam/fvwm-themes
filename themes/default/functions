@@ -1,0 +1,84 @@
+# The functions from this component can be overwritten in the personal theme.
+
+DestroyFunc WindowListFunc
+AddToFunc   WindowListFunc
++ I WindowId $0 Iconify false
++ I WindowId $0 FlipFocus
++ I WindowId $0 Raise
++ I WindowId $0 WarpToWindow 8p 8p
+
+# ----------------------------------------------------------------------------
+
+DestroyFunc FuncFvwmFocusAndWrap
+AddToFunc   FuncFvwmFocusAndWrap
++ I Focus
++ I WarpToWindow 8p 8p
+
+DestroyFunc FuncFvwmDeiconifyFocusAndRaise
+AddToFunc   FuncFvwmDeiconifyFocusAndRaise
++ I Iconify off
++ I Focus
++ I Raise
+
+DestroyFunc FuncFvwmDeiconifyFocusAndWarp
+AddToFunc   FuncFvwmDeiconifyFocusAndWarp
++ I Iconify off
++ I Focus
++ I WarpToWindow 8p 8p
+
+DestroyFunc FuncFvwmRestore
+AddToFunc   FuncFvwmRestore
++ I WindowId "$w" (!Iconic !Shaded Maximized) Maximize    false
++ I WindowId "$w" (!Iconic  Shaded          ) WindowShade false
++ I WindowId "$w" ( Iconic                  ) Iconify     false
+
+DestroyFunc FuncFvwmDelete
+AddToFunc   FuncFvwmDelete
++ I Delete
+
+DestroyFunc FuncFvwmDeleteOrDestroy
+AddToFunc   FuncFvwmDeleteOrDestroy
++ H Nop
++ M Nop
++ C Delete
++ D Destroy
+
+DestroyFunc FuncFvwmMaximize
+AddToFunc   FuncFvwmMaximize
++ M Nop
++ H Maximize 0 95
++ C Maximize 100 95
++ D Maximize 100 100
+
+DestroyFunc FuncFvwmMaximizeVertically
+AddToFunc   FuncFvwmMaximizeVertically
++ H Maximize 0 100
++ M Maximize 0 100
++ C Maximize 0 100
+
+DestroyFunc FuncFvwmMaximizeHorizontally
+AddToFunc   FuncFvwmMaximizeHorizontally
++ H Maximize 100 0
++ M Maximize 100 0
++ C Maximize 100 0
+
+DestroyFunc FuncFvwmIconifySameResource
+AddToFunc   FuncFvwmIconifySameResource
++ I All ($r) Iconify $0
+
+DestroyFunc FuncFvwmIconify
+AddToFunc   FuncFvwmIconify
++ C Iconify
+
+# ----------------------------------------------------------------------------
+# These functions probably need not be configurable (move to themes-rc?).
+
+DestroyFunc FuncFvwmShowMessage
+AddToFunc   FuncFvwmShowMessage
++ I Exec echo "$1" | perl -pe 's/\^n/\n/g; s/\^t/\t/g; s/\^\^/^/g' - | \
+	xmessage -fg $[fg.cs14] -bg $[bg.cs14] -g 480x120 -nearmouse -title "$0" -file -
+
+DestroyFunc FuncFvwmShowButtonInfo
+AddToFunc   FuncFvwmShowButtonInfo
++ I FuncFvwmShowMessage "Button Info" "$0"
+

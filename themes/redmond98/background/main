@@ -1,0 +1,5 @@
+# FuncFvwmStartThemeBackground is defined in the option files
+
+DestroyFunc FuncFvwmStopThemeBackground
+AddToFunc   FuncFvwmStopThemeBackground
++ I Nop

@@ -1,0 +1,4 @@
+DestroyFunc FuncFvwmStartChosenIconMan
+AddToFunc   FuncFvwmStartChosenIconMan
++ I *FvwmIconMan*Resolution desk
++ I Module FvwmIconMan

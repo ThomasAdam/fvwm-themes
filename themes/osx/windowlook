@@ -1,0 +1,12 @@
+Style "*"	Font variable
+Style "*"	IconFont fixed
+
+Style "*"	BorderWidth 2, HandleWidth 2
+Style "*"	FvwmBorder  # MWMBorder
+
+BorderStyle	Simple -- HiddenHandles NoInset
+
+TitleStyle	Centered
+TitleStyle	-- Flat
+
+ButtonStyle	All -- Flat

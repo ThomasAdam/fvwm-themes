@@ -1,0 +1,39 @@
+Style "FvwmIconBox" NoTitle, Sticky, WindowListSkip,CirculateSkip, NoHandles
+
+DestroyModuleConfig FvwmIconBox*
+*FvwmIconBoxGeometry +0+0
+*FvwmIconBoxColorset   10 
+*FvwmIconBoxIconColorset 11
+*FvwmIconBoxIconHiColorset 12
+
+*FvwmIconBoxGeometry    4x1+0+0
+*FvwmIconBoxMaxIconSize 64x48
+*FvwmIconBoxFont        -adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
+*FvwmIconBoxSortIcons   IconName
+*FvwmIconBoxPadding     10
+*FvwmIconBoxLines       6
+*FvwmIconBoxSBWidth     11
+*FvwmIconBoxFrameWidth 3 3 
+*FvwmIconBoxPlacement   Left Top
+*FvwmIconBoxUseSkipList
+*FvwmIconBoxHideSC Horizontal
+*FvwmIconBoxSetWMIconSize
+*FvwmIconBoxHilightFocusWin
+*FvwmIconBoxResolution          Desk
+*FvwmIconBoxMouse       1       Click          FuncFvwmDeiconifyFocusAndRaise
+*FvwmIconBoxMouse       1       DoubleClick    FuncFvwmDeiconifyFocusAndWarp
+*FvwmIconBoxMouse       2       Click          Iconify
+*FvwmIconBoxMouse       2       DoubleClick    Iconify
+*FvwmIconBoxMouse       3       Click          Module FvwmIdent
+*FvwmIconBoxMouse       3       DoubleClick    Module FvwmIdent
+*FvwmIconBoxKey         r       RaiseLower
+*FvwmIconBoxKey         space   Iconify
+*FvwmIconBoxKey         d       Close
+*FvwmIconBoxKey         n       Next
+*FvwmIconBoxKey         p       Prev
+*FvwmIconBoxKey         h       Left
+*FvwmIconBoxKey         j       Down
+*FvwmIconBoxKey         k       Up
+*FvwmIconBoxKey         l       Right
+# Animation
+*FvwmIconBoxNoIconAction SendToModule FvwmAnimate animate

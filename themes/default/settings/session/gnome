@@ -1,0 +1,3 @@
+DestroyFunc FuncFvwmFvwmOrSessionOrGnome
+AddToFunc   FuncFvwmFvwmOrSessionOrGnome
++ "I" PipeRead `perl -e 'if (defined $$ENV{SESSION_MANAGER}) { print "$2";} else { print "$0";}'`

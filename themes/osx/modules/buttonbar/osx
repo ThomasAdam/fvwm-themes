@@ -1,0 +1,3 @@
+DestroyFunc FuncFvwmStartChosenOsxButtons
+AddToFunc   FuncFvwmStartChosenOsxButtons
++ I Module FvwmButtons FvwmButtons-OsxCentral

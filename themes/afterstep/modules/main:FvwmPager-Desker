@@ -1,0 +1,32 @@
+AddToMenu MenuFvwmWindowMove "" Nop
++ "Desk 	Desk%menu/window-move.xpm%"	MoveToDesk 0 0
++ "Web  	Desk%menu/window-move.xpm%"	MoveToDesk 0 1
++ "Devel	Desk%menu/window-move.xpm%"	MoveToDesk 0 2
++ "Games	Desk%menu/window-move.xpm%"	MoveToDesk 0 3
+
+AddToMenu MenuFvwmWindowGroupOps "" Nop
++ "Desk  	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 0
++ "Web  	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 1
++ "Devel	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2
++ "Games	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
+
+DestroyModuleConfig FvwmPager-Desker*
+*FvwmPager-DeskerGeometry -0+35
+*FvwmPager-DeskerDeskTopScale 30
+*FvwmPager-DeskerRows 1
+*FvwmPager-DeskerSolidSeparators
+*FvwmPager-DeskerColorset * 16
+*FvwmPager-DeskerHilightColorset * 8
+*FvwmPager-DeskerWindowColorsets 1 2
+*FvwmPager-DeskerBalloonColorset * 9
+*FvwmPager-DeskerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-DeskerLabel 0 Desk
+*FvwmPager-DeskerLabel 1 Web & Mail
+*FvwmPager-DeskerLabel 2 Devel
+*FvwmPager-DeskerLabel 3 Games
+*FvwmPager-DeskerSmallFont 5x8
+*FvwmPager-DeskerBalloons            All
+*FvwmPager-DeskerBalloonFont         -adobe-helvetica-medium-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-DeskerBalloonYOffset      +2
+*FvwmPager-DeskerBalloonBorderWidth  1
+#*FvwmPager-DeskerBalloonBorderColor  white

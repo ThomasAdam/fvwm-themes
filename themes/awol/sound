@@ -1,0 +1,19 @@
+DestroyModuleConfig FvwmSoundEvent*
+
+# see if sound is enabled and read the command to use
+#Read options/current/sound
+
+*FvwmSoundEventDelay 0
+*FvwmSoundEventStartDelay 0
+
+*FvwmSoundEvent startup		"$FT_DATADIR/themes/awol/sounds/NoTime.wav"
+*FvwmSoundEvent windowshade	"$FT_DATADIR/themes/awol/sounds/Wooeep.wav"
+*FvwmSoundEvent dewindowshade	"$FT_DATADIR/themes/awol/sounds/Eeeooop.wav"
+*FvwmSoundEvent shutdown	"$FT_DATADIR/themes/awol/sounds/NoTime.wav"
+*FvwmSoundEvent add_window	"$FT_DATADIR/themes/awol/sounds/thereson.wav"
+*FvwmSoundEvent destroy_window	"$FT_DATADIR/themes/awol/sounds/Bubbles.wav"
+*FvwmSoundEvent unknown		"$FT_DATADIR/themes/awol/sounds/boingiggig.wav"
+*FvwmSoundEvent raise_window	"$FT_DATADIR/themes/awol/sounds/drip.wav"
+*FvwmSoundEvent error		"$FT_DATADIR/themes/awol/sounds/cannotsave.au"
+*FvwmSoundEvent iconify		"$FT_DATADIR/themes/awol/sounds/rubberband.wav"
+*FvwmSoundEvent deiconify	"$FT_DATADIR/themes/awol/sounds/boingiggig.wav"

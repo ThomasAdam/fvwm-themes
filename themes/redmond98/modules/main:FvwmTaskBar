@@ -1,0 +1,36 @@
+#------------------------------------------------------------------------------
+#------------------ FvwmTaskBar
+#------------------------------------------------------------------------------
+
+Style "FvwmTaskBar" NoTitle,Sticky,WindowListSkip,CirculateSkip
+#Style "FvwmTaskBar" StaysOnTop
+
+DestroyModuleConfig FvwmTaskBar*
+
+# defined in the option
+#*FvwmTaskBarGeometry +0-0
+*FvwmTaskBarColorset 11
+# Not a misprint !
+*FvwmTaskBarFocusColorset 11
+*FvwmTaskBarIconColorset 13
+*FvwmTaskBarTipsColorset 9
+*FvwmTaskBarFont -adobe-helvetica-medium-r-*-*-*-120-*-*-*-*-*-*
+*FvwmTaskBarSelFont -adobe-helvetica-bold-r-*-*-*-120-*-*-*-*-*-*
+*FvwmTaskBarStatusFont fixed
+*FvwmTaskBarAction Click1 FuncFvwmDeiconifyFocusAndRaise
+*FvwmTaskBarAction Click2 Iconify
+*FvwmTaskBarAction Click3 Popup MenuFvwmWindowOps2 Mouse c -102m
+*FvwmTaskBarUseSkipList
+*FvwmTaskBarAutoStick
+*FvwmTaskBarStartName Start
+#*FvwmTaskBarStartMenu MenuFvwmStartMenu Mouse -100p -100m
+*FvwmTaskBarStartMenu MenuFvwmStartMenu Root +0p o100-32p
+*FvwmTaskBarStartIcon 16x16/penguin.xpm
+*FvwmTaskBarMailCommand FuncFvwmMail
+*FvwmTaskBarShowTips
+*FvwmTaskBarShowTransients
+#*FvwmTaskBarHighlightFocus
+# defined in the options
+#*FvwmTaskBarAutoHide
+#*FvwmTaskBarDeskOnly
+*FvwmTaskBarNoIconAction SendToModule FvwmAnimate animate

@@ -1,0 +1,4 @@
+DestroyModuleConfig FvwmWinListShowCurrent*
+
+AddToFunc   FuncFvwmStartThemeModules
++ I Module FvwmWinList

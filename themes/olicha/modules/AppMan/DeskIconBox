@@ -1,0 +1,8 @@
+*FvwmIconBoxResolution Desk
+
+DestroyFunc FuncFvwmStartNormalIcons
+AddToFunc   FuncFvwmStartNormalIcons
++ I Style * NoIcon
+
+AddToFunc   FuncFvwmStartThemeModules
++ I Module FvwmIconBox

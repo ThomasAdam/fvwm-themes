@@ -1,0 +1,126 @@
+# ----------------------------------------------------------------------------
+# 1. Default colorset
+# 2. Window decorations
+# 3. Menus
+# 4. Common modules
+# 5. Application managers
+# 6. FvwmForm and FvwmScript
+# 7. FvwmIdent and FvwmScroll
+# 8. Terminals
+
+# ----------------------------------------------------------------------------
+# 1. Default colorset
+
+# mainly for feedback windows
+*FvwmThemeColorset 0 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# 2. Window decorations
+
+# These window colorsets are actually used in modules (pager).
+
+# inactive windows
+*FvwmThemeColorset 1 fg #000030, bg #808078, Plain, NoShape
+
+# active windows
+*FvwmThemeColorset 2 fg #000030, bg #C0C0B4, Plain, NoShape
+
+
+# Here we do not actually use the colorsets for technical reasons.
+# In fact these colors are the colors of the border.
+Style "*"	ForeColor   #000030, BackColor   #808078
+Style "*"	HilightFore #000030, HilightBack #C0C0B4
+
+# title
+TitleStyle \
+	ActiveUp   (TiledPixmap decor/title-active.xpm) \
+	ActiveDown (TiledPixmap decor/title-active.xpm) \
+	Inactive   (TiledPixmap decor/title-inactive.xpm)
+
+# window button background
+ButtonStyle	All Pixmap mini/empty.xpm
+#ButtonStyle	All ToggledActiveUp   Solid #C0C0B4
+#ButtonStyle	All ToggledActiveDown Solid #C0C0B4
+#ButtonStyle	All ToggledInactive   Solid #808078
+ButtonStyle	All -- UseTitleStyle
+
+# ----------------------------------------------------------------------------
+# 3. Menus
+
+# inactive menu item fg+bg and menu face
+*FvwmThemeColorset 3 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+
+# active menu item fg+bg
+*FvwmThemeColorset 4 fg black, bg rgb:EE/DB/C8, sh rgb:BF/99/74, hi rgb:FF/FF/FF, Plain, NoShape
+
+# greyed menu item fg
+*FvwmThemeColorset 5 fg gray, bg gray, Plain, NoShape
+
+MenuStyle * MenuFace
+MenuStyle * MenuColorset 3, ActiveColorset 4, GreyedColorset 5
+# I have no time now to check whether (or why) the following is needed.
+MenuStyle * ActiveFore, HilightBack
+
+# ----------------------------------------------------------------------------
+# 4. Common modules
+
+# default for modules
+*FvwmThemeColorset 6 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+
+# default for Pager/Desker
+*FvwmThemeColorset 16 fg black, bg rgb:C2/B1/A0, Plain, NoShape
+
+# swallowed window
+*FvwmThemeColorset 7 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+
+# hilight (Pager/Desker and others)
+*FvwmThemeColorset 8 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+
+# tips/balloons
+*FvwmThemeColorset 9 fg black, bg rgb:FF/FF/D0, Plain, NoShape
+
+# special
+*FvwmThemeColorset 10 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# 5. Application managers
+
+# standard item
+*FvwmThemeColorset 11 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+
+# active item
+*FvwmThemeColorset 12 fg #000030, bg #C0C0B4, Plain, NoShape
+
+# iconified item
+*FvwmThemeColorset 13 fg #000030, bg #808078, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# 6. FvwmForm and FvwmScript
+
+*FvwmThemeColorset 14 fg white, bg DarkGreen, Plain, NoShape
+*FvwmThemeColorset 15 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+
+*FvwmScriptDefaultColorset 14
+
+*FvwmFormDefaultColorset 14
+*FvwmFormDefaultItemColorset 15
+
+# ----------------------------------------------------------------------------
+# 7. FvwmIdent and FvwmScroll
+
+*FvwmThemeColorset 17 fg black, bg rgb:FF/FF/D0, Plain, NoShape
+*FvwmIdentColorset 17
+
+*FvwmThemeColorset 18 fg rgb:E4/D2/C0, bg rgb:E4/D2/C0, Plain, NoShape
+*FvwmScrollColorset 18
+
+# ----------------------------------------------------------------------------
+# 8. Terminals
+
+# normal term, root term, special term, remote term, reserved
+
+*FvwmThemeColorset 20 fg white, bg rgb:00/00/30, Plain, NoShape
+*FvwmThemeColorset 21 fg white, bg rgb:00/30/30, Plain, NoShape
+*FvwmThemeColorset 22 fg white, bg rgb:00/30/00, Plain, NoShape
+*FvwmThemeColorset 23 fg white, bg rgb:30/00/00, Plain, NoShape
+*FvwmThemeColorset 24 fg yellow, bg navy, Plain, NoShape

@@ -1,0 +1,32 @@
+DestroyMenu MenuFvwmStartMenu
+AddToMenu   MenuFvwmStartMenu@menuback/fvwm2.xpm@^black^
++ "Screen Saver%winXX-startmenu/screen.xpm"	Popup MenuFvwmScreenSaver
++ "&Modules%winXX-startmenu/modules.xpm"        Popup MenuFvwmModules
++ ""						Nop
++ "&Programs%winXX-startmenu/programs.xpm%"	Popup MenuFvwmPrograms
++ "&Personal%winXX-startmenu/personal.xpm%"     Popup MenuFvwmPersonal
++ "&Documents%winXX-startmenu/documents.xpm%"	Popup StartMenuFvwmDocuments
++ "&Settings%winXX-startmenu/settings.xpm%"	Popup StartMenuFvwmSettings
++ "&Find%winXX-startmenu/find.xpm%"		FvwmScript ScriptFvwmFind
++ "&Help%winXX-startmenu/help.xpm%"		Exec  exec xman
++ "&Run...%winXX-startmenu/run.xpm%"		FuncFvwmTerminal
++ ""						Nop
++ "Sh&ut Down%winXX-startmenu/shutdown.xpm%"	Module FvwmScript ScriptFvwmQuit
+
+DestroyMenu StartMenuFvwmSettings
+AddToMenu   StartMenuFvwmSettings "Settings" Title
++ "S&ystem%menu/monitor.xpm%"			Popup MenuFvwmSystem
++ "&Theme Management%menu/desktop.xpm%"		Popup MenuFvwmThemes
++ "&Fvwm Configuration%menu/unknown.xpm%"	Popup MenuFvwmConfiguration
+#+ "&X Configuration"				Popup MenuFvwmXConfiguration
+
+DestroyMenu StartMenuFvwmDocuments
+AddToMenu   StartMenuFvwmDocuments "Documents" Title
++ "%menu/help.xpm%Fvwm Man Pages"	 Popup MenuFvwmManPages
++ "%menu/help.xpm%Xman"			 Exec exec xman
++ "%menu/information.xpm%Fvwm Home Page" FuncFvwmOpenURL http://www.fvwm.org/
++ "%menu/information.xpm%Fvwm Themes HP" FuncFvwmOpenURL http://fvwm-themes.sourceforge.net/
++ ""  Nop
++ MissingSubmenuFunction FuncFvwmMenuDirectory
++ "%menu/folder.xpm%Root dir" Popup /
++ "%menu/home.xpm%Home dir"   Popup ~

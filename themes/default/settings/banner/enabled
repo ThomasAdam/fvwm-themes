@@ -1,0 +1,3 @@
+AddToFunc StartFunction I Module FvwmBanner
+
+Style "FvwmBanner" StaysOnTop, Sticky

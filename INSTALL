@@ -1,0 +1,57 @@
+Welcome to FVWM Themes, an alpha release.
+
+
+HOW TO INSTALL
+--------------
+
+To install this package unpack the tarball and execute:
+
+	./configure
+	make
+	make install
+
+You can run two first commmands as any user and the last one as the user
+having write permissions to fvwm installation (supposedly root).
+
+After that, the package can be uninstalled at any time using:
+
+	make uninstall
+
+It is possible (but not recommended) to install fvwm-themes to any place,
+regardless of fvwm installation, but you should really know what you do,
+see the last section of this file for instructions.
+
+Please report any installation problems to fvwm-themes-devel mailing list.
+
+
+THE DEFAULT DIRECTORIES
+-----------------------
+
+The fvwm-themes is designed as an add-on, integrated to fvwm pre-2.4.
+The default is to install fvwm-themes to the same directories as fvwm itself,
+more specifically, to ones returned by:
+
+	fvwm-config --bindir --mandir --fvwm-datadir
+
+If fvwm bin directory (fvwm-config utility is part of fvwm-2.3.17) is not
+in your $PATH, we suggest you to add this directory to your $PATH or specify
+--with-fvwm-bindir parameter to ./configure. Adding fvwm bin to your $PATH
+is needed anyway if you want to use all features (like fvwm-menu-* scripts).
+
+
+HOW TO CHANGE THE DEFAULT DIRECTORIES
+-------------------------------------
+
+You should normally skip this section. Currently installation to an
+alternative (non fvwm) place will not work without many changes.
+
+You can overwrite the default directories by giving one or more parameters
+to ./configure: --bindir, --mandir, --datadir (or --with-ft-datadir).
+
+Note, fvwm-themes (like fvwm itself) installs all goodies to $datadir/fvwm.
+
+You can also specify --prefix parameter, in this case the mentioned
+directories will default to this prefix ($prefix/bin, $prefix/man,
+$prefix/share/fvwm). Normally, the prefix is not used.
+
+Example:  env DEBUG=1 ./configure --prefix=/tmp/fvwm-themes --bindir=/tmp

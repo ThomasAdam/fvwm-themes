@@ -1,0 +1,9 @@
+*FvwmIconMan*Resolution page
+*FvwmIconMan*title "Page IconMan"
+
+DestroyFunc FuncFvwmStartNormalIcons
+AddToFunc   FuncFvwmStartNormalIcons
++ I Style * NoIcon
+
+AddToFunc   FuncFvwmStartThemeModules
++ I Module FvwmIconMan

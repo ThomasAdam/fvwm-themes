@@ -1,0 +1,1600 @@
+2000-07-27  migo  <migo@homemail.com>
+
+	* configure.in:
+	Increased version to 0.2.13.
+	Imported fvwm-themes to CVS!
+
+2000-07-26  migo  <migo@homemail.com>
+
+	* themes/cde/background/pattern:
+	Moved from incorrect name. I think more paterns may be included
+	as options later.
+
+	* bin/fvwm-themes-images.in:
+	fixed some indentation and some typos, including an error disabling
+	evaluating 'shadow' colors; several perl tweaks.
+	Renamed --info-xcolors to --show-xcolors, --info-all-colors to
+	--show-xcolorsets, --info-color to --show-color-info; 2 functions
+	formatColorInfo[Head]Line().
+
+	* */*:
+	% find . | perl -wne 'chomp; if (-T && `tail -1 $_` !~ /\n$/s) \
+		{ print "$_\n"; system("echo >>$_") }'
+	Make sure all our text files have final EOLN. Please configure your
+	editor to force this. In emacs: (setq require-final-newline t).
+
+	* themes/*/background/*:
+	Removed comment.
+
+	* themes/migo/background:
+	* themes/migo/images/background/cyan-tile.png:
+	renamed from .pmg to .png.
+
+	* bin/fvwm-themes-config.in:
+	* themes/*/*.cfg:
+	Renamed 'global' to 'priority' and 'popup' to 'inline' (inverted
+	meaning, and now inline=0, i.e. prior popup=1, is the default).
+	Implemented 'option-read-afterward' component value, default is 0.
+	Uncommented "+ I DestroyModuleConfig FvwmTheme*" to fix flickering.
+	Fixed memory of options.
+
+	* themes/default/theme.cfg:
+	Added requires+=colorsets to bindings@ for Shift-Alt-F12 for example.
+	Added requires+=MouseXX to buttons@.
+
+	* themes/*/theme.cfg:
+	Added this file. Currently if a theme has no theme.cfg, default's
+	file is used and it is cached (to get a better performance), so
+	--fresh will not work in this case. I may think about this later.
+
+	* themes/default/functions-appbind:
+	* themes/settings/stroke/enable:
+	Added FuncFvwmQuitVerify instead of QuitVerify form.
+
+	themes/default/menus-user:
+	uncommented "xiterm 80x40" menu item
+
+	* themes/default/bindings:
+	* themes/*/buttons:
+	s/FuncFvwmActionOrWindowsOps/FuncFvwmWindowsOpsOrAction/
+
+	* themes/blackbox/modules/main:FvwmButtons-XX:
+	Change global Frame 0 once instead of everywhere in button items.
+
+	* themes/default/modules*:
+	Use options for modules (was subcomponents of choices).
+	Some renamings, probably not perfect.
+
+	* themes/*/modules*:
+	Renamed 'Use Icons' to 'Use Normal Icons' to be less ambiguous,
+	s/FuncFvwmStartIcons/FuncFvwmStartNormalIcons/.
+	Several other renamings, like s/buttons/buttonbar/.
+
+	* themes/migo/modules*:
+	Implemented modules@ options: winlist and normal-icons.
+	Heh, module configs are linked to @olicha, and options to @default.
+
+	* */*:
+	Total renaming of all module aliases to a new name scheme:
+	FvwmModule-SubName. This should be done in fvwm itself too. :-)
+	Several (a lot, in fact) corrections during this total renaming.
+	Just an idea, how about an alias/wrapper FvwmApplet -> FvwmScript?
+	Experimentally install scripts/* and forms/* to flat FT_DATADIR,
+	so invocation now does not require scripts/ prefix. I still think
+	that flat structure is not good, but probably ok for now, also if
+	SearchPath is introduced, we can put FT_DATADIR/scripts to it.
+
+2000-07-23  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	external-imagepath and start-stop work inside options
+
+	* themes/*/modules.cfg:
+	* themes/*/modules/*:
+	"Style * Icon/NoIcon" is executed in the starting modules theme
+	function in all modules themes under the name: FuncFvwmStartIcons.
+	
+	* configure.in:
+	* Makefile.am:
+	* themes/default/settings.cfg:
+	configure try to find the GNOME image path and then set it in
+	settings.cfg.
+
+	* fvwm-themes-images.in:
+	* bin/Makefile.am:
+	* configure.in:
+	* AUTHORS:
+	* themes/default/menus (Help):
+	New script fvwm-themes-images.in see the man page. Detect X in
+	configure to find rgb.txt. New option to configure:
+ 	--enable-gnome-icons
+
+	* themes/default/settings.cfg:
+	* themes/default/settings/{kde,gnome}/system-menu/*:
+	Work again and better.
+
+	* themes/cde/background/main:
+	* themes/cde/background.cfg:
+	each cde color shemes has a background builded with ft-images
+	--cde-sky
+
+	* themes/redmond98/background.cfg:
+	* themes/cde/background/*:
+	A few backgrounds builded with ft-images --colorize
+
+	* themes/cde/colors/main:
+	fix "cannot parse CDE_COLOR3"
+
+	* TODO:
+	update
+	
+2000-07-03  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	new command popup (for options) and global (for component with
+	sub component).
+
+	* themes/*/modules.cfg:
+	* themes/*/modules/*
+	"Finish" modules themes options/settings
+
+	* themes/*/colors:
+	* bin/fvwm-themes-config.in:
+	(Re)Start FvwmTheme in themes-rc-2
+	Added NoShape and Plain where needed
+	
+2000-06-29  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	- Fixed loading *-extra and other components, which are not yet in
+	the current theme.
+	- Add Drop/Info menu items to all components even complex ones.
+	- Replaced memory implementation (removed 8 functions, added 2),
+	memory is stored in _core component.
+	- Now HASH in HASH in .cfg is supported too (represented by ':').
+	- I had no time to learn why 'used' is needed and to get rid of it.
+
+	* themes/migo/modules/*:
+	Added options as an alternative way to how choices are handled
+	in olicha/default themes.
+	Changed Pager sizes, unfortunately there is a problem in FvwmPager.
+
+	* themes/migo/background:
+	* themes/migo/images/background/cyan-tile.pmg:
+	New image, still not exactly what I want. :)
+
+	* themes/default/bindings:
+	* themes/*/buttons:
+	Restored motif behavior of WindowsOps menu, it is possible to
+	change it in personal bindings-extra or functions-extra.
+	Renamed FuncFvwmActionOrWindowsOps2 to FuncFvwmActionOrWindowsOps,
+	maybe someone wants to popup WindowsOps here immediately.
+
+	* themes/*/colors[/*]:
+	* bin/fvwm-themes-config.in:
+	Finally moved 'ModuleSynchronous FvwmTheme' to core.
+
+	* themes/*/sound:
+	* themes/default/settings/sound-player/*:
+	* themes/*/modules/main:
+	* bin/fvwm-themes-config.in:
+	FvwmEvent for sounds now started/stoped as 'FvwmEvent FvwmSoundEvent',
+	this enables us to run other event modules.
+	FuncFvwmStopModuleByAlias now requires 2 parameters (was 1).
+	FuncFvwmRestartModuleByAlias now accepts an optional 3-rd parameter.
+
+	* themes/default/menus-user:
+	Moved some apps from my personal menus (I don't have all of them). 
+	Games will be added later. There should be added support for
+	ViewFile & EditFile, just like ViewFileTail.
+
+2000-06-28  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	- Added support for (non permanent) sub component ("contains" cfg
+ 	command). 
+	- Added a "memory stuff" for options and choices, this
+	use a memory.cfg file in the user current theme directory.
+	- Now only the only *.cfg file that are "automatically" load
+	in the default file are theme.cfg and setting.cfg (this allows
+	the default theme to get its own sub component, for modules
+	for examples).
+	Note: The new code is marked by a "# olicha" so that it is easy for 
+	you Mikhael to see the diff. Of course most of these marks have to
+	be removed in the future.
+	The new "memory" code can be merged with the 'cc' code at a lot of 
+	places, but I've prefered to use a more prudent method for lisibility
+	and leave this for the future.
+
+	* themes/{olicha,default}/modules.cfg:
+	* themes/{olicha,default}/modules/*:
+	Implemented "theme modules settings" for olicha and default.
+	Will continue with the other themes if every body are happy
+	with this.
+
+	* configure.in:
+	* Makefile.am:
+	* forms/Makefile.am:
+	* forms/FormThemeSettings.
+	* themes/default/menus
+	Create an autoconfed forms directory and add the FormThemeSettings.
+ 	of Alex (with some changes).
+
+	* bin/fvwm-themes-menuapp.in:
+	Fixed the --site option
+
+	* scripts/ScriptFvwmMenu:
+	Fixed the position of the text in the Lists, thanks to the new
+	Get{Min,Max}Value instructions.
+
+	* themes/default/settings.cfg:
+	* bin/fvwm-themes-config.in
+	stroke requires bindings. Added a new cfg command "external-imagepath".
+	See the detail in fvwm-themes-config.in (the stuff does not work).
+	Mikhael do you want to finish it?
+	
+2000-06-16  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	Applied a one line patch from migo
+	
+	* themes/*/modules/main:Fvwm{IconMan,IconBox,TaskBar,WinList}:
+	Enabled animation: fvwm is not more confused with "double" animation
+	
+	* themes/*/button:
+	* themes/default/bindings:
+	Completed the 2<->3 mouse switching
+	New function FuncFvwmActionOrWindowsOps2: first arg for one click
+	WindowsOps2 for double click.
+	Use the above functions when needed, but use Delete in the place of
+	FuncFvwmDelete since if I use it I've got a:
+	 [FVWM][ExecuteFunction]: <<ERROR>> No such command 'FuncFvwmDelete'
+	I'm quite confused with variable expansion ...
+	
+	* themes/default/functions:
+	"Fix" FuncFvwmIconifySameResource: replace C by I
+	
+	* themes/default/bindings*:
+	* themes:default/settings/stroke/enable:
+	Switch Mouse 2<->3 is almost ok for stroke: the pb is that
+	FuncFvwmMoveOrRaiseLower does not work with stroke replace it
+	by RasieLower in this case (stroke + 2<->3=yes)
+	
+	* bin/fvwm-tehemes-menuapp.in
+	* scripts/ScriptFvwmMenus
+	Some bug fixes.
+
+2000-06-13  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-*.in:
+	Minor spacing and spelling fixes.
+
+	* bin/fvwm-themes-menuapp.in:
+	Some places may be reduced in size. No enough time.
+
+	* themes/default/colors:
+	Replaced orchid with MediumPurple and #484048 with black.
+
+	* themes/default/menus:
+	* themes/default/menus-user:
+	Moved FvwmRestartForm & "Just xterm" to menus-user. Added WM's fvwm1,
+	fvwm95, AnotherLevelUp (correct executable?).
+
+	* themes/default/styles:
+	removed FvwmDesker entry
+
+	* themes/default/desktop:
+	we should ask users whether they want MouseFocusClickRaises
+
+	* images.tar.gz:
+	Updated general icon sets from wm-icons-0.2.8.
+	Last minute change - borrowed 16x16/window-destroy.xpm from RH.
+
+	* bin/fvwm-themes-xres.in:
+	write also ~/.gtkrc-user and ~/.xresources-user
+
+	* themes/default/bindings:
+	* themes/default/menus:
+	One more time WindowOps2 menu is changed. Last change? :)
+	This time the F5-F10 bindings are almost exactly like in motif.
+
+	* themes/default/menus:
+	added Maximize submenu of WindowOps menu
+
+	* themes/*/modules/*
+	s/FvwmPagerPager/FvwmSinglePager/, all names may be revised later
+
+	* bin/fvwm-themes-config.in:
+	Improved option support, small changes. Added read-command cfg key.
+	Now inactive choices have the first letter highlighted not vice versus.
+	menu-extra now can be dropped.
+
+	* themes/cde:
+	a new theme with 'colors' component (others to be added later)
+
+	* doc/FAQ:
+	Brief explanation of options and choices.
+
+	* bin/fvwm-themes-config.in:
+	* themes/*/colors:
+	Failed attempt to start FvwmTheme only once. It is still started
+	in colors components. But it is at least killed now in one place.
+
+2000-06-13  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-menuapp.in:
+	* scripts/ScriptFvwmMenus:
+	Fixed fvwm-themes-menuapp exiting when ScriptFvwmMenus exit
+	in an unormal way. Fixed  fvwm-themes-menuapp killing
+	ScriptFvwmMenus if an internal error happen.
+	Fixed edition of menus item which contains special caratere
+	in its name or action.
+	
+2000-06-09  olicha  <olivier.chapuis@free.fr>
+
+	* scripts/ScriptFvwmMenus:
+	A menus editor for fvwm-themes! Use fvwm-themes-menuapp via 
+	fvwm-themes-com. It is alpha!
+
+	* Scripts/ScriptFvwmIconBrowser
+	* scripts/scriptFvwmBrowser
+	Some browser scripts (use fvwm-themes-script)
+
+	* bin/fvwm-themes-menuapp.in:
+	The fvwm-themes menus (and more in the future) utilities. Runed at
+	installation for parsing the menus and remove the applications not
+	in the machine.
+	
+	* bin/fvwm-themes-com.in:
+	The fvwm-themes communicator: allows communication between a FvwmScript
+	script (or any other "programs") and a program that run in the 
+	"background"
+
+	* bin/fvwm-themes-script.in:
+	A library for FvwmScript script
+	
+	* configure.in:
+	* Makefile.am:
+	* scripts/Makefile.am:
+	* bin/Makefile.am
+	Autoconfiscation of the scripts dir and add the new scripts
+	update the bin Makefile.am and check for mknod in configure.in
+
+	* themes/default/styles:
+	Some styles for  the new FvwmScript scripts
+	
+	* themes/default/desktop: resatblish MouseFocusClickRaisesOn :)
+	
+	* themes/default/startup: remove old read "options". Now this
+	file is empty!
+	
+	* themes/{default,awol}/sound:
+	* themes/{theme with a xpm/png background}/background
+	Replace FVWM_USERHOME by FT_DATADIR, comment the read command in awol
+	sound. Do I do a stupid thing?
+
+	* themes/default/themes.cfg: modules requires styles.
+
+	* themes/default/menus-*:
+	For technical reason for the GUI ScriptFvwmMenus, remove the
+	{Add,Destroy}Menu MenuFvwm{Programs,Personal}. Reaname 
+	menus-programs by menus-user and move in it MenuFvwmShell,
+	MenuFvwmSystem, MenuFvwmScreenSaver. New menu MenuFvwmWindowManger
+	and some work in the programs and systems menus.
+
+2000-06-02  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config:
+	Current complex components or the ones with options/choices are
+	now listed first.
+	Implemented support for any complex data in --show-value, try, f.e.
+	[f-t-c] --component settings/gnome/user-menu --show-value choice.
+	Added --show-dir parameter.
+	--fresh parameter (i.e. Refresh the current theme) now preserves
+	current options and choices.
+	
+2000-05-27  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-start.in:
+	Fixed options (set and show). Options are now available in
+	component using FuncFvwmReadOption-component:option.
+	Added --component, --show-value parameters.
+	Exit with an error if no parameters given.
+
+	* themes/default/settings.cfg:
+	* themes/default/settings/sound-player:
+	Renamed settings/sound component to settings/sound-player.
+
+	* themes/default/settings/sound-player/*:
+	Added auplay, audioplay, play (from sox package) players.
+
+	* bin/fvwm-themes-xres.in:
+	* configure.in:
+	* Makefile.am:
+	Added a new script, which sets xresources to ones defined in the
+	colors component, not very good yet.
+
+2000-05-26  migo  <migo@homemail.com>
+
+	* themes/default/menus:
+	Updated man page items in MenuFvwmManPages.
+	Several small changes/fixes.
+
+	* INSTALL:
+	* configure.in:
+	* Makefile.am:
+	several fixes and updates
+
+	* themes/default/styles:
+	Small changes (like UsePPosition for xmessage) and more.
+
+	* themes/migo/modules/main:FvwmPager:
+	Experimental changing 'Right Page' to 'Page ->'.
+
+	* configure.in:
+	* bin/fvwm-themes-start.in:
+	New shell script for starting fvwm-themes.
+
+	* themes/default/menus:
+	* themes/default/bindings:
+	Added [Un]MaximizeFullScreen functions to window utility menu,
+	bound to Shift-Ctrl-F11 & Shift-Ctrl-F12.
+
+	* themes/migo/modules/main:
+	auto change in 'bar' icon set from a menu without a Restart
+
+	* themes/*/modules/main:
+	temporary removed adding FuncFvwmStartThemeModules from init functions,
+	also session support for modules is temporary disabled
+
+	* themes/blackbox/colors:
+	temporarily (?) disabled FuncFvwmIfModules alternatives
+
+	* themes/default/menus:
+	Added customized Restart menu item using FvwmRestartForm.
+	Should we change the main Restart to "Restart fvwm-themes-start"?
+
+	* acinclude.m4 (mg_DEFAULT_DIR_ARG):
+	patch by Paul D. Smith, die on empty dir value
+
+	* themes/default/theme.cfg:
+	* themes/default/settings.cfg:
+	* bin/fvwm-themes-config.in:
+	* bin/fvwm-themes-config.1:
+	Full rewrite of fvwm-themes-config.
+	Implemented a basis for the new component definition/dependancy design.
+	Managing <mytheme>/theme.cfg definition files.
+	Implemented loading/dropping components, component options/choices.
+	A new API, see the man page.
+
+	* themes/multichoice/*:
+	A new theme with 3 multichoice components: background, cursors, colors.
+
+	* themes/*/desktop:
+	Removed obsolete in 2.3.18 style options [Dont]FlipTransient.
+
+2000-04-26  migo  <migo@homemail.com>
+
+	* */*:
+	s/FVWM_USERHOME/FVWM_USERDIR/, s/configdir/datadir/ and more
+	changes to be synchronized with fvwm-20000426.
+
+	* themes/default/{settings,theme}.cfg:
+	improved format, still not used.
+
+	* themes/default/menus:
+	use Maximize, not FuncFvwmMaximize in WindowOps menu
+
+2000-04-18  migo  <migo@homemail.com>
+
+	* configure.in, Makefile.am:
+	fixed installing scripts/ directory
+
+	* Makefile.am:
+	* {images,sounds}.tar.gz:
+	images and sounds are now distributed in .tar.gz, so we have
+	no symlinks in our distribution, this is also needed for CVS
+
+	* themes/default/{options,theme}.cfg:
+	added new files (an idea only, not used yet) for examination
+
+	* themes/*/background:
+	removed duplications; use only themes/current/images dir
+
+	* bin/fvwm-themes-config.in:
+	fixed current options links (temporarily they can be only site's);
+	fixed current images links
+
+2000-04-17  migo  <migo@homemail.com>
+
+	* doc/FAQ:
+	Added "How can I get fvwm config in one file?" and more stroke info.
+
+	* themes/default/menus:
+	Added CommandS to regular modules (Alex's request).
+
+	* themes/spruce/colors:
+	Module colors now match the original better, I hope.
+
+	* themes/awol/README:
+	added a missing file (should contain more info)
+
+	* configure.in, install-sh, missing, mkinstalldirs:
+	* bin/fvwm-themes-config.in:
+	Added autoconf stuff! Uff...
+
+	* acinclude.m4:
+	Added some useful (IMHO) macros.
+
+	* bin/fvwm-themes-config.in:
+	Use 'PipeRead' to read itself instead of 'Exec' + 'Wait'.
+	Support --site instalation. At the start site's themes-rc (only)
+	calls fvwm-themes-config --reset to reset a user version.
+
+	* themes/default/bindings:
+	* options/stroke/enabled:
+	FuncFvwmResizeOrRaise is now FuncFvwmResizeOrRaiseOrShade.
+	This was once suggested by Dominik, to shade on border double click.
+	Alt-Mouse3 in borders/title, now like Alt-Mouse3 in window.
+
+	* themes/default/bindings:
+	* themes/default/menus:
+	Small changes in some main window operation bibdings, now they are
+	more windows (and mwm?) like. Added window group raise/lower.
+
+2000-04-07  migo  <migo@homemail.com>
+
+	* Makefile:
+	* README:
+	Fixed a non-fatal error when the current personal theme is not found.
+	Support for installing in another place (by $FVWM_USERHOME).
+
+	* scripts/ScriptNoteMessage:
+	size increased - 200x200, is it better?
+
+	* themes/spruce/*:
+	* AUTHORS:
+	Added a new theme from Eric's fvwm-themer.
+
+	* themes/migo/buttons:
+	removed redundant spacing in button info
+
+	* bin/fvwm-themes-config:
+	Added function declarations to suppress warnings in perl-5.6
+	(reported by Jason).
+
+2000-04-05  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config:
+	* images/*/*:
+	Moved bb-*, osx-* and migo-* images back to the local places.
+	Now colors component requires local images/decor and images/menuback.
+
+	* themes/migo/colors: added sh and hi colors to active menu colorset
+
+	* themes/default/menus: added the void definition of MenuFvwmPersonal
+	back (it is ok, menus-my or similar should require menus).
+
+	* themes/default/menus-programs:
+	removed duplications in MenuFvwmInternet
+
+	* themes/migo/modules/main:
+	Replaced not working -x wm-icons-config test with another one.
+
+	* themes/default/menus:
+	Added MenuFvwmWindowRefresh, MenuFvwmWindowUtility submenus
+	with additional (hopefully useful) window operations.
+
+	* themes/default/startup: component renamed, was "start".
+
+	* bin/fvwm-themes-config:
+	* scripts/ScriptNoteMessage:
+	* themes/default/styles:
+	Script renamed from ScriptUtilsMessage and moved hardcoded title.
+
+	* themes/default/styles:
+	Temporarily added DefaultColorset, until a permanent place.
+
+	* bin/fvwm-themes-config:
+	Moved windowlook to read-first components, because Style * BorderWidth
+	should be before other BorderWidth styles (in styles* components).
+
+	* options/stroke/enabled:
+	added one additional binding for each calculator and www; rewordings.
+
+	* options/iconstyles/iconstyles: slightly updated
+
+	* themes/migo/cursors: added STROKE cursor (plus is not good IMHO)
+
+	* themes/default/menus:
+	* themes/default/bindings:
+	Small changes in WindowOps2 menu (hopefully imporovements):
+	replaced Delete & Destroy with Close, Restore item now restores
+	maximizing and shading, not only iconifying.
+	Replaced FuncFvwmMaximize or FuncFvwmIconify with Maximize and
+	Iconify in WindowOps2, we should have the real operations here.
+	Fixed cut&paste errors in MenuFvwmWindowStyle.
+
+	* themes/default/menus:
+	* themes/redmond98/modules/main:startmenu:
+	Added links to fvwm and fvwm-themes home pages.
+
+	* bin/fvwm-themes-config:
+	banner options is now on by default,
+	s/FuncFvwmOptionsUse/FuncFvwmThemesUseOption/
+
+	* themes/*/colors:
+	massive clean up (more is needed), added the colorset for FvwmScroll
+	and 5 colorsets for different terminal types.
+
+	* scripts/ScriptNoteMessage: use colorset 0 (feedback window)
+	* themes/default/{functions,functions-appbind,menus,bindings}:
+	Use own colorsets for special function windows, xterms, root xterms
+	and FvwmConsole; ShowMessage uses FvwmForm's colorset.
+
+	* themes/osx/modules/main:FvwmMenuBarButtons:
+	Fixed position of one submenu, small renaming.
+
+	* Makefile:
+	On installation, if found, personal themes is copied from the
+	existing (old) themes/ and --use'd. This may cause compatibility
+	problems when personal theme is not up to date...
+
+	* themes/blackbox/images/menuback/face.xpm:
+	Reduced number of colors and fixed one buggy black line.
+	We should support guys with 8bpp. blackbox/images/decor/* should be
+	reduced/improved too...
+
+	* themes/*/windowlook:
+	All files are minimized and now have the same format.
+	I have removed headers, because I don't think that theme name should
+	be inside fixed-format "look" components. Of course, I may be wrong.
+
+	* bin/fvwm-themes-config:
+	* themes/blackbox/images/modulecolor/*:
+	Moved images used in colors component from module/ to modcolor/.
+
+	* themes/awol/*:
+	Added new awol theme from Alex after massive editing.
+	Crazy colors and sounds. :-)
+
+2000-03-19  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config:
+	* options/session/{regular,gnome}:
+	* themes/afterstep/modules/main:FvwmIconMan:
+	* doc/FAQ:
+	Fix (I hope) the "session hang". Weakned the Session support now
+ 	GNOME is not auto detected: you need to choose your session support
+	as an option (gnome is the default). The definition of
+	FuncFvwmFvwmOrSessionOrGnome is in the new files 
+	options/session/{regular,gnome} and use perl in the place of
+	the shell.
+
+	* themes/blackbox/buttons,colors,images/
+	* bin/fvwm-themes-config:
+	Try to fix blackbox "colors". New global function (in themes-rc) 
+	FuncFvwmIfModules mod action1 action2
+	where mod is the name of a modules theme, action1 is executed if
+	the curre nt modules is mod and action2 is executed if not.
+	This function used in colors to load either the pixmap 
+	module/TheToolbar700.xpm or a gradient for colorset 10.
+
+	* themes/default/menus: Fix the root xterm
+
+	* themes/default/style: added a style for ScriptUtilsMessage and
+	gnome icons.
+
+	* themes/osx/colors: Fix colors 10 to 13 (use inactive title)
+
+	* themes/osx/desktop: Fix GlobalOptions !
+
+	* themes/olicha/modules/main:FvwmXappletButtons:
+	* themes/redmond98/modules/main:FvwmBarButtons:
+	Fix some colors of xlock and xload
+	
+	* bin/fvwm-themes-config:
+	Fix the panel stays put gnome option. The default Layers need to
+	be read before any layer command.
+
+	* script/{ScriptUtilsMessage,README}:
+	* bin/fvwm-themes-config:
+	A new script for displaying a message during theme switch.
+	
+2000-03-14  olicha  <olivier.chapuis@free.fr>
+
+	* themes/afterstep/modules/main:FvwmAsButtons: Added a
+	panel of applets. Fix some geometries
+
+	* themes/afterstep/modules/main:FvwmAsButtons:
+	* themes/osx/modules/main:FvwmOsx*:
+	* themes/olicha/modules/FvwmWMakerButtons,FvwmXappletsButtons
+	Some Colorset improvement since now "individual button colorset"
+	work :). Fix some geometries.
+	
+	* scripts/ScriptApplet*: some fixes
+
+	* themes/*/{colors,menustyles}:
+	Use MenuStyle * MenuColorset 3, ActiveColorset 4, GreyedColorset 5
+	in colors and remove the colors definition of menustyle.
+	Add colorset 17 for FvwmIdent (blackbox colorset 17 use Transparent :)
+	Fix missprint in comments
+
+	* themes/default/menus: do not destroy the personal menu
+
+	* options/banner/*:
+	* bin/fvwm-themes-config:
+	Re-added Banner option
+
+	* themes/default/start
+	* themes/default/sound
+	* bin/fvwm-themes-config:
+	"New file" start options/current/{animation, banner, background} 
+	are now read in this file.
+	options/current/sound is read in themes/default/sound
+
+	* options/gnome/anotherlevel-menu:
+	* bin/fvwm-themes-config:
+	Added AnotherLevel menu as a gnome option (wmconfig which generate
+	directly such a fvwm2 menu is not usable since the menus are not
+	distroyed ...)
+
+	* themes/default/menus: replace Pick by Pick (CirculateHit) so that
+	the menu MenuFvwmWindowStyle applies also to modules!
+
+	* themes/module/olicha/modules/main:FvwmWMButtons
+	* themes/module/olicha/modules/main:FvwmXappletsButtons
+	CirculateHit/Skip fixes.
+
+	* themes/blackbox/{colors,buttons}
+	* themes/blackbox/modules/*
+	* themes/blackbox/images/button/*
+	* themes/images/decor/bb-left-button-back:
+	* themes/images/decor/bb-right-button-back:
+	Better compatibility of balckbox theme with the other themes.
+	Need to fix 
+	* themes/*/modules/*
+	* script/*
+	Fix the colors of some swallowed apps. For the ScriptApplet*
+	the best colorsets options is 6 7 or 7.
+
+	* themes/osx/modules/main:FvwmMenuBarButtons:
+	Use the inactive menu color as the main color
+
+	* themes/olicha/desktop: allows some horizontal scrolling
+
+	* themes/osx/modules/main:FvwmOsxButtons:
+	* themes/blackbox/main:FvwmXXButtons:
+	* options/autoraise/modules:
+	The Previous functions work in the "same way" with the MouseFocus
+	or NeverFocus or ClickToFocus style, so there are no more problems
+	with autoraise/modules option.
+	
+2000-03-07  olicha  <olivier.chapuis@free.fr>
+
+	* themes/default/functions-appbind:
+	* themes/default/functions:
+	* themes/default/main:FvwmTaskBar:
+	* themes/afterstep/main:FvwmAsButtons:
+	* themes/olicha/main:FvwmStartAppsButtons:
+	* themes/olicha/main:FvwmXappletsButtons:
+	* themes/olicha/main:FvwmTaskBar:
+	* themes/osx/main:FvwmOsxAppsButtons:
+	* themes/redmond98/main:FvwmBarButtons:
+	* themes/redmond98/main:startmenu:
+	* themes/redmond98/main:FvwmTaskBar:
+	* themes/wm-icons/main:FvwmCompactButtons:
+	* doc/FAQ:
+	New files themes/default/functions-appbind. This file contains
+	functions for starting applications. These functions are used
+	in FvwmButtons buttons so that editing this file change the
+	applications started by these buttons in all themes :)
+	These functions are also used in menu and in a well configurated
+ 	FvwmTaskBar (for the mail) and some functions from
+	themes/default/functions have been moved in this file.
+	The defaults are not very intelligent! Any comments and changes
+	are welcome. Any way this file has been done for edition!
+
+	* themes/redmond98/main:FvwmDesker: fixed size of the desker vs
+	the size of the buttons that popup the Desker
+
+	* themes/osx/images/buttons/*: try to fix the buttons on a dark
+	background
+
+	* themes/osx/colors: fixed active menu colorset
+
+	* themes/*/windowlook: renamed "decorations" by "windowlook"
+
+	* options/stroke/{disabled,enabled}:
+	* doc/FAQ:
+	* bin/fvwm-themes-config:
+	Added support for stroke. options/current/stroke is read by
+ 	themes/default/bindings.
+
+	* options/iconstyles/iconstyles:
+	* options/iconstyles/wm-icons:
+	* options/iconstyles/wm-icons:imagepath:
+	* options/iconstyles/native:
+	* themes/default/styles:
+	* bin/fvwm-themes-config:
+	All the icons styles is now in one file options/iconstyles/iconstyles.
+	native just ask to read this file and wm-icons read this file plus
+	wm-icons:menu. Moreover, options/current/iconstyles is read in
+	themes/*/styles. Of course, minor change in fvwm-themes-config was 
+	needed. Note that options/iconstyles/wm-icons:imagepath is "read
+	first" when needed and fvwm-themes-config control that.
+
+	* themes/default/menus:
+	* themes/default/menus-programs:
+	* themes/redmond98/modules/main:startmenu:
+	* images/winXX-startmenu/personal.xpm:
+	Move MenuFvwmPrograms in themes/default/menus-programs and add to
+	many entries, but my idea here is to do a very very big menu 
+	(witout gnome and kde apps) and to do a perl script that parse it
+ 	to retain only the installed applications.
+	Add a MenuFvwmPersonal menu.
+
+	* themes/wm-icons/*
+	* themes/migo/modules/*
+	Move wm-icons into migo
+	
+	* bin/fvwm-themes-config:
+	* options/gnome/panel-staysput/{enable,disabled}:
+	Added an option that try to force the panel to be StaysPut.
+	This does not work perfectly, currently I need to slide/unslide
+	the panel before the option work. Also, the option is not 
+	really "dynamic" (even after a restart).
+	Note: Currently I've a problem with the panel it start only
+	20sec after fvwm finish its startup!
+	
+	* bin/fvwm-themes-config:
+	* themes/*/modules/main:
+	* themes/afterstep/main:FvwmIconman:
+	* themes/default/bindings:
+	* themes/default/menu:
+	* themes/default/style:
+	* options/autoraise/modules:
+	Added Session/Gnome support. In themes-rc there is a new function
+	FuncFvwmFvwmOrSessionOrGnome, this function take 3 arguments, the 
+	first argument is executed if fvwm is started "alone", the second 
+	argument is executed if fvwm is started via a session manager but 
+	gnome and the 3rd one is executed if fvwm is started via a gnome 
+	session. See FuncFvwmThemesConfigAndUpdate (for theme switching),
+	themes/default/menu: (for exiting), themes/default/bindings (for
+	gnome button) and themes/afterstep/main:FvwmIconman, for some
+	example of use of this function.
+	Moreover, themes (switching) is NoSession/Session award for the 
+	modules themes (not NoSession/Session/Gnome award, but we can do 
+	that if we think we need that). The fvwm session init function
+	are used, of course, and there is a FuncFvwmSessionStartThemeModules
+	function. In general, under session less modules are started and
+	in fact I've done that so that a default panel does not overlap with
+	some fvwm modules ...
+	Notes: - in menu "Yes, Really Quit" and "Yes, Quit & Save Session" do
+	not work under xsm. We may define a FuncFvwmFvwmOrSessionOrGnomeOrXsm
+	if one ask for a true xsm support. However, I've added a style line
+	for xsm.
+ 	- We may try to be more session/gnome award, e.g., redefines
+	FormFvwmQuitVerify and do some options session award (e.g.,
+	background: disabled, disabled for session, theme ...)
+	- Todo: add the option for gnome: dynamic desk (default) /
+ 	4 desks (GnomeShowDesks 4).
+	
+2000-02-27  olicha  <olivier.chapuis@free.fr>
+
+	* themes/*/colors:
+	* themes/*/decorations:
+	* themes/*/menustyles:
+	* themes/*/modules/*:
+	* themes/default/functions
+	* themes/default/menus
+	* images/{decor,menuback}:
+	* bin/fvwm-themes-config:
+	First minimal implementation of "colors".
+	colors defines all the colors for a theme and use FvwmTheme.
+	It must be readed before decorations, menustyles, buttons,
+	menu and modules/main (and any file that may use a colorset).
+	Read a colors file for details !
+	fvwm-themes-config change: replaced decorations by colors at line 576,
+	added FuncFvwmStopFvwmThem in FuncFvwmThemesConfigAndUpdate.
+	I'm really sorry but I put back to the global images directory
+	the decor (osx, migo, blackbox) and the menuback (osx, blackbox).
+	I do that because I cannot modify fvwm-themes-config so that
+	fvwm-themes-config computes the good image path.
+        I've changed the colors of aftersetp: the colors are taken from
+	afterstep 1.8.
+	Of course there are some bugs in the implementation. Some came
+	from fvwm itself (there are bugs in FvwmPager and FvwmButtons
+	Colorset implementation). These lead me some times to do bad
+	coding (e.g., osx/modules/main:FvwmOsxButtons) or to do things
+	that I do not like for colors (e.g., afterstep/modules/main:
+	FvwmAsButtons).
+	
+	* themes/blackbox: Try to do so that blackbox is more compatible 
+	with the other themes. Still need a lot of work !
+
+	* themes/afterstep/modules/*: Added an afterstep modules theme 
+	("from" afterstep 1.8)
+	
+	* themes/afterstep/background: Added a background
+
+	* themes/afterstep/buttons: Fixed the "menu button" bindings
+
+	* images/button: Replaced the as-window-iconify.xpm by the one 
+	in afterstep 1.8.
+
+	* themes/osx/modules/*: Added a modules theme (need FvwmM4)
+
+	* themes/osx/background: Added a background
+
+	* themes/osx/desktop: Emulate mwm (better for the modules theme)
+
+	* scripts/*: small fixes
+
+	* README, NEWS: updated
+	
+2000-02-15  migo  <migo@homemail.com>
+
+	Preparing the first public alpha release.
+	All initial documentation and README's updated.
+
+	* themes/default/functions:
+	minor changes to FuncFvwm{Iconify,Maximize[VH]*}.
+	Moved FuncFvwmIconifySameResource from default/bindings.
+	FuncFvwmShowMessage has title parameter, new FuncFvwmShowButtonInfo.
+	New configurable FuncFvwmRunInXterm.
+
+	* themes/*/buttons:
+	Renamed FuncFvwm s/ShowMessage/ShowButtonInfo/,
+	now EOLN is ^n, TAB is ^t in the messages to avoid quoting problems.
+
+	* themes/*/*:
+	Renamed FuncFvwm s/ManPager/ViewManPage/, s/FileViewer/ViewFile/,
+	s/FileEditor/EditFile/, s/WebBrowser/OpenURL/.
+
+	* themes/default/menus: added MenuFvwmSystem.
+
+	* themes/*/modules/main:{FvwmTaskBar,FvwmIconMan}:
+	fixed/added 'Popup MenuFvwmWindowOps2 Mouse c -102m' as Mouse3 action.
+	* themes/*/modules/main:FvwmWinList:
+	fixed/added 'Popup MenuFvwmWindowOps2 Mouse -105m c' as Mouse3 action.
+
+	* fvwm-themes-config:
+	minor changes (like '*' instead of '+' for the current option);
+	init functions are now destroyed on theme switch to save memory.
+
+	* options/iconstyles/*: minor updates from wm-icons package.
+
+	* images/16x16-general/ball-*.xpm: removed unused icons.
+
+	* themes/default/bindings:
+	Added experimental support for folks without mouse button 2 -
+	simulate some Mouse2 bindings on decorations/window by Ctrl-Mouse1.
+
+	* scripts/*:
+	* themes/olicha/modules/*:
+	* themes/blackbox/modules/main:FvwmXXButtons:
+	* options/autoraise/modules:
+	* themes/redmond98/modules/main:FvwmDesker:
+	* themes/olicha/menustyle:
+	Olivier's patch, new applets and minor fixes.
+
+	* themes/default/modules/main:
+	Fixed "Normal icons" menu entry.
+
+2000-02-10  migo  <migo@homemail.com>
+
+	* themes/default/menus:
+	moved configuration menus up, X config forms are now in FVWM config.
+	fvwm-menu-xlock option --icon replaced with --icon-item.
+
+	* themes/redmond98/background:
+	changed ms flame to flying fvwm, why should we mention ms at all?..
+
+	* images/{16x16,48x48}-general: updated from the latest developement
+	version of wm-icons.
+
+	* images/:
+	Created new alias bar to enable wm-icons theme without wm-icons
+	package being installed; removed decor/; renamed module/ to 32x32/.
+	updated 32x32/image-viewer.xpm icon.
+	* images/16x16-general:
+	Renamed ball-*.xpm; new kde.xpm; gnome.xpm 86 colors reduced to 20.
+
+	* Renamed image alias module/mini to 16x16 everywhere.
+	This is half-fixed way, i.e. there is a possibility to change to
+	other 16x16 icon set, like 16x16-kde, for real fixed way -
+	use the real icon set names, i.e. 16x16-general/xterm.xpm.
+	* themes/olicha/modules/main:FvwmStartAppsButtons
+	Similarly changed mini/ to 16x16/, since the geometry is fixed.
+
+	* Moved images for migo and osx themes to the local places, it is
+	unbeliviable that these images could be reused anyway.
+
+	* bin/fvwm-themes-config:
+	Now image dirs are not listed in component list, image dir links
+	are updated automatically when needed (some hardcoding for now).
+	New rc files are now named themes-rc and themes-rc-2.
+
+	* themes/olicha/modules/main:FvwmStartWinOpsButtons: replaced
+	close action with delete, because there is destroy, is it ok?
+
+	* themes/redmond98/modules/:
+	main:FvwmTaskBar: fixed the menu position;
+	Problem: all pagers are not proportional; set DeskTopSize to 3x2?
+
+	* themes/*/theme.xml: removed currently before the real solution.
+
+	* themes/wm-icons/modules/main:FvwmMyPagerButtons:
+	Added a new module. Problem: FvwmPager should accept -g!
+	Now used again absolute geometry for pager, since there is FvwmDesker.
+
+	* themes/default/bindings:
+	Shift-Ctrl-Mouse2 now calls FvwmDesker, not FvwmPager,
+	Shift-Alt-Tab now is supplement (skip) version of Alt-Tab,
+	removed Escape bindings, minor changes to icon bindings.
+
+	* themes/*/buttons:
+	some standardization changes, swapped MenuFvwmWindowMove and
+	MenuFvwmWindowGroupOps bindings (I hope it's ok), deleted modifiers,
+	tried to use only customizable functions and not real commands.
+	Imlemented inline button help using Ctrl-Alt + click on button.
+
+	* themes/default/functions:
+	New functions: FuncFvwmShowMessage, FuncFvwmIconify, FuncFvwmDelete,
+	FuncFvwmMaximizeVertically, FuncFvwmMaximizeHorizontally.
+
+	* images/*/penguin.xpm, themes/*/modules/main:FvwmTaskBar:
+	Replaced to be 16x16 and moved from winXX-startmenu/ to 16x16/ dir.
+
+	* doc/FAQ, doc/README.1st, AUTHORS, COPYING:
+	Created some initial documentation and standard files.
+
+2000-02-03  olicha  <olivier.chapuis@free.fr>
+
+	* themes/olicha/modules/*: Added olicha modules themes. Need some
+	works ...
+	* themes/olicha/README: Added help instructions.
+	* themes/*/desktop: Replaced GlobalOpts by the new stryles. Hope
+	that dominik will not change ClickToFocusClickRaises.
+	* images/modules/mini: added mini which is a symlink to 16x16-general
+	so that we can use "fixed icons" in modules (i.e., not dependent on
+	wm-icons).
+	* themes/redmond98/modules/main:FvwmBarButtons:
+	Use "fixed icons" for the win ops container
+	* themes/redmond98/modules/main: Fixed a missprint
+	* themes/default/functions: Removed FuncFvwmRemoveAllButtons since
+	it is in rc.
+	* themes/default/menus: Again modules ...
+	* options/sound/*: added an entries in Regular modules menus (if
+	the option is not disabled)
+	* options/autoraise/modules: added an entries in Regular modules menu
+	(if the option is enabled), and remove one in Theme modules menu.
+
+	* makefile
+	* scripts/: 
+	New directories (global :) for scripts
+	* scripts/ScriptAppletDay: an AS & WM compatible applet for the
+	day (need date). Work in progress !
+	* script/ScriptAppletMixer: an AS & WM compatible applet to control
+	sound (need aumix). Work in progress !
+	Currently, the background is blue, maybe we can reserve a colorset
+	for the applets background ?
+
+2000-02-03  olicha  <olivier.chapuis@free.fr>
+
+	* themes/*/modules/*: 
+	* themes/default/menus:
+	* bin/fvwm-themes-config (hard coded part):
+	Some of the modules are restarted and not only started, add
+	functions FuncFvwmRestartModule and FuncFvwmRestartModuleByAlias
+	in rc (there are always used so ...). Also move FuncFvwmRemoveButtons.
+	Do some modifications about modules menus ... Do not know if this
+	ok.
+
+	* themes/default/bindings:
+ 	* themes/*/buttons:
+	* bin/fvwm-themes-config (hard coded part):
+	New function FuncFvwm{RemoveBindings,ButtonsBindings} that remove 
+	the bindings.
+	These functions are used by FuncFvwmThemesConfigAndUpdate
+
+	* themes/*/modules/*:
+	Use FvwmDesker alias for the 4 desks pagers. 
+	Since desktop is now in modules the MenuFvwmMoveWindow is with
+	DesktopSize (i.e.: with the pager config) and with the Desker
+	config if there are a move between desk menu entries.
+
+	* themes/modules/balackbox/*: Some fixes. Do not now if there
+	are ok. Details: 
+	- Added Style * NoIcon, 
+	- Remove Style * MiniIcon aicon and put false for iconman miniicon
+	(the result is not very different and this is need for that the stuff 
+	works with other themes).
+	- A Config for a desker. Need to add Toolbar100.xpm
+	
+	* themes/default/menus: Add MenuFvwmEditors in MenuFvwmPrograms
+
+	* options/*:
+	* bin/fvwm-themes-config (hard coded part):
+	Now current contains symlink with fixed name which is the
+	name of the "working" directories. The options are ready to
+	be started independently via some functions: 
+	FuncFvwm{Stop,Start}Option{Animate,Sound, ...}
+
+	* images/16x16-general: added kde.xpm and gnome.xpm. 
+	Of course this cause a problem with wm-icons.
+
+	* themes/*/buttons:
+	* themes/*/decorations:
+	* bin/fvwm-themes-config (getThemeComponentList,sortThemeComponent):
+	Try to do so that buttons and decorations of different themes work
+	together. Main idea: put the definitions of the colors of the 
+	buttons in decorations and put the TitleStyle Height in buttons.
+	Moreover, decorations are now readed before buttons: this leads
+	to 3 new lines in fvwm-themes-config.
+	I've gotten Some difficulty to really destroy the previous buttons 
+	definitions. Also, I and we will need to edit some buttons and
+	decor.
+
+2000-01-25  migo  <migo@homemail.com>
+
+	* themes/blackbox: added new theme from Jos
+
+	* themes/default/menus: several additions and "improvements"
+
+	* themes/*/{desktop,modules/main}: moved DeskTopSize from desktop
+	to modules (FvwmPager)
+
+	* themes/wm-icons/modules/main:FvwmPager: specifying the size for the
+	pager is not very good, FvwmPagerDeskTopScale is better, this is
+	needed for Ctrl-Mouse2 and Ctrl-Shift-Mouse2 to work propertly;
+	but now probably the pager is too small on small monitors...
+
+	* everywhere (many places):
+	s/FuncFvwmSt{op,art}ModulesTheme/FuncFvwmSt{op,art}ThemeModules/
+	s/FuncFvwmSt{op,art}BackgroundTheme/FuncFvwmSt{op,art}ThemeBackground/
+	s/MenuFvwmModulesTheme/MenuFvwmStartThemeModules/,
+	s/MenuFvwmStopModule/MenuFvwmStopRegularModules/,
+	added menus MenuFvwmStartRegularModules and MenuFvwmStopThemeModules.
+	Regular modules are all normal modules, which should run out of box.
+	The modules menu is rearanged (more structured now).
+
+	* themes/default/modules/main: moved modules config to separate files;
+	removed session initialization functions, it may be confusing not to
+	get anything in gnome and it is ok to use both panel and modules,
+	just not with every theme (wm-icons modules work well with panel).
+
+	* themes/*/modules/main:
+	Tried to keep the files in the same order.
+
+	* images/: winXX startmenu icons moved to winXX-startmenu/
+
+	* themes/default/functions:
+	added FuncFvwmWebBrowser to view web documents
+	* themes/redmond98/modules:startmenu:
+	used FuncFvwmWebBrowser and added some menu icons
+
+2000-01-25  migo  <migo@homemail.com>
+
+	* NEWS, TODO: new files added
+
+	* Renamed audiofiles/ to sounds/ everywhere.
+	* options/iconstyles/standard: renamed to ./native.
+
+	* bin/fvwm-themes-config:
+	--expand option is added for external use;
+	some clean up in hard-coded parts, rewrite is needed;
+	prefix "+" instead of postfix "(current)" for options, should I use
+	this also for themes instead of "(used)"?
+
+	* makefile: backup fvwm-themes-config during instalation. I was
+	angry when all my changes (for 2 days) were lost today...
+
+	* themes/default/menus:
+	some rearrangements and optimizations in window option menus,
+	most of the menus now have mini icon, I am not very happy about this,
+	more work on icons is needed.
+
+	* wm-icons: added pager configuration and small clean up;
+	Renamed CompactButtons to FvwmCompactButtons.
+
+	* images/: removed unneded .xvpics/ and .directory.
+
+	* themes/*/*: small rearrangements in functions and menus.
+
+2000-01-24  olicha  <olivier.chapuis@free.fr>
+
+	* themes/redmond98/modules/main:FvwmBarButtons:
+	Resize a lit bit.
+
+	* themes/olicha/desktop: was forgetted.
+
+	* Move all the icons into images/ and update the following files
+	so that things work: afterstep/buttons, migo/decorations,
+	olicha/{background,buttons}, osx/{menustyle,decorations}
+	redmond98/{background,buttons,modules/main:FvwmBarButtons,
+	modules/main:FvwmTaskBar,modules/main:startmenu}
+
+	* Added 48x48-general and a general directories which is a
+ 	superset of 16x16-general. Added symlink: norm --> 48x48 and
+	menu,mini --> general. These stuff is allways in the imagepath,
+	but it is wm-icons compatible (wm-icons can over-write the icons
+	names).
+	
+	* fvwm-themes-config:
+	Change $imagePath so that the above change works.
+
+	* Now what follows is an experimental (big) stuff:
+	Added a new top directory called options/ that gives support for:
+	- Animation (started or not started)
+	- Sound effect (started with esdplay, rplay, or rplayd or not started,
+	it will be easy to use others sound players. This does not define the
+	sounds effect, only defines if FvwmEvent start or not and also
+ 	defines the sound player).
+	- Modules Auto raise.
+	- Background: use the theme bacground or not. It can be session/
+	nosession sensitive and take in account the backer in the future.
+	- iconstyle: standard, wm-icons, or disabled (disabled not work). 
+	- KDE: various kde menu (with styles support or not). KFM bugoptions.
+	- Gnome: various gnome menu (gtk or fvwm).
+
+	All these allow to suppress the following files/dir in themes/:
+	default/start, default/iconstyle, fvwm-icons/, {disable}/, 
+	olicha/modules/modules-auto-raise, wm-icons/iconstyle.
+	 
+	Also, it needs a very bad hack of fvwm-themes-config: I've
+	indicate the news stuff by "# New nbr.lines/bloc". It is bad
+	because: 1. Stuff is hard coded 2. Identation is not compatible
+	(never succeed to do so that a good .emacs for perl work ...).
+	But an important point is that the stuff work :) and to be not
+	hard coded a kind of options.xml is needed ...
+
+	* Added default/sound and .fvwm/audiofiles/ with 4 audiofiles and
+	some symlinks (I'm happy with this sound, but add_window.au). I
+	think that in the futur we can done theme "a la wm-icons":
+	some sound directories and symlinks from the "action" to some
+	sounds.
+
+	* default/menus and redmond98/modules/main:startmenu:
+	replace MenuFvwmUtilities by MenuFvwmPrograms and put "Utilities"
+	one level down with MenuFvwmGraphics and MenuFvwmInternet.
+	This change is needed by the KDE/Gnome menu stuff.
+	
+	* Added "BusyCursor DynamicMenu True" in ALL themes/menustyle.
+
+	* Update the makefile: images, options, audiofiles are installed
+	and "uninstalled" as themes.
+
+	* README: suppress the note about fvwm-icons :)
+	
+2000-01-18  migo  <migo@homemail.com>
+
+	* themes/*:
+	Many small corrections in menus, functions, spacing and wording.
+
+	* bin/fvwm-themes-config:
+	Now 2 files are created: rc and rc2. .fvwm2rc is obsolete again. :)
+	'env FVWM_USERHOME=~/.fvwm fvwm2 -f rc' is needed to start fvwm.
+	rc file contains some functions to use/reset themes and loads rc2.
+	Added --generate-rc and --xmessage (internal) options.
+	ModulePath is now set in rc2 file, like ImagePath.
+	Added README for each theme, is this needed?
+
+	* themes/*/background:
+	Renamed [Func]FvwmQuitBackgroundTheme to FuncFvwmStopBackgroundTheme
+	and image subdir background/ to rootback/ (?).
+	-mod 2x2 background changed to solid (looks better for move/resize).
+
+	* themes/*/menustyles:
+	Renamed to menustyle, initially I thought to put there not only *
+	but also WindowList etc., but this should be thought later.
+	All menustyle files have the same format (everything, but colorsets).
+
+	* themes/*/{decorations,desktop}:
+	Tried to keep the files in the same order.
+
+	* themes/redmond98/images/modules/*: renamed to largebar/,
+	Shrinked all 34x34 images to 32x32; striped the signature of
+	netscape.xpm; replaced kview.xpm (image.xpm) from kde2 (too much
+	colors) with the one from kde1; replaced term.xpm, other changes.
+	More work is probably needed.
+	* themes/redmond98/images/button/*:
+	* themes/redmond98/buttons:
+	Renamed s/winXX./window-/ to be wm-icons compatible.
+	* themes/redmond98/modules:
+	Renamed *.main files to main:* - probably temporarily.
+	* themes/redmond98/modules/*:
+	* themes/redmond98/images/*:
+	Renamed some image subdirs, removed module path prefix.
+
+	* themes/olicha/modules/modulesauto:
+	Renamed to auto-raise-modules (?).
+	* themes/olicha/images/button/*:
+	* themes/olicha/buttons:
+	Renamed s/mac./window-/ to be wm-icons compatible.
+
+	* themes/default/bindings: added transient pager to root, restored
+	previous bindings to borders (mouse 1 & 2) until we get a consensus
+
+	* themes/default/menu: restored some things about WindowStyle menu
+
+	* themes/osx/*: added new theme
+
+	* themes/wm-icons/modules/main: last minute change: the alias 'button'
+	used by CompactButtons renamed to 'bar' (smallbar better?).
+	I will rename with in the next version of wm-icons too.
+
+	NOTE: I restored/changed several things (I was too busy), but this
+	does not mean I am against these things, it just means that
+	I suggest it differently. Feel free to re-restore again. :)
+
+	TODO: I didn't change wm-icons theme, I will.
+
+2000-01-15  olicha  <olivier.chapuis@free.fr>
+ 	
+	* ChangeLog: Creating this file
+
+	* README:
+	* Makefile:
+ 	* New file system.fvwm2rc
+	Temporary (?) change. I added a .fvwm2rc file for
+	theme switching (needed for modules theme switching and also
+	background switching).
+	So fvwm-themes with this version need to be started by:
+	          env FVWM_USERHOME=~/.fvwm fvwm2
+	Any way, I think that a file that is read only at (re)start is
+	a good thing: We surely need some functions that are always
+	needed (e.g., FuncFvwmRemoveButtons, FuncFvwmRestartModule, ...).
+	
+	* themes/Redmond98/*: Add windoze98 theme, most part came from 
+	system.fvwm2rc-sample-95 or will be in it. 
+
+	* themes/olicha/*: My theme ...
+	
+	* themes/default/menus:
+	New menus MenuFvwmScreenSaver, MenuFvwmFvwmConfiguration,
+	MenuFvwmXConfiguration, MenuFvwmHelp (with a sub menu
+	MenuFvwmFvwmManPage), MenuFvwmWindowMove, MenuFvwmWindowClassOps, 
+	MenuFvwmWindowPickClassOps, MenuFvwmPickWindowStyle.
+	Added StaysOnTop, StaysPut, StaysOnBottom to the MenuFvwmWindowStyle
+	menu (need to add the Func: FuncFvwmStyleAndRecapture)
+	Replace some window-shade.xpm by window.xpm (and add window.xpm
+	into images/menu)
+	
+	Question: Do we need to split menus in rootmenus, winopsmenus,
+ 	utilitiesmenu ?
+	Where we put the "user programs", in utilitiesmenu ?
+	
+	* themes/default/modules/main:
+	* themes/redmond98/modules/*:
+	* themes/olicha/modules/modulesauto:
+	* themes/wm-icons/modules/main:
+	* themes/default/menu:
+	* bin/fvwm-themes-config:
+	Added modules support for so called "visible" modules: Buttons,
+	IconMan, IconBox, Pager, TaskBar, WinList (and Icon and Auto).
+ 	Details:
+	- Removed most of the "read config default" in fvwm-theme-config
+        - A proposal for a modules spec:
+	  + Configuration of the visible modules. This config is in main
+	  (e.g., default/modules/main) or the config is in others files
+	  and are read by main (e.g., redmond98/main). Moreover, a module
+	  config must contains is style (if it wants to be different than
+	  the style defined in desktop): Title/Notitle, 
+	  TitleAtTop/TitleAtBottom (if title), Layers (OnTop, OnBottom, Put),
+	  eventually NoHandles, if needed Border and Handles width,
+	  WindowListSkip/Hit, CirculateSkip/Hit, Sticky/Slippery,
+	  maybe others if a guys want to use a special style for a
+	  module we need to restore the style when switching ...
+	  + Icon Grid, SlipperyIcon/StickyIcon, IconTitle/NoIconTitle and
+ 	   icon style Icon/NoIcon in the start func (I think that I forget
+	   one or two icon style ?).
+	  + Modules to (re)start
+	  + Function for switching between modules theme:
+	    FuncFvwmStartModulesTheme and FuncFvwmQuitModulesTheme
+	  + Creation of MenuFvwmModulesTheme linked to the MenuFvwmRoot
+	    via MenuFvwmModules
+	  + We can have "optional" components: a module definition and 
+	    starting/switching/menu stuff (without destruction) in a file with 
+	    a different name and witch is read after modules/main (we need to
+	    have the possibility to disable such a component):
+ 	    modules/olicha/modulesauto (I cannot live without this) give an 
+	    example.
+	  + I think that all our modules name have to be of the form
+	    Fvwm* and if the name is an alias for FvwmFoo of the form Fvwm*Foo
+
+	- Done some work in wm-icons/modules:
+	Compactbuttons to main and done some works so that it respects
+	the spec. Added the pager so that CompactButtons is almost a
+	modules theme alone. Move the "change icons menu" into 
+	MenuFvwmFvwmConfi. 
+ 	
+	TODO:  
+	- A better wm-icons (done some works for wm-icons, almost ok, 
+	  need to configure at least one of the following modules: IconMan, 
+	  WinList, IconMan or TaskBar and do a better config for the pager 
+	  (miniicon!)).
+ 	- I've work on modules/default, but it will be good that some one 
+	  else work on this so it is more a default (any way I start with
+	  fvwm default)
+	and do a better config for the pager (miniicon!)).
+	- A migo, olicha, and afterstep modules/main.
+	- I think it will be better if in MenuFvwm(Theme)Modules some
+	of the modules (Buttons, TaskBar, Pager ...) are restarted and
+	not just started. Currently impossible because of the existence of
+  	multi-pager with the same name ...
+	
+	PROBLEMS: A lot :)
+	Pager: It is natural to use two pagers, one for the current desk the
+	other one for 2 or 3 or 4 desk. Unfortunately, the Pager does not
+	support aliases, it use symlink.
+	Solutions: 1. Do so that the pager support aliases (impossible:
+	fvwm is feature freezed) 
+	2. Added a symlink, but how and where ? (good solution)
+	3. Present temporary solution: use the wait function or start only
+	one pager !
+	
+	NOTE (not done !):
+	In my opinion, other modules need to be configured in an other
+	place:
+	- Baker is a problem: may depends on desktopsize and pager config
+	  Solutions: 1. putting desktopsize and baker in modules/ 
+	  2. Fixing the numbers of desk (says 4) and use desk only Pager.
+	  This is configurated in backer (not in modules/)
+	  3. ???
+	  Moreover,  we need to be able to disable backer, for a standard 
+	  background or for a session or X background (see below).
+	- Scroll, Identify, Form & script (default colors and font): 
+	  in decoration !
+	- Event (Audio): it can have its own config file: sounds and we
+	  can enable it or disable it (in start ?)
+	- Animate: in start, no problem for config.
+
+	* bin/fvwm-themes-config:
+	Do so that fvwm-theme-config do not look at file with a ".", "~"
+ 	and "#" in its name. # and ~ is for (x)emacs (may be we have to
+	add other character). A point is for other editor (gvim) but in
+	fact like that we can:
+ 	 - save a file: button --> buttons.orig
+ 	 - Or a sub main file can read files with a ".extension" in its 
+	   directory (e.g., themes/redmond98/modules/main)
+        and fvwm-themes will forget these files.
+
+	* themes/{default,fvwm-icons,wm-icons}/iconstyle
+	Since IconGrid and Icon/NoIcon is in modules I have renamed
+	icons to iconstyle. This file gives the definition of the
+ 	icons and mini-icons to be used. Also, I have moved Iconfont
+	into decorations (really natural).
+	Added fvwm-icons for fvwm icons distribution (need more work,
+	or better provide a simple and good set of icons with fvwm-themes,
+	which is wm-icons compatible)
+	Some works in wm-icons/iconstyle (MenuFvwmFvwmConfiguration is used
+	in the place of WindowOps)
+	
+	* themes/default/background:
+	* themes/redmond98/background:
+	* themes/olicha/background:
+	* themes/migo/background:
+	Added backgrounds. Problem: we need to be able to disable background,
+	for a backer or for a session or X background (see below).
+        Use the "green" background for migo because I found a backgound that
+	I prefer for the default (i.e., compatible with default/modules/main
+	colors).
+	
+	* themes/default/style:
+	Added:
+	Style "FvwmConsole"     Slippery
+	Is this a bad idea ?
+	Note that the modules spec says that modules styles for "visible"
+	modules may be defined in modules/ ; present style file break this
+ 	but this not a real problem, since modules/main is (and will be)
+	read after this file. Added styles for FvwmScript
+	
+	* themes/default/functions:
+	Added FuncFvwmDeiconifyFocusAndRaise
+	Added FuncFvwmDeiconifyFocusAndWarp
+	For modules
+	
+	* themes/default/desktop: Added GlobalOpts MouseFocusClickRaises 
+	(dominik suggestion in the  fvwm-workers mailing list, it says that 
+	the only reasonable focus policy is SloopyFocus or MouseFocus with the
+	above option. I'm agree :o)
+	Added the possibility of switching between page when moving a window.
+	Edge Scroll is still disabled (a good thing for the default in my
+	opinion)
+
+	* themes/default/cursor: added "black white"
+
+	* themes/default/binding:
+	Mouse 1 on the border now move the window (for resize there are
+	mouse 2 on the border or Mouse 1 on the window corner) This is fvwm
+	default, ok it is not a good reason, but why we have "handles" ?
+
+	* */desktop: Added some "restore default" destroyed by switching 
+	between themes. Need more works: at least for migo (?) and afterstep
+	(for afterstep I have copied the redmond98 one).
+	Spec proposal for desktop:
+	- Focus: SloppyFocus, ClickToFocus,  MouseFocus styles and global
+	options: ClickToFocusDoesntPassClick / ClickToFocusPassesClick, 
+	ClickToFocusDoesntRaise   /  ClickToFocusRaises,  
+	MouseFocusClickDoesntRaise /  MouseFocusClickRaises
+	- EdgeScroll, EdgeResistance,  EdgeThickness
+	- Windows placement: smart/dumb, random/active, UsePPosition/NoPPostion
+	GrabFocus/GrabFocusOff styles and SmartPlacementIsNormal/
+	SmartPlacementIsReallySmart global opts.
+	- Moving & Resize: ResizeOutline/ResizeOpaque style, OpaqueMoveSize,
+	MoveSmoothness, HideGeometryWindow, SnapAttraction, Emulate
+	- WindowShadeAnimate
+	Note: all the above can be controlled by ScriptFvwmBaseConfig
+	- Desktop size ???
+	- ColormapFocus	FollowsMouse/FollowsFocus
+	- Style * MWMFunctions, HintOverride, MWMDecor, OLDecor (is it
+	reasonable to not use this ?)
+	- Transient Windows styles
+	- ClickTime and MoveThreshold 
+	- XORValue or XORPixmap
+	- SetAnimation
+	- SaveUnder / SaveUnderOff style ??? (for slow server)
+	- Some BugsOption: ModalityIsEvil, FlickeringMoveWorkaround(??)
+	- BusyCursor ??
+	Do I forget some thing ?
+	I will do ScriptFvwmMiscBaseConfig when this spec will be fixed ...
+
+	* */themes/xxx_disable_xxx: experimental theme for disabling some
+	themes components (background, iconstyle)
+
+
+	BIG PROBLEMS: It seems that fvwm-themes shows that there are
+	some memory problems in fvwm (in particular in menus):
+	a switch between themes (or reloading it) add more or less than 100K 
+	of memory to fvwm ! After a numbers of switch the switching is
+	slow ... for modules (pb with swallowing apps)
+	It seems that we also need to unload the bindings and that
+	we need to unload the non default styles ... 
+	We need to be very careful with memory !
+	Moreover, I've got a number of core dump ... 2.3.13 is alpha-beta
+	at the present time ...
+
+	TODO (IMHO): A lot of things. Some examples:
+	- Be able to load individual component (already done I imagine)
+	- Be able to unload some component.
+	- Use FvwmTheme !
+	- Put the stuff in cvs
+	- Do not add to many themes !!
+	For the future:
+	- GUI interfaces
+	- Split the installation site/users
+	- Put all the images in a site directory
+	- A perl script that build a user program menu.
+	- During a user installation we need to ask questions to the
+	user: e.g., what is your preferd term, editor, ... do you use
+	kde/gnome menus ...etc. So that the components (e.g., buttons that
+	start apps, Audio ..etc) can be builded so that the user like it
+	immediatly. I think this point is important if you want that a
+	lot of new linux users switch to fvwm.
+ 	- Add a lot of themes: maybe a fvwm-themes-contrib dist.
+	
+	BUGS: - redmond98/decorations config is uncompatible with the pager
+	config of wm-icons/modules/main and default/modules/main and also
+	with the IconTitle colors: the reason is that the real hilight color
+	is given by a titlestyle command (so that the border of a window
+	with the focus has the color of a normal window ... BorderStyle solid
+	color doesn't work ...). Conversely, the pager of the FvwmBarButtons
+	of redmond98 have the wrong color with the other decorations.
+	Maybe FvwmTheme will allows to solve this.
+	- If you use fvwm-icons/iconstyle with wm-icons/modules/main then
+	we need to add wm-icons path to fvwm-icons path so wm-icons path
+	is added two times if all its component are used.
+	- I've not done the .xml files
+	- a lot of other bugs ... hope that every things that can be destroyed
+	is really destroyed (see the BIG PROBLEMS, here I forget bindings and
+	apps styles).
+	- Modules switching is not session award. Need to implement
+	FuncFvwmSessionStart/QuitModulesTheme.
+	
+	CONCLUSION: I've done some works, but perhaps some of my ideas
+	are not good. However, I think that the modules and desktop
+	spec are really reasonable.
+	
+	Sorry for all the bad English !!

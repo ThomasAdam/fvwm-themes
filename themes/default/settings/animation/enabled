@@ -1,0 +1,7 @@
+DestroyFunc FuncFvwmStartFvwmAnimate
+AddToFunc   FuncFvwmStartFvwmAnimate
++ I Module FvwmAnimate
+
+DestroyFunc FuncFvwmStopFvwmAnimate
+AddToFunc   FuncFvwmStopFvwmAnimate
++ I KillModule FvwmAnimate

@@ -1,0 +1,36 @@
+#------------------------------------------------------------------------------
+#------------------ FvwmPager
+#------------------------------------------------------------------------------
+### This is not very propotional in swallowed pager (3x2 would be better)
+DeskTopSize 2 2
+
+DestroyMenu  MenuFvwmWindowMove
+AddToMenu    MenuFvwmWindowMove "Move to ..." Title
++ "&Right	Page%menu/window-move.xpm%"	AnimatedMove w+100 w
++ "&Left	Page%menu/window-move.xpm%"	AnimatedMove w-100 w
++ "&Down	Page%menu/window-move.xpm%"	AnimatedMove w w+100
++ "&Up  	Page%menu/window-move.xpm%"	AnimatedMove w w-100
+
+AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
++ "&Right	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +1p +0p
++ "&Left	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage -1p +0p
++ "D&own	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p +1p
++ "&Up  	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p -1p
+
+
+Style FvwmPager-Single NoTitle, NoHandles, Sticky, WindowListSkip, CirculateSkip
+
+DestroyModuleConfig FvwmPager-Single*
+*FvwmPager-SingleColorset * 16
+*FvwmPager-SingleWindowColorsets 1 2
+*FvwmPager-SingleHilightColorset * 8
+*FvwmPager-SingleBalloonColorset * 9
+*FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-SingleHilight white
+*FvwmPager-SingleGeometry 319x69+5000+5000
+*FvwmPager-SingleLabel 0 Fvwm
+*FvwmPager-SingleLabel 1 Development
+*FvwmPager-SingleLabel 2 Internet
+*FvwmPager-SingleLabel 3 Misc
+*FvwmPager-SingleBalloons Pager
+*FvwmPager-SingleSmallFont 5x8

@@ -1,0 +1,86 @@
+# 1. Icon related configuration
+# 2. Initialization functions
+# 3. Switch functions
+# 4. Theme module menus
+# 5. Modules configuration
+
+# ----------------------------------------------------------------------------
+# Icon related configuration
+
+Style "*"       IconBox 10 -10 -250 300, IconGrid 64 64, IconFill left top
+Style "*"       SlipperyIcon, IconTitle
+
+# ----------------------------------------------------------------------------
+# Initialization functions
+
+# migo: temporary
+#
+#AddToFunc InitFunction
+#+ I FuncFvwmStartThemeModules
+#
+#AddToFunc RestartFunction
+#+ I FuncFvwmStartThemeModules
+#
+## When used with a session manager fvwm uses SessionInitFunction and 
+## SessionRestartFunction
+#
+#AddToFunc SessionInitFunction
+#+ I FuncFvwmSessionStartThemeModules
+#
+#AddToFunc SessionRestartFunction
+#+ I FuncFvwmSessionStartThemeModules
+
+# ----------------------------------------------------------------------------
+# Switch functions
+
+DestroyFunc FuncFvwmStartThemeModules
+AddToFunc   FuncFvwmStartThemeModules
++ I FuncFvwmStartChosenPager
++ I FuncFvwmStartChosenButtons
++ I FuncFvwmStartChosenIconMan
++ I FuncFvwmStartNormalIcons
+
+DestroyFunc FuncFvwmStopThemeModules
+AddToFunc   FuncFvwmStopThemeModules
++ I KillModule FvwmIconMan
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-AsBar
++ I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
++ I DestroyModuleConfig FvwmButtons*
++ I DestroyModuleConfig FvwmAs*
++ I DestroyModuleConfig FvwmPager-Single*
++ I DestroyModuleConfig FvwmPager-Desker*
++ I DestroyModuleConfig FvwmIconMan*
++ I DestroyFunc FuncFvwmStartChosenPager
++ I DestroyFunc FuncFvwmStartChosenButtons
++ I DestroyFunc FuncFvwmStartNormalIcons
+# cause some core dump unfortunately ...
+#+ I FuncModulesThemeDestroyStyle
+#+ I DestroyFunc FuncModulesThemeDestroyStyle
+
+# ----------------------------------------------------------------------------
+# Theme module menus
+
+DestroyMenu MenuFvwmStartThemeModules
+AddToMenu   MenuFvwmStartThemeModules "Default Modules" Title
++ "&AS Buttons"     FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-AsBar
++ "&Desker"         FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '0 3'
++ "Icon&Man"        FuncFvwmRestartModule FvwmIconMan
++ "" Nop
++ "No normal icons" Style * NoIcon
++ "Normal icons"    Read options/current/iconstyles
+
+
+DestroyMenu MenuFvwmStopThemeModules
+AddToMenu   MenuFvwmStopThemeModules "Default Modules" Title
++ "Stop &Buttons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-AsBar
++ "Stop &Desker"  FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
++ "Stop Icon&Man" FuncFvwmStopModule FvwmIconMan
+
+# -----------------------------------------------------------------------------
+# Modules configuration
+
+Read themes/afterstep/modules/main:styles
+Read themes/afterstep/modules/main:FvwmButtons-As
+Read themes/afterstep/modules/main:FvwmIconMan
+Read themes/afterstep/modules/main:FvwmPager-Single
+Read themes/afterstep/modules/main:FvwmPager-Desker

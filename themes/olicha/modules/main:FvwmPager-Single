@@ -1,0 +1,42 @@
+DesktopSize 3x2
+
+DestroyMenu  MenuFvwmWindowMove
+AddToMenu    MenuFvwmWindowMove "Move to ..." Title
++ "Page 1 1%menu/window-move.xpm%"	MoveToPage 0 0
++ "Page 2 1%menu/window-move.xpm%"	MoveToPage 1 0
++ "Page 3 1%menu/window-move.xpm%"	MoveToPage 2 0
++ "Page 2 1%menu/window-move.xpm%"	MoveToPage 0 1
++ "Page 2 2%menu/window-move.xpm%"	MoveToPage 1 1
++ "Page 2 3%menu/window-move.xpm%"	MoveToPage 2 1
+
+
+AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
++ "Page 1 1%menu/window-move.xpm%"	Pick All ($r) MoveToPage 0 0
++ "Page 2 1%menu/window-move.xpm%"	Pick All ($r) MoveToPage 1 0
++ "Page 3 1%menu/window-move.xpm%"	Pick All ($r) MoveToPage 2 0
++ "Page 2 1%menu/window-move.xpm%"	Pick All ($r) MoveToPage 0 1
++ "Page 2 2%menu/window-move.xpm%"	Pick All ($r) MoveToPage 1 1
++ "Page 2 3%menu/window-move.xpm%"	Pick All ($r) MoveToPage 2 1
+
+Style "FvwmPager-Single"  NoTitle, Sticky, NoHandles, WindowListSkip
+
+DestroyModuleConfig FvwmPager-Single*
+
+*FvwmPager-SingleColorset "*" 	16
+*FvwmPager-SingleHilightColorset "*" 8
+*FvwmPager-SingleBalloonColorset "*" 9
+*FvwmPager-SingleWindowColorsets 1 2
+
+*FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+
+*FvwmPager-SingleMiniIcons
+
+*FvwmPager-SingleGeometry +5000+5000
+
+*FvwmPager-SingleSolidSeparators
+
+*FvwmPager-SingleSmallFont 5x8
+*FvwmPager-SingleLabel 0 One
+*FvwmPager-SingleLabel 1 Two
+*FvwmPager-SingleLabel 2 Three
+*FvwmPager-SingleLabel 3 Four

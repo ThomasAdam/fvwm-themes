@@ -1,0 +1,40 @@
+XORValue	55555	# decent rubber band color for resizing
+ClickTime	150	# <n milliseconds to be considered a "click"
+MoveThreshold   3	# >=n pixels to be considered a "drag"
+SetAnimation    10 -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
+ColormapFocus	FollowsMouse
+
+Style * MWMFunctions, HintOverride, MWMDecor, OLDecor
+
+# Transient windows
+Style "*"	DecorateTransient  # NakedTransient
+Style "*"	DontRaiseTransient
+Style "*"	DontLowerTransient
+Style "*"	DontStackTransientParent
+
+# The rest of the file is generated and can be modified with:
+# FvwmScript ScriptFvwmBaseConfig 
+# Just comment out the rest of the file and replace it by 
+# Read .FvwmBaseConfig
+
+#ScriptFvwmBaseConfig,3740
+#BaseConfigMark
+Style * SloppyFocus
+Style * MouseFocusClickRaises
+Style * ClickToFocusRaises
+Style * ClickToFocusPassesClick
+EdgeScroll 0 0
+EdgeResistance 0 0
+EdgeThickness 1
+Style * SmartPlacement
+Style * RandomPlacement
+Style * CleverPlacement
+Style * GrabFocusOff
+Style * NoPPosition
+OpaqueMoveSize 100
+Style * ResizeOpaque
+HideGeometryWindow Never
+SnapAttraction 10 SameType Screen
+Emulate win
+Style * WindowShadeSteps 20
+#end

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Put this cvs wrapper to ~/bin. You need it for working also with fvwm's cvs.
+
+case "`pwd`" in
+	*fvwm-themes*)
+		export CVS_RSH=ssh ;;
+esac
+
+/usr/bin/cvs "$@"

@@ -1,0 +1,23 @@
+This is the default theme. It is complete and may be used by itself.
+You can use it as a prototype to create your own themes.
+
+If you want to create a theme for submission, please consider to provide
+the following components:
+  buttons
+  decorations
+  menustyle
+  modules/main
+
+The next components usually should be only personal or default:
+  bindings
+  functions
+  menus
+  styles
+
+You can choose to include or not include:
+  background
+  cursors
+  desktop
+  sound
+
+If you really need, provide all components or create additional components.

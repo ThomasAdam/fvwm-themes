@@ -1,0 +1,45 @@
+AddToMenu MenuFvwmWindowMove "" Nop
++ "Desk 0%menu/window-move.xpm%"	MoveToDesk 0 0
++ "Desk 1%menu/window-move.xpm%"	MoveToDesk 0 1
++ "Desk 2%menu/window-move.xpm%"	MoveToDesk 0 2
++ "Desk 3%menu/window-move.xpm%"	MoveToDesk 0 3
+
+AddToMenu MenuFvwmWindowGroupOps "" Nop
++ "Desk 0%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 0
++ "Desk 1%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 1
++ "Desk 2%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2
++ "Desk 3%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
+
+Style FvwmPager-Desker NoTitle, NoHandles, Sticky, WindowListSkip, NoLenience
+
+DestroyModuleConfig FvwmPager-Desker*
+ 
+*FvwmPager-DeskerColorset * 16
+*FvwmPager-DeskerHilightColorset * 8
+*FvwmPager-DeskerWindowColorsets 1 2
+*FvwmPager-DeskerBalloonColorset * 9
+*FvwmPager-DeskerFont -*-lucida-bold-r-*-*-11-*-*-*-*-*-*-*
+#*FvwmPager-DeskerHilightPixmap /usr/local/images/marble3.xpm
+*FvwmPager-DeskerGeometry 100x360+0+0
+#*FvwmPager-DeskerDeskTopScale 24
+*FvwmPager-DeskerWindowLabelFormat "%t"
+*FvwmPager-DeskerLabel 0 Main
+*FvwmPager-DeskerLabel 1 Internet
+*FvwmPager-DeskerLabel 2 Devel
+*FvwmPager-DeskerLabel 3 Games
+#*FvwmPager-DeskerPixmap /usr/local/images/marble2.xpm
+#*FvwmPager-DeskerDeskPixmap 0 /usr/local/images/marble2.xpm
+*FvwmPager-DeskerRows 1
+*FvwmPager-DeskerColumns 1
+*FvwmPager-DeskerSmallFont 5x8
+#*FvwmPager-DeskerDeskColor 0 gray50
+*FvwmPager-DeskerMiniIcons
+*FvwmPager-DeskerMoveThreshold 1
+*FvwmPager-DeskerBalloons All  # Icon, Desker
+*FvwmPager-DeskerBalloonFont 6x13
+#*FvwmPager-DeskerBalloonFont -*-lucida\ sans\ typewriter-bold-*-*-*-12-*-*-*-*-*-*-*
+*FvwmPager-DeskerBalloonBorderWidth 1
+#*FvwmPager-DeskerBalloonBorderColor black
+*FvwmPager-DeskerBalloonYOffset +14
+*FvwmPager-DeskerWindowBorderWidth 1
+*FvwmPager-DeskerWindow3dBorders

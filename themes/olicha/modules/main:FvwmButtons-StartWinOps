@@ -1,0 +1,48 @@
+Style "FvwmButtons-StartWinOps" NoTitle, NoHandles, BorderWidth 2, \
+	Sticky, WindowListSkip
+Style "FvwmButtons-WinOps" NoTitle, NoHandles, BorderWidth 2, \
+	Sticky, WindowListSkip
+
+DestroyModuleConfig FvwmButtons-StartWinOps*
+DestroyModuleConfig FvwmButtons-WinOps*
+
+#-------------------------------------
+# Starters:
+
+*FvwmButtons-StartWinOpsGeometry 10x52+0+350
+*FvwmButtons-StartWinOpsColorset 10
+*FvwmButtons-StartWinOpsColumns 1
+*FvwmButtons-StartWinOpsFrame 0
+*FvwmButtons-StartWinOps(Panel(indicator 8, right, position center  mtb mlr) \
+	"FvwmButtons-WinOps" 'Module FvwmButtons FvwmButtons-WinOps')
+
+#-------------------------------------
+# Buttons:
+
+*FvwmButtons-WinOpsRows 2
+*FvwmButtons-WinOpsColorset 10
+*FvwmButtons-WinOpsFrame 1
+*FvwmButtons-WinOpsGeometry TM_FvwmButtons-WinOpsGeometry
+*FvwmButtons-WinOps(Icon 16x16/window-move.xpm, Action 'Move')
+*FvwmButtons-WinOps(Icon 16x16/window-resize.xpm, Action 'Resize')
+*FvwmButtons-WinOps(Icon 16x16/window-iconify.xpm, \
+	Action(Mouse 1) 'Iconify', \
+	Action(Mouse 2) 'Pick All ($r) Iconify off', \
+	Action(Mouse 3) 'Pick All ($r) Iconify on')
+*FvwmButtons-WinOps(Icon 16x16/window-maximize.xpm, \
+	Action 'FuncFvwmMaximize')
+*FvwmButtons-WinOps(Icon 16x16/window-stick.xpm, Action 'Stick')
+*FvwmButtons-WinOps(Icon 16x16/window-shade.xpm, \
+	Action(Mouse 1) 'WindowShade', \
+	Action(Mouse 2) 'Pick All ($r) WindowShade off', \
+	Action(Mouse 3) 'Pick All ($r) WindowShade on')
+*FvwmButtons-WinOps(Icon 16x16/window.xpm, Action 'FvwmScroll 80p 80p')
+*FvwmButtons-WinOps(Icon 16x16/window-identify.xpm, Action 'FvwmIdent')
+*FvwmButtons-WinOps(Icon 16x16/window-delete.xpm, \
+	Action(Mouse 1) 'Delete', \
+	Action(Mouse 2) 'Pick All ($r) Delete', \
+	Action(Mouse 3) 'Pick All ($r) Delete')
+*FvwmButtons-WinOps(Icon 16x16/window-destroy.xpm, \
+	Action(Mouse 1) 'Destroy', \
+	Action(Mouse 2) 'Pick All ($r) Destroy', \
+	Action(Mouse 3) 'Pick All ($r) Destry')

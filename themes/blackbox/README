@@ -1,0 +1,43 @@
+Notes.
+
+This theme is meant to mimic mainly the look and some of the feel
+of the 'Outcomes' theme for the Blackbox window manager written
+by Brad Hughes et al. It copies the title bar and window buttons
+look, and also includes a Blackbox-like toolbar.
+
+For the toolbar to work, you need to install xdaliclock, which is
+(another) clock program. (I'm still looking for a more simple
+digital clock, does anybody know a good link?) Get it from
+freshmeat, or from the link included below. Also, the theme
+requires one of the later snapshots of fvwm2.3.13, get this from
+the Fvwm homepage.
+
+[By Mikhael: xdaliclock is now not needed, FvwmApplet-DigitalClock used.]
+
+The theme was produced by a Gimp-Perl script on which I'm
+currently working. The script parses Blackbox setup files, and
+produces fvwm2 setup files and pixmaps, that will mimic the
+Blackbox theme. I'll include the link to a preliminary version of
+the script below. In addition (not included in the fvwm-themes
+distribution), the script also produces setups for several
+different toolbar widths, and some pixmaps that will mimic the
+neXt look (experimental).
+
+[By Mikhael: it is a known problem that the face of large menus is tiled.]
+
+Have fun,
+
+Jos.
+
+j.g.a.v.riswick@tue.nl
+
+
+References:
+
+Blackbox window manager:    http://alug.1s.net/blackbox
+Fvwm homepage:              http://www.fvwm.org
+Xdaliclock:                 http://www.jwz.org/xdaliclock
+Freshmeat:                  http://www.freshmeat.net
+Gimp homepage:              http://www.gimp.org
+Blackbox2fvwm script:       http://empc27.tte.ele.tue.nl/fvwmthemes
+Jos's homepage:             http://www.xs4all.nl/~josvanr

@@ -1,0 +1,2 @@
+# Change this to the real path of wm-icons (this is a default).
+ImagePath  $HOME/.wm-icons:/usr/local/share/icons/wm-icons:+

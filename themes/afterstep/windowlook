@@ -1,0 +1,12 @@
+Style "*"	Font     -*-lucida-bold-r-*-*-12-*-*-*-*-*-*-*
+Style "*"	IconFont fixed
+
+Style "*"	BorderWidth 1, HandleWidth 1
+Style "*"	FvwmBorder  # MWMBorder
+
+BorderStyle	Simple -- HiddenHandles NoInset
+
+TitleStyle	RightJustified
+TitleStyle	-- Flat
+
+ButtonStyle	All -- Flat

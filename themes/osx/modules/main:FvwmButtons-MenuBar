@@ -1,0 +1,54 @@
+Style "FvwmButtons-MenuBar" NoTitle, NoHandles, BorderWidth 1, \
+	Sticky, WindowListSkip, CirculateSkip
+
+DestroyModuleConfig FvwmButtons-MenuBar*
+
+define({TWIDTH},eval(WIDTH-2))
+define({GEOMETRY},TWIDTH{x25+0+0})
+# this is not perfect (say for WIDTH=1280), larger offset for right submenus
+define({X_DELTA},eval(TWIDTH/32))
+define({X_POS1},eval(2*X_DELTA))
+define({X_POS2},eval(5*X_DELTA))
+define({X_POS3},eval(8*X_DELTA))
+define({X_POS4},eval(11*X_DELTA))
+define({X_POS5},eval(14*X_DELTA))
+define({X_POS6},eval(17*X_DELTA))
+define({X_POS7},eval(20*X_DELTA))
+define({X_POS8},eval(23*X_DELTA))
+define({X_POS9},eval(26*X_DELTA))
+define({X_POS10},eval(28*X_DELTA))
+define({X_POS11},eval(29*X_DELTA))
+
+*FvwmButtons-MenuBarGeometry GEOMETRY
+*FvwmButtons-MenuBarColorset 3
+*FvwmButtons-MenuBarFont -adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
+*FvwmButtons-MenuBarRows 1
+*FvwmButtons-MenuBarFrame 0
+*FvwmButtons-MenuBar(2x1, Left, Icon 16x16/penguin.xpm, \
+	Action(Mouse 1) 'WindowList Context 0 +27p', \
+	Action(Mouse 2) 'WindowList Context 0 +27p', \
+	Action(Mouse 3) 'WindowList Context 0 +27p')
+*FvwmButtons-MenuBar(3x1, Title (Left) Shells, \
+	Action(Mouse 1) 'Menu MenuFvwmShells Context +X_POS1{p} +27p')
+*FvwmButtons-MenuBar(3x1, Title (Left) Programs, \
+	Action(Mouse 1) 'Menu MenuFvwmPrograms Context +X_POS2{p} +27p')
+*FvwmButtons-MenuBar(3x1, Title (Left) Help, Action(Mouse 1) \
+	'Menu MenuFvwmHelp Context +X_POS3{p} +27p')
+*FvwmButtons-MenuBar(3x1, Title (Left) System, Action(Mouse 1) \
+	'Menu MenuFvwmSystem Context +X_POS4{p} +27p')
+*FvwmButtons-MenuBar(3x1, Title (Left) Personal, Action(Mouse 1) \
+	'Menu MenuFvwmPersonal Context +X_POS5{p} +27p')
+*FvwmButtons-MenuBar(3x1, Title (Left) Themes, Action(Mouse 1) \
+	'Menu MenuFvwmThemes Context +X_POS6{p} +27p')
+*FvwmButtons-MenuBar(3x1, Title (Left) Modules, Action(Mouse 1) \
+	'Menu MenuFvwmModules Context +X_POS7{p} +27p')
+*FvwmButtons-MenuBar(3x1, Title (Left) Config, Action(Mouse 1) \
+	'Menu MenuFvwmConfiguration Context +X_POS8{p} +27p')
+*FvwmButtons-MenuBar(3x1, Title (Left) WinOps, Action(Mouse 1) \
+	'Menu MenuFvwmWindowOps  Context +X_POS9{p} +27p')
+*FvwmButtons-MenuBar(2x1, Swallow "FvwmApplet-DigitalClock" \
+	'FvwmScript FvwmApplet-DigitalClock 3')
+*FvwmButtons-MenuBar(1x1, Right, Icon 16x16/display.xpm, Action(Mouse 1) \
+	'Menu MenuFvwmScreenSaver Context +X_POS10{p} +27p')
+*FvwmButtons-MenuBar(1x1, Right, Icon 16x16/wm-quit.xpm, Action(Mouse 1) \
+	'Menu MenuFvwmQuit Context +X_POS11{p} +27p')

@@ -1,0 +1,37 @@
+DeskTopSize 2x2
+
+DestroyMenu  MenuFvwmWindowMove
+AddToMenu    MenuFvwmWindowMove "Move to ..." Title
++ "&Right	Page%menu/window-move.xpm%"	AnimatedMove w+100 w
++ "&Left	Page%menu/window-move.xpm%"	AnimatedMove w-100 w
++ "&Down	Page%menu/window-move.xpm%"	AnimatedMove w w+100
++ "&Up  	Page%menu/window-move.xpm%"	AnimatedMove w w-100
+
+AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
++ "&Right	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +1p +0p
++ "&Left	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage -1p +0p
++ "D&own	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p +1p
++ "&Up  	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p -1p
+
+Style "FvwmPager-Single" NoTitle, Sticky, WindowListSkip, CirculateSkip, NoHandles
+ 
+
+DestroyModuleConfig FvwmPager-Single*
+*FvwmPager-SingleColumns 1
+*FvwmPager-SingleColorset * 16
+*FvwmPager-SingleHilightColorset * 8
+*FvwmPager-SingleWindowColorsets 1 2
+*FvwmPager-SingleBalloonColorset * 9
+*FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-SingleSmallFont 5x8
+*FvwmPager-SingleLabel 0 Desk
+*FvwmPager-SingleLabel 1 Web & Mail
+*FvwmPager-SingleLabel 2 Devel
+*FvwmPager-SingleLabel 3 Games
+*FvwmPager-SingleSolidSeparators
+*FvwmPager-SingleBalloons            All
+*FvwmPager-SingleBalloonFont         -adobe-helvetica-medium-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-SingleBalloonYOffset      +2
+*FvwmPager-SingleBalloonBorderWidth  1
+#*FvwmPager-SingleBalloonBorderColor  white
+*FvwmPager-SingleWindow3dBorders

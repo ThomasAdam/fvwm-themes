@@ -1,0 +1,87 @@
+# 1. Icon related style 
+# 2. Initialization functions
+# 3. Switch functions
+# 4. Theme module menus
+# 5. Modules configuration
+
+# ----------------------------------------------------------------------------
+# Icon related configuration
+
+# No icons ...
+
+DestroyFunc FuncFvwmStartNormalIcons
+AddToFunc   FuncFvwmStartNormalIcons
++ I Style * NoIcon
+
+# ----------------------------------------------------------------------------
+# Initialization functions
+
+# migo: temporary
+#
+#AddToFunc InitFunction
+#+ I FuncFvwmStartThemeModules
+#
+#AddToFunc RestartFunction
+#+ I FuncFvwmStartThemeModules
+#
+## When used with a session manager fvwm uses SessionInitFunction and 
+## SessionRestartFunction
+#
+#AddToFunc SessionInitFunction
+#+ I FuncFvwmSessionStartThemeModules
+#
+#AddToFunc SessionRestartFunction
+#+ I FuncFvwmSessionStartThemeModules
+
+# ----------------------------------------------------------------------------
+# Switch functions
+
+DestroyFunc FuncFvwmStartThemeModules
+AddToFunc   FuncFvwmStartThemeModules
++ I FuncFvwmStartChosenButtons
++ I FuncFvwmStartChosenTaskBar
++ I FuncFvwmStartChosenTaskBarPos
++ I FuncFvwmStartChosenPager
++ I FuncFvwmStartNormalIcons
+
+DestroyFunc FuncFvwmStopThemeModules
+AddToFunc   FuncFvwmStopThemeModules
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Bar
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Pager
++ I KillModule FvwmTaskBar
++ I DestroyModuleConfig FvwmButtons-Bar*
++ I DestroyModuleConfig FvwmStartPagerButton*
++ I DestroyModuleConfig FvwmPager-Single*
++ I DestroyModuleConfig FvwmPager-Desker*
++ I DestroyModuleConfig FvwmTaskBar*
++ I DestroyFunc FuncFvwmStartChosenButtons
++ I DestroyFunc FuncFvwmStartChosenTaskBar
++ I DestroyFunc FuncFvwmStartChosenTaskBarPos
++ I DestroyFunc FuncFvwmStartChosenPager
+
+# ----------------------------------------------------------------------------
+# Theme module menus
+
+DestroyMenu MenuFvwmStartThemeModules
+AddToMenu   MenuFvwmStartThemeModules "Redmond98 Modules" Title
++ "&Button Bar"		FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Bar
++ "&Pager Panel"	FuncFvwmRestartModuleByAlias \
+	FvwmButtons FvwmButtons-Pager
++ "&TaskBar"		FuncFvwmRestartModule FvwmTaskBar
+
+DestroyMenu MenuFvwmStopThemeModules
+AddToMenu   MenuFvwmStopThemeModules "Redmond98 Modules" Title
++ "Stop Button Bar"	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Bar
++ "Stop Pager Panel"	FuncFvwmStopModuleByAlias \
+	FvwmButtons FvwmButtons-Pager
++ "Stop TaskBar"	KillModule FvwmTaskBar
+
+# ----------------------------------------------------------------------------
+# Modules configuration
+
+Read themes/redmond98/modules/main:FvwmButtons-Bar
+Read themes/redmond98/modules/main:FvwmPager-Single
+Read themes/redmond98/modules/main:FvwmPager-Desker
+Read themes/redmond98/modules/main:FvwmTaskBar
+Read themes/redmond98/modules/main:FvwmButtons-Pager
+Read themes/redmond98/modules/main:startmenu

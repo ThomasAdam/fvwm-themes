@@ -1,0 +1,22 @@
+Style "FvwmPager-Desker" NoTitle, Sticky, WindowListSkip, CirculateSkip, NoHandles \
+	NoLenience
+
+DestroyModuleConfig FvwmPager-Desker*
+*FvwmPager-DeskerGeometry -0+100
+*FvwmPager-DeskerDeskTopScale 32
+*FvwmPager-DeskerColumns 1
+*FvwmPager-DeskerColorset * 16
+*FvwmPager-DeskerHilightColorset * 8
+*FvwmPager-DeskerWindowColorsets 1 2
+*FvwmPager-DeskerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-DeskerLabel 0 Desk
+*FvwmPager-DeskerLabel 1 Web & Mail
+*FvwmPager-DeskerLabel 2 Devel
+*FvwmPager-DeskerLabel 3 Games
+*FvwmPager-DeskerSmallFont 5x8
+*FvwmPager-DeskerBalloons            All
+*FvwmPager-DeskerBalloonColorset * 9
+*FvwmPager-DeskerBalloonFont         lucidasanstypewriter-12
+*FvwmPager-DeskerBalloonYOffset      +2
+*FvwmPager-DeskerBalloonBorderWidth  1
+#*FvwmPager-DeskerBalloonBorderColor  Black

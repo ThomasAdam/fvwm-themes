@@ -1,0 +1,42 @@
+DestroyModuleConfig FvwmSoundEvent*
+
+# see if sound is enabled and read the command to use
+#Read options/current/sound
+
+*FvwmSoundEventStartDelay 4
+*FvwmSoundEventDelay 1
+
+#*FvwmSoundEvent startup          "$FT_DATADIR/sounds/startup"
+#*FvwmSoundEvent shutdown         "$FT_DATADIR/sounds/shutdown"
+#*FvwmSoundEvent unknown          "$FT_DATADIR/sounds/unknown"
+#*FvwmSoundEvent error            "$FT_DATADIR/sounds/error"
+*FvwmSoundEvent add_window       "$FT_DATADIR/sounds/add_window.au"
+#*FvwmSoundEvent raise_window     "$FT_DATADIR/sounds/raise_window"
+#*FvwmSoundEvent lower_window     "$FT_DATADIR/sounds/lower_window"
+#*FvwmSoundEvent focus_change     "$FT_DATADIR/sounds/focus_change"
+*FvwmSoundEvent destroy_window   "$FT_DATADIR/sounds/destroy_window.au"
+*FvwmSoundEvent iconify          "$FT_DATADIR/sounds/iconify.au"
+*FvwmSoundEvent deiconify        "$FT_DATADIR/sounds/deiconify.au"
+*FvwmSoundEvent windowshade      "$FT_DATADIR/sounds/windowshade.au"
+*FvwmSoundEvent dewindowshade    "$FT_DATADIR/sounds/dewindowshade.au"
+*FvwmSoundEvent new_page         "$FT_DATADIR/sounds/new_page.au"
+*FvwmSoundEvent new_desk         "$FT_DATADIR/sounds/new_desk.au"
+#*FvwmSoundEvent configure_window "$FT_DATADIR/sounds/configure_window"
+#*FvwmSoundEvent window_name      "$FT_DATADIR/sounds/window_name"
+#*FvwmSoundEvent icon_name        "$FT_DATADIR/sounds/icon_name"
+#*FvwmSoundEvent icon_file        "$FT_DATADIR/sounds/icon_file"
+#*FvwmSoundEvent icon_location    "$FT_DATADIR/sounds/icon_location"
+#*FvwmSoundEvent mini_icon        "$FT_DATADIR/sounds/mini_icon"
+#*FvwmSoundEvent default_icon     "$FT_DATADIR/sounds/default_icon"
+#*FvwmSoundEvent res_class        "$FT_DATADIR/sounds/res_class"
+#*FvwmSoundEvent res_name         "$FT_DATADIR/sounds/res_name"
+#*FvwmSoundEvent end_windowlist   "$FT_DATADIR/sounds/end_windowlist"
+#*FvwmSoundEvent end_config_info  "$FT_DATADIR/sounds/end_config_info"
+#*FvwmSoundEvent config_info      "$FT_DATADIR/sounds/config_info"
+#*FvwmSoundEvent string           "$FT_DATADIR/sounds/string"
+#*FvwmSoundEvent map              "$FT_DATADIR/sounds/map"
+
+# Do not work
+#*FvwmSoundEvent beep "$FT_DATADIR/sounds/beep"
+#*FvwmSoundEvent toggle_paging "$FT_DATADIR/sounds/toggle_paging"
+

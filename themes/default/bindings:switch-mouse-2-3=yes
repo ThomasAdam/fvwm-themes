@@ -1,0 +1,16 @@
+DestroyFunc MouseXX
+AddToFunc   MouseXX
++ I Mouse $1 $2 $3 $4 "$5" "$6" "$7" "$8" "$9"
+
+# For stroke:
+# Mouse 3 on root window without modifier
+DestroyFunc FuncFvwmButton3OnRootWindow
+AddToFunc   FuncFvwmButton3OnRootWindow
++ I WindowList
+
+# Alt Mouse 3 into a window
+# Unfortunately FuncFvwmMoveOrRaiseLower does not work fine with stroke!
+# In this case use Ctrl-Alt Mouse1 for moving windows ...
+DestroyFunc FuncFvwmButton3OnWindow
+AddToFunc   FuncFvwmButton3OnWindow
++ I RaiseLower

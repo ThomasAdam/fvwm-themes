@@ -1,0 +1,38 @@
+# This probably can be renamed back to FvwmButtons-Osx or maybe -Defaut later,
+# but not until fvwm is changed to accept a delimiter.
+
+Style "FvwmButtons-OsxCentral" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
+	NoHandles, BorderWidth 1
+
+DestroyModuleConfig FvwmButtons-OsxCentral*
+*FvwmButtons-OsxCentralGeometry 263x112+273-0
+*FvwmButtons-OsxCentralColorset 6
+*FvwmButtons-OsxCentralFrame 1
+*FvwmButtons-OsxCentralRows 11
+*FvwmButtons-OsxCentralFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmButtons-OsxCentral(2x10, Swallow  "FvwmPager-Single" "FvwmPager FvwmPager-Single * *")
+*FvwmButtons-OsxCentral(1x5, Swallow "xbiff" `Exec exec xbiff -bg $[bg.cs7] -fg $[fg.cs7]`)
+*FvwmButtons-OsxCentral(1x5, Padding 0 0, Container(Rows 3))
+*FvwmButtons-OsxCentral(2x1, Title Desker, Panel(right, position module bottom mlr mtb) \
+	"FvwmPager-Desker" 'Module FvwmPager FvwmPager-Desker 0 3')
+*FvwmButtons-OsxCentral(1x1, Title <-, Action 'Desk -1 0 3')
+*FvwmButtons-OsxCentral(1x1, Title ->, Action 'Desk 1 0 3')
+*FvwmButtons-OsxCentral(1x1, Title <-, Action 'FuncFvwmButtons-OsxCentralPrev')
+*FvwmButtons-OsxCentral(1x1, Title ->, Action 'FuncFvwmButtons-OsxCentralNext')
+*FvwmButtons-OsxCentral(End)
+*FvwmButtons-OsxCentral(2x5, Colorset 7, Swallow(UseOld,NoHints) "xload" \
+	`Exec exec xload -fg $[fg.cs7] -hl grey40 -update 5 -nolabel`)
+*FvwmButtons-OsxCentral(4x1, Colorset 8)
+
+DestroyFunc FuncFvwmButtons-OsxCentralPrev
+AddToFunc   FuncFvwmButtons-OsxCentralPrev
++ I Prev (CirculateHit) Focus
++ I Prev Focus
++ I Current Raise
++ I All (FvwmButtons-OsxCentral) Raise
+
+DestroyFunc FuncFvwmButtons-OsxCentralNext
+AddToFunc   FuncFvwmButtons-OsxCentralNext
++ I Next Focus
++ I Current Raise
++ I All (FvwmButtons-OsxCentral) Raise

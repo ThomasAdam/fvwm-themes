@@ -1,0 +1,115 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_PREREQ(2.12)
+AC_REVISION(0.2.3)
+AC_INIT(themes/default/README)
+AM_INIT_AUTOMAKE(fvwm-themes, 0.3.13)
+
+mg_ARG_WITH(fvwm-bindir, [  --with-fvwm-bindir DIR  specify fvwm bin directory, if not in PATH], FVWM_BINDIR, "")
+mg_ARG_WITH(ft-datadir,  [  --with-ft-datadir DIR   specify data dir, if different from fvwm], FT_DATADIR, "")
+
+AC_ARG_ENABLE(gnome-icons, [  --enable-gnome-icons    convert gnome icons to xpm icons ],GNOME_ICONS="yes",GNOME_ICONS="no")
+AC_SUBST(GNOME_ICONS)dnl
+
+AC_PATH_PROG(PERL, perl)
+if test -z "$PERL"; then
+	AC_MSG_WARN(Perl is not found; you will have serious problems using this package!)
+	PERL=/usr/bin/perl
+fi
+AC_SUBST(PERL)dnl
+
+AC_PATH_PROG(MKNOD, mknod)
+if test -z "$MKNOD"; then
+	AC_MSG_WARN(mknod is not found; you will have some problems with GUI!)
+fi
+
+# fvwm-themes-images need to know where the rgb.txt file is
+AC_PATH_XTRA
+if test -z "$X_LIBS"; then
+	AC_MSG_WARN(Xlib is not found; fvwm-themes-images will not work!)
+fi
+
+# fix me: a better way to found GNOME_IMAGES_DIR?
+# I've no gnome-config in my machine
+AC_PATH_PROG(GNOME_SESSION, gnome-session)
+if test -z "$GNOME_SESSION"; then
+	GNOME_SESSION=/usr/bin/gnome-session
+fi
+GNOME_IMAGES_DIR=`echo $GNOME_SESSION | sed -e "s,/[[^/]]*/gnome-session$,,"`/share/pixmaps
+AC_SUBST(GNOME_IMAGES_DIR)dnl
+
+AC_PATH_PROG(FVWM_CONFIG, fvwm-config --version, , "${PATH}:$FVWM_BINDIR")
+if test -z "$FVWM_CONFIG"; then
+	AC_MSG_ERROR(fvwm-config is not found; try --with-fvwm-bindir
+You need at least fvwm-2.3.20)
+fi
+AC_SUBST(FVWM_CONFIG)dnl
+
+FVWM_BINDIR=`$FVWM_CONFIG --bindir`
+AC_SUBST(FVWM_BINDIR)dnl
+FVWM_DEFAULT_USERDIR=`$FVWM_CONFIG --default-userdir`
+AC_SUBST(FVWM_DEFAULT_USERDIR)dnl
+FVWM_DEFAULT_IMAGEPATH=`$FVWM_CONFIG --default-imagepath`
+AC_SUBST(FVWM_DEFAULT_IMAGEPATH)dnl
+
+FVWM_VERSION=`$FVWM_CONFIG --version`
+if test "x$FVWM_VERSION" = "x"; then FVWM_VERSION=unknown; fi
+AC_SUBST(FVWM_VERSION)dnl
+
+if echo "${prefix}NONE" | awk '/^NONE/ { exit 1 }'; then
+	mg_DEFAULT_DIR_ARG(bindir,     "$prefix/bin")
+	mg_DEFAULT_DIR_ARG(mandir,     "$prefix/man")
+	mg_DEFAULT_DIR_ARG(FT_DATADIR, "$datadir/fvwm")
+else
+	mg_DEFAULT_DIR_ARG(bindir,     "`$FVWM_CONFIG --bindir`")
+	mg_DEFAULT_DIR_ARG(mandir,     "`$FVWM_CONFIG --mandir`")
+	mg_DEFAULT_DIR_ARG(FT_DATADIR, "`$FVWM_CONFIG --fvwm-datadir`")
+fi
+
+#FT_FVWMSCRIPT_DIR="$FT_DATADIR/scripts"
+#FT_FVWMFORM_DIR="$FT_DATADIR/forms"
+FT_FVWMSCRIPT_DIR="$FT_DATADIR"
+FT_FVWMFORM_DIR="$FT_DATADIR"
+
+AC_SUBST(FT_DATADIR)dnl
+AC_SUBST(FT_FVWMSCRIPT_DIR)dnl
+AC_SUBST(FT_FVWMFORM_DIR)dnl
+
+SETTINGS_FILE=$FT_DATADIR/themes/default/settings.cfg
+AC_SUBST(SETTINGS_FILE)dnl
+
+AC_OUTPUT(
+	Makefile
+	bin/Makefile
+	scripts/Makefile
+	forms/Makefile
+	bin/fvwm-themes-config
+	bin/fvwm-themes-start
+	bin/fvwm-themes-xres
+	bin/fvwm-themes-menuapp
+	bin/fvwm-themes-com
+	bin/fvwm-themes-script
+	bin/fvwm-themes-images
+)
+
+if test -n "$DEBUG"; then
+	echo "[bindir:     $bindir]"
+	echo "[mandir:     $mandir]"
+	echo "[ft-datadir: $FT_DATADIR]"
+	echo "[ft-fvwmscript-dir: $FT_FVWMSCRIPT_DIR]"
+	echo "[ft-fvwmform-dir: $FT_FVWMFORM_DIR]"
+	echo "[gnome-icons: $GNOME_ICONS]"
+	echo "[gnome-session: $GNOME_SESSION]"
+	echo "[gnome-images-dir: $GNOME_IMAGES_DIR]"
+	echo "[settings-file: $SETTINGS_FILE]"
+	echo "[x-libs: $X_LIBS]"
+	echo "[x-extra-lib: $X_EXTRA_LIBS]"
+fi
+
+echo "
+=============================================================================
+FVWM Themes Version:	$VERSION
+FVWM Version:		$FVWM_VERSION
+=============================================================================
+
+Run 'make; su; make install' to install $PACKAGE.
+"

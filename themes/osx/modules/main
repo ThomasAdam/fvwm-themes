@@ -1,0 +1,97 @@
+# 1. Icon related configuration
+# 2. Initialization functions
+# 3. Switch functions
+# 4. Theme module menus
+# 5. Modules configuration
+
+# ----------------------------------------------------------------------------
+# Icon related configuration
+
+Style "*"	IconBox +10 +35 -10 -120, IconGrid 64 5, IconFill top right
+Style "*"	SlipperyIcon, IconTitle
+
+# ----------------------------------------------------------------------------
+# Initialization functions
+
+# migo: temporary
+#
+#AddToFunc InitFunction
+#+ I FuncFvwmStartThemeModules
+#
+#AddToFunc RestartFunction
+#+ I FuncFvwmStartThemeModules
+#
+## When used with a session manager fvwm uses SessionInitFunction and 
+## SessionRestartFunction
+#
+#AddToFunc SessionInitFunction
+#+ I FuncFvwmSessionStartThemeModules
+#
+#AddToFunc SessionRestartFunction
+#+ I FuncFvwmSessionStartThemeModules
+
+# ----------------------------------------------------------------------------
+# Switch functions
+
+DestroyFunc FuncFvwmStartThemeModules
+AddToFunc   FuncFvwmStartThemeModules
++ I FuncFvwmStartChosenMenuBar
++ I FuncFvwmStartChosenOsxButtons
++ I FuncFvwmStartChosenAppsButtons
++ I FuncFvwmStartChosenAppsMan
++ I FuncFvwmStartChosenApplets
++ I FuncFvwmStartNormalIcons
+
+DestroyFunc FuncFvwmStopThemeModules
+AddToFunc   FuncFvwmStopThemeModules
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-MenuBar
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxCentral
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxApps
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxStartApplets
++ I KillModule FvwmWinList
++ I DestroyModuleConfig FvwmButtons-MenuBar*
++ I DestroyModuleConfig FvwmOsx*
++ I DestroyModuleConfig FvwmPager-Single*
++ I DestroyModuleConfig FvwmPager-Desker*
++ I DestroyFunc FuncFvwmOsxNext
++ I DestroyFunc FuncFvwmOsxPrev
++ I DestroyFunc FuncFvwmStartChosenMenuBar
++ I DestroyFunc FuncFvwmStartChosenOsxButtons
++ I DestroyFunc FuncFvwmStartChosenAppsButtons
++ I DestroyFunc FuncFvwmStartChosenAppsMan
++ I DestroyFunc FuncFvwmStartChosenApplets
+
+# ----------------------------------------------------------------------------
+# Theme module menus
+
+DestroyMenu MenuFvwmStartThemeModules
+AddToMenu   MenuFvwmStartThemeModules "Osx Modules" Title
++ "&Menu Bar"      FuncFvwmRestartModuleByAlias \
+	FvwmButtons FvwmButtons-MenuBar
++ "&Central Buttons"  FuncFvwmRestartModuleByAlias \
+	FvwmButtons FvwmButtons-OsxCentral
++ "&Apps Bar"      FuncFvwmRestartModuleByAlias \
+	FvwmButtons FvwmButtons-OsxApps
++ "App&lets Panel" FuncFvwmRestartModuleByAlias \
+	FvwmButtons FvwmButtons-OsxStartApplets
++ "WinList" FuncFvwmRestartModule FvwmWinList
+
+DestroyMenu MenuFvwmStopThemeModules
+AddToMenu   MenuFvwmStopThemeModules "Osx Modules" Title
++ "Stop &Menu Bar" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-MenuBar
++ "Stop &Central Buttons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxCentral
++ "Stop &Apps Bar" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxApps
++ "Stop App&lets Panel" \
+	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxStartApplets
++ "Stop WinList" KillModule FvwmWinList
+
+# -----------------------------------------------------------------------------
+# Modules configuration
+
+ModuleSynchronous FvwmM4 -lock -m4-squote { -m4-equote } -debug themes/osx/modules/main:FvwmButtons-MenuBar
+Read themes/osx/modules/main:FvwmButtons-OsxApps
+Read themes/osx/modules/main:FvwmButtons-OsxCentral
+Read themes/osx/modules/main:FvwmButtons-OsxStartApplets
+Read themes/osx/modules/main:FvwmPager-Single
+Read themes/osx/modules/main:FvwmPager-Desker
+Read themes/osx/modules/main:FvwmWinList

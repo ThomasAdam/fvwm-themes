@@ -1,0 +1,14 @@
+*FvwmGtkDestroy gnome-redhat
+*FvwmGtkIconSize 18 18
+PipeRead 'fvwm-menu-desktop --desktop gnome-redhat --type gtk --enable-mini-icons'
+
+AddToMenu MenuFvwmPrograms
++ "&AnotherLevel%menu/gnome.xpm" SendToModule FvwmGtk gnome-redhat
+
+DestroyFunc FuncFvwmStartFvwmGtk
+AddToFunc   FuncFvwmStartFvwmGtk
++ I Module FvwmGtk
+
+DestroyFunc FuncFvwmStopFvwmGtk
+AddToFunc   FuncFvwmStopFvwmGtk
++ I KillModule FvwmGtk

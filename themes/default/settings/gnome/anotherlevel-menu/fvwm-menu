@@ -1,0 +1,5 @@
+AddToMenu gnome-redhat
++ DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop gnome-redhat'
+
+AddToMenu MenuFvwmPrograms
++ "AnotheLevel%menu/gnome.xpm" popup gnome-redhat

@@ -1,0 +1,35 @@
+Style "FvwmButtons-OsxApps" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
+	NoHandles, BorderWidth 1
+
+DestroyModuleConfig FvwmButtons-OsxApps*
+
+*FvwmButtons-OsxAppsGeometry 271x63+0-0
+*FvwmButtons-OsxAppsColorset 6
+*FvwmButtons-OsxAppsFrame 1
+*FvwmButtons-OsxAppsRows 6
+*FvwmButtons-OsxApps(1x5, Icon 32x32/terminal.xpm, \
+	Action(Mouse 1) 'FuncFvwmTerminal', \
+	Action(Mouse 2) 'FuncFvwm2Terminal', \
+	Action(Mouse 3) 'FuncFvwm3Terminal')
+*FvwmButtons-OsxApps(1x5, Icon 32x32/editor.xpm, \
+	Action(Mouse 1) 'FuncFvwmEditor', \
+	Action(Mouse 2) 'FuncFvwm2Editor', \
+	Action(Mouse 3) 'FuncFvwm3Editor')
+*FvwmButtons-OsxApps(1x5, Icon 32x32/netscape.xpm, \
+	Action(Mouse 1) 'FuncFvwmWWW', \
+	Action(Mouse 2) 'FuncFvwm2WWW', \
+	Action(Mouse 3) 'FuncFvwm3WWW')
+*FvwmButtons-OsxApps(1x5, Icon 32x32/xv.xpm, \
+	Action(Mouse 1) 'FuncFvwmImageView', \
+	Action(Mouse 2) 'FuncFvwm2ImageView', \
+	Action(Mouse 3) 'FuncFvwm3ImageView')
+*FvwmButtons-OsxApps(1x5, Icon 32x32/image-viewer.xpm, \
+	Action(Mouse 1) 'FuncFvwmImageEdit', \
+	Action(Mouse 2) 'FuncFvwm2ImageEdit', \
+	Action(Mouse 3) 'FuncFvwm3ImageEdit')
+*FvwmButtons-OsxApps(1x5, Icon 32x32/ghostview.xpm, \
+	Action(Mouse 1) 'FuncFvwmDocView', \
+	Action(Mouse 2) 'FuncFvwm2DocView', \
+	Action(Mouse 3) 'FuncFvwm3DocView')
+*FvwmButtons-OsxApps(6x1,Colorset 8)
+

@@ -1,0 +1,49 @@
+The theme is created by Olivier Chapuis on 15/Jan/2000.
+
+* Background:
+------------
+
+It is from KDE background collection: blue freon.
+
+* Windows Buttons:
+-----------------
+
+Mac styles Buttons from ... I do not remember. From the left to the right:
+
+- Mouse 1: Trimed windows operations
+  Mouse 2: Groups windows operations
+  Mouse 3: Move window menu
+  Mouse 1 Double Click: Close
+
+- Mouse 1: Iconify
+  Mouse 2 & 3: Groups Iconify
+
+- Mouse 1 (DoubleClick, Drag): bindings Maximize func
+  Mouse 2: Vertical Maximize
+  Mouse 3: Horizontal Maximize
+  
+- Mouse 1: Window Shade
+  Mouse 2: Group Window Shade on
+  Mouse 3: Group Window Shade off
+
+As usual you can ask the buttons themselves about their info by clicking
+Ctrl-Alt + title button.
+
+* Cursor:
+--------
+
+As the default, but the root one a black/yellow hand
+
+* Modules:
+---------
+
+The FvwmButtons-WMakerApplets is a Button Bar for WMaker and AfterStep applets.
+You may edit modules/main:FvwmButtons-WMakerApplets to choose your prefered
+applets. Also it is not started by default, you may edit modules/main
+if you want it by default. The more compatible FvwmButtons-FvwmApplets is
+started by default.
+How to use these Buttons: Mouse 1 in the backgroud of a button will start 
+a panel if it is not started, will ummap it if it is visibale and map it
+if it started but not visible. Mouse 3 in the backgroud of a button will 
+kill.
+

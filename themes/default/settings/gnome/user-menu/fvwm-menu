@@ -1,0 +1,5 @@
+AddToMenu gnome-user
++ DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop gnome-user'
+
+AddToMenu MenuFvwmPrograms
++ "User Gnome menus%menu/gnome.xpm" popup gnome-user

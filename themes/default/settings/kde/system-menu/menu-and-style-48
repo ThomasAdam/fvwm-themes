@@ -1,0 +1,5 @@
+#
+AddToMenu MenuFvwmPrograms "&Kde menu%menu/kde.xpm" popup kde-sys
+PipeRead 'fvwm-menu-desktop --desktop kde-sys --enable-mini-icons --enable-style --icons-path large/'
+
+#Style "k*" IconOverride

@@ -1,0 +1,257 @@
+# 1. Icon related style 
+# 2. Initialization functions
+# 3. Switch functions
+# 4. Theme module menus
+# 5. Needed Functions
+# 6. Modules configuration
+
+# ----------------------------------------------------------------------------
+# Icon related configuration
+
+Style "*"       IconBox 10 -10 -250 300, IconGrid 64 64, IconFill left top
+Style "*"       SlipperyIcon, IconTitle
+
+# ----------------------------------------------------------------------------
+# Initialization functions
+
+# migo: temporary
+#
+#AddToFunc InitFunction
+#+ I FuncFvwmStartThemeModules
+#
+#AddToFunc RestartFunction
+#+ I FuncFvwmStartThemeModules
+#
+## When used with a session manager fvwm uses SessionInitFunction and 
+## SessionRestartFunction
+#
+#AddToFunc SessionInitFunction
+#+ I FuncFvwmSessionStartThemeModules
+#
+#AddToFunc SessionRestartFunction
+#+ I FuncFvwmSessionStartThemeModules
+
+# ----------------------------------------------------------------------------
+# Switch functions
+
+DestroyFunc FuncFvwmStartThemeModules
+AddToFunc   FuncFvwmStartThemeModules
++ I FuncFvwmStartNormalIcons
+# defined in the other components
+
+DestroyFunc FuncFvwmStopThemeModules
+AddToFunc   FuncFvwmStopThemeModules
++ I FuncFvwmStopModule FvwmButtons
++ I FuncFvwmStopModule FvwmTaskBar
++ I FuncFvwmStopModule FvwmIconMan
++ I FuncFvwmStopModule FvwmIconBox
++ I FuncFvwmStopModule FvwmWinList
++ I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Single
++ I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
++ I DestroyModuleConfig FvwmButtons-Pager*
++ I DestroyModuleConfig FvwmButtons-StartApps*
++ I DestroyModuleConfig FvwmButtons-Apps*
++ I DestroyModuleConfig FvwmButtons-WMaker*Applets*
++ I DestroyModuleConfig FvwmButtons-Fvwm*Applets*
++ I DestroyModuleConfig FvwmButtons-StartWinOps*
++ I DestroyModuleConfig FvwmButtons-WinOps*
++ I DestroyModuleConfig FvwmPager-Single*
++ I DestroyModuleConfig FvwmPager-Desker*
++ I DestroyModuleConfig FvwmTaskBar*
++ I DestroyModuleConfig FvwmIconMan*
++ I DestroyModuleConfig FvwmIconBox*
++ I DestroyModuleConfig FvwmWinList*
++ I DestroyMenu MenuFvwmStartAppsMangerModules
++ I DestroyMenu MenuFvwmStartAppletsModules
++ I DestroyFunc FuncFvwmWinListDesk
++ I DestroyFunc FuncFvwmWinListGlobal
++ I DestroyFunc FuncFvwmTaskBarDesk
++ I DestroyFunc FuncFvwmTaskBarGlobal
++ I DestroyFunc FuncFvwmIconManGlobal
++ I DestroyFunc FuncFvwmIconManDesk
++ I DestroyFunc FuncFvwmIconManPage
++ I DestroyFunc FuncFvwmIconBoxDesk
++ I DestroyFunc FuncFvwmIconBoxGlobal
++ I DestroyFunc FuncFvwmSlipperyIcons
++ I DestroyFunc FuncFvwmAddSlipperyIcons
++ I DestroyFunc FuncFvwmChangeWinMan
++ I DestroyFunc FuncFvwmMyPopupPanel
++ I DestroyFunc FuncFvwmStopWMakerButtons
++ I DestroyFunc FuncFvwmStopXappletsButtons
++ I DestroyFunc FuncFvwmChangeApplets
+
+# ----------------------------------------------------------------------------
+# Theme module menus
+
+DestroyMenu MenuFvwmStartThemeModules
+AddToMenu   MenuFvwmStartThemeModules "OliCha Modules" Title
++ "&Application Panel" 	FuncFvwmRestartModuleByAlias \
+	FvwmButtons FvwmButtons-StartApps
++ "&Pager \& Desker"    FuncFvwmRestartModuleByAlias \
+	FvwmButtons FvwmButtons-Pager
++ "Window &Ops Panel"   FuncFvwmRestartModuleByAlias \
+	FvwmButtons FvwmButtons-StartWinOps
++ "" Nop
++ "Choose One ..."      Popup   MenuFvwmStartAppletsModules
++ "Choose One ..."      Popup   MenuFvwmStartAppsMangerModules
+
+DestroyMenu MenuFvwmStartAppletsModules
+AddToMenu   MenuFvwmStartAppletsModules "Applet Buttons" Title
++ "&WMaker	Applets"	FuncFvwmChangeApplets FvwmButtons-WMakerApplets
++ "&Fvwm	Applets"	FuncFvwmChangeApplets FvwmButtons-FvwmApplets
+
+DestroyMenu MenuFvwmStartAppsMangerModules
+AddToMenu   MenuFvwmStartAppsMangerModules "Apps Manager" Title
++ "Desk TaskBar" 	FuncFvwmChangeWinMan FuncFvwmTaskBarDesk
++ "Global TaskBar"	FuncFvwmChangeWinMan FuncFvwmTaskBarGlobal
++ "" Nop
++ "Page IconMan"	FuncFvwmChangeWinMan FuncFvwmIconManPage
++ "Desk IconMan"	FuncFvwmChangeWinMan FuncFvwmIconManDesk
++ "Global IconMan"	FuncFvwmChangeWinMan FuncFvwmIconManGlobal
++ "" Nop
++ "Desk WinList"	FuncFvwmChangeWinMan FuncFvwmWinListDesk
++ "Global WinList"	FuncFvwmChangeWinMan FuncFvwmWinListGlobal
++ "" Nop
++ "Desk IconBox"	FuncFvwmChangeWinMan FuncFvwmIconBoxDesk
++ "Global IconBox"	FuncFvwmChangeWinMan FuncFvwmIconBoxGlobal
++ "" Nop
++ "Only Normal Icons" 	FuncFvwmChangeWinMan FuncFvwmSlipperyIcons
++ "Add Normal Icons"	FuncFvwmAddSlipperyIcons
+
+DestroyMenu MenuFvwmStopThemeModules
+AddToMenu   MenuFvwmStopThemeModules "OliCha Modules" Title
++ "Stop &Application Panel"	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-StartApps
++ "Stop &Pager \& Desker"	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Pager
++ "Stop &WMaker Applets"	FuncFvwmStopWMakerButtons
++ "Stop &X Applets"		FuncFvwmStopXappletsButtons
++ "Stop Windows &Ops Panel"	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-StartWinOps
++ "" Nop
++ "Stop TaskBar"	FuncFvwmStopModule FvwmTaskBar
++ "Stop IconMan"	FuncFvwmStopModule FvwmIconMan
++ "Stop WinList"	FuncFvwmStopModule FvwmWinList
++ "Stop IconBox"	FuncFvwmStopModule FvwmIconBox
+
+# ----------------------------------------------------------------------------
+# Applications Manager Switch functions
+
+DestroyFunc FuncFvwmWinListDesk
+AddToFunc   FuncFvwmWinListDesk
++ "I" *FvwmWinListShowCurrentDesk
++ "I" Module FvwmWinList
+
+DestroyFunc FuncFvwmWinListGlobal
+AddToFunc   FuncFvwmWinListGlobal
++ "I" DestroyModuleConfig FvwmWinListShowCurrent*
++ "I" Module FvwmWinList
+
+DestroyFunc FuncFvwmTaskBarDesk
+AddToFunc   FuncFvwmTaskBarDesk
++ "I" *FvwmTaskBarDeskOnly
++ "I" Module FvwmTaskBar
+
+DestroyFunc FuncFvwmTaskBarGlobal
+AddToFunc   FuncFvwmTaskBarGlobal
++ "I" DestroyModuleConfig FvwmTaskBarDesk* 
++ "I" Module FvwmTaskBar
+
+DestroyFunc FuncFvwmIconManGlobal
+AddToFunc   FuncFvwmIconManGlobal 
++ "I" *FvwmIconMan*Resolution global
++ "I" *FvwmIconMan*title "Global IconMan"
++ "I" Module FvwmIconMan
+
+DestroyFunc FuncFvwmIconManDesk
+AddToFunc   FuncFvwmIconManDesk
++ "I" *FvwmIconMan*Resolution desk
++ "I" *FvwmIconMan*title "Desk IconMan"
++ "I" Module FvwmIconMan
+
+DestroyFunc FuncFvwmIconManPage
+AddToFunc   FuncFvwmIconManPage 
++ "I" *FvwmIconMan*Resolution page
++ "I" *FvwmIconMan*title "Page IconMan"
++ "I" Module FvwmIconMan
+
+DestroyFunc FuncFvwmIconBoxDesk
+AddToFunc   FuncFvwmIconBoxDesk
++ "I" *FvwmIconBoxResolution Desk
++ "I" Module FvwmIconBox
+
+DestroyFunc FuncFvwmIconBoxGlobal
+AddToFunc   FuncFvwmIconBoxGlobal
++ "I" DestroyModuleConfig FvwmIconBoxResolution 
++ "I" Module FvwmIconBox
+
+DestroyFunc FuncFvwmSlipperyIcons
+AddToFunc   FuncFvwmSlipperyIcons
++ "I" Style "*" IconBox 10 -10 -250 300, IconGrid 64 64, IconFill left top
++ "I" Style * Icon, SlipperyIcon 
++ "I" Read options/current/iconstyles
++ "I" Style "FvwmButtons-Fvwm*Applets" NoIcon
++ "I" Style "FvwmButtons-WMaker*Applets" NoIcon
++ "I" All (Iconic) RecaptureWindow
+
+#add:
+DestroyFunc FuncFvwmAddSlipperyIcons
+AddToFunc   FuncFvwmAddSlipperyIcons
++ "I" Style "*" NoIcon
++ "I" Style "*"	IconBox 90 5 -70 350, IconGrid 64 64, IconFill left top
++ "I" Style "*" Icon, SlipperyIcon 
++ "I" Read themes/default/settings/iconstyles/styles-icon-miniicon
++ "I" Style "FvwmButtons-Fvwm*Applets" NoIcon
++ "I" Style "FvwmButtons-WMaker*Applets" NoIcon
++ "I" All (Iconic) RecaptureWindow
+
+DestroyFunc FuncFvwmChangeWinMan
+AddToFunc   FuncFvwmChangeWinMan
++ "I" Style * NoIcon
++ "I" FuncFvwmStopModule FvwmTaskBar
++ "I" FuncFvwmStopModule FvwmWinList
++ "I" FuncFvwmStopModule FvwmIconMan
++ "I" FuncFvwmStopModule FvwmIconBox
++ "I" $0
+
+#--------------------------------------
+# WMakerButtons XappletsButtons functions:
+
+# Function to start/popup Panels:
+DestroyFunc FuncFvwmMyPopupPanel
+AddToFunc   FuncFvwmMyPopupPanel
++ "I" All  ($0 CirculateHit) Iconify
++ "I" None ($0 CirculateHit) FvwmButtons -g +$1+$2 $0
+
+# Function to stop WMakerButtons & XappletsButtons:
+DestroyFunc FuncFvwmStopWMakerButtons
+AddToFunc   FuncFvwmStopWMakerButtons
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-WMakerApplets
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-WMakerClockApplets
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-WMakerCpuApplets
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-WMakerCdApplets
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-WMakerMoreApplets
+
+DestroyFunc FuncFvwmStopXappletsButtons
+AddToFunc   FuncFvwmStopXappletsButtons
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-FvwmApplets
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-FvwmClockApplets
+
+# Function to switch between applets Buttons:
+DestroyFunc FuncFvwmChangeApplets
+AddToFunc   FuncFvwmChangeApplets
++ I FuncFvwmStopWMakerButtons
++ I FuncFvwmStopXappletsButtons
++ I FvwmButtons $0
+
+# ----------------------------------------------------------------------------
+# Modules configuration
+
+Read themes/olicha/modules/main:FvwmButtons-StartApps
+Read themes/olicha/modules/main:FvwmButtons-Pager
+Read themes/olicha/modules/main:FvwmPager-Single
+Read themes/olicha/modules/main:FvwmPager-Desker
+Read themes/olicha/modules/main:FvwmButtons-WMakerApplets
+Read themes/olicha/modules/main:FvwmButtons-FvwmApplets
+Read themes/olicha/modules/main:FvwmButtons-StartWinOps
+Read themes/olicha/modules/main:FvwmTaskBar
+Read themes/olicha/modules/main:FvwmIconMan
+Read themes/olicha/modules/main:FvwmWinList
+Read themes/olicha/modules/main:FvwmIconBox

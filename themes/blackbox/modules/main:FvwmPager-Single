@@ -1,0 +1,26 @@
+DeskTopSize 6 1
+
+DestroyMenu  MenuFvwmWindowMove
+AddToMenu    MenuFvwmWindowMove "Move to ..." Title
++ "&Right	Page%menu/window-move.xpm%"	AnimatedMove w+100 w
++ "&Left	Page%menu/window-move.xpm%"	AnimatedMove w-100 w
+
+AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
++ "&Right	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +1p +0p
++ "&Left	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage -1p +0p
+
+
+Style FvwmPager-Single NoTitle, NoHandles, Sticky, WindowListSkip
+
+DestroyModuleConfig FvwmPager-Single*
+*FvwmPager-SingleBalloonColorset * 9 
+*FvwmPager-SingleWindowColorsets 1 2
+*FvwmPager-SingleColorset * 16
+*FvwmPager-SingleHilightColorset * 8
+*FvwmPager-SingleFont none
+*FvwmPager-SingleSmallFont -*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*
+*FvwmPager-SingleBalloons Pager
+*FvwmPager-SingleColumns 1
+*FvwmPager-SingleNoSeparators
+
+

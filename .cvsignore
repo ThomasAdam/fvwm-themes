@@ -1,0 +1,15 @@
+Makefile
+Makefile.in
+aclocal.m4
+config.h
+config.h.in
+configure
+install-sh
+missing
+mkinstalldirs
+stamp-h.in
+config.log
+config.cache
+config.status
+stamp-h
+TAGS

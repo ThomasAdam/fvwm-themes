@@ -1,0 +1,5 @@
+DestroyFunc FuncFvwmStartFvwmAnimate
+AddToFunc   FuncFvwmStartFvwmAnimate
+
+DestroyFunc FuncFvwmStopFvwmAnimate
+AddToFunc   FuncFvwmStopFvwmAnimate

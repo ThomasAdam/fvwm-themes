@@ -1,0 +1,52 @@
+DeskTopSize 2 2
+
+DestroyMenu  MenuFvwmWindowMove
+AddToMenu    MenuFvwmWindowMove
++ "Move to ..." Title
++ "Page	->%menu/window-move.xpm%"	AnimatedMove w+100 w
++ "Page	<-%menu/window-move.xpm%"	AnimatedMove w-100 w
++ "Page	 v%menu/window-move.xpm%"	AnimatedMove w w+100
++ "Page	 ^%menu/window-move.xpm%"	AnimatedMove w w-100
+
+AddToMenu    MenuFvwmWindowGroupOps
++ "Quick move to ..." Title
++ "Page	->%menu/window-move.xpm%"	Pick All ($r) MoveToPage +1p +0p
++ "Page	<-%menu/window-move.xpm%"	Pick All ($r) MoveToPage -1p +0p
++ "Page	 v%menu/window-move.xpm%"	Pick All ($r) MoveToPage +0p +1p
++ "Page	 ^%menu/window-move.xpm%"	Pick All ($r) MoveToPage +0p -1p
+
+
+Style FvwmPager-Single NoTitle, NoHandles, Sticky, WindowListSkip, NoLenience
+
+DestroyModuleConfig FvwmPager-Single*
+*FvwmPager-SingleColorset * 16
+*FvwmPager-SingleHilightColorset * 8
+*FvwmPager-SingleWindowColorsets 1 2
+*FvwmPager-SingleBalloonColorset * 9
+#*FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-SingleFont -*-lucida-bold-r-*-*-11-*-*-*-*-*-*-*
+#*FvwmPager-SingleHilightPixmap /usr/local/images/marble3.xpm
+#*FvwmPager-SingleNoDeskHilight
+*FvwmPager-SingleGeometry 100x90+0+0
+#*FvwmPager-SingleDeskTopScale 24
+*FvwmPager-SingleWindowLabelFormat "%t"
+*FvwmPager-SingleLabel 0 Main
+*FvwmPager-SingleLabel 1 Internet
+*FvwmPager-SingleLabel 2 Devel
+*FvwmPager-SingleLabel 3 Games
+#*FvwmPager-SinglePixmap /usr/local/images/marble2.xpm
+#*FvwmPager-SingleDeskPixmap 0 /usr/local/images/marble2.xpm
+*FvwmPager-SingleRows 1
+*FvwmPager-SingleColumns 1
+*FvwmPager-SingleSmallFont 5x8
+#*FvwmPager-SingleDeskColor 0 gray50
+*FvwmPager-SingleMiniIcons
+*FvwmPager-SingleMoveThreshold 1
+*FvwmPager-SingleBalloons All  # Icon, Pager
+*FvwmPager-SingleBalloonFont 6x13
+#*FvwmPager-SingleBalloonFont -*-lucida\ sans\ typewriter-bold-*-*-*-12-*-*-*-*-*-*-*
+*FvwmPager-SingleBalloonBorderWidth 1
+#*FvwmPager-SingleBalloonBorderColor black
+*FvwmPager-SingleBalloonYOffset +14
+*FvwmPager-SingleWindowBorderWidth 1
+*FvwmPager-SingleWindow3dBorders

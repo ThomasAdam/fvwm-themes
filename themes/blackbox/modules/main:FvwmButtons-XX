@@ -1,0 +1,71 @@
+# BorderWidth 1 is useful for 800 vs 1024 screen ... do we need to use M4 ?
+Style "FvwmButtons-XX" BorderWidth 1, NoTitle, NoHandles, Sticky, FVWMBorder
+Style "FvwmButtons-XX" WindowListSkip
+Style "FvwmButtons-XX" NeverFocus, CirculateSkip
+
+DestroyFunc  FuncFvwmButtons-XXNext
+AddToFunc    FuncFvwmButtons-XXNext
++ I Next (!Iconic CurrentPage) Focus
++ I Current Raise
++ I All (FvwmButtons-XX) Raise
+
+DestroyFunc  FuncFvwmButtons-XXPrev
+AddToFunc    FuncFvwmButtons-XXPrev
++ I Current (FvwmButtons-XX) Prev (CirculateHit) Focus
++ I Prev (!Iconic CurrentPage) Focus
++ I Current Raise
++ I All (FvwmButtons-XX) Raise
+
+DestroyModuleConfig FvwmButtons-XX*
+*FvwmButtons-XXGeometry 700x18+99-0
+*FvwmButtons-XXBoxSize fixed
+*FvwmButtons-XXColumns 70
+*FvwmButtons-XXRows 18
+*FvwmButtons-XXFrame 0
+*FvwmButtons-XXColorset 10
+*FvwmButtons-XXPadding 0 0
+
+*FvwmButtons-XX( \
+	6x15+1+2, \
+	Swallow (Kill) "FvwmApplet-DigitalClock" \
+	'FvwmScript FvwmApplet-DigitalClock 11' \
+)
+#*FvwmButtons-XX( \
+#	6x14+1+2, Colorset 11,\
+#	Swallow(Kill) "xdaliclock" `Exec exec xdaliclock -24 \
+#	-fn lucidasans-bold-10  -fg $[fg.cs7] -noseconds -transparent` \
+#)
+*FvwmButtons-XX( \
+	2x16+7+1, \
+	Action FuncFvwmButtons-XXPrev, \
+	Icon module/toolbarbutton1.xpm \
+)
+
+*FvwmButtons-XX( \
+	2x16+9+1, \
+	Action FuncFvwmButtons-XXNext, \
+	Icon module/toolbarbutton2.xpm \
+)
+
+*FvwmButtons-XX( \
+	9x14+60+2, \
+	Swallow "FvwmPager-Single" "FvwmPager FvwmPager-Single * *" \
+)
+
+*FvwmButtons-XX( \
+	2x16+56+1, \
+	Action GotoPage -1p 0p, \
+	Icon module/toolbarbutton1.xpm \
+)
+
+*FvwmButtons-XX( \
+	2x16+58+1, \
+	Action, \
+	Action GotoPage +1p 0p, \
+	Icon module/toolbarbutton2.xpm \
+)
+
+*FvwmButtons-XX( \
+	45x14+11+2, \
+	Swallow "FvwmIconMan" "Module FvwmIconMan" \
+)

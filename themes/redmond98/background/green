@@ -1,0 +1,3 @@
+DestroyFunc FuncFvwmStartThemeBackground
+AddToFunc   FuncFvwmStartThemeBackground
++ I Exec exec fvwm-themes-images --colorize --colorize-colors green4:green --set-background --in-file $FT_DATADIR/images/background/win-fvwm.xpm

@@ -1,0 +1,8 @@
+DestroyFunc FuncFvwmStartChosenAppsMan
+AddToFunc   FuncFvwmStartChosenAppsMan
++ I DestroyModuleConfig FvwmWinListShowCurrent*
++ I Module FvwmWinList
+
+DestroyFunc FuncFvwmStartNormalIcons
+AddToFunc   FuncFvwmStartNormalIcons
++ I Style * NoIcon

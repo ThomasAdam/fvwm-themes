@@ -1,0 +1,12 @@
+*FvwmSoundEventCmd builtin-rplay
+
+DestroyFunc FuncFvwmStartFvwmSoundEvent
+AddToFunc   FuncFvwmStartFvwmSoundEvent
++ I Module FvwmEvent FvwmSoundEvent
+
+DestroyFunc FuncFvwmStopFvwmSoundEvent
+AddToFunc   FuncFvwmStopFvwmSoundEvent
++ I KillModule FvwmEvent FvwmSoundEvent
+
+AddToMenu   MenuFvwmStartRegularModules "Sound Effect (rplayD)" \
+	FuncFvwmRestartModuleByAlias FvwmEvent FvwmSoundEvent

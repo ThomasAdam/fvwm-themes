@@ -1,0 +1,16 @@
+Style "*"	Font -*-lucidatypewriter-medium-r-*-*-12-*-*-*-*-*-*-*
+Style "*"	IconFont fixed
+
+Style "*"	BorderWidth 5, HandleWidth 5
+Style "*"	FvwmBorder  # MWMBorder
+
+#BorderStyle	Simple
+BorderStyle	Inactive -- HiddenHandles
+# NoInset
+BorderStyle	Active   -- HiddenHandles
+# NoInset
+
+TitleStyle	LeftJustified
+TitleStyle	-- Flat
+
+ButtonStyle	All -- Flat

@@ -1,0 +1,38 @@
+Style "FvwmIconMan" NoTitle, WindowListSkip, Sticky, StaysOnTop, \
+	NoHandles, BorderWidth 0
+
+DestroyModuleConfig FvwmIconMan*
+
+*FvwmIconMan*colorset		6
+*FvwmIconMan*iconcolorset	13
+*FvwmIconMan*plaincolorset	11
+*FvwmIconMan*selectcolorset	11
+*FvwmIconMan*focuscolorset	12
+*FvwmIconMan*focusandselectcolorset 12
+
+*FvwmIconMan*title "   awol's customised button bar for Fvwm2000 -:- to boldly GNU..."
+*FvwmIconMan*resolution desk
+#*FvwmIconMan*font -adobe-*chancery-*-*-*-*-24-*-*-*-*-*-*-*
+*FvwmIconMan*font -adobe-times-*-*-*-*-20-*-*-*-*-*-*-*
+*FvwmIconMan*buttongeometry 50x25
+*FvwmIconMan*managergeometry 15x1
+*FvwmIconMan*dontshow icon=Untitled
+*FvwmIconMan*usewinlist true
+*FvwmIconMan*resolution desk
+*FvwmIconMan*sort name
+*FvwmIconMan*drawicons always
+*FvwmIconMan*shape true
+*FvwmIconMan*format "%i"
+*FvwmIconMan*action Mouse 1 N sendcommand FuncFvwmDeiconifyFocusAndRaise
+*FvwmIconMan*action Mouse 2 N sendcommand FvwmIdent
+*FvwmIconMan*action Mouse 3 N sendcommand Iconify
+
+*FvwmIconMan*plainbutton sunkedge
+*FvwmIconMan*selectbutton sunkedge
+*FvwmIconMan*focusandselectbutton down
+*FvwmIconMan*titlebutton raisededge
+*FvwmIconMan*iconbutton raisededge
+*FvwmIconMan*focusbutton down
+*FvwmIconMan*followfocus true 
+
+*FvwmIconMan*NoIconAction "SendToModule FvwmAnimate animate"

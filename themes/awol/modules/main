@@ -1,0 +1,84 @@
+# 1. Icon related configuration
+# 2. Initialization functions
+# 3. Switch functions
+# 4. Theme module menus
+# 5. Modules configuration
+
+# ----------------------------------------------------------------------------
+# Icon related configuration
+
+Style "*"	IconBox 10 6 -400 -100, IconGrid 64 64, IconFill left top
+Style "*"	SlipperyIcon, IconTitle
+
+# ----------------------------------------------------------------------------
+# Initialization functions
+
+# migo: temporary
+#
+#AddToFunc StartFunction
+#+ I FuncFvwmStartThemeModules
+
+# ----------------------------------------------------------------------------
+# Switch functions
+
+DestroyFunc FuncFvwmStartThemeModules
+AddToFunc   FuncFvwmStartThemeModules
++ I FuncFvwmStartChosenIconMan
++ I FuncFvwmStartChosenButtons
++ I FuncFvwmStartChosenPager
++ I FuncFvwmStartNormalIcons
+
+DestroyFunc FuncFvwmStopThemeModules
+AddToFunc   FuncFvwmStopThemeModules
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Default
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-DaLo
++ I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
++ I KillModule FvwmWinList
++ I DestroyModuleConfig FvwmButtons-Default*
++ I DestroyModuleConfig FvwmButtons-DaLo*
++ I DestroyModuleConfig FvwmPager-Single*
++ I DestroyModuleConfig FvwmPager-Desker*
++ I DestroyModuleConfig FvwmIconMan*
++ I DestroyModuleConfig FvwmWinList*
++ I DestroyFunc FuncFvwmButtonsSwitch
++ I DestroyFunc FuncFvwmStartChosenIconMan
++ I DestroyFunc FuncFvwmStartChosenButtons
++ I DestroyFunc FuncFvwmStartChosenPager
++ I DestroyFunc FuncFvwmStartNormalIcons
+
+# ----------------------------------------------------------------------------
+# Theme module menus
+
+DestroyMenu MenuFvwmStartThemeModules
+AddToMenu   MenuFvwmStartThemeModules "Awol Modules" Title
++ "Standar &Buttons"  		FuncFvwmButtonsSwitch FvwmButtons-Default
++ "&Dali \& kLo Buttons"  	FuncFvwmButtonsSwitch FvwmButtons-DaLo
++ "&Desker"          Module FvwmPager FvwmPager-Desker 0 3
++ "" Nop
++ "No normal icons" Style * NoIcon
++ "Normal icons"    Read themes/default/settings/iconstyles/style-icon-miniicon
+
+DestroyMenu MenuFvwmStopThemeModules
+AddToMenu   MenuFvwmStopThemeModules "Awol Modules" Title
++ "Stop &Buttons" KillModule FvwmButtons
++ "Stop &Desker"  FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
+
+#-----------------------------------------------------------------------------
+# Functions
+
+DestroyFunc FuncFvwmButtonsSwitch
+AddToFunc   FuncFvwmButtonsSwitch
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Default
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-DaLo
++ I FvwmButtons $0
+
+# -----------------------------------------------------------------------------
+# Modules configuration
+
+Read themes/awol/modules/main:FvwmButtons-Default
+Read themes/awol/modules/main:FvwmButtons-DaLo
+Read themes/awol/modules/main:FvwmPager
+Read themes/awol/modules/main:FvwmIconMan
+#Read themes/default/modules/main:FvwmIconBox
+#Read themes/default/modules/main:FvwmTaskBar
+#Read themes/default/modules/main:FvwmWinList
