@@ -35,6 +35,10 @@
 	* NEWS:
 	prepared for 0.4.0
 
+	Unsolved fvwm problems: some X errors and empty Echo command
+	on afterstep@ and awol@ modules. FvwmTaskBar core dumps when
+	restarting fvwm-themes-start (but does not when restarting fvwm2).
+
 2000-11-11  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ConfigCenter:
