@@ -98,7 +98,7 @@ if [ "$isNewVersion" = 1 -o "$isNewSession" = 1 ]; then
 else
 	# different build id may mean that themes or prefix were changed,
 	# be safe and refresh in this case
-	if [ "`echo $HEADERS_LINE | cut -d' ' -f4-`" = "@FT_BUILD_ID@" ]; then
+	if [ "`echo $HEADERS_LINE | cut -d' ' -f4-`" != "@FT_BUILD_ID@" ]; then
 		echo "[FVWM-Themes]: A new @VERSION@ build detected; refreshing configuration"
 		@bindir@/fvwm-themes-config --fresh
 	fi
