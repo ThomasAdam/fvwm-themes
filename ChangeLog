@@ -1,3 +1,14 @@
+2001-09-22  olicha  <olivier.chapuis@free.fr>
+
+	* themes/multichoice/face/_image:
+	Fixed reloading
+
+	* script/fvwm-themes-com.in:
+	Fixed multiple communications to the background program
+
+	* script/fvwm-themes-config.in:
+	Some comLoop fixes
+
 2001-09-21  olicha  <olivier.chapuis@free.fr>
 
 	* themes/minimal/*
