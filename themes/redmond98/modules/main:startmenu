@@ -23,7 +23,7 @@ AddToMenu   StartMenuFvwmSettings "Settings" Title
 
 DestroyMenu StartMenuFvwmDocuments
 AddToMenu   StartMenuFvwmDocuments "Documents" Title
-+ "%menu/help.xpm%Fvwm Man Pages"	 Popup MenuFvwmManPages
++ "%menu/help.xpm%FVWM Man Pages"	 Popup MenuFvwmManPages
 + "%menu/www.xpm%FVWM Web Pages"	Popup MenuFvwmWebPages
 + "%menu/information.xpm%Show FVWM Version" FuncFvwmShowVersionInfo
 + "" Nop
