@@ -464,4 +464,4 @@ AddToMenu   MenuFvwmWebBrowsing "Web Browsing" Title
 + "%menu/www.xpm%Web Browsers" Popup MenuFvwmWebBrowsers
 + "%menu/www.xpm%FVWM Web Pages" Popup MenuFvwmWebPages
 + "" Nop
-+ "%menu/www.xpm%Set Default Browser" FuncFvwmShowMessage "Setting your default browser" "There is no dialog to change the default browser yet.^nPlease do it manually. Put these lines to^n^t~/.fvwm/themes/personal/functions-appbind-extra^n^n# used to open url^nDestroyFunc FuncFvwmOpenURL^nAddToFunc   FuncFvwmOpenURL^n+ I Exec exec mozilla '^d0'^n^n# used to start browser in panels and stroke^nDestroyFunc FuncFvwmWWW^nAddToFunc   FuncFvwmWWW^n+ I Exec exec opera"
++ "%menu/www.xpm%Set Default Browser" FuncFvwmShowMessage "Setting your default browser" "There is no dialog to change the default browser yet.^nPlease do it manually. Put these 8 lines to^n^t~/.fvwm/themes/personal/functions-appbind-extra^n^n# used to open url^nDestroyFunc FuncFvwmOpenURL^nAddToFunc   FuncFvwmOpenURL^n+ I Exec exec mozilla '^d0'^n^n# used to start browser in panels and stroke^nDestroyFunc FuncFvwmWWW^nAddToFunc   FuncFvwmWWW^n+ I Exec exec opera"
