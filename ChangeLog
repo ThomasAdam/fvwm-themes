@@ -1,3 +1,18 @@
+2000-01-05  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	* themes/*/*.cfg:
+	Implemented !reuse-dependencies, !reset-properties (4 forms) cfg
+	directives in components affecting definitions of components, which
+	are specified more than once - either reset or reuse the existing
+	definitions, this enables not to specify any dependancies in *.cfg,
+	if they are not different from the default ones. Not fully tested.
+	The current defaults are probably good, but this may be changed.
+
+	* bin/fvwm-themes-config.in:
+	Small changes to the previous commit.
+	I didn't really try a minimal reload yet.
+
 2001-01-04  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:

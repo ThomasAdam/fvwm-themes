@@ -68,8 +68,8 @@ sub showHelp {
 	print "\t--expand-rc file   expand fvwm configuration file to stdout\n";
 	print "\t--fresh            refresh (regenerate) current theme configs\n";
 	print "\t--reset            reset all components to default theme\n";
-	print "\t--rm-config-cache  Remove the configuration cache file\n";
-	print "\tset-minimal-reload i switch between minimal and global switching\n";
+	print "\t--no-cfg-cache     don't use (build) the configuration cache file\n";
+	print "\t--set-minimal-reload=i switch between minimal and full reloading\n";
 	print "\t--load [c]\@t      load the given theme component(s)\n";
 	print "\t--drop c[\@t]      unload the current theme component\n";
 	print "\t--option cmp:opt=v change the component option value.\n";
@@ -289,9 +289,9 @@ sub escapeMenuName ($;$) {
 	$name;
 }
 
-sub decodeCfgEntry ($) {
+sub decodeCfgEntry ($;$) {
 	my $str = shift;
-	my $entry = {};
+	my $entry = shift || {};
 
 	$str =~ s/\s+$//s;
 	$str =~ s/\r/\n/sg;
@@ -325,7 +325,8 @@ sub decodeCfgEntry ($) {
 		}
 		if ($key =~ /^(.*)\+$/) {
 			$key = $1;
-			$hash->{$key} = [] unless exists $hash->{$key};
+			$hash->{$key} = []
+				unless exists $hash->{$key} && ref($hash->{$key}) eq 'ARRAY';
 			push @{$hash->{$key}}, $value;
 		} else {
 			$hash->{$key} = $value;
@@ -379,6 +380,12 @@ sub encodeCfgEntry ($) {
 #ccf: new variable $cfgCacheFileStatus in the next two lines
 use vars qw($cfgFileCache $cfgCacheFileStatus);
 BEGIN { $cfgFileCache = {}; $cfgCacheFileStatus = 0; }
+
+my @dependencyKeys = qw(
+	provides requires complements precedes follows
+	local-imagepath start-stop uses
+);
+
 sub loadThemeCfg ($) {
 	my $theme = shift;
 	#ccf: 1 line
@@ -403,17 +410,45 @@ sub loadThemeCfg ($) {
 		last unless $$strRef =~ /(?:^|\n)\[(\w+)\](.*?)(|\n\[.*)$/s;
 		$$strRef = $3;
 		my $entryTag = lc($1);
-		my $entry = decodeCfgEntry($2);
+		my $entryStr = $2;
+		my $entry = {};
+
 		if ($entryTag eq 'theme') {
 			$cfg->[0] = $entry;
 		} elsif ($entryTag eq 'component') {
-			my $key = $entry->{$idKey};
+			$entryStr =~ /^$idKey\s*=\s*(.*)\s*$/m;
+			my $key = $1;
 			errDie("No '$idKey' value in entry [$entryTag] in $cfgFile") unless $key;
+
+			# these defaults are probably ok
+			my $reuseDependences = 1;
+			my $reuseProperties = 0;
+			while ($entry =~ s/^!(reuse|reset)-(dependences|properties)\s*$//) {
+				($2 eq "dependences"? $reuseDependences: $reuseProperties) =
+					($1 eq "reuse"? 1: 0);
+			}
+
+			if ($cfg->[1]->{$key} && ($reuseDependences || $reuseProperties)) {
+				my $oldEntry = $cfg->[1]->{$key};
+				if ($reuseProperties) {
+					$entry = $oldEntry;
+					unless ($reuseDependences) {
+						foreach (@dependencyKeys) {
+							delete $entry->{$_} if exists $entry->{$_};
+						}
+					}
+				} else {  # if ($reuseDependences)
+					foreach (@dependencyKeys) {
+						$entry->{$_} = $oldEntry->{$_} if exists $oldEntry->{$_};
+					}
+				}
+			}
 			$cfg->[1]->{$key} = $entry;
 		} else {
 			print STDERR "Warning: unknown entry [$entryTag], ignoring...\n";
 			next;
 		}
+		decodeCfgEntry($entryStr, $entry);
 	}
 
 #	# leave only real components
@@ -1225,7 +1260,7 @@ sub getSortedComponentsToRead ($) {
 		next unless $cc->{'used'};
 		next unless $cc->{'read-file'};
 		if (exists $cc->{'complements'}) {
-			my $mainComponent = $cc->{'complements'};
+			my $mainComponent = $cc->{'complements'} || '*none*';
 			$complements->{$mainComponent} ||= [];
 			push @{$complements->{$mainComponent}}, $component;
 			next;
@@ -1311,7 +1346,7 @@ sub getSortedComponentsToRead ($) {
 	# implant complementing components into the sorted array
 	foreach $component (keys %$complements) {
 		my $index = getArrayElementIndex(\@currentComponents, $component);
-		errDie("Complemented component '$component' does not exist")
+		errDie("Complemented component '$component' for (@{$complements->{$component}}) does not exist")
 			unless defined $index;
 		splice @currentComponents, $index + 1, 0, @{$complements->{$component}};
 	}
@@ -1649,13 +1684,13 @@ sub getMenusAndHooksAndReadsRc ($) {
 	my $menu = "";
 	my $minimalSwitch = "";
 	if ($self->isMinimalReload()) {
-		$minimalSwitch = 
-			qq(+ "&Use global switching" FuncFvwmThemesSetMinimalReload 0\n);
+		$minimalSwitch =
+			qq(+ "&Use full reloading" FuncFvwmThemesSetMinimalReload 0\n);
 		$ownThemeMenuRc =~ s/FuncFvwmThemes/FuncFvwmMinimalThemes/g;
-		$allThemeMenuRc=~ s/FuncFvwmThemes/FuncFvwmMinimalThemes/g;
+		$allThemeMenuRc =~ s/FuncFvwmThemes/FuncFvwmMinimalThemes/g;
 	} else {
-		$minimalSwitch = 
-			qq(+ "&Use minimal switching" FuncFvwmThemesSetMinimalReload 1\n);
+		$minimalSwitch =
+			qq(+ "&Use experimental reloading" FuncFvwmThemesSetMinimalReload 1\n);
 	}
 	$menu .= qq(\n\n);
 	$menu .= qq(DestroyMenu "MenuFvwmThemes"\n);
@@ -1668,11 +1703,10 @@ sub getMenusAndHooksAndReadsRc ($) {
 	$menu .= qq(DestroyMenu "MenuFvwmThemesRefreshReload"\n);
 	$menu .= qq(AddToMenu   "MenuFvwmThemesRefreshReload" "Refresh and Reload" Title\n);
 	$menu .= qq(+ "&Refresh the current theme" FuncFvwmThemesFresh\n);
-	$menu .= qq(+ "Refresh and update &Cfg" FuncFvwmThemesFreshAndRmCache\n);
+	$menu .= qq(+ "Refresh with no &cache" FuncFvwmThemesFreshUncached\n);
 	$menu .= $minimalSwitch;
 	$menu .= qq(+ "" Nop\n);
-	$menu .= qq(+ "" Nop\n);
-	$menu .= qq(+ "Reset all to the &default!" FuncFvwmThemesReset\n);
+	$menu .= qq(+ "Reset all to the &default" FuncFvwmThemesReset\n);
 	$menu .= "\n";
 
 	# add own theme menus
@@ -1764,8 +1798,8 @@ DestroyFunc FuncFvwmThemesFresh
 AddToFunc   FuncFvwmThemesFresh
 + I FuncFvwmThemesConfigAndUpdate --fresh
 
-DestroyFunc FuncFvwmThemesFreshAndRmCache
-AddToFunc   FuncFvwmThemesFreshAndRmCache
+DestroyFunc FuncFvwmThemesFreshUncached
+AddToFunc   FuncFvwmThemesFreshUncached
 + I FuncFvwmThemesConfigAndUpdate "--fresh --rm-cfg-cache"
 
 DestroyFunc FuncFvwmThemesSetMinimalReload
@@ -1868,7 +1902,7 @@ Read @$rcFile2@
 	$imagePath =~ s=(^|:)\Q$siteDir\E(/|:|$)=$1\$FT_DATADIR$2=g;
 	my $addImagePath = $self->getAdditionalImagePath();
 	$imagePath .= "\nImagePath $addImagePath" if $addImagePath =~ /\+/;
-	my ($menusAndHooksRc,$minimalMenusAndHooksRc) = 
+	my ($menusAndHooksRc, $minimalMenusAndHooksRc) = 
 			$self->getMenusAndHooksAndReadsRc();
 
 	$contents = "# fvwm/$rcFile2 $version$header";
@@ -1926,7 +1960,7 @@ my $fvwmscript = 0;
 my $onlySite = 0;
 my $onlyUser = 0;
 my $configCenter = 0;
-my $rmCfgCache = 0;
+my $noCfgCache = 0;
 
 GetOptions(
 	"help|h"      => \&showHelp,
@@ -1955,7 +1989,7 @@ GetOptions(
 	"only-user"	  => \$onlyUser,
 	"config-center" => \$configCenter,
 	"set-minimal-reload=i" => \$setMinimalReload,
-	"rm-config-cache"    => \$rmCfgCache,
+	"no-cfg-cache" => \$noCfgCache,
 ) || wrongUsage();
 
 shift @searchPath if $site;
@@ -1992,7 +2026,7 @@ if (defined $expandFile) {
 }
 
 #ccf: 3
-if (($reset || $rmCfgCache) && -f "$userDir/$cfgCacheFileName") {
+if (($reset || $noCfgCache) && -f "$userDir/$cfgCacheFileName") {
 	unlink "$userDir/$cfgCacheFileName";
 }
 
@@ -3199,7 +3233,7 @@ B<fvwm-themes-config>
 [ B<--expand-rc>|B<-e> [file] ]
 [ B<--fresh>|B<-f> ]
 [ B<--reset>|B<-r> ]
-[ B<--rm-config-cache> ]
+[ B<--no-cfg-cache> ]
 [ B<--load>|B<-l> component@theme ]
 [ B<--drop>|B<-u> component@theme ]
 [ B<--option>|B<-o> component:option=value ]
@@ -3271,11 +3305,11 @@ $FVWM_USERDIR/themes/current/theme.cfg.
 B<--reset> - forget all the currently used components, remove the 
 configuration cache file and use the components from the default theme.
 
-B<--rm-config-cache> - Remove the configuration cache file so that it can be
-regenerated.
+B<--no-cfg-cache> - don't use the existing configuration cache file,
+this file will be regenerated.
 
-B<--set-minimal-reload> I<value>- If value is 1, then minimal theme switching
-is used, if value is 0, then global themes switching is used.
+B<--set-minimal-reload> I<value> - if value is 1, then minimal theme switching
+is used, if value is 0, then global theme switching is used.
 
 B<--load> I<component> - multiple C<--load> parameters may be given. If the
 parameter is of form component@theme, this specific theme component is used,
@@ -3305,6 +3339,10 @@ B<--set-locked> I<component=value> - set (if I<value> is 1) or unset (if
 I<value> is 0) a locked state of the given component. When the component
 from the current theme is locked, C<--load @theme> will not replace it,
 it can only be replaced by explicit C<--load component@theme>.
+
+B<--install> I<theme.tar.{gz,bz2} ...> - install the specified tarballs
+into the site (if B<--site> is alo given) or into the user's I<themes>
+directory by verifying and unpacking the contents of the tarballs.
 
 Five last parameters may be combined together and multiple parameters are
 possible. If B<--load> and B<--drop> parameters are given, first it will
