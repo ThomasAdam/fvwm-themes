@@ -4,7 +4,7 @@
 #  Send your comments to fvwm-themes-devel@lists.sourceforge.net.
 ###
 
-Style * EWMHDonateIcon, EWMHDonateMiniIcon
+#Style * EWMHDonateIcon, EWMHDonateMiniIcon
 #Style Eterm* IconOverride
 Style * IconOverride
 Style XTerm NoActiveIconOverride  # enable: xterm +at

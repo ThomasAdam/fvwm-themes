@@ -11,10 +11,14 @@
 	call man fvwm
 
 	* themes/migo/colors:
-	remove fgsh
+	temporarily disable fgsh
 
 	* bin/fvwm-themes-config.in:
 	minor spacing
+
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	* themes/default/settings/iconstyles/disabled:
+	temporarily disable EWMH*Donate*Icon
 
 2002-06-02  olicha  <olivier.chapuis@free.fr>
 
