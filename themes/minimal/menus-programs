@@ -1,1 +1,35 @@
 # dummy !
+DestroyMenu MenuFvwmShells
+AddToMenu   MenuFvwmShells
++ "&Xterm	default%menu/terminal.xpm%" Exec exec xterm  -fg $[fg.cs30] -bg $[bg.cs30]
++ "Xterm/r&oot	default%menu/terminal-special.xpm%" Exec exec xterm  -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
++ "" Nop
++ "&Xterm	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec xterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "Xterm/r&oot	80x40 (7x14 font)%menu/terminal-special.xpm%" Exec exec xterm  -n root@$HOST  -T root@$HOST  -g 80x40 -sb +sk +si -sl 4096 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
+
+DestroyMenu MenuFvwmSystem
+AddToMenu   MenuFvwmSystem
++ "&Top%menu/monitoring.xpm%"		FuncFvwmRunInXterm "Top" top
++ "X&Load%menu/monitoring.xpm%"		Exec exec xload
++ ""  Nop
++ MissingSubmenuFunction FuncFvwmMenuDirectory
++ "Root dir%menu/folder.xpm%"      Popup /
++ "Home dir%menu/home.xpm%"        Popup ~
+
+DestroyMenu MenuFvwmScreenSaver
+AddToMenu   MenuFvwmScreenSaver
++ "Screen Saver%menu/display.xpm%" Exec xlock -nolock -nice 19 -mode random
++ "Screen Locker%menu/lock.xpm%"   Exec xlock -nice 19 -mode random
+
+DestroyMenu MenuFvwmWindowManager
+AddToMenu   MenuFvwmWindowManager
++ "&fvwm-themes-start%menu/windows.xpm%"	Restart fvwm-themes-start
++ "&fvwm%menu/windows.xpm%"			Restart fvwm -s
+
+DestroyMenu MenuFvwmPrograms
+AddToMenu   MenuFvwmPrograms
++ "Emacs%menu/gnu.xpm%"			Exec exec emacs
++ "Xemacs%menu/gnu.xpm%"		Exec exec xemacs
++ "VI%menu/editor.xpm%"			FuncFvwmRunInXterm "VI" "vi"
++ "Gvim%menu/editor.xpm%"		Exec exec gvim
++ "NEdit%menu/editor.xpm%"		Exec exec nedit

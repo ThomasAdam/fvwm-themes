@@ -1,5 +1,12 @@
 2002-06-02  olicha  <olivier.chapuis@free.fr>
 
+	* themes/default/settings.cfg: 
+	s/KDE2/KDE>=2/
+
+	* themes/minimal/menus-programs:
+	* themes/default/theme.cfg:
+	Fixed desktop menus dependency vs menustyle
+
 	* themes/*/windowlook:
 	* themes/*/menustyle:
 	* themes/*/fonts:
