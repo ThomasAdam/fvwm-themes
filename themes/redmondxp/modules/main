@@ -40,11 +40,11 @@ AddToFunc   FuncFvwmReloadColorsModules
 # plaincolorset
 + I Colorset 17 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint, bgTint, fgAlpha, Alpha, IconTint, IconAlpha, NoShape
 # focuscolorset
-#+ I Colorset 18 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint rgb:00/80/ff 30, bgTint, fgAlpha, Alpha, IconTint, IconAlpha, NoShape
+#+ I Colorset 18 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint rgb:00/80/ff 30, bgTint, fgAlpha, fgTint, Alpha, IconTint, IconAlpha, NoShape
 # iconcolorset
-+ I Colorset 19 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint rgb:00/00/00 40, bgTint, fgAlpha, Alpha, IconTint, IconAlpha, NoShape
++ I Colorset 19 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint rgb:00/00/00 40, bgTint, fgAlpha, fgTint $[bg.cs10] 40, Alpha, IconTint, IconAlpha 60, NoShape
 # selectcolorset
-+ I Colorset 20 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint rgb:ff/ff/ff 30, bgTint, fgAlpha, Alpha, IconTint, IconAlpha, NoShape
++ I Colorset 20 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint rgb:ff/ff/ff 30, bgTint, fgAlpha, fgTint, Alpha, IconTint, IconAlpha, NoShape
 #+ I FuncFvwmStartPanel
 
 DestroyFunc FuncFvwmStopThemeModules

@@ -8,6 +8,9 @@
 	* themes/default/settings/automenus/headlines/enabled:
 	use the user defined browser instead of netscape
 
+	* themes/redmondxp/modules/main:
+	iconified buttons in FvwmIconMan are now with fg/icon alpha/tint
+
 2003-11-09  migo  <migo@homemail.com>
 
 	* NEWS:
