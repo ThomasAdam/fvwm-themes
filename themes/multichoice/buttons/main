@@ -35,12 +35,17 @@ BhC Style "*" Button BhN
 BlC Style "*" Button BlN
 BrC Style "*" Button BrN
 
+ifdef({{HaveMiniIcon}}, {{
+define({{old_BOC}}, BoC)
+define({{BoC}}, {{#}})
+}})
+
 include(CompRoot/faces/FaceFile)
 
 ifdef({{HaveMiniIcon}}, {{
-BoC ButtonStyle BoN Pixmap 16x16-general/empty.xpm -- UseTitleStyle
+define({{BoC}}, old_BOC)
 BoC AddButtonStyle BoN MiniIcon
-}}, {{}})
+}})
 
 ButtonStyle All - Clear
 BmC ButtonStyle BmN - MWMDecorMax
