@@ -1,6 +1,6 @@
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground
-+ I exec xv -root -rmode 2 -quit $FT_DATADIR/themes/migo/images/background/cyan-tile.png
++ I Exec exec xpmroot $./images/background/circle-energy.xpm
 
 DestroyFunc FuncFvwmStopThemeBackground
 AddToFunc   FuncFvwmStopThemeBackground

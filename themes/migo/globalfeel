@@ -17,7 +17,7 @@ HideGeometryWindow Never
 BugOpts FlickeringMoveWorkaround Off
 SnapAttraction 0 All
 SnapGrid 1 1
-XorValue 55555
+XorValue 111111
 
 # ---------------------- Paging and Mouse Parameters ----------------------
 
