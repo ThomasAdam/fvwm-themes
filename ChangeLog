@@ -10,6 +10,9 @@
 	* debian/Makefile.am:
 	synchronized deb and rpm naming
 
+	* themes/default/bindings:
+	make Shift-borders do ResizeMaximize as intended
+
 2003-10-20  migo  <migo@homemail.com>
 
 	* themes/*/colors*:

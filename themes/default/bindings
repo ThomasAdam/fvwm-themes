@@ -15,8 +15,8 @@ AddToFunc   FuncFvwmMoveOrRaiseOrShade
 
 DestroyFunc FuncFvwmResizeOrRaiseOrShade
 AddToFunc   FuncFvwmResizeOrRaiseOrShade
-+ H	Resize
-+ M	Resize
++ H	Resize$0
++ M	Resize$0
 + C	Raise
 + D	WindowShade
 
@@ -227,7 +227,7 @@ MouseXX 2 3	D	MSC	Module FvwmPager -transient FvwmPager-Desker 0 3
 # pointer in Window Decorations
 FuncFvwmSetTitleBindings TSF
 Mouse 1 	SF	A	FuncFvwmResizeOrRaiseOrShade
-Mouse 1 	SF	S	ResizeMaximize
+Mouse 1 	SF	S	FuncFvwmResizeOrRaiseOrShade Maximize
 
 # pointer in Icon
 Mouse 1 	I	A	FuncFvwmMoveOrIconify
