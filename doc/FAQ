@@ -4,6 +4,7 @@ FVWM Themes Frequently Asked Questions and Answers.
 Q. Why this FAQ does not contain my question about fvwm-themes?
 Q. What is theme, component, choice, option in the fvwm-themes terminology?
 Q. Why theme switching takes some time and it is even increased?!
+Q. On my system switching themes crashes FVWM! Waht to do?
 Q. How much configurable is fvwm-themes?
 Q. The themes are nice, but how can I define my personal contents?
 Q. How can I redefine the applications started by clicking on a button?
@@ -65,7 +66,22 @@ We are trying our best to unload everything, which can be unloaded in all
 themes to save user's memory. This will be improved.
 
 Please execute Restart command if you experience some memory/speed problems,
-when you switch themes.
+when you switch themes. See also the answer to the next question.
+==============================================================================
+
+------------------------------------------------------------------------------
+Q. On my system switching themes crashes FVWM! What to do?
+
+A. There is a known problem on some systems, FVWM may (or may not) randomly
+crash on them when switching themes. You should try a workaround for this
+problem, which does work on at least one such system.
+
+If you define $FT_USE_RESTART environment variable, i.e. if you replace
+a call to fvwm-themes-start with 'env FT_USE_RESTART=1 fvwm-themes-start',
+FVWM will be restarted on every theme change. This may solve memory problems.
+
+If this does not solve your problem, please report it to fvwm-themes
+developers - fvwm-themes-devel@lists.sourceforge.org.
 ==============================================================================
 
 ------------------------------------------------------------------------------
