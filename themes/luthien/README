@@ -8,10 +8,10 @@ There are several gradient color palettes for your choice in this theme.
 The modules use a transparent colorset, this enables IconMan, Pager,
 xload, xclock and xosview, all to be drawn on FvwmButtons transparently.
 
-By default, xosview in the Buttons display the load, mem and page 
-informations. If you want other informations add the following to 
-your personal modules-extra file:
- 
+By default, xosview in the button bar displays the load, mem and page
+statistics. If you want other statistics add the following function
+to your personal modules-extra file:
+
 DestroyFunc FuncFvwmStartBarXosview
 AddToFunc   FuncFvwmStartBarXosview
 + I Exec xosview -name BarXosview -xrm 'xosview*background:$[bg.cs10]' +load \
@@ -20,4 +20,4 @@ AddToFunc   FuncFvwmStartBarXosview
 	2>/dev/null; if [ "$?" = 127 ]; then \
 	xlogo -fg $[fg.cs10] -bg $[bg.cs10] -g 100x50+0-0 -name BarXosview; fi
 
-and then modify it (man xosview may help).
+and then modify this function (try: man xosview).
