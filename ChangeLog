@@ -3,6 +3,13 @@
 	* doc/FAQ:
 	"I installed more applications, how can I rebuild application menus?"
 
+	* bin/fvwm-themes-menuapp.in:
+	* themes/migo/modules.cfg:
+	* themes/migo/modules/buttonbar/xloadtime:
+	* themes/redmondxp/modules/FvwmButtons-Panel:
+	* themes/redmondxp/modules/main:
+	small fixes/improvements
+
 2002-01-11  migo  <migo@homemail.com>
 
 	* configure.in:

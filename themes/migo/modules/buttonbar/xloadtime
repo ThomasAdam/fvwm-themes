@@ -5,7 +5,7 @@ AddToFunc   FuncFvwmButtons-CompactLoad
 # not in the previous func because of a variable expansion problem
 DestroyFunc FuncFvwmButtons-StartXLoadTime
 AddToFunc   FuncFvwmButtons-StartXLoadTime
-+ I Exec exec xloadtime -nolabel -bg $[bg.cs10] -fg $[fg.cs10] -hl $[shadow.cs13] -update 3 -geometry 86x43-0+99
++ I Exec exec xloadtime -bg $[bg.cs10] -fg $[fg.cs10] -hl $[shadow.cs13] -update 3 -geometry 86x43-0+99
 
 AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmButtons-StartXLoadTime

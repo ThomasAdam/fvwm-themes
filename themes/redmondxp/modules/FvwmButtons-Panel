@@ -125,7 +125,7 @@ AddToFunc   ToggleFvwmPager
 	ActionOnPress, \
 	Action `SendToModule $./FvwmThemesPanelManager popup taskbar-config rectangle $widthx$height+$left+$top 0 -100m`, \
 )
-PipeRead `echo -n "SetEnv IconManWidth "; expr $[vp.width] / 4 - 90`
+PipeRead `printf "SetEnv IconManWidth "; expr $[vp.width] / 4 - 90`
 *FvwmButtons-Panel: ($[IconManWidth]x1, Swallow FvwmIconMan 'Module FvwmIconMan')
 
 # ---- clock/dock bar ----
