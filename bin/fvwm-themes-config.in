@@ -2,14 +2,16 @@
 # for speed testing add: -d:DProf
 
 # Filter this script to pod2man to get a man page:
-#   pod2man -c "Fvwm Utility" fvwm-themes-config | nroff -man | less -e
+#   pod2man -c "FVWM Utility" fvwm-themes-config | nroff -man | less -e
 
 use strict;
 use Getopt::Long;
 
 my $prefix = $ENV{'prefix'} || '@prefix@';
 my $ROOT_PREFIX = $ENV{'ROOT_PREFIX'} || '@ROOT_PREFIX@';
+my $bindir = "@bindir@";
 my $datadir = "@datadir@";
+my $ftFataDir = "@FT_DATADIR@";
 
 my $version = '@VERSION@';
 my $fvwmVersion = '@FVWM_VERSION@';
@@ -17,14 +19,14 @@ my $fvwmDefaultImagePath = '@FVWM_DEFAULT_IMAGEPATH@';
 my $versionInfo = '@FT_VERSION_INFO@';
 
 my $scriptName = ($0 =~ m:([^/]+)$:, $1);
-my $scriptFile = "@bindir@/$scriptName";
+my $scriptFile = "$bindir/$scriptName";
 my $rcFile = "themes-rc";
 my $rcFile2 = "$rcFile-2";
 #ccds: 1, maybe we may use .$rcFile-3
 my $rcFile3 = "$rcFile-3";
 my $userHome = $ENV{'HOME'} || "./.";
 my $userDir = $ENV{'FVWM_USERDIR'} || "$userHome/.fvwm";
-my @searchPath = ($userDir, "@FT_DATADIR@");
+my @searchPath = ($userDir, $ftFataDir);
 my ($workDir, $siteDir);
 my $themesSubDir = 'themes';
 my $currentThemeName = 'current';
@@ -53,6 +55,7 @@ sub showHelp {
 	print "Options:\n";
 	print "\t--help             show this help and exit\n";
 	print "\t--version          show the version and exit\n";
+	print "\t--info             show the configured information and exit\n";
 	print "\t--site             use site config dir for output, not user's\n";
 	print "\t--com-mode         run under the communication mode\n";
 	print "\t--com-name name    name for communication with fvwm-themes-com\n";
@@ -70,10 +73,10 @@ sub showHelp {
 	print "\t--reset            reset all components to default theme\n";
 	print "\t--no-cfg-cache     don't use (build) the configuration cache file\n";
 	print "\t--set-minimal-reload=i switch between minimal and full reloading\n";
-	print "\t--load [c]\@t      load the given theme component(s)\n";
-	print "\t--drop c[\@t]      unload the current theme component\n";
+	print "\t--load [cmp]\@theme load the given theme component(s)\n";
+	print "\t--drop cmp[\@theme] unload the current theme component\n";
 	print "\t--option cmp:opt=v change the component option value.\n";
-	print "\t--variant cmp=v    change the component variant\n";
+	print "\t--variant cmp=var  change the component variant\n";
 	print "\t--set-locked cmp=v set or unset the component's lock\n";
 	print "\t--pipe             generate fvwm commands\n";
 	print "\t--install theme..  install theme.tar.gz or theme.tar.bz2 files\n";
@@ -82,6 +85,24 @@ sub showHelp {
 
 sub showVersion {
 	print "$version\n";
+	exit 0;
+}
+
+sub showInfo {
+	print "Package: @PACKAGE@\n";
+	print "Version: $version\n";
+	print "FVWM version when this package was built: $fvwmVersion\n";
+	print "\n";
+	print "Instalation options:\n";
+	print "\tprefix: $prefix\n";
+	print "\tbindir: $bindir\n";
+	print "\tdatadir: $datadir\n";
+	print "\tmandir: @mandir@\n";
+	print "\n";
+	print "Built-in paths:\n";
+	print "\tData directory: $ftFataDir\n";
+	print "\tDefault UserDir: $userDir\n";
+	print "\tDefault ImagePath: $fvwmDefaultImagePath\n";
 	exit 0;
 }
 
@@ -1965,6 +1986,8 @@ my $noCfgCache = 0;
 GetOptions(
 	"help|h"      => \&showHelp,
 	"version"     => \&showVersion,
+	"info"        => \&showInfo,
+	"i"           => sub { showInfo() unless @ARGV; $install = 1; },
 	"site|s"      => \$site,
 	"theme=s@"    => $themes,
 	"show-themes!"     => \$showThemes,
@@ -1981,7 +2004,7 @@ GetOptions(
 	"variant=s%"  => $variants,
 	"set-locked=s%" => $setLockeds,
 	"pipe"        => \$pipe,
-	"install|i"   => \$install,
+	"install"     => \$install,
 	"com-mode"    => \$comMode,
 	"com-name=s"  => \$comName,
 	"fvwmscript"  => \$fvwmscript,
@@ -3231,29 +3254,30 @@ fvwm-themes-config - fvwm-themes manager and configurator
 B<fvwm-themes-config>
 [ B<--help>|B<-h> ]
 [ B<--version>|B<-v> ]
+[ B<--info>|B<-i> ]
 [ B<--site> ]
 [ B<--pipe> ]
 [ B<--show-themes> ]
 [ B<--show-components> ]
 [ B<--show-dir> ]
-[ B<--theme>|B<-t> theme ]
-[ B<--show-value> key ]
-[ B<--component> component ]
+[ B<--theme>|B<-t> I<theme> ]
+[ B<--show-value> I<key> ]
+[ B<--component> I<component> ]
 [ B<--only-site> ]
 [ B<--only-user> ]
 [ B<--fvwmscript> ]
-[ B<--expand-rc>|B<-e> [file] ]
+[ B<--expand-rc>|B<-e> I<[file]> ]
 [ B<--fresh>|B<-f> ]
 [ B<--reset>|B<-r> ]
 [ B<--no-cfg-cache> ]
-[ B<--load>|B<-l> component@theme ]
-[ B<--drop>|B<-u> component@theme ]
-[ B<--option>|B<-o> component:option=value ]
-[ B<--variant>|B<-v> component=variant ]
-[ B<--set-locked> component=0|1 ]
-[ B<--install} file ... ]
+[ B<--load>|B<-l> I<component@theme> ]
+[ B<--drop>|B<-u> I<component@theme> ]
+[ B<--option>|B<-o> I<component:option=value> ]
+[ B<--variant>|B<-v> I<component=variant> ]
+[ B<--set-locked> I<component=0|1> ]
+[ B<--install>|B<-i> I<file ...> ]
 [ B<--com-mode> ]
-[ B<--com-name> name ]
+[ B<--com-name> I<name> ]
 
 =head1 DESCRIPTION
 
@@ -3267,6 +3291,8 @@ It builds I<themes-rc> in $FVWM_USERDIR, which is a replacement for .fvwm2rc.
 B<--help>    - show the help and exit
 
 B<--version> - show the version and exit
+
+B<--info>    - show the configured information and exit
 
 B<--site> - use site configuration directory for output. The default is to
 use the user's directory.
@@ -3283,13 +3309,14 @@ B<--show-dir> - shows the theme directory of all themes (or ones specified
 by B<--theme>). These directories sit in themes/ parent directory of either
 user or site place.
 
-B<--theme> theme - only theme name(s) given by this parameter(s) are queried,
-if given. By default all themes are queried.
+B<--theme> I<theme> - only theme(s) given by this parameter are queried,
+if given. Several instances of B<--theme> may be given.
+By default all themes are queried.
 
-B<--show-value> key - shows a value by the key for a component given in
-C<--component> parameter.
+B<--show-value> I<key> - shows a value by the key for a component given in
+C<--component> parameter. Several instances of B<--show-value> may be given.
 
-B<--component> component - a working component for other parameters,
+B<--component> I<component> - a working component for other parameters,
 may be of form component@theme.
 
 B<--only-site> - when specified together with B<--show-themes>
@@ -3304,7 +3331,7 @@ or B<--show-components> causes the output to be formatted for FvwmScript.
 Example: fvwm-themes-config --component colors --show-value theme --show-value
 read-file
 
-B<--expand-rc> [file] - gets an FVWM configuration file and expands all
+B<--expand-rc> I<[file]> - gets an FVWM configuration file and expands all
 includes in one very long file, printed to standard output. If the file is
 not given $FVWM_USERDIR/themes-rc is taken.
 This parameter can't be used with others.
@@ -3363,12 +3390,12 @@ B<--install> I<theme.tar.{gz,bz2} ...> - install the specified tarballs
 into the site (if B<--site> is alo given) or into the user's I<themes>
 directory by verifying and unpacking the contents of the tarballs.
 
-B<--com-mode> Run fvwm-themes-config under the "communication mode". See,
+B<--com-mode> - run fvwm-themes-config under the "communication mode". See,
 the fvwm-themes-com and fvwm-themes-menuapp manual pages for more information
 on this option.
 You need to read the code to know the communication commands.
 
-B<--com-name> name - use name as name for communication with fvwm-themes-com.
+B<--com-name> I<name> - use name as name for communication with fvwm-themes-com.
 By default, "config" is used, but you should use  "config-pid" as name
 where pid is the pid of the program that 
 want to talk to fvwm-themes-config so that fvwm-themes-config can 
@@ -3398,7 +3425,8 @@ Info examples:
   fvwm-themes-config --show-themes --component windowlook
   fvwm-themes-config --show-components --theme migo --theme default
 
-  fvwm-themes-config --component colors --show-value read-file
+  fvwm-themes-config --component colors \
+    --show-value theme --show-value read-file
   fvwm-themes-config --component colors@cde --show-value option
   fvwm-themes-config --component _core --show-value memory
 
