@@ -6,6 +6,9 @@
 	* themes/awol/sounds/yesb.wav:
 	replaced incorrect wav
 
+	* themes/default/styles:
+	added XEmacs entry, not sure about this
+
 2002-05-29  migo  <migo@homemail.com>
 
 	* themes/redmondxp/modules/FvwmButtons-Panel:
