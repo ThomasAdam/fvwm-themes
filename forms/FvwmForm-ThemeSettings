@@ -99,21 +99,21 @@ DestroyModuleConfig FvwmForm-ThemeSettings: *
 *FvwmForm-ThemeSettings: Line expand
 *FvwmForm-ThemeSettings: Button continue "Apply & Save"
 *FvwmForm-ThemeSettings: Command FuncFvwmThemesConfigAndUpdate ' \
---choice settings/animation=$(ANIM!1)$(ANIM?2) \
---choice settings/background=$(BACK!1)$(BACK?2) \
---choice settings/banner=$(BANN!1)$(BANN?2) \
---choice settings/stroke=$(STRK!1)$(STRK?2) \
---choice settings/sound-player=$(SDIS?1)$(SOXP?2)$(SESD?3)$(SAUD?4)$(SAUP?5)$(SRPL?6)$(SRPD?7) \
---choice settings/autoraise=$(AUTD?1)$(AUT1?2)$(AUT2?3)$(AUTM?4) \
---choice settings/iconstyles=$(ICSD?1)$(ICSN?2)$(ICSW?3) \
---choice settings/kde/kfm-icons=$(KFM!1)$(KFM?2) \
---choice settings/kde/system-menu=$(KSDIS?1)$(KSMEN?3)$(KSMST?2) \
---choice settings/kde/user-menu=$(KUDIS?1)$(KUMEN?3)$(KUMST?2) \
---choice settings/session=$(GSES!1)$(GSES?2) \
---choice settings/gnome/panel-staysput=$(GPSP!1)$(GPSP?2) \
---choice settings/gnome/system-menu=$(GSDIS?1)$(GSGTK?2)$(GSFVW?3) \
---choice settings/gnome/user-menu=$(GUDIS?1)$(GUGTK?2)$(GUFVW?3) \
---choice settings/gnome/anotherlevel-menu=$(ALDIS?1)$(ALGTK?2)$(ALFVW?3)'
+--variant settings/animation=$(ANIM!1)$(ANIM?2) \
+--variant settings/background=$(BACK!1)$(BACK?2) \
+--variant settings/banner=$(BANN!1)$(BANN?2) \
+--variant settings/stroke=$(STRK!1)$(STRK?2) \
+--variant settings/sound-player=$(SDIS?1)$(SOXP?2)$(SESD?3)$(SAUD?4)$(SAUP?5)$(SRPL?6)$(SRPD?7) \
+--variant settings/autoraise=$(AUTD?1)$(AUT1?2)$(AUT2?3)$(AUTM?4) \
+--variant settings/iconstyles=$(ICSD?1)$(ICSN?2)$(ICSW?3) \
+--variant settings/kde/kfm-icons=$(KFM!1)$(KFM?2) \
+--variant settings/kde/system-menu=$(KSDIS?1)$(KSMEN?3)$(KSMST?2) \
+--variant settings/kde/user-menu=$(KUDIS?1)$(KUMEN?3)$(KUMST?2) \
+--variant settings/session=$(GSES!1)$(GSES?2) \
+--variant settings/gnome/panel-staysput=$(GPSP!1)$(GPSP?2) \
+--variant settings/gnome/system-menu=$(GSDIS?1)$(GSGTK?2)$(GSFVW?3) \
+--variant settings/gnome/user-menu=$(GUDIS?1)$(GUGTK?2)$(GUFVW?3) \
+--variant settings/gnome/anotherlevel-menu=$(ALDIS?1)$(ALGTK?2)$(ALFVW?3)'
 
 *FvwmForm-ThemeSettings: Command !/bin/echo "# File Created by FvwmForm-ThemeSettings\n\
 *SavedThemeSettings: ANIM $(ANIM?on)\n\

@@ -130,9 +130,9 @@ Begin
     If $UpdateList == 1 Then
     Begin
 	Set $UpdateList = 0
-	Set $cmd = $SendMsgAndGet{"option-choices }$MainComponent{ }$MainTheme{ }$CurrentOptionsIndex{"}
-	Set $CurrentChoices = (GetOutput $cmd 1 -1)
-	ChangeTitle 5 $CurrentChoices
+	Set $cmd = $SendMsgAndGet{"options-variants }$MainComponent{ }$MainTheme{ }$CurrentOptionsIndex{"}
+	Set $CurrentVariants = (GetOutput $cmd 1 -1)
+	ChangeTitle 5 $CurrentVariants
     End
 
     # better to send here

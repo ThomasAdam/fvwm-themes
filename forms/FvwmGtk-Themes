@@ -64,23 +64,23 @@ DestroyModuleConfig FvwmGtk-Themes: *
 *FvwmGtk-Themes: Box homogeneous
 # Maybe to add "close" before "--"?
 *FvwmGtk-Themes: Button "Apply" "FuncFvwmThemesConfigAndUpdate ' \
-	--choice settings/animation=$(animation) \
-	--choice settings/background=$(background) \
-	--choice settings/banner=$(banner) \
-	--choice settings/stroke=$(stroke) \
-	--choice settings/sound-player=$(sound-player) \
-	--choice settings/autoraise=$(autoraise) \
-	--choice settings/iconstyles=$(iconstyles) \
+	--variant settings/animation=$(animation) \
+	--variant settings/background=$(background) \
+	--variant settings/banner=$(banner) \
+	--variant settings/stroke=$(stroke) \
+	--variant settings/sound-player=$(sound-player) \
+	--variant settings/autoraise=$(autoraise) \
+	--variant settings/iconstyles=$(iconstyles) \
 	'" -- default can-default
 
-#	--choice settings/kde/kfm-icons=$(kde/kfm-icons) \
-#	--choice settings/kde/system-menu=$(kde/system-menu) \
-#	--choice settings/kde/user-menu=$(kde/user-menu) \
-#	--choice settings/session=$(session) \
-#	--choice settings/gnome/panel-staysput=$(gnome/panel-staysput) \
-#	--choice settings/gnome/system-menu=$(gnome/system-menu) \
-#	--choice settings/gnome/user-menu=$(gnome/user-menu) \
-#	--choice settings/gnome/anotherlevel-menu=$(gnome/anotherlevel-menu) \
+#	--variant settings/kde/kfm-icons=$(kde/kfm-icons) \
+#	--variant settings/kde/system-menu=$(kde/system-menu) \
+#	--variant settings/kde/user-menu=$(kde/user-menu) \
+#	--variant settings/session=$(session) \
+#	--variant settings/gnome/panel-staysput=$(gnome/panel-staysput) \
+#	--variant settings/gnome/system-menu=$(gnome/system-menu) \
+#	--variant settings/gnome/user-menu=$(gnome/user-menu) \
+#	--variant settings/gnome/anotherlevel-menu=$(gnome/anotherlevel-menu) \
 
 *FvwmGtk-Themes: Button "Close" close
 *FvwmGtk-Themes: EndBox

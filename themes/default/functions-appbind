@@ -1,5 +1,5 @@
 # You may want to copy this file in your personal theme directory and there
-# choose (edit) your preferred applications. The default is ok thought.
+# configure (edit) your preferred applications. The default is ok thought.
 
 # ----------------------------------------------------------------------------
 # The following functions are used in many places.
@@ -22,7 +22,7 @@ AddToFunc   FuncFvwmViewFileTail
 
 DestroyFunc FuncFvwmOpenURL
 AddToFunc   FuncFvwmOpenURL
-+ I Exec exec netscape -remote 'openURL($0, new-window)' || netscape '$0'
++ I Exec netscape -remote 'openURL($0, new-window)' || netscape '$0'
 
 DestroyFunc FuncFvwmRunInXterm
 AddToFunc   FuncFvwmRunInXterm

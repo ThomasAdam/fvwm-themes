@@ -58,9 +58,9 @@ sub showHelp {
 	print "\t--reset            reset all components to default theme\n";
 	print "\t--load [c]\@t       load the given theme component(s)\n";
 	print "\t--drop c[\@t]       unload the current theme component\n";
-	print "\t--option c:o=v     change the component option value.\n";
-	print "\t--choice c=ch      change the component choice\n";
-	print "\t--set-locked c=v   set or unset the component's lock\n";
+	print "\t--option cmp:opt=v change the component option value.\n";
+	print "\t--variant cmp=v    change the component variant\n";
+	print "\t--set-locked cmp=v set or unset the component's lock\n";
 	print "\t--pipe             generate fvwm commands\n";
 	print "\t--install theme..  install theme.tar.gz or theme.tar.bz2 files\n";
 	exit 0;
@@ -708,7 +708,7 @@ sub storeThemeComponentMemory ($$$) {
 	my $cc = $self->getComponentCfg($component);
 	my $cm = {};
 
-	if (ref($cc->{'choice'}) eq 'ARRAY' && $cc->{'current'}) {
+	if (ref($cc->{'variant'}) eq 'ARRAY' && $cc->{'current'}) {
 		$cm->{'current'} = $cc->{'current'};
 	}
 	my $options = $cc->{'option'};
@@ -753,7 +753,7 @@ sub applyThemeComponentMemory ($$$) {
 	}
 
 	my $cc = $self->getComponentCfg($component);
-	if ($cm->{'current'} && ref($cc->{'choice'}) eq 'ARRAY') {
+	if ($cm->{'current'} && ref($cc->{'variant'}) eq 'ARRAY') {
 		$cc->{'current'} = $cm->{'current'};
 	}
 	my $mOptions = $cm->{'option'};
@@ -773,7 +773,7 @@ sub applyThemeComponentMemory ($$$) {
 
 # olicha: I've done a lot of modif in this function:
 # subcomponent are automaticaly (un)loaded and option and
-# choice are saved here. I've used a new "cfg command" called
+# variant are saved here. I've used a new "cfg command" called
 # 'used' for unloading the 'cc' component since I've got some
 # difficulty to do the unloading by freeing memory ...
 sub useNewComponents ($$$;$) {
@@ -859,8 +859,8 @@ sub useNewComponents ($$$;$) {
 
 sub setNewComponentValues ($$$$) {
 	my $self = shift;
-	my ($options, $choices, $setLocks) = @_;
-	return unless keys %$options || keys %$choices || keys %$setLocks;
+	my ($options, $variants, $setLocks) = @_;
+	return unless keys %$options || keys %$variants || keys %$setLocks;
 	$self->setModified();
 
 	my ($key, $value);
@@ -882,14 +882,14 @@ sub setNewComponentValues ($$$$) {
 		$optionEntry->{'current'} = $index2;
 	}
 
-	my ($component, $choice);
-	while (($component, $choice) = each %$choices) {
+	my ($component, $variant);
+	while (($component, $variant) = each %$variants) {
 		my $cc = $self->getComponentCfg($component);
-		my $choices = $cc->{'choice'};
-		my $index = getHashIdArrayIndex($choices, $choice);
+		my $variants = $cc->{'variant'};
+		my $index = getHashIdArrayIndex($variants, $variant);
 		$index = $cc->{'default'} if $index == 0;
-		errDie("Unexisting choice '$choice' in component '$component'")
-			if $index <= 0 || $index > @$choices;
+		errDie("Unexisting variant '$variant' in component '$component'")
+			if $index <= 0 || $index > @$variants;
 		$cc->{'current'} = $index;
 	}
 
@@ -1017,28 +1017,28 @@ sub getOwnThemeSubMenusRc ($) {
 					unless $inline;
 				$m = 1;
 			}
-			my $choices = $cc->{'choice'};
-			if (ref($choices) eq 'ARRAY') {
+			my $variants = $cc->{'variant'};
+			if (ref($variants) eq 'ARRAY') {
 				$cc->{'current'} ||= $cc->{'default'};
 				my $index = $cc->{'current'} - 1;
-				if ($index < 0 || $index >= @$choices) {
+				if ($index < 0 || $index >= @$variants) {
 					$index = 0;  # maybe die on this error?
 					$cc->{'current'} = $index + 1;
 				}
 				my $readFile = $cc->{'read-file'};
-				$readFile =~ s:/[^/]+$:/$choices->[$index]->{'file'}:;
+				$readFile =~ s:/[^/]+$:/$variants->[$index]->{'file'}:;
 				if ($readFile ne $cc->{'read-file'}) {
 					$cc->{'read-file'} = $readFile;
 					$self->setModified();
 				}
 				my $i;
-				for ($i = 0; $i < @$choices; $i++) {
+				for ($i = 0; $i < @$variants; $i++) {
 					my $isCurrent = $i eq $index;
-					my $name = escapeMenuName($choices->[$i]->{'name'}, !$isCurrent);
+					my $name = escapeMenuName($variants->[$i]->{'name'}, !$isCurrent);
 					my $icon = $isCurrent? "choice-yes": "empty";
 					my $star = $isCurrent? "": "&";
 					my $n = $i + 1;
-					$menusRc .= qq(+ "%menu/$icon.xpm%$star$name"\tFuncFvwmThemesChoice $_=$n\n);
+					$menusRc .= qq(+ "%menu/$icon.xpm%$star$name"\tFuncFvwmThemesVariant $_=$n\n);
 				}
 				$m = 1;
 			}
@@ -1187,7 +1187,7 @@ sub getSortedComponentsToRead ($) {
 	return \@sortedComponents;
 }
 
-# returns component key value, which can be overridden by the current choice
+# returns component key value, which can be overridden by the current variant
 # or options key values. If it is array, all found values are joined together.
 sub getComponentNamedValue ($$$) {
 	my $self = shift;
@@ -1198,14 +1198,14 @@ sub getComponentNamedValue ($$$) {
 	return undef unless $cc->{'used'};
 	my $value = $cc->{$name};
 
-	my $choices = $cc->{'choice'};
-	if (ref($choices) eq 'ARRAY') {
+	my $variants = $cc->{'variant'};
+	if (ref($variants) eq 'ARRAY') {
 		my $index = defined $cc->{'current'}?
 			$cc->{'current'}: $cc->{'default'};
 		$index = $index - 1;
-		$index = 0 if ($index < 0 || $index >= @$choices);
-		my $choice = $choices->[$index];
-		my $newValue = $choice->{$name};
+		$index = 0 if ($index < 0 || $index >= @$variants);
+		my $variant = $variants->[$index];
+		my $newValue = $variant->{$name};
 		if (defined $newValue) {
 			errDie("Mixed '$name' types (" . (ref($value) || "scalar") . " and "
 				. (ref($newValue) || "scalar") . ") for component $component")
@@ -1289,8 +1289,8 @@ sub getMenusAndHooksAndReadsRc ($) {
 	$rc .= qq(+ "Themes Center GUI" FvwmScript FvwmScript-ThemesCenter );
 	$rc .= qq(--text-colorset 34 --viewer-colorset 33\n);
 	$rc .= qq(+ "" Nop\n);
-	$rc .= qq(+ "Reset all to the default" FuncFvwmThemesReset\n);
-	$rc .= qq(+ "Refresh the current theme" FuncFvwmThemesFresh\n);
+	$rc .= qq(+ "&Reset all to the default" FuncFvwmThemesReset\n);
+	$rc .= qq(+ "Re&fresh the current theme" FuncFvwmThemesFresh\n);
 	$rc .= "\n";
 
 	# add own theme menus
@@ -1316,7 +1316,7 @@ sub getMenusAndHooksAndReadsRc ($) {
 			my $command = $optionEntry->{'read-command'} || $defaultReadCommand;
 			my $optionFile = $optionEntry->{'file'};
 
-			$optionFile = ((ref($cc->{'choice'}) eq 'ARRAY'
+			$optionFile = ((ref($cc->{'variant'}) eq 'ARRAY'
 				&& $readFile =~ /^(.*\/)[^\/]+$/
 				|| $readFile =~ /^(.*\/)$mainDirFile$/)?
 				$1: "${readFile}:") . $optionFile;
@@ -1430,9 +1430,9 @@ DestroyFunc FuncFvwmThemesOption
 AddToFunc   FuncFvwmThemesOption
 + I FuncFvwmThemesConfigAndUpdate "--option=$0"
 
-DestroyFunc FuncFvwmThemesChoice
-AddToFunc   FuncFvwmThemesChoice
-+ I FuncFvwmThemesConfigAndUpdate "--choice=$0"
+DestroyFunc FuncFvwmThemesVariant
+AddToFunc   FuncFvwmThemesVariant
++ I FuncFvwmThemesConfigAndUpdate "--variant=$0"
 
 DestroyFunc FuncFvwmThemesSetLocked
 AddToFunc   FuncFvwmThemesSetLocked
@@ -1516,7 +1516,7 @@ my $reset = 0;
 my $loadComponents = [];
 my $dropComponents = [];
 my $options = {};
-my $choices = {};
+my $variants = {};
 my $setLockeds = {};
 my $comMode = 0;
 my $comName = "config";
@@ -1539,7 +1539,7 @@ GetOptions(
 	"load=s@"     => $loadComponents,
 	"drop=s@"     => $dropComponents,
 	"option=s%"   => $options,
-	"choice=s%"   => $choices,
+	"variant=s%"  => $variants,
 	"set-locked=s%" => $setLockeds,
 	"pipe"        => \$pipe,
 	"install"     => \$install,
@@ -1587,7 +1587,7 @@ showThemeComponentValues($component, $showValues) if $component && @$showValues;
 wrongUsage() unless
 	$fresh || $reset ||
 	@$loadComponents || @$dropComponents ||
-	keys %$options || keys %$choices ||
+	keys %$options || keys %$variants ||
 	keys %$setLockeds || $comMode;
 
 my $cfg = Fvwm::ThemeCfg->new('current', $reset? 'default': 'current', $fresh);
@@ -1599,7 +1599,7 @@ if ($comMode) {
 	# we never return here
 }
 $cfg->useNewComponents($loadComponents, $dropComponents);
-$cfg->setNewComponentValues($options, $choices, $setLockeds);
+$cfg->setNewComponentValues($options, $variants, $setLockeds);
 $cfg->generateThemesRc();
 $cfg->save() if $cfg->isModified();
 
@@ -1624,7 +1624,7 @@ sub comLoop {
 	my $maxLengthOpt = 29;
 	my %componentToLoad = ();
 	my %optionToSet = ();
-	my %choiceToSet = ();
+	my %variantToSet = ();
 
 	my $allThemes = getAllThemes();
 	my $tmp = $self->{$componentKey};
@@ -1775,38 +1775,38 @@ sub comLoop {
 					$dd = $self->getComponentCfg($_);
 				}
 				my $contains = $dd->{'contains'};
-				my $options = $dd->{'option'};
-				my $choices = $dd->{'choice'};
-				my $OptOrContains = "";
+				my $options  = $dd->{'option'};
+				my $variants = $dd->{'variant'};
+				my $propertiesStr = "";
 				my $t = "";
 				if (ref($options) eq 'ARRAY') {
-					$OptOrContains = " " x $l1 ."Opt";
+					$propertiesStr = " " x $l1 ."Opt";
 					my $opt;
 					foreach $opt (@$options) {
 						my $optFile = $opt->{'file'};
 						$t = "(S)" if defined $optionToSet{"$theme/$_:$optFile"};
 					}
 				}
-				if (ref($choices) eq 'ARRAY') {
-					$OptOrContains = " " x $l1 ."Cho";
-					my $c;
-					foreach $c (@$choices) {
-						$t = "(S)" if defined $choiceToSet{"$theme/$_"};
+				if (ref($variants) eq 'ARRAY') {
+					$propertiesStr = " " x $l1 . ($propertiesStr? "V/O": "Var");
+					my $v;
+					foreach $v (@$variants) {
+						$t = "(S)" if defined $variantToSet{"$theme/$_"};
 					}
 				}
 				elsif (ref($contains) eq 'ARRAY') {
-					$OptOrContains = " " x $l1 ."Sub";
+					$propertiesStr = " " x $l1 ."Sub";
 					my $c;
 					# dropped ?
 					foreach $c (@$contains) {
-						$t = "(S)" if defined $choiceToSet{"$theme/$_/$c"};
+						$t = "(S)" if defined $variantToSet{"$theme/$_/$c"};
 					}
 				}
-				$OptOrContains .= $t;
+				$propertiesStr .= $t;
  				$l = $maxLength - length($_);
 				$l = 1 if $l < 1;
 				$return .= "$_" . " " x $l . $usedString . $stateString .
-					$OptOrContains . "|";
+					$propertiesStr . "|";
 			}
 			$return =~ s/\|$//;
 		}
@@ -1815,7 +1815,7 @@ sub comLoop {
 			my $dd = [];
 			my $index = $1;
 			my $i = 1;
-			my ($comp,$theme,$OptOrContains,$drop,$set) = ("","","0","0","0");
+			my ($comp,$theme,$hasProperties,$drop,$set) = ("","","0","0","0");
 			foreach (@currentComponents) {
 				next if $_ eq "settings";
 				if ($i == $index) {
@@ -1837,34 +1837,34 @@ sub comLoop {
 				$dd = $self->getComponentCfg($comp);
 			}
 			my $contains = $dd->{'contains'};
-			my $options = $dd->{'option'};
-			my $choices = $dd->{'choice'};
+			my $options  = $dd->{'option'};
+			my $variants = $dd->{'variant'};
 			if (ref($options) eq 'ARRAY') {
-				$OptOrContains = 1;
+				$hasProperties = 1;
 				my $opt;
 				foreach $opt (@$options) {
 					my $optFile = $opt->{'file'};
 					$set = 1 if defined $optionToSet{"$theme/$comp:$optFile"};
 				}
 			}
-			if (ref($choices) eq 'ARRAY') {
-				$OptOrContains = 1;
+			if (ref($variants) eq 'ARRAY') {
+				$hasProperties = 1;
 				my $c;
-				foreach $c (@$choices) {
-					$set = 1 if defined $choiceToSet{"$theme/$comp"};
+				foreach $c (@$variants) {
+					$set = 1 if defined $variantToSet{"$theme/$comp"};
 				}
 			}
 			elsif (ref($contains) eq 'ARRAY') {
-				$OptOrContains = 1;
+				$hasProperties = 1;
 				my $c;
 				# dropped ?
 				foreach $c (@$contains) {
-					$set = 1 if defined $choiceToSet{"$theme/$comp/$c"};
+					$set = 1 if defined $variantToSet{"$theme/$comp/$c"};
 				}
 			}
 			### fixe me: How to know if the component is drop-able??
 			$drop = 1;
-			$return = "$comp\n$theme\n$OptOrContains$set$drop";
+			$return = "$comp\n$theme\n$hasProperties$set$drop";
 		}
 		# -------------------------------------------------
 		elsif ($command =~ /^restore\s+(.+)$/) {
@@ -1887,22 +1887,22 @@ sub comLoop {
 				$cc = $self->getComponentCfg($comp);
 				$theme = $cc->{'theme'};
 			}
-			my $options = $cc->{'option'};
 			my $contains = $cc->{'contains'};
-			my $choices = $cc->{'choice'};
+			my $options  = $cc->{'option'};
+			my $variants = $cc->{'variant'};
 			if (ref($options) eq 'ARRAY') {
 				foreach (keys %optionToSet) {
 					delete $optionToSet{$_} if /^$theme\/$comp:/;
 				}
 			}
-			if (ref($choices) eq 'ARRAY') {
-				foreach (keys %choiceToSet) {
-					delete $choiceToSet{$_} if /^$theme\/$comp/;
+			if (ref($variants) eq 'ARRAY') {
+				foreach (keys %variantToSet) {
+					delete $variantToSet{$_} if /^$theme\/$comp/;
 				}
 			}
 			if (ref($contains) eq 'ARRAY') {
-				foreach (keys %choiceToSet) {
-					delete $choiceToSet{$_} if /^$theme\/$comp\//;
+				foreach (keys %variantToSet) {
+					delete $variantToSet{$_} if /^$theme\/$comp\//;
 				}				
 			}
 		}
@@ -1948,16 +1948,16 @@ sub comLoop {
 		elsif ($command =~ /^apply-ts-cmd-opts$/) {
 			my @compLoad = ();
 			my %optLoad = ();
-			my %choiceLoad = ();
+			my %variantLoad = ();
 			my @deleteOpt = ();
-			my @deleteChoice = ();
+			my @deleteVariant = ();
 			foreach (keys %componentToLoad) {
 				$return .= "--load $_\@$componentToLoad{$_} ";
 				push @compLoad, "$_\@$componentToLoad{$_}";
 			}
 			$self->useNewComponents(\@compLoad, []);
-			# pbs: options and choice can be set only for the current
-			# themes. IMHO this may be changed ???
+			# pbs: options and variant can be set only for the current
+			# themes. IMHO this may be changed ??? migo: I don't think so.
 			foreach (keys %optionToSet) {
 				my $opt = substr($_,index($_,"/")+1);
 				my $comp = substr($opt,0,rindex($opt,":"));
@@ -1967,32 +1967,32 @@ sub comLoop {
 					push @deleteOpt, $_;
 				}
 			}
-			foreach (keys %choiceToSet) {
+			foreach (keys %variantToSet) {
 				my $comp = substr($_,index($_,"/")+1);
 				if (defined $CC->{$comp}) {
-					$return .= "--choice $comp=$choiceToSet{$_} ";
-					$choiceLoad{$comp} = "$choiceToSet{$_}";
-					push @deleteChoice, $_;
+					$return .= "--variant $comp=$variantToSet{$_} ";
+					$variantLoad{$comp} = "$variantToSet{$_}";
+					push @deleteVariant, $_;
 				}
 			}
-			$self->setNewComponentValues(\%optLoad, \%choiceLoad);
+			$self->setNewComponentValues(\%optLoad, \%variantLoad);
 			%componentToLoad = ();
 	  		$tmp = $self->{$componentKey};
 			@currentComponents = sort @$tmp;
 			foreach (@deleteOpt) { delete $optionToSet{$_} }
-			foreach (@deleteChoice) { delete $choiceToSet{$_} }
+			foreach (@deleteVariant) { delete $variantToSet{$_} }
 			$settingsConfig = getAllSubComponents($self,"default","settings",0,0);
 		}
 		# -----------------------------------------
-		elsif ($command =~ /^option-choices\s+(.+)\s+(.+)\s+(\d+)$/) {
+		elsif ($command =~ /^options-variants\s+(.+)\s+(.+)\s+(\d+)$/) {
 			my $comp = $1;
 			my $theme = $2;
 			my $o = $3-1;
 			my $themeCfg = new Fvwm::ThemeCfg($theme);
 			my $cc = $themeCfg->getComponentCfg($comp);
-			my $options = $cc->{'option'};
 			my $contains = $cc->{'contains'};
-			my $choices = $cc->{'choice'};
+			my $options  = $cc->{'option'};
+			my $variants = $cc->{'variant'};
 			if (ref($options) eq 'ARRAY' && defined $options->[$o]) {
 				my $optionEntry = $options->[$o];
 				my $i = getOptionIndex($self,$theme,$comp,$optionEntry,$o);
@@ -2002,27 +2002,27 @@ sub comLoop {
 					if defined $optionToSet{"$theme/$comp:$optFile"};
 				my $values = $optionEntry->{'value'};
 				$return = 
-					choicesOptionsScriptList($values,$i,$isSet,$maxLengthOpt);
+					variantsOptionsScriptList($values,$i,$isSet,$maxLengthOpt);
 			}
-			elsif (ref($choices) eq 'ARRAY') {
-				my $i = getChoiceIndex($self,$theme,$comp,@$choices);
+			elsif (ref($variants) eq 'ARRAY') {
+				my $i = getVariantIndex($self,$theme,$comp,@$variants);
 				my $isSet = -1;
-				$isSet = $choiceToSet{"$theme/$comp"} 
-					if defined $choiceToSet{"$theme/$comp"};
+				$isSet = $variantToSet{"$theme/$comp"} 
+					if defined $variantToSet{"$theme/$comp"};
 				$return = 
-					choicesOptionsScriptList($choices,$i,$isSet,$maxLengthOpt);
+					variantsOptionsScriptList($variants,$i,$isSet,$maxLengthOpt);
 			}
 			elsif (ref($contains) eq 'ARRAY' && defined $contains->[$o]) {
 				my $c = $contains->[$o];
 				my $dd = $themeCfg->getComponentCfg("$comp/$c");
-				my $sChoices = $dd->{'choice'};
-				if (ref($sChoices) eq 'ARRAY') {
-					my $i = getChoiceIndex($self,$theme,"$comp/$c",@$sChoices);
+				my $sVariants = $dd->{'variant'};
+				if (ref($sVariants) eq 'ARRAY') {
+					my $i = getVariantIndex($self,$theme,"$comp/$c",@$sVariants);
 					my $isSet = -1;
-					$isSet = $choiceToSet{"$theme/$comp/$c"}
-						if defined $choiceToSet{"$theme/$comp/$c"};
+					$isSet = $variantToSet{"$theme/$comp/$c"}
+						if defined $variantToSet{"$theme/$comp/$c"};
 					$return = 
-						choicesOptionsScriptList($sChoices,$i,$isSet,$maxLengthOpt);
+						variantsOptionsScriptList($sVariants,$i,$isSet,$maxLengthOpt);
 				}
 				$return .= "Drop This component";
 			}
@@ -2034,13 +2034,13 @@ sub comLoop {
 			my $theme = $2;
 			my $themeCfg = new Fvwm::ThemeCfg($theme);
 			my $cc = $themeCfg->getComponentCfg($comp);
-			my $options = $cc->{'option'};
 			my $contains = $cc->{'contains'};
-			my $choices = $cc->{'choice'};
+			my $options  = $cc->{'option'};
+			my $variants = $cc->{'variant'};
 			my $i = 0;
 			my $type = "";
-			if (ref($options) eq 'ARRAY' && ref($choices) eq 'ARRAY') {
-				$type = "Options & Choices";
+			if (ref($options) eq 'ARRAY' && ref($variants) eq 'ARRAY') {
+				$type = "Options & Variants";
 			}
 			if (ref($options) eq 'ARRAY') {
 				my $opt;
@@ -2050,10 +2050,10 @@ sub comLoop {
 					$return .= "$opt->{'name'}|";
 				}
 			}
-			if (ref($choices) eq 'ARRAY') {
-				$type = "Choices" if $type eq "";
+			if (ref($variants) eq 'ARRAY') {
+				$type = "Variants" if $type eq "";
 				$i++;
-				$return .= "$comp choices"
+				$return .= "$comp variants"
 			}
 			elsif (ref($contains) eq 'ARRAY') {
 				$type = "Sub Components";
@@ -2076,21 +2076,21 @@ sub comLoop {
 			my $value = $4;
 			my $themeCfg = new Fvwm::ThemeCfg($theme);
 			my $cc = $themeCfg->getComponentCfg($comp);
-			my $options = $cc->{'option'};
 			my $contains = $cc->{'contains'};
-			my $choices = $cc->{'choice'};
+			my $options  = $cc->{'option'};
+			my $variants = $cc->{'variant'};
 			if (ref($options) eq 'ARRAY' && defined $options->[$o]) {
 				my $optionEntry = $options->[$o];
 				my $optionFile = $optionEntry->{'file'};
 				$optionToSet{"$theme/$comp:$optionFile"} = $value;
-			} elsif (ref($choices) eq 'ARRAY') {
-				$choiceToSet{"$theme/$comp"}="$value";
+			} elsif (ref($variants) eq 'ARRAY') {
+				$variantToSet{"$theme/$comp"}="$value";
 			} elsif (ref($contains) eq 'ARRAY' && defined $contains->[$o]) {
 				my $c = $contains->[$o];
 				my $dd = $themeCfg->getComponentCfg("$comp/$c");
-				my $subChoices = $dd->{'choice'};
-				if (ref($subChoices) eq 'ARRAY') {
-					$choiceToSet{"$theme/$comp/$c"}="$value";
+				my $subVariants = $dd->{'variant'};
+				if (ref($subVariants) eq 'ARRAY') {
+					$variantToSet{"$theme/$comp/$c"}="$value";
 				} else {
 					# Need To Drop ..
 				}
@@ -2116,12 +2116,12 @@ sub comLoop {
 				$l = 1 if $l <= 0;
 				$return .= $config->{'name'} . " "x$l . "U: " .
 					$config->{'current'};
-				if (defined $choiceToSet{"default/$config->{comp}"}) {
-					my $j = $choiceToSet{"default/$config->{comp}"};
+				if (defined $variantToSet{"default/$config->{comp}"}) {
+					my $j = $variantToSet{"default/$config->{comp}"};
 					my $themeCfg = new Fvwm::ThemeCfg('default');
 					my $dd = $themeCfg->getComponentCfg("$config->{comp}");
-					my $choices = $dd->{'choice'};
-					my $set = $choices->[$j-1]->{'name'};
+					my $variants = $dd->{'variant'};
+					my $set = $variants->[$j-1]->{'name'};
 					$l = 28 - length($config->{'current'});
 					$l = 1 if $l <= 0;
 					$return .= " "x$l . "S: $set";
@@ -2136,7 +2136,7 @@ sub comLoop {
 			$return .= "$settingsConfig->[$1-1]->{'comp'}\n";
 			my $isSet = 0;
 			$isSet = 1 
-				if defined $choiceToSet{"default/$settingsConfig->[$1-1]->{comp}"};
+				if defined $variantToSet{"default/$settingsConfig->[$1-1]->{comp}"};
 			$return .= $isSet;
 			
 		}
@@ -2312,7 +2312,7 @@ sub comLoop {
 			# discard the change in ts
 			%componentToLoad = ();
 			%optionToSet = ();
-			%choiceToSet = ();
+			%variantToSet = ();
 		}
 		# --------------------------
 		elsif ($command eq "exit") {
@@ -2388,7 +2388,7 @@ sub getOptionIndex {
 }
 
 #--------------------------------------
-sub getChoiceIndex {
+sub getVariantIndex {
 	my $self = shift;
 	my $theme = shift;
 	my $comp = shift;
@@ -2440,12 +2440,12 @@ sub getAllSubComponents {
 			$config->[$i]->{'name'} = $name . " " if $name ne "0";
 			$config->[$i]->{'name'} .= $dd->{'name'};
 			$config->[$i]->{'comp'} = "$component/$c";
-			my $choices = $dd->{'choice'};
-			if (ref($choices) eq 'ARRAY') {
-				my $j = getChoiceIndex($self,$theme,"$component/$c",@$choices);
+			my $variants = $dd->{'variant'};
+			if (ref($variants) eq 'ARRAY') {
+				my $j = getVariantIndex($self,$theme,"$component/$c",@$variants);
 				#print STDERR "!!!!!! $j\n";
 				$config->[$i]->{'index'} = $j;
-				$config->[$i]->{'current'} = 	$choices->[$j]->{'name'};
+				$config->[$i]->{'current'} = 	$variants->[$j]->{'name'};
 			}
 		}
 	}
@@ -2496,19 +2496,19 @@ sub secToUptime {
 #----------------------------------------------------------------------------
 # useful functions for the com loop
 
-sub choicesOptionsScriptList {
-	my $choices = shift;
+sub variantsOptionsScriptList {
+	my $variants = shift;
 	my $index = shift;
 	my $isSet = shift;
 	my $max = shift;
 
 	my $return = "";
 	my $i;
-	for ($i = 0; $i < @$choices; $i++) {
+	for ($i = 0; $i < @$variants; $i++) {
 		my $isCurrent = $i eq $index;
 		my $set = 0;
 		my $used = "";
-		my $name = $choices->[$i]->{'name'};
+		my $name = $variants->[$i]->{'name'};
 		$set = 1 if $isSet == $i+1;
 		my $l = $max - length($name);
 		$l = 1 if $l < 1;
@@ -2612,14 +2612,14 @@ B<fvwm-themes-config>
 [ B<--load>|B<-l> component@theme ]
 [ B<--drop>|B<-u> component@theme ]
 [ B<--option>|B<-o> component:option=value ]
-[ B<--choice>|B<-c> component=choice ]
+[ B<--variant>|B<-v> component=variant ]
 [ B<--set-locked> component=0|1 ]
 [ B<--install} file ... ]
 
 =head1 DESCRIPTION
 
 This scripts creates and changes fvwm configuration to use with fvwm-themes
-accordingly to theme component definitions and user's choices.
+accordingly to theme component definitions and user choices.
 
 It builds I<themes-rc> in $FVWM_USERDIR, which is a replacement for .fvwm2rc.
 
@@ -2702,9 +2702,10 @@ starting from 1 (use 0 to represent the default option).
 The I<value> may be either the value name or its index in the option value list
 starting from 1 (use 0 to represent the default option value).
 
-B<--choice> I<component=choice> - set another component choice value.
-The I<choice> may be either the choice name or its index in the choice list
-starting from 1 (use 0 to represent the default choice).
+B<--variant> I<component=variant> - set another component variant if a given
+I<component> has variants. The I<variant> may be either the variant name or
+its index in the variant list starting from 1 (use 0 to represent the
+default component variant).
 
 B<--set-locked> I<component=value> - set (if I<value> is 1) or unset (if
 I<value> is 0) a locked state of the given component. When the component
@@ -2718,7 +2719,7 @@ directory by verifying and unpacking the contents of the tarballs.
 Four last parameters may be combined together and multiple parameters are
 possible. If B<--load> and B<--drop> parameters are given, first it will
 be unloaded all given components and then loaded all given components, not
-vice versus. After that B<--choice> and B<--option> parameters will take
+vice versus. After that B<--variant> and B<--option> parameters will take
 place, i.e. it is possible to load a component and immediately change its
 options.
 
@@ -2749,8 +2750,8 @@ Other examples:
 
   fvwm-themes-config --load @afterstep  # load theme "afterstep"
   fvwm-themes-config --drop modules@afterstep  # unload component
-  fvwm-themes-config --choice settings/stroke=2  # turn on stroke
-  fvwm-themes-config --choice settings/stroke=0  # use default (1)
+  fvwm-themes-config --variant settings/stroke=2  # turn on stroke
+  fvwm-themes-config --variant settings/stroke=0  # use default (1)
   fvwm-themes-config --option bindings:switch-mouse-2-3=no
   fvwm-themes-config --set-locked colors=1 --set-locked desktop=0
 
@@ -2761,7 +2762,7 @@ Other examples:
 Mikhael Goikhman <migo@homemail.com>, 31 Dec 1999.
 
 Olivier Chapuis <olivier.chapuis@free.fr> (some small things and
-the --com-mode option).
+the communication loop implementation).
 
 =head1 COPYING
 

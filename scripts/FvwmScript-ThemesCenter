@@ -102,8 +102,8 @@ Begin
 	ChangeTitle 19 {RИtablir}
 	ChangeTitle 20 {Supprimer}
 	Set $l_NoProperties = {Cette composente n'a pas d'options ni de sous composantes}
-	Set $l_OnlyThreeEditor = {Vous pouvez utilisez seulement 3 Иditeurs d'Options}
-	Set $l_OptionsEditor = {L'Иditeur d'Options pour}
+	Set $l_OnlyThreeEditor = {Vous pouvez utilisez seulement 3 Иditeurs d'PropriИtИs}
+	Set $l_PropertyEditor = {L'Иditeur d'PropriИtИs pour}
 	Set $l_AlreadyActive = {est dИjЮ utilisИ}
 	Set $l_CompNotSet = {Cette composente n'est pas sИlectionnИe}
 	Set $l_DropNotImp = {"Supprimer" sera implИmentИ un jour!}
@@ -114,9 +114,9 @@ Begin
 	ChangeTitle 24 {Info}
 	ChangeTitle 25 {Supprimer}
 	ChangeTitle 26 {SИlectionnez une composante}
-	Set $l_ChoicesFor = {Choix pour}
+	Set $l_VariantsFor = {Variant pour}
 	ChangeTitle 28 {SИlectionner}
-	Set $l_MustSelectChoice = {Vous devez sИlectionner un Choix !}
+	Set $l_MustSelectVariant = {Vous devez sИlectionner un Variant !}
 	# SM
 	Set $l_CurrentSession = {Session Courante}
 	Set $l_UpTime = {Up Time}
@@ -193,7 +193,7 @@ Begin
 	ChangeTitle 19 {Возврат}
 	ChangeTitle 20 {Удалить}
 	Set $l_NoProperties = {Этот компонент не имеет опций, вариантов или под-компонентов}
-	Set $l_OptionsEditor = {Редактор опций для}
+	Set $l_PropertyEditor = {Редактор свойств для}
 	Set $l_AlreadyActive = {уже активный}
 	Set $l_OnlyThreeEditor = {Число редакторов опций ограничено тремя}
 	Set $l_CompNotSet = {Этот компонент не пере-установлен}
@@ -205,9 +205,9 @@ Begin
 	ChangeTitle 24 {Инфо}
 	ChangeTitle 25 {Убрать}
 	ChangeTitle 26 {Выберите Компонент}
-	Set $l_ChoicesFor = {Варианты для}
+	Set $l_VariantsFor = {Варианты для}
 	ChangeTitle 28 {Установить}
-	Set $l_MustSelectChoice = {Сначала выберите вариант}
+	Set $l_MustSelectVariant = {Сначала выберите вариант}
 	# SM
 	Set $l_CurrentSession = {Текущая Сессия}
 	Set $l_UpTime = {Время Работы}
@@ -221,7 +221,7 @@ Begin
 	ChangeTitle 43 {Добавить}
 	ChangeTitle 44 {Удалить}
 	ChangeTitle 45 {Выбранная сессия:}
-	ChangeTitle 46 {* Для загрузки сессии, выберите её и нажмите "Применить"                       }
+	ChangeTitle 46 {* Для загрузки сессии, выберите её и нажмите на "Применить"                    }
 	ChangeTitle 47 {* Для перезагрузки текущей сессии, нажмите на "Освежить"                       }
 	ChangeTitle 48 {* Нажатие на "Обновить" перестоит список сессий                                }
 	ChangeTitle 58 {* При выборе "Применить" потеряются неприменнённые изменения в других разделах }
@@ -276,10 +276,10 @@ Begin
 	ChangeTitle 18 {Properties}
 	ChangeTitle 19 {Restore}
 	ChangeTitle 20 {Drop}
-	Set $l_NoProperties = {This used or set component has no options, choices or subcomponents}
-	Set $l_OptionsEditor = {Options editor for}
+	Set $l_NoProperties = {This used or set component has no options, variants or subcomponents}
+	Set $l_PropertyEditor = {Property editor for}
 	Set $l_AlreadyActive = {already active}
-	Set $l_OnlyThreeEditor = {Number of Options editors is limited to 3}
+	Set $l_OnlyThreeEditor = {Number of Property editors is limited to 3}
 	Set $l_CompNotSet = {This used component is not re-set}
 	Set $l_DropNotImp = {Dropping currently is not available}
 	Set $l_NoDrop = {This component cannot be dropped}
@@ -289,9 +289,9 @@ Begin
 	ChangeTitle 24 {Info}
 	ChangeTitle 25 {Drop}
 	ChangeTitle 26 {Select a Component}
-	Set $l_ChoicesFor = {Variants for}
+	Set $l_VariantsFor = {Variants for}
 	ChangeTitle 28 {Set}
-	Set $l_MustSelectChoice = {You must select a variant}
+	Set $l_MustSelectVariant = {You must select a variant}
 	# SM
 	Set $l_CurrentSession = {Current Session}
 	Set $l_UpTime = {Up Time}
@@ -397,18 +397,18 @@ Begin
     Set $CSCompHasOpt = 0
     Set $CSCompIsSet = 0
     Set $CSCompCanBeDropped = 0
-    Set $OptionEditorOne = {}
-    Set $OptionEditorOneTandC = {}
-    Set $OptionEditorTwo = {}
-    Set $OptionEditorTwoTandC = {}
-    Set $OptionEditorLast = {}
-    Set $OptionEditorLastTandC = {}
+    Set $PropertyEditorOne = {}
+    Set $PropertyEditorOneTandC = {}
+    Set $PropertyEditorTwo = {}
+    Set $PropertyEditorTwoTandC = {}
+    Set $PropertyEditorLast = {}
+    Set $PropertyEditorLastTandC = {}
 
     # GS main variables
     Set $SettingsIndex = 0
     Set $SettingsComponent = {}
     Set $SettingsName ={}
-    Set $SettingsChoicesIndex = 0
+    Set $SettingsVariantsIndex = 0
 
     # SM main variables
     Set $SessionIndex = 0
@@ -614,16 +614,16 @@ Begin
 # -----------------------------------------------
 # Message to read
 
-    If $OptionEditorOne <> {} Then
+    If $PropertyEditorOne <> {} Then
     Begin
-	Set $MSG = (ReceivFromScript $OptionEditorOne)
+	Set $MSG = (ReceivFromScript $PropertyEditorOne)
 	If $MSG <> {No message} Then
 	Begin
 	    If $MSG == {quit} Then
 	    Begin
-		#SendToScript $OptionEditorOne {exit}
-		Set $OptionEditorOne = {}
-		Set $OptionEditorOneTandC = {}
+		#SendToScript $PropertyEditorOne {exit}
+		Set $PropertyEditorOne = {}
+		Set $PropertyEditorOneTandC = {}
 	    End
 	    If $MSG == {update} Then
 	    Begin
@@ -631,23 +631,23 @@ Begin
 	    End
 	    If $MSG == {updatequit} Then
 	    Begin
-		#SendToScript $OptionEditorOne {exit}
-		Set $OptionEditorOne = {}
-		Set $OptionEditorOneTandC = {}
+		#SendToScript $PropertyEditorOne {exit}
+		Set $PropertyEditorOne = {}
+		Set $PropertyEditorOneTandC = {}
 		Set $UpdateCurrentConfig = 1
 	    End
 	End
     End
 
-    If $OptionEditorTwo <> {} Then
+    If $PropertyEditorTwo <> {} Then
     Begin
-	Set $MSG = (ReceivFromScript $OptionEditorTwo)
+	Set $MSG = (ReceivFromScript $PropertyEditorTwo)
 	If $MSG <> {No message} Then
 	Begin
 	    If $MSG == {quit} Then
 	    Begin
-		Set $OptionEditorTwo = {}
-		Set $OptionEditorTwoTandC = {}
+		Set $PropertyEditorTwo = {}
+		Set $PropertyEditorTwoTandC = {}
 	    End
 	    If $MSG == {update} Then
 	    Begin
@@ -655,22 +655,22 @@ Begin
 	    End
 	    If $MSG == {updatequit} Then
 	    Begin
-		Set $OptionEditorTwo = {}
-		Set $OptionEditorTwoTandC = {}
+		Set $PropertyEditorTwo = {}
+		Set $PropertyEditorTwoTandC = {}
 		Set $UpdateCurrentConfig = 1
 	    End
 	End
     End
 
-    If $OptionEditorLast <> {} Then
+    If $PropertyEditorLast <> {} Then
     Begin
-	Set $MSG = (ReceivFromScript $OptionEditorLast)
+	Set $MSG = (ReceivFromScript $PropertyEditorLast)
 	If $MSG <> {No message} Then
 	Begin
 	    If $MSG == {quit} Then
 	    Begin
-		Set $OptionEditorLast = {}
-		Set $OptionEditorLastTandC = {}
+		Set $PropertyEditorLast = {}
+		Set $PropertyEditorLastTandC = {}
 	    End
 	    If $MSG == {update} Then
 	    Begin
@@ -678,8 +678,8 @@ Begin
 	    End
 	    If $MSG == {updatequit} Then
 	    Begin
-		Set $OptionEditorLast = {}
-		Set $OptionEditorLastTandC = {}
+		Set $PropertyEditorLast = {}
+		Set $PropertyEditorLastTandC = {}
 		Set $UpdateCurrentConfig = 1
 	    End
 	End
@@ -763,14 +763,14 @@ Begin
 	ChangeTitle 22 $SettingsConfig
     End
 
-    If $UpdateSettingsChoices == 1 Then
+    If $UpdateSettingsVariants == 1 Then
     Begin
-	Set $UpdateSettingsChoices = 0
+	Set $UpdateSettingsVariants = 0
 	If $SettingsComponent <> {} Then
 	Begin
-	    Set $cmd = $SendMsgAndGet{"option-choices }$SettingsComponent{ default }$SettingsIndex{"}
-	    Set $SettingsChoices = (GetOutput $cmd 1 -1)
-	    ChangeTitle 27 $SettingsChoices
+	    Set $cmd = $SendMsgAndGet{"options-variants }$SettingsComponent{ default }$SettingsIndex{"}
+	    Set $SettingsVariants = (GetOutput $cmd 1 -1)
+	    ChangeTitle 27 $SettingsVariants
 	End
     End
 
@@ -1270,44 +1270,44 @@ SingleClic :
 	Set $break = 0
 	Set $tmp = $CSCompName{@}$CSThemeName
 	Set $arg={FvwmScript-ThemeOptions --text-colorset }$TextColorset{ --com-pid }$pid{ --component }$CSCompName{ --theme }$CSThemeName
-	If $tmp == $OptionEditorOneTandC Then
+	If $tmp == $PropertyEditorOneTandC Then
 	    Set $break = 1
-	If $tmp == $OptionEditorTwoTandC Then
+	If $tmp == $PropertyEditorTwoTandC Then
 	    Set $break = 1
-	If $tmp == $OptionEditorLastTandC Then
+	If $tmp == $PropertyEditorLastTandC Then
 	    Set $break = 1
 	If $break == 1 Then
 	Begin
-	    Set $msg = $l_OptionsEditor{ }$tmp{ }$l_AlreadyActive
+	    Set $msg = $l_PropertyEditor{ }$tmp{ }$l_AlreadyActive
 	    ChangeTitle 95 $msg
 	End
 	Else
 	Begin
 	    Set $break = 1
-	    If $OptionEditorOne == {} Then
+	    If $PropertyEditorOne == {} Then
 	    Begin
-		Set $OptionEditorOne = (LaunchScript $arg)
-		Set $OptionEditorOneTandC = $tmp
+		Set $PropertyEditorOne = (LaunchScript $arg)
+		Set $PropertyEditorOneTandC = $tmp
 		Set $break = 0
 		Set $NullMessage = 1
 	    End
-	    If $OptionEditorTwo == {} Then
+	    If $PropertyEditorTwo == {} Then
 		Set $test = 1
 	    Set $test = (Mult $test $break)
 	    If $test == 1 Then
 	    Begin
-		Set $OptionEditorTwo = (LaunchScript $arg)
-		Set $OptionEditorTwoTandC = $tmp
+		Set $PropertyEditorTwo = (LaunchScript $arg)
+		Set $PropertyEditorTwoTandC = $tmp
 		Set $break = 0
 		Set $NullMessage = 1
 	    End
-	    If $OptionEditorLast == {} Then
+	    If $PropertyEditorLast == {} Then
 		Set $test = 1
 	    Set $test = (Mult $test $break)
 	    If $test == 1 Then
 	    Begin
-		Set $OptionEditorLast = (LaunchScript $arg)
-		Set $OptionEditorLastTandC = $tmp
+		Set $PropertyEditorLast = (LaunchScript $arg)
+		Set $PropertyEditorLastTandC = $tmp
 		Set $break = 0
 		Set $NullMessage = 1
 	    End
@@ -1353,12 +1353,12 @@ SingleClic :
 	Set $dummy = (GetOutput $cmd 1 -1)
 	Set $UpdateTSLists = 1
 	Set $NullMessage = 1
-	If $OptionEditorOne <> {} Then
-	    SendToScript $OptionEditorOne {update}
-	If $OptionEditorTwo <> {} Then
-	    SendToScript $OptionEditorTwo {update}
-	If $OptionEditorLast <> {} Then
-	    SendToScript $OptionEditorLast {update}
+	If $PropertyEditorOne <> {} Then
+	    SendToScript $PropertyEditorOne {update}
+	If $PropertyEditorTwo <> {} Then
+	    SendToScript $PropertyEditorTwo {update}
+	If $PropertyEditorLast <> {} Then
+	    SendToScript $PropertyEditorLast {update}
     End
  End
 End
@@ -1443,18 +1443,18 @@ Case message of
 	Set $SettingsIndex = $value
 	Set $cmd = $SendMsgAndGet{"settings-comp }$SettingsIndex{" --line=1}
 	Set $SettingsName = (GetOutput $cmd 1 -1)
-	Set $tmp = $l_ChoicesFor{ }$SettingsName
+	Set $tmp = $l_VariantsFor{ }$SettingsName
 	ChangeTitle 26 $tmp
 	Set $cmd = $GetLine{2}
 	Set $SettingsComponent = (GetOutput $cmd 1 -1)
 	Set $cmd = $GetLine{3 --clear-buffer}
 	Set $SettingsComponentIsSet = (GetOutput $cmd 1 -1)
-	Set $UpdateSettingsChoices = 1
+	Set $UpdateSettingsVariants = 1
 	If $SettingsComponentIsSet == 1 Then
 	    ChangeFont 23 $SelFont
 	Else
 	    ChangeFont 23 $ShadeFont
-	Set $SettingsChoicesIndex = 0
+	Set $SettingsVariantsIndex = 0
 	ChangeValue 27 0
 	ChangeFont 28 $ShadeFont
 	Set $NullMessage = 1
@@ -1493,7 +1493,7 @@ SingleClic :
     Begin
 	Set $cmd = $SendMsgAndGet{"restore }$SettingsComponent{"}
 	Set $tmp = (GetOutput $cmd 1 -1)
-	Set $UpdateSettingsChoices = 1
+	Set $UpdateSettingsVariants = 1
 	Set $UpdateSettingsList = 1
 	ChangeFont 23 $ShadeFont
 	Set $NullMessage = 1
@@ -1595,20 +1595,20 @@ Main
 Case message of
 SingleClic :
  Begin
-    Set $SettingsChoicesIndex = (GetValue 27)
-    If $SettingsChoicesIndex <> 0 Then 
+    Set $SettingsVariantsIndex = (GetValue 27)
+    If $SettingsVariantsIndex <> 0 Then 
     Begin
-	Set $cmd = $SendMsgAndGet{"set-options }$SettingsComponent{ default 1 }$SettingsChoicesIndex{"}
+	Set $cmd = $SendMsgAndGet{"set-options }$SettingsComponent{ default 1 }$SettingsVariantsIndex{"}
 	Set $dummy = (GetOutput $cmd 1 -1)
 	Set $SettingsComponentIsSet = 1
 	ChangeFont 23 $SelFont
-	Set $UpdateSettingsChoices  = 1
+	Set $UpdateSettingsVariants  = 1
 	Set $UpdateSettingsList = 1
 	Set $NullMessage = 1
     End
     Else
     Begin
-	ChangeTitle 95 $l_MustSelectChoice
+	ChangeTitle 95 $l_MustSelectVariant
     End
  End
 End
@@ -2151,13 +2151,13 @@ Case message of
 	    Set $UpdateSMLists = 1
 	    Set $UpdateTSLists = 1
 	    Set $UpdateSettingsList = 1
-	    Set $UpdateSettingsChoices = 1
-	    If $OptionEditorOne <> {} Then
-		SendToScript $OptionEditorOne {exit}
-	    If $OptionEditorTwo <> {} Then
-		SendToScript $OptionEditorTwo {exit}
-	    If $OptionEditorLast <> {} Then
-		SendToScript $OptionEditorLast {exit}
+	    Set $UpdateSettingsVariants = 1
+	    If $PropertyEditorOne <> {} Then
+		SendToScript $PropertyEditorOne {exit}
+	    If $PropertyEditorTwo <> {} Then
+		SendToScript $PropertyEditorTwo {exit}
+	    If $PropertyEditorLast <> {} Then
+		SendToScript $PropertyEditorLast {exit}
 	    Set $NullMessage = 1
 	    Do {FuncFvwmThemesFresh}
 	End
@@ -2172,13 +2172,13 @@ Case message of
 	    Do {FuncFvwmThemesConfigAndUpdate "}$CmdOptions{"}
 	    Set $UpdateTSLists = 1
 	    Set $UpdateSettingsList = 1
-	    Set $UpdateSettingsChoices = 1
-	    If $OptionEditorOne <> {} Then
-		SendToScript $OptionEditorOne {update}
-	    If $OptionEditorTwo <> {} Then
-		SendToScript $OptionEditorTwo {update}
-	    If $OptionEditorLast <> {} Then
-		SendToScript $OptionEditorLast {update}
+	    Set $UpdateSettingsVariants = 1
+	    If $PropertyEditorOne <> {} Then
+		SendToScript $PropertyEditorOne {update}
+	    If $PropertyEditorTwo <> {} Then
+		SendToScript $PropertyEditorTwo {update}
+	    If $PropertyEditorLast <> {} Then
+		SendToScript $PropertyEditorLast {update}
 	    Set $NullMessage = 1
 	End
 	Else
@@ -2208,13 +2208,13 @@ Case message of
 	Set $UpdateSMLists = 1
 	Set $UpdateTSLists = 1
 	Set $UpdateSettingsList = 1
-	Set $UpdateSettingsChoices = 1
-	If $OptionEditorOne <> {} Then
-	    SendToScript $OptionEditorOne {update}
-	If $OptionEditorTwo <> {} Then
-	    SendToScript $OptionEditorTwo {update}
-	If $OptionEditorLast <> {} Then
-	    SendToScript $OptionEditorLast {update}
+	Set $UpdateSettingsVariants = 1
+	If $PropertyEditorOne <> {} Then
+	    SendToScript $PropertyEditorOne {update}
+	If $PropertyEditorTwo <> {} Then
+	    SendToScript $PropertyEditorTwo {update}
+	If $PropertyEditorLast <> {} Then
+	    SendToScript $PropertyEditorLast {update}
 	Set $NullMessage = 1
  End
 End
@@ -2237,13 +2237,13 @@ Case message of
 	Set $UpdateTSLists = 1
 	Set $UpdateSMLists = 1
 	Set $UpdateSettingsList = 1
-	Set $UpdateSettingsChoices = 1
-	If $OptionEditorOne <> {} Then
-	    SendToScript $OptionEditorOne {update}
-	If $OptionEditorTwo <> {} Then
-	    SendToScript $OptionEditorTwo {update}
-	If $OptionEditorLast <> {} Then
-	    SendToScript $OptionEditorLast {update}
+	Set $UpdateSettingsVariants = 1
+	If $PropertyEditorOne <> {} Then
+	    SendToScript $PropertyEditorOne {update}
+	If $PropertyEditorTwo <> {} Then
+	    SendToScript $PropertyEditorTwo {update}
+	If $PropertyEditorLast <> {} Then
+	    SendToScript $PropertyEditorLast {update}
 	Set $NullMessage = 1
  End
 End
@@ -2277,12 +2277,12 @@ Main
  Case message of
   SingleClic :
   Begin
-    If $OptionEditorOne <> {} Then
-	SendToScript $OptionEditorOne {exit}
-    If $OptionEditorTwo <> {} Then
-	SendToScript $OptionEditorTwo {exit}
-    If $OptionEditorLast <> {} Then
-	SendToScript $OptionEditorLast {exit}
+    If $PropertyEditorOne <> {} Then
+	SendToScript $PropertyEditorOne {exit}
+    If $PropertyEditorTwo <> {} Then
+	SendToScript $PropertyEditorTwo {exit}
+    If $PropertyEditorLast <> {} Then
+	SendToScript $PropertyEditorLast {exit}
     Set $cmd = $SendMsg{"exit"}	
     Do {Exec }$cmd
     Quit

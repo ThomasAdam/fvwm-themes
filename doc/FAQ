@@ -2,7 +2,7 @@ FVWM Themes Frequently Asked Questions and Answers.
 
 ------------------------------------------------------------------------------
 Q. Why this FAQ does not contain my question about fvwm-themes?
-Q. What is theme, component, choice, option in the fvwm-themes terminology?
+Q. What is theme, component, variant, option in the fvwm-themes terminology?
 Q. Why theme switching takes some time and it is even increased?!
 Q. On my system switching themes crashes FVWM! Waht to do?
 Q. How much configurable is fvwm-themes?
@@ -25,7 +25,7 @@ A. Because there were no many questions up until now. It is a new project.
 ==============================================================================
 
 ------------------------------------------------------------------------------
-Q. What is theme, component, choice, option in the fvwm-themes terminology?
+Q. What is theme, component, variant, option in the fvwm-themes terminology?
 
 A. Component is a part of fvwm configurations, more or less separate unit,
 which can be loaded and unloaded accordingly to its dependences.
@@ -35,22 +35,22 @@ may be partial or full. Themes usually can be categorized as "look" theme,
 
 One of the features of fvwm-themes is the ability to mix together components
 from different themes if their dependences enable this without conflicts.
-The theme author is responsible to define exact dependences for a theme's
-component. Dependences are not fully checked for now, but this will be
-changed in the future.
+The theme author is responsible to define exact dependences for each theme's
+component or defaults will be used if present. Dependences are not fully
+checked for now, but this may be changed in the future.
 
 The definition of theme components is given in theme.cfg file of the theme.
 If no such file is found, the default/theme.cfg is used for this theme
 in an intelligent manner, i.e. a list of actual components is automatically
-built as a subset of all possible defined components.
+built as a subset of all possible defined components (existing files/dirs).
 
 All currently used components (probably from different themes) compose
 the current theme, which is reflected in the Theme Management menu.
 
-Any component can come with several choices, options or sub components
-which allow a fine configurability. These can be used via the the Theme
-Management menu under "current" or using the "Opt/Cho/Sub" button of
-the Theme Center.
+Any component can come with several variants, with options or sub components
+all of which allow a good configurability. These can be used via the the
+Theme Management menu under "current" or using the "Property" button of
+the Themes Center.
 ==============================================================================
 
 ------------------------------------------------------------------------------

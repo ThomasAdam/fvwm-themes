@@ -1,3 +1,15 @@
+2000-10-05  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	* doc/FAQ:
+	* forms/{FvwmForm-ThemeSettings,FvwmGtk-Themes}:
+	* scripts/{FvwmScript-ThemeOptions,FvwmScript-ThemesCenter}:
+	* themes/*/*.cfg:
+	renamed choice to variant everywhere, small additional changes
+
+	* themes/default/functions-appbind (FvwmFuncOpenURL):
+	fixed netscape call when no window is active
+
 2000-10-04  migo  <migo@homemail.com>
 
 	* configure.in:
