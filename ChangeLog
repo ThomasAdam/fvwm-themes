@@ -3,6 +3,12 @@
 	* themes/default/styles:
 	make all XSm windows sticky
 
+	* themes/default/functions:
+	* themes/default/menus:
+	* themes/default/theme.cfg:
+	added FuncFvwmWithGtk, so if a user has no GTK suppport in FVWM,
+	he gets an error message, say, in Theme Settings (gtk)
+
 2001-03-10  migo  <migo@homemail.com>
 
 	* Makefile.am: minor fix, may help with non-gnu make

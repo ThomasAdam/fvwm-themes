@@ -88,3 +88,8 @@ AddToFunc   FuncFvwmShowMessage
 DestroyFunc FuncFvwmShowButtonInfo
 AddToFunc   FuncFvwmShowButtonInfo
 + I FuncFvwmShowMessage "Button Info" "$0"
+
+DestroyFunc FuncFvwmWithGtk
+AddToFunc   FuncFvwmWithGtk
++ I PipeRead `fvwm-config --supports-gtk && echo '$*' || \
+	echo 'FuncFvwmShowMessage "FVWM Error" "There is no GTK support in your FVWM.^nThe requested command is not executed."'`

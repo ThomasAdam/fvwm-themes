@@ -195,7 +195,7 @@ AddToMenu   MenuFvwmConfiguration "Fvwm Configuration" Title
 + "Configuration Center" FvwmScript FvwmScript-ConfigCenter \
 		--text-colorset 34 --icon-colorset 5 --viewer-colorset 33
 + "Theme Settings (form)"	FuncFvwmFormThemeSettings
-+ "Theme Settings (gtk)"	FuncFvwmGtkThemeSettings
++ "Theme Settings (gtk)"	FuncFvwmWithGtk FuncFvwmGtkThemeSettings
 + "&Menu Editor (Personal)"	FvwmScript FvwmScript-Menus \
 		--text-colorset 34 --icon-colorset 5 --viewer-colorset 33
 + "&Root Cursor"	Module FvwmForm FvwmForm-RootCursor
