@@ -1,4 +1,10 @@
-2001-08-28 olicha  <olivier.chapuis@free.fr>
+2001-08-29  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	Do not use "--print-rc3" option but read themes-rc-3 in the themes 
+	switch function
+
+2001-08-28  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
 	Implement "affects-*" ft cfg rules (removed the minimal switching

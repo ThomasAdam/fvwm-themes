@@ -1,4 +1,4 @@
-#!@PERL@ -w
+#!@PERL@ -w -d:DProf
 # for speed testing add: -d:DProf and use dprofpp
 
 # Filter this script to pod2man to get a man page:
@@ -22,7 +22,7 @@ my $scriptName = ($0 =~ m:([^/]+)$:, $1);
 my $scriptFile = "$bindir/$scriptName";
 my $rcFile = "themes-rc";
 my $rcFile2 = "$rcFile-2";
-#ccds: 1, maybe we may use .$rcFile-3
+# maybe we may use .$rcFile-3
 my $rcFile3 = "$rcFile-3";
 my $userHome = $ENV{'HOME'} || "./.";
 my $userDir = $ENV{'FVWM_USERDIR'} || "$userHome/.fvwm";
@@ -35,7 +35,6 @@ my $imagesSubDir = 'images';
 my $themeCfgFile = 'theme.cfg';
 my $mainDirFile = 'main';
 my $defaultReadCommand = 'Read "%f"';
-#ccf 1
 my $cfgCacheFileName = '.cfg-cache.pl';
 
 my $idKey = 'file';
@@ -417,7 +416,6 @@ sub encodeCfgEntry ($) {
 	return $str;
 }
 
-#ccf: new variable $cfgCacheFileStatus in the next two lines
 use vars qw($cfgFileCache $cfgCacheFileStatus);
 BEGIN { $cfgFileCache = {}; $cfgCacheFileStatus = 0; }
 
@@ -463,7 +461,6 @@ sub checkUnhideIf ($) {
 
 sub loadThemeCfg ($) {
 	my $theme = shift;
-	#ccf: 1 line
 	loadCfgCacheFile() if $cfgCacheFileStatus == 0;
 	return $cfgFileCache->{$theme} if exists $cfgFileCache->{$theme};
 	my $cfgFile = searchThemeCfgIncludeFile($themeCfgFile, $theme);
@@ -583,27 +580,30 @@ sub loadThemeCfg ($) {
 #	$cfg->[0]->{$componentKey} = [sort @realComponents];
 
 	$cfgFileCache->{$theme} = $cfg;
-	#ccf: 1 line
 	saveCfgCacheFile($theme,$cfg);
 	return $cfg;
 }
 
-#ccf: new function
 sub loadCfgCacheFile () {
 	$cfgCacheFileStatus = 1;
-	if (-f "$userDir/$cfgCacheFileName" && $workDir eq $userDir) {
-		eval {
-			require "$userDir/$cfgCacheFileName";
-		};
-		if ($@) {
-			print STDERR "Warning: a problem arised when loading " .
-				"$userDir/$cfgCacheFileName:\n$@\n";
-			unlink "$userDir/$cfgCacheFileName";
+	return if $workDir ne $userDir;
+
+	my @cacheFiles = ("$userDir/$cfgCacheFileName");
+	my $file;
+	foreach $file (@cacheFiles) {
+		if (-f "$file") {
+			eval {
+				require "$file";
+			};
+			if ($@) {
+				print STDERR "Warning: a problem arised when loading " .
+				  "$file:\n$@\n";
+				unlink "$file";
+			}
 		}
 	}
 }
 
-#ccf: new function
 sub saveCfgCacheFile ($$) {
 	my $theme = shift;
 	my $cfg = shift;
@@ -616,7 +616,9 @@ sub saveCfgCacheFile ($$) {
 		require Data::Dumper;
 		# compact as possible: 50% more fast
 		local $Data::Dumper::Indent;
+		local $Data::Dumper::Quotekeys;
 		$Data::Dumper::Indent = 0;
+		$Data::Dumper::Quotekeys = 0;
 		my $str = "";
 		my $var = "\$cfgFileCache->{$theme}";
 		$str = Data::Dumper->Dump([$cfg],["$var"]);
@@ -629,7 +631,7 @@ sub saveThemeCfg ($$) {
 	errDie("Parameter should be ARRAY") unless ref($cfg) eq 'ARRAY';
 	my ($themeCfg, $componentCfgs) = @$cfg;
 	errDie("Parameter should be [HASH, HASH]")
-		unless ref($themeCfg) eq 'HASH' && ref($componentCfgs) eq 'HASH';
+	  unless ref($themeCfg) eq 'HASH' && ref($componentCfgs) eq 'HASH';
 
 	my $str = "";
 	$str .= "[theme]\n" . encodeCfgEntry($themeCfg) . "\n";
@@ -929,7 +931,6 @@ sub new ($$;$$) {
 				if exists $componentCfg->{'locked'};
 			$cc->{'current'} = $componentCfg->{'current'}
 				if exists $componentCfg->{'current'};
-			#ccds: 1
 			$cc->{'minimalReload'} = $componentCfg->{'minimalReload'}
 				if exists $componentCfg->{'minimalReload'};
 			if (ref($componentCfg->{'option'}) eq 'ARRAY') {
@@ -2140,9 +2141,9 @@ DestroyFunc FuncFvwmThemesConfigAndUpdate
 AddToFunc   FuncFvwmThemesConfigAndUpdate
 + I FvwmScript FvwmScript-NoteMessage "Theme switching"
 + I Wait FvwmScript-NoteMessage
-+ I PipeRead `@$scriptFile@ $0 --pipe --print-rc3`
++ I PipeRead `@$scriptFile@ $0 --pipe`
 #+ I FuncFvwmResetInitFunctions
-#+ I Read @$rcFile3@
++ I Read @$rcFile3@
 + I FuncFvwmStartAllHooks
 + I All (FvwmScript-NoteMessage) Delete
 
@@ -2465,9 +2466,11 @@ if (defined $expandFile) {
 	exit(0);
 }
 
-#ccf: 3
-if (($reset || $noCfgCache) && -f "$userDir/$cfgCacheFileName") {
-	unlink "$userDir/$cfgCacheFileName";
+if ($reset || $noCfgCache) {
+	unlink "$userDir/$cfgCacheFileName"
+	  if -f "$userDir/$cfgCacheFileName";
+	unlink "$userDir/$currentThemeSubDir/$cfgCacheFileName"
+	  if -f "$userDir/$currentThemeSubDir/$cfgCacheFileName";
 }
 
 showThemeComponents($themes, $showComponents, $component, $fvwmscript,
@@ -3181,9 +3184,10 @@ sub comLoop {
 		elsif ($command =~ /^update\s+(\d+)$/) {
 			my $fresh = $1;
 			$cfgFileCache = {};
-			#ccf 2
 			unlink "$userDir/$cfgCacheFileName"
 				if -f "$userDir/$cfgCacheFileName";
+			unlink "$userDir/$currentThemeSubDir/$cfgCacheFileName"
+			  if -f "$userDir/$currentThemeSubDir/$cfgCacheFileName";
 			$self = Fvwm::ThemeCfg->new('current', 'current', $fresh);
 			$allThemes = getAllThemes();
 			$tmp = $self->{$componentKey};
@@ -3389,9 +3393,10 @@ sub comLoop {
 			}
 			($currentSession,$sessionList,$uptime) = sessionInfo();
 			$cfgFileCache = {};
-			#ccf 2
 			unlink "$userDir/$cfgCacheFileName"
 				if -f "$userDir/$cfgCacheFileName";
+			unlink "$userDir/$currentThemeSubDir/$cfgCacheFileName"
+			  if -f "$userDir/$currentThemeSubDir/$cfgCacheFileName";
 			$self = Fvwm::ThemeCfg->new('current', 'current', 1);
 			$allThemes = getAllThemes();
 			$tmp = $self->{$componentKey};
