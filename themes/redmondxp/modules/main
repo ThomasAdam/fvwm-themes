@@ -19,24 +19,9 @@ AddToFunc   FuncFvwmStartNormalIcons
 
 DestroyFunc FuncFvwmStartThemeModules
 AddToFunc   FuncFvwmStartThemeModules
-# migo: I can't make transparency work for this theme!
-#+ I Colorset 10 fg rgb:ff/ff/f0, bg average, TiledPixmap module/panel-bg.png, NoShape
-#+ I Colorset 23 fg $[fg.cs10], bg $[bg.cs10], Transparent, NoShape
-+ I Colorset 10 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, NoShape
-+ I Colorset 23 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, NoShape
-+ I Colorset 24 rgb:ff/ff/f0, bg $[bg.cs10], Pixmap module/panel-clockarea.png, NoShape
-# plaincolorset
-+ I Colorset 17 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, NoShape
-# focuscolorset
-#+ I Colorset 18 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint rgb:00/80/ff 30, NoShape
-# iconcolorset
-+ I Colorset 19 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint rgb:00/00/00 40, NoShape
-# selectcolorset
-+ I Colorset 20 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint rgb:ff/ff/ff 30, NoShape
++ I FuncFvwmReloadColorsModules
 + I FuncFvwmStartNormalIcons
 + I Style "*" IconBox screen w 10 10 -10 -40 p, IconGrid 76 90
-# Hmm, I don't like that the bottom pixels are cursored and blocked
-#+ I EdgeCommand bottom All (FvwmButtons-Panel, !Raised, CirculateHit) Raise
 + I *FvwmIconMan: resolution page
 + I FuncFvwmStartPanel
 
@@ -49,22 +34,21 @@ DestroyFunc FuncFvwmReloadColorsModules
 AddToFunc   FuncFvwmReloadColorsModules
 #+ I Colorset 10 fg rgb:ff/ff/f0, bg average, TiledPixmap module/panel-bg.png, NoShape
 #+ I Colorset 23 fg $[fg.cs10], bg $[bg.cs10], Transparent, NoShape
-+ I Colorset 10 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, NoShape
-+ I Colorset 23 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, NoShape
-+ I Colorset 24 rgb:ff/ff/f0, bg $[bg.cs10], Pixmap module/panel-clockarea.png, NoShape
++ I Colorset 10 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint, bgTint, fgAlpha, Alpha, IconTint, IconAlpha, NoShape
++ I Colorset 23 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint, bgTint, fgAlpha, Alpha, IconTint, IconAlpha, NoShape
++ I Colorset 24 fg rgb:ff/ff/f0, bg $[bg.cs10], Pixmap module/panel-clockarea.png, Tint, bgTint, fgAlpha, Alpha, IconTint, IconAlpha, NoShape
 # plaincolorset
-+ I Colorset 17 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, NoShape
++ I Colorset 17 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint, bgTint, fgAlpha, Alpha, IconTint, IconAlpha, NoShape
 # focuscolorset
-#+ I Colorset 18 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint rgb:00/80/ff 30, NoShape
+#+ I Colorset 18 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint rgb:00/80/ff 30, bgTint, fgAlpha, Alpha, IconTint, IconAlpha, NoShape
 # iconcolorset
-+ I Colorset 19 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint rgb:00/00/00 40, NoShape
++ I Colorset 19 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint rgb:00/00/00 40, bgTint, fgAlpha, Alpha, IconTint, IconAlpha, NoShape
 # selectcolorset
-+ I Colorset 20 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint rgb:ff/ff/ff 30, NoShape
++ I Colorset 20 fg $[fg.cs10], bg $[bg.cs10], TiledPixmap module/panel-bg.png, Tint rgb:ff/ff/ff 30, bgTint, fgAlpha, Alpha, IconTint, IconAlpha, NoShape
 #+ I FuncFvwmStartPanel
 
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
-#+ I EdgeCommand bottom
 + I FuncFvwmStopPanel
 + I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Single
 + I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker

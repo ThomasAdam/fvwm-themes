@@ -63,10 +63,8 @@ AddToMenu   MenuFvwmStartThemeModules "Default Modules" Title
 + "%menu/item.xpm%&Buttons" FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Bar
 #+ "%menu/item.xpm%&Desker"  FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker
 + "" Nop
-+ "%menu/choice-no.xpm%No normal icons" \
-	Style * NoIcon  # needed to use NoIcon modules
-+ "%menu/choice-yes.xpm%Normal icons"   \
-	Read themes/default/settings/iconstyles/style-icon-miniicon
++ "%menu/choice-no.xpm%No normal icons" Style * NoIcon  # for NoIcon modules
++ "%menu/choice-yes.xpm%Normal icons"   Style * !NoIcon
 + "%menu/item.xpm%&WinList" FuncFvwmRestartModule FvwmWinList
 
 DestroyMenu MenuFvwmStopThemeModules

@@ -3,6 +3,10 @@
 	* themes/osx/**:
 	numerous improvements in modules@ and colors@
 
+	* TODO:
+	* themes/*/modules/main:
+	use "Style * !NoIcon" instead of rereading style-icon-miniicon!
+
 	* themes/redmondxp/modules/FvwmThemesPanelManager:
 	work around FvwmAnimate deadlock freeze
 

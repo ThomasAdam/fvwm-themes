@@ -62,10 +62,8 @@ AddToMenu   MenuFvwmStartThemeModules "AfterStep Modules" Title
 + "%menu/item.xpm%&Desker"         FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '0 3'
 + "%menu/item.xpm%Icon&Man"        FuncFvwmRestartModule FvwmIconMan
 + "" Nop
-+ "%menu/choice-no.xpm%No normal icons" \
-	Style * NoIcon  # needed to use NoIcon modules
-+ "%menu/choice-yes.xpm%Normal icons"   \
-	Read themes/default/settings/iconstyles/style-icon-miniicon
++ "%menu/choice-no.xpm%No normal icons" Style * NoIcon  # for NoIcon modules
++ "%menu/choice-yes.xpm%Normal icons"   Style * !NoIcon
 
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "AfterStep Modules" Title

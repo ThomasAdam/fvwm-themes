@@ -58,15 +58,15 @@ AddToFunc   FuncFvwmUnReloadThemeModules
 # Theme module menus
 
 DestroyFunc FuncMenuFvwmStartThemeModules
-AddToFunc FuncMenuFvwmStartThemeModules
+AddToFunc   FuncMenuFvwmStartThemeModules
 + I DestroyMenu MenuFvwmStartThemeModules
 + I AddToMenu   MenuFvwmStartThemeModules "Awol Modules" Title
-+ I + "%module/mini-shadowman-round.xpm%Standard &Buttons"    FuncFvwmButtonsSwitch FvwmButtons-Default
++ I + "%module/mini-shadowman-round.xpm%Standard &Buttons" FuncFvwmButtonsSwitch FvwmButtons-Default
 + I + "%module/mini-sound.xpm%&XtMix Buttons" FuncFvwmButtonsSwitch FvwmButtons-XtMix
 + I + "%menu/item.xpm%&Desker" FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '0 7'
 + I + "" Nop
 + I + "%menu/choice-no.xpm%No normal icons" Style * NoIcon
-+ I + "%menu/choice-yes.xpm%Normal icons"   Read themes/default/settings/iconstyles/style-icon-miniicon
++ I + "%menu/choice-yes.xpm%Normal icons"   Style * !NoIcon
 + I + "" Nop
 FuncMenuFvwmStartThemeModules
 

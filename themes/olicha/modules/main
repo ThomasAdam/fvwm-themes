@@ -182,7 +182,7 @@ DestroyFunc FuncFvwmUseNormalIcons
 AddToFunc   FuncFvwmUseNormalIcons
 + I FuncFvwmChangeWinMan Nop
 + I Style "*" IconBox 10 -10 -250 -10, IconGrid 74 10, IconFill left bottom
-+ I Read themes/default/settings/iconstyles/style-icon-miniicon
++ I Style * !NoIcon
 + I Style "FvwmButtons-Fvwm*Applets" NoIcon
 + I Style "FvwmButtons-WMaker*Applets" NoIcon
 + I All (Iconic) RecaptureWindow
@@ -191,7 +191,7 @@ AddToFunc   FuncFvwmUseNormalIcons
 DestroyFunc FuncFvwmAddNormalIcons
 AddToFunc   FuncFvwmAddNormalIcons
 + I Style "*" IconBox 90 5 -70 350, IconGrid 74 10, IconFill left top
-+ I Read themes/default/settings/iconstyles/style-icon-miniicon
++ I Style * !NoIcon
 + I Style "FvwmButtons-Fvwm*Applets" NoIcon
 + I Style "FvwmButtons-WMaker*Applets" NoIcon
 + I All (Iconic) RecaptureWindow
