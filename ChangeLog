@@ -6,6 +6,9 @@
 	introduced a new colors-decor component (was colors-extra)
 	and a new CCDS key "auto-drops"
 
+	* themes/multichoice/*:
+	removed colors@multichoice component
+
 2001-05-27  migo  <migo@homemail.com>
 
 	* themes/default/theme.cfg:
