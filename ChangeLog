@@ -16,6 +16,9 @@
 	* forms/FvwmGtk-Themes:
 	updated, now uses notebook pages
 
+	* themes/default/settings/kde/system-menu/*:
+	small clean-up, added missing menu delimiter
+
 2000-10-04  migo  <migo@homemail.com>
 
 	* themes/default/{menus,menus-user}:
