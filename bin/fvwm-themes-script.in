@@ -19,7 +19,7 @@
 #     Copyright 2000, Olivier Chapuis
 #-----------------------------------------------------------------------------
 
-#use strict;
+use strict;
 use Getopt::Long;
 
 my $version = '@VERSION@';
@@ -314,12 +314,15 @@ sub configCenterComLoop {
 				else { $t = $theme; }
 				my $file;
 				$file = $themeshash->{$t}->{'file'};
-				my $parse = "parse_" . $ct . "_Config";
+				my $parseFunc = "parse_" . $ct . "_Config";
 				my $configForScript = { };
-				my $error = { };
 				my $keys = [ ];
 				#print STDERR "$file, $theme, $ct\n";
-				$error = $parse->($file,$configForScript,$keys);
+				my $error = eval {
+					no strict 'refs';
+					$parseFunc->($file,$configForScript,$keys);
+				};
+				$error = "Internal: $@" if $@;
 				$return .= "$error\n";
 				foreach (@$keys) {
 				 	$return .= "$configForScript->{$_}" 
@@ -338,16 +341,19 @@ sub configCenterComLoop {
 			my $fvwmConfig = { };
 			my $error = { };
 			my $keys = [ ];
-			$buildFunc->($configFromScript,$fvwmConfig,$error,$keys);
-			my $err = "";
-			$err .= "$error->{All}|" 
-				if defined $error->{'All'} &&  $error->{'All'} ne "";
+			eval {
+				no strict 'refs';
+				$buildFunc->($configFromScript,$fvwmConfig,$error,$keys);
+			};
+			my $err = $@ ? "Internal: $@|" : "";
+			$err .= "$error->{All}|"
+				if defined $error->{'All'} && $error->{'All'} ne "";
 			foreach (@$keys) {
-				$err .= "$error->{$_}|" 
-					if defined $error->{$_} &&  $error->{$_} ne "" && 
+				$err .= "$error->{$_}|"
+					if defined $error->{$_} && $error->{$_} ne "" && 
 						($_ eq $whichPart || $whichPart eq "All");
 			}
-			$err =~ s/\|//;
+			$err =~ s/\|$//;
 			$err = "ok" if $err eq "";
 			$lastHardRead = $hardRead->{$comp};
 			$lastComp = $comp;
@@ -580,7 +586,7 @@ sub  build_globalfeel_Config {
 	my @test = split(/!/,$configFromScript);
 	if ($#test != 12) {
 		$err->{'All'} = 
-			"Why do you enter a ! in a field where you have to enter numberss? ($#test)|";
+			"Why do you enter a ! in a field where you have to enter numbers? ($#test)|";
 	}
 
 	# -------------------------------------------- Focus

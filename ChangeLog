@@ -9,6 +9,10 @@
 	* doc/FAQ:
 	added "Does fvwm-themes replace my .fvwm2rc? If no, how does it work?"
 
+	* bin/fvwm-themes-script.in:
+	restored 'use strict'; eval is not really needed, but it may decrease
+	a possibility of script crashing on a user in a less debugged function
+
 2000-10-04  migo  <migo@homemail.com>
 
 	* themes/default/{menus,menus-user}:
