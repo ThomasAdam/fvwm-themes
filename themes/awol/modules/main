@@ -33,20 +33,18 @@ AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Default
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-XtMix
 + I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
-+ I KillModule FvwmWinList
 + I DestroyModuleConfig FvwmButtons-Default: *
 + I DestroyModuleConfig FvwmButtons-XtMix: *
 + I DestroyModuleConfig FvwmPager-Single: *
 + I DestroyModuleConfig FvwmPager-Desker: *
-+ I DestroyModuleConfig FvwmIconMan*
-+ I DestroyModuleConfig FvwmWinList*
++ I DestroyModuleConfig FvwmIconMan: *
 + I DestroyFunc FuncFvwmButtonsSwitch
 + I DestroyFunc FuncFvwmStartChosenIconMan
 + I DestroyFunc FuncFvwmStartChosenButtons
 + I DestroyFunc FuncFvwmStartChosenPager
 + I DestroyFunc FuncFvwmStartNormalIcons
-+ I FuncFvwmDestroyModulesThemeStyle
-+ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
++ I FuncFvwmModulesDestroyStyle
++ I DestroyFunc FuncFvwmModulesDestroyStyle
 
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules

@@ -31,8 +31,8 @@ DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
 + I KillModule FvwmPager
 + I DestroyModuleConfig FvwmPager: *
-+ I FuncFvwmDestroyModulesThemeStyle
-+ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
++ I FuncFvwmModulesDestroyStyle
++ I DestroyFunc FuncFvwmModulesDestroyStyle
 
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules

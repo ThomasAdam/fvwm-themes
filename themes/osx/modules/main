@@ -51,8 +51,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmStartChosenAppsButtons
 + I DestroyFunc FuncFvwmStartChosenAppsMan
 + I DestroyFunc FuncFvwmStartChosenApplets
-+ I FuncFvwmDestroyModulesThemeStyle
-+ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
++ I FuncFvwmModulesDestroyStyle
++ I DestroyFunc FuncFvwmModulesDestroyStyle
 
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules

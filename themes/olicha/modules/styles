@@ -1,32 +1,32 @@
-Style "FvwmButtons-Fvwm*Applets" NoTitle, NoHandles, BorderWidth 0, Sticky, \
-	WindowListSkip, CirculateSkip, TitleAtTop, NoIcon
-Style "FvwmButtons-Pager*" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
-	TitleAtTop, NoHandles
-Style "FvwmButtons-StartApps" NoTitle, NoHandles, BorderWidth 2, \
+Style "FvwmButtons-Fvwm*Applets" !Title, !Handles, BorderWidth 0, Sticky, \
+	WindowListSkip, CirculateSkip, TitleAtTop, !Icon
+Style "FvwmButtons-Pager*" !Title, Sticky, WindowListSkip, CirculateSkip, \
+	TitleAtTop, !Handles
+Style "FvwmButtons-StartApps" !Title, !Handles, BorderWidth 2, \
 	Sticky, WindowListSkip, CirculateSkip
-Style "FvwmButtons-Apps" NoTitle, NoHandles, BorderWidth 2, \
+Style "FvwmButtons-Apps" !Title, !Handles, BorderWidth 2, \
 	Sticky, WindowListSkip, CirculateSkip
-Style "FvwmButtons-StartWinOps" NoTitle, NoHandles, BorderWidth 2, \
+Style "FvwmButtons-StartWinOps" !Title, !Handles, BorderWidth 2, \
 	Sticky, WindowListSkip
-Style "FvwmButtons-WinOps" NoTitle, NoHandles, BorderWidth 2, \
+Style "FvwmButtons-WinOps" !Title, !Handles, BorderWidth 2, \
 	Sticky, WindowListSkip
-Style "FvwmButtons-WMaker*Applets" NoTitle, NoHandles, BorderWidth 0, Sticky, \
-	WindowListSkip, CirculateHit, NoIcon, TitleAtTop
-Style "FvwmIconBox" NoTitle, NoHandles, Sticky, WindowListSkip, \
+Style "FvwmButtons-WMaker*Applets" !Title, !Handles, BorderWidth 0, Sticky, \
+	WindowListSkip, CirculateHit, !Icon, TitleAtTop
+Style "FvwmIconBox" !Title, !Handles, Sticky, WindowListSkip, \
 	CirculateSkip, TitleAtBottom
-Style "FvwmIconMan"   NoTitle, NoHandles, Sticky, WindowListSkip, \
+Style "FvwmIconMan" !Title, !Handles, Sticky, WindowListSkip, \
 	CirculateSkip, TitleAtBottom
-Style "FvwmPager-Desker" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
+Style "FvwmPager-Desker" !Title, Sticky, WindowListSkip, CirculateSkip, \
 	TitleAtBottom
-Style "FvwmPager-Single"  NoTitle, Sticky, NoHandles, WindowListSkip, \
+Style "FvwmPager-Single" !Title, Sticky, !Handles, WindowListSkip, \
 	CirculateSkip
-Style "FvwmTaskBar" NoTitle, Sticky, WindowListSkip, TitleAtBottom, \
-	CirculateSkip, NoHandles
-Style "FvwmWinList"  NoHandles, NoTitle, Sticky, WindowListSkip, \
+Style "FvwmTaskBar" !Title, Sticky, WindowListSkip, TitleAtBottom, \
+	CirculateSkip, !Handles
+Style "FvwmWinList" !Handles, !Title, Sticky, WindowListSkip, \
 	TitleAtBottom, CirculateSkip
 
-DestroyFunc FuncFvwmDestroyModulesThemeStyle
-AddToFunc   FuncFvwmDestroyModulesThemeStyle
+DestroyFunc FuncFvwmModulesDestroyStyle
+AddToFunc   FuncFvwmModulesDestroyStyle
 + I DestroyStyle "FvwmButtons-Fvwm*Applets"
 + I DestroyStyle "FvwmButtons-Pager*"
 + I DestroyStyle "FvwmButtons-StartApps"

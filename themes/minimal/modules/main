@@ -27,8 +27,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Desktop
 + I DestroyModuleConfig FvwmButtons-Minimal: *
 + I DestroyModuleConfig FvwmPager-Single: *
-+ I FuncFvwmDestroyModulesThemeStyle
-+ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
++ I FuncFvwmModulesDestroyStyle
++ I DestroyFunc FuncFvwmModulesDestroyStyle
 
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules

@@ -46,8 +46,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmStartChosenTaskBar
 + I DestroyFunc FuncFvwmStartChosenTaskBarPos
 + I DestroyFunc FuncFvwmStartChosenPager
-+ I FuncFvwmDestroyModulesThemeStyle
-+ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
++ I FuncFvwmModulesDestroyStyle
++ I DestroyFunc FuncFvwmModulesDestroyStyle
 
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules

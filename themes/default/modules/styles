@@ -1,20 +1,20 @@
-Style "FvwmButtons" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
-	NoHandles, TitleAtBottom
-Style "FvwmIconBox" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
-	NoHandles, TitleAtTop
-Style "FvwmIconMan" NoTitle, NoHandles, Sticky, WindowListSkip, \
-	CirculateSkip, TitleAtBottom
-Style "FvwmPager-Desker" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
-	NoHandles, NoLenience, TitleAtTop
-Style "FvwmPager-Single" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
-	NoHandles
-Style "FvwmTaskBar" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
-	TitleAtTop
-Style "FvwmWinList" NoTitle, TitleAtBottom, NoHandles, Sticky, \
+Style "FvwmButtons" !Title, !Handles, Sticky, TitleAtBottom, \
+	WindowListSkip, CirculateSkip
+Style "FvwmIconBox" !Title, !Handles, Sticky, TitleAtTop, \
+	WindowListSkip, CirculateSkip
+Style "FvwmIconMan" !Title, !Handles, Sticky, TitleAtBottom, \
+	WindowListSkip, CirculateSkip
+Style "FvwmPager-Desker" !Title, !Handles, Sticky, TitleAtTop, \
+	WindowListSkip, CirculateSkip, !Lenience
+Style "FvwmPager-Single" !Title, !Handles, Sticky, TitleAtTop, \
+	WindowListSkip, CirculateSkip
+Style "FvwmTaskBar" !Title, Sticky, TitleAtTop, \
+	WindowListSkip, CirculateSkip
+Style "FvwmWinList" !Title, !Handles, Sticky, TitleAtBottom, \
 	WindowListSkip, CirculateSkip
 
-DestroyFunc FuncFvwmDestroyModulesThemeStyle
-AddToFunc   FuncFvwmDestroyModulesThemeStyle
+DestroyFunc FuncFvwmModulesDestroyStyle
+AddToFunc   FuncFvwmModulesDestroyStyle
 + I DestroyStyle "FvwmButtons"
 + I DestroyStyle "FvwmIconBox"
 + I DestroyStyle "FvwmIconMan"

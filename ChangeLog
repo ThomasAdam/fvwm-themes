@@ -6,6 +6,10 @@
 	* themes/redmondxp/modules/FvwmThemesPanelManager:
 	more clock formats
 
+	* themes/*/modules/main:
+	* themes/*/modules/styles:
+	use !Title syntax not NoTitle, some cleanup in Style/DestroyStyle
+
 2003-10-16  migo  <migo@homemail.com>
 
 	* AUTHORS:

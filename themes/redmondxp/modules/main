@@ -64,8 +64,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyModuleConfig FvwmPager-Single: *
 + I DestroyModuleConfig FvwmPager-Desker: *
 + I DestroyModuleConfig FvwmIconMan: *
-+ I FuncFvwmDestroyModulesThemeStyle
-+ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
++ I FuncFvwmModulesDestroyStyle
++ I DestroyFunc FuncFvwmModulesDestroyStyle
 + I DestroyFunc FuncFvwmStopPanel
 + I DestroyFunc FuncFvwmStartPanel
 # This is very bad, but we should restore modified colorsets

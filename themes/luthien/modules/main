@@ -45,8 +45,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc ToggleSlipperyXMessages
 + I DestroyFunc ToggleFvwmConsole
 + I DestroyFunc FuncFvwmStartBarXosview
-+ I FuncFvwmDestroyModulesThemeStyle
-+ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
++ I FuncFvwmModulesDestroyStyle
++ I DestroyFunc FuncFvwmModulesDestroyStyle
 
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules

@@ -33,6 +33,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I KillModule FvwmButtons FvwmButtons-CentralPanel
 + I KillModule FvwmPager FvwmPager-Single
 + I KillModule FvwmPager FvwmPager-Desker
++ I FuncFvwmModulesDestroyStyle
++ I DestroyFunc FuncFvwmModulesDestroyStyle
 
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules

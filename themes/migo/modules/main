@@ -41,20 +41,24 @@ DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmStopMyPager
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Compact
-+ I DestroyModuleConfig FvwmButtons-Compact: *
-+ I DestroyModuleConfig FvwmButtons-Pager: *
-+ I DestroyModuleConfig FvwmPager-Single: *
-+ I DestroyModuleConfig FvwmPager-Desker: *
-+ I DestroyFunc FuncFvwmStartMyPager
-+ I DestroyFunc FuncFvwmStopMyPager
-+ I DestroyFunc FuncFvwmSwitchBarIconSet
-+ I DestroyMenu MenuFvwmBarIconSet
 + I FuncFvwmStopModule FvwmIconBox
 + I FuncFvwmStopModule FvwmIconMan
 + I FuncFvwmStopModule FvwmTaskBar
 + I FuncFvwmStopModule FvwmWinList
-+ I FuncFvwmDestroyModulesThemeStyle
-+ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
++ I DestroyModuleConfig FvwmButtons-Compact: *
++ I DestroyModuleConfig FvwmButtons-Pager: *
++ I DestroyModuleConfig FvwmPager-Single: *
++ I DestroyModuleConfig FvwmPager-Desker: *
++ I DestroyModuleConfig FvwmIconBox: *
++ I DestroyModuleConfig FvwmIconMan: *
++ I DestroyModuleConfig FvwmTaskBar: *
++ I DestroyModuleConfig FvwmWinList: *
++ I DestroyFunc FuncFvwmStartMyPager
++ I DestroyFunc FuncFvwmStopMyPager
++ I DestroyFunc FuncFvwmSwitchBarIconSet
++ I DestroyMenu MenuFvwmBarIconSet
++ I FuncFvwmModulesDestroyStyle
++ I DestroyFunc FuncFvwmModulesDestroyStyle
 + I DestroyFunc FuncFvwmButtons-CompactApps
 + I DestroyFunc FuncFvwmButtons-CompactClock
 + I DestroyFunc FuncFvwmButtons-CompactLoad

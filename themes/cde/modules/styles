@@ -1,11 +1,15 @@
-Style "FvwmButton-CenterPanel" Sticky, NoTitle, NoHandles, TitleAtBottom, \
+Style "FvwmButton-CenterPanel" Sticky, !Title, !Handles, TitleAtBottom, \
 	BorderWidth 1, WindowListSkip, CirculateSkip
-
-Style "FvwmButtons-Panel" Sticky, NoTitle, NoHandles, TitleAtBottom, \
+Style "FvwmButtons-Panel" Sticky, !Title, !Handles, TitleAtBottom, \
 	BorderWidth 3, WindowListSkip, CirculateSkip, FvwmBorder, NeverFocus
-
-Style "FvwmPager-Single" Sticky, NoTitle, NoHandles, \
+Style "FvwmPager-Single" Sticky, !Title, !Handles, \
+	WindowListSkip, CirculateSkip,
+Style "FvwmPager-Desker" Sticky, !Title, !Handles, \
 	WindowListSkip, CirculateSkip,
 
-Style "FvwmPager-Desker" Sticky, NoTitle, NoHandles, \
-	WindowListSkip, CirculateSkip,
+DestroyFunc FuncFvwmModulesDestroyStyle
+AddToFunc   FuncFvwmModulesDestroyStyle
++ I DestroyStyle "FvwmButton-CenterPanel"
++ I DestroyStyle "FvwmButton-Panel"
++ I DestroyStyle "FvwmPager-Single"
++ I DestroyStyle "FvwmPager-Desker"

@@ -44,8 +44,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyModuleConfig FvwmIconMan-Single: *
 + I DestroyModuleConfig FvwmTaskBar: *
 + I DestroyModuleConfig FvwmWinList: *
-+ I FuncFvwmDestroyModulesThemeStyle
-+ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
++ I FuncFvwmModulesDestroyStyle
++ I DestroyFunc FuncFvwmModulesDestroyStyle
 
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules
