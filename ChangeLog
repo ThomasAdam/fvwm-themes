@@ -1,5 +1,10 @@
 2002-12-19  migo  <migo@homemail.com>
 
+	* themes/redmondxp/images/module/panel-start.png:
+	replaced floating windows in Start button
+
+2002-12-19  migo  <migo@homemail.com>
+
 	* configure.in:
 	set 0.7.0 version after tagging version-0_6_2 and creating branch-0_6
 
