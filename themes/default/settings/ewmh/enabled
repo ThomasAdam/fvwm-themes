@@ -10,9 +10,9 @@ DestroyModuleConfig FvwmNetHints*
 *FvwmNetHints: DesktopNetStyle Focus
 *FvwmNetHints: ToolBarNetStyle Focus
 *FvwmNetHints: MenuNetStyle Focus
-# system fnh star-stop files
-*FvwmNetHints: SystemStartStopFiles $./ft-fnh
-*FvwmNetHints: SystemDesktopStartStopFiles $./ft-fnh-desktop
+# system fnh star-stop files ($. fail to work ...)
+*FvwmNetHints: SystemStartStopFiles themes/default/settings/ewmh/ft-fnh
+*FvwmNetHints: SystemDesktopStartStopFiles themes/default/settings/ewmh/ft-fnh-desktop
 
 *FvwmPager-Desker: UseListSkip
 *FvwmPager-Single: UseListSkip

@@ -1,4 +1,4 @@
-#!@PERL@ -w
+#!@PERL@ -w 
 # for speed testing add: -d:DProf and use dprofpp
 
 # Filter this script to pod2man to get a man page:
@@ -2149,12 +2149,12 @@ AddToFunc   FuncFvwmThemesConfigAndUpdate
 
 DestroyFunc FuncFvwmThemesCenterUpdate
 AddToFunc   FuncFvwmThemesCenterUpdate
-#+ I FvwmScript FvwmScript-NoteMessage "Theme switching"
-#+ I Wait FvwmScript-NoteMessage
++ I FvwmScript FvwmScript-NoteMessage "Theme switching"
++ I Wait FvwmScript-NoteMessage
 #+ I FuncFvwmResetInitFunctions
 + I Read @$rcFile3@
 + I FuncFvwmStartAllHooks
-#+ I All (FvwmScript-NoteMessage) Delete
++ I All (FvwmScript-NoteMessage) Delete
 
 DestroyFunc FuncFvwmThemesReset
 AddToFunc   FuncFvwmThemesReset
@@ -2667,212 +2667,129 @@ sub comLoop {
 		chomp($command);
 		my $return = "";
 		# -----------------------------------------
-		if ($command =~ /^themes-list/) {
-			my $theme;
-			foreach $theme (@$allThemes) {
-				my ($components, $groups) = getThemeComponentsAndGroups($theme);
-				my $used = 0;
-				my $set = 0;
-				my $useFlag = "";
-				foreach (@$components) {
-					my $used0 = 0;
-					$used0 = 1 if isArrayElement(\@currentComponents, $_) &&
-						defined $self->{'cc'}->{$_} &&
-						($self->getComponentCfg($_)->{$themeKey} || "") eq $theme;
-					$used ||= $used0;
-				}
-				my $key;
-				foreach $key (keys %componentToLoad) {
-					$set = 1 if $componentToLoad{$key} eq $theme;
-				}
-				my $l = $maxLength - length($theme);
-				$l = 1 if $l < 1;
-				$useFlag .= " " x $l . "(" if $used || $set;
-				$useFlag .= "used" if $used;
-				$useFlag .= "/" if $used && $set;
-				$useFlag .= "set" if $set;
-				$useFlag .= ")" if $used || $set;
-				$return .= "$theme$useFlag|";
-			}
-			$return =~ s/\|$//;
-		}
-		# -----------------------------------------
-		elsif ($command =~ /^theme-components\s+(\d+)$/) {
+		if ($command =~ /^theme-components\s+(\d+)$/) {
 			my $index = $1 - 1;
-			my $theme = $$allThemes[$index];
-			my ($components, $groups) = getThemeComponentsAndGroups($theme);
-			foreach (@$components) {
-				next if $_ eq "settings";
-				my $useFlag = "";
-				my $set = 0;
-				my $unset = 0;
-				my $used = isArrayElement(\@currentComponents, $_) &&
-					defined $self->{'cc'}->{$_} &&
-					($self->getComponentCfg($_)->{$themeKey} || "") eq $theme;
-				$set = 1 if defined $componentToLoad{$_} &&
-					$componentToLoad{$_} eq $theme;
-				$unset = 1 if defined $componentToLoad{$_} && !$set;
-				my $l = $maxLength - length($_);
-				$l = 1 if $l < 1;
-				$useFlag .= " " x $l . "(" if $used || $set;
-				$useFlag .= "used" if $used && !$unset;
-				$useFlag .= "unset" if $used && $unset;
-				$useFlag .= "/" if $used && $set;
-				$useFlag .= "set" if $set;
-				$useFlag .= ")" if $used || $set;
-				$return .= "$_$useFlag|";
-			}
-			$return =~ s/\|$//;
-			$return .= "\n$theme\n" . getThemeDir($theme);
+			my ($r1,$r2,$r3) =
+			  $self->getScriptComponentInfo($allThemes, $index,
+													  \@currentComponents,
+													  \%componentToLoad,
+													  $maxLength);
+			my $l = length($r1) + 4;
+			$return = "0" x (4-length($l)) . "$l" . $r1;
+			$l = $l + length($r2) + 4;
+			$return .= "0" x (4-length($l)) . "$l" . $r2;
+			$l = $l + length($r3) + 4;
+			$return .= "0" x (4-length($l)) . "$l" . $r3;
 		}
 		# -----------------------------------------
-		elsif ($command =~ /^current-config$/) {
-			foreach (@currentComponents) {
-				next if $_ eq "settings";
-				my $dd;
-				my $usedString;
-				my $set = 0;
-				my $theme;
-				my $cc;
-				if (defined $self->{'cc'}->{$_}) { 
-					$cc = $self->getComponentCfg($_);
-					$theme = $cc->{'theme'};
-					$usedString = ($cc->{'locked'}) ? "Locked: " : "Used: ";
-					$usedString .= "$theme";
-				} else {
-					$usedString = "Not Used";
-					$set = -1;
-				}
-				my $stateString = "";
-				my $setOrLock = "Set: ";
-				if (defined $componentToLoad{$_}) {
-					$set = 1;
-					$theme = $componentToLoad{$_};
-					$setOrLock = "Lock: " 
-						if (defined $componentToLock{$_} && 
-							$componentToLock{$_} == 1);
-				} elsif (defined $componentToDrop{$_}) {
-					$set = -1;
-				} elsif (defined $componentToLock{$_}) {
-					$set = 2;
-					$setOrLock = ($componentToLock{"$_"}) ? "Lock it" : "Unlock it";
-					$setOrLock = "" if ($componentToLock{"$_"} == $cc->{'locked'})
-				}
-				$usedString = "(" . $usedString . ")" if $set == 1;
-				my $l = $maxLength - length($usedString);
-				$l = 1 if $l < 1;
-				$stateString = " " x $l . $setOrLock . "$componentToLoad{$_}" 
-					if $set == 1;
-				$stateString = " " x $l . "Drop it!" 
-					if $set == -1;
-				$stateString = " " x $l . $setOrLock
-					if $set == 2;
-				my $l1 = $maxLength - 3 - length($stateString) + $l;
-				$l1 = 1 if $l1 < 1;
-				if ($set == 1) {
-					my $themeCfg = new Fvwm::ThemeCfg($componentToLoad{$_});
-					$dd = $themeCfg->getComponentCfg($_);
-					$theme = $dd->{'theme'};
-				} elsif ($set == 0 || $set == 2) {
-					$dd = $self->getComponentCfg($_);
-				}
-				my $contains = $dd->{'contains'};
-				my $options  = $dd->{'option'};
-				my $variants = $dd->{'variant'};
-				my $propertiesStr = "";
-				my $t = "";
-				if (ref($options) eq 'ARRAY') {
-					$propertiesStr = " " x $l1 ."Opt";
-					my $opt;
-					foreach $opt (@$options) {
-						my $optFile = $opt->{'file'};
-						$t = "(S)" if defined $optionToSet{"$theme/$_:$optFile"};
-					}
-				}
-				if (ref($variants) eq 'ARRAY') {
-					$propertiesStr = " " x $l1 . ($propertiesStr? "V/O": "Var");
-					my $v;
-					foreach $v (@$variants) {
-						$t = "(S)" if defined $variantToSet{"$theme/$_"};
-					}
-				}
-				elsif (ref($contains) eq 'ARRAY') {
-					$propertiesStr = " " x $l1 ."Sub";
-					my $c;
-					# dropped ?
-					foreach $c (@$contains) {
-						$t = "(S)" if defined $variantToSet{"$theme/$_/$c"};
-					}
-				}
-				$propertiesStr .= $t;
- 				$l = $maxLength - length($_);
-				$l = 1 if $l < 1;
-				$return .= "$_" . " " x $l . $usedString . $stateString .
-					$propertiesStr . "|";
-			}
-			$return =~ s/\|$//;
+		elsif ($command =~ /^current-config\s+(\d+)$/) {
+			my $index = $1;
+			my $l;
+			my $ccReturn = $self->getScriptCurrentConfig(\@currentComponents,
+																		\%componentToLoad,
+																		\%componentToLock,
+																		\%componentToDrop,
+																		\%optionToSet,
+																		\%variantToSet,
+																		$maxLength);
+			#----- current-comp-name
+			my ($ccnReturn1,$ccnReturn2,$ccnReturn3) =
+			  $self->getScriptCurrentCompName($index,\@currentComponents,
+														 \%componentToLoad,
+														 \%componentToLock,
+														 \%componentToDrop,
+														 \%optionToSet,
+														 \%variantToSet);
+
+			#------- build the answer:
+			$l = length($ccReturn) + 4;
+			$return = "0" x (4-length($l)) . "$l" . $ccReturn;
+			$l = $l + length($ccnReturn1) + 4;
+			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn1;
+			$l = $l + length($ccnReturn2) + 4;
+			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn2;
+			$l = $l + length($ccnReturn3) + 4;
+			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn3;
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^current-comp-name\s+(\d+)$/) {
-			my $dd = [];
 			my $index = $1;
-			my $i = 1;
-			my ($comp,$theme,$hasProperties,$drop,$set,$lock) = 
-				("","","0","0","0","0");
-			foreach (@currentComponents) {
-				next if $_ eq "settings";
-				if ($i == $index) {
-					$comp = "$_";
-					if (defined $componentToLoad{$_}) {
-						$set = 1;
-						$theme = "$componentToLoad{$_}";
-					} else {
-						my $cc = $self->getComponentCfg($_);
-						$theme = "$cc->{'theme'}";
-						$lock = "$cc->{'locked'}";
-					}
-					if (defined $componentToLock{$_}) {
-						$lock = $componentToLock{$_};
-					}
-				}
-				$i++;
-			}
-			if ($set) {
-				my $themeCfg = new Fvwm::ThemeCfg($theme);
-				$dd = $themeCfg->getComponentCfg($comp);
-			} else {
-				$dd = $self->getComponentCfg($comp);
-			}
-			my $contains = $dd->{'contains'};
-			my $options  = $dd->{'option'};
-			my $variants = $dd->{'variant'};
-			if (ref($options) eq 'ARRAY') {
-				$hasProperties = 1;
-				my $opt;
-				foreach $opt (@$options) {
-					my $optFile = $opt->{'file'};
-					$set = 1 if defined $optionToSet{"$theme/$comp:$optFile"};
-				}
-			}
-			if (ref($variants) eq 'ARRAY') {
-				$hasProperties = 1;
-				my $c;
-				foreach $c (@$variants) {
-					$set = 1 if defined $variantToSet{"$theme/$comp"};
-				}
-			}
-			elsif (ref($contains) eq 'ARRAY') {
-				$hasProperties = 1;
-				my $c;
-				# dropped ?
-				foreach $c (@$contains) {
-					$set = 1 if defined $variantToSet{"$theme/$comp/$c"};
-				}
-			}
-			### fixe me: How to know if the component is drop-able??
-			$drop = 1;
-			$return = "$comp\n$theme\n$hasProperties$set$drop$lock";
+			my ($ccnReturn1,$ccnReturn2,$ccnReturn3) =
+			  $self->getScriptCurrentCompName($index,\@currentComponents,
+														 \%componentToLoad,
+														 \%componentToLock,
+														 \%componentToDrop,
+														 \%optionToSet,
+														 \%variantToSet);
+
+			my $l = length($ccnReturn1) + 4;
+			$return = "0" x (4-length($l)) . "$l" . $ccnReturn1;
+			$l = $l + length($ccnReturn2) + 4;
+			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn2;
+			$l = $l + length($ccnReturn3) + 4;
+			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn3;
 		}
+		
+		#-------------------------------------------
+		elsif ($command =~ /^all-ts-lists\s+(\d+)\s+(\d+)$/)
+		{
+			my $tcIndex =  $1 - 1;
+			my $ccnIndex = $2;
+			my $l;
+			my $theme;
+
+			#--- themes-list
+			my $tlReturn = $self->getScriptThemeList($allThemes,
+																  \@currentComponents,
+																  \%componentToLoad,
+																  $maxLength);
+				
+			#---- theme-components
+			my ($tcReturn1,$tcReturn2,$tcReturn3) =
+			  $self->getScriptComponentInfo($allThemes, $tcIndex,
+													  \@currentComponents,
+													  \%componentToLoad,
+													  $maxLength);
+
+			#---- current-config
+			my $ccReturn = $self->getScriptCurrentConfig(\@currentComponents,
+																		\%componentToLoad,
+																		\%componentToLock,
+																		\%componentToDrop,
+																		\%optionToSet,
+																		\%variantToSet,
+																		$maxLength);
+
+			#----- current-comp-name
+			my ($ccnReturn1,$ccnReturn2,$ccnReturn3) =
+			  $self->getScriptCurrentCompName($ccnIndex,\@currentComponents,
+														 \%componentToLoad,
+														 \%componentToLock,
+														 \%componentToDrop,
+														 \%optionToSet,
+														 \%variantToSet);
+
+			#------- build the answer:
+			$l = length($tlReturn) + 4;
+			$return = "0" x (4-length($l)) . "$l" . $tlReturn;
+			$l = $l + length($tcReturn1) + 4;
+			$return .= "0" x (4-length($l)) . "$l" . $tcReturn1;
+			# not needed here ...
+			#$l = $l + length($tcReturn2) + 4;
+			#$return .= "0" x (4-length($l)) . "$l" . $tcReturn2;
+			#$l = $l + length($tcReturn2) + 4;
+			#$return .= "0" x (4-length($l)) . "$l" . $tcReturn3;
+			$l = $l + length($ccReturn) + 4;
+			$return .= "0" x (4-length($l)) . "$l" . $ccReturn;
+			$l = $l + length($ccnReturn1) + 4;
+			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn1;
+			$l = $l + length($ccnReturn2) + 4;
+			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn2;
+			$l = $l + length($ccnReturn3) + 4;
+			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn3;
+			#print STDERR $return . "\n";
+		}
+
 		# -------------------------------------------------
 		elsif ($command =~ /^restore\s+(.+)$/) {
 			my $comp = $1;
@@ -3041,19 +2958,38 @@ sub comLoop {
 				$return = "FuncFvwmThemesCenterUpdate";
 			}
 			$self->setNewComponentValues(\%optLoad, \%variantLoad, \%compLock);
-			#fs 5
 			$self->generateThemesRc();
 			if ($self->isModified()) {
 				$self->save() if $self->isModified();
 			}
 			%componentToLoad = ();
 			%componentToDrop = ();
-	  		$tmp = $self->{$componentKey};
-			@currentComponents = sort @$tmp;
 			foreach (@deleteOpt) { delete $optionToSet{$_} }
 			foreach (@deleteVariant) { delete $variantToSet{$_} }
 			foreach (@deleteLock) { delete $componentToLock{$_} }
-			$settingsConfig = $self->getAllSubComponents("default", "settings");
+			# reset
+	  		#$tmp = $self->{$componentKey};
+			#@currentComponents = sort @$tmp;
+			#$settingsConfig = $self->getAllSubComponents("default", "settings");
+			# rest the used flags:
+			foreach (@currentComponents) {
+				if (defined $self->{'cc'}->{$_}) {
+					my $cc = $self->getComponentCfg($_);
+					$cc->{'used'} = 1 if defined $cc->{used} && $cc->{used} > 0;
+					$cc->{'used'} = 0 if defined $cc->{used} && $cc->{used} < 0;
+					$self->setComponentCfg($_, $cc);
+				}
+			}
+			my $config;
+			foreach $config (@$settingsConfig) {
+				my $comp = "$config->{comp}";
+				if (defined $self->{'cc'}->{$comp}) {
+					my $cc = $self->getComponentCfg($comp);
+					$cc->{'used'} = 1 if defined $cc->{used} && $cc->{used} > 1;
+					$cc->{'used'} = 0 if defined $cc->{used} && $cc->{used} < 0;
+					$self->setComponentCfg($comp, $cc);
+				}
+			}
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^options-variants\s+(.+)\s+(.+)\s+(\d+)$/) {
@@ -3585,8 +3521,271 @@ sub secToUptime {
 	$ret .= "$hours h $min min";
 	return $ret;
 }
+
 #----------------------------------------------------------------------------
 # useful functions for the com loop
+
+sub getScriptThemeList($$$$$) {
+	my $self = shift;
+	my $allThemes = shift;
+	my $currentComponents = shift;
+	my $componentToLoad = shift;
+	my $maxLength = shift;
+	my $l;
+	my $return = "";
+	my $theme;
+
+	foreach $theme (@$allThemes) {
+		my ($components, $groups) = getThemeComponentsAndGroups($theme);
+		my $used = 0;
+		my $set = 0;
+		my $useFlag = "";
+		foreach (@$components) {
+			my $used0 = 0;
+			$used0 = 1 if isArrayElement($currentComponents, $_) &&
+			  defined $self->{'cc'}->{$_} &&
+				 ($self->getComponentCfg($_)->{$themeKey} || "") eq $theme;
+			$used ||= $used0;
+		}
+		my $key;
+		foreach $key (keys %$componentToLoad) {
+			$set = 1 if $componentToLoad->{$key} eq $theme;
+		}
+		$l = $maxLength - length($theme);
+		$l = 1 if $l < 1;
+		$useFlag .= " " x $l . "(" if $used || $set;
+		$useFlag .= "used" if $used;
+		$useFlag .= "/" if $used && $set;
+		$useFlag .= "set" if $set;
+		$useFlag .= ")" if $used || $set;
+		$return .= "$theme$useFlag|";
+	}
+	$return =~ s/\|$//;
+	return $return;
+}
+
+sub getScriptComponentInfo($$$$$) {
+	my $self = shift;
+	my $allThemes = shift;
+	my $index = shift;
+	my $currentComponents = shift;
+	my $componentToLoad = shift;
+	my $maxLength = shift;
+	my $l;
+	my ($r1,$r2,$r3) = ("","","");
+	my $theme;
+			
+	if ($index < 0 || !defined $$allThemes[$index]) {
+		return ("None","None","None");
+	}
+		
+	$theme = $$allThemes[$index];
+	my ($components, $groups) = getThemeComponentsAndGroups($theme);
+	foreach (@$components) {
+		next if $_ eq "settings";
+		my $useFlag = "";
+		my $set = 0;
+		my $unset = 0;
+		my $used = isArrayElement($currentComponents, $_) &&
+		  defined $self->{'cc'}->{$_} &&
+			 ($self->getComponentCfg($_)->{$themeKey} || "") eq $theme;
+		$set = 1 if defined $componentToLoad->{$_} &&
+		  $componentToLoad->{$_} eq $theme;
+		$unset = 1 if defined $componentToLoad->{$_} && !$set;
+		$l = $maxLength - length($_);
+		$l = 1 if $l < 1;
+		$useFlag .= " " x $l . "(" if $used || $set;
+		$useFlag .= "used" if $used && !$unset;
+		$useFlag .= "unset" if $used && $unset;
+		$useFlag .= "/" if $used && $set;
+		$useFlag .= "set" if $set;
+		$useFlag .= ")" if $used || $set;
+		$r1 .= "$_$useFlag|";
+	}
+	$r1 =~ s/\|$//;
+	$r2 = $theme;
+	$r3 = getThemeDir($theme);
+	return ($r1,$r2,$r3);
+}
+
+sub getScriptCurrentConfig($$$$$$$$) {
+	my $self = shift;
+	my $currentComponents = shift;
+	my $componentToLoad = shift;
+	my $componentToLock = shift;
+	my $componentToDrop = shift;
+	my $optionToSet = shift;
+	my $variantToSet = shift;
+	my $maxLength = shift;
+
+	my $l;
+	my $return = "";
+
+	foreach (@$currentComponents) {
+		next if $_ eq "settings";
+		my $dd;
+		my $usedString;
+		my $set = 0;
+		my $theme;
+		my $cc;
+		if (defined $self->{'cc'}->{$_}) { 
+			$cc = $self->getComponentCfg($_);
+			$theme = $cc->{'theme'};
+			$usedString = ($cc->{'locked'}) ? "Locked: " : "Used: ";
+			$usedString .= "$theme";
+		} else {
+			$usedString = "Not Used";
+			$set = -1;
+		}
+		my $stateString = "";
+		my $setOrLock = "Set: ";
+		if (defined $componentToLoad->{$_}) {
+			$set = 1;
+			$theme = $componentToLoad->{$_};
+			$setOrLock = "Lock: " 
+			  if (defined $componentToLock->{$_} && 
+					$componentToLock->{$_} == 1);
+		} elsif (defined $componentToDrop->{$_}) {
+			$set = -1;
+		} elsif (defined $componentToLock->{$_}) {
+			$set = 2;
+			$setOrLock = ($componentToLock->{"$_"}) ? "Lock it" : "Unlock it";
+			$setOrLock = "" if ($componentToLock->{"$_"} == $cc->{'locked'})
+		}
+		$usedString = "(" . $usedString . ")" if $set == 1;
+		$l = $maxLength - length($usedString);
+		$l = 1 if $l < 1;
+		$stateString = " " x $l . $setOrLock . "$componentToLoad->{$_}" 
+		  if $set == 1;
+		$stateString = " " x $l . "Drop it!" 
+		  if $set == -1;
+		$stateString = " " x $l . $setOrLock
+		  if $set == 2;
+		my $l1 = $maxLength - 3 - length($stateString) + $l;
+		$l1 = 1 if $l1 < 1;
+		if ($set == 1) {
+			my $themeCfg = new Fvwm::ThemeCfg($componentToLoad->{$_});
+			$dd = $themeCfg->getComponentCfg($_);
+			$theme = $dd->{'theme'};
+		} elsif ($set == 0 || $set == 2) {
+			$dd = $self->getComponentCfg($_);
+		}
+		my $contains = $dd->{'contains'};
+		my $options  = $dd->{'option'};
+		my $variants = $dd->{'variant'};
+		my $propertiesStr = "";
+		my $t = "";
+		if (ref($options) eq 'ARRAY') {
+			$propertiesStr = " " x $l1 ."Opt";
+			my $opt;
+			foreach $opt (@$options) {
+				my $optFile = $opt->{'file'};
+				$t = "(S)" if defined $optionToSet->{"$theme/$_:$optFile"};
+			}
+		}
+		if (ref($variants) eq 'ARRAY') {
+			$propertiesStr = " " x $l1 . ($propertiesStr? "V/O": "Var");
+			my $v;
+			foreach $v (@$variants) {
+						$t = "(S)" if defined $variantToSet->{"$theme/$_"};
+					}
+		}
+		elsif (ref($contains) eq 'ARRAY') {
+			$propertiesStr = " " x $l1 ."Sub";
+			my $c;
+			# dropped ?
+			foreach $c (@$contains) {
+				$t = "(S)" if defined $variantToSet->{"$theme/$_/$c"};
+			}
+		}
+		$propertiesStr .= $t;
+		$l = $maxLength - length($_);
+		$l = 1 if $l < 1;
+		$return .= "$_" . " " x $l . $usedString . $stateString .
+		  $propertiesStr . "|";
+	}
+	$return =~ s/\|$//;
+	return $return;
+}
+
+sub getScriptCurrentCompName($$$$$$$$) {
+	my $self = shift;
+	my $index = shift;
+	my $currentComponents = shift;
+	my $componentToLoad = shift;
+	my $componentToLock = shift;
+	my $componentToDrop = shift;
+	my $optionToSet = shift;
+	my $variantToSet = shift;
+
+	my $l;
+	my ($r1,$r2,$r3) = "";
+
+	if ($index == 0) {
+		return ("None","None","None");
+	}
+
+	my $dd = [];
+	my $i = 1;
+	my ($comp,$theme,$hasProperties,$drop,$set,$lock) = 
+	  ("","","0","0","0","0");
+	foreach (@$currentComponents) {
+		next if $_ eq "settings";
+		if ($i == $index) {
+			$comp = "$_";
+			if (defined $componentToLoad->{$_}) {
+				$set = 1;
+				$theme = "$componentToLoad->{$_}";
+			} else {
+				my $cc = $self->getComponentCfg($_);
+				$theme = "$cc->{'theme'}";
+				$lock = "$cc->{'locked'}";
+			}
+			if (defined $componentToLock->{$_}) {
+				$lock = $componentToLock->{$_};
+			}
+		}
+		$i++;
+	}
+	if ($set) {
+		my $themeCfg = new Fvwm::ThemeCfg($theme);
+		$dd = $themeCfg->getComponentCfg($comp);
+	} else {
+		$dd = $self->getComponentCfg($comp);
+	}
+	my $contains = $dd->{'contains'};
+	my $options  = $dd->{'option'};
+	my $variants = $dd->{'variant'};
+	if (ref($options) eq 'ARRAY') {
+		$hasProperties = 1;
+		my $opt;
+		foreach $opt (@$options) {
+			my $optFile = $opt->{'file'};
+			$set = 1 if defined $optionToSet->{"$theme/$comp:$optFile"};
+		}
+	}
+	if (ref($variants) eq 'ARRAY') {
+		$hasProperties = 1;
+		my $c;
+		foreach $c (@$variants) {
+			$set = 1 if defined $variantToSet->{"$theme/$comp"};
+		}
+	}
+	elsif (ref($contains) eq 'ARRAY') {
+		$hasProperties = 1;
+		my $c;
+		# dropped ?
+		foreach $c (@$contains) {
+			$set = 1 if defined $variantToSet->{"$theme/$comp/$c"};
+		}
+	}
+	### fixe me: How to know if the component is drop-able??
+	$drop = 1;
+	$r1 = $comp;
+	$r2 = $theme;
+	$r3 = $hasProperties . $set . $drop . $lock;
+	return ($r1,$r2,$r3);
+}
 
 sub variantsOptionsScriptList {
 	my $variants = shift;

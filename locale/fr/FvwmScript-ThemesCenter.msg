@@ -79,7 +79,7 @@ NoChanges	{Aucune composante n'est sélectionnées}
 AThemeConf	{Chargement de la nouvelle configurartion}
 ANewSession	{Chargement de la nouvelle session}
 RefreshConf	{Rafréchisement de la configuration}
-UpdateConf	{Mise à jour de la configuration
+UpdateConf	{Mise à jour de la configuration}
 Apply		{Appliquer}
 Refresh		{Rafréchire}
 Update		{Mise à jour}

@@ -298,14 +298,20 @@ Begin
     Set $SendMsg = {fvwm-themes-com --name config-}$pid{ --message=}
     Set $GetLine = {fvwm-themes-com --name config-}$pid{ --get-buffer --line=}
 
-    # Get the themes list
-    Set $cmd = $SendMsgAndGet{"themes-list"}
-    Set $ThemesList = (GetOutput $cmd 1 -1)
+    # Get the themes list and the current config
+    Set $cmd = $SendMsgAndGet{"all-ts-lists }0{ }0{"}
+    Set $MSG = (GetOutput $cmd 1 -1)
+    Set $i = 1
+    Set $j = (StrCopy $MSG $i (Add $i 3))
+    Set $ThemesList = (StrCopy $MSG 5 $j)
     ChangeTitle 6 $ThemesList
-
-    # Get the current config
-    Set $cmd = $SendMsgAndGet{"current-config"}
-    Set $CurrentConfig = (GetOutput $cmd 1 -1)
+    # 3 next line semi-dummy ...
+    Set $i = (Add $j 1)
+    Set $j = (StrCopy $MSG $i (Add $i 4))
+    #Set $tmp = (StrCopy $MSG (Add $i 4) $j)
+    Set $i = (Add $j 1)
+    Set $j = (StrCopy $MSG $i (Add $i 4))
+    Set $CurrentConfig = (StrCopy $MSG (Add $i 4) $j)
     ChangeTitle 17 $CurrentConfig
 
     # Get the settings config
@@ -313,7 +319,6 @@ Begin
     Set $SettingsConfig = (GetOutput $cmd 1 -1)
     ChangeTitle 22 $SettingsConfig
 
-    ChangeTitle 17 $CurrentConfig
     # Get the session info
     Set $cmd = $SendMsgAndGet{"session-info" --line=1}
     Set $CurrentSession = (GetOutput $cmd 1 -1)
@@ -561,6 +566,60 @@ Begin
     End
 
 #-----------------------------------------------------------------------------
+# TS & GS & SM
+
+# -----------------------------------------------
+# Apply for TS & GS
+
+    If $ApplyTSCmdOpts == 1 Then
+    Begin
+	Set $ApplyTSCmdOpts = 0
+	Set $cmd = $SendMsgAndGet{"apply-ts-cmd-opts"}
+	Set $SwitchCmd = (GetOutput $cmd 1 -1)
+	If $SwitchCmd <> {} Then
+	Begin
+	    # fs
+	    Do $SwitchCmd
+	    Set $UpdateAllTSLists = 1
+	    Set $UpdateSettingsList = 1
+	    Set $UpdateSettingsVariants = 1
+	    If $PropertyEditorOne <> {} Then
+		SendToScript $PropertyEditorOne {update}
+	    If $PropertyEditorTwo <> {} Then
+		SendToScript $PropertyEditorTwo {update}
+	    If $PropertyEditorLast <> {} Then
+		SendToScript $PropertyEditorLast {update}
+	    Set $NullMessage = 1
+	End
+	Else
+	Begin
+	    ChangeTitle 95 $l_NoChanges
+	End
+    End
+
+# -----------------------------------------------
+# refresh or update for TS & GS & SM 
+    If $RefreshORUpdate == 1 Then
+    Begin
+	Set $RefreshORUpdate = 0
+	Set $cmd = $SendMsgAndGet{"update }$RefreshUpdateValue{"}
+	Set $dummy = (GetOutput $cmd 1 -1)
+	If $RefreshUpdateValue == 1 Then
+	    Do {FuncFvwmThemesFresh}
+	Set $UpdateSMLists = 1
+	Set $UpdateAllTSLists = 1
+	Set $UpdateSettingsList = 1
+	Set $UpdateSettingsVariants = 1
+	If $PropertyEditorOne <> {} Then
+	    SendToScript $PropertyEditorOne {update}
+	If $PropertyEditorTwo <> {} Then
+	    SendToScript $PropertyEditorTwo {update}
+	If $PropertyEditorLast <> {} Then
+	    SendToScript $PropertyEditorLast {update}
+	Set $NullMessage = 1
+    End
+	
+#-----------------------------------------------------------------------------
 # TS
 
 # -----------------------------------------------
@@ -639,34 +698,73 @@ Begin
 
 #------------------------------------------------
 # update Theme Selectors List
-	
-    If $UpdateTSLists == {1} Then
-    Begin
-	Set $UpdateTSLists = 0
-	Set $cmd = $SendMsgAndGet{"themes-list"}
-	Set $ThemesList = (GetOutput $cmd 1 -1)
-	ChangeTitle 6 $ThemesList
 
+    If $UpdateAllTSLists == {1} Then
+    Begin
+	Set $UpdateAllTSLists = 0
+	Set $cmd = $SendMsgAndGet{"all-ts-lists }$ThemeIndex{ }$CSCompIndex{"}
+	Set $MSG = (GetOutput $cmd 1 -1)
+	Set $i = 1
+	Set $j = (StrCopy $MSG $i (Add $i 3))
+	Set $ThemesList = (StrCopy $MSG 5 $j)
+	ChangeTitle 6 $ThemesList
+	Set $i = (Add $j 1)
+	Set $j = (StrCopy $MSG $i (Add $i 4))
+	Set $tmp = (StrCopy $MSG (Add $i 4) $j)
 	If $ThemeIndex <> 0 Then
 	Begin
-	    Set $cmd = $SendMsgAndGet{"theme-components }$ThemeIndex{"}
-	    Set $ThemeComponents = (GetOutput $cmd 1 -1)
+	    Set $ThemeComponents = $tmp
 	    ChangeTitle 12 $ThemeComponents
 	End
-
-	Set $UpdateCurrentConfig = 1
+	Set $i = (Add $j 1)
+	Set $j = (StrCopy $MSG $i (Add $i 4))
+	Set $CurrentConfig = (StrCopy $MSG (Add $i 4) $j)
+	ChangeTitle 17 $CurrentConfig
+	If $CSCompIndex <> 0 Then
+	Begin
+	    Set $i = (Add $j 1)
+	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $CSCompName = (StrCopy $MSG (Add $i 4) $j)
+	    Set $i = (Add $j 1)
+	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $CSThemeName = (StrCopy $MSG (Add $i 4) $j)
+	    Set $i = (Add $j 1)
+	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $tmp = (StrCopy $MSG (Add $i 4) $j)
+	    Set $CSCompHasOpt = (StrCopy $tmp 1 1)
+	    Set $CSCompIsSet = (StrCopy $tmp 2 2)
+	    Set $CSCompCanBeDropped = (StrCopy $tmp 3 3)
+	    Set $CSCompIsLocked = (StrCopy $tmp 4 4)
+	    Set $UpdateCSButtons = 1
+	End
     End
 
     If $UpdateCurrentConfig == 1 Then
     Begin
 	Set $UpdateCurrentConfig = 0
-	Set $cmd = $SendMsgAndGet{"current-config"}
-	Set $CurrentConfig = (GetOutput $cmd 1 -1)
+	Set $cmd = $SendMsgAndGet{"current-config }$CSCompIndex{"}
+	Set $MSG = (GetOutput $cmd 1 -1)
+	Set $i = 1
+	Set $j = (StrCopy $MSG $i (Add $i 3))
+	Set $CurrentConfig = (StrCopy $MSG 5 $j)
 	ChangeTitle 17 $CurrentConfig
-
-	# this is needed only if $CSCompIndex item of the current config
-	# list has been modified ....
-	Set $UpdateCurrentConfigLine = 1
+		If $CSCompIndex <> 0 Then
+	Begin
+	    Set $i = (Add $j 1)
+	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $CSCompName = (StrCopy $MSG (Add $i 4) $j)
+	    Set $i = (Add $j 1)
+	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $CSThemeName = (StrCopy $MSG (Add $i 4) $j)
+	    Set $i = (Add $j 1)
+	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $tmp = (StrCopy $MSG (Add $i 4) $j)
+	    Set $CSCompHasOpt = (StrCopy $tmp 1 1)
+	    Set $CSCompIsSet = (StrCopy $tmp 2 2)
+	    Set $CSCompCanBeDropped = (StrCopy $tmp 3 3)
+	    Set $CSCompIsLocked = (StrCopy $tmp 4 4)
+	    Set $UpdateCSButtons = 1
+	End
     End
 
     If $UpdateCurrentConfigLine == 1 Then
@@ -674,12 +772,17 @@ Begin
 	Set $UpdateCurrentConfigLine = 0
 	If $CSCompIndex <> 0 Then
 	Begin
-	    Set $cmd = $SendMsgAndGet{"current-comp-name }$CSCompIndex{" --line 1}
-	    Set $CSCompName = (GetOutput $cmd 1 -1)
-	    Set $cmd = $GetLine{2}
-	    Set $CSThemeName = (GetOutput $cmd 1 -1)
-	    Set $cmd = $GetLine{3 --clear-buffer}
-	    Set $tmp = (GetOutput $cmd 1 -1)
+	    Set $cmd = $SendMsgAndGet{"current-comp-name }$CSCompIndex{"}
+	    Set $MSG = (GetOutput $cmd 1 -1)
+	    Set $i = 1
+	    Set $j = (StrCopy $MSG $i (Add $i 3))
+	    Set $CSCompName = (StrCopy $MSG 5 $j)
+	    Set $i = (Add $j 1)
+	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $CSThemeName = (StrCopy $MSG (Add $i 4) $j)
+	    Set $i = (Add $j 1)
+	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $tmp = (StrCopy $MSG (Add $i 4) $j)
 	    Set $CSCompHasOpt = (StrCopy $tmp 1 1)
 	    Set $CSCompIsSet = (StrCopy $tmp 2 2)
 	    Set $CSCompCanBeDropped = (StrCopy $tmp 3 3)
@@ -839,6 +942,53 @@ End
 # Now the widgets
 #
 # ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+#
+# The action widget
+#
+# ---------------------------------------------------------------------------
+
+Widget 999
+Property
+    Flags Hidden
+    Position 0 0
+    Size 0 0
+    Type ItemDraw
+    Title {}
+Main
+Case message of
+
+    SingleClic :
+    Begin
+    End
+
+    # Apply for TS & GS
+    1 :
+    Begin
+	Set $cmd = $SendMsgAndGet{"apply-ts-cmd-opts"}
+	Set $SwitchCmd = (GetOutput $cmd 1 -1)
+	If $SwitchCmd <> {} Then
+	Begin
+	    # fs
+	    Do $SwitchCmd
+	    Set $UpdateAllTSLists = 1
+	    Set $UpdateSettingsList = 1
+	    Set $UpdateSettingsVariants = 1
+	    If $PropertyEditorOne <> {} Then
+		SendToScript $PropertyEditorOne {update}
+	    If $PropertyEditorTwo <> {} Then
+		SendToScript $PropertyEditorTwo {update}
+	    If $PropertyEditorLast <> {} Then
+		SendToScript $PropertyEditorLast {update}
+	    Set $NullMessage = 1
+	End
+	Else
+	Begin
+	    ChangeTitle 95 $l_NoChanges
+	End
+    End
+
+End
 
 # ---------------------------------------------------------------------------
 #
@@ -950,16 +1100,21 @@ SingleClic :
 	    ChangeFont $tmp $SelFont
 	    Set $tmp = (Add $tmp 1)
 	End
-	Set $ThemeIndex = $index
-	Set $cmd = $SendMsgAndGet{"theme-components }$ThemeIndex{" --line=1}
-	Set $ThemeComponents = (GetOutput $cmd 1 -1)
+	Set $ThemeIndex = $index	
+	Set $cmd = $SendMsgAndGet{"theme-components }$ThemeIndex{"}
+	Set $MSG = (GetOutput $cmd 1 -1)
+	Set $i = 1
+	Set $j = (StrCopy $MSG $i (Add $i 3))
+	Set $ThemeComponents = (StrCopy $MSG 5 $j)
+	Set $i = (Add $j 1)
+	Set $j = (StrCopy $MSG $i (Add $i 4))
+	Set $ThemeName = (StrCopy $MSG (Add $i 4) $j)
+	Set $i = (Add $j 1)
+	Set $j = (StrCopy $MSG $i (Add $i 4))
+	Set $ThemeDir = (StrCopy $MSG (Add $i 4) $j)
 	ChangeTitle 12 $ThemeComponents
-	Set $cmd = $GetLine{2}
-	Set $ThemeName=(GetOutput $cmd 1 -1)
 	Set $t = $l_B_Component $ThemeName $l_A_Component
 	ChangeTitle 11 $t
-	Set $cmd = $GetLine{3 --clear-buffer}
-	Set $ThemeDir=(GetOutput $cmd 1 -1)
 
 	Set $NullMessage = 1
 	Set $ComponentName = {}
@@ -1019,7 +1174,7 @@ Main
 	Set $cmd = $SendMsgAndGet{"load-all }$ThemeName{"}
 	Set $dummy = (GetOutput $cmd 1 -1)
 	Set $NullMessage = 1
-	Set $UpdateTSLists = 1
+	Set $UpdateAllTSLists = 1
     End
  End
 End
@@ -1045,7 +1200,7 @@ Main
 	Set $cmd = $SendMsgAndGet{"load-main-look }$ThemeName{"}
 	Set $dummy = (GetOutput $cmd 1 -1)
 	Set $NullMessage = 1
-	Set $UpdateTSLists = 1
+	Set $UpdateAllTSLists = 1
     End
   End
 End
@@ -1112,7 +1267,7 @@ Case message of
 	Set $cmd = $SendMsgAndGet{"load-one }$ThemeName{ }$ComponentName{"}
 	Set $dummy = (GetOutput $cmd 1 -1)
 	Set $NullMessage = 1
-	Set $UpdateTSLists = 1
+	Set $UpdateAllTSLists = 1
     End
  End
 End
@@ -1309,7 +1464,7 @@ SingleClic :
     Begin
 	Set $cmd = $SendMsgAndGet{"restore }$CSCompName{"}
 	Set $dummy = (GetOutput $cmd 1 -1)
-	Set $UpdateTSLists = 1
+	Set $UpdateAllTSLists = 1
 	Set $NullMessage = 1
 	If $PropertyEditorOne <> {} Then
 	    SendToScript $PropertyEditorOne {update}
@@ -1378,7 +1533,7 @@ SingleClic :
     Begin
 	Set $cmd = $SendMsgAndGet{"lock }$CSCompName{"}
 	Set $dummy = (GetOutput $cmd 1 -1)
-	Set $UpdateTSLists = 1
+	Set $UpdateAllTSLists = 1
 	Set $NullMessage = 1
     End
  End
@@ -2137,7 +2292,7 @@ Case message of
 	    Set $cmd = $SendMsgAndGet{"apply-sm }$SelectedSession{"}
 	    Set $tmp = (GetOutput $cmd 1 -1)
 	    Set $UpdateSMLists = 1
-	    Set $UpdateTSLists = 1
+	    Set $UpdateAllTSLists = 1
 	    Set $UpdateSettingsList = 1
 	    Set $UpdateSettingsVariants = 1
 	    If $PropertyEditorOne <> {} Then
@@ -2153,27 +2308,8 @@ Case message of
     Else
     Begin
 	ChangeTitle 95 $l_ApplyThemeConfig
-	Set $cmd = $SendMsgAndGet{"apply-ts-cmd-opts"}
-	Set $SwitchCmd = (GetOutput $cmd 1 -1)
-	If $SwitchCmd <> {} Then
-	Begin
-	    # fs
-	    Do $SwitchCmd
-	    Set $UpdateTSLists = 1
-	    Set $UpdateSettingsList = 1
-	    Set $UpdateSettingsVariants = 1
-	    If $PropertyEditorOne <> {} Then
-		SendToScript $PropertyEditorOne {update}
-	    If $PropertyEditorTwo <> {} Then
-		SendToScript $PropertyEditorTwo {update}
-	    If $PropertyEditorLast <> {} Then
-		SendToScript $PropertyEditorLast {update}
-	    Set $NullMessage = 1
-	End
-	Else
-	Begin
-	    ChangeTitle 95 $l_NoChanges
-	End
+	#Set $ApplyTSCmdOpts = 1
+	SendSignal 999 1
     End
  End
 End
@@ -2191,20 +2327,8 @@ Case message of
  SingleClic :
  Begin
 	ChangeTitle 95 $l_Refresh
-	Set $cmd = $SendMsgAndGet{"update 1"}
-	Set $dummy = (GetOutput $cmd 1 -1)
-	Do {FuncFvwmThemesFresh}
-	Set $UpdateSMLists = 1
-	Set $UpdateTSLists = 1
-	Set $UpdateSettingsList = 1
-	Set $UpdateSettingsVariants = 1
-	If $PropertyEditorOne <> {} Then
-	    SendToScript $PropertyEditorOne {update}
-	If $PropertyEditorTwo <> {} Then
-	    SendToScript $PropertyEditorTwo {update}
-	If $PropertyEditorLast <> {} Then
-	    SendToScript $PropertyEditorLast {update}
-	Set $NullMessage = 1
+	Set $RefreshORUpdate = 1
+	Set $RefreshUpdateValue = 1
  End
 End
 
@@ -2221,19 +2345,8 @@ Case message of
  SingleClic :
  Begin
 	ChangeTitle 95 $l_Update
-	Set $cmd = $SendMsgAndGet{"update 0"}
-	Set $dummy = (GetOutput $cmd 1 -1)
-	Set $UpdateTSLists = 1
-	Set $UpdateSMLists = 1
-	Set $UpdateSettingsList = 1
-	Set $UpdateSettingsVariants = 1
-	If $PropertyEditorOne <> {} Then
-	    SendToScript $PropertyEditorOne {update}
-	If $PropertyEditorTwo <> {} Then
-	    SendToScript $PropertyEditorTwo {update}
-	If $PropertyEditorLast <> {} Then
-	    SendToScript $PropertyEditorLast {update}
-	Set $NullMessage = 1
+	Set $RefreshORUpdate = 1
+	Set $RefreshUpdateValue = 0
  End
 End
 
