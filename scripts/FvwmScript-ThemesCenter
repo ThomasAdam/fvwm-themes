@@ -81,8 +81,8 @@ Begin
     Begin
 	Set $locateSet = 1
 	ChangeTitle 1 {Outils de Configurations:}
-	ChangeTitle 2 {       Selecteur de Themes        |       Configuration Générale        |        Sessions FVWM Themes     }
-	ChangeTitle 5 {Liste des Themes}
+	ChangeTitle 2 {       Sélecteur de Thèmes        |       Configuration Générale        |        Sessions FVWM Themes     }
+	ChangeTitle 5 {Liste des Thèmes}
 	ChangeTitle 7 {LisezMoi}
 	ChangeTitle 8 {Sélectionner}
 	ChangeTitle 9 {Le look}
@@ -102,8 +102,8 @@ Begin
 	ChangeTitle 19 {Rétablir}
 	ChangeTitle 20 {Supprimer}
 	Set $l_NoProperties = {Cette composente n'a pas d'options ni de sous composantes}
-	Set $l_OnlyThreeEditor = {Vous pouvez utilisez seulement 3 éditeurs d'Propriétés}
-	Set $l_PropertyEditor = {L'éditeur d'Propriétés pour}
+	Set $l_OnlyThreeEditor = {Vous pouvez utilisez seulement 3 éditeurs de Propriétés}
+	Set $l_PropertyEditor = {L'éditeur de Propriétés pour}
 	Set $l_AlreadyActive = {est déjà utilisé}
 	Set $l_CompNotSet = {Cette composente n'est pas sélectionnée}
 	Set $l_DropNotImp = {"Supprimer" sera implémenté un jour!}
@@ -114,9 +114,9 @@ Begin
 	ChangeTitle 24 {Info}
 	ChangeTitle 25 {Supprimer}
 	ChangeTitle 26 {Sélectionnez une composante}
-	Set $l_VariantsFor = {Variant pour}
+	Set $l_VariantsFor = {Variante pour}
 	ChangeTitle 28 {Sélectionner}
-	Set $l_MustSelectVariant = {Vous devez sélectionner un Variant !}
+	Set $l_MustSelectVariant = {Vous devez sélectionner une Variante !}
 	# SM
 	Set $l_CurrentSession = {Session Courante}
 	Set $l_UpTime = {Up Time}
@@ -126,7 +126,7 @@ Begin
 	Set $l_MustSelectSession = {Vous devez sélectionner une session}
 	Set $l_B_Edit = {Edition de la session }
 	Set $l_A_Edit = {}
-	ChangeTitle 42 {Editer}
+	ChangeTitle 42 {Éditer}
 	ChangeTitle 43 {Ajouter}
 	ChangeTitle 44 {Supprimer}
 	ChangeTitle 45 {Session Sélectionnée:}

@@ -45,6 +45,8 @@ Begin
 	    Set $MainComponent = (GetScriptArgument $j)
 	If $arg == {--theme} Then
 	    Set $MainTheme = (GetScriptArgument $j)
+	If $arg == {--lang} Then
+	    Set $Lang = (GetScriptArgument $j)
 	Set $i = (Add $i 2)
 	Set $arg = (GetScriptArgument $i)
     End
@@ -52,6 +54,53 @@ Begin
     If $TextColorset <> {} Then
     Begin
 	ChangeColorset 5 $TextColorset
+    End
+
+    #Set $Lang = {en}
+    #Set $Lang = {ru}
+    # Internationalization. 
+    If $Lang == {} Then
+    Begin
+	Set $cmd = {echo "$LANG" | cut -c1-2}
+	Set $Lang = (GetOutput $cmd 1 -1)
+    End
+    Set $locateSet = 0
+    If $Lang == {fr} Then
+    Begin
+	Set $locateSet = 1
+	Set $l_for ={pour}
+	ChangeTitle 6 {Envoie des informations au sélecteur de thèmes}
+	ChangeTitle 97 {Sélectionner}
+	ChangeTitle 98 {OK}
+	ChangeTitle 99 {Quitter}
+    End
+    If $Lang == {ru} Then
+    Begin
+	Set $locateSet = 1
+	Set $SelFont = {-cronyx-times-bold-r-*-*-14-*-*-*-*-*-koi8-*}
+	Set $ShadeFont = {-cronyx-times-medium-r-*-*-12-*-*-*-*-*-koi8-*}
+	Set $FixedFont = {-cronyx-fixed-medium-r-semicondensed--*-*-*-*-*-*-koi8-*}
+	ChangeFont 1 $SelFont
+	ChangeFont 2 $SelFont
+	ChangeFont 3 $SelFont
+	ChangeFont 5 $FixedFont
+	ChangeFont 6 $SelFont
+	ChangeFont 97 $SelFont
+	ChangeFont 98 $SelFont
+	ChangeFont 99 $SelFont
+	Set $l_for ={ÄÌÑ}
+	ChangeTitle 6 {Send Informations to the Themes Selector}
+	ChangeTitle 97 {÷ÚÑÔØ}
+	ChangeTitle 98 {óÏÇÌÁÓÉÅ}
+	ChangeTitle 99 {÷ÙÈÏÄ}
+    End
+    If $locateSet == 0 Then
+    Begin
+	Set $l_for ={for}
+	ChangeTitle 6 {Send Informations to the Themes Selector}
+	ChangeTitle 97 {Set}
+	ChangeTitle 98 {Set & Quit}
+	ChangeTitle 99 {Quit}
     End
 
     # to send fvwm-themes-com command
@@ -64,7 +113,7 @@ Begin
     Set $NbrOfOptions = (GetOutput $cmd 1 -1)
     Set $cmd = $GetLine{2}
     Set $Type = (GetOutput $cmd 1 -1)
-    Set $tmp = $Type{ for }$MainComponent{@}$MainTheme
+    Set $tmp = $Type{ }$l_for{ }$MainComponent{@}$MainTheme
     ChangeTitle 1 $tmp
     Set $cmd = $GetLine{3 --clear-buffer}
     Set $Options = (GetOutput $cmd 1 -1)
@@ -230,10 +279,10 @@ End
 Widget 6
 Property
     Flags NoReliefString
-    Position 20 35
-    Size 280 20 
+    Position 1 35
+    Size 318 20 
     Type ItemDraw
-    Title {Send Modification to the Themes Selector}
+    Title {}
 Main
 Case message of
     SingleClic :
@@ -244,9 +293,10 @@ End
 Widget 97
 Property
     Flags NoReliefString
-    Position 40 270
+    Position 10 270
+    Size 90 20
     Type PushButton
-    Title {Set}
+    Title {}
 Main
 Case message of
  SingleClic :
@@ -267,8 +317,9 @@ Widget 98
 Property
     Flags NoReliefString
     Position 115 270
+    Size 90 20
     Type PushButton
-    Title {Set & Quit}
+    Title {}
 Main
  Case message of
   SingleClic :
@@ -288,9 +339,10 @@ End
 Widget 99
 Property
     Flags NoReliefString
- Position 230 270
+ Position 220 270
+ Size 90 20
  Type PushButton
- Title {Quit}
+ Title {}
 Main
  Case message of
   SingleClic :

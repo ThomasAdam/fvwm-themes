@@ -1960,8 +1960,9 @@ sub comLoop {
 			# themes. IMHO this may be changed ??? migo: I don't think so.
 			foreach (keys %optionToSet) {
 				my $opt = substr($_,index($_,"/")+1);
+				my $theme = substr($_,0,index($_,"/"));
 				my $comp = substr($opt,0,rindex($opt,":"));
-				if (defined $CC->{$comp}) {
+				if (defined $CC->{$comp} && $CC->{$comp}->{'theme'} eq $theme) {
 					$return .= "--option $opt=$optionToSet{$_} ";
 					$optLoad{$opt} = "$optionToSet{$_}";
 					push @deleteOpt, $_;
@@ -1969,7 +1970,8 @@ sub comLoop {
 			}
 			foreach (keys %variantToSet) {
 				my $comp = substr($_,index($_,"/")+1);
-				if (defined $CC->{$comp}) {
+				my $theme = substr($_,0,index($_,"/"));
+				if (defined $CC->{$comp} && $CC->{$comp}->{'theme'} eq $theme) {
 					$return .= "--variant $comp=$variantToSet{$_} ";
 					$variantLoad{$comp} = "$variantToSet{$_}";
 					push @deleteVariant, $_;
