@@ -3,11 +3,11 @@ DestroyModuleConfig FvwmIconMan: *
 
 *FvwmIconMan: *Colorset		23
 *FvwmIconMan: *TitleColorset	1
-*FvwmIconMan: *IconColorset	19
-*FvwmIconMan: *PlainColorset	19
-*FvwmIconMan: *SelectColorset	19
+*FvwmIconMan: *IconColorset	10
+*FvwmIconMan: *PlainColorset	10
+*FvwmIconMan: *SelectColorset	10
 *FvwmIconMan: *FocusColorset	18
-*FvwmIconMan: *FocusAndSelectColorset	20
+*FvwmIconMan: *FocusAndSelectColorset	18
 
 *FvwmIconMan: *IconButton	up
 *FvwmIconMan: *TitleButton	flat

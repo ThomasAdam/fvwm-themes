@@ -26,6 +26,9 @@
 	* themes/default/colors:
 	Colorset 34 s/bg white/bg gray80/
 
+	* themes/luthien/modules/main:FvwmIconMan:
+	fixed FvwmIconMan colorsets
+
 2000-11-11  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ConfigCenter:
