@@ -19,6 +19,10 @@
 	* themes/blackbox/colors:
 	replaced several "too bright to be able to see anything" colors
 
+	* themes/cde/modules/create-buttonbar-config:
+	* themes/cde/modules/buttonbar/{large,small}:
+	disable unexisting CDEDate applet
+
 2000-11-11  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ConfigCenter:

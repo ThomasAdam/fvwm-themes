@@ -111,7 +111,7 @@ addButtonEntry(-1, 1,
 	"");
 addButtonEntry(-1, 2,
 	"$icondir/date.xpm",
-	"Swallow FvwmApplet-CDEDate `FvwmScript FvwmApplet-CDEDate 10 10`",
+	"", #"Swallow FvwmApplet-Day `FvwmScript FvwmApplet-Day 10 10`",
 	"");
 addButtonEntry(-1, 3,
 	"$icondir/terminal.xpm",
