@@ -113,8 +113,8 @@ Begin
 
     Set $cmd = {echo "$FT_DATADIR"}
     Set $FtDataDir = (GetOutput $cmd 1 -1)
-    Set $RainbowFile = $FtDataDir{/images/fvwmscript/pallete-rainbow.xpm}
-    Set $GreyFile    = $FtDataDir{/images/fvwmscript/pallete-gray.xpm}
+    Set $RainbowFile = $FtDataDir{/images/fvwmscript/palette-rainbow.xpm}
+    Set $GreyFile    = $FtDataDir{/images/fvwmscript/palette-gray.xpm}
 
     # get the rainbow color line
     Set $cmd = {if [ -f }$RainbowFile{ ]; then echo 1; else echo "0"; fi}
@@ -232,7 +232,7 @@ Property
     Size 256 20
     Type ItemDraw
     Title {}
-    Icon fvwmscript/pallete-rainbow.xpm
+    Icon fvwmscript/palette-rainbow.xpm
 Main
 Case message of
  SingleClic :
@@ -276,7 +276,7 @@ Property
     Size 256 20
     Type ItemDraw
     Title {}
-    Icon fvwmscript/pallete-rainbow.xpm
+    Icon fvwmscript/palette-rainbow.xpm
 Main
 Case message of
  SingleClic :
@@ -323,7 +323,7 @@ Property
     Size 256 20
     Type ItemDraw
     Title {}
-    Icon fvwmscript/pallete-gray.xpm
+    Icon fvwmscript/palette-gray.xpm
 Main
 Case message of
  SingleClic :

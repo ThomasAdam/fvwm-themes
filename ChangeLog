@@ -33,8 +33,12 @@
 	* README:
 	* devel/doc/sourceforge-developer:
 	* doc/README.1st:
+	* themes/default/menus-programs:
 	* doc/fvwm-themes.lsm.in:
 	s/developement/development/
+
+	* scripts/FvwmScript-ColorSelector:
+	s/pallete/palette/
 
 2002-12-05  olicha  <olivier.chapuis@free.fr>
 
