@@ -8,7 +8,8 @@ compat="menu-1"
 # ftFindBestSectionIcon as well as the ftFindSystemMiniIcon. 
 #
 
-function ltitle()=translate(lang(),title())
+#function ltitle()=translate(lang(),title())
+function ltitle()=translate($lang,title())
 
 supported
   wm =  "+ \"" escfirst(ltitle(), $hotkey,"&") \

@@ -3,6 +3,9 @@
 	* bin/fvwm-themes-*.in:
 	small experimentation with ROOT_PREFIX and DESTDIR
 
+	* menu-system/fvwm_themes.in:
+	s/lang()/$lang/ for Debian, untested on Mandrake...
+
 2002-04-30 migo  <migo@homemail.com>
 
 	* themes/default/menus:
