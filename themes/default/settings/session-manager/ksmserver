@@ -1,3 +1,6 @@
+DestroyFunc FuncFvwmSaveSession
+DestroyFunc FuncFvwmSaveQuitSession
+
 # quit menu
 DestroyMenu MenuFvwmQuit
 AddToMenu   MenuFvwmQuit "Quit KDE2 Session?" Title

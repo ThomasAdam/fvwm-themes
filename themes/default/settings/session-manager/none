@@ -1,1 +1,3 @@
 # a memory file; maybe we can move MenuFvwmQuit from menus@ here
+DestroyFunc FuncFvwmSaveSession
+DestroyFunc FuncFvwmSaveQuitSession

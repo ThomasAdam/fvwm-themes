@@ -1,4 +1,17 @@
 # quit menu
+
+DestroyFunc FuncFvwmSaveSession
+AddToFunc   FuncFvwmSaveSession
++ I Test (x gnome-session-save) Exec gnome-session-save --gui
++ I TestRc (Match) Break
++ I SaveSession
+
+DestroyFunc FuncFvwmSaveQuitSession
+AddToFunc   FuncFvwmSaveQuitSession
++ I Test (x gnome-session-save) Exec gnome-session-save --kill
++ I TestRc (Match) Break
++ I SaveQuitSession
+
 DestroyMenu MenuFvwmQuit
 AddToMenu   MenuFvwmQuit "Really Quit Session?" Title
 + "&Restart%menu/restart.xpm%"          Restart
@@ -7,8 +20,9 @@ AddToMenu   MenuFvwmQuit "Really Quit Session?" Title
 + "Re&capture Screen%menu/refresh.xpm%" Recapture
 + "" Nop
 + "&Yes, Quit Session%menu/choice-yes.xpm%"          QuitSession
-+ "Yes, Quit and &Save Session%menu/choice-yes.xpm%" SaveQuitSession
-+ "Quit FVWM &Only%menu/quit.xpm%"      Quit
-+ "&Save Session Only%menu/windows.xpm%"             QuitSession
++ "Yes, Quit and &Save Session%menu/choice-yes.xpm%" FuncFvwmSaveQuitSession
++ "" Nop
++ "Quit FVWM &Only%menu/quit.xpm%"			Quit
++ "&Save Session Only%menu/windows.xpm%"		FuncFvwmSaveSession
 +  "" Nop
 + "&No, Don't Quit%menu/choice-no.xpm%" Nop
