@@ -81,15 +81,23 @@ install3: build
 
 # Build architecture-independent files here.
 binary-indep: build install
+	chmod 0644 $(CURDIR)/debian/fvwm-themes/usr/share/fvwm/themes/cde/background/pattern
+	
+
 # We have nothing to do by default.
 
 
 binary-indepfull: build install
+	chmod 0644 $(CURDIR)/debian/fvwm-themes/usr/share/fvwm/themes/cde/background/pattern
+	 
 
 
 
 
 binary-indep3: install3
+	chmod 0644 $(CURDIR)/debian/fvwm-themes/usr/share/fvwm/themes/cde/background/pattern
+	
+
 # We have nothing to do by default.
 
 # Build architecture-dependent files here.
