@@ -1,3 +1,13 @@
+2000-09-12  migo  <migo@homemail.com>
+
+	* themes/luthien/background/*:
+	* themes/luthien/desktop:
+	* themes/luthien/menustyle:
+	* themes/luthien/windowlook:
+	* themes/luthien/README:
+	* AUTHORS:
+	Added initial components of the Dominik's theme.
+
 2000-09-11  migo  <migo@homemail.com>
 
 	* scripts/FvwmScript-ThemesCenter:

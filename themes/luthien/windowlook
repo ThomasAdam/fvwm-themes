@@ -1,0 +1,12 @@
+Style "*"	Font lucidasanstypewriter-14
+Style "*"	IconFont lucidasanstypewriter-12
+
+Style "*"	BorderWidth 4, HandleWidth 4
+Style "*"	MWMBorder  # FvwmBorder
+
+BorderStyle	Simple -- HiddenHandles NoInset Raised
+
+TitleStyle	LeftJustified
+TitleStyle	-- Raised
+
+ButtonStyle	All -- Raised

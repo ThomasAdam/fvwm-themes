@@ -1,0 +1,7 @@
+DestroyFunc FuncFvwmStartThemeBackground
+AddToFunc   FuncFvwmStartThemeBackground
++ I exec xv -root -quit -viewonly $FT_DATADIR/themes/luthien/background/images/Granite.bg.gif
+
+DestroyFunc FuncFvwmStopThemeBackground
+AddToFunc   FuncFvwmStopThemeBackground
++ I Nop

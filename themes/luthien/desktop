@@ -1,0 +1,41 @@
+EdgeScroll	0 0	# in percent of screen size (here disabled)
+EdgeResistance  500 128	# delay_in_milliseconds, pixels
+EdgeThickness	1	# {0,1,2}
+XORValue	255	# decent rubber band color for resizing
+ClickTime	150	# <n milliseconds to be considered a "click"
+MoveThreshold   3       # >=n pixels to be considered a "drag"
+Style "*"	WindowShadeSteps 10   # steps in shade animation
+SetAnimation	10 -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
+ColormapFocus	FollowsMouse  # FollowsFocus
+
+Style "*"	MWMFunctions, MWMDecor, HintOverride, OLDecor
+
+
+# Transient windows
+Style "*"	DecorateTransient  # NakedTransient
+Style "*"	RaiseTransient
+Style "*"	LowerTransient
+Style "*"	StackTransientParent
+Style "*"	GrabFocusTransient
+
+
+# Move and resize
+OpaqueMoveSize	100            # percentage
+Style "*"	ResizeOutline  # ResizeOpaque
+HideGeometryWindow Never       # Resize and/or Move
+# SnapAttraction distance in pixel "types" [Screen]
+SnapAttraction 8 SameType
+Emulate mwm
+
+
+# Windows placement
+Style "*"	SmartPlacement, RandomPlacement
+Style "*"       CleverPlacement
+Style "*"	NoPPosition
+Style "*"	GrabFocusOff
+
+Style "*"	SloppyFocus
+Style "*"	MouseFocusClickRaises
+# for individual apps with ClickToFocus style
+Style "*"	ClickToFocusRaises
+Style "*"	ClickToFocusPassesClick
