@@ -47,8 +47,8 @@ DestroyModuleConfig FvwmForm-ThemeSettings: *
 *FvwmForm-ThemeSettings: Text "Icon Styles"
 *FvwmForm-ThemeSettings: Selection Opt4 single
 *FvwmForm-ThemeSettings: Choice ICSD 1 $ICSD=off "Disabled  "
-*FvwmForm-ThemeSettings: Choice ICSN 2 $ICSN=on  "Native    "
-*FvwmForm-ThemeSettings: Choice ICSW 3 $ICSW=off "wm-icons  "
+*FvwmForm-ThemeSettings: Choice ICSN 2 $ICSN=on  "Internal wm-icons  "
+*FvwmForm-ThemeSettings: Choice ICSW 3 $ICSW=off "External wm-icons  "
 *FvwmForm-ThemeSettings: Line center
 *FvwmForm-ThemeSettings: Text ""
 *FvwmForm-ThemeSettings: Line left

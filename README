@@ -54,8 +54,8 @@ You can also fully manipulate theme components using the Themes Center GUI.
 
 You will find more interesting things (about a possibility to ask a window
 button itself what it does, about changing icon sets, or redefining bound
-applications, or defining sessions and more) while exploring wm-icons.
-Don't expect to learn wm-icons in one day. Just trying all the possible
+applications, or defining sessions and more) while exploring fvwm-themes.
+Don't expect to learn fvwm-themes in one day. Just trying all the possible
 combinations of different theme components and their options may take years.
 There are more explanations in the FAQ.
 
@@ -70,7 +70,7 @@ Notes
 
 * WARNING, this is developement version based on developement fvwm version.
   Since fvwm is changing right now, we only test fvwm-themes against the
-  latest fvwm version as of fvwm-themes release date (2.3.22 for now).
+  latest fvwm version as of fvwm-themes release date (2.3.29 for now).
   This will be changed after the stable fvwm-2.4 is out.
 * For sound effects to work you need one of the sounds player listed under
   Theme Management->current->settings->Sound Player to be installed (but
@@ -80,6 +80,6 @@ Notes
   for rplayD.
 * fvwm-themes is wm-icons compatible. If you want to use more icon sets
   than included 16x16-general and 48x48-general, you should install wm-icons
-  package and choose wm-icons variant of current/settings/Icon Styles.
+  package and choose "External wm-icons" in current/settings/Icon Styles.
 
 Success to you and enjoy!

@@ -61,8 +61,8 @@ DestroyModuleConfig FvwmGtk-Themes: *
 *FvwmGtk-Themes: Label "Choose Variant:            "
 *FvwmGtk-Themes: OptionMenu iconstyles -- expand fill
 *FvwmGtk-Themes: Item "Disabled" disabled
-*FvwmGtk-Themes: Item "Native" native on
-*FvwmGtk-Themes: Item "wm-icons" wm-icons
+*FvwmGtk-Themes: Item "Internal wm-icons" native on
+*FvwmGtk-Themes: Item "External wm-icons" wm-icons
 *FvwmGtk-Themes: EndOptionMenu
 #*FvwmGtk-Themes: Label "          "
 *FvwmGtk-Themes: EndBox
