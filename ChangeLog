@@ -4,6 +4,11 @@
 
 	* scripts/FvwmScript-{ThemeOptions,ThemesCenter}: translations
 
+	* themes/spruce/images/decor/titlebar_fill_s.xpm:
+	* themes/spruce/colors:
+	ActiveDown buttons now use a new pixmap backdrop (maybe not perfect),
+	removed button pixmaps in themes/spruce/images/button/*
+
 2000-10-10 olicha  <olivier.chapuis@free.fr>
 
 	* themes/spurce/{colors,buttons}:
