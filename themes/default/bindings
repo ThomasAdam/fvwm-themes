@@ -147,6 +147,17 @@ Key KP_7	A	SC	MoveToPage 0 0
 Key KP_8	A	SC	MoveToPage 1 0
 Key KP_9	A	SC	MoveToPage 2 0
 
+# move without the cursor, Shift+Alt+KP_N
+Key KP_1	A	SM	Move w-1 w+1
+Key KP_2	A	SM	Move w   w+1
+Key KP_3	A	SM	Move w+1 w+1
+Key KP_4	A	SM	Move w-1 w
+Key KP_5	A	SM	Move w   w
+Key KP_6	A	SM	Move w+1 w
+Key KP_7	A	SM	Move w-1 w-1
+Key KP_8	A	SM	Move w   w-1
+Key KP_9	A	SM	Move w+1 w-1
+
 # go to desk, Ctrl+Alt+N
 Key 1   	A	CM	GotoDesk 0 0
 Key 2   	A	CM	GotoDesk 0 1
@@ -278,6 +289,15 @@ AddToFunc   FuncFvwmStopBindings
 + I Key KP_7	A	SC	-
 + I Key KP_8	A	SC	-
 + I Key KP_9	A	SC	-
++ I Key KP_1	A	SM	-
++ I Key KP_2	A	SM	-
++ I Key KP_3	A	SM	-
++ I Key KP_4	A	SM	-
++ I Key KP_5	A	SM	-
++ I Key KP_6	A	SM	-
++ I Key KP_7	A	SM	-
++ I Key KP_8	A	SM	-
++ I Key KP_9	A	SM	-
 + I Key 1   	A	CM	-
 + I Key 2   	A	CM	-
 + I Key 3   	A	CM	-

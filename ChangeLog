@@ -8,6 +8,9 @@
 	* bin/fvwm-themes-start.in:
 	refresh config if there is a new build
 
+	* themes/default/bindings:
+	added 9 Shift+Alt+KP_N bindings
+
 2002-06-14  migo  <migo@homemail.com>
 
 	* themes/redmondxp/images/module/panel-right-bg.xpm:
