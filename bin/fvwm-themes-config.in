@@ -1,4 +1,4 @@
-#!@PERL@ -w -d:DProf
+#!@PERL@ -w
 # for speed testing add: -d:DProf and use dprofpp
 
 # Filter this script to pod2man to get a man page:
