@@ -63,11 +63,9 @@ AddToMenu   MenuFvwmSystem "System" Title
 + "Root dir%menu/folder.xpm%"      Popup /
 + "Home dir%menu/home.xpm%"        Popup ~
 
-DestroyMenu MenuFvwmBrowser
-AddToMenu   MenuFvwmBrowser DynamicPopupAction Piperead 'fvwm-menu-directory -r -na MenuFvwmBrowser -d $HOME -s --exec-file ^emacs --xte="xterm -e" --wm-icons --check-subdir'
-
-DestroyMenu MenuFvwmBrowserCached
-AddToMenu   MenuFvwmBrowserCached DynamicPopupAction Piperead 'fvwm-menu-directory -all -r -na MenuFvwmBrowserCached -d $HOME -s --exec-file ^emacs --xte="xterm -e" --wm-icons --check-subdir'
+# Note:
+# FuncFvwmMenuDirectory, MenuFvwmBrowser and MenuFvwmBrowserCached are defined
+# in functions-appbind
 
 # -----------------------------------------------------------------------------
 # ---------- ScreenSaver

@@ -89,6 +89,8 @@ sub errDie ($) {
 	}
 }
 
+#' <- a fix for my xemacs (olicha)
+
 sub sysDie ($) {
 	my $msg = shift;
 	$msg =~ s/\s+$//s;
@@ -466,9 +468,15 @@ sub getThemeComponentsAndGroups ($) {
 	return ($components, $groups);
 }
 
-sub getAllThemes () {
+sub getAllThemes {
+	my $showSite = shift || 0;
+	my $showUser = shift || 0;
+	my @dirList = ();
+	push @dirList, $siteDir if $showSite;
+	push @dirList, $userDir if $showUser;
+	@dirList = @searchPath if ! defined $dirList[0];
 	my $themes = {};
-	foreach $dir (@searchPath) {
+	foreach $dir (@dirList) {
 		my $dir = "$dir/$themesSubDir";
 		opendir(DIR, $dir);
 		foreach (readdir(DIR)) {
@@ -482,17 +490,31 @@ sub getAllThemes () {
 	return [sort keys %$themes];
 }
 
-sub showThemeComponents ($$) {
-	my ($themes, $withComponents) = @_;
-	$themes = getAllThemes() unless @$themes;
+sub showThemeComponents ($$$$$$) {
+	my ($themes,$withComponents,$component,$script,$showSite,$showUser) = @_;
+	my $out = "";
+	$themes = getAllThemes($showSite,$showUser) unless @$themes;
 	my $theme;
 	foreach $theme (@$themes) {
-		print "$theme\n";
-		next unless $withComponents;
+		my $tmp1 = "$theme";
+		my $tmp2 = "";
+		my $test = 0;
 		foreach (@{getThemeComponents($theme)}) {
-			print "\t$_\n";
+			$tmp2 .= ($script) ? "    " : "\t";
+			$tmp2 .= "$_";
+			$tmp2 .= ($script) ? "|" : "\n";
+			$test = 1 if defined $component && $_ eq "$component";
 		}
+		next if defined  $component && !$test;
+		$out .= $tmp1;
+		$out .= ($script) ? "|" : "\n";
+		$out .= $tmp2 if $withComponents;
 	}
+	if ($script) {
+		$out =~ s/\|$//;
+		$out .= "\n";
+	}
+	print $out;
 	exit(0);
 }
 
@@ -1524,6 +1546,9 @@ my $comMode = 0;
 my $comName = "config";
 my $comPid = 0;
 my $install = 0;
+my $fvwmscript = 0;
+my $showSite = 0;
+my $showUser = 0;
 
 GetOptions(
 	"help"        => \&showHelp,
@@ -1547,6 +1572,9 @@ GetOptions(
 	"install"     => \$install,
 	"com-mode"    => \$comMode,
 	"com-name=s"  => \$comName,
+	"fvwmscript"  => \$fvwmscript,
+	"show-site"	  => \$showSite,
+	"show-user"	  => \$showUser,
 ) || wrongUsage();
 
 shift @searchPath if $site;
@@ -1582,7 +1610,8 @@ if (defined $expandFile) {
 	exit(0);
 }
 
-showThemeComponents($themes, $showComponents) if $showThemes || $showComponents;
+showThemeComponents($themes, $showComponents, $component, $fvwmscript, 
+	$showSite, $showUser) if $showThemes || $showComponents;
 showThemeDirs($themes) if $showDir;
 showThemeComponentValues($component, $showValues) if $component && @$showValues;
 
@@ -2684,14 +2713,15 @@ B<fvwm-themes-config>
 [ B<--version>|B<-v> ]
 [ B<--site> ]
 [ B<--pipe> ]
-[ B<--com-mode> ]
-[ B<--com-name> name ] 
 [ B<--show-themes> ]
 [ B<--show-components> ]
 [ B<--show-dir> ]
 [ B<--theme>|B<-t> theme ]
 [ B<--show-value> key ]
 [ B<--component> component ]
+[ B<--show-site> ]
+[ B<--show-user> ]
+[ B<--fvwmscript> ]
 [ B<--expand-rc>|B<-e> [file] ]
 [ B<--fresh>|B<-f> ]
 [ B<--reset>|B<-r> ]
@@ -2701,6 +2731,8 @@ B<fvwm-themes-config>
 [ B<--variant>|B<-v> component=variant ]
 [ B<--set-locked> component=0|1 ]
 [ B<--install} file ... ]
+[ B<--com-mode> ]
+[ B<--com-name> name ]
 
 =head1 DESCRIPTION
 
@@ -2738,6 +2770,15 @@ C<--component> parameter.
 
 B<--component> component - a working component for other parameters,
 may be of form component@theme.
+
+B<--show-site> - Take in acount only the site directory for B<--show-themes>
+and B<--show-components>
+
+B<--show-site> - Take in acount only the user directory for B<--show-themes>
+and B<--show-components>
+
+B<--fvwmscript> - Build output for FvwmScript (B<--show-themes> and 
+B<--show-components>)
 
 Example: fvwm-themes-config --component colors --show-value theme --show-value
 read-file

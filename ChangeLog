@@ -1,3 +1,17 @@
+2000-10-17  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-script-config.in:
+	--show-themes and --show-components show only the themes with
+	component "comp" if --component "comp" is used.
+	New options --show-user and --show-site to restrict --show-themes 
+	and --show-components  to the user (respectively, the site) dir.
+	New option --fvwmscript which force --show-user and --show-site to
+	to build output for FvwmScript.
+
+	* themes/default/{bindings,functions-appbind}
+	Move MenuFvwmBrowser and MenuFvwmBrowserCached from bindings to 
+	functions-appbind
+
 2000-10-16  migo  <migo@homemail.com>
 
 	* themes/default/menus: removed FocusFollowsMouse, this is only alias
