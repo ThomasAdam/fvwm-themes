@@ -17,6 +17,8 @@ Exec test \! -d $HOME/.wm-icons || wm-icons-config -q -p -w bar || wm-icons-conf
 
 DestroyFunc FuncFvwmStartThemeModules
 AddToFunc   FuncFvwmStartThemeModules
++ I SendToModule FvwmTheme Colorset 23 fg $[fg.cs10], bg $[bg.cs10], \
+	Transparent, NoShape
 + I FuncFvwmStartChosenPager
 + I FuncFvwmStartChosenButtons
 + I FuncFvwmStartNormalIcons
@@ -39,6 +41,7 @@ AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmStopModule FvwmWinList
 + I FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmDestroyModulesThemeStyle
++ I DestroyFunc FuncFvwmButtons-CompactApps
 
 # ----------------------------------------------------------------------------
 # Theme module menus

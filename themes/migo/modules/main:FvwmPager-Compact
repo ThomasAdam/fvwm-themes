@@ -1,6 +1,6 @@
 DestroyModuleConfig FvwmPager-Compact: *
 
-*FvwmPager-Compact: Colorset * 14
+*FvwmPager-Compact: Colorset * 23
 *FvwmPager-Compact: HilightColorset * 15
 *FvwmPager-Compact: BalloonColorset * 16
 *FvwmPager-Compact: WindowColorsets 1 2

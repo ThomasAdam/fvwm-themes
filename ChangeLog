@@ -11,6 +11,12 @@
 	* themes/osx/background:
 	use gradient background (with pattern)
 
+	* themes/migo/modules/main:
+	* themes/migo/modules/main:FvwmButtons-Compact:
+	* themes/migo/modules/main:FvwmPager-Compact:
+	* themes/migo/modules/buttonbar/compact*:
+	try to use transparent colorset 23 for some modules
+
 2001-04-14  migo  <migo@homemail.com>
 
 	* themes/brushedmetal/colors:
