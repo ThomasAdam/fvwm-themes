@@ -1,5 +1,11 @@
 2001-10-25  olicha  <olivier.chapuis@free.fr>
 
+	* configure.in:
+	* NEWS:
+	increased version to 0.6.1 after setting a cvs tag version-0_6_0
+	
+2001-10-25  olicha  <olivier.chapuis@free.fr>
+
 	* NEWS:
 	* configure.in:
 	version is now 0.6.0
