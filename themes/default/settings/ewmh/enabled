@@ -27,8 +27,8 @@ AddToFunc   FuncFvwmLoadEWMH
 
 DestroyFunc FuncFvwmUnloadEWMH
 AddToFunc   FuncFvwmUnloadEWMH
-+ I DestroyModuleConfig FvwmNetHints: *
 + I SendToModule FvwmNetHints Quit
++ I DestroyModuleConfig FvwmNetHints: *
 
 DestroyFunc FuncFvwmAddToMenusStartEWMH
 AddToFunc   FuncFvwmAddToMenusStartEWMH

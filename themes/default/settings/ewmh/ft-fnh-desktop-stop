@@ -1,7 +1,7 @@
 
 Mouse 1 R A Menu MenuFvwmRoot
 Mouse 2 R A FuncFvwmEWMHButton2OnRootWindow
-Mouse 3 R A FuncFvwmEWMHButton3OnRootWindow
+FuncFvwmEWMHBindingsButton3OnRootWindow
 
 MouseXX 2 3 R C   FuncFvwmEWMHCtlButtonXXOnRootWindow
 MouseXX 2 3 R CS  FuncFvwmEWMHShiftCtlButtonXXOnRootWindow

@@ -10,9 +10,9 @@ Mouse	3	R	A	StrokeFunc FeedBack DrawMotion StrokeWidth 2
 Mouse	3 	W 	M 	StrokeFunc FeedBack DrawMotion StrokeWidth 2
 
 # for ewmh
-DestroyFunc FuncFvwmEWMHButton3OnRootWindow
-AddToFunc   FuncFvwmEWMHButton3OnRootWindow
-+ I StrokeFunc FeedBack DrawMotion StrokeWidth 2
+DestroyFunc FuncFvwmEWMHBindingsButton3OnRootWindow
+AddToFunc   FuncFvwmEWMHBindingsButton3OnRootWindow
++ I Mouse 3 R M StrokeFunc FeedBack DrawMotion StrokeWidth 2
 
 # ----------------------------------------------------------------------------
 # The stroke bindings
