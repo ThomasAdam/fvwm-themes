@@ -1,3 +1,6 @@
+#-----------------------------------------------------------------------------
+# General fonts
+
 DestroyFunc FuncFvwmSetFont-WindowTitle
 AddToFunc   FuncFvwmSetFont-WindowTitle
 + I Style "$0" Font -*-lucida-bold-r-normal-*-10-*
@@ -10,13 +13,13 @@ DestroyFunc FuncFvwmSetFont-Menu
 AddToFunc   FuncFvwmSetFont-Menu
 + I MenuStyle "$0" Font -*-lucida-medium-r-normal-*-10-*
 
-# for FvwmIdent (called in colors ... maybe not a very good thing) 
+# for FvwmIdent (called in globallook)
 DestroyFunc FuncFvwmSetFont-FvwmIdent
 AddToFunc   FuncFvwmSetFont-FvwmIdent
 + I *FvwmIdent: Font -*-lucida-medium-r-normal-*-10-*
 
 #------------------------------------------------------------------------------
-# at present time the default for module theme:
+# Fonts for modules, currently the ones defined in modules@ are unchanged
 
 # default font for IconBox, IconMan, TaskBar and WinList
 DestroyFunc FuncFvwmSetFont-ModuleWindowList
@@ -28,7 +31,7 @@ DestroyFunc FuncFvwmSetFont-ModuleSelectedWindowList
 AddToFunc   FuncFvwmSetFont-ModuleSelectedWindowList
 + I *$0: $1 "$2"
 
-# if one want small font for a Window List module (e.g., luthien IconMan)
+# if one wants a small font for a Window List module (e.g., luthien IconMan)
 DestroyFunc FuncFvwmSetFont-ModuleSmallWindowList
 AddToFunc   FuncFvwmSetFont-ModuleSmallWindowList
 + I *$0: $1 "$2"

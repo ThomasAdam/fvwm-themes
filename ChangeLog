@@ -17,6 +17,9 @@
 	use fgsh so menus look not such bad with black text shadow,
 	would be better to just disable shadow for dark text colors
 
+	* themes/*/fonts*:
+	cleaned up comments
+
 2002-12-24  migo  <migo@homemail.com>
 
 	* themes/*/modules/FvwmPager*:

@@ -13,14 +13,13 @@ DestroyFunc FuncFvwmSetFont-Menu
 AddToFunc   FuncFvwmSetFont-Menu
 + I MenuStyle "$0" Font "-misc-marumoji-medium-r-*-*-14-*-*-*-*-*-jisx0208*-*"
 
-
-# for FvwmIdent (called in colors ... maybe not a very good thing) 
+# for FvwmIdent (called in globallook)
 DestroyFunc FuncFvwmSetFont-FvwmIdent
 AddToFunc   FuncFvwmSetFont-FvwmIdent
 + I *FvwmIdent: Font -misc-marumoji-medium-r-*-*-14-*-*-*-*-*-jisx0208*-*
 
 #-----------------------------------------------------------------------------
-# Modules Theme fonts
+# Fonts for modules
 
 # default font for IconBox, IconMan, TaskBar and WinList
 DestroyFunc FuncFvwmSetFont-ModuleWindowList
@@ -32,7 +31,7 @@ DestroyFunc FuncFvwmSetFont-ModuleSelectedWindowList
 AddToFunc   FuncFvwmSetFont-ModuleSelectedWindowList
 + I *$0: $1 "-misc-marumoji-medium-r-*-*-14-*-*-*-*-*-jisx0208*-*"
 
-# if one want small font for a Window List module (e.g., luthien IconMan)
+# if one wants a small font for a Window List module (e.g., luthien IconMan)
 DestroyFunc FuncFvwmSetFont-ModuleSmallWindowList
 AddToFunc   FuncFvwmSetFont-ModuleSmallWindowList
 + I *$0: $1 "-misc-marumoji-medium-r-*-*-14-*-*-*-*-*-jisx0208*-*"
