@@ -5,8 +5,9 @@
 
 use Getopt::Long;
 
-my $prefix = '@prefix@';
-my $ROOT_PREFIX = '@ROOT_PREFIX@';
+my $prefix = $ENV{'prefix'} || '@prefix@';
+my $datadir = "@datadir@";
+my $ROOT_PREFIX = $ENV{'ROOT_PREFIX'} || '@ROOT_PREFIX@';
 
 my $version = '@VERSION@';
 my $fvwmVersion = '@FVWM_VERSION@';
@@ -351,7 +352,7 @@ BEGIN { $cfgFileCache = {}; }
 sub loadThemeCfg ($) {
 	my $theme = shift;
 	my $cfgFile = searchThemeCfgIncludeFile($themeCfgFile, $theme);
-	errDie("No $cfgFile found") unless defined $cfgFile;
+	errDie("No $themeCfgFile for $theme found") unless defined $cfgFile;
 
 	return $cfgFileCache->{$cfgFile} if exists $cfgFileCache->{$cfgFile};
 	my $cfg = [{}, {}];
@@ -1317,6 +1318,7 @@ sub getMenusAndHooksAndReadsRc ($) {
 			my $valueFile = $optionEntry->{'value'}->[$index]->{'file'};
 			$valueFile = $optionFile . (-d $optionFile? "/": "=")
 				. $valueFile;
+			$valueFile =~ s/^$ROOT_PREFIX//;
 			$command =~ s/%f/$valueFile/sg;
 			$command =~ s/%d/getThemeDir($self->{$idKey})/seg;
 			my $readAfterward = $optionEntry->{'read-afterward'};
@@ -1328,6 +1330,7 @@ sub getMenusAndHooksAndReadsRc ($) {
 #			}
 		}
 		my $command = $cc->{'read-command'} || $defaultReadCommand;
+		$readFile =~ s/^$ROOT_PREFIX//;
 		$command =~ s/%f/$readFile/sg;
 		$command =~ s/%d/getThemeDir($self->{$idKey})/seg;
 		$rc .= "$readRc1$command\n$readRc2";

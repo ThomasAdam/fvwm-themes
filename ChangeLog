@@ -3,6 +3,17 @@
 	* themes/{cde,luthien}/colors/main:
 	improved ColourTable
 
+	* themes/default/menus:
+	* themes/default/menus-user:
+	minor fixes
+
+	* acinclude.m4:
+	* configure.in:
+	* bin/fvwm-themes-{config,images,menuapp,start}.in:
+	* rpm/Makefile.am:
+	* rpm/fvwm-themes.spec.in:
+	updates to rpm building and more
+
 2000-09-19  migo  <migo@homemail.com>
 
 	* TODO: one more idea about option groups

@@ -1,4 +1,5 @@
-%define prefix %{_prefix}
+#%define prefix %{_prefix}
+%define prefix /usr/local
 #%define bindir @bindir@
 #%define mandir @mandir@
 #%define FT_DATADIR @FT_DATADIR@
@@ -16,7 +17,7 @@ Source:    %{name}-%{PACKAGE_VERSION}.tar.gz
 URL:       http://fvwm-themes.sourceforge.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 Packager:  FVWM Themes Developers <fvwm-themes-devel@lists.sourceforge.net>
-Autoreq:   0
+Autoreq:   1
 
 Requires:  fvwm >= @REQUIRED_FVWM_VERSION@
 Requires:  perl >= 5.002
@@ -34,14 +35,15 @@ several pre-built themes, a pack of images and sounds.
 %setup
 
 %build
-#./configure --prefix=%{prefix}
-./configure
+./configure --prefix=%{prefix}
+#./configure
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
 #make prefix=$RPM_BUILD_ROOT%{prefix} install
-make prefix=$RPM_BUILD_ROOT/`fvwm-config -P` install
+#make prefix=$RPM_BUILD_ROOT/`fvwm-config -P` ROOT_PREFIX=$RPM_BUILD_ROOT install
+make prefix=$RPM_BUILD_ROOT%{prefix} ROOT_PREFIX=$RPM_BUILD_ROOT install
 
 %clean
 rm -rf $RPM_BUILD_ROOT

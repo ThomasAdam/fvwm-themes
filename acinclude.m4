@@ -19,8 +19,8 @@ fi
 
 dnl mg_DEFAULT_DIR_ARG(ARG, DEFAULT_VALUE)
 AC_DEFUN(mg_DEFAULT_DIR_ARG,
-[var=`eval "echo [$]$1"`
-if echo "${var}NONE" | awk '/^NONE/ { exit 1 }'; then
+[var=`echo [$]$1`
+if echo "${var}NONE" | awk '/^\$|^NONE/ { exit 1 }'; then
 	$1=$var
 else
 	$1=$2

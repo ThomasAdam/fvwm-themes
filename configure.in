@@ -69,9 +69,9 @@ ROOT_PREFIX=""
 AC_SUBST(ROOT_PREFIX)dnl
 
 if echo "${prefix}NONE" | awk '/^NONE/ { exit 1 }'; then
-	mg_DEFAULT_DIR_ARG(bindir,     '${ROOT_PREFIX}'"$prefix/bin")
-	mg_DEFAULT_DIR_ARG(mandir,     '${ROOT_PREFIX}'"$prefix/man")
-	mg_DEFAULT_DIR_ARG(FT_DATADIR, '${ROOT_PREFIX}'"$datadir/fvwm")
+	mg_DEFAULT_DIR_ARG(bindir,     '${prefix}/bin')
+	mg_DEFAULT_DIR_ARG(mandir,     '${prefix}/man')
+	mg_DEFAULT_DIR_ARG(FT_DATADIR, '${datadir}/fvwm')
 else
 	mg_DEFAULT_DIR_ARG(bindir,     '${ROOT_PREFIX}'"`$FVWM_CONFIG --bindir`")
 	mg_DEFAULT_DIR_ARG(mandir,     '${ROOT_PREFIX}'"`$FVWM_CONFIG --mandir`")
@@ -109,17 +109,20 @@ AC_OUTPUT(
 )
 
 if test -n "$DEBUG"; then
-	echo "[bindir:     $bindir]"
-	echo "[mandir:     $mandir]"
-	echo "[ft-datadir: $FT_DATADIR]"
-	echo "[ft-fvwmscript-dir: $FT_FVWMSCRIPT_DIR]"
-	echo "[ft-fvwmform-dir: $FT_FVWMFORM_DIR]"
-	echo "[gnome-icons: $GNOME_ICONS]"
-	echo "[gnome-session: $GNOME_SESSION]"
-	echo "[gnome-images-dir: $GNOME_IMAGES_DIR]"
-	echo "[settings-file: $SETTINGS_FILE]"
-	echo "[x-libs: $X_LIBS]"
-	echo "[x-extra-libs: $X_EXTRA_LIBS]"
+	echo '------------ ( Debug ) ------------'
+	echo "[prefix:            ${prefix}]"
+	echo "[bindir:            ${bindir}]"
+	echo "[mandir:            ${mandir}]"
+	echo "[ft-datadir:        ${FT_DATADIR}]"
+	echo "[ft-fvwmscript-dir: ${FT_FVWMSCRIPT_DIR}]"
+	echo "[ft-fvwmform-dir:   ${FT_FVWMFORM_DIR}]"
+	echo "[gnome-icons:       ${GNOME_ICONS}]"
+	echo "[gnome-session:     ${GNOME_SESSION}]"
+	echo "[gnome-images-dir:  ${GNOME_IMAGES_DIR}]"
+	echo "[settings-file:     ${SETTINGS_FILE}]"
+	echo "[x-libs:            ${X_LIBS}]"
+	echo "[x-extra-libs:      ${X_EXTRA_LIBS}]"
+	echo '-----------------------------------'
 fi
 
 echo "

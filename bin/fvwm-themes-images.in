@@ -26,7 +26,7 @@
 use Getopt::Long;
 
 my $prefix = '@prefix@';
-my $ROOT_PREFIX = '@ROOT_PREFIX@';
+my $ROOT_PREFIX = $ENV{'ROOT_PREFIX'} || '@ROOT_PREFIX@';
 
 my $version = '@VERSION@';
 my $fvwmVersion = '@FVWM_VERSION@';

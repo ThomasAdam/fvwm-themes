@@ -4,7 +4,7 @@
 # Put a call to this script as the last line of your .Xclients or .xinitrc.
 
 prefix=@prefix@
-ROOT_PREFIX=@ROOT_PREFIX@
+: ${ROOT_PREFIX=@ROOT_PREFIX@}
 
 : ${FVWM_USERDIR=@FVWM_DEFAULT_USERDIR@}
 rcName=themes-rc
@@ -70,8 +70,8 @@ rm -f $rcName2
 ln -s $destRcFile2 $rcName2
 
 # check whether this is a first run
-if [ ! -f $rcFile -o "$build" = "yes" -o "`head -1 $rcFile | cut -d' ' -f3`" != "@VERSION@" ]; then
-	if [ ! -f $rcFile -o "`head -1 $rcFile | cut -d' ' -f3`" != "@VERSION@" ]; then
+if [ ! -f $rcFile -o "$build" = "yes" -o "`head -1 $rcFile 2>/dev/null | cut -d' ' -f3`" != "@VERSION@" ]; then
+	if [ ! -f $rcFile -o "`head -1 $rcFile 2>/dev/null | cut -d' ' -f3`" != "@VERSION@" ]; then
 		echo '[fvwm-themes]: Welcome to FVWM Themes @VERSION@!'
 		xmessage -g 400x100 -xrm "*form*background:rgb:c0/c0/a0" -xrm "*form*okay*background:rgb:90/90/7a" -xrm "*textSink*font:lucidasans-18" -xrm "*form*message*background:rgb:f0/f0/c0" -center 'Welcome to FVWM Themes @VERSION@!' &
 	else
