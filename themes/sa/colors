@@ -80,7 +80,7 @@ AddToFunc   FuncFvwmDecorBackground
 
 # inactive menu item fg+bg and menu face if any
 #
-Colorset 5  sh grey40, hi grey50, TiledPixmap decor/stripe.png, 
+Colorset 5  sh grey40, hi grey50, TiledPixmap decor/stripe.png, \
             bg grey30, fg Grey90, fgAlpha 85, fgsh grey10, NoShape
 
 # active menu item fg+bg

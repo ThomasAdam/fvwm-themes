@@ -7,7 +7,7 @@
 # Icon related configuration
 
 Style "*" IconBox 640x64+1-1, IconGrid 64 10, IconFill Left Bottom
-Style "*" StickyIcon, NoIconTitle
+Style "*" StickyIcon
 
 # ----------------------------------------------------------------------------
 # Switch functions
