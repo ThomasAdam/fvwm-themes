@@ -1,3 +1,11 @@
+2002-09-03  migo  <migo@homemail.com>
+
+	* themes/e17/colors-decor:
+	* themes/ice/colors-decor:
+	* themes/qnx/colors-decor:
+	* themes/redmondxp/colors:
+	use Active shortcut instead of ActiveUp and ActiveDown
+
 2002-09-02  migo  <migo@homemail.com>
 
 	* themes/ice/**:

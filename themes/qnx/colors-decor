@@ -19,12 +19,10 @@ AddToFunc   FuncFvwmTitleStyleEntry
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
-+ I FuncFvwmTitleStyleEntry ActiveUp   active
-+ I FuncFvwmTitleStyleEntry ActiveDown active
-+ I FuncFvwmTitleStyleEntry Inactive   inactive
-+ I FuncFvwmTitleStyleEntry ToggledActiveUp   active
-+ I FuncFvwmTitleStyleEntry ToggledActiveDown active
-+ I FuncFvwmTitleStyleEntry ToggledInactive   inactive
++ I FuncFvwmTitleStyleEntry Active   active
++ I FuncFvwmTitleStyleEntry Inactive inactive
++ I FuncFvwmTitleStyleEntry ToggledActive   active
++ I FuncFvwmTitleStyleEntry ToggledInactive inactive
 
 + I ButtonStyle All Pixmap 16x16/empty.xpm
 + I ButtonStyle All -- UseTitleStyle
