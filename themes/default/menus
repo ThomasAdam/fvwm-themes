@@ -155,7 +155,7 @@ AddToFunc   FuncFvwmGtkThemeSettings
 + I FuncFvwmStartGtkThemeSettings
 + I DestroyFunc FuncFvwmStartGtkThemeSettings
 + I AddToFunc   FuncFvwmStartGtkThemeSettings
-+ I SendToModule FvwmGtk SettingsDialog
++ I SendToModule FvwmGtk-Themes SettingsDialog
 
 DestroyMenu MenuFvwmConfiguration
 AddToMenu   MenuFvwmConfiguration "Fvwm Configuration" Title

@@ -2,62 +2,63 @@
 #------------------ FvwmButtons: BarButtons
 #------------------------------------------------------------------------------
 
-### rename to Fvwm*Adjective*BarButtons? (if we want to enable some bars)
+### rename to FvwmButtons-AdjectiveBar? (if we want to enable some bars)
 
 Style FvwmButtons-Bar  NoTitle, NoHandles, Sticky, WindowListSkip, \
 	CirculateSkip, StaysPut, TitleAtBottom
 
 DestroyModuleConfig FvwmButtons-Bar*
-*FvwmButtons-BarColorset 10
-*FvwmButtons-BarFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-#*FvwmButtons-BarGeometry 127x440-5-64
-*FvwmButtons-BarGeometry 127x440-0-80
-*FvwmButtons-BarColumns 2
-*FvwmButtons-Bar(Title FileMan, Icon 32x32/folders.xpm, \
+*FvwmButtons-Bar: Colorset 10
+*FvwmButtons-Bar: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+#*FvwmButtons-Bar: Geometry 127x440-5-64
+*FvwmButtons-Bar: Geometry 127x440-0-80
+*FvwmButtons-Bar: Columns 2
+*FvwmButtons-Bar: (Title FileMan, Icon 32x32/folders.xpm, \
 	Action(Mouse 1) 'FuncFvwmFileManager', \
 	Action(Mouse 2) 'FuncFvwm2FileManager', \
 	Action(Mouse 3) 'FuncFvwm3FileManager')
-*FvwmButtons-Bar(Title Terminal, Icon 32x32/terminal.xpm, \
+*FvwmButtons-Bar: (Title Terminal, Icon 32x32/terminal.xpm, \
 	Action(Mouse 1) 'FuncFvwmTerminal', \
 	Action(Mouse 2) 'FuncFvwm2Terminal', \
 	Action(Mouse 3) 'FuncFvwm3Terminal')
-*FvwmButtons-Bar(Title Editor, Icon 32x32/editor.xpm, \
+*FvwmButtons-Bar: (Title Editor, Icon 32x32/editor.xpm, \
 	Action(Mouse 1) 'FuncFvwmEditor', \
 	Action(Mouse 2) 'FuncFvwm2Editor', \
 	Action(Mouse 3) 'FuncFvwm3Editor')
-*FvwmButtons-Bar(Title DocView, Icon 32x32/ghostview.xpm, \
+*FvwmButtons-Bar: (Title DocView, Icon 32x32/ghostview.xpm, \
 	Action(Mouse 1) 'FuncFvwmDocView', \
 	Action(Mouse 2) 'FuncFvwm2DocView', \
 	Action(Mouse 3) 'FuncFvwm3DocView')
-*FvwmButtons-Bar(Title ImageView, Icon 32x32/xv.xpm, \
+*FvwmButtons-Bar: (Title ImageView, Icon 32x32/xv.xpm, \
 	Action(Mouse 1) 'FuncFvwmImageView', \
 	Action(Mouse 2) 'FuncFvwm2ImageView', \
 	Action(Mouse 3) 'FuncFvwm3ImageView')
-*FvwmButtons-Bar(Title ImageEdit, Icon 32x32/image-viewer.xpm, \
+*FvwmButtons-Bar: (Title ImageEdit, Icon 32x32/image-viewer.xpm, \
 	Action(Mouse 1) 'FuncFvwmImageEdit', \
 	Action(Mouse 2) 'FuncFvwm2ImageEdit', \
 	Action(Mouse 3) 'FuncFvwm3ImageEdit')
-*FvwmButtons-Bar(Title WWW, Icon 32x32/netscape.xpm, \
+*FvwmButtons-Bar: (Title WWW, Icon 32x32/netscape.xpm, \
 	Action(Mouse 1) 'FuncFvwmWWW', \
 	Action(Mouse 2) 'FuncFvwm2WWW', \
 	Action(Mouse 3) 'FuncFvwm3WWW')
-*FvwmButtons-Bar(Padding 0 0, Container(Padding 0 0, Frame 2, Columns 3))
-*FvwmButtons-Bar(Icon 16x16/window-move.xpm, Action Move)
-*FvwmButtons-Bar(Icon 16x16/window-resize.xpm, Action Resize)
-*FvwmButtons-Bar(Icon 16x16/window-iconify.xpm, Action Iconify)
-*FvwmButtons-Bar(Icon 16x16/window-maximize.xpm, Action FuncFvwmMaximize)
-*FvwmButtons-Bar(Icon 16x16/window-shade.xpm, Action WindowShade)
-*FvwmButtons-Bar(Icon 16x16/window-stick.xpm, Action Stick)
-*FvwmButtons-Bar(Icon 16x16/window-delete.xpm, Action Delete)
-*FvwmButtons-Bar(Icon 16x16/window-destroy.xpm, Action Destroy)
-*FvwmButtons-Bar(Icon 16x16/window-identify.xpm, Action Module FvwmIdent)
-*FvwmButtons-Bar(End)
-*FvwmButtons-Bar(1x1, Title "xload", \
+*FvwmButtons-Bar: (Padding 0 0, Container(Padding 0 0, Frame 2, Columns 3))
+*FvwmButtons-Bar: (Icon 16x16/window-move.xpm, Action Move)
+*FvwmButtons-Bar: (Icon 16x16/window-resize.xpm, Action Resize)
+*FvwmButtons-Bar: (Icon 16x16/window-iconify.xpm, Action Iconify)
+*FvwmButtons-Bar: (Icon 16x16/window-maximize.xpm, Action FuncFvwmMaximize)
+*FvwmButtons-Bar: (Icon 16x16/window-shade.xpm, Action WindowShade)
+*FvwmButtons-Bar: (Icon 16x16/window-stick.xpm, Action Stick)
+*FvwmButtons-Bar: (Icon 16x16/window-delete.xpm, Action Delete)
+*FvwmButtons-Bar: (Icon 16x16/window-destroy.xpm, Action Destroy)
+*FvwmButtons-Bar: (Icon 16x16/window-identify.xpm, Action Module FvwmIdent)
+*FvwmButtons-Bar: (End)
+*FvwmButtons-Bar: (1x1, Title "xload", \
 	Swallow "xload" "Exec exec nice -16 xload -nolabel -update 4 \
 		-fg $[fg.cs13] -bg $[bg.cs13] -hl $[shadow.cs13] \
 		-geometry -1500-1500")
-*FvwmButtons-Bar(1x1, Title "xclock", \
+*FvwmButtons-Bar: (1x1, Title "xclock", \
 	Swallow "xclock" "Exec exec xclock -fg $[fg.cs13] -bg $[bg.cs13] \
 		-hd $[fg.cs13] -hl $[fg.cs13] -padding 0 \
 		-geometry -1500-1500")
-*FvwmButtons-Bar(2x1, Swallow(UseOld) "FvwmPager-Single" 'FvwmPager FvwmPager-Single * *')
+*FvwmButtons-Bar: (2x1, Swallow(UseOld) "FvwmPager-Single" \
+	'FvwmPager FvwmPager-Single * *')

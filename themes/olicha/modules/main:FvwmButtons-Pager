@@ -3,15 +3,14 @@ Style "FvwmButtons-Pager*" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
 
 DestroyModuleConfig FvwmButtons-Pager*
 
-*FvwmButtons-PagerGeometry -0-117
-*FvwmButtons-PagerColorset 10
-*FvwmButtons-PagerFont \
-	-schumacher-clean-medium-r-normal--6-*-*-*-*-*-*-*
-*FvwmButtons-PagerColumns 3
-*FvwmButtons-Pager(Size 38 4, Title " <--- ", Action 'Desk -1 0 3')
-*FvwmButtons-Pager(Size 38 4, \
+*FvwmButtons-Pager: Geometry -0-117
+*FvwmButtons-Pager: Colorset 10
+*FvwmButtons-Pager: Font -schumacher-clean-medium-r-normal--6-*-*-*-*-*-*-*
+*FvwmButtons-Pager: Columns 3
+*FvwmButtons-Pager: (Size 38 4, Title " <--- ", Action 'Desk -1 0 3')
+*FvwmButtons-Pager: (Size 38 4, \
 	Panel(up, position module right mlr mtb, indicator) \
 	"FvwmPager-Desker" 'Module FvwmPager FvwmPager-Desker 0 3')
-*FvwmButtons-Pager(Size 38 4, Title " ---> ", Action 'Desk 1 0 3')
-*FvwmButtons-Pager(3x5, Swallow "FvwmPager-Single" \
+*FvwmButtons-Pager: (Size 38 4, Title " ---> ", Action 'Desk 1 0 3')
+*FvwmButtons-Pager: (3x5, Swallow "FvwmPager-Single" \
 	'Module FvwmPager FvwmPager-Single * *')

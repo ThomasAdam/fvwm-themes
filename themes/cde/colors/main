@@ -15,31 +15,31 @@ esyscmd({{awk '{ print "define(CDE_COLOR" (NR <= 8? NR "_BG": (NR - 8) "_FG") ",
 # ----------------
 # Default colorset
 
-*FvwmThemeColorset 0 fg CDE_COLOR2_FG, \
+*FvwmTheme: Colorset 0 fg CDE_COLOR2_FG, \
 	bg CDE_COLOR2_BG, Plain, NoShape
 
 DefaultColorset 0
 DestroyModuleConfig FvwmScrollColorset*
-*FvwmScrollColorset 0
+*FvwmScroll: Colorset 0
 
 # ------------------
 # Window decorations
 
 # Text and sh/hi windows title bar colors, icons title and Pager mini-win.
 # inactive:
-*FvwmThemeColorset 1 fg CDE_COLOR2_FG, \
+*FvwmTheme: Colorset 1 fg CDE_COLOR2_FG, \
 	bg CDE_COLOR2_BG, Plain, NoShape
 Style "*"	Colorset 1
 # active:
-*FvwmThemeColorset 2 fg CDE_COLOR1_FG, \
+*FvwmTheme: Colorset 2 fg CDE_COLOR1_FG, \
 	bg CDE_COLOR1_BG, Plain, NoShape
 Style "*"	HilightColorset 2
 
 # borders of the windows inactive/active:
-*FvwmThemeColorset 3 fg CDE_COLOR2_FG, \
+*FvwmTheme: Colorset 3 fg CDE_COLOR2_FG, \
 	bg CDE_COLOR2_BG, Plain, NoShape
 Style "*"	BorderColorset 3
-*FvwmThemeColorset 4 fg CDE_COLOR1_FG, \
+*FvwmTheme: Colorset 4 fg CDE_COLOR1_FG, \
 	bg CDE_COLOR1_BG, Plain, NoShape
 Style "*"	HilightBorderColorset 4
 
@@ -56,15 +56,15 @@ ButtonStyle	All -- UseTitleStyle
 # Menus
 
 # inactive menu item fg+bg and menu face
-*FvwmThemeColorset 5 fg CDE_COLOR2_FG, \
+*FvwmTheme: Colorset 5 fg CDE_COLOR2_FG, \
 	bg CDE_COLOR2_BG, Plain, NoShape
 
 # active menu item fg+bg
-*FvwmThemeColorset 6 fg CDE_COLOR1_FG, \
+*FvwmTheme: Colorset 6 fg CDE_COLOR1_FG, \
 	bg CDE_COLOR1_BG, Plain, NoShape
 
 # greyed menu item fg
-*FvwmThemeColorset 7 fg CDE_COLOR4_BG, \
+*FvwmTheme: Colorset 7 fg CDE_COLOR4_BG, \
 	bg CDE_COLOR4_BG, Plain, NoShape
 
 MenuStyle * MenuFace
@@ -78,108 +78,108 @@ MenuStyle * ActiveFore, HilightBack
 # Common Colorsets
 
 # default for modules
-*FvwmThemeColorset 10 fg CDE_COLOR8_FG, \
+*FvwmTheme: Colorset 10 fg CDE_COLOR8_FG, \
 	bg CDE_COLOR8_BG, Plain, NoShape
 
 # default hilight
-*FvwmThemeColorset 11 fg CDE_COLOR1_FG, \
+*FvwmTheme: Colorset 11 fg CDE_COLOR1_FG, \
 	bg CDE_COLOR1_BG, Plain, NoShape
 
 # special
-*FvwmThemeColorset 12 fg CDE_COLOR1_FG, \
+*FvwmTheme: Colorset 12 fg CDE_COLOR1_FG, \
 	bg CDE_COLOR1_BG, \
 	VGradient 26 CDE_COLOR1_BG \
 	CDE_COLOR2_BG, NoShape
 
 # swallowed window
-*FvwmThemeColorset 13 fg CDE_COLOR6_FG, \
+*FvwmTheme: Colorset 13 fg CDE_COLOR6_FG, \
 	bg CDE_COLOR6_BG, \
 	hi CDE_COLOR1_FG, \
 	sh CDE_COLOR1_BG, Plain, NoShape
 
 # default2 (FvwmPager or to get more colors in Buttons)
-*FvwmThemeColorset 14 fg CDE_COLOR8_FG, \
+*FvwmTheme: Colorset 14 fg CDE_COLOR8_FG, \
 	bg CDE_COLOR8_BG, Plain, NoShape
 
 # default hilight2: (FvwmPager or to get more colors in a Buttons)
-*FvwmThemeColorset 15 fg CDE_COLOR1_FG, \
+*FvwmTheme: Colorset 15 fg CDE_COLOR1_FG, \
 	bg CDE_COLOR1_BG, Plain, NoShape
 
 # tips/balloons
-*FvwmThemeColorset 16 fg CDE_COLOR2_FG, \
+*FvwmTheme: Colorset 16 fg CDE_COLOR2_FG, \
 	bg CDE_COLOR2_BG, Plain, NoShape
 
 # ----------------------
 # Window Lists Colorsets
 
 # standard item
-*FvwmThemeColorset 17 fg CDE_COLOR7_FG, \
+*FvwmTheme: Colorset 17 fg CDE_COLOR7_FG, \
 	bg CDE_COLOR7_BG, Plain, NoShape
 
 # active item
-*FvwmThemeColorset 18 fg CDE_COLOR1_FG, \
+*FvwmTheme: Colorset 18 fg CDE_COLOR1_FG, \
 	bg CDE_COLOR1_BG, Plain, NoShape
 
 # iconified item
-*FvwmThemeColorset 19 fg CDE_COLOR2_FG, \
+*FvwmTheme: Colorset 19 fg CDE_COLOR2_FG, \
 	bg CDE_COLOR2_BG, Plain, NoShape
 
 # pointed item
-*FvwmThemeColorset 20 fg CDE_COLOR8_FG, \
+*FvwmTheme: Colorset 20 fg CDE_COLOR8_FG, \
 	bg CDE_COLOR8_BG, Plain, NoShape
 
 # ------------------------
 # Others Modules Colorsets
 
 # FvwmIdent
-*FvwmThemeColorset 21 fg CDE_COLOR6_FG, \
+*FvwmTheme: Colorset 21 fg CDE_COLOR6_FG, \
 	bg CDE_COLOR6_BG, Plain, NoShape
 
 DestroyModuleConfig FvwmIdent*
-*FvwmIdentColorset 21
+*FvwmIdent: Colorset 21
 
 # FvwmConsole
-*FvwmThemeColorset 22 fg CDE_COLOR6_FG, \
+*FvwmTheme: Colorset 22 fg CDE_COLOR6_FG, \
 	bg CDE_COLOR6_BG, Plain, NoShape
 
 # ----------------------------------------------------------------------------
 # III. Applications Colorsets
 
 # Terminals
-*FvwmThemeColorset 30 fg CDE_COLOR4_FG, \
+*FvwmTheme: Colorset 30 fg CDE_COLOR4_FG, \
 	bg CDE_COLOR4_BG, Plain, NoShape
 
 # Administrations
-*FvwmThemeColorset 31 fg CDE_COLOR6_FG, \
+*FvwmTheme: Colorset 31 fg CDE_COLOR6_FG, \
 	bg CDE_COLOR6_BG, Plain, NoShape
 
 # Remote Terminals
-*FvwmThemeColorset 32 fg CDE_COLOR7_FG, \
+*FvwmTheme: Colorset 32 fg CDE_COLOR7_FG, \
 	bg CDE_COLOR7_BG, Plain, NoShape
 
 # "Viewer" Colorset
-*FvwmThemeColorset 33 fg CDE_COLOR5_FG, \
+*FvwmTheme: Colorset 33 fg CDE_COLOR5_FG, \
 	bg CDE_COLOR5_BG, Plain, NoShape
 
 # Small Text Input file or Hilighting some Items
-*FvwmThemeColorset 34 fg CDE_COLOR4_FG, \
+*FvwmTheme: Colorset 34 fg CDE_COLOR4_FG, \
 	bg CDE_COLOR4_BG, Plain, NoShape
 
 DestroyModuleConfig FvwmFormDefaultItemColorset*
-*FvwmFormDefaultItemColorset 34
+*FvwmFormDefault: ItemColorset 34
 
 # Application run in a terminal, text file of an editor for xres ...
-*FvwmThemeColorset 35 fg CDE_COLOR4_FG, \
+*FvwmTheme: Colorset 35 fg CDE_COLOR4_FG, \
 	bg CDE_COLOR4_BG, Plain, NoShape
 
 # Not in one of the above category (for Script and Form, ft-xres)
-*FvwmThemeColorset 36 fg CDE_COLOR6_FG, \
+*FvwmTheme: Colorset 36 fg CDE_COLOR6_FG, \
 	bg CDE_COLOR6_BG, Plain, NoShape
 
 DestroyModuleConfig FvwmScriptDefaultColorset*
-*FvwmScriptDefaultColorset 36
+*FvwmScript: DefaultColorset 36
 DestroyModuleConfig FvwmFormDefaultColorset*
-*FvwmFormDefaultColorset 36
+*FvwmFormDefault: Colorset 36
 
 # ----------------------------------------------------------------------------
 # IV. Start/Stop Functions

@@ -1,4 +1,4 @@
-*FvwmTaskBarDeskOnly 
+*FvwmTaskBar: DeskOnly 
 DestroyModuleConfig FvwmTaskBarAutoHide*
 
 DestroyFunc FuncFvwmStartNormalIcons

@@ -17,23 +17,23 @@ Style "FvwmPager-Single" NoTitle, Sticky, WindowListSkip, CirculateSkip, NoHandl
  
 
 DestroyModuleConfig FvwmPager-Single*
-*FvwmPager-SingleColumns 1
+*FvwmPager-Single: Columns 1
 
-*FvwmPager-SingleColorset * 14
-*FvwmPager-SingleHilightColorset * 15
-*FvwmPager-SingleBalloonColorset * 16
-*FvwmPager-SingleWindowColorsets 1 2
+*FvwmPager-Single: Colorset * 14
+*FvwmPager-Single: HilightColorset * 15
+*FvwmPager-Single: BalloonColorset * 16
+*FvwmPager-Single: WindowColorsets 1 2
 
-*FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-*FvwmPager-SingleSmallFont 5x8
-*FvwmPager-SingleSolidSeparators
-*FvwmPager-SingleBalloons            All
-*FvwmPager-SingleBalloonFont         -adobe-helvetica-medium-r-*-*-10-*-*-*-*-*-*-*
-*FvwmPager-SingleBalloonYOffset      +2
-*FvwmPager-SingleBalloonBorderWidth  1
-*FvwmPager-SingleWindow3dBorders
+*FvwmPager-Single: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-Single: SmallFont 5x8
+*FvwmPager-Single: SolidSeparators
+*FvwmPager-Single: Balloons            All
+*FvwmPager-Single: BalloonFont         -adobe-helvetica-medium-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-Single: BalloonYOffset      +2
+*FvwmPager-Single: BalloonBorderWidth  1
+*FvwmPager-Single: Window3dBorders
 
-*FvwmPager-SingleLabel 0 Main
-*FvwmPager-SingleLabel 1 Web & Mail
-*FvwmPager-SingleLabel 2 Devel
-*FvwmPager-SingleLabel 3 Games
+*FvwmPager-Single: Label 0 Main
+*FvwmPager-Single: Label 1 Web & Mail
+*FvwmPager-Single: Label 2 Devel
+*FvwmPager-Single: Label 3 Games

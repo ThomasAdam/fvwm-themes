@@ -14,13 +14,13 @@ Style FvwmPager-Single NoTitle, NoHandles, Sticky, WindowListSkip
 
 DestroyModuleConfig FvwmPager-Single*
 
-*FvwmPager-SingleColorset * 14
-*FvwmPager-SingleHilightColorset * 15
-*FvwmPager-SingleBalloonColorset * 16
-*FvwmPager-SingleWindowColorsets 1 2
+*FvwmPager-Single: Colorset * 14
+*FvwmPager-Single: HilightColorset * 15
+*FvwmPager-Single: BalloonColorset * 16
+*FvwmPager-Single: WindowColorsets 1 2
 
-*FvwmPager-SingleColumns 1
-*FvwmPager-SingleFont none
-*FvwmPager-SingleSmallFont -*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*
-*FvwmPager-SingleBalloons Pager
-*FvwmPager-SingleNoSeparators
+*FvwmPager-Single: Columns 1
+*FvwmPager-Single: Font none
+*FvwmPager-Single: SmallFont -*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*
+*FvwmPager-Single: Balloons Pager
+*FvwmPager-Single: NoSeparators

@@ -1,4 +1,4 @@
-*FvwmIconBoxResolution Desk
+*FvwmIconBox: Resolution Desk
 
 DestroyFunc FuncFvwmStartNormalIcons
 AddToFunc   FuncFvwmStartNormalIcons

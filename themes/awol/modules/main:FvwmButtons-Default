@@ -2,62 +2,62 @@ Style "FvwmButtons-Default" NoTitle, NoIcon, NoHandles, Sticky, \
 	WindowListSkip, BorderWidth 4, CirculateSkip, MouseFocus, TitleAtBottom
 
 DestroyModuleConfig FvwmButtons-Default*
-*FvwmButtons-DefaultColorset 10
+*FvwmButtons-Default: Colorset 10
 
-*FvwmButtons-DefaultFont -b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1
-*FvwmButtons-DefaultGeometry 792x90+0-0
-*FvwmButtons-DefaultRows 11
-*FvwmButtons-DefaultColumns 20
-*FvwmButtons-DefaultPadding 0 0
-*FvwmButtons-DefaultBoxSize smart
+*FvwmButtons-Default: Font -b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1
+*FvwmButtons-Default: Geometry 792x90+0-0
+*FvwmButtons-Default: Rows 11
+*FvwmButtons-Default: Columns 20
+*FvwmButtons-Default: Padding 0 0
+*FvwmButtons-Default: BoxSize smart
 
-*FvwmButtons-Default(20x11, Container (Rows 12, Columns 20), Frame 0)
+*FvwmButtons-Default: (20x11, Container (Rows 12, Columns 20), Frame 0)
 
-*FvwmButtons-Default(20x3, Container (Rows 1, Columns 20), Frame 0)
-*FvwmButtons-Default(1x1, Icon module/isn_prev.xpm, Action 'Desk -1 -7 7', Frame -1)
-*FvwmButtons-Default(18x1, Swallow(UseOld,Respawn) "FvwmIconMan" 'Module FvwmIconMan', NoSize, Padding 0 0, Frame -1)
-*FvwmButtons-Default(1x1, Icon module/isn_next.xpm, Action 'Desk 1 -7 7', Frame -1)
-*FvwmButtons-Default(End)
+*FvwmButtons-Default: (20x3, Container (Rows 1, Columns 20), Frame 0)
+*FvwmButtons-Default: (1x1, Icon module/isn_prev.xpm, Action 'Desk -1 -7 7', Frame -1)
+*FvwmButtons-Default: (18x1, Swallow(UseOld,Respawn) "FvwmIconMan" 'Module FvwmIconMan', NoSize, Padding 0 0, Frame -1)
+*FvwmButtons-Default: (1x1, Icon module/isn_next.xpm, Action 'Desk 1 -7 7', Frame -1)
+*FvwmButtons-Default: (End)
 
-*FvwmButtons-Default(20x9, Container (Rows 1, Columns 20), NoSize, Frame 0, Padding 0 0)
-*FvwmButtons-Default(7x1, Action(mouse 1) 'Menu MenuFvwmRoot Mouse c -102m', Container (Rows 1, Columns 14), Frame 3, Padding 0 0)
-*FvwmButtons-Default(2x1, Icon 16x16/penguin.xpm, Action Menu MenuFvwmAnimate Mouse c -102m, Frame -1, Padding 0 0)
-*FvwmButtons-Default(8x1, Icon module/fvwm3.xpm, Action(mouse 1) 'Menu MenuFvwmRoot Mouse c -102m', Action (mouse 3) 'Menu MenuFvwmModules Mouse c -102m', Frame -1, Padding 0 0)
-*FvwmButtons-Default(2x1, Title "2.4.x", Icon module/Pinky.xpm, Action(mouse 1) 'Menu MenuFvwmThemes Mouse c -102m', Action(mouse 3) 'Menu MenuFvwmConfiguration Mouse c -102m', Frame -1)
-*FvwmButtons-Default(2x1, Title "Tools", Icon module/mini-tools.xpm, Action 'Menu MenuFvwmPrograms Mouse c -102m', Frame -1, Back grey75)
-*FvwmButtons-Default(End)
+*FvwmButtons-Default: (20x9, Container (Rows 1, Columns 20), NoSize, Frame 0, Padding 0 0)
+*FvwmButtons-Default: (7x1, Action(mouse 1) 'Menu MenuFvwmRoot Mouse c -102m', Container (Rows 1, Columns 14), Frame 3, Padding 0 0)
+*FvwmButtons-Default: (2x1, Icon 16x16/penguin.xpm, Action Menu MenuFvwmAnimate Mouse c -102m, Frame -1, Padding 0 0)
+*FvwmButtons-Default: (8x1, Icon module/fvwm3.xpm, Action(mouse 1) 'Menu MenuFvwmRoot Mouse c -102m', Action (mouse 3) 'Menu MenuFvwmModules Mouse c -102m', Frame -1, Padding 0 0)
+*FvwmButtons-Default: (2x1, Title "2.4.x", Icon module/Pinky.xpm, Action(mouse 1) 'Menu MenuFvwmThemes Mouse c -102m', Action(mouse 3) 'Menu MenuFvwmConfiguration Mouse c -102m', Frame -1)
+*FvwmButtons-Default: (2x1, Title "Tools", Icon module/mini-tools.xpm, Action 'Menu MenuFvwmPrograms Mouse c -102m', Frame -1, Back grey75)
+*FvwmButtons-Default: (End)
 
-*FvwmButtons-Default(1x1, Title "reStart", Icon module/mini-start.xpm, Action 'Restart', Frame 2, Back grey55, Padding 0 0)
+*FvwmButtons-Default: (1x1, Title "reStart", Icon module/mini-start.xpm, Action 'Restart', Frame 2, Back grey55, Padding 0 0)
 
-*FvwmButtons-Default(1x1, Title "Lock", Icon module/mini-grab.xpm, Frame 2, Action FuncFvwmWmLock)
+*FvwmButtons-Default: (1x1, Title "Lock", Icon module/mini-grab.xpm, Frame 2, Action FuncFvwmWmLock)
 
-*FvwmButtons-Default(2x1, Swallow(UseOld) "FvwmPager-Single" 'Module FvwmPager FvwmPager-Single * *', Frame -1)
+*FvwmButtons-Default: (2x1, Swallow(UseOld) "FvwmPager-Single" 'Module FvwmPager FvwmPager-Single * *', Frame -1)
 
-*FvwmButtons-Default(2x1, Title "LOAD", Swallow(UseOld,Respawn) "xload" 'Exec xload -hl $[shadow.cs13] -nolabel -bg $[bg.cs13] -fg $[fg.cs13] -update 5 -geometry -1500-1500' \
+*FvwmButtons-Default: (2x1, Title "LOAD", Swallow(UseOld,Respawn) "xload" 'Exec xload -hl $[shadow.cs13] -nolabel -bg $[bg.cs13] -fg $[fg.cs13] -update 5 -geometry -1500-1500' \
 Action(mouse 1) 'Exec xterm +sb -font 7x14 -bg $[bg.cs35] -fg $[fg.cs35] -T Top -n Top -e top', \
 Action(mouse 3) 'Exec tkps', Frame -1)
 
-*FvwmButtons-Default(7x1, Container (Rows 1, Columns 9), Padding 0 0)
-*FvwmButtons-Default(3x1, Container (Rows 2, Columns 4), Frame 0)
-*FvwmButtons-Default(1x1,Title "isp", Icon module/mini-isp.xpm, Action  FuncFvwm3WWW)
-*FvwmButtons-Default(1x1,Title "www", Icon mini/netscape.xpm, Action  FuncFvwmWWW)
-*FvwmButtons-Default(1x1,Title "edit", Icon mini/editor.xpm, Action  FuncFvwmEditor)
-*FvwmButtons-Default(1x1,Title "term", Icon mini/xterm.xpm, Action FuncFvwmTerminal)
-*FvwmButtons-Default(1x1, Title "move", Icon 16x16/window-move.xpm, Action Move, Frame -1, Padding 0 0)
-*FvwmButtons-Default(1x1, Title "size", Icon 16x16/window-resize.xpm, Action Resize, Frame -1, Padding 0 0)
-*FvwmButtons-Default(1x1, Title "stick", Icon 16x16/window-stick.xpm, Action Stick, Back grey75, Frame -1, Padding 0 0)
-*FvwmButtons-Default(1x1, Title "close", Icon 16x16/window-close.xpm, Action Close, Back grey60, Frame -1, Padding 0 0)
-*FvwmButtons-Default(End)
+*FvwmButtons-Default: (7x1, Container (Rows 1, Columns 9), Padding 0 0)
+*FvwmButtons-Default: (3x1, Container (Rows 2, Columns 4), Frame 0)
+*FvwmButtons-Default: (1x1,Title "isp", Icon module/mini-isp.xpm, Action  FuncFvwm3WWW)
+*FvwmButtons-Default: (1x1,Title "www", Icon mini/netscape.xpm, Action  FuncFvwmWWW)
+*FvwmButtons-Default: (1x1,Title "edit", Icon mini/editor.xpm, Action  FuncFvwmEditor)
+*FvwmButtons-Default: (1x1,Title "term", Icon mini/xterm.xpm, Action FuncFvwmTerminal)
+*FvwmButtons-Default: (1x1, Title "move", Icon 16x16/window-move.xpm, Action Move, Frame -1, Padding 0 0)
+*FvwmButtons-Default: (1x1, Title "size", Icon 16x16/window-resize.xpm, Action Resize, Frame -1, Padding 0 0)
+*FvwmButtons-Default: (1x1, Title "stick", Icon 16x16/window-stick.xpm, Action Stick, Back grey75, Frame -1, Padding 0 0)
+*FvwmButtons-Default: (1x1, Title "close", Icon 16x16/window-close.xpm, Action Close, Back grey60, Frame -1, Padding 0 0)
+*FvwmButtons-Default: (End)
 
-*FvwmButtons-Default(6x1, Container (Rows 1, Columns 30), Frame 0)
-*FvwmButtons-Default(8x1, Center, Swallow(UseOld) "xbiff" "Exec xbiff -bg $[bg.cs13] -fg $[fg.cs13]", Frame -1)
-*FvwmButtons-Default(11x1, Center, Swallow (Kill) "FvwmApplet-Mixer" \
+*FvwmButtons-Default: (6x1, Container (Rows 1, Columns 30), Frame 0)
+*FvwmButtons-Default: (8x1, Center, Swallow(UseOld) "xbiff" "Exec xbiff -bg $[bg.cs13] -fg $[fg.cs13]", Frame -1)
+*FvwmButtons-Default: (11x1, Center, Swallow (Kill) "FvwmApplet-Mixer" \
 	'FvwmScript FvwmApplet-Mixer 10 13', Frame -1)
-*FvwmButtons-Default(11x1, Center, Swallow (Kill) "FvwmApplet-DayClock" \
+*FvwmButtons-Default: (11x1, Center, Swallow (Kill) "FvwmApplet-DayClock" \
 		'FvwmScript FvwmApplet-DayClock 10 13', Frame -1)
-*FvwmButtons-Default(End)
+*FvwmButtons-Default: (End)
 
-*FvwmButtons-Default(End)
+*FvwmButtons-Default: (End)
 
-*FvwmButtons-Default(End)
-*FvwmButtons-Default(End)
+*FvwmButtons-Default: (End)
+*FvwmButtons-Default: (End)

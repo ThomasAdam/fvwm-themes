@@ -1,4 +1,4 @@
-*FvwmWinListShowCurrentDesk
+*FvwmWinList: ShowCurrentDesk
 
 DestroyFunc FuncFvwmStartNormalIcons
 AddToFunc   FuncFvwmStartNormalIcons

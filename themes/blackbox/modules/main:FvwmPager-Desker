@@ -3,14 +3,14 @@ Style FvwmPager-Desker NoTitle, NoHandles, Sticky, WindowListSkip, \
 
 DestroyModuleConfig FvwmPager-Desker*
 
-*FvwmPager-DeskerColorset * 14
-*FvwmPager-DeskerHilightColorset * 15
-*FvwmPager-DeskerBalloonColorset * 16
-*FvwmPager-DeskerWindowColorsets 1 2
+*FvwmPager-Desker: Colorset * 14
+*FvwmPager-Desker: HilightColorset * 15
+*FvwmPager-Desker: BalloonColorset * 16
+*FvwmPager-Desker: WindowColorsets 1 2
 
-*FvwmPager-DeskerGeometry 90x108-0+0
-*FvwmPager-DeskerFont -*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*
-*FvwmPager-DeskerSmallFont -*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*
-*FvwmPager-DeskerBalloons Pager
-*FvwmPager-DeskerColumns 1
-*FvwmPager-DeskerNoSeparators
+*FvwmPager-Desker: Geometry 90x108-0+0
+*FvwmPager-Desker: Font -*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*
+*FvwmPager-Desker: SmallFont -*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*
+*FvwmPager-Desker: Balloons Pager
+*FvwmPager-Desker: Columns 1
+*FvwmPager-Desker: NoSeparators

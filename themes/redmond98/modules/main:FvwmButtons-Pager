@@ -9,10 +9,10 @@ Style "FvwmButtons-Pager" StaysPut
 
 DestroyModuleConfig FvwmButtons-Pager*
 
-*FvwmButtons-PagerColorset 10
-*FvwmButtons-PagerGeometry 12x78
-*FvwmButtons-PagerRows 1
-*FvwmButtons-PagerFrame 1
-*FvwmButtons-PagerPadding 0 0
-*FvwmButtons-Pager(Panel(right, steps 12, delay 0, position top, indicator10) \
+*FvwmButtons-Pager: Colorset 10
+*FvwmButtons-Pager: Geometry 12x78
+*FvwmButtons-Pager: Rows 1
+*FvwmButtons-Pager: Frame 1
+*FvwmButtons-Pager: Padding 0 0
+*FvwmButtons-Pager: (Panel(right, steps 12, delay 0, position top, indicator10) \
 	"FvwmPager-Desker" 'Module FvwmPager FvwmPager-Desker 0 3')

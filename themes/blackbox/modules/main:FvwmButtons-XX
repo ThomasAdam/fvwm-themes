@@ -17,55 +17,55 @@ AddToFunc    FuncFvwmButtons-XXPrev
 + I All (FvwmButtons-XX) Raise
 
 DestroyModuleConfig FvwmButtons-XX*
-*FvwmButtons-XXGeometry 700x18+99-0
-*FvwmButtons-XXBoxSize fixed
-*FvwmButtons-XXColumns 70
-*FvwmButtons-XXRows 18
-*FvwmButtons-XXFrame 0
-*FvwmButtons-XXColorset 12
-*FvwmButtons-XXPadding 0 0
+*FvwmButtons-XX: Geometry 700x18+99-0
+*FvwmButtons-XX: BoxSize fixed
+*FvwmButtons-XX: Columns 70
+*FvwmButtons-XX: Rows 18
+*FvwmButtons-XX: Frame 0
+*FvwmButtons-XX: Colorset 12
+*FvwmButtons-XX: Padding 0 0
 
-*FvwmButtons-XX( \
+*FvwmButtons-XX: ( \
 	6x15+1+2, \
 	Swallow (Kill) "FvwmApplet-DigitalClock" \
 	'FvwmScript FvwmApplet-DigitalClock 17' \
 )
-#*FvwmButtons-XX( \
+#*FvwmButtons-XX: ( \
 #	6x14+1+2, Colorset 17,\
 #	Swallow(Kill) "xdaliclock" `Exec exec xdaliclock -24 \
 #	-fn lucidasans-bold-10  -fg $[fg.cs13] -noseconds -transparent` \
 #)
-*FvwmButtons-XX( \
+*FvwmButtons-XX: ( \
 	2x16+7+1, \
 	Action FuncFvwmButtons-XXPrev, \
 	Icon module/toolbarbutton1.xpm \
 )
 
-*FvwmButtons-XX( \
+*FvwmButtons-XX: ( \
 	2x16+9+1, \
 	Action FuncFvwmButtons-XXNext, \
 	Icon module/toolbarbutton2.xpm \
 )
 
-*FvwmButtons-XX( \
+*FvwmButtons-XX: ( \
 	9x14+60+2, \
 	Swallow "FvwmPager-Single" "FvwmPager FvwmPager-Single * *" \
 )
 
-*FvwmButtons-XX( \
+*FvwmButtons-XX: ( \
 	2x16+56+1, \
 	Action GotoPage -1p 0p, \
 	Icon module/toolbarbutton1.xpm \
 )
 
-*FvwmButtons-XX( \
+*FvwmButtons-XX: ( \
 	2x16+58+1, \
 	Action, \
 	Action GotoPage +1p 0p, \
 	Icon module/toolbarbutton2.xpm \
 )
 
-*FvwmButtons-XX( \
+*FvwmButtons-XX: ( \
 	45x14+11+2, \
 	Swallow "FvwmIconMan" "Module FvwmIconMan" \
 )

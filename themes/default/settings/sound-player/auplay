@@ -1,12 +1,12 @@
-*FvwmSoundEventCmd "Exec exec auplay "
+*FvwmEvent-Sound: Cmd "Exec exec auplay "
 
-DestroyFunc FuncFvwmStartFvwmSoundEvent
-AddToFunc   FuncFvwmStartFvwmSoundEvent
-+ I Module FvwmEvent FvwmSoundEvent
+DestroyFunc FuncFvwmStartFvwmEvent-Sound
+AddToFunc   FuncFvwmStartFvwmEvent-Sound
++ I Module FvwmEvent FvwmEvent-Sound
 
-DestroyFunc FuncFvwmStopFvwmSoundEvent
-AddToFunc   FuncFvwmStopFvwmSoundEvent
-+ I KillModule FvwmEvent FvwmSoundEvent
+DestroyFunc FuncFvwmStopFvwmEvent-Sound
+AddToFunc   FuncFvwmStopFvwmEvent-Sound
++ I KillModule FvwmEvent FvwmEvent-Sound
 
 AddToMenu   MenuFvwmStartRegularModules "Sound Effect (auplay)" \
-	FuncFvwmRestartModuleByAlias FvwmEvent FvwmSoundEvent
+	FuncFvwmRestartModuleByAlias FvwmEvent FvwmEvent-Sound

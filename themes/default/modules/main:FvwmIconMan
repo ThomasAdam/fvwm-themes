@@ -2,30 +2,30 @@ Style "FvwmIconMan" NoTitle, NoHandles, Sticky, WindowListSkip, \
 	CirculateSkip, TitleAtBottom
 
 DestroyModuleConfig FvwmIconMan*
-*FvwmIconMan*numManagers 1
+*FvwmIconMan: *numManagers 1
 
-*FvwmIconMan*Colorset		12
-*FvwmIconMan*iconcolorset	19
-*FvwmIconMan*plaincolorset	17
-*FvwmIconMan*selectcolorset	20
-*FvwmIconMan*focuscolorset	18
-*FvwmIconMan*focusandselectcolorset 20
+*FvwmIconMan: *colorset		12
+*FvwmIconMan: *iconcolorset	19
+*FvwmIconMan: *plaincolorset	17
+*FvwmIconMan: *selectcolorset	20
+*FvwmIconMan: *focuscolorset	18
+*FvwmIconMan: *focusandselectcolorset 20
 
-*FvwmIconMan*font        7x13bold
-*FvwmIconMan*format      "%t"
-*FvwmIconMan*action   Mouse   1 N sendcommand "FuncFvwmDeiconifyFocusAndRaise"
-*FvwmIconMan*action   Mouse   2 N sendcommand "Iconify"
-*FvwmIconMan*action   Mouse   3 N sendcommand \
+*FvwmIconMan: *font        7x13bold
+*FvwmIconMan: *format      "%t"
+*FvwmIconMan: *action  Mouse   1 N sendcommand "FuncFvwmDeiconifyFocusAndRaise"
+*FvwmIconMan: *action  Mouse   2 N sendcommand "Iconify"
+*FvwmIconMan: *action  Mouse   3 N sendcommand \
 	"Popup MenuFvwmWindowOps2 Mouse c -102m"
-*FvwmIconMan*followfocus true
-*FvwmIconMan*sort        none
-*FvwmIconMan*iconbutton		up
-*FvwmIconMan*plainbutton	up
-*FvwmIconMan*selectbutton	down
-*FvwmIconMan*focusbutton	up
-*FvwmIconMan*focusandselectbutton down
-*FvwmIconMan*dontshow icon=Untitled resource=Untitled
-#*FvwmIconMan*drawicons true
-*FvwmIconMan*buttongeometry  180x0
-*FvwmIconMan*managergeometry 2x0+0-0
-*FvwmIconMan*NoIconAction "SendToModule FvwmAnimate animate"
+*FvwmIconMan: *followfocus true
+*FvwmIconMan: *sort        none
+*FvwmIconMan: *iconbutton		up
+*FvwmIconMan: *plainbutton	up
+*FvwmIconMan: *selectbutton	down
+*FvwmIconMan: *focusbutton	up
+*FvwmIconMan: *focusandselectbutton down
+*FvwmIconMan: *dontshow icon=Untitled resource=Untitled
+#*FvwmIconMan: *drawicons true
+*FvwmIconMan: *buttongeometry  180x0
+*FvwmIconMan: *managergeometry 2x0+0-0
+*FvwmIconMan: *NoIconAction "SendToModule FvwmAnimate animate"

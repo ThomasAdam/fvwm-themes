@@ -1,3 +1,8 @@
+Style "FvwmIconMan" BorderWidth 0, NoTitle, NoHandles, Sticky, FVWMBorder, \
+	WindowListSkip
+# migo: why is this line?
+#Style "FvwmIconMan" ForeColor grey, BackColor rgb:55/5d/5d,
+
 DestroyFunc FuncFvwmIconManWarpToMiddle
 AddToFunc   FuncFvwmIconManWarpToMiddle
 + I WarpToWindow 50 50
@@ -6,46 +11,34 @@ DestroyFunc FuncFvwmIconFocusAndOptions
 AddToFunc   FuncFvwmIconFocusAndOptions
 + I Focus NoWarp
 + I Popup MenuFvwmWindowOps2 Mouse c -102m
-#+ I Popup MenuFvwmIconManOptions
-
-DestroyMenu MenuFvwmIconManOptions
-AddToMenu   MenuFvwmIconManOptions
-+ "Iconify" Iconify
-+ "Close" Close
-+ "Destroy" Destroy
-+ "Send to page" Popup MenuFvwmWindowMove
-+ "Send and warp" Nop  # ?
 
 DestroyModuleConfig FvwmIconMan*
-### the first and last config lines cause core dump...
-### I've uncommented the last line ...
+### migo: the first and last config lines cause core dump...
+### olicha: I've uncommented the last line ...
 # it should be 0x1+0-0 anyway
-*FvwmIconMan*1*managergeometry 10x1+0-0
+*FvwmIconMan: *1*managergeometry 10x1+0-0
 
-*FvwmIconMan*Colorset		12
-*FvwmIconMan*iconcolorset	19
-*FvwmIconMan*plaincolorset	17
-*FvwmIconMan*selectcolorset	20
-*FvwmIconMan*focuscolorset	18
-*FvwmIconMan*focusandselectcolorset 20
+*FvwmIconMan: *colorset		12
+*FvwmIconMan: *iconcolorset	19
+*FvwmIconMan: *plaincolorset	17
+*FvwmIconMan: *selectcolorset	20
+*FvwmIconMan: *focuscolorset	18
+*FvwmIconMan: *focusandselectcolorset 20
 
-*FvwmIconMan*1*buttongeometry 100x14
-*FvwmIconMan*1*font -*-lucida-bold-r-normal-*-10-*-*-*-*-*-*
-*FvwmIconMan*1*plainbutton flat
-*FvwmIconMan*1*titlebutton flat
-*FvwmIconMan*1*followfocus true
-*FvwmIconMan*1*focusbutton flat
-*FvwmIconMan*1*focusandselectbutton flat
-*FvwmIconMan*1*resolution desk
-#*FvwmIconMan*1*drawicons true
-*FvwmIconMan*1*usewinlist true
-*FvwmIconMan*format %i
-*FvwmIconMan*1*action Mouse 1 N sendcommand FuncFvwmDeiconifyFocusAndRaise
-*FvwmIconMan*1*action Mouse 2 N sendcommand FuncFvwmIconManWarpToMiddle
-*FvwmIconMan*1*action Mouse 3 N sendcommand FuncFvwmIconFocusAndOptions
-*FvwmIconMan*1*shape true
+*FvwmIconMan: *1*buttongeometry 100x14
+*FvwmIconMan: *1*font -*-lucida-bold-r-normal-*-10-*-*-*-*-*-*
+*FvwmIconMan: *1*plainbutton flat
+*FvwmIconMan: *1*titlebutton flat
+*FvwmIconMan: *1*followfocus true
+*FvwmIconMan: *1*focusbutton flat
+*FvwmIconMan: *1*focusandselectbutton flat
+*FvwmIconMan: *1*resolution desk
+#*FvwmIconMan: *1*drawicons true
+*FvwmIconMan: *1*usewinlist true
+*FvwmIconMan: *format %i
+*FvwmIconMan: *1*action Mouse 1 N sendcommand FuncFvwmDeiconifyFocusAndRaise
+*FvwmIconMan: *1*action Mouse 2 N sendcommand FuncFvwmIconManWarpToMiddle
+*FvwmIconMan: *1*action Mouse 3 N sendcommand FuncFvwmIconFocusAndOptions
+*FvwmIconMan: *1*shape true
 
-*FvwmIconMan*NoIconAction "SendToModule FvwmAnimate animate"
-
-Style "FvwmIconMan" BorderWidth 0, NoTitle, NoHandles, Sticky, FVWMBorder
-Style "FvwmIconMan" ForeColor grey, BackColor rgb:55/5d/5d, WindowListSkip
+*FvwmIconMan: *NoIconAction "SendToModule FvwmAnimate animate"

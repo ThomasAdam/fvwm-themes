@@ -17,67 +17,67 @@ Style "FvwmPager-Single" Handles, Sticky, WindowListSkip, BorderWidth 0
 
 DestroyModuleConfig FvwmPager-Single*
 
-*FvwmPager-SingleColorset * 14
-*FvwmPager-SingleHilightColorset * 15
-*FvwmPager-SingleBalloonColorset * 16
-*FvwmPager-SingleWindowColorsets 1 2
+*FvwmPager-Single: Colorset * 14
+*FvwmPager-Single: HilightColorset * 15
+*FvwmPager-Single: BalloonColorset * 16
+*FvwmPager-Single: WindowColorsets 1 2
 
-*FvwmPager-SingleGeometry 800x48+0-80
-#*FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-*FvwmPager-SingleFont -b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1
-*FvwmPager-SingleDeskHilight
-*FvwmPager-SingleMiniIcons
-*FvwmPager-SingleLabel -7 One more
-*FvwmPager-SingleLabel -6 Furthest!
-*FvwmPager-SingleLabel -5 Furtherer
-*FvwmPager-SingleLabel -4 Further
-*FvwmPager-SingleLabel -3 Heaps Far
-*FvwmPager-SingleLabel -2 Too Far
-*FvwmPager-SingleLabel -1 Root
-*FvwmPager-SingleLabel 0 WorkDesk   
-*FvwmPager-SingleLabel 1 Internet
-*FvwmPager-SingleLabel 2 Play
-*FvwmPager-SingleLabel 3 Misc
-*FvwmPager-SingleLabel 4 Junk
-*FvwmPager-SingleLabel 5 Crap
-*FvwmPager-SingleLabel 6 More Crap
-*FvwmPager-SingleLabel 7 Whatever
-*FvwmPager-SingleSmallFont 8x12
-*FvwmPager-SingleIconGeometry 48x48+0-100
-*FvwmPager-SingleBalloons All
-*FvwmPager-SingleBalloonYOffset -2
-*FvwmPager-SingleWindow3DBorders 
+*FvwmPager-Single: Geometry 800x48+0-80
+#*FvwmPager-Single: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-Single: Font -b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1
+*FvwmPager-Single: DeskHilight
+*FvwmPager-Single: MiniIcons
+*FvwmPager-Single: Label -7 One more
+*FvwmPager-Single: Label -6 Furthest!
+*FvwmPager-Single: Label -5 Furtherer
+*FvwmPager-Single: Label -4 Further
+*FvwmPager-Single: Label -3 Heaps Far
+*FvwmPager-Single: Label -2 Too Far
+*FvwmPager-Single: Label -1 Root
+*FvwmPager-Single: Label 0 WorkDesk   
+*FvwmPager-Single: Label 1 Internet
+*FvwmPager-Single: Label 2 Play
+*FvwmPager-Single: Label 3 Misc
+*FvwmPager-Single: Label 4 Junk
+*FvwmPager-Single: Label 5 Crap
+*FvwmPager-Single: Label 6 More Crap
+*FvwmPager-Single: Label 7 Whatever
+*FvwmPager-Single: SmallFont 8x12
+*FvwmPager-Single: IconGeometry 48x48+0-100
+*FvwmPager-Single: Balloons All
+*FvwmPager-Single: BalloonYOffset -2
+*FvwmPager-Single: Window3DBorders 
 
 DestroyModuleConfig FvwmPager-Desker*
 
-*FvwmPager-DeskerColorset * 14
-*FvwmPager-DeskerHilightColorset * 15
-*FvwmPager-DeskerBalloonColorset * 16
-*FvwmPager-DeskerWindowColorsets 1 2
+*FvwmPager-Desker: Colorset * 14
+*FvwmPager-Desker: HilightColorset * 15
+*FvwmPager-Desker: BalloonColorset * 16
+*FvwmPager-Desker: WindowColorsets 1 2
 
-*FvwmPager-DeskerGeometry 48x500-0+0
-*FvwmPager-DeskerColumns 1
-#*FvwmPager-DeskerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-*FvwmPager-DeskerFont -b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1
-*FvwmPager-DeskerDeskHilight
-*FvwmPager-DeskerMiniIcons
-*FvwmPager-DeskerLabel -7 One More
-*FvwmPager-DeskerLabel -6 Furthest!
-*FvwmPager-DeskerLabel -5 Furtherer
-*FvwmPager-DeskerLabel -4 Further
-*FvwmPager-DeskerLabel -3 Heaps Far
-*FvwmPager-DeskerLabel -2 Too Far
-*FvwmPager-DeskerLabel -1 Root
-*FvwmPager-DeskerLabel 0 WorkDesk   
-*FvwmPager-DeskerLabel 1 Internet
-*FvwmPager-DeskerLabel 2 Play
-*FvwmPager-DeskerLabel 3 Misc
-*FvwmPager-DeskerLabel 4 Junk
-*FvwmPager-DeskerLabel 5 Crap
-*FvwmPager-DeskerLabel 6 More Crap
-*FvwmPager-DeskerLabel 7 Whatever
-*FvwmPager-DeskerSmallFont 8x12
-*FvwmPager-DeskerIconGeometry 48x48+0-100
-*FvwmPager-DeskerBalloons All
-*FvwmPager-DeskerBalloonYOffset -2
-*FvwmPager-DeskerWindow3DBorders 
+*FvwmPager-Desker: Geometry 48x500-0+0
+*FvwmPager-Desker: Columns 1
+#*FvwmPager-Desker: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-Desker: Font -b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1
+*FvwmPager-Desker: DeskHilight
+*FvwmPager-Desker: MiniIcons
+*FvwmPager-Desker: Label -7 One More
+*FvwmPager-Desker: Label -6 Furthest!
+*FvwmPager-Desker: Label -5 Furtherer
+*FvwmPager-Desker: Label -4 Further
+*FvwmPager-Desker: Label -3 Heaps Far
+*FvwmPager-Desker: Label -2 Too Far
+*FvwmPager-Desker: Label -1 Root
+*FvwmPager-Desker: Label 0 WorkDesk   
+*FvwmPager-Desker: Label 1 Internet
+*FvwmPager-Desker: Label 2 Play
+*FvwmPager-Desker: Label 3 Misc
+*FvwmPager-Desker: Label 4 Junk
+*FvwmPager-Desker: Label 5 Crap
+*FvwmPager-Desker: Label 6 More Crap
+*FvwmPager-Desker: Label 7 Whatever
+*FvwmPager-Desker: SmallFont 8x12
+*FvwmPager-Desker: IconGeometry 48x48+0-100
+*FvwmPager-Desker: Balloons All
+*FvwmPager-Desker: BalloonYOffset -2
+*FvwmPager-Desker: Window3DBorders 

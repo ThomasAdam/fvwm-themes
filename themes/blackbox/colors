@@ -12,27 +12,27 @@
 # ----------------
 # Default colorset
 
-*FvwmThemeColorset 0 fg grey85, bg #555d5d, Plain, NoShape
+*FvwmTheme: Colorset 0 fg grey85, bg #555d5d, Plain, NoShape
 
 DefaultColorset 0
 DestroyModuleConfig FvwmScrollColorset*
-*FvwmScrollColorset 0
+*FvwmScroll: Colorset 0
 
 # ------------------
 # Window decorations
 
 # Text and sh/hi windows title bar colors, icons title and Pager mini-win.
 # inactive:
-*FvwmThemeColorset 1 fg grey70, bg grey30, Plain, NoShape
+*FvwmTheme: Colorset 1 fg grey70, bg grey30, Plain, NoShape
 Style "*"	Colorset 1
 # active:
-*FvwmThemeColorset 2 fg white, bg grey50, Plain, NoShape
+*FvwmTheme: Colorset 2 fg white, bg grey50, Plain, NoShape
 Style "*"	HilightColorset 2
 
 # borders of the windows inactive/active:
-*FvwmThemeColorset 3 fg grey70, bg grey30, Plain, NoShape
+*FvwmTheme: Colorset 3 fg grey70, bg grey30, Plain, NoShape
 Style "*"	BorderColorset 3
-*FvwmThemeColorset 4 fg white, bg grey50, Plain, NoShape
+*FvwmTheme: Colorset 4 fg white, bg grey50, Plain, NoShape
 Style "*"	HilightBorderColorset 4
 
 # title
@@ -51,13 +51,13 @@ ButtonStyle	2     Pixmap decor/right-button2-back.xpm -- Top Left
 # Menus
 
 # inactive menu item fg+bg and menu face
-*FvwmThemeColorset 5 fg #ececec, bg black, Pixmap menuback/face.xpm, NoShape
+*FvwmTheme: Colorset 5 fg #ececec, bg black, Pixmap menuback/face.xpm, NoShape
 
 # active menu item fg+bg
-*FvwmThemeColorset 6 fg #333333, bg #cccccc, Plain, NoShape
+*FvwmTheme: Colorset 6 fg #333333, bg #cccccc, Plain, NoShape
 
 # greyed menu item fg
-*FvwmThemeColorset 7 fg grey40, bg grey40, Plain, NoShape 
+*FvwmTheme: Colorset 7 fg grey40, bg grey40, Plain, NoShape 
 
 MenuStyle * MenuFace
 MenuStyle * MenuColorset 5, ActiveColorset 6, GreyedColorset 7
@@ -70,93 +70,93 @@ MenuStyle * ActiveFore, HilightBack
 # Common Colorsets
 
 # default for modules
-*FvwmThemeColorset 10 fg #979b9b, bg grey35, Plain, NoShape
+*FvwmTheme: Colorset 10 fg #979b9b, bg grey35, Plain, NoShape
 
 # default hilight
-*FvwmThemeColorset 11 fg #979b9b, bg white, Pixmap modcolor/HilightDesk.xpm, \
+*FvwmTheme: Colorset 11 fg #979b9b, bg white, Pixmap modcolor/HilightDesk.xpm, \
 	NoShape
 
 # special
-*FvwmThemeColorset 12 fg #979b9b, bg #555d5d, DGradient 50 #636f6f #484e4e, NoShape
+*FvwmTheme: Colorset 12 fg #979b9b, bg #555d5d, DGradient 50 #636f6f #484e4e, NoShape
 # a better colors if we use blackbox modules is:
-# *FvwmThemeColorset 10 fg #979b9b, bg #555d5d, Pixmap modcolor/TheToolbar700.xpm, NoShape
+# *FvwmTheme: Colorset 10 fg #979b9b, bg #555d5d, Pixmap modcolor/TheToolbar700.xpm, NoShape
 
 # swallowed window
-*FvwmThemeColorset 13 fg grey85, bg #485151, hi grey85, sh grey45, Plain, \
+*FvwmTheme: Colorset 13 fg grey85, bg #485151, hi grey85, sh grey45, Plain, \
 	NoShape
 
 # default2 (FvwmPager or to get more colors in Buttons)
-*FvwmThemeColorset 14 fg #979b9b, bg #555d5d, Pixmap modcolor/Toolbar100.xpm, NoShape
+*FvwmTheme: Colorset 14 fg #979b9b, bg #555d5d, Pixmap modcolor/Toolbar100.xpm, NoShape
 
 # default hilight2: (FvwmPager or to get more colors in a Buttons)
-*FvwmThemeColorset 15 fg #979b9b, bg white, Pixmap modcolor/HilightDesk.xpm, \
+*FvwmTheme: Colorset 15 fg #979b9b, bg white, Pixmap modcolor/HilightDesk.xpm, \
 	NoShape
 
 # tips/balloons
-*FvwmThemeColorset 16 fg #ececec, bg #485151, Plain, NoShape
+*FvwmTheme: Colorset 16 fg #ececec, bg #485151, Plain, NoShape
 
 # ----------------------
 # Window Lists Colorsets
 
 # standard item
-*FvwmThemeColorset 17 fg #979b9b, bg #555d5d, Pixmap modcolor/Toolbar100.xpm, \
+*FvwmTheme: Colorset 17 fg #979b9b, bg #555d5d, Pixmap modcolor/Toolbar100.xpm, \
 	NoShape
 
 # active item
-*FvwmThemeColorset 18 fg #ffffff, bg #555d5d, Pixmap modcolor/Toolbar100.xpm, \
+*FvwmTheme: Colorset 18 fg #ffffff, bg #555d5d, Pixmap modcolor/Toolbar100.xpm, \
 	NoShape
 
 # iconified item
-*FvwmThemeColorset 19 fg black, bg #555d5d, Pixmap modcolor/Toolbar100.xpm, \
+*FvwmTheme: Colorset 19 fg black, bg #555d5d, Pixmap modcolor/Toolbar100.xpm, \
 	NoShape
 
 # pointed item
-*FvwmThemeColorset 20 fg #979b9b, bg #555d5d, Pixmap modcolor/Toolbar100.xpm, \
+*FvwmTheme: Colorset 20 fg #979b9b, bg #555d5d, Pixmap modcolor/Toolbar100.xpm, \
 	NoShape
 
 # ------------------------
 # Others Modules Colorsets
 
 # FvwmIdent
-*FvwmThemeColorset 21 fg yellow, bg black, Transparent, NoShape
+*FvwmTheme: Colorset 21 fg yellow, bg black, Transparent, NoShape
 
 DestroyModuleConfig FvwmIdent*
-*FvwmIdentColorset 21
+*FvwmIdent: Colorset 21
 
 # FvwmConsole
-*FvwmThemeColorset 22 fg yellow, bg black, Plain, NoShape
+*FvwmTheme: Colorset 22 fg yellow, bg black, Plain, NoShape
 
 # ----------------------------------------------------------------------------
 # III. Applications Colorsets
 
 # Terminals
-*FvwmThemeColorset 30 fg #ffffff, bg #555d5d, Plain, NoShape
+*FvwmTheme: Colorset 30 fg #ffffff, bg #555d5d, Plain, NoShape
 
 # Administrations
-*FvwmThemeColorset 31 fg red, bg #555d5d, Plain, NoShape
+*FvwmTheme: Colorset 31 fg red, bg #555d5d, Plain, NoShape
 
 # Remote Terminals
-*FvwmThemeColorset 32 fg #555d5d, bg white, Plain, NoShape
+*FvwmTheme: Colorset 32 fg #555d5d, bg white, Plain, NoShape
 
 # "Viewer" Colorset
-*FvwmThemeColorset 33 fg grey20, bg grey90, Plain, NoShape
+*FvwmTheme: Colorset 33 fg grey20, bg grey90, Plain, NoShape
 
 # Small Text Input file or Hilighting some Items
-*FvwmThemeColorset 34 fg black, bg white, Plain, NoShape
+*FvwmTheme: Colorset 34 fg black, bg white, Plain, NoShape
 
 DestroyModuleConfig FvwmFormDefaultItemColorset*
-*FvwmFormDefaultItemColorset 34
+*FvwmFormDefault: ItemColorset 34
 
 # Application run in a terminal, text file of an editor for xres ...
-*FvwmThemeColorset 35 fg black, bg grey70, Plain, NoShape
+*FvwmTheme: Colorset 35 fg black, bg grey70, Plain, NoShape
 
 # Not in one of the above category (for Script and Form, ft-xres)
-*FvwmThemeColorset 36 fg white, bg black, Plain, NoShape
+*FvwmTheme: Colorset 36 fg white, bg black, Plain, NoShape
 
 DestroyModuleConfig FvwmScriptDefaultColorset*
-*FvwmScriptDefaultColorset 36
+*FvwmScript: DefaultColorset 36
 DestroyModuleConfig FvwmFormDefaultColorset*
-*FvwmFormDefaultColorset 36
+*FvwmFormDefault: Colorset 36
 
 # ----------------------------------------------------------------------------
 # IV. Start/Stop Functions

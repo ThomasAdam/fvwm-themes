@@ -95,17 +95,17 @@ PipeRead 'fvwm-menu-xlock --name MenuFvwmScreenLockModes  --title "Screen Lock M
 # ---------- WindowManager
 
 DestroyModuleConfig FvwmForm-Restart*
-*FvwmForm-RestartWarpPointer
-*FvwmForm-RestartLine	left
-*FvwmForm-RestartText	"Window Manager command"
-*FvwmForm-RestartLine	expand
-*FvwmForm-RestartInput	command 30 ""  # was "fvwm-themes-start"
-*FvwmForm-RestartLine	expand
-*FvwmForm-RestartLine	expand
-*FvwmForm-RestartButton	quit "Restart"
-*FvwmForm-RestartCommand	Restart $(command)
-*FvwmForm-RestartButton	quit "Cancel" ^[
-*FvwmForm-RestartCommand	Nop
+*FvwmForm-Restart: WarpPointer
+*FvwmForm-Restart: Line	left
+*FvwmForm-Restart: Text	"Window Manager command"
+*FvwmForm-Restart: Line	expand
+*FvwmForm-Restart: Input	command 30 ""  # was "fvwm-themes-start"
+*FvwmForm-Restart: Line	expand
+*FvwmForm-Restart: Line	expand
+*FvwmForm-Restart: Button	quit "Restart"
+*FvwmForm-Restart: Command	Restart $(command)
+*FvwmForm-Restart: Button	quit "Cancel" ^[
+*FvwmForm-Restart: Command	Nop
 
 DestroyMenu MenuFvwmWindowManager
 AddToMenu   MenuFvwmWindowManager "Window Managers" Title

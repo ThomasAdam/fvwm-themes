@@ -1,5 +1,5 @@
-*FvwmIconMan*Resolution page
-*FvwmIconMan*title "Page IconMan"
+*FvwmIconMan: *Resolution page
+*FvwmIconMan: *title "Page IconMan"
 
 DestroyFunc FuncFvwmStartNormalIcons
 AddToFunc   FuncFvwmStartNormalIcons

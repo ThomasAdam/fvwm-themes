@@ -1,5 +1,5 @@
-*FvwmGtkDestroy gnome-sys
-*FvwmGtkIconSize 18 18
+*FvwmGtk: Destroy gnome-sys
+*FvwmGtk: IconSize 18 18
 PipeRead 'fvwm-menu-desktop --desktop gnome-sys --type gtk --enable-mini-icons --enable-style --enable-tran-style --tran-mini-icons-path $FT_DATADIR/images/mini-gnome --tran-icons-path $FT_DATADIR/images/norm-gnome'
 
 AddToMenu MenuFvwmPrograms

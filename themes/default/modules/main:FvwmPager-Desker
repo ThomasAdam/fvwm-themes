@@ -2,22 +2,22 @@ Style "FvwmPager-Desker" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
 	NoHandles, NoLenience, TitleAtTop
 
 DestroyModuleConfig FvwmPager-Desker*
-*FvwmPager-DeskerGeometry -0+100
-*FvwmPager-DeskerDeskTopScale 32
-*FvwmPager-DeskerColumns 1
+*FvwmPager-Desker: Geometry -0+100
+*FvwmPager-Desker: DeskTopScale 32
+*FvwmPager-Desker: Columns 1
 
-*FvwmPager-DeskerColorset * 14
-*FvwmPager-DeskerHilightColorset * 15
-*FvwmPager-DeskerBalloonColorset * 16
-*FvwmPager-DeskerWindowColorsets 1 2
+*FvwmPager-Desker: Colorset * 14
+*FvwmPager-Desker: HilightColorset * 15
+*FvwmPager-Desker: BalloonColorset * 16
+*FvwmPager-Desker: WindowColorsets 1 2
 
-*FvwmPager-DeskerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-*FvwmPager-DeskerSmallFont 5x8
-*FvwmPager-DeskerBalloons            All
-*FvwmPager-DeskerBalloonFont         lucidasanstypewriter-12
-*FvwmPager-DeskerBalloonYOffset      +2
+*FvwmPager-Desker: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-Desker: SmallFont 5x8
+*FvwmPager-Desker: Balloons            All
+*FvwmPager-Desker: BalloonFont         lucidasanstypewriter-12
+*FvwmPager-Desker: BalloonYOffset      +2
 
-*FvwmPager-DeskerLabel 0 Main
-*FvwmPager-DeskerLabel 1 Web & Mail
-*FvwmPager-DeskerLabel 2 Devel
-*FvwmPager-DeskerLabel 3 Games
+*FvwmPager-Desker: Label 0 Main
+*FvwmPager-Desker: Label 1 Web & Mail
+*FvwmPager-Desker: Label 2 Devel
+*FvwmPager-Desker: Label 3 Games

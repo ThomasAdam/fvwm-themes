@@ -8,59 +8,59 @@ DestroyModuleConfig FvwmButtons-Apps*
 #--------------------------------------
 # Starter
 
-*FvwmButtons-StartAppsGeometry 44x12-0+0
-*FvwmButtons-StartAppsColorset 12
-*FvwmButtons-StartAppsColumns 1
-*FvwmButtons-StartAppsFrame 0
-*FvwmButtons-StartApps(Panel(indicator, smooth, down, \
+*FvwmButtons-StartApps: Geometry 44x12-0+0
+*FvwmButtons-StartApps: Colorset 12
+*FvwmButtons-StartApps: Columns 1
+*FvwmButtons-StartApps: Frame 0
+*FvwmButtons-StartApps: (Panel(indicator, smooth, down, \
 	position module center mtb) "FvwmButtons-Apps" \
 	'Module FvwmButtons FvwmButtons-Apps') 
 
 #-------------------------------------
 # Buttons:
 
-*FvwmButtons-AppsColumns 2
-*FvwmButtons-AppsButtonGeometry 20x20
-*FvwmButtons-AppsColorset 12
-*FvwmButtons-AppsFrame 1
-*FvwmButtons-AppsGeometry +5000+5000
-*FvwmButtons-Apps(Icon 16x16/folders.xpm, \
+*FvwmButtons-Apps: Columns 2
+*FvwmButtons-Apps: ButtonGeometry 20x20
+*FvwmButtons-Apps: Colorset 12
+*FvwmButtons-Apps: Frame 1
+*FvwmButtons-Apps: Geometry +5000+5000
+*FvwmButtons-Apps: (Icon 16x16/folders.xpm, \
 	Action(Mouse 1) 'FuncFvwmFileManager', \
 	Action(Mouse 2) 'FuncFvwm2FileManager', \
 	Action(Mouse 3) 'FuncFvwm3FileManager')
-*FvwmButtons-Apps(Icon 16x16/terminal.xpm, \
+*FvwmButtons-Apps: (Icon 16x16/terminal.xpm, \
 	Action(Mouse 1) 'FuncFvwmTerminal', \
 	Action(Mouse 2) 'FuncFvwm2Terminal', \
 	Action(Mouse 3) 'FuncFvwm3Terminal')
-*FvwmButtons-Apps(Icon 16x16/editor.xpm, \
+*FvwmButtons-Apps: (Icon 16x16/editor.xpm, \
 	Action(Mouse 1) 'FuncFvwmEditor', \
 	Action(Mouse 2) 'FuncFvwm2Editor', \
 	Action(Mouse 3) 'FuncFvwm3Editor')
-*FvwmButtons-Apps(Icon 16x16/ghostview.xpm, \
+*FvwmButtons-Apps: (Icon 16x16/ghostview.xpm, \
 	Action(Mouse 1) 'FuncFvwmDocView', \
 	Action(Mouse 2) 'FuncFvwm2DocView', \
 	Action(Mouse 3) 'FuncFvwm3DocView')
-*FvwmButtons-Apps(Icon 16x16/xv.xpm, \
+*FvwmButtons-Apps: (Icon 16x16/xv.xpm, \
 	Action(Mouse 1) 'FuncFvwmImageView', \
 	Action(Mouse 2) 'FuncFvwm2ImageView', \
 	Action(Mouse 3) 'FuncFvwm3ImageView')
-*FvwmButtons-Apps(Icon 16x16/image-viewer.xpm, \
+*FvwmButtons-Apps: (Icon 16x16/image-viewer.xpm, \
 	Action(Mouse 1) 'FuncFvwmImageEdit', \
 	Action(Mouse 2) 'FuncFvwm2ImageEdit', \
 	Action(Mouse 3) 'FuncFvwm3ImageEdit')
-*FvwmButtons-Apps(Icon 16x16/todo.xpm, \
+*FvwmButtons-Apps: (Icon 16x16/todo.xpm, \
 	Action(Mouse 1) 'FuncFvwmProcess', \
 	Action(Mouse 2) 'FuncFvwm2Process', \
 	Action(Mouse 3) 'FuncFvwm3Process')
-*FvwmButtons-Apps(Icon 16x16/help.xpm, \
+*FvwmButtons-Apps: (Icon 16x16/help.xpm, \
 	Action(Mouse 1) 'FuncFvwmHelp', \
 	Action(Mouse 2) 'FuncFvwm2Help', \
 	Action(Mouse 3) 'FuncFvwm3Help')
-*FvwmButtons-Apps(Icon 16x16/calculator.xpm, \
+*FvwmButtons-Apps: (Icon 16x16/calculator.xpm, \
 	Action(Mouse 1) 'FuncFvwmCalculator', \
 	Action(Mouse 2) 'FuncFvwm2Calculator', \
 	Action(Mouse 3) 'FuncFvwm3Calculator')
-*FvwmButtons-Apps(Icon 16x16/netscape.xpm, \
+*FvwmButtons-Apps: (Icon 16x16/netscape.xpm, \
 	Action(Mouse 1) 'FuncFvwmWWW', \
 	Action(Mouse 2) 'FuncFvwm2WWW', \
 	Action(Mouse 3) 'FuncFvwm3WWW')

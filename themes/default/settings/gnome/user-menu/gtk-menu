@@ -1,5 +1,5 @@
-*FvwmGtkDestroy gnome-user
-*FvwmGtkIconSize 18 18
+*FvwmGtk: Destroy gnome-user
+*FvwmGtk: IconSize 18 18
 PipeRead 'fvwm-menu-desktop --desktop gnome-user --type gtk --enable-mini-icons'
 
 AddToMenu MenuFvwmPrograms

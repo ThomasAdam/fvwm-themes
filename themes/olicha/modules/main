@@ -115,7 +115,7 @@ AddToMenu   MenuFvwmStopThemeModules "OliCha Modules" Title
 
 DestroyFunc FuncFvwmWinListDesk
 AddToFunc   FuncFvwmWinListDesk
-+ "I" *FvwmWinListShowCurrentDesk
++ "I" *FvwmWinList: ShowCurrentDesk
 + "I" Module FvwmWinList
 
 DestroyFunc FuncFvwmWinListGlobal
@@ -125,7 +125,7 @@ AddToFunc   FuncFvwmWinListGlobal
 
 DestroyFunc FuncFvwmTaskBarDesk
 AddToFunc   FuncFvwmTaskBarDesk
-+ "I" *FvwmTaskBarDeskOnly
++ "I" *FvwmTaskBar: DeskOnly
 + "I" Module FvwmTaskBar
 
 DestroyFunc FuncFvwmTaskBarGlobal
@@ -135,30 +135,30 @@ AddToFunc   FuncFvwmTaskBarGlobal
 
 DestroyFunc FuncFvwmIconManGlobal
 AddToFunc   FuncFvwmIconManGlobal 
-+ "I" *FvwmIconMan*Resolution global
-+ "I" *FvwmIconMan*title "Global IconMan"
++ "I" *FvwmIconMan: *Resolution global
++ "I" *FvwmIconMan: *title "Global IconMan"
 + "I" Module FvwmIconMan
 
 DestroyFunc FuncFvwmIconManDesk
 AddToFunc   FuncFvwmIconManDesk
-+ "I" *FvwmIconMan*Resolution desk
-+ "I" *FvwmIconMan*title "Desk IconMan"
++ "I" *FvwmIconMan: *Resolution desk
++ "I" *FvwmIconMan: *title "Desk IconMan"
 + "I" Module FvwmIconMan
 
 DestroyFunc FuncFvwmIconManPage
-AddToFunc   FuncFvwmIconManPage 
-+ "I" *FvwmIconMan*Resolution page
-+ "I" *FvwmIconMan*title "Page IconMan"
+AddToFunc   FuncFvwmIconManPage
++ "I" *FvwmIconMan: *Resolution page
++ "I" *FvwmIconMan: *title "Page IconMan"
 + "I" Module FvwmIconMan
 
 DestroyFunc FuncFvwmIconBoxDesk
 AddToFunc   FuncFvwmIconBoxDesk
-+ "I" *FvwmIconBoxResolution Desk
++ "I" *FvwmIconBox: Resolution Desk
 + "I" Module FvwmIconBox
 
 DestroyFunc FuncFvwmIconBoxGlobal
 AddToFunc   FuncFvwmIconBoxGlobal
-+ "I" DestroyModuleConfig FvwmIconBoxResolution 
++ "I" DestroyModuleConfig FvwmIconBoxResolution
 + "I" Module FvwmIconBox
 
 DestroyFunc FuncFvwmSlipperyIcons

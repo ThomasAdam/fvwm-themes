@@ -1,5 +1,5 @@
-DestroyFunc FuncFvwmStartFvwmSoundEvent
-AddToFunc   FuncFvwmStartFvwmSoundEvent
+DestroyFunc FuncFvwmStartFvwmEvent-Sound
+AddToFunc   FuncFvwmStartFvwmEvent-Sound
 
-DestroyFunc FuncFvwmStopFvwmSoundEvent
-AddToFunc   FuncFvwmStopFvwmSoundEvent
+DestroyFunc FuncFvwmStopFvwmEvent-Sound
+AddToFunc   FuncFvwmStopFvwmEvent-Sound
