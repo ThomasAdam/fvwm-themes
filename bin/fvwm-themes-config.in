@@ -623,7 +623,8 @@ sub new ($$;$$) {
 			} elsif ($component eq '_core') {
 				$readFile = "*virtual*";
 			} else {
-				$readFile = "$dir/$component";
+				my $readDir0 = "$dir/$component.d";
+				$readFile = -d $readDir0? $readDir0: "$dir/$component";
 				$readFile .= "/$mainDirFile" if -d $readFile;
 			}
 			$cc->{'read-file'} = $readFile;
@@ -1416,10 +1417,6 @@ AddToFunc   FuncFvwmRemoveAllButtons
 + I Style "*" NoButton 1, NoButton 3, NoButton 5, NoButton 7, NoButton 9
 + I Style "*" NoButton 2, NoButton 4, NoButton 6, NoButton 8, NoButton 0
 + I TitleStyle Height 5
-
-#DestroyFunc FuncFvwmIfModules
-#AddToFunc   FuncFvwmIfModules
-#+ I PipeRead `perl -e 'if (readlink("$$ENV{FVWM_USERDIR}/themes/current/modules/main") =~ /$0/) { print "$1\\\\n"; } else { print "$2\\\\n"; }'`
 
 Read @$rcFile2@
 };

@@ -32,6 +32,20 @@
 	a directory instead of a file in CVS. I.e. themes/default/background;
 	I think 'commit' is needed between 'delete' and 'add'.
 
+	Uff! This can't be done in CVS. It seems that the only solution
+	is to remove this file on the server, even the command
+		cvs admin -o1 themes/default/background
+	does not help, at least one revision should be remained.
+
+	So, I have added themes/default/background.d instead...
+
+	* bin/fvwm-themes-config.in:
+	Added ".d" suffix support for read-file directories (2 lines);
+	removed commented FuncFvwmIfModules function.
+
+	* themes/default/theme.cfg:
+	s/main look/basic look/
+
 2000-08-19  olicha  <olivier.chapuis@free.fr>
 
 	* NEWS:
