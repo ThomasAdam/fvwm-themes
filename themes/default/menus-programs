@@ -311,7 +311,8 @@ AddToMenu   MenuFvwmGames "Games" Title
 
 DestroyMenu MenuFvwmGamesAction
 AddToMenu   MenuFvwmGamesAction "Action" Title
-+ "X&lander%menu/game-action.xpm%"		Exec exec xlander
++ "Heroes%menu/game-action.xpm%"		Exec exec heroes
++ "PowerManga%menu/game-action.xpm%"		Exec exec powermanga
 + "XKoules%menu/game-action.xpm%" 		Exec exec xkoules
 + "XKobo%menu/game-action.xpm%"			Exec exec xkobo
 + "XGalaga%menu/game-action.xpm%"		Exec exec xgal
