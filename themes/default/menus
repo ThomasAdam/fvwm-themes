@@ -9,7 +9,7 @@ AddToMenu   MenuFvwmRoot "Root Menu" Title
 + "&Configuration%menu/configuration.xpm%"	Popup MenuFvwmConfiguration
 + "&Help%menu/help.xpm%"			Popup MenuFvwmHelp
 + "" Nop
-+ "Fvwm &Modules%menu/modules.xpm%"		Popup MenuFvwmModules
++ "FVWM &Modules%menu/modules.xpm%"		Popup MenuFvwmModules
 + "&Window Operations%menu/window.xpm%"		Popup MenuFvwmWindowOps
 + "" Nop
 + "Screen Saver%menu/display.xpm%"		Popup MenuFvwmScreenSaver
@@ -116,7 +116,7 @@ AddToMenu   MenuFvwmManPages "FVWM Man Pages" Title
 # ---------- Modules
 
 DestroyMenu MenuFvwmModules
-AddToMenu   MenuFvwmModules "Fvwm Modules" Title
+AddToMenu   MenuFvwmModules "FVWM Modules" Title
 + "Start Theme Modules%menu/modules.xpm%"	Popup MenuFvwmStartThemeModules
 + "Stop Theme Modules%menu/quit.xpm%"		Popup MenuFvwmStopThemeModules
 + "" Nop
@@ -157,14 +157,14 @@ AddToMenu   MenuFvwmStopRegularModules "Regular Modules" Title
 + "Stop All &Forms%menu/quit.xpm%"	KillModule FvwmForm
 
 DestroyMenu MenuFvwmForms
-AddToMenu   MenuFvwmForms "Fvwm Forms" Title
+AddToMenu   MenuFvwmForms "FvwmForm Tools" Title
 + "&Capture%menu/display.xpm%"		Module FvwmForm FvwmForm-Capture
 + "&Rlogin%menu/terminal-remote.xpm%"	Module FvwmForm FvwmForm-Rlogin
 + "&Talk%menu/terminal-special.xpm%"	Module FvwmForm FvwmForm-Talk
 + "&QuitVerify%menu/quit.xpm%"		Module FvwmForm FvwmForm-QuitVerify
 
 DestroyMenu MenuFvwmApplets
-AddToMenu   MenuFvwmApplets "Fvwm Applets" Title
+AddToMenu   MenuFvwmApplets "FvwmScript Applets" Title
 + "Day%menu/clock.xpm%"		 Module FvwmScript FvwmApplet-Day
 + "DayClock%menu/clock.xpm%"	 Module FvwmScript FvwmApplet-DayClock
 + "DigitalClock%menu/clock.xpm%" Module FvwmScript FvwmApplet-DigitalClock

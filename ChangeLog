@@ -2,7 +2,8 @@
 
 	* themes/default/menus:
 	s/Fvwm Configuration/Configuration/, this menu contains configuration
-	items for fvwm, fvwm-themes, X, wm-icons
+	items for fvwm, fvwm-themes, X, wm-icons;
+	other small rewordings in menus
 
 	* themes/*/modules/main:
 	added menu icons to "Theme Modules" menus
