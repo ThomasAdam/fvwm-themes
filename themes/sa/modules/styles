@@ -1,0 +1,6 @@
+Style "FvwmPager" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
+	NoHandles, NoLenience, TitleAtTop, ParentalRelativity
+
+DestroyFunc FuncFvwmDestroyModulesThemeStyle
+AddToFunc   FuncFvwmDestroyModulesThemeStyle
++ I DestroyStyle "FvwmPager"

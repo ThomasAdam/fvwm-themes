@@ -1,0 +1,7 @@
+FuncFvwmSetFont-ModuleTips FvwmPager        BalloonFont \
+   "xft:Trebuchet MS:style=Bold:pixelsize=11:minspace=True,-*-trebuchet-bold-r-normal-*-11-*-*-*-*-*-*-*,-misc-fixed-bold-r-normal-*-13-*-*-*-c-*-*-*" 
+
+FuncFvwmSetFont-ModuleSmall FvwmPager       SmallFont \
+	"-*-fixed-medium-r-normal-*-8-*"
+
+*FvwmPager: Font none

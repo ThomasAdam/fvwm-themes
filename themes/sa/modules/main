@@ -1,0 +1,70 @@
+# 1. Icon related configuration
+# 2. Switch functions
+# 3. Theme module menus
+# 4. Modules configuration
+
+# ----------------------------------------------------------------------------
+# Icon related configuration
+
+Style "*" IconBox 640x64+1-1, IconGrid 64 10, IconFill Left Bottom
+Style "*" StickyIcon, NoIconTitle
+
+# ----------------------------------------------------------------------------
+# Switch functions
+
+DestroyFunc FuncFvwmStartThemeModules
+AddToFunc   FuncFvwmStartThemeModules
++ I FuncFvwmStartNormalIcons
+# defined in the options files
+
+DestroyFunc FuncFvwmReloadThemeModules
+AddToFunc   FuncFvwmReloadThemeModules
++ I Read $./styles
++ I FuncFvwmStartNormalIcons
+
+DestroyFunc FuncFvwmReloadColorsModules
+AddToFunc   FuncFvwmReloadColorsModules
+# defined in buttonbar/* (only)
+ 
+DestroyFunc FuncFvwmStopThemeModules
+AddToFunc   FuncFvwmStopThemeModules
++ I KillModule FvwmPager
++ I DestroyModuleConfig FvwmPager: *
++ I FuncFvwmDestroyModulesThemeStyle
++ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
+
+DestroyFunc FuncFvwmUnReloadColorsModules
+AddToFunc   FuncFvwmUnReloadColorsModules
+
+DestroyFunc FuncFvwmUnReloadThemeModules
+AddToFunc   FuncFvwmUnReloadThemeModules
+
+# ----------------------------------------------------------------------------
+# Theme module menus
+
+DestroyMenu MenuFvwmStartThemeModules
+AddToMenu   MenuFvwmStartThemeModules "Default Modules" Title
++ "%menu/item.xpm%&Pager"         FuncFvwmRestartModule FvwmPager '* *'
++ "" Nop
++ "%menu/choice-no.xpm%No normal icons" \
+	Style * NoIcon  # needed to use NoIcon modules
++ "%menu/choice-yes.xpm%Normal icons"   \
+	Read themes/default/settings/iconstyles/style-icon-miniicon
+
+DestroyMenu MenuFvwmStopThemeModules
+AddToMenu   MenuFvwmStopThemeModules "Default Modules" Title
++ "%menu/quit.xpm%Stop &Pager"  KillModule FvwmPager
+# ----------------------------------------------------------------------------
+# Desktop names
+
+DesktopName 0 Main
+DesktopName 1 Web & Mail
+DesktopName 2 Devel
+DesktopName 3 Games
+
+# ----------------------------------------------------------------------------
+# Modules configuration
+
+Read $./styles
+Read $./FvwmPager
+Read $./fonts
