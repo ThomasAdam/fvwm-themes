@@ -9,7 +9,7 @@
 	* README:
 	* doc/FAQ:
 	* scripts/README:
-	updated
+	updated for 0.6.2
 
 	* themes/*/modules/FvwmIconMan:
 	use mixed case option names
@@ -51,6 +51,9 @@
 
 	* acinclude.m4:
 	documented that developers need autoconf-2.13 currently
+
+	* themes/default/settings/iconstyles/wm-icons-menu:
+	show upcoming wm-icons-0.4.0 icon sets
 
 2002-12-05  olicha  <olivier.chapuis@free.fr>
 
