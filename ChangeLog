@@ -3,6 +3,9 @@
 	* NEWS:
 	mention Debian packages
 
+	* configure.in:
+	require fvwm-2.5.8
+
 2003-07-20  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings/session-manager/none:
