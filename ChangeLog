@@ -1,3 +1,12 @@
+2000-11-24  migo  <migo@homemail.com>
+
+	* locale/en/FvwmScript-ThemesCenter.txt:
+	finished rewording;
+	I don't like very much that this format is neither txt nor sgml
+	(sgml uses <para> and more), I want to convert this to subset of xhtml
+	if there are no objections. xhtml is both html (so any browser can
+	view these files) and xml (so we may enhance it later if needed).
+
 2000-11-23  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-images.in:

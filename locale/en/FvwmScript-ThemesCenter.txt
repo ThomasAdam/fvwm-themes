@@ -17,54 +17,57 @@ Contents:
 
 <sec>1. Themes Selector
 
-In the top left you have the list of all the themes. When you select one
-of these themes the list of the components of this theme are displayed in
-the the top right. Then, you can either select all the components of this
-theme using the left "Set" button, only the look components with the button
-"Look" or you can select only one component by selecting one in the top
-right text field and using the left "Set" button. You can get information
-on the theme by using the "README" button (the other button are not yet
-implemented).
+There is the the list of all found themes at the top left. When you select
+one of these themes the list of the components of this theme are displayed
+at the top right. Then, you can either select all components of this
+theme using the left "Set" button, only the look components using the button
+"Look", or you can select only one component by selecting a component in
+the top right list and using the right "Set" button. You can get
+information on the theme by using the "README" button (other buttons
+are not yet implemented).
 
 
-Your used configuration and the change you are doing using the Themes
-Selector is reflected in the bottom text field. The first colon list
-all the components, the second colon says which theme is used for the
-component and the third colon (empty when you start the Script) say
-which theme has been set for the component (via the method explained
-in the above paragraph). Finally, the last colon may contains a "Var"
-or an "Opt" which indicate that the component of the theme (the used
-one or the set one if you have set this component) have some variants
-or some options. 
+Your currently used configuration and all changes you are doing using the
+Themes Selector are reflected in the bottom text list. The first column
+lists all components, the second column displays the theme, of which the
+component is used, and the third column (empty when you start the Script)
+displays the new set theme for this component if different from the currently
+used one (setting a new component is done using the method explained
+in the paragraph above). Finally, the last column may contain "Var", "Opt"
+or "V/O" which indicates that the component of the theme (the used
+one or the set one) has variants or options. 
 
 
-If a component has some variants
-or some options you can modify its by selecting the component (in the bottom
-text field) and by using the "Property" button. Moreover, you can restore
-the used component by using the "Restore" buttons and you can lock it
-(i.e., a "load all" for a theme will ignore this component) by using
-the "Lock" button. The "Drop" button is not yet implemented.
+If a component has variants or options you can modify them by selecting
+the component (in the bottom list) and clicking the "Properties" button.
+Moreover, you can restore the used theme of the component (unset your
+component theme change) using the "Restore" button, and you can lock the
+component (so that "load all" for a theme will ignore this component)
+using the "Lock" button. The "Drop" button is not yet implemented.
 
 
-Now so that your change apply, you just have to use the "Apply" button
-on the bottom. The refresh button will reload the current configuration
-without applying the changes. The "Update" button will just update the
-the Themes Selector configuration (this is useful if you have made change
-using an other tool as the Theme Management menu).
+Now to apply your changes, you have to use the "Apply" button
+at the bottom. The "Refresh" button is similar to the "Apply" in that
+the entire current configuration is reloaded, but your changes are
+not applied. The "Update" button just rebuild the lists used in the
+the Themes Selector configuration; this is useful if you made changes
+in components using other tools, like as the "Theme Management" menu
+or using "fvwm-themes-config" from a command line.
 
 
 <sec>2. General Settings
 
-With this you can do the same job that with the
-"Theme Management -> current -> settings ->" sub-menu. The top text field
-represent your used and set configuration. To modify a setting, select
-one component and then a text field will appear so that you can modify
-the setting of this component. All the buttons work as for the Themes
-Selector.
+The "General Settings" tool enables to do the same job that with the
+"Theme Management -> current -> settings ->" sub-menu or equivalent
+form-based and gtk-based ThemeSettings samples. The top field list
+represents your used and set configuration. To modify a setting, select
+one component and then a field list will appear below so that you can choose
+another variant for this component. All buttons at the bottom work like in
+the "Themes Selector" tool screen.
 
 
-Important Note: If you click on "Apply" in the Themes Selector or here
-the changes will be applied for both.
+Important Note: Clicking on the "Apply" applies changes in both
+"Themes Selector" and "General Settings" tool screens.
 
 
 <sec>3. FVWM Themes Sessions
@@ -97,15 +100,15 @@ Menu:
                                      --viewer-colorset 33
 </verb>
 
-I.e., colorset 34 is used for the text field and colorset 33 is
-used for the text of this help (any FvwmScript use colorset 36
-for its main colors). The only other option is --Lang xx where
-xx is a "Unix" LANG. By default the LANG is computed from $LANG
-and the only supported lang are currently en, fr and ru.
+I.e., colorset 34 is used for the field list or text area and colorset 33
+is used for a help line (and in addition any FvwmScript sample uses
+colorset 36 for its main colors). The only other option is --lang xx where
+xx is the first 2 letters of the unix LANG, like "ru_RU.koi8r". By default,
+the LANG is set to the environment variable $LANG or "en". The currently
+supported lang values are en, fr and ru.
 
 
 <sec>5. Bugs
 
-Report Bugs To: fvwm-themes-devel@lists.sourceforge.net
+Report any bugs to: fvwm-themes-devel@lists.sourceforge.net
 
---
