@@ -12,6 +12,7 @@ my $ROOT_PREFIX = $ENV{'ROOT_PREFIX'} || '@ROOT_PREFIX@';
 my $version = '@VERSION@';
 my $fvwmVersion = '@FVWM_VERSION@';
 my $fvwmDefaultImagePath = '@FVWM_DEFAULT_IMAGEPATH@';
+my $versionInfo = '@FT_VERSION_INFO@';
 
 my $scriptName = ($0 =~ m:([^/]+)$:, $1);
 my $scriptFile = "@bindir@/$scriptName";
@@ -1412,6 +1413,10 @@ AddToFunc   FuncFvwmRestartFvwmTheme
 + I KillModule FvwmTheme
 + I DestroyModuleConfig FvwmTheme: *
 + I ModuleSynchronous FvwmTheme
+
+DestroyFunc FuncFvwmShowVersionInfo
+AddToFunc   FuncFvwmShowVersionInfo
++ I FuncFvwmShowMessage "FVWM Version" "$v^n@$versionInfo@"
 
 FuncFvwmResetInitFunctions
 #FuncFvwmRestartFvwmTheme

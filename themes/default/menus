@@ -41,12 +41,13 @@ AddToMenu   MenuFvwmPersonal
 
 DestroyMenu MenuFvwmHelp
 AddToMenu   MenuFvwmHelp "Help" Title
-+ "%menu/help.xpm%FVWM Manual Pages"	Popup MenuFvwmManPages
++ "%menu/help.xpm%FVWM Man Pages"	Popup MenuFvwmManPages
 + "%menu/www.xpm%FVWM Web Pages"	Popup MenuFvwmWebPages
-+ "%menu/help.xpm%Gnome Help Browser"	Exec exec gnome-help-browser >/dev/null 2>&1
-+ "%menu/help.xpm%KDE Help"		Exec exec kdehelp
++ "%menu/information.xpm%Show FVWM Version" FuncFvwmShowVersionInfo
++ "" Nop
 + "%menu/help.xpm%Xman"      		Exec exec xman
-
++ "%menu/help.xpm%Gnome Help Browser"	Exec exec gnome-help-browser
++ "%menu/help.xpm%KDE Help"		Exec exec kdehelp
 
 DestroyMenu MenuFvwmWebPages
 AddToMenu   MenuFvwmWebPages
@@ -63,7 +64,7 @@ AddToMenu   MenuFvwmWebPages
 + "%menu/information.xpm%FAQ"          FuncFvwmOpenURL http://fvwm-themes.sourceforge.net/doc/FAQ
 
 DestroyMenu MenuFvwmManPages
-AddToMenu   MenuFvwmManPages "FVWM Manual Pages" Title
+AddToMenu   MenuFvwmManPages "FVWM Man Pages" Title
 + "%menu/help.xpm%fvwm2"               FuncFvwmViewManPage fvwm2
 + "%menu/help.xpm%FvwmAnimate"         FuncFvwmViewManPage FvwmAnimate
 + "%menu/help.xpm%FvwmAuto"            FuncFvwmViewManPage FvwmAuto

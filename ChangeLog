@@ -1,3 +1,10 @@
+2000-10-23  migo  <migo@homemail.com>
+
+	* configure.in:
+	* bin/fvwm-themes-config.in:
+	* themes/default/menus:
+	added version info window
+
 2000-10-23  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/menus:
