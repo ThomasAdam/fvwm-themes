@@ -20,7 +20,7 @@ ButtonStyle All - Clear
 ButtonStyle 4 - MwmDecorMax
 ButtonStyle 6 - MwmDecorMin
 
-TitleStyle	Height 20
+TitleStyle	Height 21
 
 #     button	context	modifie	function
 Mouse 1 	1	A	FuncFvwmWindowOpsOrAction Delete
@@ -30,12 +30,15 @@ Mouse 0 	2	A	FuncFvwmDeleteOrDestroy
 Mouse 1 	4	A	FuncFvwmMaximize
 Mouse 2		4	A	FuncFvwmMaximizeVertically
 Mouse 3		4 	A	FuncFvwmMaximizeHorizontally
+Mouse 1 	4	S	Maximize grow grow
+Mouse 2 	4	S	Maximize    0 grow
+Mouse 3 	4	S	Maximize grow    0
 Mouse 1 	6	A	FuncFvwmIconify
 Mouse 2 	6	A	FuncFvwmIconifySameResource on
 Mouse 3 	6	A	FuncFvwmIconifySameResource toggle
 Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu, or Delete on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
 Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Delete on click^nDestroy on double click"
-Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tfully on click^n^tmenu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally"
+Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tfully on click^n^tmenu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
 Mouse 0 	6	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^nMouse 3 - Iconify toggle resource group"
 
 DestroyFunc FuncFvwmStartWindowButtons
@@ -51,6 +54,9 @@ AddToFunc   FuncFvwmStopWindowButtons
 + I Mouse 1 	4	A	-
 + I Mouse 2	4	A	-
 + I Mouse 3	4 	A	-
++ I Mouse 1 	4	S	-
++ I Mouse 2 	4	S	-
++ I Mouse 3 	4	S	-
 + I Mouse 1 	6	A	-
 + I Mouse 2 	6	A	-
 + I Mouse 3 	6	A	-

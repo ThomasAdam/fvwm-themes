@@ -1,0 +1,12 @@
+FuncFvwmSetFont-WindowTitle * -adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
+FuncFvwmSetFont-IconTitle   * -adobe-helvetica-medium-r-*-*-10-*-*-*-*-*-*-*
+
+Style "*"	BorderWidth 3, HandleWidth 5
+Style "*"	FvwmBorder, FirmBorder
+
+BorderStyle	Simple
+
+TitleStyle	LeftJustified
+TitleStyle	-- Flat
+
+ButtonStyle	All -- Flat

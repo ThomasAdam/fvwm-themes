@@ -3,6 +3,18 @@
 	* themes/default/settings.cfg:
 	s/inpath/in-path/
 
+	* themes/metal/colors-decor:
+	* themes/metal/windowlook:
+	* themes/metal/README:
+	* themes/metal/images/decor/*.xpm:
+	Added 2 new components.
+	I am not very happy with colors-decor@. It may have palettes later
+	in colors@, but this would require changes in fvwm to do it well.
+
+	* themes/metal/buttons:
+	* themes/metal/images/button/options.xpm:
+	improvements
+
 2001-08-21  migo  <migo@homemail.com>
 
 	* themes/*/buttons{,/main}:

@@ -1,0 +1,29 @@
+# ------------------
+# Window decorations
+
+# window title, inactive and active
+*FvwmTheme: Colorset 1 fg black, bg rgb:cc/cc/cc, Plain, NoShape
+*FvwmTheme: Colorset 2 fg black, bg rgb:cc/cc/ff, Plain, NoShape
+
+# window borders, inactive and active
+*FvwmTheme: Colorset 3 fg black, bg rgb:66/66/66, Plain, NoShape, \
+	sh rgb:66/66/66, hi rgb:66/66/66
+*FvwmTheme: Colorset 4 fg black, bg rgb:66/66/99, Plain, NoShape, \
+	sh rgb:66/66/99, hi rgb:66/66/99
+
+# background for window title, buttons and border
+DestroyFunc FuncFvwmDecorBackground
+AddToFunc   FuncFvwmDecorBackground
++ I TitleStyle \
+	ActiveUp   (TiledPixmap $./images/decor/title-active.xpm) \
+	ActiveDown (TiledPixmap $./images/decor/title-active.xpm) \
+	Inactive   (TiledPixmap $./images/decor/title-inactive.xpm)
+
++ I ButtonStyle All Pixmap 16x16-general/empty.xpm
++ I ButtonStyle All \
+	ActiveUp   (TiledPixmap $./images/decor/underline-active.xpm) \
+	ActiveDown (TiledPixmap $./images/decor/underline-active.xpm) \
+	Inactive   (TiledPixmap $./images/decor/underline-inactive.xpm) \
+	ToggledActiveUp   (TiledPixmap $./images/decor/underline-active.xpm) \
+	ToggledActiveDown (TiledPixmap $./images/decor/underline-active.xpm) \
+	ToggledInactive   (TiledPixmap $./images/decor/underline-inactive.xpm)
