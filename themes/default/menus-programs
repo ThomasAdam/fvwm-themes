@@ -473,6 +473,9 @@ AddToMenu   MenuFvwmAmusements "Amusements" Title
 + "Start Decay Screen%menu/amusement.xpm%"	Exec exec /usr/X11R6/lib/xscreensaver/decayscreen -root
 + "Stop Decay Screen%menu/window-delete.xpm%"	Exec exec killall /usr/X11R6/lib/xscreensaver/decayscreen
 + "" Nop
++ "Start ActX%menu/amusement.xpm%"	Exec exec actx -random
++ "Stop ActX%menu/window-delete.xpm%"	Exec exec killall actx
++ "" Nop
 ## it should be: nice -n 9 oneko
 + "Start Oneko (Neko)%menu/mouse.xpm"	Exec oneko
 + "Start Oneko (Tora)%menu/mouse.xpm"	Exec oneko -tora -fg black -bg yellow
