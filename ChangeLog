@@ -9,6 +9,18 @@
 	* themes/default/functions:
 	added FuncFvwmIconifyOrFocusAndRaise; use it in redmond98?
 
+	* themes/redmondxp/README:
+	* themes/redmondxp/colors:
+	* themes/redmondxp/fonts:
+	* themes/redmondxp/menustyle:
+	* themes/redmondxp/windowlook:
+	* themes/redmondxp/modules/FvwmButtons-Panel:
+	* themes/redmondxp/modules/FvwmIconMan:
+	* themes/redmondxp/modules/FvwmThemesPanelManager:
+	* themes/redmondxp/modules/fonts:
+	make the whole theme be more closer to the original;
+	synchronize with the latest fvwm cvs
+
 2002-07-31  migo  <migo@homemail.com>
 
 	* images.tar.gz:

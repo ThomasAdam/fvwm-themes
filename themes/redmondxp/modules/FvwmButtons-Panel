@@ -58,7 +58,7 @@ AddToFunc   ToggleFvwmPager
 	Action `SendToModule $./FvwmThemesPanelManager popup pagebar-config rectangle $widthx$height+$left+$top 0 -100m`, \
 )
 *FvwmButtons-Panel: (8x1, Container(Rows 2, \
-	Font "shadow=1:xft:Luxi Sans:Bold:pixelsize=8:minspace=true" \
+	Font "shadow=1:-*-times new roman-bold-r-*-*-9-*;-*-times-medium-r-*-*-8-*;-microsoft-verdana-medium-r-*-*-8-*;xft:Luxi Sans:Bold:pixelsize=8:minspace=true" \
 ))
 
 # TODO: specify transparency here (extend Container functionality?)
@@ -69,12 +69,12 @@ AddToFunc   ToggleFvwmPager
 
 # TODO: Left in Contaners do not work, so currently specify it 4 times
 
-*FvwmButtons-Panel: (Padding 0 5, Colorset 23, Title 1, Left, \
+*FvwmButtons-Panel: (Id page1, Padding 0 5, Colorset 23, Title 1, Left, \
 	Action(Mouse 1) GotoPage 0 0, \
 	Action(Mouse 2) Nop, \
 	Action(Mouse 3) Nop, \
 )
-*FvwmButtons-Panel: (Padding 0 5, Colorset 23, Title 2, Left, \
+*FvwmButtons-Panel: (Id page2, Padding 0 5, Colorset 23, Title 2, Left, \
 	Action(Mouse 1) GotoPage 1 0, \
 	Action(Mouse 2) Nop, \
 	Action(Mouse 3) Nop, \
@@ -82,12 +82,12 @@ AddToFunc   ToggleFvwmPager
 #*FvwmButtons-Panel: (Padding 2 2, \
 #	Panel(up, indicator, steps 0) FvwmPager-Desker "FvwmPager FvwmPager-Desker 0 3", \
 #)
-*FvwmButtons-Panel: (Padding 0 5, Title 3, Left, \
+*FvwmButtons-Panel: (Id page3, Padding 0 5, Title 3, Left, \
 	Action(Mouse 1) GotoPage 0 1, \
 	Action(Mouse 2) Nop, \
 	Action(Mouse 3) Nop, \
 )
-*FvwmButtons-Panel: (Padding 0 5, Title 4, Left, \
+*FvwmButtons-Panel: (Id page4, Padding 0 5, Title 4, Left, \
 	Action(Mouse 1) GotoPage 1 1, \
 	Action(Mouse 2) Nop, \
 	Action(Mouse 3) Nop, \
@@ -110,12 +110,12 @@ PipeRead `echo -n "SetEnv IconManWidth "; expr $[vp.width] / 4 - 90`
 *FvwmButtons-Panel: (16x1, Container(Columns 1, Colorset 14, \
 	Font "shadow=1:xft:Luxi Sans:Bold:pixelsize=9:minspace=true" \
 ))
-*FvwmButtons-Panel: (Title " ", Colorset 14, \
+*FvwmButtons-Panel: (Id clock1, Title " ", Colorset 14, \
 	ActionOnPress, \
 	Action `SendToModule $./FvwmThemesPanelManager popup clockbar-config rectangle $widthx$height+$left+$top -0 -100m`, \
 	Action(Mouse 3) `SendToModule $./FvwmThemesPanelManager circulate clockbar-field1-format`, \
 )
-*FvwmButtons-Panel: (Title " ", Colorset 14, \
+*FvwmButtons-Panel: (Id clock2, Title " ", Colorset 14, \
 	ActionOnPress, \
 	Action `SendToModule $./FvwmThemesPanelManager popup clockbar-config rectangle $widthx$height+$left+$top -0 -100m`, \
 	Action(Mouse 3) `SendToModule $./FvwmThemesPanelManager circulate clockbar-field2-format`, \

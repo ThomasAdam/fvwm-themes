@@ -42,11 +42,13 @@ AddToFunc   FuncFvwmDecorBackground
 # Menu Colorsets
 
 # inactive menu item fg+bg and menu face
-Colorset 5 fg rgb:d0/f8/ff, bg rgb:14/58/bc, fgsh rgb:40/30/a8, NoShape, \
-	BGradient 300 3 rgb:14/58/bc 1 rgb:10/60/d0 6 rgb:20/50/a8 1 rgb:14/58/bc
+#Colorset 5 fg rgb:d0/f8/ff, bg rgb:14/58/bc, fgsh rgb:40/30/a8, NoShape, \
+#	BGradient 300 3 rgb:14/58/bc 1 rgb:10/60/d0 6 rgb:20/50/a8 1 rgb:14/58/bc
+Colorset 5 fg black, bg white, sh rgb:ac/a8/99, hi rgb:f0/e8/e0, Plain, NoShape
 
 # active menu item fg+bg
-Colorset 6 fg rgb:e8/f5/f5, bg rgb:34/88/de, fgsh rgb:10/28/40, Plain, NoShape
+#Colorset 6 fg rgb:e8/f5/f5, bg rgb:34/88/de, fgsh rgb:10/28/40, Plain, NoShape
+Colorset 6 fg white, bg rgb:31/6a/c5, Plain, NoShape
 
 # greyed menu item fg
 Colorset 7 fg grey, bg grey, Plain, NoShape
@@ -104,11 +106,11 @@ Colorset 20 fg white, bg rgb:34/88/de, Plain, NoShape
 # Other Module Colorsets
 
 # FvwmIdent
-Colorset 21 fg rgb:d0/f8/ff, bg rgb:14/58/bc, fgsh rgb:40/30/a8, NoShape, \
-	VGradient 300 3 rgb:14/58/bc 1 rgb:10/60/d0 6 rgb:20/50/a8 1 rgb:14/58/bc
+Colorset 21 fg black, bg average, NoShape, \
+	DGradient 200 rgb:f3/f4/f7 rgb:e7/e2/cc
 
 # FvwmConsole
-Colorset 22 fg white, bg rgb:10/60/90, Plain, NoShape
+Colorset 22 fg black, bg rgb:f3/f3/ee, Plain, NoShape
 
 # ----------------------------------------------------------------------------
 # III. Application Colorsets
@@ -129,10 +131,11 @@ Colorset 33 fg white, bg rgb:10/48/70, Plain, NoShape
 Colorset 34 fg black, bg rgb:30/8a/f0, Plain, NoShape
 
 # dialog main area
-Colorset 35 fg white, bg rgb:28/7a/da, Plain, NoShape
+Colorset 35 fg black, bg rgb:ec/e9/d8, sh rgb:d8/d2/bd, hi white, Plain, NoShape
 
 # dialog text area
-Colorset 36 fg white, bg rgb:20/50/c0, Plain, NoShape
+Colorset 36 fg black, bg rgb:ff/ff/ff, \
+	sh rgb:c0/b8/90, hi rgb:e0/db/ca, Plain, NoShape
 
 # ----------------------------------------------------------------------------
 # IV. Start/Stop Functions

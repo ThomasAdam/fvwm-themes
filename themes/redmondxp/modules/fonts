@@ -2,7 +2,7 @@ FuncFvwmSetFont-ModuleLabel FvwmButtons-Panel Font \
 	"xft:Adobe:Bold:size=10;-adobe-helvetica-bold-r-*-*-10-*"
 
 FuncFvwmSetFont-ModuleWindowList FvwmIconMan Font \
-	"xft:Adobe:Bold:size=12:minspace=true;-adobe-helvetica-bold-r-*-*-12-*"
+	"-microsoft-tahoma-medium-r-*-*-11-*;xft:Adobe:Bold:size=12:minspace=true;-adobe-helvetica-bold-r-*-*-12-*"
 
 FuncFvwmSetFont-ModuleTips FvwmPager-Single BalloonFont \
 	"xft:Adobe:size=11:minspace=true;-*-fixed-medium-r-semicondensed-*-13-*"

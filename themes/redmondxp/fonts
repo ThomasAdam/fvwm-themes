@@ -13,12 +13,12 @@ AddToFunc   FuncFvwmSetFont-IconTitle
 
 DestroyFunc FuncFvwmSetFont-Menu
 AddToFunc   FuncFvwmSetFont-Menu
-+ I MenuStyle "$0" Font "shadow=1:$1"
++ I MenuStyle "$0" Font "$1"
 
 # for FvwmIdent (called in colors ... maybe not a very good thing) 
 DestroyFunc FuncFvwmSetFont-FvwmIdent
 AddToFunc   FuncFvwmSetFont-FvwmIdent
-+ I *FvwmIdent: Font shadow=1:xft:Verdana:Bold:pixelsize=10:minspace=true
++ I *FvwmIdent: Font "-microsoft-tahoma-medium-r-*-*-11-*;xft:Verdana:pixelsize=11:minspace=true"
 
 #-----------------------------------------------------------------------------
 # Modules Theme fonts

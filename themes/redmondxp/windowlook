@@ -1,7 +1,7 @@
-FuncFvwmSetFont-WindowTitle * "xft:Luxi Sans:Bold:pixelsize=13;-*-lucida-bold-r-*-*-12-*"
-FuncFvwmSetFont-IconTitle   * "xft:Luxi Sans:Medium:pixelsize=11:minspace=true;-*-lucida-medium-r-*-*-10-*"
+FuncFvwmSetFont-WindowTitle * "-microsoft-trebuchet ms-bold-r-*-*-13-*;xft:Luxi Sans:Bold:pixelsize=13;-*-lucida-bold-r-*-*-12-*"
+FuncFvwmSetFont-IconTitle   * "-microsoft-tahoma-medium-r-*-*-11-*;xft:Luxi Sans:Medium:pixelsize=11:minspace=true;-*-lucida-medium-r-*-*-10-*"
 
-Style "*"	BorderWidth 3, HandleWidth 3
+Style "*"	BorderWidth 4, HandleWidth 4
 Style "*"	FvwmBorder, FirmBorder
 
 BorderStyle	Simple -- HiddenHandles NoInset Raised
@@ -12,8 +12,8 @@ TitleStyle	-- Flat
 ButtonStyle	All -- Flat
 
 AddToFunc   FuncFvwmReloadDecor
-+ I FuncFvwmSetFont-WindowTitle * "xft:Luxi Sans:Bold:pixelsize=13;-*-lucida-bold-r-*-*-12-*"
-+ I FuncFvwmSetFont-IconTitle   * "xft:Luxi Sans:Medium:pixelsize=11:minspace=true;-*-lucida-medium-r-*-*-10-*"
++ I FuncFvwmSetFont-WindowTitle * "-microsoft-trebuchet ms-bold-r-*-*-13-*;xft:Luxi Sans:Bold:pixelsize=13;-*-lucida-bold-r-*-*-12-*"
++ I FuncFvwmSetFont-IconTitle   * "-microsoft-tahoma-medium-r-*-*-11-*;xft:Luxi Sans:Medium:pixelsize=11:minspace=true;-*-lucida-medium-r-*-*-10-*"
 + I BorderStyle	Simple -- HiddenHandles NoInset Raised
 + I TitleStyle	-- Flat
 + I ButtonStyle	All -- Flat

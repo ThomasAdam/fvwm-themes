@@ -58,8 +58,6 @@ my $deskerPagerSize = "91x335";
 my $pagerPositions = [ "+0+0", "-0+0" ];
 my $iconboxPadding = 10;
 my $iconboxPagerSpace = 100;
-my $clockButtonIndex = 15;
-my $pageButtonIndexes = [ 8, 9, 10, 11 ];
 my $currPageNum = -1;  # support 4 pages 2x2
 my $currDeskNum = 0;
 
@@ -104,9 +102,10 @@ sub showClockNowAndRegularly () {
 	my $output = `$command`;
 	chomp($output);
 	my @strings = split(/\n/s, $output);
-	my $bi = $clockButtonIndex;
+	my $bi = 1;
 	foreach (@strings) {
-		$module->send("SendToModule FvwmButtons-Panel Title $bi $_");
+		$module->send("SendToModule FvwmButtons-Panel " .
+			"ChangeButton clock$bi Title '$_'");
 		$bi++;
 	}
 
@@ -322,18 +321,18 @@ $module->addHandler(M_NEW_PAGE, sub {
 	return if $pageNum == $currPageNum;
 
 	if ($currPageNum != -1) {
-		my $currPageButtonIndex = $pageButtonIndexes->[$currPageNum];
-		$module->send("SendToModule FvwmButtons-Panel Title "
-			. "$currPageButtonIndex " . ($currPageNum + 1));
+		my $currPageStr = $currPageNum + 1;
+		$module->send("SendToModule FvwmButtons-Panel ChangeButton " .
+			"page$currPageStr Title $currPageStr");
 	}
 
 	$pageNum = -1 if $pageNum < 0 || $pageNum >= 4;
 	$currPageNum = $pageNum;
 
 	if ($pageNum != -1) {
-		my $pageButtonIndex = $pageButtonIndexes->[$pageNum];
-		$module->send("SendToModule FvwmButtons-Panel Title "
-			. "$pageButtonIndex " . ($pageNum + 1) . "*");
+		my $pageStr = $pageNum + 1;
+		$module->send("SendToModule FvwmButtons-Panel ChangeButton " .
+			"page$pageStr Title ($pageStr)");
 	}
 });
 
