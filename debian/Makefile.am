@@ -8,6 +8,7 @@ release = 0.`date +%Y%m%d`
 datum = `date "+%a, %d %b %Y %X %z"`
 fullname = FVWM Themes Developers
 email = fvwm-themes-devel@lists.sourceforge.net
+arch    ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
 
 deb:
 	make clean;
@@ -42,8 +43,10 @@ deb:
 	fakeroot dh_gencontrol
 	fakeroot dh_md5sums
 	fakeroot dh_builddeb
+	-@dpkg-genchanges > ../fvwm-themes-full-$(version)_$(release)_$(arch).changes
 	-@debsign ../fvwm-themes-full-$(version)_$(release).dsc
-	fakeroot dh_clean fvwm-themes-extra-$(version) fvwm-themes-full-$(version) fvwm-themes-$(version)
+	-@debsign ../fvwm-themes-full-$(version)_$(release)_$(arch).changes
+	fakeroot dh_clean fvwm-themes-extra-$(version) fvwm-themes-full-$(version) fvwm-themes-$(version) fvwm-themes
 	rm -f debian/control debian/full-control
 
 
@@ -91,8 +94,10 @@ deb-base:
 	fakeroot dh_gencontrol
 	fakeroot dh_md5sums
 	fakeroot dh_builddeb
+	-@dpkg-genchanges > ../fvwm-themes-$(version)_$(release)_$(arch).changes
 	-@debsign ../fvwm-themes-$(version)_$(release).dsc
-	fakeroot dh_clean fvwm-themes-extra-$(version) fvwm-themes-full-$(version) fvwm-themes-$(version)
+	-@debsign ../fvwm-themes-$(version)_$(release)_$(arch).changes
+	fakeroot dh_clean fvwm-themes-extra-$(version) fvwm-themes-full-$(version) fvwm-themes-$(version) fvwm-themes
 	rm -f debian/control debian/base-control
 
 
@@ -141,7 +146,9 @@ deb-extra:
 	rm debian/fvwm-themes-extra-$(version)/DEBIAN/postinst
 	rm debian/fvwm-themes-extra-$(version)/DEBIAN/postrm
 	fakeroot dh_builddeb 
+	-@dpkg-genchanges > ../fvwm-themes-extra-$(version)_$(release)_$(arch).changes
 	-@debsign ../fvwm-themes-extra-$(version)_$(release).dsc
-	fakeroot dh_clean fvwm-themes-full-$(version) fvwm-themes-extra-$(version) fvwm-themes-$(version)
+	-@debsign  ../fvwm-themes-extra-$(version)_$(release)_$(arch).changes
+	fakeroot dh_clean fvwm-themes-full-$(version) fvwm-themes-extra-$(version) fvwm-themes-$(version) fvwm-themes
 	rm -f debian/control debian/extra-control
 
