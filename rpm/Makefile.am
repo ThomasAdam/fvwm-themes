@@ -36,7 +36,7 @@ rpm: @PACKAGE@.spec
 		-e "s/%define c_p /&$$cparams  %define old_c_p /" \
 		-e "s/%define m_p /&$$mparams  %define old_m_p /" \
 	; \
-	rpm -ba tmp-@PACKAGE@.spec --clean --target=noarch-fvwm-linux; \
+	rpm -ba --clean --target noarch-fvwm-linux tmp-@PACKAGE@.spec; \
 	rm /tmp/$$tarball; \
 	rm /tmp/$$rpm_wa; \
 	rm /tmp/$$ins_ms; \
@@ -68,7 +68,7 @@ rpm-base: @PACKAGE@-base.spec
 		-e "s/%define c_p /&$$cparams  %define old_c_p /" \
 		-e "s/%define m_p /&$$mparams  %define old_m_p /" \
 	; \
-	rpm -ba tmp-@PACKAGE@.spec --clean --target=noarch-fvwm-linux; \
+	rpm -ba --clean --target noarch-fvwm-linux tmp-@PACKAGE@.spec; \
 	rm /tmp/$$tarball; \
 	rm /tmp/$$rpm_wa; \
 	rm /tmp/$$ins_ms; \
@@ -94,7 +94,7 @@ rpm-extra: @PACKAGE@-extra.spec
 		-e "s/%define c_p /&$$cparams  %define old_c_p /" \
 		-e "s/%define m_p /&$$mparams  %define old_m_p /" \
 	; \
-	rpm -ba tmp-@PACKAGE@.spec --clean --target=noarch-fvwm-linux; \
+	rpm -ba --clean --target noarch-fvwm-linux tmp-@PACKAGE@.spec; \
 	rm /tmp/$$tarball; \
 	rm tmp-@PACKAGE@.spec
 
@@ -120,7 +120,7 @@ rpm-themes: @PACKAGE@-themes.spec
 		-e "s/%define m_p /&$$mparams  %define old_m_p /" \
 		-e "s/xxxThemesxxx/$$t/" \
 		; \
-		rpm -ba tmp-@PACKAGE@.spec --clean --target=noarch-fvwm-linux; \
+		rpm -ba --clean --target noarch-fvwm-linux tmp-@PACKAGE@.spec; \
 		rm /tmp/$$tarball; \
 		rm tmp-@PACKAGE@.spec; \
 	done

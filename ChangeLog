@@ -1,3 +1,8 @@
+2002-02-28  migo  <migo@homemail.com>
+
+	* rpm/Makefile.am:
+	fixed a build with rpm-4.0.3
+
 2001-12-20  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in (comLoop): 
