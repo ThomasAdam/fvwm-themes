@@ -1,8 +1,5 @@
-Style "*"	Font     fixed
-Style "*"	IconFont fixed
-
-FuncFvwmSetFont-WindowTitle *
-FuncFvwmSetFont-IconTitle   *
+FuncFvwmSetFont-WindowTitle * fixed
+FuncFvwmSetFont-IconTitle   * fixed
 
 Style "*"	BorderWidth 5, HandleWidth 5
 Style "*"	FvwmBorder, FirmBorder

@@ -1,5 +1,4 @@
 MenuStyle * Hilight3DThickness 2
-MenuStyle * Font -adobe-helvetica-medium-r-*-*-11-*-*-*-*-*-*-*
 MenuStyle * PopupDelayed, PopupDelay 100, PopdownDelayed, PopdownDelay 100
 MenuStyle * PopupOffset -3 100, TitleWarpOff
 MenuStyle * TitleUnderlines1, SeparatorsLong, TrianglesSolid
@@ -9,5 +8,5 @@ MenuStyle * PopupAsSubmenu, HoldSubmenus, SubmenusRight
 MenuStyle * ItemFormat "%.1s%|%1.4i%1.4l%1.4l%1.4r%1.4i%2.3>%|"
 MenuStyle * VerticalItemSpacing, VerticalTitleSpacing
 
-FuncFvwmSetFont-Menu *
+FuncFvwmSetFont-Menu * -adobe-helvetica-medium-r-*-*-11-*-*-*-*-*-*-*
 BusyCursor DynamicMenu True

@@ -1,8 +1,5 @@
-Style "*"	Font -*-lucidatypewriter-medium-r-*-*-12-*-*-*-*-*-*-*
-Style "*"	IconFont fixed
-
-FuncFvwmSetFont-WindowTitle *
-FuncFvwmSetFont-IconTitle   *
+FuncFvwmSetFont-WindowTitle * -*-lucidatypewriter-medium-r-*-*-12-*-*-*-*-*-*-*
+FuncFvwmSetFont-IconTitle   * fixed
 
 Style "*"	BorderWidth 5, HandleWidth 5
 Style "*"	FvwmBorder, FirmBorder

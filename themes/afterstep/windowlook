@@ -1,8 +1,5 @@
-Style "*"	Font     -*-lucida-bold-r-*-*-12-*-*-*-*-*-*-*
-Style "*"	IconFont fixed
-
-FuncFvwmSetFont-WindowTitle *
-FuncFvwmSetFont-IconTitle   *
+FuncFvwmSetFont-WindowTitle * -*-lucida-bold-r-*-*-12-*-*-*-*-*-*-*
+FuncFvwmSetFont-IconTitle   * fixed
 
 Style "*"	BorderWidth 1, HandleWidth 1
 Style "*"	FvwmBorder, FirmBorder

@@ -1,8 +1,5 @@
-Style "*"	Font -*-lucidatypewriter-bold-r-normal-sans-14-*-*-*-*-*-*-*
-Style "*"	IconFont -*-lucidatypewriter-bold-r-normal-sans-12-*-*-*-*-*-*-*
-
-FuncFvwmSetFont-WindowTitle *
-FuncFvwmSetFont-IconTitle   *
+FuncFvwmSetFont-WindowTitle * -*-lucidatypewriter-bold-r-normal-sans-14-*-*-*-*-*-*-*
+FuncFvwmSetFont-IconTitle   * -*-lucidatypewriter-bold-r-normal-sans-12-*-*-*-*-*-*-*
 
 Style "*"	BorderWidth 4, HandleWidth 4
 Style "*"	MWMBorder, FirmBorder
