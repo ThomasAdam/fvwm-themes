@@ -305,6 +305,7 @@ AddToMenu   MenuFvwmGamesAction "Action" Title
 + "XEvil%menu/game.xpm%"		Exec exec xevil
 + "XBill%menu/game.xpm%"		Exec exec xbill
 + "Scavenger%menu/game.xpm%"		Exec exec scavenger
++ "Ice Breaker%menu/penguin.xpm%"	Exec exec icebreaker
 # Pac-man like
 + "" Nop
 + "XChomp%menu/game.xpm%"		Exec exec xchomp
