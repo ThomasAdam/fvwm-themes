@@ -1,3 +1,20 @@
+2000-09-05  migo  <migo@homemail.com>
+
+	* themes/multichoice/pixmap1-smaller:
+	* themes/multichoice/pixmap1-bigger:
+	* themes/multichoice/images/pixmap1/resize_br2.xpm:
+	* themes/multichoice/images/pixmap1/resize_bl2.xpm:
+	* themes/multichoice/images/pixmap1/resize_h2.xpm:
+	* themes/multichoice/images/pixmap1/resize_v2.xpm:
+	* themes/multichoice/images/pixmap1/move3.xpm:
+	* themes/multichoice/images/pixmap1/resize_bl3.xpm:
+	* themes/multichoice/images/pixmap1/resize_br3.xpm:
+	* themes/multichoice/images/pixmap1/resize_h3.xpm:
+	* themes/multichoice/images/pixmap1/resize_v3.xpm:
+	* themes/multichoice/*:
+	Added 2 cursor sets inheriting from pixmap1.
+	Slightly edited some existing pixmaps.
+
 2000-09-03  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

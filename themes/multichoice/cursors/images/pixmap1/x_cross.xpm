@@ -1,13 +1,12 @@
 /* XPM */
 static char *x_cross[] = {
 /* width height num_colors chars_per_pixel hotspot */
-"    16    16        3            1          8 9",
+"    16    16        3            1          8 8",
 /* colors */
 "  c None",
 ". c #000000",
 "# c #ffffff",
 /* pixels */
-"                ",
 "                ",
 "   .       .    ",
 "  .#.     .#.   ",
@@ -22,5 +21,6 @@ static char *x_cross[] = {
 " .###.   .###.  ",
 "  .#.     .#.   ",
 "   .       .    ",
+"                ",
 "                ",
 };
