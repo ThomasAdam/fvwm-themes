@@ -3,3 +3,6 @@ Makefile.in
 changelog
 control
 files
+base-control
+extra-control
+full-control
