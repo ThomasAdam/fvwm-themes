@@ -1,5 +1,17 @@
 2000-10-25  olicha  <olivier.chapuis@free.fr>
 
+	* bin/fvwm-themes-script.in:
+	* scripts/FvwmScript-ConfigCenter:
+	Automatic detection (?) of the rgb masks for computing the XOR
+	value. Fixed parsing.
+
+	* themes/default/settings/autoraise/modules:
+	put the menu entries in the start func since we cannot
+	destroy it (may be a bad idea, we will see with the CCD).
+
+
+2000-10-25  olicha  <olivier.chapuis@free.fr>
+
 	* themes/*/globalfeel:
 	* themes/default/theme.cfg:
 	rename desktop to globalfeel and use the new spec.

@@ -202,6 +202,11 @@ sub configCenterComLoop {
 		}
 	}
 
+	# X info:
+	my	($redMask,$greenMask,$blueMask) = getXdpyInfo();
+	#my ($redMask,$greenMask,$blueMask) = ("63488", "2016", "31");
+	#print STDERR "RGB Mask: ($redMask,$greenMask,$blueMask)\n";
+
 	chdir($userDir) || die "No FvwmConfigHome $userDir";
 	unlink($lockFifo);
 	unlink($inFifo);
@@ -381,33 +386,26 @@ sub configCenterComLoop {
 		}
 		# ---------------------------------------------------
 		elsif ($command =~ /^hexcolor-2-value\s+\#([a-fA-F0-9][a-fA-F0-9])([a-fA-F0-9][a-fA-F0-9])([a-fA-F0-9][a-fA-F0-9])$/) {
-			my $blueMask = 31;
-			my $greenMask = 2016;
-			my $redMask = 63488;
 			my $r = hex($1);
 			my $g = hex($2);
 			my $b = hex($3);
-			print "hex: $r,$g,$b\n";
-			$b = int( $b * ($blueMask+1) / 256);
-			$g = $g * ( (1+($greenMask/($blueMask+1))) / 256 );
-			$g = int($g) * ($blueMask + 1);
-			#$r = int( $r * $redMask / 255 );
-			$r = $r * ( (1+($redMask/($greenMask+$blueMask+1)))  / 256 );
-			$r = int($r) * ($greenMask + $blueMask + 1);
-			$return = $r + $g +$b;
-			$return = 1 if $return == 0;
+			if ($redMask*$greenMask*$blueMask != 0) {
+				$b = int( $b * ($blueMask+1) / 256);
+				$g = $g * ( (1+($greenMask/($blueMask+1))) / 256 );
+				$g = int($g) * ($blueMask + 1);
+				#$r = int( $r * $redMask / 255 );
+				$r = $r * ( (1+($redMask/($greenMask+$blueMask+1)))  / 256 );
+				$r = int($r) * ($greenMask + $blueMask + 1);
+				$return = $r + $g +$b;
+				$return = 1 if $return == 0;
+			}
 		}
 		# ---------------------------------------------------
 		elsif ($command =~ /^value-2-hexcolor\s+(.*)$/) {
-			my $sinBits = 6;
-			my $blueMask = 31;
-			my $greenMask = 2016;
-			my $redMask = 63488;
 			my $d = $1;
-			if ($d !~ /^\d+/) {
-				$return = "#aaaaaa";
-			}
-			else {
+			
+			$return = 0;
+			if ($d =~ /^\d+/ && $redMask*$greenMask*$blueMask != 0) {
 				my ($r,$g,$b) = (0, 0, 0);
 				$r = int ( $d / ($greenMask + $blueMask + 1));
 				$d = $d - $r * ($greenMask + $blueMask + 1);
@@ -416,7 +414,6 @@ sub configCenterComLoop {
 				$d = $d - $g * ($blueMask + 1);
 				$g =  int ( $g*255 / ($greenMask/($blueMask + 1)) );
 				$b = int ( $d*255 / $blueMask );
-				print STDERR "hop: $r, $g, $b\n";
 				$r = 255 if $r > 255;
 				$g = 255 if $g > 255;
 				$b = 255 if $b > 255;
@@ -1059,17 +1056,17 @@ sub parse_globalfeel_Config {
 	my $multiline = "";
 	my $line;
 
-	while(<FILE>) {		
+	while(<FILE>) {
+		chomp;		
 		if ( /\\$/ && ! /\\\\$/) {
 			s/\\$//;
-			chomp;
 			$multiline = $multiline . $_;
 			next;
 	  	} else {
 			$line= $multiline . $_;
 			$multiline = "";
 		}
-
+		print STDERR "$line\n";
 		# remove starting blanc:
 		$line =~ s/^\s+//;
 		# removing comments
@@ -1215,7 +1212,7 @@ sub parse_globalfeel_Config {
 		elsif ($line =~ /^Style\s+["]*[*]["]*\s+(.+)$/i) {
 			my $token = $1;
 			while($token ne "") {
-				my $style = getNextToken(\$token);
+				my $style = getNextStyle(\$token);
 				if ($style =~ /^ClickToFocus$/i) {
 					$config->{'focus'} = 1
 				} 
@@ -1556,6 +1553,9 @@ sub default_globalfeel_Config {
 
 }
 
+# -----------------------------------------------------------------------------
+# parsing func
+
 sub getNextToken {
 	my ($line) = @_;
 	my $token = "";
@@ -1574,6 +1574,22 @@ sub getNextToken {
 	}
 	$$line = substr($$line,length($token));
 	$token =~ s/$quote$//;
+	$token =~ s/,//g;
+	return $token;
+}
+
+sub getNextStyle {
+	my ($line) = @_;
+	my $token = "";
+
+	$$line =~ s/^\s*,\s*//;
+	#print "$$line\n";
+	if ($$line =~ /,/) {
+		$token = substr($$line,0,index($$line,","));
+	} else {
+		$token = $$line;
+	}
+	$$line = substr($$line,length($token));
 	$token =~ s/,//g;
 	return $token;
 }
@@ -1633,6 +1649,8 @@ sub getBoolArg {
 }
 
 #----------------------------------------------------------------------------
+#
+
 sub saveToFile {
 	my $out = shift;
 	my $file = shift;
@@ -1654,6 +1672,7 @@ sub saveToFile {
 }
 
 #----------------------------------------------------------------------------
+#
 
 sub int2hex {
 	my @Hex=(0 .. 9, "a" .. "f");
@@ -1662,3 +1681,35 @@ sub int2hex {
 	my $h = $Hex[$i/16] . $Hex[$i%16];
   	return $h;
 }
+
+
+#----------------------------------------------------------------------------
+#
+sub getXdpyInfo {
+
+	my $redMask = 0;
+	my $greenMask = 0;
+	my $blueMask = 0;
+	my $defaultVisual = "";
+	my $ok = 0;
+
+	open(XDPY,"xdpyinfo |");
+	while (<XDPY>) {
+		if (/default visual id:\s+(.*)$/) {
+			$defaultVisual = $1;
+		}
+		if (/visual id:\s+$defaultVisual$/) {
+			$ok = 1;
+		}
+		if ($ok && /red, green, blue masks:\s+([0-9a-fA-Fx]+),\s+([0-9a-fA-Fx]+),\s+([0-9a-fA-Fx]+)$/) {
+			$redMask = hex($1);
+			$greenMask = hex($2);
+			$blueMask = hex($3);
+			$ok = 0
+		}
+	}
+	close(XDPY);
+
+	return ($redMask,$greenMask,$blueMask)
+		
+	}

@@ -8,6 +8,9 @@ AddToFunc   FuncFvwmModulesAutoRaise
 + I Current (FvwmPager) Raise
 + I Current (panel) Raise
 + I Current (xsm) Raise
++ I AddToMenu   MenuFvwmStartRegularModules "Modules AutoRaise" FvwmAuto 200 \
+	"Silent FuncFvwmModulesAutoRaise" "Silent FuncFvwmModulesAutoLower"
+
 Style "FvwmButtons" MouseFocus
 Style "FvwmIconBox" MouseFocus
 Style "FvwmIconMan" MouseFocus
@@ -30,6 +33,3 @@ AddToFunc   FuncFvwmStopFvwmAutoRaise
 + I DestroyFunc FuncFvwmModulesAutoRaise
 + I DestroyFunc FuncFvwmModulesAutoLower
 + I KillModule FvwmAuto
-
-AddToMenu   MenuFvwmStartRegularModules
-+ "Modules AutoRaise" FvwmAuto 200 "Silent FuncFvwmModulesAutoRaise" "Silent FuncFvwmModulesAutoLower"
