@@ -2,6 +2,9 @@
 
 	* themes/default/settings/autoraise/modules: fixed
 
+	* bin/fvwm-themes-config.in:
+	'no strict' and other corrections
+
 2000-10-25  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-script.in:

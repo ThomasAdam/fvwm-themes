@@ -3,6 +3,7 @@
 # Filter this script to pod2man to get a man page:
 #   pod2man -c "Fvwm Utility" fvwm-themes-config | nroff -man | less -e
 
+use strict;
 use Getopt::Long;
 
 my $prefix = $ENV{'prefix'} || '@prefix@';
@@ -355,6 +356,7 @@ sub encodeCfgEntry ($) {
 	return $str;
 }
 
+use vars qw($cfgFileCache);
 BEGIN { $cfgFileCache = {}; }
 sub loadThemeCfg ($) {
 	my $theme = shift;
@@ -480,6 +482,7 @@ sub getAllThemes (;$$) {
 	push @dirList, $userDir if $onlyUser;
 	@dirList = @searchPath unless @dirList;
 	my $themes = {};
+	my $dir;
 	foreach $dir (@dirList) {
 		my $dir = "$dir/$themesSubDir";
 		opendir(DIR, $dir);
@@ -578,9 +581,10 @@ sub getHashIdArrayIndex ($$) {
 package Fvwm::ThemeCfg;
 
 sub AUTOLOAD ($@) {
-	my $func = $AUTOLOAD;
+	my $func = $Fvwm::ThemeCfg::AUTOLOAD;
 	$func =~ s/.*://g;
 	$func = "main::$func";
+	no strict 'refs';
 	&$func(@_);
 }
 
@@ -593,7 +597,7 @@ sub new ($$;$$) {
 	my $loadTheme = shift || $theme;
 	my $fresh = shift || 0;
 
-	$self = {
+	my $self = {
 		$idKey => $theme,
 		'name' => ucfirst($theme),
 		'cc'   => {},
@@ -1643,7 +1647,7 @@ if ($comMode) {
 	# we never return here
 }
 if ($configCenter) {
-	$cfg->getInfoForConfigCenter();
+	$cfg->showInfoForConfigCenter();
 	# we never return here
 }
 $cfg->useNewComponents($loadComponents, $dropComponents);
@@ -1659,33 +1663,35 @@ exit(0);
 #
 #-----------------------------------------------------------------------------
 
-sub  getInfoForConfigCenter {
+sub showInfoForConfigCenter {
 	my $self = shift;
 	my $return = "";
 	my $user = "";
 	my $site = "";
-	my $cc;
+	my $cc = $self->{'cc'};
 
 	my @components = ("globalfeel");
 	my $allThemes = getAllThemes();
-	my $userThemes = getAllThemes(0,1);
+	my $userThemes = getAllThemes(0, 1);
 
-	$return .= "$self->{'cc'}->{'styles'}->{'read-file'}\n"
-		if defined $self->{'cc'}->{'styles'}->{'read-file'};
-	$return .= "$self->{'cc'}->{'extra-styles'}->{'read-file'}\n"
-		if defined $self->{'cc'}->{'extra-styles'}->{'read-file'};
+	### all this hardcoding is unacceptable, should be defuned in .cfg
+
+	$return .= "$cc->{'styles'}->{'read-file'}\n"
+		if defined $cc->{'styles'}->{'read-file'};
+	$return .= "$cc->{'extra-styles'}->{'read-file'}\n"
+		if defined $cc->{'extra-styles'}->{'read-file'};
 	my $file = "";
-	$file = $self->{'cc'}->{'modules/main'}->{'read-file'}
-		if defined $self->{'cc'}->{'modules/main'}->{'read-file'};
-	$file = $self->{'cc'}->{'modules'}->{'read-file'}
-		if defined $self->{'cc'}->{'modules'}->{'read-file'} && $file eq "";
+	$file = $cc->{'modules/main'}->{'read-file'}
+		if defined $cc->{'modules/main'}->{'read-file'};
+	$file = $cc->{'modules'}->{'read-file'}
+		if defined $cc->{'modules'}->{'read-file'} && $file eq "";
 	if ($file ne "") {
 		$file = "$file:styles";
 		$return .= "$file\n" if -f $file;
 	}
 	$file = "";
-	$file = $self->{'cc'}->{'settings/autoraise'}->{'read-file'}
-		if defined $self->{'cc'}->{'settings/autoraise'}->{'read-file'};
+	$file = $cc->{'settings/autoraise'}->{'read-file'}
+		if defined $cc->{'settings/autoraise'}->{'read-file'};
 	$return .= "$file\n" if $file =~ /modules$/ && -f $file;
 	$return .= "END\n";
 
@@ -1695,17 +1701,15 @@ sub  getInfoForConfigCenter {
 	my $c;
 	foreach $c (@components) {
 		$return .= "configuration of $c for the Config Center\n";
-		$cc = $self->{'cc'}->{$c}->{'theme'};
-		$return .=  (defined $c) ? "$cc\n" : "\n";
+		my $theme = $cc->{$c}->{'theme'} || "";
+		$return .= "$theme\n";
 		foreach $theme (@$allThemes) {
 			my ($comps, $groups) = getThemeComponentsAndGroups($theme);
-			my $test = 0;
-			foreach (@$comps) { $test = 1 if $_ eq $c }
-			next if ! $test;
+			next unless isArrayElement($comps, $c);
 			$return .= "$theme\n";
 			my $themeCfg = new Fvwm::ThemeCfg($theme);
-			$dd = $themeCfg->getComponentCfg($c);
-			my $file = (defined $dd->{'read-file'}) ? $dd->{'read-file'} : "";
+			my $dd = $themeCfg->getComponentCfg($c);
+			my $file = $dd->{'read-file'} || "";
 			$return .= "$file\n";
 		}
 	}
@@ -1812,6 +1816,7 @@ sub comLoop {
 						($self->getComponentCfg($_)->{$themeKey} || "") eq $theme;
 					$used ||= $used0;
 				}
+				my $key;
 				foreach $key (keys %componentToLoad) {
 					$set = 1 if $componentToLoad{$key} eq $theme;
 				}
@@ -2302,6 +2307,7 @@ sub comLoop {
 		# GS
 		# -----------------------------------------
 		elsif ($command =~ /^settings-config$/) {
+			my $config;
 			foreach $config (@$settingsConfig) {
 				my $l = 26 - length($config->{'name'});
 				$l = 1 if $l <= 0;
@@ -2621,6 +2627,7 @@ sub getAllSubComponents {
 	my $contains = $tmp->{'contains'};
 
 	return -1 if (ref($contains) ne 'ARRAY');
+	my $c;
 	foreach $c (@$contains) {
 		my $dd = $themeCfg->getComponentCfg("$component/$c");
 		my $subConfig = getAllSubComponents($self,$theme,"$component/$c",
@@ -2937,19 +2944,21 @@ To start with fvwm-themes, run this:
 
   fvwm-themes-config --reset
 
-This command automatically called in B<fvwm-themes-start>, it will create
-the "current" theme in the user space, equivalent to the "default" one.
-If C<--site> parameter is also given, it will be created in the system space.
+This command automatically called in B<fvwm-themes-start> when needed,
+it will create the "current" theme in the user space, equivalent to the
+"default" one. If C<--site> parameter is also given, it will be created
+in the system space instead.
 
 Info examples:
 
-  fvwm-themes-config --show-themes  # shows list of all themes
-  fvwm-themes-config --show-components  # show themes and components
-  fvwm-themes-config --theme migo --theme default --show-components
+  fvwm-themes-config --show-themes  # shows a list of all themes
+  fvwm-themes-config --show-components  # show all themes+components
+  fvwm-themes-config --show-themes --component windowlook
+  fvwm-themes-config --show-components --theme migo --theme default
 
-  fvwm-themes-config --component _core --show-value memory
   fvwm-themes-config --component colors --show-value read-file
   fvwm-themes-config --component colors@cde --show-value option
+  fvwm-themes-config --component _core --show-value memory
 
 Other examples:
 
