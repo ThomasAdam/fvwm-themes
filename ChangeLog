@@ -3,6 +3,12 @@
 	* themes/default/menus-programs:
 	added several games
 
+	* themes/redmondxp/modules/FvwmPager-Desker:
+	* themes/redmondxp/modules/FvwmPager-Single:
+	* themes/redmondxp/modules/FvwmThemesPanelManager:
+	* themes/redmondxp/modules/main:
+	added "switch pager positions" option, added modules to menus
+
 2002-07-05  migo  <migo@homemail.com>
 
 	* themes/default/menus-programs:

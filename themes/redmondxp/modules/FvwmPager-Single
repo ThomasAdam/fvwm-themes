@@ -25,7 +25,7 @@ AddToMenu    MenuFvwmWindowGroupQuickMove
 
 DestroyModuleConfig FvwmPager-Single: *
 
-*FvwmPager-Single: Geometry 99x89+0+0
+*FvwmPager-Single: Geometry 91x83+0+0
 *FvwmPager-Single: Rows 1
 *FvwmPager-Single: Columns 1
 

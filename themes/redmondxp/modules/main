@@ -52,20 +52,32 @@ AddToFunc   FuncFvwmReloadColorsModules
 + I Colorset 20 fg rgb:ff/ff/f0, bg average, TiledPixmap module/panel-bg.xpm, Tint white 30, NoShape
 + I FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Panel
 
+DestroyFunc FuncFvwmStopPanel
+AddToFunc   FuncFvwmStopPanel
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Panel
++ I KillModule $./FvwmThemesPanelManager
+
+DestroyFunc FuncFvwmRestartPanel
+AddToFunc   FuncFvwmRestartPanel
++ I FuncFvwmStopPanel
++ I FvwmButtons FvwmButtons-Panel
++ I $./FvwmThemesPanelManager
+
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
 + I Deschedule 34543  # just to be sure
-+ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Panel
++ I FuncFvwmStopPanel
 + I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Single
 + I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
 + I KillModule FvwmIconMan
-+ I KillModule $./FvwmThemesPanelManager
 + I DestroyModuleConfig FvwmButtons-Panel: *
 + I DestroyModuleConfig FvwmPager-Single: *
 + I DestroyModuleConfig FvwmPager-Desker: *
 + I DestroyModuleConfig FvwmIconMan: *
 + I FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmDestroyModulesThemeStyle
++ I DestroyFunc FuncFvwmStopPanel
++ I DestroyFunc FuncFvwmRestartPanel
 # This is very bad, but we should restore modified colorsets
 + I PipeRead `fvwm-themes-config --component colors --show-value read-file | xargs cat`
 + I PipeRead `fvwm-themes-config --component colors-decor --show-value read-file 2>/dev/null | xargs cat`
@@ -82,15 +94,21 @@ AddToFunc   FuncFvwmUnReloadThemeModules
 
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules
-#+ "RedmondXP Modules" Title
-#+ "%menu/item.xpm%&Task Bar Panel"        FuncFvwmRestartModuleByAlias \
-#	FvwmButtons FvwmButtons-Panel
++ "RedmondXP Modules" Title
++ "%menu/item.xpm%&Panel" FuncFvwmRestartPanel
++ "%menu/item.xpm%&Single Pager" \
+	FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Single '* *'
++ "%menu/item.xpm%&Desker Pager" \
+	FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '0 3'
 
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules
-#+ "RedmondXP Modules" Title
-#+ "%menu/quit.xpm%Stop &Task Bar Panel" \
-#	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Panel
++ "RedmondXP Modules" Title
++ "%menu/quit.xpm%Stop &Panel" FuncFvwmStopPanel
++ "%menu/quit.xpm%Stop &Single Pager" \
+	FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Single
++ "%menu/quit.xpm%Stop &Desker Pager" \
+	FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
 
 # ----------------------------------------------------------------------------
 # Modules configuration

@@ -17,7 +17,7 @@ DestroyModuleConfig FvwmPager-Desker: *
 *FvwmPager-Desker: BalloonColorset * 16
 *FvwmPager-Desker: WindowColorsets 1 2
 
-*FvwmPager-Desker: Geometry 99x356-0+0
+*FvwmPager-Desker: Geometry 91x335-0+0
 *FvwmPager-Desker: WindowLabelFormat "%t"
 *FvwmPager-Desker: Rows 1
 *FvwmPager-Desker: Columns 1

@@ -46,14 +46,18 @@ my $config = {
 	'taskbar-normalicons' => 0,
 	'pagebar-show-single' => 0,
 	'pagebar-show-desker' => 0,
+	'pagebar-switch-position' => 0,
 	'clockbar-field-order' => 0,
 	'clockbar-time-format' => 0,
 	'clockbar-date-format' => 0,
 };
 my $newConfig = {};
 
+my $singlePagerSize = "91x83";
+my $deskerPagerSize = "91x335";
+my $pagerPositions = [ "+0+0", "-0+0" ];
 my $iconboxPadding = 10;
-my $iconboxPagerSpace = 110;
+my $iconboxPagerSpace = 100;
 my $clockButtonIndex = 15;
 my $pageButtonIndexes = [ 8, 9, 10, 11 ];
 my $currPageNum = -1;  # support 4 pages 2x2
@@ -112,6 +116,8 @@ sub showClockNowAndRegularly () {
 sub applyNewConfig () {
 	my $updateClock = 0;
 	my $updateIconbox = 0;
+	my $updateSinglePager = 0;
+	my $updateDeskerPager = 0;
 
 	my $key;
 	foreach $key (keys %$newConfig) {
@@ -121,22 +127,26 @@ sub applyNewConfig () {
 			unless defined $newValue && defined $oldValue;
 		delete $newConfig->{$key};
 		next if $newValue eq $oldValue;
-		$config->{$key} = $newValue;
 		my $isBadValue = 0;
 
 		if ($key eq 'pagebar-show-single') {
-			my $cmd = $newValue?
-				"FvwmPager FvwmPager-Single * *":
-				"KillModule FvwmPager FvwmPager-Single";
-			$module->send($cmd);
-			$updateIconbox = 1;
+			$updateSinglePager = 1;
 		}
 		if ($key eq 'pagebar-show-desker') {
-			my $cmd = $newValue?
-				"FvwmPager FvwmPager-Desker 0 3":
-				"KillModule FvwmPager FvwmPager-Desker";
-			$module->send($cmd);
-			$updateIconbox = 1;
+			$updateDeskerPager = 1;
+		}
+		if ($key eq 'pagebar-switch-position') {
+			$newValue = 0 if $newValue ne "1";
+
+			my $singleGeo = $singlePagerSize;
+			$singleGeo .= $pagerPositions->[$newValue];
+			$module->send("*FvwmPager-Single: Geometry $singleGeo");
+			$updateSinglePager = 2;
+
+			my $deskerGeo = $deskerPagerSize;
+			$deskerGeo .= $pagerPositions->[1 - $newValue];
+			$module->send("*FvwmPager-Desker: Geometry $deskerGeo");
+			$updateDeskerPager = 2;
 		}
 		if ($key eq 'taskbar-resolution') {
 			$module->send("*FvwmIconMan: resolution $newValue");
@@ -165,22 +175,46 @@ sub applyNewConfig () {
 			} else {
 				# ensure a value is in range
 				$newValue = $newValue % @$formats;
-				$config->{$key} = $newValue;
 				$updateClock = 1;
 			}
 		}
 
-		$config->{$key} = $oldValue if $isBadValue;
+		$config->{$key} = $newValue unless $isBadValue;
 	}
 
 	if ($updateClock) {
 		showClockNowAndRegularly();
 	}
+	if ($updateSinglePager) {
+		if ($config->{'pagebar-show-single'}) {
+			$module->send("KillModule FvwmPager FvwmPager-Single")
+				if $updateSinglePager == 2;
+			$module->send("FvwmPager FvwmPager-Single * *")
+		} else {
+			$module->send("KillModule FvwmPager FvwmPager-Single");
+		}
+		$updateIconbox = 1;
+	}
+	if ($updateDeskerPager) {
+		if ($config->{'pagebar-show-desker'}) {
+			$module->send("KillModule FvwmPager FvwmPager-Desker")
+				if $updateDeskerPager == 2;
+			$module->send("FvwmPager FvwmPager-Desker 0 3")
+		} else {
+			$module->send("KillModule FvwmPager FvwmPager-Desker");
+		}
+		$updateIconbox = 1;
+	}
 	if ($updateIconbox) {
 		my $x1 = $iconboxPadding;
 		my ($y1, $x2, $y2) = ($x1, -$x1, -30 - $x1);
-		$x1 += $iconboxPagerSpace if $config->{'pagebar-show-single'};
-		$x2 -= $iconboxPagerSpace if $config->{'pagebar-show-desker'};
+		if ($config->{'pagebar-switch-position'}) {
+			$x1 += $iconboxPagerSpace if $config->{'pagebar-show-desker'};
+			$x2 -= $iconboxPagerSpace if $config->{'pagebar-show-single'};
+		} else {
+			$x1 += $iconboxPagerSpace if $config->{'pagebar-show-single'};
+			$x2 -= $iconboxPagerSpace if $config->{'pagebar-show-desker'};
+		}
 		$module->send("Style * IconBox screen w $x1 $y1 $x2 $y2 p");
 	}
 
@@ -199,6 +233,7 @@ sub popupPageBarConfigMenu ($) {
 	my $addition = shift;
 	my $iconSSP = checkBoxIcon($config->{'pagebar-show-single'});
 	my $iconSDP = checkBoxIcon($config->{'pagebar-show-desker'});
+	my $iconSPP = checkBoxIcon($config->{'pagebar-switch-position'});
 	my $iconGD0 = radioBoxIcon($currDeskNum == 0);
 	my $iconGD1 = radioBoxIcon($currDeskNum == 1);
 	my $iconGD2 = radioBoxIcon($currDeskNum == 2);
@@ -210,6 +245,7 @@ sub popupPageBarConfigMenu ($) {
 		AddToMenu   PanelPageBarConfigMenu
 		+ "%menu/$iconSSP.xpm%Show Single Pager" $backCmd toggle pagebar-show-single
 		+ "%menu/$iconSDP.xpm%Show Desker Pager" $backCmd toggle pagebar-show-desker
+		+ "%menu/$iconSPP.xpm%Switch Pager Position" $backCmd toggle pagebar-switch-position
 		+ "" Nop
 		+ "%menu/$iconGD0.xpm%Goto Desk 0" GotoDesk 0 0
 		+ "%menu/$iconGD1.xpm%Goto Desk 1" GotoDesk 0 1
@@ -224,8 +260,9 @@ sub popupTaskBarConfigMenu ($) {
 	my $addition = shift;
 	my $iconSNI = checkBoxIcon($config->{'taskbar-normalicons'});
 	my $iconTRP = radioBoxIcon($config->{'taskbar-resolution'} eq 'page');
-	my $iconTRD = radioBoxIcon($config->{'taskbar-resolution'} eq 'desk');
 	my $iconTRS = radioBoxIcon($config->{'taskbar-resolution'} eq 'screen');
+	my $iconTRD = radioBoxIcon($config->{'taskbar-resolution'} eq 'desk');
+	my $iconTRG = radioBoxIcon($config->{'taskbar-resolution'} eq 'global');
 	my $backCmd = "SendToModule $fullName";
 
 	$module->send(qq{
@@ -233,9 +270,10 @@ sub popupTaskBarConfigMenu ($) {
 		AddToMenu   PanelTaskBarConfigMenu
 		+ "%menu/$iconSNI.xpm%Show Normal Icons" $backCmd toggle taskbar-normalicons
 		+ "" Nop
-		+ "%menu/$iconTRP.xpm%Resolution: page" $backCmd set taskbar-resolution page
-		+ "%menu/$iconTRD.xpm%Resolution: desk" $backCmd set taskbar-resolution desk
+		+ "%menu/$iconTRP.xpm%Resolution: page"   $backCmd set taskbar-resolution page
 		+ "%menu/$iconTRS.xpm%Resolution: screen" $backCmd set taskbar-resolution screen
+		+ "%menu/$iconTRD.xpm%Resolution: desk"   $backCmd set taskbar-resolution desk
+		+ "%menu/$iconTRG.xpm%Resolution: global" $backCmd set taskbar-resolution global
 
 		Popup PanelTaskBarConfigMenu $addition
 	});
@@ -270,6 +308,13 @@ applyNewConfig();
 $module->addHandler(M_NEW_PAGE, sub {
 	my ($self, $type, @args) = @_;
 	my ($x0, $y0, $desk, $width, $height) = @args;
+
+	if (!$width || !$height) {
+		# this may happen when doing DeskTopSize 1x1 on page 2 2;
+		# at least avoid division by zero
+		$width = 1;
+		$height = 1;
+	}
 
 	my $page_nx = int($x0 / $width);
 	my $page_ny = int($y0 / $height);
@@ -345,7 +390,10 @@ $module->send("Deschedule 34543");
 showClockNowAndRegularly() unless $clockStarted;
 
 END {
-	$module->send("FuncFvwmShowMessage 'Sorry' '$name: Woops, I am going to die'");
+	$module->send(
+		"FuncFvwmShowMessage 'Sorry, probably internal error' " .
+		"'$name: Woops, I am going to die.^n^nSee an error message.'"
+	);
 }
 
 $module->eventLoop;
