@@ -12,10 +12,14 @@
 	* themes/cde/colors/main:
 	updates in cde from Jos (menustyle & colors slightly edited)
 
+	* themes/*:
+	added a missing trailing EOLN in the files without it,
+        please grep this ChangeLog file for 'require-final-newline'
+
 2000-10-22  olicha  <olivier.chapuis@free.fr>
 
 	* themes/{default,lutien,migo,osx,redmond98}/modules/*
-	move modules styles in separated files. Maybe New core dump!!
+	move modules styles in separated files. May be New core dump!!
 	
 2000-10-22  migo  <migo@homemail.com>
 
@@ -1173,7 +1177,7 @@
 	formatColorInfo[Head]Line().
 
 	* */*:
-	% find . | perl -wne 'chomp; if (-T && `tail -1 $_` !~ /\n$/s) \
+	% find . | perl -wne 'chomp; if (-s && -T && `tail -1 $_` !~ /\n$/s) \
 		{ print "$_\n"; system("echo >>$_") }'
 	Make sure all our text files have final EOLN. Please configure your
 	editor to force this. In emacs: (setq require-final-newline t).
