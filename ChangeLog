@@ -10,6 +10,9 @@
 	* themes/redmondxp/modules/main:
 	several fixes for theme interoperability
 
+	* themes/qnx/buttons:
+	make the maximize state visible
+
 2002-08-29  migo  <migo@homemail.com>
 
 	* themes/redmondxp/background:
