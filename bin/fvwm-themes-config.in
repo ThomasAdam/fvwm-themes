@@ -1410,7 +1410,7 @@ sub getReloadDependency () {
 		'startup' => [ 'startup-extra' ],
 		'styles' => [ 'styles-extra', 'modules' ],
 		'windowlook' => [ 'windowlook-extra', 'buttons', 'styles' ],
-		'background-extra' => [],
+		'background-extra' => [ 'background' ],
 		'bindings-extra' => [ 'bindings' ],
 		'buttons-extra' => [ 'buttons' ],
 		'colors-extra' => [ 'colors' ],

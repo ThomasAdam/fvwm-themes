@@ -36,9 +36,9 @@ Style "*"	BorderColorset 3
 Style "*"	HilightBorderColorset 4
 
 # title
-TitleStyle	ActiveUp   HGradient 20 LightSlateBlue MidnightBlue
-TitleStyle	ActiveDown HGradient 20 LightSlateBlue MidnightBlue
-TitleStyle	Inactive   HGradient 20 grey60 grey30
+TitleStyle	ActiveUp   HGradient 100 LightSlateBlue MidnightBlue
+TitleStyle	ActiveDown HGradient 100 LightSlateBlue MidnightBlue
+TitleStyle	Inactive   HGradient 100 grey60 grey30
 
 # window button background
 ButtonStyle	All Pixmap mini/empty.xpm
