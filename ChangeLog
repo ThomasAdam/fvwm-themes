@@ -1,5 +1,10 @@
 2001-03-10  migo  <migo@homemail.com>
 
+	* themes/default/styles:
+	make all XSm windows sticky
+
+2001-03-10  migo  <migo@homemail.com>
+
 	* Makefile.am: minor fix, may help with non-gnu make
 
 	* devel/doc/cvs:

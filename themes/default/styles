@@ -28,8 +28,8 @@ Style "desktop_icon"	CirculateSkip, Sticky, NoTitle, WindowListSkip, \
 	NeverFocus, UsePPosition
 Style "gmc-desktop-icon" CirculateSkip, Sticky, NoTitle, WindowListSkip, \
 	NeverFocus, UsePPosition
-Style "xsm"		NeverFocus, Sticky, NoTitle, WindowListSkip, \
-	CirculateSkip
+Style "XSm"		Sticky
+Style "xsm"		NeverFocus, NoTitle, WindowListSkip, CirculateSkip
 Style "xmessage"        UsePPosition
 
 
