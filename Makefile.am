@@ -23,8 +23,9 @@ install-data-local:
 	for dir in $(FT_DATA_SUBDIRS); do \
 		chmod -R o-w,go+rX $$dir 2>/dev/null || true; \
 		rm -rf "$(FT_DATADIR)/$$dir"; \
-		(if test -f $$dir.tar.gz; then gzip -dc $$dir.tar.gz; else \
-		$(TAR) cpf - $$dir; fi) | (cd "$(FT_DATADIR)" && $(TAR) xfBp -); \
+		(if test -f $$dir.tar.gz; then gzip -dc $$dir.tar.gz || exit 201; \
+		else $(TAR) cpf - $$dir || exit 202; fi) | \
+		(cd "$(FT_DATADIR)" && $(TAR) xfBp - || exit 203); \
 		find "$(FT_DATADIR)/$$dir" -name CVS -exec rm -r {} \; 2>/dev/null; \
 	done
 

@@ -2,8 +2,11 @@
 
 	* configure.in:
 	fixed build on systems without update_menus;
-	fixed 2 Solaris related bugs: autoconfigure gawk/nawk/mawk/awk
-	and not working glob ./themes/*/
+	fixed 3 Solaris related bugs: autoconfigure gawk/nawk/mawk/awk,
+	autoconfigure gtar/gnutar/tar, replace non working glob ./themes/*/
+
+	* Makefile.am:
+	when installing themes/images/sounds exit on tar errors
 
 	* acinclude.m4:
 	use ${AWK} instead of awk
