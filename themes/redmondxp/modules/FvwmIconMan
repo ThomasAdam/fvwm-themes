@@ -35,28 +35,27 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: buttongeometry 50x30
 
 # mouse actions
-#*FvwmIconMan: action  Mouse 1    N sendcommand FuncFvwmDeiconifyFocusAndRaise
-*FvwmIconMan: action  Mouse 1    N sendcommand FuncFvwmIconifyOrFocusAndRaise
-*FvwmIconMan: action  Mouse 2    N sendcommand Iconify
-*FvwmIconMan: action  Mouse 3    N sendcommand "Menu MenuFvwmWindowOps2 rectangle $widthx$height+$left+$top c -100m"
+#*FvwmIconMan: action  Mouse 1    A sendcommand FuncFvwmDeiconifyFocusAndRaise
+*FvwmIconMan: action  Mouse 1    A sendcommand FuncFvwmIconifyOrFocusAndRaise
+*FvwmIconMan: action  Mouse 2    A sendcommand Iconify
+*FvwmIconMan: action  Mouse 3    A sendcommand "Menu MenuFvwmWindowOps2 rectangle $widthx$height+$left+$top c -100m"
 
 # key actions, not really relevant if FvwmIconMan NeverFocus or swallowed
-*FvwmIconMan: action  Key Left   N gotobutton Left, select
-*FvwmIconMan: action  Key Right  N gotobutton Right, select
-*FvwmIconMan: action  Key Up     N gotobutton Up, select
-*FvwmIconMan: action  Key Down   N gotobutton Down, select
-*FvwmIconMan: action  Key Return N sendcommand FuncFvwmDeiconifyFocusAndRaise
+*FvwmIconMan: action  Key Left   A gotobutton Left, select
+*FvwmIconMan: action  Key Right  A gotobutton Right, select
+*FvwmIconMan: action  Key Up     A gotobutton Up, select
+*FvwmIconMan: action  Key Down   A gotobutton Down, select
+*FvwmIconMan: action  Key Return A sendcommand FuncFvwmDeiconifyFocusAndRaise
 *FvwmIconMan: action  Key q      M quit
 
 *FvwmIconMan: action  Key i      N sendcommand Iconify
 *FvwmIconMan: action  Key c      N sendcommand Close
-*FvwmIconMan: action  Key d      N sendcommand Destroy
+*FvwmIconMan: action  Key k      N sendcommand Destroy
 
-# currently there is an FvwmIconMan bug in parsing the following
-#*FvwmIconMan: action  Key p      N sendcommand *FvwmIconMan: resolution page
-#*FvwmIconMan: action  Key s      N sendcommand *FvwmIconMan: resolution screen
-#*FvwmIconMan: action  Key d      N sendcommand *FvwmIconMan: resolution desk
-#*FvwmIconMan: action  Key g      N sendcommand *FvwmIconMan: resolution global
+*FvwmIconMan: action  Key p      N sendcommand "*FvwmIconMan: resolution page"
+*FvwmIconMan: action  Key s      N sendcommand "*FvwmIconMan: resolution screen"
+*FvwmIconMan: action  Key d      N sendcommand "*FvwmIconMan: resolution desk"
+*FvwmIconMan: action  Key g      N sendcommand "*FvwmIconMan: resolution global"
 
 # animation
 *FvwmIconMan: NoIconAction "SendToModule FvwmAnimate animate"

@@ -11,9 +11,9 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: FocusAndSelectColorset 20
 
 *FvwmIconMan: Format      "%t"
-*FvwmIconMan: Action  Mouse   1 N sendcommand "FuncFvwmDeiconifyFocusAndRaise"
-*FvwmIconMan: Action  Mouse   2 N sendcommand "Iconify"
-*FvwmIconMan: Action  Mouse   3 N sendcommand \
+*FvwmIconMan: Action  Mouse   1 A sendcommand "FuncFvwmDeiconifyFocusAndRaise"
+*FvwmIconMan: Action  Mouse   2 A sendcommand "Iconify"
+*FvwmIconMan: Action  Mouse   3 A sendcommand \
 	"Popup MenuFvwmWindowOps2 Mouse c -102m"
 *FvwmIconMan: FollowFocus true
 *FvwmIconMan: Sort        none

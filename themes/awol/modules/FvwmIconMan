@@ -21,9 +21,9 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: DrawIcons always
 *FvwmIconMan: Shape true
 *FvwmIconMan: Format "%i"
-*FvwmIconMan: Action Mouse 1 N sendcommand FuncFvwmDeiconifyFocusAndRaise
-*FvwmIconMan: Action Mouse 2 N sendcommand FvwmIdent
-*FvwmIconMan: Action Mouse 3 N sendcommand Iconify
+*FvwmIconMan: Action Mouse 1 A sendcommand FuncFvwmDeiconifyFocusAndRaise
+*FvwmIconMan: Action Mouse 2 A sendcommand FvwmIdent
+*FvwmIconMan: Action Mouse 3 A sendcommand Iconify
 
 *FvwmIconMan: PlainButton sunkedge
 *FvwmIconMan: SelectButton sunkedge

@@ -28,9 +28,9 @@ DestroyModuleConfig FvwmIconMan: *
 #*FvwmIconMan: DrawIcons true
 *FvwmIconMan: UseWinList true
 *FvwmIconMan: Format %i
-*FvwmIconMan: Action Mouse 1 N sendcommand FuncFvwmDeiconifyFocusAndRaise
-*FvwmIconMan: Action Mouse 2 N sendcommand FuncFvwmIconManWarpToMiddle
-*FvwmIconMan: Action Mouse 3 N sendcommand FuncFvwmIconFocusAndOptions
+*FvwmIconMan: Action Mouse 1 A sendcommand FuncFvwmDeiconifyFocusAndRaise
+*FvwmIconMan: Action Mouse 2 A sendcommand FuncFvwmIconManWarpToMiddle
+*FvwmIconMan: Action Mouse 3 A sendcommand FuncFvwmIconFocusAndOptions
 *FvwmIconMan: Shape true
 
 *FvwmIconMan: NoIconAction "SendToModule FvwmAnimate animate"

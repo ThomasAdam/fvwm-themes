@@ -30,14 +30,14 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: ButtonGeometry 125x20
 
 # action
-*FvwmIconMan: Action  Mouse 1    N sendcommand FuncFvwmDeiconifyFocusAndRaise
-*FvwmIconMan: Action  Mouse 2    N sendcommand Iconify
-*FvwmIconMan: Action  Mouse 3    N sendcommand "Popup MenuFvwmWindowOps2 Mouse c -102m"
-*FvwmIconMan: Action  Key Left   N gotobutton Left, select
-*FvwmIconMan: Action  Key Right  N gotobutton Right, select
-*FvwmIconMan: Action  Key Up     N gotobutton Up, select
-*FvwmIconMan: Action  Key Down   N gotobutton Down, select
-*FvwmIconMan: Action  Key Return N sendcommand FuncFvwmDeiconifyFocusAndRaise
+*FvwmIconMan: Action  Mouse 1    A sendcommand FuncFvwmDeiconifyFocusAndRaise
+*FvwmIconMan: Action  Mouse 2    A sendcommand Iconify
+*FvwmIconMan: Action  Mouse 3    A sendcommand "Popup MenuFvwmWindowOps2 Mouse c -102m"
+*FvwmIconMan: Action  Key Left   A gotobutton Left, select
+*FvwmIconMan: Action  Key Right  A gotobutton Right, select
+*FvwmIconMan: Action  Key Up     A gotobutton Up, select
+*FvwmIconMan: Action  Key Down   A gotobutton Down, select
+*FvwmIconMan: Action  Key Return A sendcommand FuncFvwmDeiconifyFocusAndRaise
 *FvwmIconMan: Action  Key q      M quit
 
 *FvwmIconMan: Action  Key i      N sendcommand Iconify
