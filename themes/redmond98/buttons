@@ -5,15 +5,16 @@ AddButtonStyle 1 MiniIcon
 AddButtonStyle 2 ActiveUp   Pixmap button/win-window-close.xpm
 AddButtonStyle 2 ActiveDown Pixmap button/win-window-close-pressed.xpm
 AddButtonStyle 2 Inactive   Pixmap button/win-window-close.xpm
-AddButtonStyle 4 ActiveUp   Pixmap button/win-window-maximize.xpm -- Left
-AddButtonStyle 4 ActiveDown Pixmap button/win-window-maximize-pressed.xpm -- Left
-AddButtonStyle 4 Inactive   Pixmap button/win-window-maximize.xpm -- Left
-AddButtonStyle 6 ActiveUp   Pixmap button/win-window-iconify.xpm
-AddButtonStyle 6 ActiveDown Pixmap button/win-window-iconify-pressed.xpm
-AddButtonStyle 6 Inactive   Pixmap button/win-window-iconify.xpm
-AddButtonStyle 4 ToggledActiveUp   Pixmap button/win-window-restore.xpm -- Left
-AddButtonStyle 4 ToggledActiveDown Pixmap button/win-window-restore-pressed.xpm -- Left
-AddButtonStyle 4 ToggledInactive   Pixmap button/win-window-restore.xpm -- Left
+AddButtonStyle 4 ActiveUp   Pixmap button/win-window-maximize.xpm
+AddButtonStyle 4 ActiveDown Pixmap button/win-window-maximize-pressed.xpm
+AddButtonStyle 4 Inactive   Pixmap button/win-window-maximize.xpm
+AddButtonStyle 6 ActiveUp   Pixmap button/win-window-iconify.xpm -- Right flat
+AddButtonStyle 6 ActiveDown Pixmap button/win-window-iconify-pressed.xpm -- Right flat
+AddButtonStyle 6 Inactive   Pixmap button/win-window-iconify.xpm -- Right flat
+#
+AddButtonStyle 4 ToggledActiveUp   Pixmap button/win-window-restore.xpm
+AddButtonStyle 4 ToggledActiveDown Pixmap button/win-window-restore-pressed.xpm
+AddButtonStyle 4 ToggledInactive   Pixmap button/win-window-restore.xpm
 
 ButtonStyle All - Clear
 ButtonStyle 4 - MwmDecorMax

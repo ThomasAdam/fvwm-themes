@@ -12,7 +12,10 @@
 	some rewordings
 
 	* themes/migo/colors: improved 1 form color
-	* themes/redmond98/colors: improved 2 for colors; still too whitish?
+	* themes/redmond98/colors: improved 2 form colors; still too whitish?
+
+	* themes/redmond98/buttons:
+	small change in left/right alightment; I know, flat is not consistent
 
 2001-04-02  migo  <migo@homemail.com>
 
