@@ -1418,7 +1418,7 @@ sub getReloadDependency () {
    	'functions-extra' => [ 'functions'],
 		'functions-appbind-extra' => [ 'functions-appbind' ],
 		'globalfeel-extra' => [ 'globalfeel' ],
-		'menus-extra' => [ ],
+		'menus-extra' => [ 'menus' ],
    	'menus-user-extra' => [ 'menus-user' ],
 		'menustyle-extra' => [ 'menustyle' ],
 		'modules-extra' => [ 'modules' ],

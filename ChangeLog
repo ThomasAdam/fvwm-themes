@@ -1,3 +1,8 @@
+2001-01-11  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	s/rm-config-cache/no-config-cache/
+	
 2000-01-06  migo  <migo@homemail.com>
 
 	* themes/default/menus:
