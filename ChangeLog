@@ -1,3 +1,8 @@
+2001-05-27  migo  <migo@homemail.com>
+
+	* themes/default/theme.cfg:
+	don't include fonts@ to 'base look' group
+
 2001-05-26  migo  <migo@homemail.com>
 
 	* themes/migo/modules.cfg:
