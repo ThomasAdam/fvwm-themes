@@ -466,7 +466,7 @@ sub getAllThemes () {
 		my $dir = "$dir/$themesSubDir";
 		opendir(DIR, $dir);
 		foreach (readdir(DIR)) {
-			next if /^\./ || $_ eq $currentThemeName;
+			next if /^\./ || $_ =~ /^$currentThemeName/;
 			next unless -d "$dir/$_";
 			next if exists $themes->{$_};
 			$themes->{$_} = 1;
@@ -577,7 +577,8 @@ sub new ($$;$$) {
 	my ($themeCfg, $componentCfgs) = @{loadThemeCfg($loadTheme)};
 	my ($key, $value, $comp, $cfg);
 	while (($key, $value) = each %$themeCfg) {
-		$self->{$key} = $key eq $componentKey && $loadTheme ne $currentThemeName?
+		$self->{$key} = $key eq $componentKey && 
+		$loadTheme !~ /^$currentThemeName/?
 			getThemeComponents($loadTheme): $value;
 	}
 	errDie("No '$componentKey' key in theme '$loadTheme' cfg") unless exists $self->{$componentKey};
@@ -1245,7 +1246,6 @@ sub getMenusAndHooksAndReadsRc ($) {
 	# add main menu entries
 	$rc .= qq(DestroyMenu "MenuFvwmThemes"\n);
 	$rc .= qq(AddToMenu   "MenuFvwmThemes" "Theme Management" Title\n);
-	$rc .= qq(+ "" Nop\n);
 	$rc .= $ownThemeListRc;
 	$rc .= qq(+ "" Nop\n);
 	$rc .= $allThemeListRc;

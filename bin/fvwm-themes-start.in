@@ -6,12 +6,80 @@
 : ${FVWM_USERDIR=@FVWM_DEFAULT_USERDIR@}
 rcName=themes-rc
 rcFile=$FVWM_USERDIR/$rcName
+rcName2=themes-rc-2
+rcFile2=$FVWM_USERDIR/$rcName2
+themesDir=$FVWM_USERDIR/themes
+currentThemeName=current
+currentThemeDir=$themesDir/$currentThemeName
+startDir=`pwd`
+build="no"
+
+# Arguments
+fvwmArgs=""
+whoseArgs="my"
+session="default"
+
+while [ "x$1" != "x" ]; do
+    case "$1" in
+	--)	whoseArgs="fvwm" ;;
+	*)	if [ "$whoseArgs" = "fvwm" ]; then
+		    fvwmArgs="$fvwmArgs $1"
+		else
+		    case "$1" in
+			--session|-session|-s)
+			    shift
+			    session="$1"
+ 			    if [ "$session" = "--" ]; then
+				session="default"
+				whoseArgs="fvwm"
+			    fi ;;
+		    esac
+		fi ;;
+    esac
+    shift
+done
+
+realRcFile2="$rcFile2-$session"
+realRcName2="$rcName2-$session"
+realCurrentThemeName="current-$session"
+realCurrentThemeDir="$themesDir/$realCurrentThemeName"
+
+# backward compatibility (may be removed before 0.3.16)
+if [ -f $rcFile2 -a ! -L $rcFile2 ]; then
+    mv -f $rcFile2 $realRcFile2
+fi
+if [ -d $currentThemeDir -a ! -L $currentThemeDir ]; then
+    mv -f  $currentThemeDir $realCurrentThemeDir
+fi
+
+# create the symbolic links
+# POSIX says that we can have symlink to not existing file. However some
+# 2.3.x Linux kernel and may be 2.4.x do not support this ???
+[ -d $FVWM_USERDIR ] || mkdir -p $FVWM_USERDIR
+cd $FVWM_USERDIR
+if [ ! -f $realRcName2 ]; then
+    touch $realRcName2
+    build="yes"
+fi
+ln -sf $realRcName2 $rcName2
+
+[ -d $themesDir ] || mkdir -p $themesDir
+cd $themesDir
+if [ ! -d $realCurrentThemeName ]; then
+    mkdir -p $realCurrentThemeName
+    build="yes"
+fi
+ln -sf $realCurrentThemeName $currentThemeName
 
 # check whether this is a first run
-if [ ! -f $rcFile -o "`head -1 $rcFile | cut -d' ' -f3`" != "@VERSION@" ]; then
+if [ ! -f $rcFile -o "$build" = "yes" -o "`head -1 $rcFile | cut -d' ' -f3`" != "@VERSION@" ]; then
 	@bindir@/fvwm-themes-config --reset
-	echo '[fvwm-themes]: Welcome to FVWM Themes @VERSION@!'
-	xmessage -center -timeout 30 'Welcome to FVWM Themes @VERSION@!' &
+	if [ ! -f $rcFile -o "`head -1 $rcFile | cut -d' ' -f3`" != "@VERSION@" ]; then
+	    echo '[fvwm-themes]: Welcome to FVWM Themes @VERSION@!'
+	    xmessage -center -timeout 30 'Welcome to FVWM Themes @VERSION@!' &
+	else
+	    echo "[fvwm-themes]: initial $session FVWM Themes session"
+	fi
 fi
 
 # check that @FVWM_BINDIR@ is in $PATH
@@ -19,5 +87,6 @@ if ! which fvwm2 >/dev/null; then
 	PATH="@FVWM_BINDIR@:$PATH"
 fi
 
-echo "[fvwm-themes]: Starting FVWM"
-exec fvwm2 -f "$rcName" "$@"
+cd $startDir
+echo "[fvwm-themes]: Starting FVWM under $session fvwm-themes session"
+exec fvwm2 -f "$rcName" $fvwmArgs

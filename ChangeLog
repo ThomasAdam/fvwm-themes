@@ -1,5 +1,13 @@
 2000-08-15  olicha <olivier.chapuis@free.fr>
 
+	* bin/fvwm-themes-start.in:
+	* bin/fvwm-themes-start.1:
+	* bin/fvwm-themes-config.in:
+	* themes/default/menus:
+	Added fvwm themes sessions
+	
+2000-08-15  olicha <olivier.chapuis@free.fr>
+
 	* bin/fvwm-themes-config.in: move the Themes Center menu entries
 	* scripts/FvwmScript-ThemeOptions: 
 	* scripts/FvwmScript-ThemesCenter: Some fixes?

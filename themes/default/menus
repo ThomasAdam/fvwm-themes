@@ -85,6 +85,7 @@ AddToMenu   MenuFvwmManPages "Fvwm manual pages" Title
 + "%menu/help.xpm%fvwm-themes-com"     FuncFvwmViewManPage fvwm-themes-com
 + "%menu/help.xpm%fvwm-themes-images"  FuncFvwmViewManPage fvwm-themes-images
 + "%menu/help.xpm%fvwm-themes-menuapp" FuncFvwmViewManPage fvwm-themes-menuapp
++ "%menu/help.xpm%fvwm-themes-start" FuncFvwmViewManPage fvwm-themes-start
 + "%menu/help.xpm%fvwmbug"             FuncFvwmViewManPage fvwmbug
 + "%menu/help.xpm%fvwmrc_convert"      FuncFvwmViewManPage fvwmrc_convert
 + "%menu/help.xpm%xpmroot"             FuncFvwmViewManPage xpmroot

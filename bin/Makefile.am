@@ -5,7 +5,7 @@ bin_SCRIPTS = fvwm-themes-config fvwm-themes-start fvwm-themes-xres \
 	fvwm-themes-images
 
 man_MANS = fvwm-themes-config.1 fvwm-themes-menuapp.1 fvwm-themes-com.1 \
-	fvwm-themes-images.1
+	fvwm-themes-images.1 fvwm-themes-start.1
 
 EXTRA_DIST = $(man_MANS)
 
