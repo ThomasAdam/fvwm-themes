@@ -60,6 +60,7 @@ install-data-local:
 	@echo "fvwm-themes is successfully installed."
 	@echo "	themes and data: in $(FT_DATADIR)"
 	@echo "	shell scripts:   in $(bindir)"
+	@echo "	manual pages:    in $(mandir)"
 	@echo 'Put fvwm-themes-start as the last command of .Xclients/.xinitrc/.xsession'
 	@echo ==============================================================================
 	@echo
