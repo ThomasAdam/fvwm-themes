@@ -15,8 +15,27 @@
 * Fix a bug, when an option is removed, it is still here (due to 'current').
   The same if the option is added.
 
+* To verify: seems like GUI loads @personal theme when not asked.
+
+* Improve wm-icons icon sets, release 0.3.0.
+
+* Improve fvwm-themes-images:
+  + without args it should exit with "Try --help."
+  + option names are not intuitive, probably rename some
+  + support the X standard rgb:rr/gg/bb better, probably better then #rrggbb
+  + use "," color delimiter, not ":"; use "/" in dec rgb color instead of ","
+  + it would be nice to have --border[color] like in ImageMagick
+
 Optional items to do:
 --------------------
+
+* Add fvwm-themes-component --random-change.
+
+* Enhance vector buttons in fvwm, support @2 - bg, @3 - fg.
+
+* Add twm theme (probably menustyle@, windowlook@, buttons@, colors@), like in
+  ftp://fvwm-themes.sourceforge.net/pub/fvwm-themes/samples/nikke/
+  We need a twm user here, maybe, nikke.
 
 * Think where belong all functions sitting in different components.
 
@@ -38,7 +57,7 @@ Optional items to do:
 Ideas:
 -----
 
-* component's scalar property, which unlike options, where only values
+* Component's scalar property, which unlike options, where only values
   from a range (1 .. options) are accepted, can be freely set by a user.
   Examples of scalar types: Color, String, Minutes, Milliseconds etc.
   There should be individual editors for this scalar property.
@@ -46,10 +65,15 @@ Ideas:
 * background-auto@ component (with a scalar of type Minutes), which will
   iterate over a background@ options randomly or sequencially every n minutes.
 
-* introduce option-value/variant groups, which only affect presentation menus,
+* Introduce option-value/variant groups, which only affect presentation menus,
   not logic; for example it is possible to have 6 groups of variants, say,
   6 types of backgrounds. With inline=1 groups are simply delimited ("" Nop),
   with inline=0 there are 6 submenus of variants.
+
+* Add @random theme with "virtual" components.
+
+* Add @gtk theme, which uses FvwmGtk when possible. For example, it may
+  convert menus*@default using fvwm-themes-gtk or similar.
 
 Problems without obvious soluton:
 --------------------------------
