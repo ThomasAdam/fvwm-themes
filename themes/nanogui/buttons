@@ -1,0 +1,150 @@
+# This file should be processed using FvwmM4 like:
+#   ModuleSynchronous FvwmM4 -lock -m4-squote {{ -m4-equote }} \
+#     -DBcN=1 -DBmN=2 -DBoN=3 -DBiN=4 -DBlN=5 -DBrN=6 buttons
+
+# Button roles used: Options, Close, Maximize, Iconify, Stick,
+# ShadeUp, ShadeDown; and pseudo buttons: TitleLeft, TitleRight
+
+# m4 misinterpreters '#', so use 'Nop'
+define({{BcC}}, ifdef({{BcN}}, {{}}, {{Nop}}))
+define({{BmC}}, ifdef({{BmN}}, {{}}, {{Nop}}))
+define({{BoC}}, ifdef({{BoN}}, {{}}, {{Nop}}))
+define({{BiC}}, ifdef({{BiN}}, {{}}, {{Nop}}))
+define({{BsC}}, ifdef({{BsN}}, {{}}, {{Nop}}))
+define({{BuC}}, ifdef({{BuN}}, {{}}, {{Nop}}))
+define({{BdC}}, ifdef({{BdN}}, {{}}, {{Nop}}))
+define({{BlC}}, ifdef({{BlN}}, {{}}, {{Nop}}))
+define({{BrC}}, ifdef({{BrN}}, {{}}, {{Nop}}))
+
+BcC Style "*" Button BcN
+BmC Style "*" Button BmN
+BoC Style "*" Button BoN
+BiC Style "*" Button BiN
+BsC Style "*" Button BsN
+BuC Style "*" Button BuN
+BdC Style "*" Button BdN
+BlC Style "*" Button BlN
+BrC Style "*" Button BrN
+Style "*" FvwmButtons  # button relief does not follow the state
+
+BoC ButtonStyle BoN \
+BoC	ActiveUp   (Pixmap button/options-activeup.xpm) \
+BoC	ActiveDown (Pixmap button/options-activedown.xpm) \
+BoC	Inactive   (Pixmap button/options-inactive.xpm)
+BcC ButtonStyle BcN \
+BcC	ActiveUp   (Pixmap button/close-activeup.xpm) \
+BcC	ActiveDown (Pixmap button/close-activedown.xpm) \
+BcC	Inactive   (Pixmap button/close-inactive.xpm)
+BmC ButtonStyle BmN \
+BmC	ActiveUp   (Pixmap button/maximize-activeup.xpm) \
+BmC	ActiveDown (Pixmap button/maximize-activedown.xpm) \
+BmC	Inactive   (Pixmap button/maximize-inactive.xpm)
+BiC ButtonStyle BiN \
+BiC	ActiveUp   (Pixmap button/iconify-activeup.xpm) \
+BiC	ActiveDown (Pixmap button/iconify-activedown.xpm) \
+BiC	Inactive   (Pixmap button/iconify-inactive.xpm)
+BsC ButtonStyle BsN \
+BsC	ActiveUp   (Pixmap button/stick-activeup.xpm) \
+BsC	ActiveDown (Pixmap button/stick-activedown.xpm) \
+BsC	Inactive   (Pixmap button/stick-inactive.xpm)
+BuC ButtonStyle BuN \
+BuC	ActiveUp   (Pixmap button/shadeup-activeup.xpm) \
+BuC	ActiveDown (Pixmap button/shadeup-activedown.xpm) \
+BuC	Inactive   (Pixmap button/shadeup-inactive.xpm)
+BdC ButtonStyle BdN \
+BdC	ActiveUp   (Pixmap button/shadedown-activeup.xpm) \
+BdC	ActiveDown (Pixmap button/shadedown-activedown.xpm) \
+BdC	Inactive   (Pixmap button/shadedown-inactive.xpm)
+BlC ButtonStyle BlN \
+BlC	ActiveUp   (Pixmap button/titleleft-activeup.xpm) \
+BlC	ActiveDown (Pixmap button/titleleft-activedown.xpm) \
+BlC	Inactive   (Pixmap button/titleleft-inactive.xpm)
+BrC ButtonStyle BrN \
+BrC	ActiveUp   (Pixmap button/titleright-activeup.xpm) \
+BrC	ActiveDown (Pixmap button/titleright-activedown.xpm) \
+BrC	Inactive   (Pixmap button/titleright-inactive.xpm)
+
+ButtonStyle All - Clear
+BmC ButtonStyle BmN - MWMDecorMax
+BoC ButtonStyle BoN - MWMDecorMenu
+BiC ButtonStyle BiN - MWMDecorMin
+
+TitleStyle	Height 16
+
+#     button	context	modifie	function
+BcC Mouse 0 	BcN	A	FuncFvwmDeleteOrDestroy
+BmC Mouse 1 	BmN	A	FuncFvwmMaximize
+BmC Mouse 2 	BmN	A	FuncFvwmMaximizeVertically
+BmC Mouse 3 	BmN	A	FuncFvwmMaximizeHorizontally
+BoC Mouse 1 	BoN	A	FuncFvwmWindowOpsOrAction Nop
+BoC MouseXX 2 3	BoN	A	Menu MenuFvwmWindowMove
+BoC MouseXX 3 2	BoN	A	Menu MenuFvwmWindowGroupOps
+BiC Mouse 0 	BiN	A	FuncFvwmIconify
+BuC Mouse 1 	BuN	A	WindowShade true
+BuC Mouse 2 	BuN	A	WindowShade false
+BuC Mouse 3 	BuN	A	WindowShade toggle
+BdC Mouse 1 	BdN	A	WindowShade false
+BdC Mouse 2 	BdN	A	WindowShade true
+BdC Mouse 3 	BdN	A	WindowShade toggle
+BsC Mouse 0 	BsN	A	Stick
+BcC Mouse 0 	BcN	CM	FuncFvwmShowButtonInfo "Delete on click^nDestroy on double click"
+BmC Mouse 0 	BmN	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tpartially on click^n^tfully on double click^n^tvertically on hold^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally"
+BoC Mouse 0 	BoN	CM	FuncFvwmShowButtonInfo "Mouse 1 - WindowOps menu^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
+BiC Mouse 0 	BiN	CM	FuncFvwmShowButtonInfo "Iconify"
+BuC Mouse 0 	BuN	CM	FuncFvwmShowButtonInfo "WindowShade:^n^tMouse 1 - true^n^tMouse 2 - false^n^tMouse 3 - toggle"
+BdC Mouse 0 	BdN	CM	FuncFvwmShowButtonInfo "WindowShade:^n^tMouse 1 - false^n^tMouse 2 - true^n^tMouse 3 - toggle"
+BsC Mouse 0 	BsN	CM	FuncFvwmShowButtonInfo "Stick"
+# simulate title bindings on two edge buttons:
+BlC Mouse 1 	BlN	A	FuncFvwmMoveOrRaiseOrShade
+BlC Mouse 1 	BlN	C	FuncFvwmMoveOrRaiseLower
+BlC MouseXX 2 3	BlN	A	FuncFvwmMoveOrRaiseLower
+BlC MouseXX 3 2	BlN	A	Menu MenuFvwmWindowOps2
+BlC MouseXX 3 2	BlN	M	Menu MenuFvwmWindowOps
+BrC Mouse 1 	BrN	A	FuncFvwmMoveOrRaiseOrShade
+BrC Mouse 1 	BrN	C	FuncFvwmMoveOrRaiseLower
+BrC MouseXX 2 3	BrN	A	FuncFvwmMoveOrRaiseLower
+BrC MouseXX 3 2	BrN	A	Menu MenuFvwmWindowOps2
+BrC MouseXX 3 2	BrN	M	Menu MenuFvwmWindowOps
+
+DestroyFunc FuncFvwmStartWindowButtons
+AddToFunc   FuncFvwmStartWindowButtons
+# This is usually not in this component, but these buttons can't be non-flat
++ I TitleStyle -- flat
++ I ButtonStyle All -- flat
+
+DestroyFunc FuncFvwmStopWindowButtons
+AddToFunc   FuncFvwmStopWindowButtons
++ I FuncFvwmRemoveAllButtons
+BcC + I Mouse 0 	BcN	A	-
+BmC + I Mouse 1 	BmN	A	-
+BmC + I Mouse 2 	BmN	A	-
+BmC + I Mouse 3 	BmN	A	-
+BoC + I Mouse 1 	BoN	A	-
+BoC + I Mouse 2 	BoN	A	-
+BoC + I Mouse 3 	BoN	A	-
+BiC + I Mouse 0 	BiN	A	-
+BuC + I Mouse 1 	BuN	A	-
+BuC + I Mouse 2 	BuN	A	-
+BuC + I Mouse 3 	BuN	A	-
+BdC + I Mouse 1 	BdN	A	-
+BdC + I Mouse 2 	BdN	A	-
+BdC + I Mouse 3 	BdN	A	-
+BsC + I Mouse 0 	BsN	A	-
+BcC + I Mouse 0 	BcN	CM	-
+BmC + I Mouse 0 	BmN	CM	-
+BoC + I Mouse 0 	BoN	CM	-
+BiC + I Mouse 0 	BiN	CM	-
+BuC + I Mouse 0 	BuN	CM	-
+BdC + I Mouse 0 	BdN	CM	-
+BsC + I Mouse 0 	BsN	CM	-
+#
+BlC + I Mouse 1 	BlN	A	-
+BlC + I Mouse 1 	BlN	C	-
+BlC + I Mouse 2 	BlN	A	-
+BlC + I Mouse 3 	BlN	A	-
+BlC + I MouseXX 3 2	BlN	M	-
+BrC + I Mouse 1 	BrN	A	-
+BrC + I Mouse 1 	BrN	C	-
+BrC + I Mouse 2 	BrN	A	-
+BrC + I Mouse 3 	BrN	A	-
+BrC + I MouseXX 3 2	BrN	M	-

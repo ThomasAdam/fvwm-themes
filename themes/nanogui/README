@@ -1,0 +1,9 @@
+This theme tries to mimic nanoGUI (is it micro microGUI?).
+Based on a configuration contributed by Kristian Peters <kristian@korseby.net>.
+
+There is a unique titlebar button selector, i.e. you may choose from many
+predefined titlebar button sets.
+
+This theme currently uses colors-extra component, which is not common.
+To drop it you should explicitely go to "current -> colors-extra -> Drop".
+

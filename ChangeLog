@@ -1,3 +1,15 @@
+2001-04-08  migo  <migo@homemail.com>
+
+	* NEWS:
+	* themes/nanogui:
+	After a lot of internal twicking added nanogui theme with components
+	buttons@, colors-extra@ and windowlook@.
+	Using of colors-extra@ is only temporary, I hope.
+	buttons@ has a really nice titlebar button selector.
+	Image stick*.xpm was originally named hide*.xpm, but I don't know
+	what "hide" should do, so I changed it.
+	Images shade*.xpm were originally named roll*.xpm.
+
 2001-04-07  migo  <migo@homemail.com>
 
 	* themes/default/settings/iconstyles/style-icon-miniicon:
