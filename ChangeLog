@@ -5,7 +5,7 @@
 	increased version to 0.4.1 after setting a cvs tag version-0_4_0;
 
 	* doc/Makefile.am:
-	added fvwm-themes.lsm to dist; we forgot to add ANNOUNCE.. :)
+	added fvwm-themes.lsm to dist; we forgot to add ANNOUNCE to dist.. :)
 
 	* themes/redmond98/modules/main:startmenu:
 	s/Fvwm/FVWM/ for consistency
@@ -23,7 +23,7 @@
 	I had problems with swallowing xosview (not sure this solves this)
 
 	* themes/blackbox/modules/main:FvwmButtons-XX:
-	put it in the center by the same technique as in cde@
+	put it in the center by the same technique as in @cde
 
 	* themes/default/functions (FuncFvwmConsole):
 	use colorset 22, not 33 for FvwmConsole
@@ -48,7 +48,7 @@
 	prepared for 0.4.0
 
 	Unsolved fvwm problems: some X errors and empty Echo command
-	on afterstep@ and awol@ modules. FvwmTaskBar core dumps when
+	on @afterstep and @awol modules. FvwmTaskBar core dumps when
 	restarting fvwm-themes-start (but does not when restarting fvwm2).
 
 	* bin/fvwm-themes-images.in:
