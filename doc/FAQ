@@ -3,9 +3,9 @@ FVWM Themes Frequently Asked Questions and Answers.
 ------------------------------------------------------------------------------
 Q. Why this FAQ does not contain my question about fvwm-themes?
 Q. What is theme, component, variant, option in the fvwm-themes terminology?
-Q. Does fvwm-themes replace my .fvwm2rc? If no, how does it work?
+Q. Does fvwm-themes overwrites my .fvwm2rc? If no, how does it work?
 Q. Why theme switching takes some time and it is even increased?!
-Q. On my system switching themes crashes FVWM! Waht to do?
+Q. On my system switching themes crashes FVWM! What to do?
 Q. How much configurable is fvwm-themes?
 Q. The themes are nice, but how can I define my personal contents?
 Q. How can I redefine the applications started by clicking on a button?
@@ -56,16 +56,16 @@ the Themes Center.
 ==============================================================================
 
 ------------------------------------------------------------------------------
-Q. Does fvwm-themes replace my .fvwm2rc? If no, how does it work?
+Q. Does fvwm-themes overwrites my .fvwm2rc? If no, how does it work?
 
-A. No, it does not replace your .fvwm2rc. The only files and directories,
+A. No, it does not overwrites your .fvwm2rc. The only files and directories,
 which fvwm-themes manages are ~/.fvwm/themes* ones, more precisely:
 
-  $FVWM_USERDIR/themes/ - the user themes as opposed to the site themes
-  $FVWM_USERDIR/themes/current-main/ - the current theme in the main session
-  $FVWM_USERDIR/themes/current - symbolic link to the actual current theme
-  $FVWM_USERDIR/themes-rc - the .fvwm2rc equivalent
-  $FVWM_USERDIR/themes-rc-2 - additional rc used by themes-rc, symbolic link
+  ~/.fvwm/themes/ - the user themes as opposed to the site themes
+  ~/.fvwm/themes/current-main/ - the current theme in the main session
+  ~/.fvwm/themes/current - symbolic link to the actual current theme
+  ~/.fvwm/themes-rc - the .fvwm2rc equivalent
+  ~/.fvwm/themes-rc-2 - additional rc used by themes-rc, symbolic link
 
 The rc files themes-rc and themes-rc-2 are created by fvwm-themes-config.
 FVWM Themes should be loaded by fvwm-themes-start shell script, which
@@ -75,6 +75,9 @@ initializes all needed files/directories if needed and starts fvwm as:
 
 To return to your .fvwm2rc configuration, replace a call to fvwm-themes-start
 with a call to fvwm2 executable in .xinitrc or other initialization file.
+
+See other question if you want to extend menus, bindings, styles etc. used
+in fvwm-themes. You should create and edit files in ~/.fvwm/themes/personal/.
 ==============================================================================
 
 ------------------------------------------------------------------------------
@@ -152,14 +155,14 @@ all), 'functions-extra' component can be used.
 
 All these components 'menus', 'menus-user', 'menus-extra', 'functions',
 'functions-appbind', 'functions-extra' are standard, so you don't need to
-define dependences for them. In case you create a non standard components
+define dependences for them. In case you create non standard components
 you should also specify their dependences in theme.cfg of that theme.
 ==============================================================================
 
 ------------------------------------------------------------------------------
 Q. How can I redefine the applications started by clicking on a button?
 
-A. The applications started by clicking on a button is defined in the file
+A. The applications started by clicking on a button are defined in the file
 themes/default/functions-appbind. You should copy this file into your
 personal theme directory and edit it (see also the previous question). Say,
 if your preferred editor is myeditor, then replace emacs with myeditor in:
@@ -178,8 +181,8 @@ Note that these functions are also used in the stroke bindings and more.
 ------------------------------------------------------------------------------
 Q. What are the default bindings?
 
-A. As you can guess they are in themes/current/bindings and
-themes/current/buttons. The default bindings were chosen to be
+A. As you can guess they are in themes/default/bindings and
+themes/SOMETHEME/buttons. The default bindings were chosen to be
 consistent and functional. Here is a list of some useful global bindings:
 
   Alt-Tab               - Window List of all normal applications
