@@ -63,7 +63,7 @@ TitleStyle	ToggledActiveDown (Solid CDE_COLOR1_BG -- Raised)
 TitleStyle	ToggledInactive   (Solid CDE_COLOR2_BG -- Raised)
 
 # window button background
-ButtonStyle     All Pixmap 16x16-general/empty.xpm
+ButtonStyle	All Pixmap 16x16-general/empty.xpm
 ButtonStyle	All -- UseTitleStyle
 
 # -----
