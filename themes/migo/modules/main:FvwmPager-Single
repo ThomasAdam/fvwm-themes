@@ -20,28 +20,28 @@ Style FvwmPager-Single NoTitle, NoHandles, Sticky, WindowListSkip, \
 	NoLenience, TitleAtTop
 
 DestroyModuleConfig FvwmPager-Single*
-*FvwmPager-SingleGeometry 100x90+0+0
-*FvwmPager-SingleRows 1
-*FvwmPager-SingleColumns 1
+*FvwmPager-Single: Geometry 100x90+0+0
+*FvwmPager-Single: Rows 1
+*FvwmPager-Single: Columns 1
 
-*FvwmPager-SingleColorset * 14
-*FvwmPager-SingleHilightColorset * 15
-*FvwmPager-SingleBalloonColorset * 16
-*FvwmPager-SingleWindowColorsets 1 2
+*FvwmPager-Single: Colorset * 14
+*FvwmPager-Single: HilightColorset * 15
+*FvwmPager-Single: BalloonColorset * 16
+*FvwmPager-Single: WindowColorsets 1 2
 
-*FvwmPager-SingleFont -*-lucida-bold-r-*-*-11-*-*-*-*-*-*-*
-*FvwmPager-SingleWindowLabelFormat "%t"
-*FvwmPager-SingleSmallFont 5x8
-*FvwmPager-SingleMiniIcons
-*FvwmPager-SingleMoveThreshold 1
-*FvwmPager-SingleBalloons All  # Icon, Pager
-*FvwmPager-SingleBalloonFont 6x13
-*FvwmPager-SingleBalloonBorderWidth 1
-*FvwmPager-SingleBalloonYOffset +14
-*FvwmPager-SingleWindowBorderWidth 1
-*FvwmPager-SingleWindow3dBorders
+*FvwmPager-Single: Font -*-lucida-bold-r-*-*-11-*-*-*-*-*-*-*
+*FvwmPager-Single: WindowLabelFormat "%t"
+*FvwmPager-Single: SmallFont 5x8
+*FvwmPager-Single: MiniIcons
+*FvwmPager-Single: MoveThreshold 1
+*FvwmPager-Single: Balloons All  # Icon, Pager
+*FvwmPager-Single: BalloonFont 6x13
+*FvwmPager-Single: BalloonBorderWidth 1
+*FvwmPager-Single: BalloonYOffset +14
+*FvwmPager-Single: WindowBorderWidth 1
+*FvwmPager-Single: Window3dBorders
 
-*FvwmPager-SingleLabel 0 Main
-*FvwmPager-SingleLabel 1 Internet
-*FvwmPager-SingleLabel 2 Devel
-*FvwmPager-SingleLabel 3 Games
+*FvwmPager-Single: Label 0 Main
+*FvwmPager-Single: Label 1 Internet
+*FvwmPager-Single: Label 2 Devel
+*FvwmPager-Single: Label 3 Games

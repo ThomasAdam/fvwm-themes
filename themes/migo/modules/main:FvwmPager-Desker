@@ -15,27 +15,27 @@ Style FvwmPager-Desker NoTitle, NoHandles, Sticky, WindowListSkip, \
 
 DestroyModuleConfig FvwmPager-Desker*
  
-*FvwmPager-DeskerColorset * 14
-*FvwmPager-DeskerHilightColorset * 15
-*FvwmPager-DeskerBalloonColorset * 16
-*FvwmPager-DeskerWindowColorsets 1 2
+*FvwmPager-Desker: Colorset * 14
+*FvwmPager-Desker: HilightColorset * 15
+*FvwmPager-Desker: BalloonColorset * 16
+*FvwmPager-Desker: WindowColorsets 1 2
 
-*FvwmPager-DeskerFont -*-lucida-bold-r-*-*-11-*-*-*-*-*-*-*
-*FvwmPager-DeskerGeometry 100x360+0+0
-*FvwmPager-DeskerWindowLabelFormat "%t"
-*FvwmPager-DeskerRows 1
-*FvwmPager-DeskerColumns 1
-*FvwmPager-DeskerSmallFont 5x8
-*FvwmPager-DeskerMiniIcons
-*FvwmPager-DeskerMoveThreshold 1
-*FvwmPager-DeskerBalloons All  # Icon, Desker
-*FvwmPager-DeskerBalloonFont 6x13
-*FvwmPager-DeskerBalloonBorderWidth 1
-*FvwmPager-DeskerBalloonYOffset +14
-*FvwmPager-DeskerWindowBorderWidth 1
-*FvwmPager-DeskerWindow3dBorders
+*FvwmPager-Desker: Font -*-lucida-bold-r-*-*-11-*-*-*-*-*-*-*
+*FvwmPager-Desker: Geometry 100x360+0+0
+*FvwmPager-Desker: WindowLabelFormat "%t"
+*FvwmPager-Desker: Rows 1
+*FvwmPager-Desker: Columns 1
+*FvwmPager-Desker: SmallFont 5x8
+*FvwmPager-Desker: MiniIcons
+*FvwmPager-Desker: MoveThreshold 1
+*FvwmPager-Desker: Balloons All  # Icon, Desker
+*FvwmPager-Desker: BalloonFont 6x13
+*FvwmPager-Desker: BalloonBorderWidth 1
+*FvwmPager-Desker: BalloonYOffset +14
+*FvwmPager-Desker: WindowBorderWidth 1
+*FvwmPager-Desker: Window3dBorders
 
-*FvwmPager-DeskerLabel 0 Main
-*FvwmPager-DeskerLabel 1 Internet
-*FvwmPager-DeskerLabel 2 Devel
-*FvwmPager-DeskerLabel 3 Games
+*FvwmPager-Desker: Label 0 Main
+*FvwmPager-Desker: Label 1 Internet
+*FvwmPager-Desker: Label 2 Devel
+*FvwmPager-Desker: Label 3 Games

@@ -338,10 +338,18 @@ AddToFunc   FuncFvwmWindowCreateScreenshot
 + I Wait "Screenshot Info for window $w"
 + I FuncFvwmRaiseAndExec "import -frame -window $w /tmp/$USER-shot-window-$w.gif"
 
+# this function should be called using a Pick if called from a menu
+DestroyFunc FuncFvwmDesktopCreateScreenshot
+AddToFunc   FuncFvwmDesktopCreateScreenshot
++ I PipeRead `import -window root /tmp/$USER-shot-desktop.gif`
++ I FuncFvwmShowMessage "Screenshot Info for the desktop" "You should have 'import' utility from ImageMagick.^nCheck the screenshot at /tmp/$USER-shot-desktop.gif"
+
 DestroyMenu MenuFvwmWindowUtility
 AddToMenu   MenuFvwmWindowUtility "Window Utility" Title
 + "%menu/utility.xpm%&Print"              Pick FuncFvwmWindowPrint
 + "%menu/utility.xpm%Print &Reverse"      Pick FuncFvwmWindowPrintReverse
++ "" Nop
 + "%menu/utility.xpm%Create &Screenshot"  Pick FuncFvwmWindowCreateScreenshot
++ "%menu/utility.xpm%&Desktop Screenshot" Pick FuncFvwmDesktopCreateScreenshot
 + "" Nop
 + "%menu/window-resize.xpm%Scroll&Bar"    Pick Module FvwmScroll 2 2

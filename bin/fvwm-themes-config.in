@@ -39,7 +39,6 @@ sub showHelp {
 	print "Options:\n";
 	print "\t--help             show this help and exit\n";
 	print "\t--version          show the version and exit\n";
-	print "\t--info [theme]     print info about current or given theme\n";
 	print "\t--site             use site config dir for output, not user's\n";
 	print "\t--com-mode         run under the communication mode\n";
 	print "\t--com-name name    name for communication with fvwm-themes-com\n";

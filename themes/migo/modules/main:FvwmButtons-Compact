@@ -1,96 +1,96 @@
 AddToFunc FuncFvwmButtons-CompactApps
-AddToFunc FuncFvwmStopThemeModules DestroyFunc FuncFvwmButtons-CompactApps
+AddToFunc FuncFvwmStopThemeModules I DestroyFunc FuncFvwmButtons-CompactApps
 
 Style "FvwmButtons-Compact" NoTitle, NoHandles, Sticky, WindowListSkip, \
 	NeverFocus, TitleAtTop
 
 DestroyModuleConfig FvwmButtons-Compact*
-*FvwmButtons-CompactColorset 10
-*FvwmButtons-CompactGeometry -0+0
-*FvwmButtons-CompactColumns 2
+*FvwmButtons-Compact: Colorset 10
+*FvwmButtons-Compact: Geometry -0+0
+*FvwmButtons-Compact: Columns 2
 
 FuncFvwmButtons-CompactApps
 
-#*FvwmButtons-Compact(2x2, Padding 0 0, Swallow "FvwmPager-Single" 'FvwmPager FvwmPager-Single * *')
-#*FvwmButtons-Compact(2x2, Padding 0 0, Swallow "xclock" `Exec xclock -bg $[bg.cs13] -fg $[fg.cs13] -hd $[shadow.cs13] -hl $[hilight.cs13] -padding 2 -geometry 86x86-0+0`)
-#*FvwmButtons-Compact(2x1, Padding 0 0, Swallow "xload" `Exec xload -nolabel -bg $[bg.cs13] -fg $[fg.cs13] -hl $[shadow.cs13] -update 3 -geometry 86x43-0+99`)
+#*FvwmButtons-Compact: (2x2, Padding 0 0, Swallow "FvwmPager-Single" 'FvwmPager FvwmPager-Single * *')
+#*FvwmButtons-Compact: (2x2, Padding 0 0, Swallow "xclock" `Exec xclock -bg $[bg.cs13] -fg $[fg.cs13] -hd $[shadow.cs13] -hl $[hilight.cs13] -padding 2 -geometry 86x86-0+0`)
+#*FvwmButtons-Compact: (2x1, Padding 0 0, Swallow "xload" `Exec xload -nolabel -bg $[bg.cs13] -fg $[fg.cs13] -hl $[shadow.cs13] -update 3 -geometry 86x43-0+99`)
 
-*FvwmButtons-Compact(2x2, Padding 0 0, Container(Padding 1 1, Columns 4))
-*FvwmButtons-Compact(Icon bar/xterm.xpm, \
+*FvwmButtons-Compact: (2x2, Padding 0 0, Container(Padding 1 1, Columns 4))
+*FvwmButtons-Compact: (Icon bar/xterm.xpm, \
 	Action(Mouse 1) `FuncFvwmTerminal`, \
 	Action(Mouse 2) `FuncFvwm2Terminal`, \
 	Action(Mouse 3) `FuncFvwm3Terminal`, \
 )
-*FvwmButtons-Compact(Icon bar/folders.xpm, \
+*FvwmButtons-Compact: (Icon bar/folders.xpm, \
 	Action(Mouse 1) `FuncFvwmFileManager`, \
 	Action(Mouse 2) `FuncFvwm2FileManager`, \
 	Action(Mouse 3) `FuncFvwm3FileManager`, \
 )
-*FvwmButtons-Compact(Icon bar/viewer.xpm, \
+*FvwmButtons-Compact: (Icon bar/viewer.xpm, \
 	Action(Mouse 1) `FuncFvwmProcess`, \
 	Action(Mouse 2) `FuncFvwm2Process`, \
 	Action(Mouse 3) `FuncFvwm3Process`, \
 )
-*FvwmButtons-Compact(Icon bar/calculator.xpm, \
+*FvwmButtons-Compact: (Icon bar/calculator.xpm, \
 	Action(Mouse 1) `FuncFvwmCalculator`, \
 	Action(Mouse 2) `FuncFvwm2Calculator`, \
 	Action(Mouse 3) `FuncFvwm3Calculator`, \
 )
-*FvwmButtons-Compact(Icon bar/chat.xpm, \
+*FvwmButtons-Compact: (Icon bar/chat.xpm, \
 	Action(Mouse 1) `FuncFvwmIrc`, \
 	Action(Mouse 2) `FuncFvwm2Irc`, \
 	Action(Mouse 3) `FuncFvwm3Irc`, \
 )
-*FvwmButtons-Compact(Icon bar/game.xpm, Action `Exec xbill`, \
+*FvwmButtons-Compact: (Icon bar/game.xpm, Action `Exec xbill`, \
 	Action(Mouse 1) `FuncFvwmGame`, \
 	Action(Mouse 2) `FuncFvwm2Game`, \
 	Action(Mouse 3) `FuncFvwm3Game`, \
 )
-*FvwmButtons-Compact(Icon bar/cd-player.xpm, Action `Exec workman`, \
+*FvwmButtons-Compact: (Icon bar/cd-player.xpm, Action `Exec workman`, \
 	Action(Mouse 1) `FuncFvwmCdPlayer`, \
 	Action(Mouse 2) `FuncFvwm2CdPlayer`, \
 	Action(Mouse 3) `FuncFvwm3CdPlayer`, \
 )
-*FvwmButtons-Compact(Icon bar/sound.xpm, Action `Exec xmixer`, \
+*FvwmButtons-Compact: (Icon bar/sound.xpm, Action `Exec xmixer`, \
 	Action(Mouse 1) `FuncFvwmSound`, \
 	Action(Mouse 2) `FuncFvwm2Sound`, \
 	Action(Mouse 3) `FuncFvwm3Sound`, \
 )
-*FvwmButtons-Compact(Icon bar/editor.xpm, \
+*FvwmButtons-Compact: (Icon bar/editor.xpm, \
 	Action(Mouse 1) `FuncFvwmEditor`, \
 	Action(Mouse 2) `FuncFvwm2Editor`, \
 	Action(Mouse 3) `FuncFvwm3Editor`, \
 )
-*FvwmButtons-Compact(Icon bar/keyboard.xpm, \
+*FvwmButtons-Compact: (Icon bar/keyboard.xpm, \
 	Action(Mouse 1) `FuncFvwmKeyboard`, \
 	Action(Mouse 2) `FuncFvwm2Keyboard`, \
 	Action(Mouse 3) `FuncFvwm3Keyboard`, \
 )
-*FvwmButtons-Compact(Icon bar/xv.xpm, Action `FuncFvwmImageView`, \
+*FvwmButtons-Compact: (Icon bar/xv.xpm, Action `FuncFvwmImageView`, \
 	Action(Mouse 2) `FuncFvwmImageEdit`, \
 	Action(Mouse 3) `FuncFvwm3ImageView`, \
 )
-*FvwmButtons-Compact(Icon bar/ghostview.xpm, \
+*FvwmButtons-Compact: (Icon bar/ghostview.xpm, \
 	Action(Mouse 1) `FuncFvwmDocView`, \
 	Action(Mouse 2) `FuncFvwm2DocView`, \
 	Action(Mouse 3) `FuncFvwm3DocView`, \
 )
-*FvwmButtons-Compact(Icon bar/netscape.xpm, \
+*FvwmButtons-Compact: (Icon bar/netscape.xpm, \
 	Action(Mouse 1) `FuncFvwmWWW`, \
 	Action(Mouse 2) `FuncFvwm2WWW`, \
 	Action(Mouse 3) `FuncFvwm3WWW`, \
 )
-*FvwmButtons-Compact(Icon bar/wm-lock.xpm, Action `FuncFvwmWmLock`, \
+*FvwmButtons-Compact: (Icon bar/wm-lock.xpm, Action `FuncFvwmWmLock`, \
 	Action(Mouse 2) `FuncFvwm2WmLock`, \
 )
-*FvwmButtons-Compact(Icon bar/window-close.xpm, \
+*FvwmButtons-Compact: (Icon bar/window-close.xpm, \
 	Action(Mouse 1) `FuncFvwmWindowClose`, \
 	Action(Mouse 2) `FuncFvwm2WindowClose`, \
 	Action(Mouse 3) `FuncFvwm3WindowClose`, \
 )
-*FvwmButtons-Compact(Icon bar/wm-restart.xpm, \
+*FvwmButtons-Compact: (Icon bar/wm-restart.xpm, \
 	Action(Mouse 1) `FuncFvwmWmRestart`, \
 	Action(Mouse 2) `FuncFvwm2WmRestart`, \
 	Action(Mouse 3) `FuncFvwm3WmRestart`, \
 )
-*FvwmButtons-Compact(End)
+*FvwmButtons-Compact: (End)

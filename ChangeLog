@@ -1,3 +1,11 @@
+2000-09-02  migo  <migo@homemail.com>
+
+	* themes/default/menus:
+	added "Desktop Screenshot"
+
+	* themes/migo/modules/*:
+	Converted module configs to *FvwmModule-Name: Resource Line
+
 2000-08-31  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in {--install}:
