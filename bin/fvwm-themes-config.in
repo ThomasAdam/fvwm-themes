@@ -1340,9 +1340,9 @@ sub getMenusAndHooksAndReadsRc ($) {
 
 			my $current = $optionEntry->{'current'};
 			my $index = $current - 1;
-			my $valueFile = $optionEntry->{'value'}->[$index]->{'file'};
-			$valueFile = $optionFile . (-d $optionFile? "/": "=")
-				. $valueFile;
+			my $valueFile0 = $optionEntry->{'value'}->[$index]->{'file'};
+			my $valueFile = $optionFile . (-d $optionFile? "/": "=")
+				. $valueFile0;
 			$valueFile =~ s/^$ROOT_PREFIX//;
 
 			push @$optionExports, { 'f' => $valueFile, 'c' => $current };
@@ -1351,6 +1351,7 @@ sub getMenusAndHooksAndReadsRc ($) {
 
 			$command ||= $defaultReadCommand;
 			$command =~ s/%f/$valueFile/sg;
+			$command =~ s/%F/$valueFile0/sg;
 			$command =~ s/%d/getThemeDir($self->{$idKey})/seg;
 			my $readAfterward = $optionEntry->{'read-afterward'};
 			$readAfterward = $optionReadAfterward unless defined $readAfterward;
