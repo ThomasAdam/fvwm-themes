@@ -86,7 +86,7 @@ AC_SUBST(FVWM_VERSION)dnl
 
 # Hopefully this "sort" is portable (after many tries using awk and expr)
 if (echo $REQUIRED_FVWM_VERSION; echo $FVWM_VERSION) \
-| sed 's/\./ /g' | sort -n +0 -1 +1 -2 +2 -3 -c 2>/dev/null; then
+| sed 's/\./ /g' | uniq | sort -n +0 -1 +1 -2 +2 -3 -c 2>/dev/null; then
 	:
 	# fvwm version is ok
 else

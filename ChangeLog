@@ -18,7 +18,8 @@
 	menu settings together with menustyle@ on minimal reload
 
 	* configure.in:
-	the version matching code didn't work with some sort, hopefully fixed
+	the version matching code didn't work with some sort, hopefully fixed;
+	sort-2.0a on RH-6.2 is broken!, added uniq to work around it
 
 2001-03-28  migo  <migo@homemail.com>
 
