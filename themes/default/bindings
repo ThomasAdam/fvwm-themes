@@ -61,6 +61,10 @@ AddToFunc   FuncFvwmUnsetTitleBindings
 + I MouseXX 3 2	$0	A	-
 + I MouseXX 3 2	$0	M	-
 
+DestroyFunc FuncFvwmWindowList
+AddToFunc   FuncFvwmWindowList
++ I WindowList SelectOnRelease "" SortByResource, NoDeskSort, NoGeometry, NoHotkeys
+
 # ---------------------------------------------------------------------------
 # Contexts:
 #     R = Root Window                 rrrrrrrrrrrrrrrrrrrrrr
@@ -177,7 +181,7 @@ Key 0   	A	SC	MoveToDesk prev
 # keyboard accelerators
 # Shift is needed to let apps (xwe, dosemu, kcalc) to handle Alt-FN keys
 KeyMM F1  	A	M SM	Menu MenuFvwmRoot
-KeyMM F2  	A	M SM	WindowList SelectOnRelease
+KeyMM F2  	A	M SM	FuncFvwmWindowList
 KeyMM F3  	A	M SM	Menu MenuFvwmWindowOps
 KeyMM F4  	A	M SM	Close
 KeyMM F5  	A	M SM	RaiseLower
@@ -207,7 +211,7 @@ Key F9		A	SC	FuncFvwmShowColourTable
 
 # pointer in Root
 Mouse 1 	R	A	Menu MenuFvwmRoot
-MouseXX 2 3	R	A	WindowList
+MouseXX 2 3	R	A	FuncFvwmWindowList
 MouseXX 3 2	R	A	Menu MenuFvwmWindowOps
 
 MouseXX 2 3	R	C	Module FvwmPager -transient FvwmPager-Single * *
@@ -218,7 +222,7 @@ MouseXX 2 3	R	SC	Module FvwmPager -transient FvwmPager-Desker 0 3
 # pointer in Window Buttons
 # now in 'buttons' component
 Mouse 1 	D	M	Menu MenuFvwmRoot
-MouseXX 2 3	D	M	WindowList
+MouseXX 2 3	D	M	FuncFvwmWindowList
 MouseXX 3 2	D	M	Menu MenuFvwmWindowOps
 
 MouseXX 2 3	D	MC	Module FvwmPager -transient FvwmPager-Single * *
