@@ -14,6 +14,7 @@ AddToFunc    FuncFvwmAddToMenusWMIcons
 DestroyFunc  FuncFvwmUnLoadWMIcons
 AddToFunc    FuncFvwmUnLoadWMIcons
 + I DestroyMenu MenuFvwmIconSets
++ I Mouse 3 R CM -
 
 DestroyMenu MenuFvwmIconSets
 AddToMenu   MenuFvwmIconSets "Change Icon Set" Title
