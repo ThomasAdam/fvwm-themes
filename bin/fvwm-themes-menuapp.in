@@ -24,6 +24,8 @@
 #   pod2man -c "Fvwm Utility" fvwm-themes-menuapp | nroff -man | less -e
 #-----------------------------------------------------------------------------
 
+# this may work but ...
+#use strict;
 use Getopt::Long;
 
 my $prefix = $ENV{'prefix'} || '@prefix@';
@@ -79,10 +81,11 @@ my %filesLines = ();    # for storing the contents of the files
 my %lastLine = ();      # last line of the files
 my %menuInfo = ();      # General info on a menu
 my %strMenu = ();       # The menus in a "structured form" (need %menuInfo)
-my %menuPipeRead = ();  # Some info on the piperead command
-my %selMenu = ();       # The selection for FvwmScript-Menus
+my @menuPipeRead = ();  # Some info on the piperead command
+my @selMenu = ();       # The selection for FvwmScript-Menus
 my $lastSel = -1;       # Nbr of items in %selMenu -2
 my @menuFilesList = (); # List of files with menu to look for
+my @menuFilesListIn = ();
 
 if ($buildMenus && $fvwmMenu) {
 
@@ -294,7 +297,7 @@ sub comLoop {
 		}
 		elsif ($command =~ /^save/) {
 			writeFiles();
-			$return = 1;
+			next;
 		}
 		elsif ($command eq "exit") {
 			unlink($lockFifo);
@@ -354,7 +357,7 @@ sub checkScript {
 sub getImagePath {
 	# there are more ... (Gnome, kde, ... ?)
 	my @imagePathFiles = ("$userDir/$rcFile2");
-	my ($file,$multiline,$tmp,$im) = ("","","",""); 
+	my ($file,$multiline,$tmp,$im,$line) = ("","","","",""); 
 
 	for $file (@imagePathFiles) {
 		open(IN,"$file") || die "Cannot read $file";
@@ -409,6 +412,7 @@ sub getImagePath {
 
 sub getPrettyIconName {
 	my ($icon) = @_;
+	my $path;
 	foreach $path (@imagePath) {
 		next if $path eq "";
 		return $1 if $icon =~ m!^$path/*(.*)$!;
@@ -503,8 +507,8 @@ sub buildstrMenuFromFvwmMenu {
 				$multiline = $multiline . $_;
 				next;
 			} else {
-			$line= $multiline . $_;
-			$multiline = "";
+				$line= $multiline . $_;
+				$multiline = "";
 			}
 
 			$filesLines{$outFile}[$nbr]{line} = $line;
@@ -1400,11 +1404,12 @@ sub insertOneselItem {
 	# build the new line
 	$line = $selMenu[$selItem]{line};
 	chomp($line);
+	print STDERR "1:".$line . "\n";
 	if ($line =~ /^AddToMenu\s+/i) {
 		$line =~ s/^AddToMenu\s+//i;
 		getNextQuotedToken(\$line);
-	} elsif ($line =~ /^\+\s+/i) {
-		$line =~ s/^\+\s+//i;
+	} elsif ($line =~ /^\+\s+/) {
+		$line =~ s/^\+\s+//;
 	}
 	if ($i == -1) {
 	 	$line = "AddToMenu " . $menu . " " . $line;
@@ -1614,14 +1619,14 @@ sub writeFiles {
 			die "cannot create directory $persThemeDir\n";
 	}
 	foreach $key (keys(%filesLines)) {
-		open(OUT,">$key");
+		open(OUT,">$key") || die "cannot write on $key";
 		for ($i=0; $i <= $lastLine{$key}; $i++) {
 			print OUT $filesLines{"$key"}[$i]{line};
 		}
 		close(OUT);
 	}
 	return 1;
-}	
+}
 
 #----------------------------------------------------------------------------
 #

@@ -1,3 +1,9 @@
+2000-02-27  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-menuapp.in:
+	* scripts/FvwmScript-Menus:
+	Some FvwmScript-Menus fixes
+	
 2000-02-27  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-menuapp.in:
@@ -8,8 +14,8 @@
 	* scripts/FvwmScript-ConfigCenter
 	* scripts/FvwmScript-ThemesCenter
 	* scripts/FvwmScript-Menus
-	Added exec in the get parent pid command so that this work for
-	any POSIX os/libc
+	Added exec in the get parent pid command so that this work with
+	any shell
 	
 2000-02-25  migo  <migo@homemail.com>
 

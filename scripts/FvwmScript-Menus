@@ -1284,15 +1284,17 @@ Main
   Begin
     Set $cmd=$SendMsgAndGet{"try"}
     Do {PipeRead '}$cmd{'}
+	
+    #Set $cmd=$SendMsgAndGet{"save"}
+    #Set $dummy = (GetOutput $cmd 1 -1)
+    Set $cmd=$SendMsg{"save"}
+    Do {Exec }$cmd
 
-    Set $cmd=$SendMsgAndGet{"save"}
-    Set $dummy = (GetOutput $cmd 1 -1)
-
-    Set $cmd = {fvwm-themes-config --load menus-user@personal --load menus-extra@personal}
+    Set $cmd = {fvwm-themes-config --no-cfg-cache --load menus-extra@personal}
     Do {Exec }$cmd
 
     # In the future we replace the above with something like:
-    # FuncFvwmThemeLoad "menus-user@personal menus-extra@personal"
+    # FuncFvwmThemeLoad "menus-extra@personal"
     # the problem with the current method is that the GNOME and KDE menu are
     # lost and that the personal component are not updated at once but
     # at the next switching. We can fix that by using the current method
