@@ -1,3 +1,24 @@
+2001-05-29  olicha  <olivier.chapuis@free.fr>
+
+	* themes/multichoice/buttons/images/warpluc.tar.gz:
+	Some buttons cleanup. I've the old tarball if my change was
+	a "mistake"
+
+	* themes/multichoice/buttons/images/brushedmetal.tar.gz:
+	* themes/multichoice/buttons.cfg
+	Re-do the buttons for a better mixing and remove the
+	title-{left,right} buttons. I've got the old tarball.
+	I'll do the same job with nanogui if there are no objections.
+	Really, I think that for mutichoice buttons we should do buttons
+	which "go well" with "all" colors/windowlook. 
+ 
+	Notes: - In theory the background of the buttons should be defined in
+	colors, of course this cause problems with themes as brushedmetal
+	and nanoGUI (full themes not mutichoice). I will take a look at this
+	problem (but I do not think I will find the solution). Ah I see a
+	change on this, so I will wait a bit!
+	- Do not forget to refresh with no cache :o)
+
 2001-05-29  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
