@@ -1,3 +1,25 @@
+2000-12-28  olicha  <olivier.chapuis@free.fr>
+
+	* scripts/FvwmScript-FontSelector:
+	* bin/fvwm-themes-script.in:
+	Create a permanent font cache and filter memory named
+	$FVWM_USRDIR/.FvwmScript-FontSelector. Some fixes.
+
+	* scripts/FvwmScript-IconsBrowser:
+	* themes/default/styles:
+	* themes/default/menus:
+	* settings/iconstyles/style-icon-miniicon:
+	* bin/fvwm-themes-script.in:
+	Added a launched option to FvwmScript-IconsBrowser so that this
+	utilities can be used alone. Also "fixed" the F ls option. 
+
+	* scripts/FvwmScript-ImageBrowser:
+	* scripts/Makefile.am
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	* themes/default/menus:
+	An Image Browser useful for browsing backgrounds or for the future
+	colorset editor for example.
+	
 2000-12-24  olicha  <olivier.chapuis@free.fr>
 
 	* themes/*/*.cfg

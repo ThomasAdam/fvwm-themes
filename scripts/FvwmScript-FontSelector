@@ -1,3 +1,22 @@
+# This script is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+#-----------------------------------------------------------------------------
+#     Copyright 2000, Olivier Chapuis
+#-----------------------------------------------------------------------------
+
 WindowTitle {Font Selector}
 WindowSize 600 400
 Font	-adobe-helvetica-bold-r-*-*-12-*
@@ -133,9 +152,9 @@ Begin
     ChangeValue 311 1
     ChangeValue 381 1
 
-    #Set $GetFontListAndFilters = 1
     Set $InStart = 1
     Set $StartCount = 0
+    Set $FontReset = {}
 
     Set $Window = {Main}
 End
@@ -266,11 +285,20 @@ Begin
     If $InStart == 1 Then
     Begin
 	Set $StartCount = (Add $StartCount 1)
-	If $StartCount == 10 Then
+	If $StartCount > 9 Then
 	Begin
-	    Set $GetFontListAndFilters = 1
-	    Set $ChangeFont = 1
-	    #Set $InStart = 0
+	    If $StartCount == 10 Then
+	    Begin
+		Set $GetAll = 1
+		Set $ChangeFont = 1
+	    End
+	    Else
+	    Begin
+		Set $InStart = 0
+		Set $IndexIsSet = 1
+		Set $ParseLists = 1
+		Set $SetFilterLists = 1
+	    End
 	End
     End
 
@@ -284,10 +312,21 @@ Begin
     End
 
     #---------------------------------------------------------------------
+    If $GetAll == 1 Then
+    Begin
+	Set $GetAll = 0
+	Set $cmd = {fvwm-themes-script --font --type="font-list-all-list-filter-list" --font-current="}$TheFont{"}$FontReset
+	Set $Config = (GetOutput $cmd 1 -1)
+	Set $ParseFontList = 1
+	Set $ParseLists = 1
+	Set $SetAllLists = 1
+    End
+
+    #---------------------------------------------------------------------
     If $GetFontList == 1 Then
     Begin
 	Set $GetFontList = 0
-	Set $cmd = {fvwm-themes-script --font --type="font-list" --font-cache="create" --font-filter="}$FontFilter{" --font-current="}$TheFont{"}
+	Set $cmd = {fvwm-themes-script --font --type="font-list" --font-filter="}$FontFilter{" --font-current="}$TheFont{"}
 	Set $Config = (GetOutput $cmd 1 -1)
 	Set $ParseFontList = 1
 	#Set $ParseLists = 1
@@ -296,16 +335,16 @@ Begin
     End
 
     #---------------------------------------------------------------------
-    If $GetFontListAndFilters == 1 Then
+    If $GetFontListAndAll == 1 Then
     Begin
-	Set $GetFontListAndFilters = 0
-	Set $cmd = {fvwm-themes-script --font --type="font-list-and-filter" --font-cache="create" --font-filter="}$FontFilter{" --font-current="}$TheFont{"}
+	Set $GetFontListAndAll = 0
+	Set $cmd = {fvwm-themes-script --font --type="font-list-all-list" --font-filter="}$FontFilter{" --font-current="}$TheFont{"}
 	If $InStart == 1 Then
 	    Set $cmd = $cmd { --font-start}
 	Set $Config = (GetOutput $cmd 1 -1)
 	Set $ParseFontList = 1
 	Set $ParseLists = 1
-	Set $SetFilterLists = 1
+	Set $SetAllLists = 1
 	
     End
 
@@ -328,10 +367,12 @@ Begin
 	Set $FontIndex = (StrCopy $Config 1 3)
 	Set $tmp = (StrCopy $FontIndex 1 1)
 	If $tmp == 0 Then
+	Begin
 	    Set $FontIndex = (StrCopy $FontIndex 2 3)
-	Set $tmp = (StrCopy $FontIndex 1 1)
-	If $tmp == 0 Then
-	    Set $FontIndex = (StrCopy $FontIndex 2 2)
+	    Set $tmp = (StrCopy $FontIndex 1 1)
+	    If $tmp == 0 Then
+		Set $FontIndex = (StrCopy $FontIndex 2 2)
+	End
 	ChangeValue 11 $FontIndex
 	ChangeMinValue 11 (Add $FontIndex -3)
 	Set $index = 3
@@ -351,58 +392,211 @@ Begin
 	End
 	Set $IndexIsSet = 1
 	ChangeTitle 11 $FontList
-	If $FontIndex <> 0 Then
-	Begin
-	    Set $GetAllLists = 1
-	    Set $InStart = 0
-	End
-	Else
+	If $FontIndex == 0 Then
 	Begin 
-	    Set $TmpFoundry = {*}
-	    Set $TmpFamily = {*}
-	    Set $TmpWeight = {*}
-	    Set $TmpSlant = {*}
-	    Set $TmpWidth = {*}
-	    Set $TmpStyle = {*}
-	    Set $TmpPixSize = {*}
-	    Set $TmpPtSize = {*}
-	    Set $TmpXRes = {*}
-	    Set $TmpYRes = {*}
-	    Set $TmpSpacing = {*}
-	    Set $TmpAvgWidth = {*}
-	    Set $TmpCharset = {*-*}
-	    Set $TmpFoundryIndex = 0
-	    Set $TmpFamilyIndex = 0
-	    Set $TmpWeightIndex = 0
-	    Set $TmpSlantIndex = 0
-	    Set $TmpWidthIndex = 0
-	    Set $TmpStyleIndex = 0
-	    Set $TmpPixSizeIndex = 0
-	    Set $TmpPtSizeIndex = 0
-	    Set $TmpXResIndex = 0
-	    Set $TmpYResIndex = 0
-	    Set $TmpSpacingIndex = 0
-	    Set $TmpAvgWidthIndex = 0
-	    Set $TmpCharsetIndex = 0
-	    Set $TmpFoundryList = {*}
-	    Set $TmpFamilyList = {*}
-	    Set $TmpWeightList = {*}
-	    Set $TmpSlantList = {*}
-	    Set $TmpWidthList = {*}
-	    Set $TmpStyleList = {*}
-	    Set $TmpPixSizeList = {*}
-	    Set $TmpPtSizeList = {*}
-	    Set $TmpXResList = {*}
-	    Set $TmpYResList = {*}
-	    Set $TmpSpacingList = {*}
-	    Set $TmpAvgWidthList = {*}
-	    Set $TmpCharsetList = {*-*}
-	    Set $TmpScaleAdjust = 0
 	    Set $SetAllLists = 1
-	    Set $Lock = 1
+	    Set $SetAllToNull = 1
 	 End
 
-    End 
+	# --------------- the font filter
+	# font filter Foundry
+	Set $notdone = 1
+	Set $FilterFoundry = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $FilterFoundry = $FilterFoundry $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# font filter family
+	Set $notdone = 1
+	Set $FilterFamily = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $FilterFamily = $FilterFamily $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# font filter weight
+	Set $notdone = 1
+	Set $FilterWeight = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $FilterWeight = $FilterWeight $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# font filter slant
+	Set $notdone = 1
+	Set $FilterSlant = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $FilterSlant = $FilterSlant $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# font filter width
+	Set $notdone = 1
+	Set $FilterWidth = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $FilterWidth = $FilterWidth $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# font filter style
+	Set $notdone = 1
+	Set $FilterStyle = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $FilterStyle = $FilterStyle $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# font filter pixsize
+	Set $notdone = 1
+	Set $FilterPixSize = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $FilterPixSize = $FilterPixSize $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# font filter PtSize
+	Set $notdone = 1
+	Set $FilterPtSize = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $FilterPtSize = $FilterPtSize $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# font filter XRes
+	Set $notdone = 1
+	Set $FilterXRes = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $FilterXRes = $FilterXRes $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# font filter YRes
+	Set $notdone = 1
+	Set $FilterYRes = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $FilterYRes = $FilterYRes $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# font filter Spacing
+	Set $notdone = 1
+	Set $FilterSpacing = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $FilterSpacing = $FilterSpacing $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# font filter AvgWidth
+	Set $notdone = 1
+	Set $FilterAvgWidth = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $FilterAvgWidth = $FilterAvgWidth $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# font filter Charset
+	Set $notdone = 1
+	Set $FilterCharset = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $FilterCharset = $FilterCharset $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	Set $FontFilter = {-}$FilterFoundry{-}$FilterFamily{-}$FilterWeight{-}$FilterSlant{-}$FilterWidth{-}$FilterStyle{-}$FilterPixSize{-}$FilterPtSize{-}$FilterXRes{-}$FilterYRes{-}$FilterSpacing{-}$FilterAvgWidth{-}$FilterCharset
+	ChangeTitle 101 $FontFilter
+    End
 
     #---------------------------------------------------------------------
     If $ParseLists == 1 Then
@@ -835,7 +1029,16 @@ Begin
 
 	Set $index = (Add $index 1)
 	Set $TmpScaleAdjust = (StrCopy $Config $index $index)
-
+	Set $index = (Add $index 2)
+	Set $HasNoMatch = (StrCopy $Config $index $index)
+	Set $index = (Add $index 1)
+	If $HasNoMatch == {1} Then
+	Begin
+	    Set $SetAllToNull = 1
+	    Set $FontIndex = 0
+	    ChangeValue 11 0
+	    Set $HasNoMatch = 0
+	End
     End
 
     #---------------------------------------------------------------------
@@ -844,37 +1047,86 @@ Begin
 	Set $SetFilterLists = 0
 
 	Set $FilterFoundryList = $TmpFoundryList
+	Set $FilterFoundryIndex = $TmpFoundryIndex
 	ChangeTitle 311 $FilterFoundryList
+	ChangeValue 311 $FilterFoundryIndex
+	ChangeMinValue 311 $FilterFoundryIndex
 
 	Set $FilterWeightList = $TmpWeightList
+	Set $FilterWeightIndex = $TmpWeightIndex
 	ChangeTitle 321 $FilterWeightList
+	ChangeValue 321 $FilterWeightIndex
 
 	Set $FilterSlantList = $TmpSlantList
 	ChangeTitle 331 $FilterSlantList
+	Set $FilterSlantIndex = $TmpSlantIndex
+	ChangeValue 331 $FilterWeightIndex
 
 	Set $FilterWidthList = $TmpWidthList
 	ChangeTitle 341 $FilterWidthList
+	Set $FilterWidthIndex = $TmpWidthIndex
+	ChangeValue 341 $FilterWidthIndex
 
-	Set $FilterStyleList = $TmpStyleList
-	Set $FilterPixSizeList = $TmpPixSizeList
-	Set $FilterPtSizeList = $TmpPtSizeList
+	#Set $FilterStyleList = $TmpStyleList
+	#Set $FilterPixSizeList = $TmpPixSizeList
+	#Set $FilterPtSizeList = $TmpPtSizeList
 
 	Set $FilterXResList = $TmpXResList
 	ChangeTitle 351 $FilterXResList
+	Set $FilterXResIndex = $TmpXResIndex
+	ChangeValue 351 $FilterXResIndex
 
 	Set $FilterYResList = $TmpYResList
 	ChangeTitle 361 $FilterYResList
+	Set $FilterYResIndex = $TmpYResIndex
+	ChangeValue 361 $FilterYResIndex
 
 	Set $FilterSpacingList = $TmpSpacingList
 	ChangeTitle 371 $FilterSpacingList
+	Set $FilterSpacingIndex = $TmpSpacingIndex
+	ChangeValue 371 $FilterSpacingIndex
 
-	Set $FilterAvgWidthList = $TmpAvgWidthList
+	#Set $FilterAvgWidthList = $TmpAvgWidthList
 
 	Set $FilterCharsetList = $TmpCharsetList
  	ChangeTitle 381 $FilterCharsetList
+	Set $FilterCharsetIndex = $TmpCharsetIndex
+	ChangeValue 381 $FilterCharsetIndex
+	ChangeMinValue 381 $FilterCharsetIndex
 
     End
 
+    # ----------------------------------------------------------------------
+    If $SetAllToNull == 1 Then
+    Begin
+	    Set $SetAllToNull = 0
+	    Set $TmpFoundryIndex = 0
+	    Set $TmpFamilyIndex = 0
+	    Set $TmpWeightIndex = 0
+	    Set $TmpSlantIndex = 0
+	    Set $TmpWidthIndex = 0
+	    Set $TmpStyleIndex = 0
+	    Set $TmpPixSizeIndex = 0
+	    Set $TmpPtSizeIndex = 0
+	    Set $TmpXResIndex = 0
+	    Set $TmpYResIndex = 0
+	    Set $TmpSpacingIndex = 0
+	    Set $TmpAvgWidthIndex = 0
+	    Set $TmpCharsetIndex = 0
+	    Set $TmpFoundryList = {*}
+	    Set $TmpFamilyList = {*}
+	    Set $TmpWeightList = {*}
+	    Set $TmpSlantList = {*}
+	    Set $TmpWidthList = {*}
+	    Set $TmpStyleList = {*}
+	    Set $TmpPixSizeList = {*}
+	    Set $TmpPtSizeList = {*}
+	    Set $TmpXResList = {*}
+	    Set $TmpYResList = {*}
+	    Set $TmpSpacingList = {*}
+	    Set $TmpAvgWidthList = {*}
+	    Set $TmpCharsetList = {*-*}
+    End
     #---------------------------------------------------------------------
     If $SetAllLists == 1 Then
     Begin
@@ -918,31 +1170,32 @@ Begin
 	Set $CharsetIndex = $TmpCharsetIndex
 	ChangeValue 61 $CharsetIndex
 
-
-	Set $Foundry = $TmpFoundry
-	Set $Family = $TmpFamily
-	Set $Weight = $TmpWeight
-	Set $Slant = $TmpSlant
-	Set $Width = $TmpWidth
-	Set $Style = $TmpStyle
-	Set $PixSize = $TmpPixSize
-	Set $PtSize = $TmpPtSize
-	Set $XRes = $TmpXRes
-	Set $YRes = $TmpYRes
-	Set $Spacing = $TmpSpacing
-	Set $AvgWidth = $TmpAvgWidth
-	Set $Charset = $TmpCharset
-
- 	Set $ScaleAdjust = $TmpScaleAdjust
-	If $ScaleAdjust == 2 Then
+	If $FontIndex <> 0 Then
 	Begin
-	    ChangeTitle 95 $IsAdjustable
-	End
-	Else
-	Begin
-	    ChangeTitle 95 $NotAdjustable
-	End
+	    Set $Foundry = $TmpFoundry
+	    Set $Family = $TmpFamily
+	    Set $Weight = $TmpWeight
+	    Set $Slant = $TmpSlant
+	    Set $Width = $TmpWidth
+	    Set $Style = $TmpStyle
+	    Set $PixSize = $TmpPixSize
+	    Set $PtSize = $TmpPtSize
+	    Set $XRes = $TmpXRes
+	    Set $YRes = $TmpYRes
+	    Set $Spacing = $TmpSpacing
+	    Set $AvgWidth = $TmpAvgWidth
+	    Set $Charset = $TmpCharset
 
+	    Set $ScaleAdjust = $TmpScaleAdjust
+	    If $ScaleAdjust == 2 Then
+	    Begin
+		ChangeTitle 95 $IsAdjustable
+	    End
+	    Else
+	    Begin
+		ChangeTitle 95 $NotAdjustable
+	    End
+	End
     End
 
     #---------------------------------------------------------------------
@@ -1924,12 +2177,10 @@ Case message of
     Set $tmp = {-}$FilterFoundry{-}$FilterFamily{-}$FilterWeight{-}$FilterSlant{-}$FilterWidth{-}$FilterStyle{-}$FilterPixSize{-}$FilterPtSize{-}$FilterXRes{-}$FilterYRes{-}$FilterSpacing{-}$FilterAvgWidth{-}$FilterCharset
     If $tmp <> $FontFilter Then
     Begin
-	Do {Echo FF:}$tmp
 	Set $FontFilter = $tmp
-	Set $GetFontList = 1
+	Set $GetFontListAndAll = 1
 	ChangeValue 11 0
 	ChangeMinValue 11 1
-	ChangeTitle 101 $FontFilter
     End
  End
 End
@@ -1959,11 +2210,33 @@ Case message of
  End
 End
 
-# Help
+# Reset
 Widget 993
 Property
     Flags NoReliefString
-    Position 200 365
+    Position 184 365
+    Size 80 20
+    #Font fixed
+    Type PushButton
+    Title {Reset}
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $FontReset = { --font-reset}
+    Set $InStart = 1
+    Set $StartCount = 0
+    ChangeTitle 11 {||Reloading Fonts ...}
+    ChangeMinValue 11 0
+    ChangeValue 11 0
+ End
+End
+
+# Help
+Widget 994
+Property
+    Flags NoReliefString
+    Position 336 365
     Size 80 20
     #Font fixed
     Type PushButton
@@ -1976,10 +2249,10 @@ Case message of
 End
 
 # Cancel
-Widget 994
+Widget 995
 Property
     Flags NoReliefString
-    Position 380 365
+    Position 490 365
     Size 80 20
     #Font fixed
     Type PushButton

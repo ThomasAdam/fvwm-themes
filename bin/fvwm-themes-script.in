@@ -53,7 +53,7 @@ my $lang = "";
 # font selector
 my $fontOpt = 0;
 my $fontFilter = "";
-my $fontCache = "";
+my $fontReset = 0;
 my $fontIndex = 0;
 my $fontCurrent = "";
 my $fontStart = 0;
@@ -77,11 +77,10 @@ GetOptions(
 	"lang=s"             => \$lang,
 	"font"               => \$fontOpt,
 	"font-filter:s"      => \$fontFilter,
-	"font-cache=s"       => \$fontCache,
+	"font-reset"         => \$fontReset,
 	"font-index=s"       => \$fontIndex,
 	"font-current=s"     => \$fontCurrent,
 	"font-start"         => \$fontStart,
-	"font-only-adj"      => \$fontOnlyAdjustable,
 	"font-info"          => \$fontInfo,
 ); # || wrongUsage();
 
@@ -130,8 +129,8 @@ sub loadFile ($) {
 sub buildFontLists {
 	my $return = "";
 	my $list;
-	my @fontList;
-	my $cacheFile = "$userDir/.tmp-font-cache";
+	my $fontList = [ ];
+	my $filterLists = { };
 	my $foudryFromIndex = "";
 	my $familyFromIndex = "";
 	my $i = 0;
@@ -142,6 +141,7 @@ sub buildFontLists {
 	my @keys = qw (Weight Slant Width Style PixSize PtSize XRes YRes Spacing 
 		AvgWidth Charset);
 	my @allKeys = qw(Foundry Family);
+	my @filterKeys = qw(Foundry Weight Slant Style PixSize PtSize Width XRes YRes Spacing AvgWidth Charset);
 	push @allKeys, @keys;
 	my $key;
 	my %current;
@@ -150,10 +150,14 @@ sub buildFontLists {
 	my @s;
 	my $adjustable = 0;
 	my $ffHasChanged = 0;
+	my $tmpFilter = "";
+	my $ffHasNoMatch = 0;
 
-	$fontFilter = "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" if $fontFilter eq "";
-	$fontCurrent = "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" if $fontCurrent eq "";
+	$fontCurrent = "-misc-fixed-*-*-*-*-*-*-*-*-*-*-*-*-*" 
+		if $fontCurrent eq "";
 	$ffFilter = "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*";
+
+	fontInit($fontList, \$fontFilter, $filterLists);
 
 	@s = split('-',$fontCurrent);
 	$current{'Foundry'} = $s[1];
@@ -169,18 +173,18 @@ sub buildFontLists {
 	$current{'Spacing'} = $s[11];
 	$current{'AvgWidth'} = $s[12];
 	$current{'Charset'} = $s[13] . "-" .$s[14];
+	
+	$ffFilter = 
+		"-$current{'Foundry'}-$current{'Family'}-*-*-*-*-*-*-*-*-*-*-*-*";
 
 	if ($fontIndex != 0) {
-		my $file = "$cacheFile";
-		my $c = loadFile ($file);
-		my @f = split(/\n/,$$c);
-		if (defined $f[$fontIndex-1] && $f[$fontIndex-1] =~ /^(.+) \((.+)\)$/) {
+		if (defined $fontList->[$fontIndex-1] && 
+				$fontList->[$fontIndex-1] =~ /^(.+) \((.+)\)$/) {
 			$ffFilter = "-$2-$1-*-*-*-*-*-*-*-*-*-*-*-*";
 			$current{'Foundry'} = $2;
 			$current{'Family'} = $1;
 		} else {
-			print "00No fonts!";
-			exit 0;
+			$ffHasNoMatch = 1;
 		}
 	}
 
@@ -208,59 +212,29 @@ sub buildFontLists {
 	}
 
 	if ($type =~ /^font-list/) {
-
-		open(XLS,"xlsfonts -fn '$fontFilter'|") || 
-		  ($return = "Impossible to open xlsfont\n");
-		$i = 0;
-		while(<XLS>) {
-			chomp;
-			@s = split('-',$_);
-			$list->[$i]->{Foundry} = $s[1];
-			$list->[$i]->{Family} = $s[2];
-			$list->[$i]->{'Weight'} = $s[3];
-			$list->[$i]->{'Slant'} = $s[4];
-			$list->[$i]->{'Width'} = $s[5];
-			$list->[$i]->{'Style'} = $s[6];
-			$list->[$i]->{'PixSize'} = $s[7];
-			$list->[$i]->{'PtSize'} = $s[8];
-			$list->[$i]->{'XRes'} = $s[9];
-			$list->[$i]->{'YRes'} = $s[10];
-			$list->[$i]->{'Spacing'} = $s[11];
-			$list->[$i]->{'AvgWidth'} = $s[12];
-			$list->[$i]->{'Charset'} = $s[13] . "-" .$s[14];
-			$i++;
-		}
-		close(XLS);
-		
-		
-		$prev = "";
-		for($i = 0; defined $list->[$i]; $i++) {
-			my $a = $list->[$i]->{'Family'};
-			my $b = $list->[$i]->{'Foundry'};
-			my $newFont = $a . " (" . $b . ")";
-			push @fontList, $newFont if $newFont ne $prev;
-			$prev = $newFont;
-		}
-		@fontList = sort @fontList;
-		if ($fontCache eq "create") {
-			chdir($userDir) || die "cannot change dir to $userDir";
-			open(FC,">$cacheFile") || die "cannot write on $cacheFile";
-			foreach (@fontList) { print FC "$_\n" }
-			close(FC);
-		}
 		my $tmp = 0;
 		my $ff = "$current{'Family'} ($current{'Foundry'})";
-		for($i = 0; defined $fontList[$i] && $tmp == 0; $i++) {
-			$tmp = $i+1 
-				if $fontList[$i] eq $ff;
+		for($i = 0; defined $fontList->[$i] && $tmp == 0; $i++) {
+			$tmp = $i+1
+				if $fontList->[$i] eq $ff;
 		}
+		#$ffHasNoMatch = 1 if ($tmp == 0);
 		$tmp = "0" x (3 - length($tmp)) . $tmp;
 		$return .= $tmp;
-		foreach (@fontList) { $return .=  $_ . "|" }
+		foreach (@$fontList) { $return .=  $_ . "|" }
+		if ($return eq $tmp) {
+			$return .= "||No fonts match the filter|"
+		}
 		$return =~ s/\|$/!/;
+		# return also the filter:
+		for($i = 1; $i < 14; $i++) {
+			$return .= $trueFontFilter[$i];
+			$return .= "-" . $trueFontFilter[14] if ($i == 13);
+		  	$return .= "!";
+		}
 	}
 
-	if ($type =~ /all-list$/) {
+	if ($type =~ /all-list/) {
 		my $k;
 
 		# check consitency if foundry and/or family have changed:
@@ -272,11 +246,11 @@ sub buildFontLists {
 			$j = 0;
 			my $notdone = 1;
 			while ($notdone) {
-				$fontFilter = "";	
+				$tmpFilter = "";	
 				for ($k = 1; $k < 15; $k++) {
-					$fontFilter .= '-' . $filterList[$k]; 
+					$tmpFilter .= '-' . $filterList[$k]; 
 				}
-				open(XLS,"xlsfonts -fn '$fontFilter' 2>/dev/null |") || 
+				open(XLS,"xlsfonts -fn '$tmpFilter' 2>/dev/null |") || 
 		 			($return = "Impossible to open xlsfont\n");
 				while(<XLS> && $notdone) { $notdone = 0 }
 				close(XLS);
@@ -295,15 +269,15 @@ sub buildFontLists {
 
 		# see if we are ajustable (what follows seems false but this work, I do
 		# not know really why :o)
-		$fontFilter = "";
+		$tmpFilter = "";
 		for ($k = 1; $k < 7; $k++) {
-			$fontFilter .= '-' . $filterList[$k];
+			$tmpFilter .= '-' . $filterList[$k];
 		}
-		$fontFilter .= '-0-0-0-0';
+		$tmpFilter .= '-0-0-0-0';
 		for ($k = 12; $k < 15; $k++) {
-			$fontFilter .= '-' . $filterList[$k];
+			$tmpFilter .= '-' . $filterList[$k];
 		}
-		open(XLS,"xlsfonts -fn '$fontFilter' 2>/dev/null |") || 
+		open(XLS,"xlsfonts -fn '$tmpFilter' 2>/dev/null |") || 
 		 	($return = "Impossible to open xlsfont\n");
 		while(<XLS> && $adjustable !=2) { $adjustable = 2 }
 		close(XLS);
@@ -313,29 +287,29 @@ sub buildFontLists {
 		foreach $key (@keys) {
 			$i = 0;
 			$k = 0;
-			$fontFilter = "";
+			$tmpFilter = "";
 			if ($adjustable == 2 && $fontOnlyAdjustable) {
 				for ($k = 1; $k < 7; $k++) {
-					if ($k == $j) { $fontFilter .= '-*'; } 		
-					else { $fontFilter .= '-' . $filterList[$k]; }
+					if ($k == $j) { $tmpFilter .= '-*'; } 		
+					else { $tmpFilter .= '-' . $filterList[$k]; }
 				}
-				$fontFilter .= '-0-0-0-0';
+				$tmpFilter .= '-0-0-0-0';
 				for ($k = 12; $k < 15; $k++) {
-					$fontFilter .= '-' . $filterList[$k];
+					$tmpFilter .= '-' . $filterList[$k];
 				}
 		 	} else {
 				for ($k = 1; $k < 15; $k++) {
 					if ($k == $j && $trueFontFilter[$k] eq '*') { 
-						$fontFilter .= '-*'; 
+						$tmpFilter .= '-*'; 
 						if ($key eq "Charset") {
-							$fontFilter .= '-*'; 
+							$tmpFilter .= '-*'; 
 							$k++;
 						}
 					}
-					else { $fontFilter .= '-' . $filterList[$k] }
+					else { $tmpFilter .= '-' . $filterList[$k] }
 				}
 			}
-			open(XLS,"xlsfonts -fn '$fontFilter'|") || 
+			open(XLS,"xlsfonts -fn '$tmpFilter'|") || 
 				($return = "Impossible to open xlsfont\n");
 		
 			$i = 0;
@@ -350,14 +324,18 @@ sub buildFontLists {
 			$j++;
 		}
 
-	}
-
-	if ($type =~ /all-list$/ || $type eq "font-list-and-filter") {
-
-		unshift @keys, "Foundry" if ($type eq "font-list-and-filter");
+		# now build return
 		$j = 3;
 		foreach $key (@keys) {
 			my @l = ();
+
+			#needed if filter gives no font
+			if ($key eq "Charset") {
+				unshift @l, "$trueFontFilter[$j]-$trueFontFilter[$j+1]" 
+					if $trueFontFilter[$j] ne '*';
+			} else {
+				unshift @l, $trueFontFilter[$j] if $trueFontFilter[$j] ne '*';
+			}
 
 			if ($adjustable == 2 && $key eq "PixSize") {
 				@l = qw(4 5 6 7 8 9 10 11 12 13 14 15 16 18 20 22 24 26 28 30 
@@ -392,16 +370,14 @@ sub buildFontLists {
 			my $index = 0;
 			my $diff = 1000;
 			my $memDiff;
-			if ($type eq "all-list") {
-				foreach ($i = 0; defined $newl[$i]; $i++) {
-					$index = $i+1 if $newl[$i] eq $current{"$key"};
-					if ($key eq "PixSize" && $newl[$i] ne '*' &&
-						$current{"$key"} ne '*' &&
-						$diff > abs($newl[$i] - $current{"$key"})) {
-						$index = $i+1;
-						$real{"$key"} =  $newl[$i];
-						$diff =  abs($newl[$i] - $current{"$key"});
-					}
+			foreach ($i = 0; defined $newl[$i]; $i++) {
+				$index = $i+1 if $newl[$i] eq $current{"$key"};
+				if ($key eq "PixSize" && $newl[$i] ne '*' &&
+					 $current{"$key"} ne '*' &&
+					 $diff > abs($newl[$i] - $current{"$key"})) {
+					$index = $i+1;
+					$real{"$key"} =  $newl[$i];
+					$diff =  abs($newl[$i] - $current{"$key"});
 				}
 			}
 			if ($index eq "0") {
@@ -433,12 +409,197 @@ sub buildFontLists {
 			}
 		}
 		$return .= $realFont;
-		$return .= $adjustable . "!\n";
-
+		$return .= $adjustable . "!";
+		$return .= $ffHasNoMatch . "!";
 	}
 
+	if ($type =~ /filter-list/) {
+		$j = 1;
+		foreach $key (@filterKeys) {
+			my @l = @{$filterLists->{"$key"}};
+			my $index = 0;
+			foreach ($i = 0; defined $l[$i]; $i++) {
+				$index = $i+1 if ($l[$i] eq $trueFontFilter[$j] ||
+					$l[$i] eq "$trueFontFilter[13]-$trueFontFilter[14]");
+			}
+			if ($index eq "0") {
+				$index = "01";
+			}
+			$index = "0" . $index if length($index) == 1;
+
+			$return .= $index;
+ 
+			foreach (@l) {
+				$return .= $_ . "|";
+			}
+			$return =~ s/\|$/!/;
+			if ($j == 1) { $j=3; }
+			else { $j++; }
+		}
+		# add dummy stuff:
+		$return .= "!misc!fixed!*!*!*!*!*!*!*!*!*!*!*-*!0!0!";
+		
+	}
+	
+	#print STDERR $return . "\n";
 	print $return;
 	exit 0;
+}
+
+# ---------------------------------------
+
+sub fontInit {
+	my $fontList = shift;
+	my $fontFilter = shift;
+	my $filterLists = shift;
+  
+	my $str = "";
+	my $oldFontFilter = "";
+	my $file = "$userDir/.FvwmScript-FontSelector";
+	my @filterKeys = qw(Foundry Weight Slant Style PixSize PtSize Width XRes YRes Spacing AvgWidth Charset);
+	#my @filterKeys = qw(Foundry Family Weight Slant Width XRes YRes Spacing Charset);
+	if (! -f $file || $fontReset) {
+		#print STDERR "create RC\n";
+		$$fontFilter = $oldFontFilter = "-*-*-*-*-*-*-*-*-*-*-*-*-*-*";
+		my $list = myXlsfonts("$$fontFilter");
+		my $prev = "";
+		my $i;
+	  	for($i = 0; defined $list->[$i]; $i++) {
+			my $a = $list->[$i]->{'Family'};
+			my $b = $list->[$i]->{'Foundry'};
+			my $newFont = $a . " (" . $b . ")";
+			push @$fontList, $newFont if $newFont ne $prev;
+			$prev = $newFont;
+		}
+		@$fontList = sort @$fontList;
+		my $key;
+		foreach $key (@filterKeys) {
+			my @l = ();
+			my @newl = ();
+			for($i = 0; defined $list->[$i]->{"$key"}; $i++) {
+				push @l, $list->[$i]->{"$key"}
+			}
+			if ($key =~ /Size$/ || $key =~ /Res$/ || $key =~ /^AvgWidth$/) {
+				@l = sort {$a <=> $b} @l;
+			}
+			else {
+				@l = sort @l;
+			}
+			foreach (@l) {
+				next if $_ eq '0' || $_ eq '';
+				push @newl, $_ if $_ ne $prev;
+				$prev = $_;
+			}
+			if ($key eq "Charset") {
+				unshift @newl, '*-*';
+			} else {
+				unshift @newl, '*';
+			}
+			$i = 0;
+			foreach (@newl) {
+				$filterLists->{"$key"}->[$i] =  $_;
+				$i++;
+			}
+		}
+		$str = "";
+		$str .= "filter=-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n";
+		foreach(@$fontList) { $str .= "$_\n"; }
+		my $hash;
+		foreach $hash (@filterKeys) {
+			$str .= "hash=$hash\n";
+			for($i=0; defined $filterLists->{"$hash"}->[$i];$i++) {
+				$str .= $filterLists->{"$hash"}->[$i] ."\n";
+			}
+		}
+	} else {
+		#print STDERR "load RC\n";
+		my $c = loadFile($file);
+		my @f = split(/\n/,$$c);
+		my $hash = "";
+		my $i;
+		foreach(@f) {
+			next if /^\s*\#/;
+			if (/^filter=(.+)$/) {
+				$oldFontFilter = $1;
+				next;
+			} elsif (/^hash=(.+)$/) {
+				last if ! $type =~ /filter/;
+				$hash = $1;
+				$i = 0;
+				next;
+			} elsif ($hash eq "") {
+				push @$fontList, $_;
+				next;
+			} else {
+				$filterLists->{"$hash"}->[$i] = $_;
+				$i++;
+			}
+		}
+	}
+	
+	$$fontFilter = $oldFontFilter if ($$fontFilter eq "");
+
+	if ($oldFontFilter ne $$fontFilter) {
+		#print STDERR "Re create RC\n";
+		@$fontList = ();
+		my $list = myXlsfonts("$$fontFilter");
+		my $prev = "";
+		my $i;
+	  	for($i = 0; defined $list->[$i]; $i++) {
+			my $a = $list->[$i]->{'Family'};
+			my $b = $list->[$i]->{'Foundry'};
+			my $newFont = $a . " (" . $b . ")";
+			push @$fontList, $newFont if $newFont ne $prev;
+			$prev = $newFont;
+		}
+		@$fontList = sort @$fontList;
+		$str = "";
+		$str .= "filter=$$fontFilter\n";
+		foreach(@$fontList) { $str .= "$_\n"; }
+		my $hash;
+		foreach $hash (@filterKeys) {
+			$str .= "hash=$hash\n";
+			for($i=0; defined $filterLists->{"$hash"}->[$i];$i++) {
+				$str .= $filterLists->{"$hash"}->[$i] ."\n";
+			}
+		}
+	}
+
+	if ($str ne "") { saveToFile($str,$file); }
+
+}
+#-----------------------------------------
+
+sub myXlsfonts {
+	my $filter = shift;
+	my $list;
+	my $i = 0;
+	my @s;
+
+	open(XLS,"xlsfonts -fn '$filter'|") || 
+		die "Impossible to open xlsfont\n";
+
+	while(<XLS>) {
+		chomp;
+		@s = split('-',$_);
+		$list->[$i]->{'Foundry'} = $s[1];
+		$list->[$i]->{'Family'} = $s[2];
+		$list->[$i]->{'Weight'} = $s[3];
+		$list->[$i]->{'Slant'} = $s[4];
+		$list->[$i]->{'Width'} = $s[5];
+		$list->[$i]->{'Style'} = $s[6];
+		$list->[$i]->{'PixSize'} = $s[7];
+		$list->[$i]->{'PtSize'} = $s[8];
+		$list->[$i]->{'XRes'} = $s[9];
+		$list->[$i]->{'YRes'} = $s[10];
+		$list->[$i]->{'Spacing'} = $s[11];
+		$list->[$i]->{'AvgWidth'} = $s[12];
+		$list->[$i]->{'Charset'} = $s[13] . "-" .$s[14];
+		$i++;
+	}
+	close(XLS);
+
+	return $list;
 }
 
 # -------------------
@@ -802,7 +963,7 @@ sub getDirListing {
 
 	if ($path eq "PATH") { $path = $ENV{'PATH'} || '/bin'; }
 	my @dirList = grep { $_ && -d $_ } split(':', $path);
-	return "No such directory ($path)\n" unless @dirList;
+	return "No such directory:|$path\n" unless @dirList;
 
 	my @dirs = ();
 	my @files = ();
@@ -811,8 +972,10 @@ sub getDirListing {
 		open(LSPROC, "ls $lsOptions $dir |");  # pipe implies ls -1
 		while (<LSPROC>) {
 			chomp;
-			s/[@*\/=|]$// if $lsOptions =~ /F|--classify/;
-			if (-d "$dir/$_") { push @dirs, $_; }
+			my $test = $_;
+			$test =~ s/[@*\/=|]$// if $lsOptions =~ /F|--classify/;
+			#s/[@*\/=|]$// if $lsOptions =~ /F|--classify/ && $index > 0;
+			if (-d "$dir/$test") { push @dirs, $_; }
 			else { push @files, $_; }
 		}
 		close(LSPROC);
@@ -820,6 +983,9 @@ sub getDirListing {
 
 	if (@dirList) { @dirs = sort(@dirs); @files = sort(@files); }
 	my @items = ($dirsOnly? @dirs: $filesOnly? @files: (@dirs, @files));
+
+	$items[$index - 1] =~ s/[@*\/=|]$// 
+		if $lsOptions =~ /F|--classify/ && $index > 0;
 
 	return ($index > 0? $items[$index - 1]: join("|", @items)) . "\n";
 }

@@ -222,6 +222,12 @@ AddToMenu   MenuFvwmConfigUtilities "Configuration Utilities" Title
 		--text-colorset 34 --viewer-colorset 33
 + "&Fonts Selector"		FvwmScript FvwmScript-FontSelector \
 		--text-colorset 34 --viewer-colorset 33
++ "&Icons Browser"		FvwmScript FvwmScript-IconBrowser \
+		--text-colorset 34 --icon-colorset 5 --launched 0 \
+		--dir $[FT_DATADIR]/images/
++ "&Images Browser"		FvwmScript FvwmScript-ImageBrowser \
+		--text-colorset 34 --launched 0 \
+		--dir $[FT_DATADIR]/images/
 
 # -----------------------------------------------------------------------------
 # ---------- MenuFvwmQuit

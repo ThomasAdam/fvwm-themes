@@ -21,8 +21,8 @@
 
 # Note : the mode list is not yet supported!
 
-WindowTitle {Icon Browser}
-WindowSize 390 430		# Taille
+WindowTitle {Image Browser}
+WindowSize 650 430		# Taille
 Font		-adobe-helvetica-bold-r-*-*-12-*
 
 Init
@@ -123,7 +123,17 @@ Begin
 	Begin
 	    ChangeTitle 9 $TheItem
 	    Set $Icon = $Directory {/} $TheItem
-	    ChangeIcon 8 $Icon
+	    Set $Fit = (GetValue 50)
+	    If $Fit == 1 Then
+	    Begin
+		Do {Echo I:}$Icon
+		Set $cmd = {rm -f /tmp/ft-ib.xpm; convert -geometry "365x335>" }$Icon{ /tmp/ft-ib.xpm}
+		Set $dummy = (GetOutput $cmd 1 -1)
+		Set $tmp = {/tmp/ft-ib.xpm}
+		ChangeIcon 8 $tmp
+	    End
+	    Else
+		ChangeIcon 8 $Icon
 	End
     End
 
@@ -144,7 +154,7 @@ End
 Widget 1
 Property
  Size 80 20
- Position 60 390
+ Position 80 390
  Type PushButton
  Flags NoReliefString
  Title {OK}
@@ -166,7 +176,7 @@ End
 Widget 2
 Property
  Size 80 20
- Position 250 390
+ Position 490 390
  Type PushButton
  Flags NoReliefString
  Title {Cancel}
@@ -182,8 +192,8 @@ End
 
 Widget 3
 Property
- Position 10 10
- Size 370 370
+ Position 5 4
+ Size 270 370
  Type Rectangle
 Main
  Case message of
@@ -194,7 +204,7 @@ End
 
 Widget 4
 Property
- Position 20 25
+ Position 10 25
  Type PushButton
  Flags NoReliefString
  Title {Path:}
@@ -209,8 +219,8 @@ End
 
 Widget 5
 Property
- Position 75 25
- Size 295 0
+ Position 65 25
+ Size 205 20
  Font fixed
  Type TextField
  Flags NoReliefString
@@ -238,7 +248,7 @@ End
 
 Widget 6
 Property
- Position 40 62
+ Position 10 62
  Size 50 18
  Flags NoReliefString
  Title {up}
@@ -256,8 +266,8 @@ End
 
 Widget 11
 Property
- Position 110 62
- Size 50 18
+ Position 75 62
+ Size 35 18
  Flags NoReliefString
  Title {home}
  #Icon home.xpm
@@ -275,10 +285,11 @@ End
 
 Widget 12
 Property
- Position 200 67
+ Position 140 67
  Type CheckBox
+ Font fixed
  Flags NoReliefString
- Title { Show hidden files}
+ Title {Show hidden files}
 Main
  Case message of
  SingleClic :
@@ -293,8 +304,8 @@ End
 
 Widget 7
 Property
- Position 30 105
- Size 330 165
+ Position 10 105
+ Size 260 230
  Type List
  Font fixed
  Flags NoReliefString
@@ -310,8 +321,8 @@ End
 
 Widget 8
 Property
- Position 160 280
- Size 70 70
+ Position 280 5
+ Size 365 335
  Type ItemDraw
  Icon None
 Main
@@ -321,10 +332,22 @@ Main
   End
 End
 
+Widget 81
+Property
+ Position 279 4
+ Size 367 337
+ Type Rectangle
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
 Widget 9
 Property
- Position 30 355
- Size 330 20
+ Position 10 345
+ Size 260 20
  Type ItemDraw
  Flags NoReliefString
  Title {}
@@ -335,3 +358,17 @@ Main
   End
 End
 
+Widget 50
+Property
+ Position 280 352
+ Type ItemDraw
+ Flags NoReliefString
+ Type CheckBox
+ Title {Fit image in window (365x335) and convert}
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $UpdateValue = 1
+  End
+End

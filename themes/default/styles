@@ -7,7 +7,6 @@ Style "FvwmTaskBar"	NoTitle, NoHandles, WindowListSkip
 Style "FvwmIconMan"	NoTitle, NoHandles, WindowListSkip
 Style "FvwmScript"	Slippery
 # Simulate transient
-Style "FvwmScript-IconBrowser"	NoTitle, StaysOnTop, NoHandles
 Style "FvwmScript-Browser"	NoTitle, StaysOnTop, NoHandles
 Style "XNoteMessage"    NoTitle, Sticky, StaysOnTop, UsePPosition, \
 	BorderWidth 0, NoHandles, WindowListSkip

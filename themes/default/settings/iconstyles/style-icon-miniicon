@@ -173,6 +173,9 @@ Style "Fvwm*"                  Icon norm/utility.xpm,         MiniIcon mini/util
 Style "FVWM Themes*"           Icon norm/desktop.xpm,         MiniIcon mini/desktop.xpm
 Style "FVWM Themes Doc*"       Icon norm/help.xpm,            MiniIcon mini/help.xpm
 Style "Font Selector"          Icon norm/font.xpm,            MiniIcon mini/font.xpm
+Style "Icon Browser"           Icon norm/image-viewer.xpm,    MiniIcon mini/image-viewer.xpm
+Style "Color Selector"         Icon norm/image-viewer.xpm,    MiniIcon mini/image-viewer.xpm
+Style "Image Browser"          Icon norm/image-viewer.xpm,    MiniIcon mini/image-viewer.xpm
 Style "FvwmForm-ThemeSettings" Icon norm/desktop.xpm,         MiniIcon mini/desktop.xpm
 Style "FvwmScript-BellSetup"   Icon norm/sound.xpm,           MiniIcon mini/sound.xpm
 Style "FvwmScript-Keyboard"    Icon norm/keyboard.xpm,        MiniIcon mini/keyboard.xpm
