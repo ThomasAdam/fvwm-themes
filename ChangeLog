@@ -1,3 +1,8 @@
+2000-10-21  migo  <migo@homemail.com>
+
+	* themes/migo/modules/pager/none:
+	changed an IconBox, this core dumps now when refreshing...
+
 2000-10-20  olicha  <olivier.chapuis@free.fr>
 
 	* themes/awol/modules/main:{FvwmIconMan,FvwmButton*}
