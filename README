@@ -51,9 +51,12 @@ Notes
   Since fvwm is changing right now, we only test fvwm-themes against the
   latest fvwm version as of fvwm-themes release date (2.3.22 for now).
   This will be changed after the stable fvwm-2.4 is out.
-* For sound effects to work you need either esdplay or rplay to be installed.
-  rplayd must be run for rplay. You should update your rplay.conf file with
-  the sounds in .fvwm/sounds for rplayD.
+* For sound effects to work you need one of the sounds player under
+  Theme Management->current->settings->Sound Player to be installed (but
+  using one which can play .wav sound is a good idea). You can use esdplay 
+  with esd runing or not. rplayd must be run for rplay. You should update your 
+  rplay.conf file with the sounds in sounds/ and themes/awol/sounds for 
+  rplayD.
 * fvwm-themes is wm-icons compatible. If you want to use more icon sets
   than included 16x16-general and 48x48-general, you should install wm-icons
   package and choose wm-icons variant of current/settings/Icon Styles.

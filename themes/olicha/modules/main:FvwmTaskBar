@@ -22,7 +22,7 @@ DestroyModuleConfig FvwmTaskBar: *
 *FvwmTaskBar: ShowTips
 
 *FvwmTaskBar: StartName
-*FvwmTaskBar: StartMenu MenuFvwmStartMenu Mouse -100m -100m
+*FvwmTaskBar: StartMenu MenuFvwmRoot Mouse -100m -100m
 #*FvwmTaskBar: StartMenu MenuFvwmRoot Root +1p o100-25p
 *FvwmTaskBar: StartIcon 16x16/penguin.xpm
 

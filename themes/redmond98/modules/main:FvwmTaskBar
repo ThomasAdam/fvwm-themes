@@ -21,7 +21,8 @@ DestroyModuleConfig FvwmTaskBar: *
 *FvwmTaskBar: UseSkipList
 *FvwmTaskBar: AutoStick
 *FvwmTaskBar: StartName Start
-*FvwmTaskBar: StartMenu MenuFvwmStartMenu Mouse -100p -100m
+# menu is defined in the option taskbarpos/
+#*FvwmTaskBar: StartMenu MenuFvwmStartMenu Mouse -100p -100m
 #*FvwmTaskBar: StartMenu MenuFvwmStartMenu Root +0p o100-32p
 #*FvwmTaskBar: StartMenu MenuFvwmStartMenu Root +1p o100-27p
 *FvwmTaskBar: StartIcon 16x16/penguin.xpm

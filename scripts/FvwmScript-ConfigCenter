@@ -105,7 +105,7 @@ Begin
 	Set $value = $value $tmp
 	Set $index = (Add $index 1)
 	Set $tmp = (StrCopy $out $index $index)
-	If $index > 32000 Then
+	If $index > 3200 Then
 	    Set $tmp = {!}
     End
     ChangeTitle 957 $value
@@ -117,7 +117,7 @@ Begin
 	Set $value = $value $tmp
 	Set $index = (Add $index 1)
 	Set $tmp = (StrCopy $out $index $index)
-	If $index > 32000 Then
+	If $index > 3200 Then
 	    Set $tmp = {!}
     End
     Set $GF_CurrentTheme = $value
@@ -129,12 +129,12 @@ Begin
 	Set $value = $value $tmp
 	Set $index = (Add $index 1)
 	Set $tmp = (StrCopy $out $index $index)
-	If $index > 32000 Then
+	If $index > 3200 Then
 	    Set $tmp = {!}
     End
     Set $GF_ThemesWith = $value
     ChangeTitle 953 $GF_ThemesWith
-    If $index > 32000 Then
+    If $index > 3200 Then
     Begin
 	Do {Echo ConfigCenter: problems when loading themes config!}
 	Do {Echo ConfigCenter: can you send a bug report to:}
@@ -168,7 +168,7 @@ Begin
 	### Head
 	Set $locateSet = 1
 	ChangeTitle 1 {Fichier|thèmes Personels|Quitter}
-	ChangeTitle 2 {Global|Focus et Placement|Déplacement & Dimension|Pagination & Paramètres Souris|Fenètres Transitoires & Animation|Indications & Paramètres Avancés|Préférences ...}
+	ChangeTitle 2 {Général|Focus et Placement|Déplacement & Dimension|Pagination & Paramètres Souris|Fenètres Transitoires & Animation|Indications & Paramètres Avancés|Préférences ...}
 	ChangeTitle 3 {Racourcis|Clavier|Souris|Applications|Stroke|Préférences ...}
 	ChangeTitle 4 {Look|Bouttons|Couleurs|Styles du Menu|Styles des Fenètres|Curseurs|Préférences ...}
 	ChangeTitle 5 {Divers|Effets de Sons|Fond d'écran|Démarrage|Préférences ...}
@@ -185,18 +185,18 @@ Begin
 	ChangeTitle 17 {La "ColorMap" suit le Focus}
 	### Placement
 	ChangeTitle 18 { Placement des Fenètres }
-	ChangeTitle 19 { Placement intéligent s'il y de la place, aléatoires si non}
-	ChangeTitle 20 { Placement intéligent s'il y de la place, intéractif si non}
-	ChangeTitle 21 { On essaie toujours de placer intéligement les fenètres}
-	ChangeTitle 22 { Placement des fenètres toujours intéractifs}
-	ChangeTitle 23 { Placement des fenètres en "casacde" (jamais interactif)}
+	ChangeTitle 19 { Placement intelligent s'il y de la place, aléatoires si non}
+	ChangeTitle 20 { Placement intelligent s'il y de la place, intéractif si non}
+	ChangeTitle 21 { On essaie toujours de placer intelligemment les fenètres}
+	ChangeTitle 22 { Placement des fenètres toujours interactifs}
+	ChangeTitle 23 { Placement des fenètres en "cascade" (jamais interactif)}
 	ChangeTitle 24 { Options pour le Placement des Fenètres }
 	ChangeTitle 25 { Les nouvelles fenètres prennent le focus }
-	ChangeTitle 26 { On respecte les indications de positions donné par les nouvelles fenètres}
+	ChangeTitle 26 { On respecte les indications de positions données par les nouvelles fenètres}
 	### Move & Resize
-	ChangeTitle 30 { Déplacement et Redimensionement }
+	ChangeTitle 30 { Déplacement et Redimensionnement }
 	# No more than 25 characteres for 31, 32 and 33, be exact for 31
-	ChangeTitle 31 {Redimensionement:       }
+	ChangeTitle 31 {Redimensionnement:      }
 	ChangeTitle 32 {Opaque              }
 	ChangeTitle 33 {Avec des lignes     }
 	# be exact
@@ -208,14 +208,14 @@ Begin
 	ChangeTitle 38 {Centrée                }
 	ChangeTitle 39 {En Haut à gauche       }
 	ChangeTitle 40 {Cacher la fenètre de géometrie pour:      }
-	ChangeTitle 41 {Redimensionement       }
+	ChangeTitle 41 {Redimensionnement      }
 	ChangeTitle 42 {Déplacement            }
 	ChangeTitle 43 {Activer cette option seulment si les fenètres "flash" lors du déplacement}
 	# Snap attraction
 	ChangeTitle 44 {Attraction des Fenètres lors du Déplacement}
 	# 44 and 46 exactly the same size
 	ChangeTitle 45 {Distance:     }
-	ChangeTitle 47 {Context:      }
+	ChangeTitle 47 {Contexte:     }
 	ChangeTitle 48 {Icones & Fenètres|Même type|Fenètres|Icones|Icones, Fenètres & écran|Même type & écran|Fenètres & écran|Icones & écran}
 	# Slow server
 	ChangeTitle 49 {Grille d'attraction:      }
@@ -225,7 +225,7 @@ Begin
 #	ChangeTitle 57 {Une couleur:       }
 	Set $l_OneColor =  {Une couleur (pixels):     x}
 	Set $l_OnePixmap = {Un Pixmap (xpm):           }
-	Set $l_StartColorSel = {Pallette}
+	Set $l_StartColorSel = {Palette}
 	Set $l_StartImages = {Images}
 	ChangeTitle 59 $l_StartColorSel
 	### Pagination
@@ -236,15 +236,15 @@ Begin
 	ChangeTitle 64 {Pagination Verticale:         }
 	ChangeTitle 65 {Non active|100 %|90 %|75 %|66 %|50 %|33 %|25 %|10 %|5%}
 	ChangeTitle 66 {Pagination Ciculaire          }
-	ChangeTitle 67 {Delais avant le changement de page:                }
+	ChangeTitle 67 {Délais avant le changement de page:                }
 	ChangeTitle 69 {ms}
-	ChangeTitle 70 {Résitance pour changer de page une fenètre:        }
+	ChangeTitle 70 {Résistance pour changer de page une fenètre:       }
 	ChangeTitle 72 {pixels}
 	ChangeTitle 73 {Épaisseur des fenètres de pagination (si active):     }
 	ChangeTitle 75 {pixels}
 	### Mouse Parameters
 	ChangeTitle 76 {Paramètres pour la Souris}
-	ChangeTitle 77 {Delais maximum pour un double clique:           }
+	ChangeTitle 77 {Délais maximum pour un double clique:           }
 	ChangeTitle 79 {ms}
 	ChangeTitle 80 {Distance minimal pour un porté de souris:       }
 	ChangeTitle 82 {pixels}
@@ -258,7 +258,7 @@ Begin
 	# Animation speed
 	ChangeTitle 96 {Vitesse d'animations pour l'ombrage, les menus et les déplacements (non interactifs)}
 	ChangeTitle 97 {Nombre d'étapes pour l'ombrage:       }
-	ChangeTitle 99 { Animer l'interieur de la fenètre lors d'un ombrage                              }
+	ChangeTitle 99 { Animer l'intérieur de la fenètre lors d'un ombrage                              }
 	ChangeTitle 100 {Menus et Déplacements:         }
 	ChangeTitle 101 {Vitesse (ms):          }
 	ChangeTitle 103 {Liste des déplacements:          }
@@ -267,32 +267,32 @@ Begin
       	ChangeTitle 106 {Défault|Rapide|Immédiat|Lent|Lent/Rapide|Rapide/Lent}
 	### Hints
 	# no more that 39 characteres in title from 111 to 116
-	ChangeTitle 110 { Accèpter les Indications du type suivant: (dites oui a tout!)}
+	ChangeTitle 110 { Accèpter les Indications du type suivant: (dites oui à tout!)}
 	ChangeTitle 111 {Décores MWM}
 	ChangeTitle 112 {OLD}
-	ChangeTitle 113 {À l'exeption de l'ombrage}
+	ChangeTitle 113 {À l'exception de l'ombrage}
 	ChangeTitle 114 {Fonctions MWM}
 	ChangeTitle 115 {GNOME}
-	ChangeTitle 116 {À l'exeption des fenètres modales}
+	ChangeTitle 116 {À l'exception des fenètres modales}
 	### Busy cursor
 	ChangeTitle 117 {Afficher le curseur "je suis occupé" lors des commandes suivantes}
 	
 	### 
-	ChangeTitle 122 {Avancés: voir la page de manuel de fvwm2 (les défault sont bons!)}
+	ChangeTitle 122 {Avancés: voir la page de manuel de fvwm2 (les défauts sont bons!)}
 	ChangeTitle 123 {Limité le nombre de couleurs à:               }
 	ChangeTitle 127 {Temps accordé à un module pour obtenir une réponse:        }
 	### Preference
-	ChangeTitle 950 {Themes et Fichers}
-	Set $tmp = {Au démarrage la composente } $Component { courrante, provenant de "} $GF_CurrentTheme {", à été chargé}
+	ChangeTitle 950 {Thèmes et Fichers}
+	Set $tmp = {Au démarrage la composente } $Component { courrante, provenant de "} $GF_CurrentTheme {", a été chargé}
 	ChangeTitle 951 $tmp
 	ChangeTitle 952 {Charger la configuration de:        }
 	ChangeTitle 955 {Charger}
-	ChangeTitle 956 {Theme pour sauvé:        }
+	ChangeTitle 956 {Thème pour sauvé:        }
 	ChangeTitle 958 {En choisir un autre:            }
 	ChangeTitle 960 {OK}
 	ChangeTitle 961 {Préférences}
 	ChangeTitle 962 {"Essayer" s'applique à tout et pas seulement à la page courrante                          }
-	ChangeTitle 963 {"Default" recharge les defaults pour tout et pas seulement pour la page courrante         }
+	ChangeTitle 963 {"Défauts" recharge les défauts pour tout et pas seulement pour la page courrante           }
 	ChangeTitle 964 {"Sauver" s'applique à tout et pas seulement à la page courrant                            }
 	### end
 	Set $l_ConfigLoaded = {Configuration Chargée}
@@ -302,9 +302,9 @@ Begin
 	ChangeTitle 992 {Essayer}
 	Set $l_AppliedInternally = {Changement Appliqués Localement}
 	Set $l_AppliedExternally = {Changement Appliqués Globalement}
-	Set $l_NoEffectHere = {"Essayer" ne fait rien ici}
+	Set $l_NoEffectHere = {Ceci ne fait rien ici}
 	Set $l_Error = {Erreur:}
-	ChangeTitle 993 {Default}
+	ChangeTitle 993 {Défauts}
 	ChangeTitle 994 {Aide}
 	ChangeTitle 995 {Quitter}
     End
@@ -645,7 +645,7 @@ Begin
 		Set $value = $value $tmp
 		Set $index = (Add $index 1)
 		Set $tmp = (StrCopy $GF_Config $index $index)
-		If $index > 32000 Then
+		If $index > 3200 Then
 		    Set $tmp = {!}
 	    End
 	    ChangeTitle 35 $value
@@ -676,7 +676,7 @@ Begin
 		Set $value = $value $tmp
 		Set $index = (Add $index 1)
 		Set $tmp = (StrCopy $GF_Config $index $index)
-		If $index > 32000 Then
+		If $index > 3200 Then
 		    Set $tmp = {!}
 	    End
 	    ChangeTitle 46 $value
@@ -693,7 +693,7 @@ Begin
 		Set $value = $value $tmp
 		Set $index = (Add $index 1)
 		Set $tmp = (StrCopy $GF_Config $index $index)
-		If $index > 32000 Then
+		If $index > 3200 Then
 		    Set $tmp = {!}
 	    End
 	    ChangeTitle 51 $value
@@ -706,7 +706,7 @@ Begin
 		Set $value = $value $tmp
 		Set $index = (Add $index 1)
 		Set $tmp = (StrCopy $GF_Config $index $index)
-		If $index > 32000 Then
+		If $index > 3200 Then
 		    Set $tmp = {!}
 	    End
 	    ChangeTitle 53 $value
@@ -726,7 +726,7 @@ Begin
 		Set $value = $value $tmp
 		Set $index = (Add $index 1)
 		Set $tmp = (StrCopy $GF_Config $index $index)
-		If $index > 32000 Then
+		If $index > 3200 Then
 		    Set $tmp = {!}	
 	    End
 	    Set $GF_XorValue = $value
@@ -739,7 +739,7 @@ Begin
 		Set $value = $value $tmp
 		Set $index = (Add $index 1)
 		Set $tmp = (StrCopy $GF_Config $index $index)
-		If $index > 32000 Then
+		If $index > 3200 Then
 		    Set $tmp = {!}
 	    End
 	    Set $GF_XorPixmap = $value
@@ -784,7 +784,7 @@ Begin
 		Set $value = $value $tmp
 		Set $index = (Add $index 1)
 		Set $tmp = (StrCopy $GF_Config $index $index)
-		If $index > 32000 Then
+		If $index > 3200 Then
 		    Set $tmp = {!}
 	    End
 	    ChangeTitle 68 $value
@@ -796,7 +796,7 @@ Begin
 		Set $value = $value $tmp
 		Set $index = (Add $index 1)
 		Set $tmp = (StrCopy $GF_Config $index $index)
-		If $index > 32000 Then
+		If $index > 3200 Then
 		    Set $tmp = {!}
 	    End
 	    ChangeTitle 71 $value
@@ -813,7 +813,7 @@ Begin
 		Set $value = $value $tmp
 		Set $index = (Add $index 1)
 		Set $tmp = (StrCopy $GF_Config $index $index)
-		If $index > 32000 Then
+		If $index > 3200 Then
 		    Set $tmp = {!}
 	    End
 	    ChangeTitle 78 $value
@@ -826,7 +826,7 @@ Begin
 		Set $value = $value $tmp
 		Set $index = (Add $index 1)
 		Set $tmp = (StrCopy $GF_Config $index $index)
-		If $index > 32000 Then
+		If $index > 3200 Then
 		    Set $tmp = {!}
 	    End
 	    ChangeTitle 81 $value
@@ -863,7 +863,7 @@ Begin
 		Set $value = $value $tmp
 		Set $index = (Add $index 1)
 		Set $tmp = (StrCopy $GF_Config $index $index)
-		If $index > 32000 Then
+		If $index > 3200 Then
 		    Set $tmp = {!}		
 	    End
 	    ChangeTitle 98 $value
@@ -880,7 +880,7 @@ Begin
 		Set $value = $value $tmp
 		Set $index = (Add $index 1)
 		Set $tmp = (StrCopy $GF_Config $index $index)
-		If $index > 32000 Then
+		If $index > 3200 Then
 		    Set $tmp = {!}
 	    End
 	    ChangeTitle  102 $value
@@ -893,7 +893,7 @@ Begin
 		Set $value = $value $tmp
 		Set $index = (Add $index 1)
 		Set $tmp = (StrCopy $GF_Config $index $index)
-		If $index > 32000 Then
+		If $index > 3200 Then
 		    Set $tmp = {!}
 	    End
 	    ChangeTitle 104 $value
@@ -944,7 +944,7 @@ Begin
 	    ChangeValue 128 $tmp
 	End
 
-	If $index > 32000 Then
+	If $index > 3200 Then
 	Begin
 	    Do {Echo ConfigCenter: problems when loading globalfeel config!}
 	    Do {Echo ConfigCenter: can you send a bug report to:}
