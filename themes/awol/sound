@@ -14,4 +14,4 @@ DestroyModuleConfig FvwmEvent-Sound: *
 *FvwmEvent-Sound: error          "$FT_DATADIR/themes/awol/sounds/cannotsave.au"
 *FvwmEvent-Sound: iconify        "$FT_DATADIR/themes/awol/sounds/rubberband.wav"
 *FvwmEvent-Sound: deiconify      "$FT_DATADIR/themes/awol/sounds/boingiggig.wav"
-FvwmEvent-Sound: new_desk       "$FT_DATADIR/themes/awol/sounds/yesb.wav"
+*FvwmEvent-Sound: new_desk       "$FT_DATADIR/themes/awol/sounds/yesb.wav"

@@ -63,7 +63,7 @@ BUILD_MENUS = yes
 FT_DATADIR = ${ROOT_PREFIX}/usr/local/share/fvwm
 FT_FVWMFORM_DIR = ${FT_DATADIR}
 FT_FVWMSCRIPT_DIR = ${FT_DATADIR}
-FT_VERSION_INFO = FVWM Themes version 0.4.1 from nov 13 2000 at 12:33:06
+FT_VERSION_INFO = FVWM Themes version 0.4.1 from nov 13 2000 at 22:38:45
 FVWM_BINDIR = /usr/local/bin
 FVWM_CONFIG = /usr/local/bin/fvwm-config
 FVWM_DEFAULT_IMAGEPATH = /usr/include/X11/bitmaps:/usr/include/X11/pixmaps
@@ -81,7 +81,7 @@ ROOT_PREFIX =
 SETTINGS_FILE = ${FT_DATADIR}/themes/default/settings.cfg
 VERSION = 0.4.1
 
-EXTRA_DIST = FAQ README.1st colorsets
+EXTRA_DIST = FAQ README.1st colorsets creating-themes fvwm-themes.lsm
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =  fvwm-themes.lsm
 DIST_COMMON =  Makefile.am Makefile.in fvwm-themes.lsm.in
