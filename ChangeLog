@@ -1,3 +1,14 @@
+2000-01-03  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	implemented a new 'complements=component' rule mainly for extra;
+	I don't think we need 'precomplements'
+
+	* themes/default/theme.cfg:
+	* themes/*/modules.cfg:
+	removed not now needed dependances;
+	I will work on better names and removing repeating dependances later
+
 2000-01-02  migo  <migo@homemail.com>
 
 	* locale/ru/FvwmScript-ThemesCenter.html:

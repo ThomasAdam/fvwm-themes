@@ -1174,6 +1174,7 @@ sub getSortedComponentsToRead ($) {
 	my $precedes = {};
 	my $requires = {};
 	my $provides = {};
+	my $complements = {};
 	my $component;
 
 	# prepare components to be sorted
@@ -1183,6 +1184,12 @@ sub getSortedComponentsToRead ($) {
 		#olicha 1
 		next unless $cc->{'used'};		
 		next unless $cc->{'read-file'};
+		if (exists $cc->{'complements'}) {
+			my $mainComponent = $cc->{'complements'};
+			$complements->{$mainComponent} ||= [];
+			push @{$complements->{$mainComponent}}, $component;
+			next;
+		}
 		push @currentComponents, $component;
 		$precedes->{$component} = {};
 	}
@@ -1259,6 +1266,14 @@ sub getSortedComponentsToRead ($) {
 			}
 			last;
 		}
+	}
+
+	# implant complementing components into the sorted array
+	foreach $component (keys %$complements) {
+		my $index = getArrayElementIndex(\@currentComponents, $component);
+		errDie("Complemented component '$component' does not exist")
+			unless defined $index;
+		splice @currentComponents, $index + 1, 0, @{$complements->{$component}};
 	}
 
 	return \@currentComponents;
