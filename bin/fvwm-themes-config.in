@@ -1703,15 +1703,6 @@ sub setUsedFlags($) {
 		$isModified = 0 if ($step > 100);
 	}
 
-	if (0) {
-		print STDERR "STEP: $step\n";
-		foreach $component (sort keys %{$self->{'cc'}}) {
-			next if $component =~ /^_/;
-			my $cc = $self->getComponentCfg($component);
-			print STDERR "$component\@$cc->{'theme'}: $cc->{'used'}\n";
-		}
-	}
-
 	if ($self->isMinimalReload()) {
 		return;
 	}
@@ -3063,11 +3054,13 @@ sub comLoop {
 			foreach (@deleteVariant) { delete $variantToSet{$_} }
 			foreach (@deleteLock) { delete $componentToLock{$_} }
 			# reset
+			my %compToRemove = ();
 			foreach (@currentComponents) {
 				if (defined $self->{'cc'}->{$_}) {
 					my $cc = $self->getComponentCfg($_);
 					$cc->{'used'} = 1 if defined $cc->{used} && $cc->{used} > 0;
 					$cc->{'used'} = 0 if defined $cc->{used} && $cc->{used} < 0;
+					$compToRemove{$_} = 1 if defined $cc->{used} && $cc->{used} == 0;
 					$self->setComponentCfg($_, $cc);
 				}
 			}
@@ -3082,8 +3075,12 @@ sub comLoop {
 				}
 			}
 			$settingsConfig = $self->getAllSubComponents("default", "settings");
+			@currentComponents = ();
 			$tmp = $self->{$componentKey};
-			@currentComponents = sort @$tmp;
+			foreach (sort @$tmp) {
+				next if defined $compToRemove{$_};
+				push @currentComponents, $_;
+			}
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^options-variants\s+(.+)\s+(.+)\s+(\d+)$/) {
@@ -3896,7 +3893,7 @@ sub getScriptCurrentCompName($$$$$$$$) {
 			$set = 1 if defined $variantToSet->{"$theme/$comp/$c"};
 		}
 	}
-	$drop = ($comp =~ !/^(settings|colors$|menus)/ || $comp =~ /-extra$/)? 1 : 0;
+	$drop = ($comp !~ /^(settings|colors$|menus)/ || $comp =~ /-extra$/)? 1 : 0;
 	$r1 = $comp;
 	$r2 = $theme;
 	$r3 = $hasProperties . $set . $drop . $lock;
