@@ -7,6 +7,13 @@
 	* themes/brushedmetal/background:
 	added, I am not sure whether it is a good background for this theme
 
+	* themes/default/bindings:
+	* themes/default/theme.cfg:
+	* themes/nanogui/buttons:
+	* themes/nanogui/buttons.cfg:
+	* themes/brushedmetal/buttons:
+	added functions FuncFvwm{Set,Unset}TitleBindings in bindings@
+
 2001-04-13  migo  <migo@homemail.com>
 
 	* TODO: updated

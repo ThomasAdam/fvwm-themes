@@ -95,16 +95,8 @@ BuC Mouse 0 	BuN	CM	FuncFvwmShowButtonInfo "WindowShade:^n^tMouse 1 - true^n^tMo
 BdC Mouse 0 	BdN	CM	FuncFvwmShowButtonInfo "WindowShade:^n^tMouse 1 - false^n^tMouse 2 - true^n^tMouse 3 - toggle"
 BsC Mouse 0 	BsN	CM	FuncFvwmShowButtonInfo "Stick"
 # simulate title bindings on two edge buttons:
-BlC Mouse 1 	BlN	A	FuncFvwmMoveOrRaiseOrShade
-BlC Mouse 1 	BlN	C	FuncFvwmMoveOrRaiseLower
-BlC MouseXX 2 3	BlN	A	FuncFvwmMoveOrRaiseLower
-BlC MouseXX 3 2	BlN	A	Menu MenuFvwmWindowOps2
-BlC MouseXX 3 2	BlN	M	Menu MenuFvwmWindowOps
-BrC Mouse 1 	BrN	A	FuncFvwmMoveOrRaiseOrShade
-BrC Mouse 1 	BrN	C	FuncFvwmMoveOrRaiseLower
-BrC MouseXX 2 3	BrN	A	FuncFvwmMoveOrRaiseLower
-BrC MouseXX 3 2	BrN	A	Menu MenuFvwmWindowOps2
-BrC MouseXX 3 2	BrN	M	Menu MenuFvwmWindowOps
+BlC FuncFvwmSetTitleBindings BlN
+BrC FuncFvwmSetTitleBindings BrN
 
 DestroyFunc FuncFvwmStartWindowButtons
 AddToFunc   FuncFvwmStartWindowButtons
@@ -138,13 +130,5 @@ BuC + I Mouse 0 	BuN	CM	-
 BdC + I Mouse 0 	BdN	CM	-
 BsC + I Mouse 0 	BsN	CM	-
 #
-BlC + I Mouse 1 	BlN	A	-
-BlC + I Mouse 1 	BlN	C	-
-BlC + I Mouse 2 	BlN	A	-
-BlC + I Mouse 3 	BlN	A	-
-BlC + I MouseXX 3 2	BlN	M	-
-BrC + I Mouse 1 	BrN	A	-
-BrC + I Mouse 1 	BrN	C	-
-BrC + I Mouse 2 	BrN	A	-
-BrC + I Mouse 3 	BrN	A	-
-BrC + I MouseXX 3 2	BrN	M	-
+BlC + I FuncFvwmUnsetTitleBindings BlN
+BrC + I FuncFvwmUnsetTitleBindings BrN

@@ -47,11 +47,7 @@ Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Delete on click^nDestroy on double click"
 Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tpartially on click^n^tfully on double click^n^tvertically on hold^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally"
 Mouse 0 	6	CM	FuncFvwmShowButtonInfo "Iconify"
 # simulate title bindings on two edge buttons:
-Mouse 1 	38	A	FuncFvwmMoveOrRaiseOrShade  
-Mouse 1 	38	C	FuncFvwmMoveOrRaiseLower
-MouseXX 2 3	38	A	FuncFvwmMoveOrRaiseLower
-MouseXX 3 2	38	A	Menu MenuFvwmWindowOps2
-MouseXX 3 2	38	M	Menu MenuFvwmWindowOps
+FuncFvwmSetTitleBindings 38
 
 DestroyFunc FuncFvwmStartWindowButtons
 AddToFunc   FuncFvwmStartWindowButtons
@@ -74,8 +70,4 @@ AddToFunc   FuncFvwmStopWindowButtons
 + I Mouse 0 	2	CM	-
 + I Mouse 0 	4	CM	-
 + I Mouse 0 	6	CM	-
-+ I Mouse 1 	38	A	-
-+ I Mouse 1 	38	C	-
-+ I Mouse 2 	38	A	-
-+ I Mouse 3 	38	A	-
-+ I MouseXX 3 2	38	M	-
++ I FuncFvwmUnsetTitleBindings 38

@@ -48,6 +48,22 @@ AddToFunc   FuncFvwmWindowOpsOrAction
 #+ C Menu MenuFvwmWindowOps3
 #+ D $*
 
+DestroyFunc FuncFvwmSetTitleBindings
+AddToFunc   FuncFvwmSetTitleBindings
++ I Mouse 1 	$0	A	FuncFvwmMoveOrRaiseOrShade
++ I Mouse 1 	$0	C	FuncFvwmMoveOrRaiseLower
++ I MouseXX 2 3	$0	A	FuncFvwmMoveOrRaiseLower
++ I MouseXX 3 2	$0	A	Menu MenuFvwmWindowOps2
++ I MouseXX 3 2	$0	M	Menu MenuFvwmWindowOps
+
+DestroyFunc FuncFvwmUnsetTitleBindings
+AddToFunc   FuncFvwmUnsetTitleBindings
++ I Mouse 1 	$0	A	-
++ I Mouse 1 	$0	C	-
++ I MouseXX 2 3	$0	A	-
++ I MouseXX 3 2	$0	A	-
++ I MouseXX 3 2	$0	M	-
+
 # ---------------------------------------------------------------------------
 # Contexts:
 #     R = Root Window                 rrrrrrrrrrrrrrrrrrrrrr
@@ -174,12 +190,8 @@ MouseXX 2 3	R	SC	Module FvwmPager -transient FvwmPager-Desker 0 3
 # now in 'buttons' component
 
 # pointer in Window Decorations
-Mouse 1 	T	A	FuncFvwmMoveOrRaiseOrShade
+FuncFvwmSetTitleBindings TSF
 Mouse 1 	SF	A	FuncFvwmResizeOrRaiseOrShade
-Mouse 1 	TSF	C	FuncFvwmMoveOrRaiseLower
-MouseXX 2 3	TSF	A	FuncFvwmMoveOrRaiseLower
-MouseXX 3 2	TSF	A	Menu MenuFvwmWindowOps2
-MouseXX 3 2	TSF	M	Menu MenuFvwmWindowOps
 
 # pointer in Icon
 Mouse 1 	I	A	FuncFvwmMoveOrIconify
@@ -278,12 +290,8 @@ AddToFunc   FuncFvwmStopBindings
 + I MouseXX 3 2	R	A	-
 + I MouseXX 2 3	R	C	-
 + I MouseXX 2 3	R	SC	-
-+ I Mouse 1 	T	A	-
++ I FuncFvwmUnsetTitleBindings TSF
 + I Mouse 1 	SF	A	-
-+ I Mouse 1 	TSF	C	-
-+ I MouseXX 2 3	TSF	A	-
-+ I MouseXX 3 2	TSF	A	-
-+ I MouseXX 3 2	TSF	M	-
 + I Mouse 1 	I	A	-
 + I MouseXX 2 3	I	A	-
 + I MouseXX 3 2	I	A	-
