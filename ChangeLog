@@ -1,5 +1,10 @@
 2000-09-07  migo  <migo@homemail.com>
 
+	* themes/spruce/theme.cfg:
+	added needed file
+
+2000-09-07  migo  <migo@homemail.com>
+
 	* themes/redmond98/modules/main:FvwmButtons-Bar: s/cs11/cs13/g
 
 	* themes/{default,olicha,redmond98}/modules/main:FvwmTaskBar:
