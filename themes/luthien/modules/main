@@ -44,18 +44,20 @@ AddToFunc   FuncFvwmStopThemeModules
 
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "Default Modules" Title
-+ "&Buttons"        FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Bar
-+ "&Desker"         FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker
++ "%menu/item.xpm%&Buttons" FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Bar
++ "%menu/item.xpm%&Desker"  FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker
 + "" Nop
-+ "No normal icons" Style * NoIcon  # needed to use NoIcon modules
-+ "Normal icons"    Read themes/default/settings/iconstyles/style-icon-miniicon
-+ "&WinList"        FuncFvwmRestartModule FvwmWinList
++ "%menu/choice-no.xpm%No normal icons" \
+	Style * NoIcon  # needed to use NoIcon modules
++ "%menu/choice-yes.xpm%Normal icons"   \
+	Read themes/default/settings/iconstyles/style-icon-miniicon
++ "%menu/item.xpm%&WinList" FuncFvwmRestartModule FvwmWinList
 
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "Default Modules" Title
-+ "Stop &Buttons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Bar
-+ "Stop &Desker"   FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
-+ "Stop &WinList" KillModule FvwmWinList
++ "%menu/quit.xpm%Stop &Buttons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Bar
++ "%menu/quit.xpm%Stop &Desker"  FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
++ "%menu/quit.xpm%Stop &WinList" KillModule FvwmWinList
 
 # ----------------------------------------------------------------------------
 # Modules configuration

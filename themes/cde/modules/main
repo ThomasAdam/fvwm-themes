@@ -29,14 +29,14 @@ AddToFunc   FuncFvwmStopThemeModules
 
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "CDE Modules" Title
-+ "&Panel" FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Panel
++ "%menu/item.xpm%&Panel" FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Panel
 #+ "" Nop
-#+ "No normal icons" Style * NoIcon  # needed to use NoIcon modules
-#+ "Normal icons"    Read themes/default/settings/iconstyles/style-icon-miniicon
+#+ "%menu/choice-no.xpm%No normal icons" Style * NoIcon  # needed to use NoIcon modules
+#+ "%menu/choice-yes.xpm%Normal icons"   Read themes/default/settings/iconstyles/style-icon-miniicon
 
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "CDE Modules" Title
-+ "Stop &Panel" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Panel
++ "%menu/quit.xpm%Stop &Panel" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Panel
 
 # ----------------------------------------------------------------------------
 # Modules configuration

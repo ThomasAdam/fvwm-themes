@@ -4,6 +4,9 @@
 	s/Fvwm Configuration/Configuration/, this menu contains configuration
 	items for fvwm, fvwm-themes, X, wm-icons
 
+	* themes/*/modules/main:
+	added menu icons to "Theme Modules" menus
+
 2001-03-24  olicha  <olivier.chapuis@free.fr>
 
 	* themes/{olicha,luthien,redmond98}/menustyle:

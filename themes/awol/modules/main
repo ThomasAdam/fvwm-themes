@@ -44,17 +44,17 @@ AddToFunc   FuncFvwmStopThemeModules
 
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "Awol Modules" Title
-+ "Standard &Buttons"  		FuncFvwmButtonsSwitch FvwmButtons-Default
-+ "&Dali \& kLo Buttons"  	FuncFvwmButtonsSwitch FvwmButtons-DaLo
-+ "&Desker"      FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '-7 7'
-+ "" Nop
-+ "No normal icons" Style * NoIcon
-+ "Normal icons"    Read themes/default/settings/iconstyles/style-icon-miniicon
++ "%menu/item.xpm%Standard &Buttons"    FuncFvwmButtonsSwitch FvwmButtons-Default
++ "%menu/item.xpm%&Dali \& kLo Buttons" FuncFvwmButtonsSwitch FvwmButtons-DaLo
++ "%menu/item.xpm%&Desker" FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '-7 7'
+#+ "" Nop
+#+ "%menu/choice-no.xpm%No normal icons" Style * NoIcon
+#+ "%menu/choice-yes.xpm%Normal icons"   Read themes/default/settings/iconstyles/style-icon-miniicon
 
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "Awol Modules" Title
-+ "Stop &Buttons" KillModule FvwmButtons
-+ "Stop &Desker"  FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
++ "%menu/quit.xpm%Stop &Buttons" KillModule FvwmButtons
++ "%menu/quit.xpm%Stop &Desker"  FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
 
 #-----------------------------------------------------------------------------
 # Functions

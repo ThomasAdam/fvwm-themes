@@ -45,33 +45,35 @@ AddToFunc   FuncFvwmStopThemeModules
 
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "Migo Modules" Title
-+ "Compact Buttons" \
++ "%menu/item.xpm%Compact Buttons" \
 	FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Compact
 + "" Nop
-+ "Pager && Desker"   FuncFvwmStartMyPager \
++ "%menu/item.xpm%Pager && Desker"   FuncFvwmStartMyPager \
 	`FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Pager`
-+ "Pager only"  FuncFvwmStartMyPager \
++ "%menu/item.xpm%Pager only"  FuncFvwmStartMyPager \
 	`FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Single '* *'`
-+ "Desker only" FuncFvwmStartMyPager \
++ "%menu/item.xpm%Desker only" FuncFvwmStartMyPager \
 	`FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '0 3'`
 + "" Nop
-+ "No normal icons" Style * NoIcon  # needed to use NoIcon modules
-+ "Normal icons"    Read themes/default/settings/iconstyles/style-icon-miniicon
-+ "IconB&ox"        FuncFvwmRestartModule FvwmIconBox
-+ "Icon&Man"        FuncFvwmRestartModule FvwmIconMan
-+ "&TaskBar"        FuncFvwmRestartModule FvwmTaskBar
-+ "&WinList"        FuncFvwmRestartModule FvwmWinList
++ "%menu/choice-no.xpm%No normal icons" \
+	Style * NoIcon  # needed to use NoIcon modules
++ "%menu/choice-yes.xpm%Normal icons"   \
+	Read themes/default/settings/iconstyles/style-icon-miniicon
++ "%menu/item.xpm%IconB&ox"        FuncFvwmRestartModule FvwmIconBox
++ "%menu/item.xpm%Icon&Man"        FuncFvwmRestartModule FvwmIconMan
++ "%menu/item.xpm%&TaskBar"        FuncFvwmRestartModule FvwmTaskBar
++ "%menu/item.xpm%&WinList"        FuncFvwmRestartModule FvwmWinList
 
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "Migo Modules" Title
-+ "Stop Compact Buttons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Compact
++ "%menu/quit.xpm%Stop Compact Buttons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Compact
 + "" Nop
-+ "Stop Pager/Desker" FuncFvwmStopMyPager
++ "%menu/quit.xpm%Stop Pager/Desker" FuncFvwmStopMyPager
 + "" Nop
-+ "Stop IconB&ox" FuncFvwmStopModule FvwmIconBox
-+ "Stop Icon&Man" FuncFvwmStopModule FvwmIconMan
-+ "Stop &TaskBar" FuncFvwmStopModule FvwmTaskBar
-+ "Stop &WinList" FuncFvwmStopModule FvwmWinList
++ "%menu/quit.xpm%Stop IconB&ox" FuncFvwmStopModule FvwmIconBox
++ "%menu/quit.xpm%Stop Icon&Man" FuncFvwmStopModule FvwmIconMan
++ "%menu/quit.xpm%Stop &TaskBar" FuncFvwmStopModule FvwmTaskBar
++ "%menu/quit.xpm%Stop &WinList" FuncFvwmStopModule FvwmWinList
 
 DestroyFunc FuncFvwmStopMyPager
 AddToFunc   FuncFvwmStopMyPager

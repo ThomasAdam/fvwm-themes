@@ -40,24 +40,26 @@ AddToFunc   FuncFvwmStopThemeModules
 
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "Default Modules" Title
-+ "&Buttons"        FuncFvwmRestartModule FvwmButtons
-+ "&Desker"         FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '0 3'
++ "%menu/item.xpm%&Buttons"        FuncFvwmRestartModule FvwmButtons
++ "%menu/item.xpm%&Desker"         FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '0 3'
 + "" Nop
-+ "No normal icons" Style * NoIcon  # needed to use NoIcon modules
-+ "Normal icons"    Read themes/default/settings/iconstyles/style-icon-miniicon
-+ "IconB&ox"        FuncFvwmRestartModule FvwmIconBox
-+ "Icon&Man"        FuncFvwmRestartModule FvwmIconMan
-+ "&TaskBar"        FuncFvwmRestartModule FvwmTaskBar
-+ "&WinList"        FuncFvwmRestartModule FvwmWinList
++ "%menu/choice-no.xpm%No normal icons" \
+	Style * NoIcon  # needed to use NoIcon modules
++ "%menu/choice-yes.xpm%Normal icons"   \
+	Read themes/default/settings/iconstyles/style-icon-miniicon
++ "%menu/item.xpm%IconB&ox"        FuncFvwmRestartModule FvwmIconBox
++ "%menu/item.xpm%Icon&Man"        FuncFvwmRestartModule FvwmIconMan
++ "%menu/item.xpm%&TaskBar"        FuncFvwmRestartModule FvwmTaskBar
++ "%menu/item.xpm%&WinList"        FuncFvwmRestartModule FvwmWinList
 
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "Default Modules" Title
-+ "Stop &Buttons" KillModule FvwmButtons
-+ "Stop &Desker"  KillModule FvwmPager FvwmPager-Desker
-+ "Stop IconB&ox" KillModule FvwmIconBox
-+ "Stop Icon&Man" KillModule FvwmIconMan
-+ "Stop &TaskBar" KillModule FvwmTaskBar
-+ "Stop &WinList" KillModule FvwmWinList
++ "%menu/quit.xpm%Stop &Buttons" KillModule FvwmButtons
++ "%menu/quit.xpm%Stop &Desker"  KillModule FvwmPager FvwmPager-Desker
++ "%menu/quit.xpm%Stop IconB&ox" KillModule FvwmIconBox
++ "%menu/quit.xpm%Stop Icon&Man" KillModule FvwmIconMan
++ "%menu/quit.xpm%Stop &TaskBar" KillModule FvwmTaskBar
++ "%menu/quit.xpm%Stop &WinList" KillModule FvwmWinList
 
 # ----------------------------------------------------------------------------
 # Modules configuration

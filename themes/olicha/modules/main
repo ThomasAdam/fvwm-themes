@@ -66,51 +66,51 @@ AddToFunc   FuncFvwmStopThemeModules
 
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "OliCha Modules" Title
-+ "&Application Panel" 	FuncFvwmRestartModuleByAlias \
++ "%menu/item.xpm%&Application Panel" FuncFvwmRestartModuleByAlias \
 	FvwmButtons FvwmButtons-StartApps
-+ "&Pager \& Desker"    FuncFvwmRestartModuleByAlias \
++ "%menu/item.xpm%&Pager \& Desker"   FuncFvwmRestartModuleByAlias \
 	FvwmButtons FvwmButtons-Pager
-+ "Window &Ops Panel"   FuncFvwmRestartModuleByAlias \
++ "%menu/item.xpm%Window &Ops Panel"  FuncFvwmRestartModuleByAlias \
 	FvwmButtons FvwmButtons-StartWinOps
 + "" Nop
-+ "Choose One ..."      Popup   MenuFvwmStartAppletsModules
-+ "Choose One ..."      Popup   MenuFvwmStartAppsManagerModules
++ "%menu/modules.xpm%Choose One ..."  Popup MenuFvwmStartAppletsModules
++ "%menu/modules.xpm%Choose One ..."  Popup MenuFvwmStartAppsManagerModules
 
 DestroyMenu MenuFvwmStartAppletsModules
 AddToMenu   MenuFvwmStartAppletsModules "Applet Buttons" Title
-+ "&WMaker	Applets"	FuncFvwmChangeApplets FvwmButtons-WMakerApplets
-+ "&Fvwm	Applets"	FuncFvwmChangeApplets FvwmButtons-FvwmApplets
++ "%menu/item.xpm%&WMaker	Applets" FuncFvwmChangeApplets FvwmButtons-WMakerApplets
++ "%menu/item.xpm%&FVWM 	Applets" FuncFvwmChangeApplets FvwmButtons-FvwmApplets
 
 DestroyMenu MenuFvwmStartAppsManagerModules
 AddToMenu   MenuFvwmStartAppsManagerModules "Apps Manager" Title
-+ "Desk TaskBar" 	FuncFvwmChangeWinMan FuncFvwmTaskBarDesk
-+ "Global TaskBar"	FuncFvwmChangeWinMan FuncFvwmTaskBarGlobal
++ "%menu/item.xpm%Desk TaskBar" 	FuncFvwmChangeWinMan FuncFvwmTaskBarDesk
++ "%menu/item.xpm%Global TaskBar"	FuncFvwmChangeWinMan FuncFvwmTaskBarGlobal
 + "" Nop
-+ "Page IconMan"	FuncFvwmChangeWinMan FuncFvwmIconManPage
-+ "Desk IconMan"	FuncFvwmChangeWinMan FuncFvwmIconManDesk
-+ "Global IconMan"	FuncFvwmChangeWinMan FuncFvwmIconManGlobal
++ "%menu/item.xpm%Page IconMan"	FuncFvwmChangeWinMan FuncFvwmIconManPage
++ "%menu/item.xpm%Desk IconMan"	FuncFvwmChangeWinMan FuncFvwmIconManDesk
++ "%menu/item.xpm%Global IconMan"	FuncFvwmChangeWinMan FuncFvwmIconManGlobal
 + "" Nop
-+ "Desk WinList"	FuncFvwmChangeWinMan FuncFvwmWinListDesk
-+ "Global WinList"	FuncFvwmChangeWinMan FuncFvwmWinListGlobal
++ "%menu/item.xpm%Desk WinList"	FuncFvwmChangeWinMan FuncFvwmWinListDesk
++ "%menu/item.xpm%Global WinList"	FuncFvwmChangeWinMan FuncFvwmWinListGlobal
 + "" Nop
-+ "Desk IconBox"	FuncFvwmChangeWinMan FuncFvwmIconBoxDesk
-+ "Global IconBox"	FuncFvwmChangeWinMan FuncFvwmIconBoxGlobal
++ "%menu/item.xpm%Desk IconBox"	FuncFvwmChangeWinMan FuncFvwmIconBoxDesk
++ "%menu/item.xpm%Global IconBox"	FuncFvwmChangeWinMan FuncFvwmIconBoxGlobal
 + "" Nop
-+ "Only Normal Icons" 	FuncFvwmChangeWinMan FuncFvwmSlipperyIcons
-+ "Add Normal Icons"	FuncFvwmAddSlipperyIcons
++ "%menu/item.xpm%Only Normal Icons" 	FuncFvwmChangeWinMan FuncFvwmSlipperyIcons
++ "%menu/item.xpm%Add Normal Icons"	FuncFvwmAddSlipperyIcons
 
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "OliCha Modules" Title
-+ "Stop &Application Panel"	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-StartApps
-+ "Stop &Pager \& Desker"	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Pager
-+ "Stop &WMaker Applets"	FuncFvwmStopWMakerButtons
-+ "Stop &X Applets"		FuncFvwmStopXappletsButtons
-+ "Stop Windows &Ops Panel"	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-StartWinOps
++ "%menu/quit.xpm%Stop &Application Panel" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-StartApps
++ "%menu/quit.xpm%Stop &Pager \& Desker"   FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Pager
++ "%menu/quit.xpm%Stop &WMaker Applets"    FuncFvwmStopWMakerButtons
++ "%menu/quit.xpm%Stop &X Applets"         FuncFvwmStopXappletsButtons
++ "%menu/quit.xpm%Stop Windows &Ops Panel" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-StartWinOps
 + "" Nop
-+ "Stop TaskBar"	FuncFvwmStopModule FvwmTaskBar
-+ "Stop IconMan"	FuncFvwmStopModule FvwmIconMan
-+ "Stop WinList"	FuncFvwmStopModule FvwmWinList
-+ "Stop IconBox"	FuncFvwmStopModule FvwmIconBox
++ "%menu/quit.xpm%Stop TaskBar"	FuncFvwmStopModule FvwmTaskBar
++ "%menu/quit.xpm%Stop IconMan"	FuncFvwmStopModule FvwmIconMan
++ "%menu/quit.xpm%Stop WinList"	FuncFvwmStopModule FvwmWinList
++ "%menu/quit.xpm%Stop IconBox"	FuncFvwmStopModule FvwmIconBox
 
 # ----------------------------------------------------------------------------
 # Applications Manager Switch functions

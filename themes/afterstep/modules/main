@@ -41,20 +41,21 @@ AddToFunc   FuncFvwmStopThemeModules
 # Theme module menus
 
 DestroyMenu MenuFvwmStartThemeModules
-AddToMenu   MenuFvwmStartThemeModules "Default Modules" Title
-+ "&AS Buttons"     FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-AsBar
-+ "&Desker"         FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '0 3'
-+ "Icon&Man"        FuncFvwmRestartModule FvwmIconMan
+AddToMenu   MenuFvwmStartThemeModules "AfterStep Modules" Title
++ "%menu/item.xpm%&AS Buttons"     FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-AsBar
++ "%menu/item.xpm%&Desker"         FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '0 3'
++ "%menu/item.xpm%Icon&Man"        FuncFvwmRestartModule FvwmIconMan
 + "" Nop
-+ "No normal icons" Style * NoIcon
-+ "Normal icons"    Read options/current/iconstyles
-
++ "%menu/choice-no.xpm%No normal icons" \
+	Style * NoIcon  # needed to use NoIcon modules
++ "%menu/choice-yes.xpm%Normal icons"   \
+	Read themes/default/settings/iconstyles/style-icon-miniicon
 
 DestroyMenu MenuFvwmStopThemeModules
-AddToMenu   MenuFvwmStopThemeModules "Default Modules" Title
-+ "Stop &Buttons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-AsBar
-+ "Stop &Desker"  FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
-+ "Stop Icon&Man" FuncFvwmStopModule FvwmIconMan
+AddToMenu   MenuFvwmStopThemeModules "AfterStep Modules" Title
++ "%menu/quit.xpm%Stop &Buttons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-AsBar
++ "%menu/quit.xpm%Stop &Desker"  FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
++ "%menu/quit.xpm%Stop Icon&Man" FuncFvwmStopModule FvwmIconMan
 
 # ----------------------------------------------------------------------------
 # Modules configuration

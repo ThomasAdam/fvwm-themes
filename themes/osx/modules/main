@@ -50,24 +50,27 @@ AddToFunc   FuncFvwmStopThemeModules
 
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "Osx Modules" Title
-+ "&Menu Bar"      FuncFvwmRestartModuleByAlias \
++ "%menu/item.xpm%&Menu Bar"        FuncFvwmRestartModuleByAlias \
 	FvwmButtons FvwmButtons-MenuBar
-+ "&Central Buttons"  FuncFvwmRestartModuleByAlias \
++ "%menu/item.xpm%&Central Buttons" FuncFvwmRestartModuleByAlias \
 	FvwmButtons FvwmButtons-OsxCentral
-+ "&Apps Bar"      FuncFvwmRestartModuleByAlias \
++ "%menu/item.xpm%&Apps Bar"        FuncFvwmRestartModuleByAlias \
 	FvwmButtons FvwmButtons-OsxApps
-+ "App&lets Panel" FuncFvwmRestartModuleByAlias \
++ "%menu/item.xpm%App&lets Panel"   FuncFvwmRestartModuleByAlias \
 	FvwmButtons FvwmButtons-OsxStartApplets
-+ "WinList" FuncFvwmRestartModule FvwmWinList
++ "%menu/item.xpm%WinList"          FuncFvwmRestartModule FvwmWinList
 
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "Osx Modules" Title
-+ "Stop &Menu Bar" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-MenuBar
-+ "Stop &Central Buttons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxCentral
-+ "Stop &Apps Bar" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxApps
-+ "Stop App&lets Panel" \
++ "%menu/quit.xpm%Stop &Menu Bar" \
+	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-MenuBar
++ "%menu/quit.xpm%Stop &Central Buttons" \
+	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxCentral
++ "%menu/quit.xpm%Stop &Apps Bar" \
+	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxApps
++ "%menu/quit.xpm%Stop App&lets Panel" \
 	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxStartApplets
-+ "Stop WinList" KillModule FvwmWinList
++ "%menu/quit.xpm%Stop WinList" KillModule FvwmWinList
 
 # ----------------------------------------------------------------------------
 # Modules configuration

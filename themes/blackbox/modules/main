@@ -41,13 +41,13 @@ AddToFunc   FuncFvwmStopThemeModules
 
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "BlackBox Modules" Title
-+ "&XXButtons" 	FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-XX
-+ "&Desker"     FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '0 3'
++ "%menu/item.xpm%&XXButtons" FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-XX
++ "%menu/item.xpm%&Desker"    FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '0 3'
 
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "BlackBox Modules" Title
-+ "Stop &XXButtons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-XX
-+ "Stop &Desker"    FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
++ "%menu/quit.xpm%Stop &XXButtons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-XX
++ "%menu/quit.xpm%Stop &Desker"    FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
 
 # ----------------------------------------------------------------------------
 # Modules configuration

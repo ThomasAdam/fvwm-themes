@@ -45,17 +45,19 @@ AddToFunc   FuncFvwmStopThemeModules
 
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "Redmond98 Modules" Title
-+ "&Button Bar"		FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Bar
-+ "&Pager Panel"	FuncFvwmRestartModuleByAlias \
++ "%menu/item.xpm%&Button Bar"  FuncFvwmRestartModuleByAlias \
+	FvwmButtons FvwmButtons-Bar
++ "%menu/item.xpm%&Pager Panel" FuncFvwmRestartModuleByAlias \
 	FvwmButtons FvwmButtons-Pager
-+ "&TaskBar"		FuncFvwmRestartModule FvwmTaskBar
++ "%menu/item.xpm%&TaskBar"     FuncFvwmRestartModule FvwmTaskBar
 
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "Redmond98 Modules" Title
-+ "Stop Button Bar"	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Bar
-+ "Stop Pager Panel"	FuncFvwmStopModuleByAlias \
++ "%menu/quit.xpm%Stop Button Bar"  FuncFvwmStopModuleByAlias \
+	FvwmButtons FvwmButtons-Bar
++ "%menu/quit.xpm%Stop Pager Panel" FuncFvwmStopModuleByAlias \
 	FvwmButtons FvwmButtons-Pager
-+ "Stop TaskBar"	KillModule FvwmTaskBar
++ "%menu/quit.xpm%Stop TaskBar"	    KillModule FvwmTaskBar
 
 # ----------------------------------------------------------------------------
 # Modules configuration
