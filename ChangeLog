@@ -1,5 +1,15 @@
 2000-10-07  olicha  <olivier.chapuis@free.fr>
 
+	* themes/luthien/modules/winlist/{GlobalWinList,DeskWinList,disabled}:
+	* themes/luthien/modules.cfg:
+	new files for winlist options.
+	
+	* bin/fvwm-themes-config.in (man page, comLoop):
+	Move the com options at the end of the man page and begin the 
+	implementation of Lock for the Themes Center
+	
+2000-10-07  olicha  <olivier.chapuis@free.fr>
+
 	* bin/fvwm-themes-config.in (comLoop):
 	Fixed problems with options and variants.
 
