@@ -27,9 +27,7 @@ install-data-local:
 	mv -f $(SETTINGS_FILE).tmp $(SETTINGS_FILE)
 
 	$(bindir)/fvwm-themes-config --site --reset
-#	# I see no reason to remove Popup ~ with MissingSubmenuFunc.
-#	$(bindir)/fvwm-themes-menuapp --site --build-menus --remove-popup
-	$(bindir)/fvwm-themes-menuapp --site --build-menus
+	$(bindir)/fvwm-themes-menuapp --site --build-menus --remove-popup
 
 	if test "$(GNOME_ICONS)" = "yes"; then \
 		$(bindir)/fvwm-themes-images --ft-install; \

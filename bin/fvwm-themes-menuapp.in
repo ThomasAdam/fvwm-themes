@@ -946,18 +946,17 @@ sub addItemstrMenu {
 	$strMenu{$menu}[$index]{workingdir} = $workingdir;
 	$strMenu{$menu}[$index]{checkaction} = $checkaction;
 	$strMenu{$menu}[$index]{windowtitle} = $windowtitle;
-	$strMenu{$menu}[$index]{group} = 
-		getGroupByMenuName($menu);
+	$strMenu{$menu}[$index]{group} =  getGroupByMenuName($menu);
 	if ($buildMenus && 
-		!(($type eq "Popup" || $type eq "Menu") && 
-		 !getGroupByMenuName($useraction) && !$removePopup)) {
+		(!($type eq "Popup" || $type eq "Menu") ||
+		 (defined(getGroupByMenuName($useraction)) && $removePopup))) {
 		$strMenu{$menu}[$index]{active} = 0;
 	} else {
 		$strMenu{$menu}[$index]{active} = 1;
 	}
 	$strMenu{$menu}[$index]{file} = $file;
 	$strMenu{$menu}[$index]{linenbr} = $linenbr;
-	
+  
 }
 	
 # ----------------------------------------------------------------------------
