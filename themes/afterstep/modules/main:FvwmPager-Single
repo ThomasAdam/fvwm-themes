@@ -14,7 +14,7 @@ AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
 + "&Up  	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p -1p
 
 
-DestroyModuleConfig FvwmPager-Single*
+DestroyModuleConfig FvwmPager-Single: *
 *FvwmPager-Single: Columns 1
 
 *FvwmPager-Single: Colorset * 14

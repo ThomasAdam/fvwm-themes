@@ -19,7 +19,7 @@ esyscmd({{awk '{ print "define(CDE_COLOR" (NR <= 8? NR "_BG": (NR - 8) "_FG") ",
 	bg CDE_COLOR2_BG, Plain, NoShape
 
 DefaultColorset 0
-DestroyModuleConfig FvwmScrollColorset*
+DestroyModuleConfig FvwmScroll: Colorset*
 *FvwmScroll: Colorset 0
 
 # ------------------
@@ -135,7 +135,7 @@ MenuStyle * ActiveFore, HilightBack
 *FvwmTheme: Colorset 21 fg CDE_COLOR6_FG, \
 	bg CDE_COLOR6_BG, Plain, NoShape
 
-DestroyModuleConfig FvwmIdent*
+DestroyModuleConfig FvwmIdent: *
 *FvwmIdent: Colorset 21
 
 # FvwmConsole
@@ -165,7 +165,7 @@ DestroyModuleConfig FvwmIdent*
 *FvwmTheme: Colorset 34 fg CDE_COLOR4_FG, \
 	bg CDE_COLOR4_BG, Plain, NoShape
 
-DestroyModuleConfig FvwmFormDefaultItemColorset*
+DestroyModuleConfig FvwmFormDefault: ItemColorset*
 *FvwmFormDefault: ItemColorset 34
 
 # Application run in a terminal, text file of an editor for xres ...
@@ -176,9 +176,9 @@ DestroyModuleConfig FvwmFormDefaultItemColorset*
 *FvwmTheme: Colorset 36 fg CDE_COLOR6_FG, \
 	bg CDE_COLOR6_BG, Plain, NoShape
 
-DestroyModuleConfig FvwmScriptDefaultColorset*
+DestroyModuleConfig FvwmScript: DefaultColorset*
 *FvwmScript: DefaultColorset 36
-DestroyModuleConfig FvwmFormDefaultColorset*
+DestroyModuleConfig FvwmFormDefault: Colorset*
 *FvwmFormDefault: Colorset 36
 
 # ----------------------------------------------------------------------------
@@ -186,6 +186,38 @@ DestroyModuleConfig FvwmFormDefaultColorset*
 
 DestroyFunc FuncFvwmStartColors
 AddToFunc   FuncFvwmStartColors
++ I AddToMenu MenuFvwmConfiguration
++ I + "Show Current Palette" FvwmButtons FvwmButtons-ColourTable
++ I Style FvwmButtons-ColourTable HandleWidth 2, Title, TitleAtTop
++ I Key F2 A SC Module FvwmButtons FvwmButtons-ColourTable
 
 DestroyFunc FuncFvwmStopColors
 AddToFunc   FuncFvwmStopColors
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-ColourTable
++ I DestroyModuleConfig FvwmButtons-ColourTable: *
++ I DestroyStyle FvwmButtons-ColourTable
++ I Key F2 A SC -
+
+*FvwmButtons-ColourTable: Frame       0
+#*FvwmButtons-ColourTable: Geometry    260x36+0+0
+*FvwmButtons-ColourTable: Geometry    324x44
+*FvwmButtons-ColourTable: Rows        1
+*FvwmButtons-ColourTable: Columns     8
+*FvwmButtons-ColourTable: BoxSize     fixed
+*FvwmButtons-ColourTable: Padding     0 0
+*FvwmButtons-ColourTable: (Title [1], Back CDE_COLOR1_BG, \
+	Fore CDE_COLOR1_FG)
+*FvwmButtons-ColourTable: (Title [2], Back CDE_COLOR2_BG, \
+	Fore CDE_COLOR2_FG)
+*FvwmButtons-ColourTable: (Title [3], Back CDE_COLOR3_BG, \
+	Fore CDE_COLOR3_FG)
+*FvwmButtons-ColourTable: (Title [4], Back CDE_COLOR4_BG, \
+	Fore CDE_COLOR4_FG)
+*FvwmButtons-ColourTable: (Title [5], Back CDE_COLOR5_BG, \
+	Fore CDE_COLOR5_FG)
+*FvwmButtons-ColourTable: (Title [6], Back CDE_COLOR6_BG, \
+	Fore CDE_COLOR6_FG)
+*FvwmButtons-ColourTable: (Title [7], Back CDE_COLOR7_BG, \
+	Fore CDE_COLOR7_FG)
+*FvwmButtons-ColourTable: (Title [8], Back CDE_COLOR8_BG, \
+	Fore CDE_COLOR8_FG)

@@ -24,10 +24,10 @@ AddToFunc   FuncFvwmStopThemeModules
 + I KillModule FvwmButtons
 + I KillModule FvwmPager
 + I KillModule FvwmIconMan
-+ I DestroyModuleConfig FvwmButtons-XX*
-+ I DestroyModuleConfig FvwmPager-Single*
-+ I DestroyModuleConfig FvwmPager-Desker*
-+ I DestroyModuleConfig FvwmIconMan*
++ I DestroyModuleConfig FvwmButtons-XX: *
++ I DestroyModuleConfig FvwmPager-Single: *
++ I DestroyModuleConfig FvwmPager-Desker: *
++ I DestroyModuleConfig FvwmIconMan: *
 + I DestroyFunc FuncFvwmStartChosenIconMan
 + I DestroyFunc FuncFvwmStartChosenButtons
 + I DestroyFunc FuncFvwmStartChosenPager

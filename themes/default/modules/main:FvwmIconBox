@@ -1,7 +1,7 @@
 Style "FvwmIconBox" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
 	NoHandles, TitleAtTop
 
-DestroyModuleConfig FvwmIconBox*
+DestroyModuleConfig FvwmIconBox: *
 *FvwmIconBox: Geometry +0+0
 
 *FvwmIconBox: Colorset   12

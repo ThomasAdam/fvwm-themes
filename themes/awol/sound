@@ -1,4 +1,4 @@
-DestroyModuleConfig FvwmEvent-Sound*
+DestroyModuleConfig FvwmEvent-Sound: *
 
 *FvwmEvent-Sound: Delay 0
 *FvwmEvent-Sound: StartDelay 0

@@ -28,10 +28,10 @@ DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmStopMyPager
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Compact
-+ I DestroyModuleConfig FvwmButtons-Compact*
-+ I DestroyModuleConfig FvwmButtons-Pager*
-+ I DestroyModuleConfig FvwmPager-Single*
-+ I DestroyModuleConfig FvwmPager-Desker*
++ I DestroyModuleConfig FvwmButtons-Compact: *
++ I DestroyModuleConfig FvwmButtons-Pager: *
++ I DestroyModuleConfig FvwmPager-Single: *
++ I DestroyModuleConfig FvwmPager-Desker: *
 + I DestroyFunc FuncFvwmStartMyPager
 + I DestroyFunc FuncFvwmStopMyPager
 + I DestroyFunc FuncFvwmSwitchBarIconSet

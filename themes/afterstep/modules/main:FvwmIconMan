@@ -1,4 +1,4 @@
-DestroyModuleConfig FvwmIconMan*
+DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: *numManagers 1
 *FvwmIconMan: *resolution desk
 

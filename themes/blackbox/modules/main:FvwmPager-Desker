@@ -1,7 +1,7 @@
 Style FvwmPager-Desker NoTitle, NoHandles, Sticky, WindowListSkip, \
 	NoLenience, BorderWidth 1, TitleAtTop
 
-DestroyModuleConfig FvwmPager-Desker*
+DestroyModuleConfig FvwmPager-Desker: *
 
 *FvwmPager-Desker: Colorset * 14
 *FvwmPager-Desker: HilightColorset * 15

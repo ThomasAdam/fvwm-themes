@@ -12,7 +12,7 @@ AddToFunc   FuncFvwmIconFocusAndOptions
 + I Focus NoWarp
 + I Popup MenuFvwmWindowOps2 Mouse c -102m
 
-DestroyModuleConfig FvwmIconMan*
+DestroyModuleConfig FvwmIconMan: *
 ### migo: the first and last config lines cause core dump...
 ### olicha: I've uncommented the last line ...
 # it should be 0x1+0-0 anyway

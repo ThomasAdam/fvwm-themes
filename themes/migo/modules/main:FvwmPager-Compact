@@ -1,7 +1,7 @@
 Style FvwmPager-Compact NoTitle, NoHandles, Sticky, WindowListSkip, \
 	NoLenience, TitleAtTop
 
-DestroyModuleConfig FvwmPager-Compact*
+DestroyModuleConfig FvwmPager-Compact: *
 
 *FvwmPager-Compact: Colorset * 14
 *FvwmPager-Compact: HilightColorset * 15

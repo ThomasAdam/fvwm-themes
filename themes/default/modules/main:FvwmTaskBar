@@ -1,6 +1,6 @@
 Style "FvwmTaskBar" NoTitle, Sticky, WindowListSkip, CirculateSkip, TitleAtTop
 
-DestroyModuleConfig FvwmTaskBar*
+DestroyModuleConfig FvwmTaskBar: *
 *FvwmTaskBar: Geometry +0+0
 
 *FvwmTaskBar: Colorset 17

@@ -1,7 +1,7 @@
 Style "FvwmIconMan" NoTitle, WindowListSkip, Sticky, StaysOnTop, \
 	NoHandles, BorderWidth 0
 
-DestroyModuleConfig FvwmIconMan*
+DestroyModuleConfig FvwmIconMan: *
 
 *FvwmIconMan: *colorset		12
 *FvwmIconMan: *iconcolorset	19

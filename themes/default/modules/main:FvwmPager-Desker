@@ -1,7 +1,7 @@
 Style "FvwmPager-Desker" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
 	NoHandles, NoLenience, TitleAtTop
 
-DestroyModuleConfig FvwmPager-Desker*
+DestroyModuleConfig FvwmPager-Desker: *
 *FvwmPager-Desker: Geometry -0+100
 *FvwmPager-Desker: DeskTopScale 32
 *FvwmPager-Desker: Columns 1

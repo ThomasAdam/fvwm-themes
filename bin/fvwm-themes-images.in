@@ -1612,7 +1612,11 @@ sub encode16bpp($) {
 		$c = int2hex($3);
 		return "#$a$a$b$b$c$c";
 	}
-	elsif ($color =~ /^\s*#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/) {
+	elsif ($color =~ m!^rgb:([a-f\d]{2,4})/([a-f\d]{2,4})/([a-f\d]{2,4})$!i) {
+		return "#$1$2$3" if length($1) == 4;
+		return "#$1$1$2$2$3$3";
+	}
+	elsif ($color =~ /^#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/) {
 		return "#$1$1$2$2$3$3";
 	}
 	elsif ($color =~/^#[0-9a-fA-F]{12}$/) {
@@ -1642,7 +1646,7 @@ sub encode16bpp($) {
 		return $rgb{"$color"} if (defined $rgb{"$color"});
 	}
 
-	warn "unknown color $color, set it to black\n";
+	warn "Unknown color $color, set it to black.\n";
 	return "#000000000000";
 }
 

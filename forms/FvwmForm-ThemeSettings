@@ -1,7 +1,7 @@
 #---------------------------------------------------------------------------#
 #            FvwmForm-ThemeSettings   by Alex Wallis   awol@dove.net.au
 #---------------------------------------------------------------------------#
-DestroyModuleConfig FvwmForm-ThemeSettings*
+DestroyModuleConfig FvwmForm-ThemeSettings: *
 
 *FvwmForm-ThemeSettings: WarpPointer
 *FvwmForm-ThemeSettings: PadVText 0

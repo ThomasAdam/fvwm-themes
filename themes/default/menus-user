@@ -94,7 +94,7 @@ PipeRead 'fvwm-menu-xlock --name MenuFvwmScreenLockModes  --title "Screen Lock M
 # ----------------------------------------------------------------------------
 # ---------- WindowManager
 
-DestroyModuleConfig FvwmForm-Restart*
+DestroyModuleConfig FvwmForm-Restart: *
 *FvwmForm-Restart: WarpPointer
 *FvwmForm-Restart: Line	left
 *FvwmForm-Restart: Text	"Window Manager command"

@@ -19,7 +19,7 @@ AddToMenu    MenuFvwmWindowGroupOps
 Style FvwmPager-Single NoTitle, NoHandles, Sticky, WindowListSkip, \
 	NoLenience, TitleAtTop
 
-DestroyModuleConfig FvwmPager-Single*
+DestroyModuleConfig FvwmPager-Single: *
 *FvwmPager-Single: Geometry 100x90+0+0
 *FvwmPager-Single: Rows 1
 *FvwmPager-Single: Columns 1

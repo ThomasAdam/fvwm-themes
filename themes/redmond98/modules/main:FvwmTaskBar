@@ -6,7 +6,7 @@ Style "FvwmTaskBar" NoTitle,Sticky,WindowListSkip,CirculateSkip,NoHandles,\
 	TitleAtBottom
 #Style "FvwmTaskBar" StaysOnTop
 
-DestroyModuleConfig FvwmTaskBar*
+DestroyModuleConfig FvwmTaskBar: *
 
 # defined in the option
 #*FvwmTaskBar: Geometry +0-0

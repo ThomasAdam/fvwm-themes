@@ -1,7 +1,7 @@
 # Renamed FvwmButtons-As to FvwmButtons-AsBar to avoid fvwm syntax problems.
 # Probably may be renamed back later.
 
-DestroyModuleConfig FvwmButtons-AsBar*
+DestroyModuleConfig FvwmButtons-AsBar: *
 *FvwmButtons-AsBar: Colorset 10
 *FvwmButtons-AsBar: Frame 1
 *FvwmButtons-AsBar: Columns 1
@@ -25,7 +25,7 @@ DestroyModuleConfig FvwmButtons-AsBar*
 *FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Icon 48x48-general/choice-no.xpm, Action 'Module FvwmForm FormFvwmQuitVerify.')
 *FvwmButtons-AsBar: (1x1, Colorset 12, Title(Left) ...., Panel(left, position module bottom mtb mlr) "FvwmButtons-AsAppletsPanel" 'FvwmButtons FvwmButtons-AsAppletsPanel')
 
-DestroyModuleConfig FvwmButtons-AsPanel*
+DestroyModuleConfig FvwmButtons-AsPanel: *
 *FvwmButtons-AsPanel: Colorset 12
 *FvwmButtons-AsPanel: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmButtons-AsPanel: Geometry +5000+5000
@@ -58,7 +58,7 @@ DestroyModuleConfig FvwmButtons-AsPanel*
 	Action(Mouse 2) 'FuncFvwmImageEdit', \
 	Action(Mouse 3) 'FuncFvwmImageEdit')
 
-DestroyModuleConfig FvwmButtons-AsAppletsPanel*
+DestroyModuleConfig FvwmButtons-AsAppletsPanel: *
 *FvwmButtons-AsAppletsPanel: Colorset 12
 *FvwmButtons-AsAppletsPanel: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmButtons-AsAppletsPanel: Geometry +5000+5000

@@ -3,8 +3,8 @@ Style "FvwmButtons-StartApps" NoTitle, NoHandles, BorderWidth 2, \
 Style "FvwmButtons-Apps" NoTitle, NoHandles, BorderWidth 2, \
 	Sticky, WindowListSkip, CirculateSkip
 
-DestroyModuleConfig FvwmButtons-StartApps*
-DestroyModuleConfig FvwmButtons-Apps*
+DestroyModuleConfig FvwmButtons-StartApps: *
+DestroyModuleConfig FvwmButtons-Apps: *
 #--------------------------------------
 # Starter
 

@@ -3,8 +3,8 @@ Style "FvwmButtons-StartWinOps" NoTitle, NoHandles, BorderWidth 2, \
 Style "FvwmButtons-WinOps" NoTitle, NoHandles, BorderWidth 2, \
 	Sticky, WindowListSkip
 
-DestroyModuleConfig FvwmButtons-StartWinOps*
-DestroyModuleConfig FvwmButtons-WinOps*
+DestroyModuleConfig FvwmButtons-StartWinOps: *
+DestroyModuleConfig FvwmButtons-WinOps: *
 
 #-------------------------------------
 # Starters:

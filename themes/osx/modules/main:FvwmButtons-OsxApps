@@ -1,7 +1,7 @@
 Style "FvwmButtons-OsxApps" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
 	NoHandles, BorderWidth 1, TitleAtBottom
 
-DestroyModuleConfig FvwmButtons-OsxApps*
+DestroyModuleConfig FvwmButtons-OsxApps: *
 
 *FvwmButtons-OsxApps: Geometry 271x63+0-0
 *FvwmButtons-OsxApps: Colorset 10

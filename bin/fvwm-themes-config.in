@@ -1378,7 +1378,7 @@ AddToFunc   FuncFvwmInitInitFunctions
 DestroyFunc FuncFvwmRestartFvwmTheme
 AddToFunc   FuncFvwmRestartFvwmTheme
 + I KillModule FvwmTheme
-+ I DestroyModuleConfig FvwmTheme*
++ I DestroyModuleConfig FvwmTheme: *
 + I ModuleSynchronous FvwmTheme
 
 FuncFvwmInitInitFunctions
@@ -1395,7 +1395,7 @@ AddToFunc   FuncFvwmThemesConfigAndUpdate
 + I FuncFvwmRemoveButtonsBindings
 + I FuncFvwmRemoveAllButtons
 #+ I FuncFvwmRestartFvwmTheme
-#+ I DestroyModuleConfig FvwmTheme*
+#+ I DestroyModuleConfig FvwmTheme: *
 + I Read @$rcFile2@
 + I FuncFvwmStartAllHooks
 + I All (FvwmScript-NoteMessage) Delete

@@ -27,20 +27,20 @@ AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmStopModule FvwmWinList
 + I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Single
 + I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
-+ I DestroyModuleConfig FvwmButtons-Pager*
-+ I DestroyModuleConfig FvwmButtons-StartApps*
-+ I DestroyModuleConfig FvwmButtons-Apps*
++ I DestroyModuleConfig FvwmButtons-Pager: *
++ I DestroyModuleConfig FvwmButtons-StartApps: *
++ I DestroyModuleConfig FvwmButtons-Apps: *
 + I DestroyModuleConfig FvwmButtons-WMaker*Applets*
 + I DestroyModuleConfig FvwmButtons-Fvwm*Applets*
-+ I DestroyModuleConfig FvwmButtons-StartWinOps*
-+ I DestroyModuleConfig FvwmButtons-WinOps*
-+ I DestroyModuleConfig FvwmPager-Single*
-+ I DestroyModuleConfig FvwmPager-Desker*
-+ I DestroyModuleConfig FvwmTaskBar*
-+ I DestroyModuleConfig FvwmIconMan*
-+ I DestroyModuleConfig FvwmIconBox*
-+ I DestroyModuleConfig FvwmWinList*
-+ I DestroyMenu MenuFvwmStartAppsMangerModules
++ I DestroyModuleConfig FvwmButtons-StartWinOps: *
++ I DestroyModuleConfig FvwmButtons-WinOps: *
++ I DestroyModuleConfig FvwmPager-Single: *
++ I DestroyModuleConfig FvwmPager-Desker: *
++ I DestroyModuleConfig FvwmTaskBar: *
++ I DestroyModuleConfig FvwmIconMan: *
++ I DestroyModuleConfig FvwmIconBox: *
++ I DestroyModuleConfig FvwmWinList: *
++ I DestroyMenu MenuFvwmStartAppsManagerModules
 + I DestroyMenu MenuFvwmStartAppletsModules
 + I DestroyFunc FuncFvwmWinListDesk
 + I DestroyFunc FuncFvwmWinListGlobal
@@ -72,15 +72,15 @@ AddToMenu   MenuFvwmStartThemeModules "OliCha Modules" Title
 	FvwmButtons FvwmButtons-StartWinOps
 + "" Nop
 + "Choose One ..."      Popup   MenuFvwmStartAppletsModules
-+ "Choose One ..."      Popup   MenuFvwmStartAppsMangerModules
++ "Choose One ..."      Popup   MenuFvwmStartAppsManagerModules
 
 DestroyMenu MenuFvwmStartAppletsModules
 AddToMenu   MenuFvwmStartAppletsModules "Applet Buttons" Title
 + "&WMaker	Applets"	FuncFvwmChangeApplets FvwmButtons-WMakerApplets
 + "&Fvwm	Applets"	FuncFvwmChangeApplets FvwmButtons-FvwmApplets
 
-DestroyMenu MenuFvwmStartAppsMangerModules
-AddToMenu   MenuFvwmStartAppsMangerModules "Apps Manager" Title
+DestroyMenu MenuFvwmStartAppsManagerModules
+AddToMenu   MenuFvwmStartAppsManagerModules "Apps Manager" Title
 + "Desk TaskBar" 	FuncFvwmChangeWinMan FuncFvwmTaskBarDesk
 + "Global TaskBar"	FuncFvwmChangeWinMan FuncFvwmTaskBarGlobal
 + "" Nop
@@ -120,7 +120,7 @@ AddToFunc   FuncFvwmWinListDesk
 
 DestroyFunc FuncFvwmWinListGlobal
 AddToFunc   FuncFvwmWinListGlobal
-+ "I" DestroyModuleConfig FvwmWinListShowCurrent*
++ "I" DestroyModuleConfig FvwmWinList: ShowCurrent*
 + "I" Module FvwmWinList
 
 DestroyFunc FuncFvwmTaskBarDesk
@@ -130,7 +130,7 @@ AddToFunc   FuncFvwmTaskBarDesk
 
 DestroyFunc FuncFvwmTaskBarGlobal
 AddToFunc   FuncFvwmTaskBarGlobal
-+ "I" DestroyModuleConfig FvwmTaskBarDesk* 
++ "I" DestroyModuleConfig FvwmTaskBar: Desk* 
 + "I" Module FvwmTaskBar
 
 DestroyFunc FuncFvwmIconManGlobal
@@ -158,7 +158,7 @@ AddToFunc   FuncFvwmIconBoxDesk
 
 DestroyFunc FuncFvwmIconBoxGlobal
 AddToFunc   FuncFvwmIconBoxGlobal
-+ "I" DestroyModuleConfig FvwmIconBoxResolution
++ "I" DestroyModuleConfig FvwmIconBox: Resolution
 + "I" Module FvwmIconBox
 
 DestroyFunc FuncFvwmSlipperyIcons

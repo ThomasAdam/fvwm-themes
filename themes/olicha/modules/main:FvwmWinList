@@ -1,7 +1,7 @@
 Style "FvwmWinList"  NoHandles, NoTitle, Sticky, WindowListSkip, \
 	TitleAtBottom, CirculateSkip
 
-DestroyModuleConfig FvwmWinList*
+DestroyModuleConfig FvwmWinList: *
 
 *FvwmWinList: Geometry +0-0
 

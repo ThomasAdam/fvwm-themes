@@ -12,7 +12,7 @@ AddToMenu MenuFvwmWindowGroupOps "" Nop
 + "Devel	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2
 + "Games	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
 
-DestroyModuleConfig FvwmPager-Desker*
+DestroyModuleConfig FvwmPager-Desker: *
 *FvwmPager-Desker: Geometry 255x55+5000+5000
 *FvwmPager-Desker: Rows 1
 

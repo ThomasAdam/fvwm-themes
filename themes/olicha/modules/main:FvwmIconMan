@@ -1,7 +1,7 @@
 Style "FvwmIconMan"   NoTitle, NoHandles, Sticky, WindowListSkip, \
 	CirculateSkip, TitleAtBottom
 
-DestroyModuleConfig FvwmIconMan*
+DestroyModuleConfig FvwmIconMan: *
 
 *FvwmIconMan: *nummanagers 1 
 *FvwmIconMan: *resolution desk

@@ -7,7 +7,7 @@
 #   Module FvwmGtk FvwmGtk-Themes
 #   SendToModule FvwmGtk-Themes SettingsDialog
 
-DestroyModuleConfig FvwmGtk-Themes*
+DestroyModuleConfig FvwmGtk-Themes: *
 
 *FvwmGtk-Themes: Destroy SettingsDialog
 *FvwmGtk-Themes: Dialog SettingsDialog "FVWM Theme Settings"

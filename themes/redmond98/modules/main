@@ -28,11 +28,11 @@ AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Bar
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Pager
 + I KillModule FvwmTaskBar
-+ I DestroyModuleConfig FvwmButtons-Bar*
-+ I DestroyModuleConfig FvwmStartPagerButton*
-+ I DestroyModuleConfig FvwmPager-Single*
-+ I DestroyModuleConfig FvwmPager-Desker*
-+ I DestroyModuleConfig FvwmTaskBar*
++ I DestroyModuleConfig FvwmButtons-Bar: *
++ I DestroyModuleConfig FvwmButtons-Pager: *
++ I DestroyModuleConfig FvwmPager-Single: *
++ I DestroyModuleConfig FvwmPager-Desker: *
++ I DestroyModuleConfig FvwmTaskBar: *
 + I DestroyFunc FuncFvwmStartChosenButtons
 + I DestroyFunc FuncFvwmStartChosenTaskBar
 + I DestroyFunc FuncFvwmStartChosenTaskBarPos

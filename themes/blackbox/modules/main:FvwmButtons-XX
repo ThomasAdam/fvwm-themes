@@ -16,7 +16,7 @@ AddToFunc    FuncFvwmButtons-XXPrev
 + I Current Raise
 + I All (FvwmButtons-XX) Raise
 
-DestroyModuleConfig FvwmButtons-XX*
+DestroyModuleConfig FvwmButtons-XX: *
 *FvwmButtons-XX: Geometry 700x18+99-0
 *FvwmButtons-XX: BoxSize fixed
 *FvwmButtons-XX: Columns 70

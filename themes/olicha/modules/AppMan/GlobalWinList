@@ -1,4 +1,4 @@
-DestroyModuleConfig FvwmWinListShowCurrent*
+DestroyModuleConfig FvwmWinList: ShowCurrent*
 
 DestroyFunc FuncFvwmStartNormalIcons
 AddToFunc   FuncFvwmStartNormalIcons

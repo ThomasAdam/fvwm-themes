@@ -4,7 +4,7 @@ AddToFunc FuncFvwmStopThemeModules I DestroyFunc FuncFvwmButtons-CompactApps
 Style "FvwmButtons-Compact" NoTitle, NoHandles, Sticky, WindowListSkip, \
 	NeverFocus, TitleAtTop
 
-DestroyModuleConfig FvwmButtons-Compact*
+DestroyModuleConfig FvwmButtons-Compact: *
 *FvwmButtons-Compact: Colorset 10
 *FvwmButtons-Compact: Geometry -0+0
 *FvwmButtons-Compact: Columns 2

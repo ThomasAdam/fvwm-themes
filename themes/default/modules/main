@@ -25,13 +25,13 @@ AddToFunc   FuncFvwmStopThemeModules
 + I KillModule FvwmIconBox
 + I KillModule FvwmIconMan
 + I KillModule FvwmWinList
-+ I DestroyModuleConfig FvwmButtons*
-+ I DestroyModuleConfig FvwmPager-Single*
-+ I DestroyModuleConfig FvwmPager-Desker*
-+ I DestroyModuleConfig FvwmIconBox*
-+ I DestroyModuleConfig FvwmIconMan*
-+ I DestroyModuleConfig FvwmTaskBar*
-+ I DestroyModuleConfig FvwmWinList*
++ I DestroyModuleConfig FvwmButtons: *
++ I DestroyModuleConfig FvwmPager-Single: *
++ I DestroyModuleConfig FvwmPager-Desker: *
++ I DestroyModuleConfig FvwmIconBox: *
++ I DestroyModuleConfig FvwmIconMan: *
++ I DestroyModuleConfig FvwmTaskBar: *
++ I DestroyModuleConfig FvwmWinList: *
 
 # ----------------------------------------------------------------------------
 # Theme module menus

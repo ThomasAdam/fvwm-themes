@@ -7,7 +7,7 @@ Style "FvwmButtons-Pager" NoTitle, NoHandles, Sticky, WindowListSkip, \
 #Style "FvwmButtons-Pager" StayOnTop
 Style "FvwmButtons-Pager" StaysPut
 
-DestroyModuleConfig FvwmButtons-Pager*
+DestroyModuleConfig FvwmButtons-Pager: *
 
 *FvwmButtons-Pager: Colorset 10
 *FvwmButtons-Pager: Geometry 12x78

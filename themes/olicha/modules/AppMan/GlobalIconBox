@@ -1,4 +1,4 @@
-DestroyModuleConfig FvwmIconBoxResolution
+DestroyModuleConfig FvwmIconBox: Resolution
 
 DestroyFunc FuncFvwmStartNormalIcons
 AddToFunc   FuncFvwmStartNormalIcons

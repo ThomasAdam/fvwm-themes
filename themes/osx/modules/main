@@ -28,10 +28,13 @@ AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxApps
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxStartApplets
 + I KillModule FvwmWinList
-+ I DestroyModuleConfig FvwmButtons-MenuBar*
-+ I DestroyModuleConfig FvwmOsx*
-+ I DestroyModuleConfig FvwmPager-Single*
-+ I DestroyModuleConfig FvwmPager-Desker*
++ I DestroyModuleConfig FvwmButtons-MenuBar: *
++ I DestroyModuleConfig FvwmButtons-OsxCentral: *
++ I DestroyModuleConfig FvwmButtons-OsxApps: *
++ I DestroyModuleConfig FvwmButtons-OsxStartApplets: *
++ I DestroyModuleConfig FvwmButtons-OsxApplets: *
++ I DestroyModuleConfig FvwmPager-Single: *
++ I DestroyModuleConfig FvwmPager-Desker: *
 + I DestroyFunc FuncFvwmOsxNext
 + I DestroyFunc FuncFvwmOsxPrev
 + I DestroyFunc FuncFvwmStartChosenMenuBar
