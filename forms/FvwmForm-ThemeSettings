@@ -136,51 +136,57 @@ DestroyModuleConfig FvwmForm-ThemeSettings: *
 --variant settings/gnome/anotherlevel-menu="$(Opt11)" \
 --variant settings/session-manager="$(Opt12)" '
 
-*FvwmForm-ThemeSettings: Command !/bin/echo "# File Created by FvwmForm-ThemeSettings\n\
-*SavedThemeSettings: ANIM $(ANIM?on)\n\
-*SavedThemeSettings: BACK $(BACK?on)\n\
-*SavedThemeSettings: BANN $(BANN?on)\n\
-*SavedThemeSettings: STRK $(STRK?on)\n\
-*SavedThemeSettings: SDIS $(SDIS?on)\n\
-*SavedThemeSettings: SOXP $(SOXP?on)\n\
-*SavedThemeSettings: SESD $(SESD?on)\n\
-*SavedThemeSettings: SAUD $(SAUD?on)\n" > $FVWM_USERDIR/.FvwmForm-ThemeSettings
+*FvwmForm-ThemeSettings: Command !(          /bin/echo \
+'# File created by FvwmForm-ThemeSettings' ; /bin/echo \
+'*SavedThemeSettings: ANIM $(ANIM?on)'     ; /bin/echo \
+'*SavedThemeSettings: BACK $(BACK?on)'     ; /bin/echo \
+'*SavedThemeSettings: BANN $(BANN?on)'     ; /bin/echo \
+'*SavedThemeSettings: STRK $(STRK?on)'     ; /bin/echo \
+'*SavedThemeSettings: SDIS $(SDIS?on)'     ; /bin/echo \
+'*SavedThemeSettings: SOXP $(SOXP?on)'     ; /bin/echo \
+'*SavedThemeSettings: SESD $(SESD?on)'     ; /bin/echo \
+'*SavedThemeSettings: SAUD $(SAUD?on)'     ; /bin/echo \
+'*SavedThemeSettings: SAUP $(SAUP?on)'     ; /bin/echo \
+'*SavedThemeSettings: SRPL $(SRPL?on)'     ; /bin/echo \
+'*SavedThemeSettings: SRPD $(SRPD?on)' \
+) > $FVWM_USERDIR/.FvwmForm-ThemeSettings
 
-*FvwmForm-ThemeSettings: Command !/bin/echo "*SavedThemeSettings: SAUP $(SAUP?on)\n\
-*SavedThemeSettings: SRPL $(SRPL?on)\n\
-*SavedThemeSettings: SRPD $(SRPD?on)\n\
-*SavedThemeSettings: AUTD $(AUTD?on)\n\
-*SavedThemeSettings: AUT1 $(AUT1?on)\n\
-*SavedThemeSettingAUT2s $(AUT2?on)\n\
-*SavedThemeSettings: AUTM $(AUTM?on)\n\
-*SavedThemeSettings: ICSD $(ICSD?on)\n\
-*SavedThemeSettings: ICSN $(ICSN?on)\n\
-*SavedThemeSettings: ICSW $(ICSW?on)\n\
-*SavedThemeSettings: KFM $(KFM?on)\n\
-*SavedThemeSettings: KSDIS $(KSDIS?on)\n\
-*SavedThemeSettings: KSMEN $(KSMEN?on)\n\
-*SavedThemeSettings: KSMSTL $(KSMSTL?on)\n\
-*SavedThemeSettings: KSMSTS $(KSMSTS?on)\n\
-*SavedThemeSettings: KUDIS $(KUDIS?on)\n\
-*SavedThemeSettings: KUMEN $(KUMEN?on)\n\
-*SavedThemeSettings: KUMST $(KUMST?on)\n" >> $FVWM_USERDIR/.FvwmForm-ThemeSettings
+*FvwmForm-ThemeSettings: Command !(          /bin/echo \
+'*SavedThemeSettings: AUTD $(AUTD?on)'     ; /bin/echo \
+'*SavedThemeSettings: AUT1 $(AUT1?on)'     ; /bin/echo \
+'*SavedThemeSettings: AUT2 $(AUT2?on)'     ; /bin/echo \
+'*SavedThemeSettings: AUTM $(AUTM?on)'     ; /bin/echo \
+'*SavedThemeSettings: ICSD $(ICSD?on)'     ; /bin/echo \
+'*SavedThemeSettings: ICSN $(ICSN?on)'     ; /bin/echo \
+'*SavedThemeSettings: ICSW $(ICSW?on)'     ; /bin/echo \
+'*SavedThemeSettings: KFM $(KFM?on)'       ; /bin/echo \
+'*SavedThemeSettings: KSDIS $(KSDIS?on)'   ; /bin/echo \
+'*SavedThemeSettings: KSMEN $(KSMEN?on)'   ; /bin/echo \
+'*SavedThemeSettings: KSMSTL $(KSMSTL?on)' ; /bin/echo \
+'*SavedThemeSettings: KSMSTS $(KSMSTS?on)' ; /bin/echo \
+'*SavedThemeSettings: KUDIS $(KUDIS?on)'   ; /bin/echo \
+'*SavedThemeSettings: KUMEN $(KUMEN?on)'   ; /bin/echo \
+'*SavedThemeSettings: KUMST $(KUMST?on)' \
+) >> $FVWM_USERDIR/.FvwmForm-ThemeSettings
 
-*FvwmForm-ThemeSettings: Command !/bin/echo "*SavedThemeSettings: GPSP $(GPSP?on)\n\
-*SavedThemeSettings: GSDIS $(GSDIS?on)\n\
-*SavedThemeSettings: GSGTKM $(GSGTKM?on)\n\
-*SavedThemeSettings: GSGTKS $(GSGTKS?on)\n\
-*SavedThemeSettings: GSFVWM $(GSFVWM?on)\n\
-*SavedThemeSettings: GSFVGN $(GSFVGN?on)\n\
-*SavedThemeSettings: GSFVMS $(GSFVMS?on)\n\
-*SavedThemeSettings: GUDIS $(GUDIS?on)\n\
-*SavedThemeSettings: GUGTK $(GUGTK?on)\n\
-*SavedThemeSettings: GUFVW $(GUFVW?on)\n\
-*SavedThemeSettings: ALDIS $(ALDIS?on)\n\
-*SavedThemeSettings: ALGTK $(ALGTK?on)\n\
-*SavedThemeSettings: ALFVW $(ALFVW?on)\n\
-*SavedThemeSettings: NOSN $(NOSN?on)\n\
-*SavedThemeSettings: GNSN $(GNSN?on)\n\
-*SavedThemeSettings: GESN $(GESN?on)\n" >> $FVWM_USERDIR/.FvwmForm-ThemeSettings
+*FvwmForm-ThemeSettings: Command !(          /bin/echo \
+'*SavedThemeSettings: GPSP $(GPSP?on)'     ; /bin/echo \
+'*SavedThemeSettings: GSDIS $(GSDIS?on)'   ; /bin/echo \
+'*SavedThemeSettings: GSGTKM $(GSGTKM?on)' ; /bin/echo \
+'*SavedThemeSettings: GSGTKS $(GSGTKS?on)' ; /bin/echo \
+'*SavedThemeSettings: GSFVWM $(GSFVWM?on)' ; /bin/echo \
+'*SavedThemeSettings: GSFVGN $(GSFVGN?on)' ; /bin/echo \
+'*SavedThemeSettings: GSFVMS $(GSFVMS?on)' ; /bin/echo \
+'*SavedThemeSettings: GUDIS $(GUDIS?on)'   ; /bin/echo \
+'*SavedThemeSettings: GUGTK $(GUGTK?on)'   ; /bin/echo \
+'*SavedThemeSettings: GUFVW $(GUFVW?on)'   ; /bin/echo \
+'*SavedThemeSettings: ALDIS $(ALDIS?on)'   ; /bin/echo \
+'*SavedThemeSettings: ALGTK $(ALGTK?on)'   ; /bin/echo \
+'*SavedThemeSettings: ALFVW $(ALFVW?on)'   ; /bin/echo \
+'*SavedThemeSettings: NOSN $(NOSN?on)'     ; /bin/echo \
+'*SavedThemeSettings: GNSN $(GNSN?on)'     ; /bin/echo \
+'*SavedThemeSettings: GESN $(GESN?on)' \
+) >> $FVWM_USERDIR/.FvwmForm-ThemeSettings
 
 *FvwmForm-ThemeSettings: Button restart "Reset"
 *FvwmForm-ThemeSettings: Command Nop
