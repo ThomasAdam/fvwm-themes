@@ -6,8 +6,7 @@
 Style * SloppyFocus, ClickToFocusPassesClick, ClickToFocusRaises, \
 	MouseFocusClickRaises
 ColormapFocus FollowsMouse
-Style * SmartPlacement, RandomPlacement, CleverPlacementOff, \
-	GrabFocusOff, NoPPosition
+Style * TileCascadePlacement, GrabFocusOff, NoPPosition
 
 # ---------------------------- Move and Resize ----------------------------
 

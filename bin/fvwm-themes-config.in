@@ -2558,7 +2558,7 @@ sub comLoop {
 				push @compLoad, "$_\@$componentToLoad{$_}";
 			}
 			foreach (keys %componentToDrop) {
-				$return .= "--load $_\@$componentToDrop{$_} ";
+				$return .= "--drop $_\@$componentToDrop{$_} ";
 				push @compDrop, "$_\@$componentToDrop{$_}";
 			}
 			$self->useNewComponents(\@compLoad, \@compDrop);
@@ -2586,6 +2586,13 @@ sub comLoop {
 					$return .= "--variant $comp=$variantToSet{$_} ";
 					$variantLoad{$comp} = "$variantToSet{$_}";
 					push @deleteVariant, $_;
+				}
+			}
+			if ($return ne "") {
+				if ($self->isMinimalReload()) {
+					$return = 'FuncFvwmMinimalThemesConfigAndUpdate "'. $return .'"';
+				} else {
+					$return = 'FuncFvwmThemesConfigAndUpdate "'. $return . '"';
 				}
 			}
 			$self->setNewComponentValues(\%optLoad, \%variantLoad, \%compLock);

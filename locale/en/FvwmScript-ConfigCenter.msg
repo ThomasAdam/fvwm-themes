@@ -22,6 +22,7 @@ WinPlacement	{ Window Placement }
 SmartRandom	{ Placement is smart if there is free place, stairs if not}
 SmartActive	{ Placement is smart if there is free place, active if not}
 CleverPlace	{ Placement is always clever }
+CleverPlaceP	{ Placement is always clever (percent method) }
 DumbActive	{ Placement is always active }
 DumbRandom	{ Placement is always stairs }
 PlacementOpt	{ Options for the Window Placement }

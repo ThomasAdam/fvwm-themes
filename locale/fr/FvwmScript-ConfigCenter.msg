@@ -21,7 +21,8 @@ ColorMap	{La "ColorMap" suit le Focus}
 WinPlacement	{ Placement des Fenètres }
 SmartRandom	{ Placement intelligent s'il y de la place, aléatoires si non}
 SmartActive	{ Placement intelligent s'il y de la place, intéractif si non}
-CleverPlace	{ On essaie toujours de placer intelligemment les fenètres}
+CleverPlace	{ Placement toujours intelligent }
+CleverPlaceP	{ Placement toujours intelligent (méthode des pourcentages) }
 DumbActive	{ Placement des fenètres toujours interactifs}
 DumbRandom	{ Placement des fenètres en "cascade" (jamais interactif)}
 PlacementOpt	{ Options pour le Placement des Fenètres }

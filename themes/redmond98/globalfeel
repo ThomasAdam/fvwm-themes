@@ -5,8 +5,7 @@
 Style * SloppyFocus, ClickToFocusPassesClick, ClickToFocusRaises, \
 	MouseFocusClickRaises
 ColormapFocus FollowsMouse
-Style * SmartPlacement, RandomPlacement, CleverPlacement, \
-	GrabFocus, NoPPosition
+Style * MinOverlapPercentPlavement, GrabFocus, NoPPosition
 
 # ---------------------------- Move and Resize ----------------------------
 

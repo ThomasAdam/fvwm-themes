@@ -1,6 +1,21 @@
 2001-02-20  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
+	* script/FvwmScript-ThemeCenter:
+	The Theme Center respect minimal/full reloading
+
+	* bin/fvwm-themes-script.in:
+	* script/FvwmScript-ConfigCenter:
+	* themes/*/globalfeel
+	* locale/{en,fr,ru}/FvwmScript-ConfigCenter.msg:
+	Updated to the new placement styles
+	WARNING: ru need translation
+	Note: This update should not cause problem with old globalfeel 
+	config file
+
+2001-02-20  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
 	* bin/fvwm-themes-menuapp.in:
 	* bin/fvwm-themes-script.in:
 	Better error description if an "internal" error happen in a

@@ -212,16 +212,18 @@ Begin
 	    ChangeTitle 20 $msg
 	If $id == {CleverPlace } Then
 	    ChangeTitle 21 $msg
-	If $id == {DumbActive  } Then
+	If $id == {CleverPlaceP} Then
 	    ChangeTitle 22 $msg
-	If $id == {DumbRandom  } Then
+	If $id == {DumbActive  } Then
 	    ChangeTitle 23 $msg
-	If $id == {PlacementOpt} Then
+	If $id == {DumbRandom  } Then
 	    ChangeTitle 24 $msg
-	If $id == {GrabFocus   } Then
+	If $id == {PlacementOpt} Then
 	    ChangeTitle 25 $msg
-	If $id == {PPosition   } Then
+	If $id == {GrabFocus   } Then
 	    ChangeTitle 26 $msg
+	If $id == {PPosition   } Then
+	    ChangeTitle 27 $msg
 
 	### Move & Resize
 	If $id == {MoveResize  } Then
@@ -474,9 +476,10 @@ Begin
 	ChangeFont 21 $FixedFont
 	ChangeFont 22 $FixedFont
 	ChangeFont 23 $FixedFont
-	ChangeFont 24 $SelFont
-	ChangeFont 25 $FixedFont
+	ChangeFont 24 $FixedFont
+	ChangeFont 25 $SelFont
 	ChangeFont 26 $FixedFont
+	ChangeFont 27 $FixedFont
 	ChangeFont 30 $SelFont
 	ChangeFont 31 $FixedFont
 	ChangeFont 32 $FixedFont
@@ -752,10 +755,10 @@ Begin
 	    ChangeValue $GF_Placement 1
 	    Set $index = (Add $index 1)
 	    Set $tmp = (StrCopy $GF_Config $index $index)
-	    ChangeValue 25 $tmp
+	    ChangeValue 26 $tmp
 	    Set $index = (Add $index 1)
 	    Set $tmp = (StrCopy $GF_Config $index $index)
-	    ChangeValue 26 $tmp
+	    ChangeValue 27 $tmp
 	End
 	### Move
 	If $LoadMove == 1 Then
@@ -1098,7 +1101,7 @@ Begin
     Begin
 	Set $GF_HideFocus = 0
 	Set $tmp = 10
-	While $tmp <> 27 Do
+	While $tmp <> 28 Do
 	Begin
 	    HideWidget $tmp
  	    Set $tmp = (Add $tmp 1)
@@ -1165,7 +1168,7 @@ Begin
 	Set $GF_ShowFocus = 0
 	Set $ConfigTool = {Focus}
 	Set $tmp = 10
-	While $tmp <> 27 Do
+	While $tmp <> 28 Do
 	Begin
 	    ShowWidget $tmp
  	    Set $tmp = (Add $tmp 1)
@@ -1352,7 +1355,7 @@ Begin
 	# Focus
 	Set $tmp = (Add $GF_Focus -10)
 	Set $t = (Add $GF_Placement -18)
-	Set $GF_LastConfigFocus = $tmp (GetValue 15) (GetValue 16) (GetValue 17) $t (GetValue 25) (GetValue 26)
+	Set $GF_LastConfigFocus = $tmp (GetValue 15) (GetValue 16) (GetValue 17) $t (GetValue 26) (GetValue 27)
 	# Move
 	Set $tmp = (Add $GF_ResizeOutLine  -32)
 	Set $t = (Add $GF_Emulate -38)
@@ -2043,7 +2046,7 @@ End
 Widget 10
 Property
     Size 280 15
-    Position 15 50
+    Position 15 45
     Type ItemDraw
     Flags NoReliefString Hidden
     Title {Load Configuration ...}
@@ -2057,7 +2060,7 @@ End
 # ClicToFocus
 Widget 11
 Property
-    Position 15 80
+    Position 15 70
     Type CheckBox
     Font fixed
     Flags NoReliefString Hidden
@@ -2075,7 +2078,7 @@ End
 # MouseFocus
 Widget 12
 Property
-    Position 15 105
+    Position 15 95
     Type CheckBox
     Font fixed
     Flags NoReliefString Hidden   
@@ -2093,7 +2096,7 @@ End
 # SloppyFocus
 Widget 13
 Property
-    Position 15 130
+    Position 15 120
     Type CheckBox
     Font fixed
     Flags NoReliefString Hidden   
@@ -2113,7 +2116,7 @@ End
 Widget 14
 Property
     Size 275 15
-    Position 310 50
+    Position 310 45
     Type ItemDraw
     Flags NoReliefString Hidden
     Title {}
@@ -2127,7 +2130,7 @@ End
 # ClickToFocusPassesClick/ClickToFocusDoesntPassClick
 Widget 15
 Property
-    Position 310 80
+    Position 310 70
     Type CheckBox
     Font fixed
     Flags NoReliefString Hidden   
@@ -2143,7 +2146,7 @@ End
 # MouseFocusClickRaises/MouseFocusClickDoesntRaise
 Widget 16
 Property
-    Position 310 105
+    Position 310 95
     Type CheckBox
     Font fixed
     Flags NoReliefString Hidden   
@@ -2158,7 +2161,7 @@ End
 # ColormapFocus	FollowsMouse  / FollowsFocus
 Widget 17
 Property
-    Position 310 130
+    Position 310 120
     Type CheckBox
     Font fixed
     Flags NoReliefString Hidden   
@@ -2171,11 +2174,11 @@ Main
 End
 
 #---------------------------
-# Placement of widows:
+# Placement of widows, Title
 Widget 18
 Property
     Size 580 15
-    Position 15 165
+    Position 15 155
     Type ItemDraw
     Flags NoReliefString Hidden
     Title {}
@@ -2186,10 +2189,10 @@ Case message of
     End
 End
 
-# SmartPlacement + RandomPlacement + CleverPlacementOff
+# TileCascadePlacement
 Widget 19
 Property
-    Position 30 190
+    Position 30 180
     Type CheckBox
     Font fixed
     Flags NoReliefString Hidden   
@@ -2204,10 +2207,10 @@ SingleClic :
  End
 End
 
-# SmartPlacement + ActivePlacement + CleverPlacementOff
+# TileManualPlacement
 Widget 20
 Property
-    Position 30 215
+    Position 30 205
     Type CheckBox
     Font fixed
     Flags NoReliefString Hidden   
@@ -2223,10 +2226,10 @@ SingleClic :
 End
 
 
-# SmartPlacement + RandomPlacement + CleverPlacement
+# MinOverlapPlacement
 Widget 21
 Property
-    Position 30 240
+    Position 30 230
     Type CheckBox
     Font fixed
     Flags NoReliefString Hidden   
@@ -2242,10 +2245,10 @@ SingleClic :
 End
 
 
-# DumpPlacement + ActivePlacement + CleverPlacementOff
+# MinOverlapPercentPlacement
 Widget 22
 Property
-    Position 30 265
+    Position 30 255
     Type CheckBox
     Font fixed
     Flags NoReliefString Hidden   
@@ -2261,10 +2264,10 @@ SingleClic :
 End
 
 
-# DumpPlacement + RandomPlacement + CleverPlacementOff
+# ManualPlacement
 Widget 23
 Property
-    Position 30 290
+    Position 30 280
     Type CheckBox
     Font fixed
     Flags NoReliefString Hidden   
@@ -2279,12 +2282,30 @@ SingleClic :
  End
 End
 
-
-# "Options" for Placement of widows:
+# CascadePlacement
 Widget 24
 Property
+    Position 30 305
+    Type CheckBox
+    Font fixed
+    Flags NoReliefString Hidden   
+    Title {                                                                               }
+Main
+Case message of
+SingleClic :
+ Begin
+    ChangeValue $GF_Placement 0
+    ChangeValue 23 1
+    Set $GF_Placement = 24
+ End
+End
+
+
+# "Options" for Placement of widows:
+Widget 25
+Property
     Size 580 15
-    Position 15 320
+    Position 15 335
     Type ItemDraw
     Flags NoReliefString Hidden
     Title {}
@@ -2296,9 +2317,9 @@ Case message of
 End
 
 # GrabFocus/GrabFocusOff
-Widget 25
+Widget 26
 Property
-    Position 30 345
+    Position 30 360
     Type CheckBox
     Font fixed
     Flags NoReliefString Hidden   
@@ -2311,9 +2332,9 @@ Main
 End
 
 # UsePPosition/NoPPosition
-Widget 26
+Widget 27
 Property
-    Position 30 370
+    Position 30 385
     Type CheckBox
     Font fixed
     Flags NoReliefString Hidden   

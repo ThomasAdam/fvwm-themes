@@ -1507,23 +1507,27 @@ sub  build_globalfeel_Config {
 	$tmp = substr($configFromScript,$index,1);
 	if ($tmp == 1) {
 		$fvwmConfig->{'Focus'} .= 
-			"Style * SmartPlacement, RandomPlacement, CleverPlacementOff"
+			"Style * TileCascadePlacement"
 	}
 	elsif ($tmp == 2) {
 		$fvwmConfig->{'Focus'} .= 
-			"Style * SmartPlacement, ActivePlacement, CleverPlacementOff"
+			"Style * TileManualPlacement"
 	}
 	elsif ($tmp == 3) {
 		$fvwmConfig->{'Focus'} .= 
-			"Style * SmartPlacement, RandomPlacement, CleverPlacement"
+			"Style * MinOverlapPlacement"
 	}
 	elsif ($tmp == 4) {
 		$fvwmConfig->{'Focus'} .= 
-			"Style * DumbPlacement, ActivePlacement, CleverPlacementOff"
+			"Style * MinOverlapPercentPlacement"
 	}
 	elsif ($tmp == 5) {
 		$fvwmConfig->{'Focus'} .= 
-			"Style * DumbPlacement, RandomPlacement, CleverPlacementOff"
+			"Style * ManualPlacement"
+	}
+	elsif ($tmp == 6) {
+		$fvwmConfig->{'Focus'} .= 
+			"Style * CascadePlacement"
 	}
 	else { $err->{'Focus'} .= "$impossible|" }
 	#
@@ -2136,6 +2140,7 @@ sub parse_globalfeel_Config {
 				elsif ($style =~ /^MouseFocusClickRaises$/i) {
 					$config->{'MouseFocusClickRaisesOff'} = 0
 				}
+				### old placement style (style supported)
 				elsif ($style =~ /^SmartPlacement$/i) {
 					$config->{'SmartPlacement'} = 1 
 				}
@@ -2154,6 +2159,26 @@ sub parse_globalfeel_Config {
 				elsif ($style =~ /^ActivePlacement$/i) {
 					$config->{'RandomPlacement'} = 0
 				}
+				### new placement style
+				elsif ($style =~ /^TileCascadePlacement$/i) {
+					$config->{'placement'} = 1
+				}
+				elsif ($style =~ /^TileManualPlacement$/i) {
+					$config->{'placement'} = 2
+				}
+				elsif ($style =~ /^MinOverlapPlacement$/i) {
+					$config->{'placement'} = 3
+				}
+				elsif ($style =~ /^MinOverlapPercentPlacement$/i) {
+					$config->{'placement'} = 4
+				}
+				elsif ($style =~ /^ManualPlacement$/i) {
+					$config->{'placement'} = 5
+				}
+				elsif ($style =~ /^cascadePlacement$/i) {
+					$config->{'placement'} = 6
+				}
+				# end of new placement style
 				elsif ($style =~ /^GrabFocusOff$/i) {
 					$config->{'GrabFocusOff'} = 0
 				}
@@ -2281,10 +2306,10 @@ sub parse_globalfeel_Config {
 		}
 	}
 	elsif ($config->{'RandomPlacement'}) {
-		$config->{'placement'} = 5
+		$config->{'placement'} = 6
 	}
 	else {
-		$config->{'placement'} = 4 
+		$config->{'placement'} = 5 
 	}
 	# compute EdgeScroll
 	my $scroll_h = int($config->{'EdgeScroll_H'}/1000);

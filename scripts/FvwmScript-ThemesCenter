@@ -2153,10 +2153,10 @@ Case message of
     Begin
 	ChangeTitle 95 $l_ApplyThemeConfig
 	Set $cmd = $SendMsgAndGet{"apply-ts-cmd-opts"}
-	Set $CmdOptions = (GetOutput $cmd 1 -1)
-	If $CmdOptions <> {} Then
+	Set $SwitchCmd = (GetOutput $cmd 1 -1)
+	If $SwitchCmd <> {} Then
 	Begin
-	    Do {FuncFvwmThemesConfigAndUpdate "}$CmdOptions{"}
+	    Do $SwitchCmd
 	    Set $UpdateTSLists = 1
 	    Set $UpdateSettingsList = 1
 	    Set $UpdateSettingsVariants = 1
