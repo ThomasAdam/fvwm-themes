@@ -18,11 +18,6 @@
 * Add FuncFvwmConfirm to functions@default, which gets 2 parameters,
   a confirm string and a command to do on "Ok" as opposite to "Cancel".
 
-* Add buttons@multichoice with titlebar button order selector (1 option)
-  and button sets from default/redmond98/osx and more (variants or 1 option).
-  Button set may contain iconify/maximize/close/shade/stick/options names.
-  And one more option "Use in Options": "Window mini icon", "Static icon".
-
 * Split swallow colorset to 2 colorsets. There are shading problems.
 
 Optional items to do:
@@ -36,10 +31,11 @@ Optional items to do:
   ftp://fvwm-themes.sourceforge.net/pub/fvwm-themes/samples/nikke/
   We need a twm user here, maybe, nikke.
 
-* Add theme similar to http://uop.sourceforge.net/bridge.jpg or other
-  default enlightenment like. How to call it?
+* Add theme similar to http://uop.sourceforge.net/screenshots/bridge.jpg
+  or other default enlightenment like. How to call it?
   The problem. I want to add only window decorations, but I should add
   entire colors@ (too big). Should colors@ be divided?
+  [colors-decor@ should help]
 
 * Improve fvwm-themes-images:
   + support the X standard rgb:rr/gg/bb better then #rrggbb
@@ -106,7 +102,7 @@ Problems without obvious soluton:
   if someone (me) have icon style extentions. Should be solved using
   dependances somehow (using 'extends').
 
-Closed items (will be deleted after 1.0.0):
+Closed items (will be deleted after 0.5.0):
 ------------------------------------------
 * Internationalization using locale/LANG/ directories.
 
@@ -128,3 +124,8 @@ Closed items (will be deleted after 1.0.0):
 * Test and port fvwm-themes to native BSD's and Solaris.
   There are problems for sure, mkdir without -p, no killall etc.
   [got positive feedback from users]
+
+* Add buttons@multichoice with titlebar button order selector (1 option)
+  and button sets from default/redmond98/osx and more (variants or 1 option).
+  Button set may contain iconify/maximize/close/shade/stick/options names.
+  And one more option "Use in Options": "Window mini icon", "Static icon".

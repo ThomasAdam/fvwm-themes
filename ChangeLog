@@ -3,6 +3,9 @@
 	* themes/multichoice/buttons/faces/_images:
 	some old GNU tar versions do not overwrite symlinks, so rm -r first
 
+	* TODO:
+	updated for 0.5.0
+
 2001-07-19  migo  <migo@homemail.com>
 
 	* Makefile.am:
