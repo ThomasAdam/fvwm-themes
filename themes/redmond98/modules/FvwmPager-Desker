@@ -23,8 +23,3 @@ DestroyModuleConfig FvwmPager-Desker: *
 
 *FvwmPager-Desker: Geometry 319x69+5000+5000
 *FvwmPager-Desker: Balloons Pager
-
-*FvwmPager-Desker: Label 0 Main
-*FvwmPager-Desker: Label 1 Internet
-*FvwmPager-Desker: Label 2 Development
-*FvwmPager-Desker: Label 3 Misc

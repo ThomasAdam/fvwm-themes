@@ -236,6 +236,14 @@ AddToFunc   FuncFvwmChangeApplets
 + I FvwmButtons $0
 
 # ----------------------------------------------------------------------------
+# Desktop names
+
+DesktopName 0 One
+DesktopName 1 Two
+DesktopName 2 Three
+DesktopName 3 Four
+
+# ----------------------------------------------------------------------------
 # Modules configuration
 
 Read $./styles

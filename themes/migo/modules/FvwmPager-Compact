@@ -16,8 +16,3 @@ DestroyModuleConfig FvwmPager-Compact: *
 *FvwmPager-Compact: BalloonYOffset +14
 *FvwmPager-Compact: WindowBorderWidth 1
 *FvwmPager-Compact: Window3dBorders
-
-*FvwmPager-Compact: Label 0 Main
-*FvwmPager-Compact: Label 1 FVWM
-*FvwmPager-Compact: Label 2 Work
-*FvwmPager-Compact: Label 3 Fun

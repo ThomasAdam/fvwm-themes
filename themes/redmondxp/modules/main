@@ -116,6 +116,14 @@ AddToMenu   MenuFvwmStopThemeModules
 	FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
 
 # ----------------------------------------------------------------------------
+# Desktop names
+
+DesktopName 0 Main
+DesktopName 1 Internet
+DesktopName 2 Devel
+DesktopName 3 Games
+
+# ----------------------------------------------------------------------------
 # Modules configuration
 
 Read $./styles

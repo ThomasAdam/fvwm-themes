@@ -1,3 +1,9 @@
+2002-12-24  migo  <migo@homemail.com>
+
+	* themes/*/modules/FvwmPager*:
+	* themes/*/modules/main:
+	moved from *FvwmPager: Label to DesktopName command
+
 2002-12-22  migo  <migo@homemail.com>
 
 	* themes/migo/background:

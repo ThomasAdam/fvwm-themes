@@ -79,6 +79,14 @@ AddToMenu   MenuFvwmStopThemeModules "Default Modules" Title
 + "%menu/quit.xpm%Stop &WinList" KillModule FvwmWinList
 
 # ----------------------------------------------------------------------------
+# Desktop names
+
+DesktopName 0 Main
+DesktopName 1 Web & Mail
+DesktopName 2 Devel
+DesktopName 3 Games
+
+# ----------------------------------------------------------------------------
 # Modules configuration
 
 Read $./styles

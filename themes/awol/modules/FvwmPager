@@ -24,25 +24,10 @@ DestroyModuleConfig FvwmPager-Single: *
 *FvwmPager-Single: Geometry 800x48+0-80
 *FvwmPager-Single: DeskHilight
 *FvwmPager-Single: MiniIcons
-*FvwmPager-Single: Label -7 One more
-*FvwmPager-Single: Label -6 Furthest!
-*FvwmPager-Single: Label -5 Furtherer
-*FvwmPager-Single: Label -4 Further
-*FvwmPager-Single: Label -3 Heaps Far
-*FvwmPager-Single: Label -2 Too Far
-*FvwmPager-Single: Label -1 Root
-*FvwmPager-Single: Label 0 WorkDesk   
-*FvwmPager-Single: Label 1 Internet
-*FvwmPager-Single: Label 2 Play
-*FvwmPager-Single: Label 3 Misc
-*FvwmPager-Single: Label 4 Junk
-*FvwmPager-Single: Label 5 Crap
-*FvwmPager-Single: Label 6 More Crap
-*FvwmPager-Single: Label 7 Whatever
 *FvwmPager-Single: IconGeometry 48x48+0-100
 *FvwmPager-Single: Balloons All
 *FvwmPager-Single: BalloonYOffset -2
-*FvwmPager-Single: Window3DBorders 
+*FvwmPager-Single: Window3DBorders
 
 DestroyModuleConfig FvwmPager-Desker: *
 
@@ -55,22 +40,7 @@ DestroyModuleConfig FvwmPager-Desker: *
 *FvwmPager-Desker: Columns 1
 *FvwmPager-Desker: DeskHilight
 *FvwmPager-Desker: MiniIcons
-*FvwmPager-Desker: Label -7 One More
-*FvwmPager-Desker: Label -6 Furthest!
-*FvwmPager-Desker: Label -5 Furtherer
-*FvwmPager-Desker: Label -4 Further
-*FvwmPager-Desker: Label -3 Heaps Far
-*FvwmPager-Desker: Label -2 Too Far
-*FvwmPager-Desker: Label -1 Root
-*FvwmPager-Desker: Label 0 WorkDesk   
-*FvwmPager-Desker: Label 1 Internet
-*FvwmPager-Desker: Label 2 Play
-*FvwmPager-Desker: Label 3 Misc
-*FvwmPager-Desker: Label 4 Junk
-*FvwmPager-Desker: Label 5 Crap
-*FvwmPager-Desker: Label 6 More Crap
-*FvwmPager-Desker: Label 7 Whatever
 *FvwmPager-Desker: IconGeometry 48x48+0-100
 *FvwmPager-Desker: Balloons All
 *FvwmPager-Desker: BalloonYOffset -2
-*FvwmPager-Desker: Window3DBorders 
+*FvwmPager-Desker: Window3DBorders

@@ -42,8 +42,3 @@ DestroyModuleConfig FvwmPager-Single: *
 *FvwmPager-Single: BalloonYOffset +14
 *FvwmPager-Single: WindowBorderWidth 1
 *FvwmPager-Single: Window3dBorders
-
-*FvwmPager-Single: Label 0 Main
-*FvwmPager-Single: Label 1 Internet
-*FvwmPager-Single: Label 2 Devel
-*FvwmPager-Single: Label 3 Games

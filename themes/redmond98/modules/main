@@ -76,6 +76,14 @@ AddToMenu   MenuFvwmStopThemeModules "Redmond98 Modules" Title
 + "%menu/quit.xpm%Stop TaskBar"	    KillModule FvwmTaskBar
 
 # ----------------------------------------------------------------------------
+# Desktop names
+
+DesktopName 0 Main
+DesktopName 1 Internet
+DesktopName 2 Developement
+DesktopName 3 Misc
+
+# ----------------------------------------------------------------------------
 # Modules configuration
 
 Read $./styles

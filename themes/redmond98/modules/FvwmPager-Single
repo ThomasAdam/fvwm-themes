@@ -28,8 +28,3 @@ DestroyModuleConfig FvwmPager-Single: *
 *FvwmPager-Single: Hilight white
 *FvwmPager-Single: Geometry 319x69+5000+5000
 *FvwmPager-Single: Balloons Pager
-
-*FvwmPager-Single: Label 0 Main
-*FvwmPager-Single: Label 1 Internet
-*FvwmPager-Single: Label 2 Development
-*FvwmPager-Single: Label 3 Misc

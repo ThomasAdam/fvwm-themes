@@ -20,15 +20,8 @@ DestroyModuleConfig FvwmPager-Single: *
 *FvwmPager-Single: HilightColorset * 15
 *FvwmPager-Single: WindowColorsets 1 2
 *FvwmPager-Single: BalloonColorset * 16 
-
 *FvwmPager-Single: Geometry +5000+5000
 *FvwmPager-Single: Columns 1
 *FvwmPager-Single: Balloons            All
-
 *FvwmPager-Single: BalloonYOffset      +2
 *FvwmPager-Single: BalloonBorderWidth  1
-
-*FvwmPager-Single: Label 0 Main
-*FvwmPager-Single: Label 1 Web & Mail
-*FvwmPager-Single: Label 2 Devel
-*FvwmPager-Single: Label 3 Games

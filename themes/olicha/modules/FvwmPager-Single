@@ -28,8 +28,3 @@ DestroyModuleConfig FvwmPager-Single: *
 
 *FvwmPager-Single: MiniIcons
 *FvwmPager-Single: SolidSeparators
-
-*FvwmPager-Single: Label 0 One
-*FvwmPager-Single: Label 1 Two
-*FvwmPager-Single: Label 2 Three
-*FvwmPager-Single: Label 3 Four

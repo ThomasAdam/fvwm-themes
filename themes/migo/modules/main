@@ -145,6 +145,14 @@ AddToMenu   MenuFvwmBarIconSet "Change Icon Set" Title
 Mouse 3 R SCM Menu MenuFvwmBarIconSet Nop
 
 # ----------------------------------------------------------------------------
+# Desktop names
+
+DesktopName 0 Main
+DesktopName 1 FVWM
+DesktopName 2 Work
+DesktopName 3 Fun
+
+# ----------------------------------------------------------------------------
 # Modules configuration
 
 Read $./styles

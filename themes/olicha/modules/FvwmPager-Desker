@@ -23,8 +23,3 @@ DestroyModuleConfig FvwmPager-Desker: *
 *FvwmPager-Desker: Balloons null
 *FvwmPager-Desker: NoLabel
 *FvwmPager-Desker: MiniIcons
-
-*FvwmPager-Desker: Label 0 One
-*FvwmPager-Desker: Label 1 Two
-*FvwmPager-Desker: Label 2 Three
-*FvwmPager-Desker: Label 3 Four

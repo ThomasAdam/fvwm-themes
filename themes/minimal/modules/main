@@ -58,6 +58,14 @@ DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "Minimal Modules" Title
 + "%menu/quit.xpm%Stop &Buttons" FuncFvwmUnReloadColorsModules
 
+# ----------------------------------------------------------------------------
+# Desktop names
+
+DesktopName 0 One
+DesktopName 1 Two
+DesktopName 2 Three
+DesktopName 3 Four
+
 # ------------------------------------------------------------
 # modules config
 
@@ -223,11 +231,6 @@ DestroyModuleConfig FvwmPager-Single: *
 
 *FvwmPager-Single: Window3dBorders
 
-*FvwmPager-Single: Label 0 One
-*FvwmPager-Single: Label 1 Two
-*FvwmPager-Single: Label 2 Three
-*FvwmPager-Single: Label 3 Four
-
 # we "need" to configure a desker for Shift-ctl Mouse 2 bindings
 DestroyModuleConfig FvwmPager-Desker: *
 
@@ -242,11 +245,6 @@ DestroyModuleConfig FvwmPager-Desker: *
 *FvwmPager-Desker: BalloonBorderWidth  1
 
 *FvwmPager-Desker: Window3dBorders
-
-*FvwmPager-Desker: Label 0 One
-*FvwmPager-Desker: Label 1 Two
-*FvwmPager-Desker: Label 2 Three
-*FvwmPager-Desker: Label 3 Four
 
 # -------------------------------
 # fonts

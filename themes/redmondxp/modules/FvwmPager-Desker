@@ -28,8 +28,3 @@ DestroyModuleConfig FvwmPager-Desker: *
 *FvwmPager-Desker: BalloonYOffset +14
 *FvwmPager-Desker: WindowBorderWidth 1
 *FvwmPager-Desker: Window3dBorders
-
-*FvwmPager-Desker: Label 0 Main
-*FvwmPager-Desker: Label 1 Internet
-*FvwmPager-Desker: Label 2 Devel
-*FvwmPager-Desker: Label 3 Games

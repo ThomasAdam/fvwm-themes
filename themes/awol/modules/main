@@ -83,6 +83,25 @@ AddToFunc   FuncFvwmButtonsSwitch
 + I FvwmButtons $0
 
 # ----------------------------------------------------------------------------
+# Desktop names
+
+DesktopName -7 One more
+DesktopName -6 Furthest!
+DesktopName -5 Furtherer
+DesktopName -4 Further  
+DesktopName -3 Heaps Far
+DesktopName -2 Too Far  
+DesktopName -1 Root     
+DesktopName 0 WorkDesk  
+DesktopName 1 Internet  
+DesktopName 2 Play
+DesktopName 3 Misc
+DesktopName 4 Junk
+DesktopName 5 Crap
+DesktopName 6 More Crap
+DesktopName 7 Whatever 
+
+# ----------------------------------------------------------------------------
 # Modules configuration
 
 Read $./styles
