@@ -2,6 +2,9 @@
 
 	* themes/default/menus: removed FocusFollowsMouse, this is only alias
 
+	* bin/fvwm-themes-config.in:
+	s/FuncFvwmInitInitFunctions/FuncFvwmResetInitFunctions/
+
 2000-10-14  migo  <migo@homemail.com>
 
 	* themes/*/buttons: some clean up

@@ -1377,8 +1377,8 @@ sub generateThemesRc ($) {
 
 	my $contents = "# fvwm/$rcFile $version$header";
 	$contents .= q{
-DestroyFunc FuncFvwmInitInitFunctions
-AddToFunc   FuncFvwmInitInitFunctions
+DestroyFunc FuncFvwmResetInitFunctions
+AddToFunc   FuncFvwmResetInitFunctions
 + I DestroyFunc StartFunction
 + I DestroyFunc InitFunction
 + I DestroyFunc RestartFunction
@@ -1393,7 +1393,7 @@ AddToFunc   FuncFvwmRestartFvwmTheme
 + I DestroyModuleConfig FvwmTheme: *
 + I ModuleSynchronous FvwmTheme
 
-FuncFvwmInitInitFunctions
+FuncFvwmResetInitFunctions
 #FuncFvwmRestartFvwmTheme
 
 DestroyFunc FuncFvwmThemesConfigAndUpdate
@@ -1401,7 +1401,7 @@ AddToFunc   FuncFvwmThemesConfigAndUpdate
 + I FvwmScript FvwmScript-NoteMessage "Theme switching"
 + I Wait FvwmScript-NoteMessage
 + I PipeRead `@$scriptFile@ $0 --pipe`
-+ I FuncFvwmInitInitFunctions
++ I FuncFvwmResetInitFunctions
 + I FuncFvwmStopAllHooks
 #+ I FuncFvwmRemoveBindings
 #+ I FuncFvwmRemoveButtonsBindings
