@@ -1,3 +1,13 @@
+2002-12-21  migo  <migo@homemail.com>
+
+	* themes/underground/background/README:
+	* themes/underground/background/images/*.jpg (11 large tiles):
+	Added a new theme Underground that is supposed to provide nice
+	backgrounds, and 11 large nice tiles. Feel free to add more images.
+	But they should be very nice, qualitative, smooth and free, of course.
+	Most of our backgrounds are horrible, @awol - too simple, @migo -
+	too bright (will be replaced), @olivier - way too contrast and so on.
+
 2002-12-20  migo  <migo@homemail.com>
 
 	* images.tar.gz:
