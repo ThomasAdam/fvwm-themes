@@ -1,3 +1,15 @@
+2002-05-26  migo  <migo@homemail.com>
+
+	* themes/metal/images/decor/border-active.xpm:
+	* themes/metal/images/decor/border-inactive.xpm:
+	* themes/metal/colors-decor:
+	added BorderStyle pixmap, it is not very nice, but ok;
+	current BorderStyle pixmap functionality is bad, it works for
+	these images and title height just by a chance, it should be mirrored
+
+	* themes/redmondxp/background:
+	a better hack to restore changed colorsets
+
 2002-05-25  migo  <migo@homemail.com>
 
 	* themes/redmondxp/background:
