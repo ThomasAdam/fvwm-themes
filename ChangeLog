@@ -1,3 +1,9 @@
+2001-09-27  olicha  <olivier.chapuis@free.fr>
+
+	* themes/minimal/modules/main:
+	* themes/osx/modules/{main,main:FvwmButtons-MenuBar}:
+	A few fixes
+
 2001-09-25  olicha  <olivier.chapuis@free.fr>
 
 	* themes/cde/modules/buttonsbar/{small,large}:

@@ -49,7 +49,7 @@ AddToFunc   FuncFvwmRestartChosenButtons
 
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "Minimal Modules" Title
-+ "%menu/item.xpm%&Destop Buttons" FuncFvwmRestartChosenButtons \
++ "%menu/item.xpm%&Desktop Buttons" FuncFvwmRestartChosenButtons \
 	FvwmButtons-Desktop
 + "%menu/item.xpm%&Laptop Buttons" FuncFvwmRestartChosenButtons \
 	FvwmButtons-Laptop
@@ -75,32 +75,32 @@ DestroyModuleConfig FvwmButtons-Laptop: *
 *FvwmButtons-Laptop: Columns 10
 *FvwmButtons-Laptop: (3x12, Size 64 64, Frame 1,\
 	Swallow (Kill) "FvwmApplet-DayClock" 'FvwmScript FvwmApplet-DayClock 10 13'))
-*FvwmButtons-Desktop: (1x5,Frame 1,\
+*FvwmButtons-Laptop: (1x5,Frame 1,\
 	Icon 16x16/www.xpm, \
 	Action(Mouse 1) 'FuncFvwmWWW', \
 	Action(Mouse 2) 'FuncFvwm2WWW', \
 	Action(Mouse 3) 'FuncFvwm3WWW')
-*FvwmButtons-Desktop: (1x5,Frame 1,\
+*FvwmButtons-Laptop: (1x5,Frame 1,\
 	Icon 16x16/terminal.xpm, \
 	Action(Mouse 1) 'FuncFvwmTerminal', \
 	Action(Mouse 2) 'FuncFvwm2Terminal', \
 	Action(Mouse 3) 'FuncFvwm3Terminal')
-*FvwmButtons-Desktop: (1x5,Frame 1, \
+*FvwmButtons-Laptop: (1x5,Frame 1, \
 	Icon 16x16/editor.xpm, \
 	Action(Mouse 1) 'FuncFvwmEditor', \
 	Action(Mouse 2) 'FuncFvwm2Editor', \
 	Action(Mouse 3) 'FuncFvwm3Editor')
-*FvwmButtons-Desktop: (1x5,Frame 1,\
+*FvwmButtons-Laptop: (1x5,Frame 1,\
 	Icon 16x16/monitoring.xpm, \
 	Action(Mouse 1) 'FuncFvwmProcess', \
 	Action(Mouse 2) 'FuncFvwm2Process', \
 	Action(Mouse 3) 'FuncFvwm3Process')
-*FvwmButtons-Desktop: (1x5,Frame 1,\
+*FvwmButtons-Laptop: (1x5,Frame 1,\
 	Icon 16x16/mail.xpm, \
 	Action(Mouse 1) 'FuncFvwmMail', \
 	Action(Mouse 2) 'FuncFvwm2Mail', \
 	Action(Mouse 3) 'FuncFvwm3Mail')
-*FvwmButtons-Desktop: (1x5,Frame 1,\
+*FvwmButtons-Laptop: (1x5,Frame 1,\
 	Icon 16x16/game.xpm, \
 	Action(Mouse 1) 'FuncFvwmGame', \
 	Action(Mouse 2) 'FuncFvwm2Game', \
