@@ -25,14 +25,15 @@ Init
    ChangeColorset 2 $Colorset
    ChangeColorset 1 $Colorset
   End
-
- Set $tmp = (GetOutput {exec date} $pos 4)
+ Set $tmp = (GetOutput $cmd 1 -1)
+ Do {echo }$tmp 
+ Set $tmp = (GetOutput {date} 1 4)
  Set $tmp = (StrCopy $tmp 1 5)
  ChangeTitle 1 $tmp
- Set $day  = (GetOutput {exec date} $pos 1)
- Set $month =  (GetOutput {exec date} $pos 2)
+ Set $day  = (GetOutput {date} 1 1)
+ Set $month =  (GetOutput {date} 1 2)
  Set $title = $day { } $month
- Set $time = (GetOutput {exec date} $pos 3)
+ Set $time = (GetOutput {date} 1 3)
  ChangeTitle  4 $time
  ChangeTitle  2 $title
 End
@@ -41,13 +42,14 @@ PeriodicTasks
  Begin
  If (RemainderOfDiv (GetTime) 30)==0 Then
  Begin
-  Set $tmp = (GetOutput {exec date} $pos 4)
+  Set $tmp = (GetOutput {date} 1 4)
   Set $tmp = (StrCopy $tmp 1 5)
   ChangeTitle 1 $tmp
-  Set $day  = (GetOutput {exec date} $pos 1)
-  Set $month =  (GetOutput {exec date} $pos 2)
+  Set $day  = (GetOutput {date} 1 1)
+  Set $month =  (GetOutput {date} 1 2)
   Set $title = $day { } $month
-  ChangeTitle  4 (GetOutput {exec date} $pos 3)
+  Set $tmp = (GetOutput {date} 1 3)
+  ChangeTitle  4 $tmp
   ChangeTitle  2 $title
  End
 End
