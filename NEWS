@@ -5,8 +5,9 @@ fvwm-themes-0.7.0 - not yet released
 
 fvwm-themes-0.6.2 - not yet released
 
-* Fixes for RedHat 8.0.
+* Fixes for perl-5.8.0 and unicode locale (RedHat 8.0).
 * Included 48x48-infox icon set (was 48x48-general) for normal icons,
+* File names are now compatible with Solaris's pkgmk.
 * This is probably the last version for fvwm-2.4.x.
 
 fvwm-themes-0.6.1 - 20020619
