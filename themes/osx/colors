@@ -111,25 +111,25 @@ Colorset 22 fg black, bg lightblue, Plain, NoShape
 # III. Application Colorsets
 
 # regular terminal
-Colorset 30 fg black, bg lightgoldenrod, Plain, NoShape
+Colorset 30 fg white, bg rgb:30/70/d0, Plain, NoShape
 
 # admin terminal
-Colorset 31 fg black, bg lightcyan3, Plain, NoShape
+Colorset 31 fg white, bg rgb:30/80/a0, Plain, NoShape
 
 # remote terminal
-Colorset 32 fg black, bg lightgreen, Plain, NoShape
+Colorset 32 fg white, bg rgb:60/8a/a0, Plain, NoShape
 
 # viewer terminal
-Colorset 33 fg black, bg lightblue, Plain, NoShape
+Colorset 33 fg white, bg rgb:10/48/70, Plain, NoShape
 
 # application run in the terminal, text editor
-Colorset 34 fg black, bg grey70, Plain, NoShape
+Colorset 34 fg black, bg rgb:30/8a/f0, Plain, NoShape
 
 # dialog main area
-Colorset 35 fg white, bg DarkBlue, Plain, NoShape
+Colorset 35 fg white, bg rgb:28/7a/da, Plain, NoShape
 
 # dialog text area
-Colorset 36 fg black, bg lightgoldenrod, Plain, NoShape
+Colorset 36 fg white, bg rgb:20/50/c0, Plain, NoShape
 
 # ----------------------------------------------------------------------------
 # IV. Start/Stop Functions
