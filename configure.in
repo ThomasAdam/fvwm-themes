@@ -4,7 +4,7 @@ AC_REVISION(0.2.3)
 AC_INIT(themes/default/README)
 AM_INIT_AUTOMAKE(fvwm-themes, 0.5.1)
 
-REQUIRED_FVWM_VERSION=2.3.33
+REQUIRED_FVWM_VERSION=2.4.3
 AC_SUBST(REQUIRED_FVWM_VERSION)dnl
 
 mg_ARG_WITH(fvwm-bindir, 
@@ -252,6 +252,7 @@ AC_OUTPUT(
 	locale/en/Makefile
 	locale/fr/Makefile
 	locale/ru/Makefile
+	locale/ja/Makefile
 	bin/fvwm-themes-config
 	bin/fvwm-themes-start
 	bin/fvwm-themes-xrdb

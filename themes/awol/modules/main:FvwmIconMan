@@ -12,7 +12,8 @@ DestroyModuleConfig FvwmIconMan: *
 #*FvwmIconMan: *font -adobe-*chancery-*-*-*-*-24-*-*-*-*-*-*-*
 *FvwmIconMan: *font -adobe-times-*-*-*-*-20-*-*-*-*-*-*-*
 *FvwmIconMan: *buttongeometry 50x25
-*FvwmIconMan: *managergeometry 15x1+45-80
+#*FvwmIconMan: *managergeometry 15x1+45-80
+*FvwmIconMan: *managergeometry 15x1
 *FvwmIconMan: *dontshow icon=Untitled
 *FvwmIconMan: *usewinlist true
 *FvwmIconMan: *resolution desk

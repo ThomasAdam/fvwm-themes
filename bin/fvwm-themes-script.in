@@ -644,6 +644,13 @@ sub buildMsg {
 	my $return = "";
 	my $file = "";
 	$lang = substr($lang, 0, 2);
+	# check if ja is ok:
+	if ($lang eq "ja") {
+		my $lc_ctype = $ENV{'LC_CTYPE'} || "";
+		$lang = "en"
+		  if (!(system("fvwm-config --supports-multibyte") == 0 &&
+				  $lc_ctype =~ /ja/));
+	}
 	if ($getMsg =~ /^\//) {
 		$file = $getMsg;
 	}

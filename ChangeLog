@@ -1,3 +1,22 @@
+2001-09-24  olicha  <olivier.chapuis@free.fr>
+
+	* configure.in:
+	* README:
+	Requires fvwm-2.4.3
+
+	* themes/default/settings.cfg:
+	* themes/default/themes.cfg:
+	* themes/default/settings/settings/xinerama/*: (new files)
+	Added xinerama in settings. Special Xinerama command as
+	XineramaPimaryScreen or XineramaSlsSize should be put in
+	"personal"/xinerama-extra
+
+	* scripts/FvwmScript-ColorSelector:
+	* bin/fvwm-themes-script.in:
+	* locale/ja/{Makefile.am,FvwmScript-ColorSelector.msg}: (new files)
+	* AUTHORS:
+	Applied a modified version of a patch by Mike Fabian
+
 2001-09-22  olicha  <olivier.chapuis@free.fr>
 
 	* themes/multichoice/face/_image:

@@ -26,11 +26,6 @@ Begin
 	Set $arg = (GetScriptArgument $i)
     End
 
-    If $ViewerColorset <> {} Then
-    Begin
-	ChangeColorset 998 $ViewerColorset
-    End
-
     Set $SelFont = {-adobe-helvetica-bold-r-*-*-12-*}
     Set $ShadeFont = {-adobe-helvetica-medium-r-*-*-12-*}
     Set $SaveFont = {Sel}
@@ -85,7 +80,6 @@ Begin
 	If $id == {Ok          } Then
 	Begin
 	    ChangeTitle 992 $msg
-	    ChangeTitle 999 $msg
 	End
 	If $id == {Cancel      } Then
 	    ChangeTitle 994 $msg
@@ -103,16 +97,16 @@ Begin
     Begin
 	ChangeFont 1 $SelFont
 	ChangeFont 14 $SelFont
-	ChangeFont 17 $SelFont
-	ChangeFont 30 $SelFont
-	ChangeFont 32 $SelFont
-	ChangeFont 34 $SelFont
+	# these 4 one display number
+	ChangeFont 17 $FixedFont
+	ChangeFont 30 $FixedFont
+	ChangeFont 32 $FixedFont
+	ChangeFont 34 $FixedFont
 	ChangeFont 992 $SelFont
 	ChangeFont 993 $SelFont
     	ChangeFont 994 $SelFont
 	# when the doc will be written
-	# ChangeFont 994 $FixedFont
-	ChangeFont 999 $SelFont
+	#ChangeFont 994 $FixedFont
     End
 
     # ---------------------- Color init
@@ -704,54 +698,12 @@ Main
 Case message of
  SingleClic :
  Begin
-    HideWidget 1
-    #HideWidget 20
-    Set $tmp = 10
-    While $tmp <> 18 Do
-    Begin
-	HideWidget $tmp
-	Set $tmp = (Add $tmp 1)
-    End
-    Set $tmp = 30
-    While $tmp <> 36 Do
-    Begin
-	HideWidget $tmp
-	Set $tmp = (Add $tmp 1)
-    End
-    HideWidget 994
-    HideWidget 993
-    HideWidget 992
-    If $DocLoaded == 0 Then
-    Begin
-	Set $DocLoaded = 1
-	Set $cmd = {fvwm-themes-script --in-line-doc FvwmScript-ColorSelector --line-length 44 --lang }$Lang
-	Set $Doc = (GetOutput $cmd 1 -1)
-
-        # first "line" is the font, evaluate it
-        Set $font = {}
-        Set $index = 1
-        Set $done = 0
-        While $done <> 1 Do
-        Begin
-            Set $tmp = (StrCopy $Doc $index $index)
-            If $tmp == {|} Then
-                Set $done = 1
-            Else
-                Set $font = $font $tmp 
-            Set $index = (Add $index 1)
-            If $index == 300 Then
-            Begin
-                Set $font = "fixed"
-                Set $done = 1
-            End
-        End
-	ChangeFont 998 $font
-
-	Set $Doc = (StrCopy $Doc $index 32000)
-	ChangeTitle 998 $Doc
-    End
-    ShowWidget 998
-    ShowWidget 999
+    Set $arg={FvwmScript-Help --in-line-doc FvwmScript-ColorSelector --title "Color Selector"}
+    If $ViewerColorset <> {} Then
+	Set $arg=$arg{ --text-colorset }$ViewerColorset
+    If $Lang <> {} Then
+	Set $arg=$arg{ --lang }$Lang
+    Set $dummy = (LaunchScript $arg)
  End
 End
 
@@ -775,55 +727,5 @@ Case message of
 End
 
 
-Widget 998
-Property
-    Position 5 5
-    Size 306 230
-    Type List
-    Font fixed
-    Flags NoReliefString Hidden
-    Title {}
-
-Main
-Case message of
- SingleClic :
- Begin
- End
-End
 
 
-# Ok for the doc
-Widget 999
-Property
-    Position 220 245
-    Size 80 20
-    #Font fixed
-    Type PushButton
-    Flags NoReliefString Hidden
-    Title {}
-Main
-Case message of
- SingleClic :
- Begin
-    ShowWidget 1
-    ShowWidget 2
-    #ShowWidget 20
-    Set $tmp = 10
-    While $tmp <> 18 Do
-    Begin
-	ShowWidget $tmp
-	Set $tmp = (Add $tmp 1)
-    End
-    Set $tmp = 30
-    While $tmp <> 36 Do
-    Begin
-	ShowWidget $tmp
-	Set $tmp = (Add $tmp 1)
-    End
-    ShowWidget 994
-    ShowWidget 993
-    ShowWidget 992
-    HideWidget 998
-    HideWidget 999
- End
-End

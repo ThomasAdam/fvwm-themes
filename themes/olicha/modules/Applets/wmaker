@@ -1,10 +1,2 @@
 AddToFunc   FuncFvwmStartThemeModules
 + I FvwmButtons FvwmButtons-WMakerApplets
-
-# not needed a priori but if we do not restart this module FvwmButtons
-# core dump
-AddToFunc   FuncFvwmReloadColorsModules
-+ I FvwmButtons FvwmButtons-WMakerApplets
-
-AddToFunc   FuncFvwmUnReloadColorsModules
-+ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-WMakerApplets
