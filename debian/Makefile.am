@@ -8,26 +8,19 @@ release = 0.`date +%Y%m%d`
 datum = `date "+%a, %d %b %Y %X %z"`
 fullname = FVWM Themes Developers
 email = fvwm-themes-devel@lists.sourceforge.net
-dirn = fvwm-themes
 
 deb:
 	make clean;
-	@\
-	version=$(version); \
-	datum=$(datum); \
-	release=$(release); \
-	fullname=$(fullname); \
-	email=$(email); 
-	echo "fvwm-themes-full-$(version) ($(release)) unstable; urgency=low" > debian/changelog; \
-	echo ""  >> debian/changelog; \
-	echo "  * new upstream release" >> debian/changelog; \
-	echo "" >> debian/changelog; \
-	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog; \
-	echo "" >> debian/changelog; 
+	echo "fvwm-themes-full-$(version) ($(release)) unstable; urgency=low" > debian/changelog
+	echo ""  >> debian/changelog
+	echo "  * new upstream release" >> debian/changelog
+	echo "" >> debian/changelog
+	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
+	echo "" >> debian/changelog
 	./configure --prefix=/usr --disable-run-updatemenu
-	cp -f debian/full-control debian/control; \
+	cp -f debian/full-control debian/control
 	fakeroot dh_clean fvwm-themes-extra-$(version) fvwm-themes-full-$(version) fvwm-themes-$(version)
-	(cd .. && dpkg-source -b fvwm-themes);
+	(cd .. && dpkg-source -b fvwm-themes)
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE)
@@ -56,20 +49,16 @@ deb:
 
 deb-base:
 	make clean;
-	@\
-	version=$(version); \
-	datum=$(datum); \
-	release=$(release); 
-	echo "fvwm-themes-$(version) ($(release)) unstable; urgency=low" > debian/changelog; \
-	echo ""  >> debian/changelog; \
-	echo "  * new upstream release" >> debian/changelog; \
-	echo "" >> debian/changelog; \
-	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog; \
-	echo "" >> debian/changelog;
+	echo "fvwm-themes-$(version) ($(release)) unstable; urgency=low" > debian/changelog
+	echo ""  >> debian/changelog
+	echo "  * new upstream release" >> debian/changelog
+	echo "" >> debian/changelog
+	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
+	echo "" >> debian/changelog
 	./configure --prefix=/usr --disable-run-updatemenu
-	cp -f debian/base-control debian/control; \
+	cp -f debian/base-control debian/control
 	fakeroot dh_clean fvwm-themes-extra-$(version) fvwm-themes-full-$(version) fvwm-themes-$(version)
-	(cd .. && dpkg-source -b fvwm-themes);
+	(cd .. && dpkg-source -b fvwm-themes)
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE)
@@ -107,23 +96,18 @@ deb-base:
 	rm -f debian/control debian/base-control
 
 
-
 deb-extra:
-	make clean;
-	@\
-	version=$(version); \
-	datum=$(datum); \
-	release=$(release); \
-	echo "fvwm-themes-extra-$(version) ($(release)) unstable; urgency=low" > debian/changelog; \
-	echo " "  >> debian/changelog; \
-	echo "  * new upstream release" >> debian/changelog; \
-	echo " " >> debian/changelog; \
-	echo " -- $(fullname) <$(email)>  $(datum)" >>  debian/changelog; \
-	echo " " >> debian/changelog; 
+	make clean
+	echo "fvwm-themes-extra-$(version) ($(release)) unstable; urgency=low" > debian/changelog
+	echo ""  >> debian/changelog
+	echo "  * new upstream release" >> debian/changelog
+	echo "" >> debian/changelog
+	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
+	echo "" >> debian/changelog
 	./configure --prefix=/usr --disable-run-updatemenu
-	cp -f debian/extra-control debian/control;
+	cp -f debian/extra-control debian/control
 	fakeroot dh_clean fvwm-themes-extra-$(version) fvwm-themes-full-$(version) fvwm-themes-$(version)
-	(cd .. && dpkg-source -b fvwm-themes);
+	(cd .. && dpkg-source -b fvwm-themes)
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE)
