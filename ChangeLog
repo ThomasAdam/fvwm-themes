@@ -3,6 +3,9 @@
 	* NEWS:
 	mention graphical colorset viewer
 
+	* bin/fvwm-themes-start.in:
+	create directory for personal theme
+
 2002-09-26  migo  <migo@homemail.com>
 
 	* themes/default/bindings:
