@@ -1,3 +1,19 @@
+2000-11-07  olicha  <olivier.chapuis@free.fr>
+
+	* themes/olicha/README:
+	* themes/olicha/modules/main:FvwmButtonsWMakerApplets:
+	Explain how to edit WMApplets (for use with modules@olicha and
+	or with an other module themes) and small things
+
+	* themes/olicha/modules.cfg:
+	use option in the place of variant
+
+	* themes/luthien/README:
+	Explain how to change xosview 3 "meters"
+
+	* themes/lutien/modules/main:FvwmButtons:
+	add -battery and -disk to FuncFvwmStartBarXosview
+
 2000-11-07  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-script.in:

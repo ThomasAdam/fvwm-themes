@@ -22,10 +22,93 @@ As the default, but the root one a black/yellow hand
 
 The FvwmButtons-WMakerApplets is a Button Bar for WMaker and AfterStep applets.
 You may edit modules/main:FvwmButtons-WMakerApplets to choose your prefered
-applets. Also it is not started by default. The more compatible 
-FvwmButtons-FvwmApplets is started by default.
+applets (see below). Also it is not started by default. The more compatible 
+FvwmButtons-FvwmApplets is started by default (use current->modules->Applets
+in the Theme Management menu).
 How to use these Buttons: Mouse 1 in the backgroud of a button will start 
 a panel if it is not started, will ummap it if it is visibale and map it
 if it started but not visible. Mouse 3 in the backgroud of a button will 
 kill.
 
+* How to edit modules/main:FvwmButtons-WMakerApplets
+----------------------------------------------------
+
+If not already done create your personal theme directory:
+
+mkdir $FVWM_USERDIR/themes/personal
+
+If not already done create the file modules-extra in this directory
+and then copy the contents of
+
+fvwm-themes-install-dir/themes/olicha/modules/main:FvwmButtons-WMakerApplets
+
+in this file and then choose your prefered applets (there are some
+indications in this file).
+
+Note that the above apply to any "modules" in a modules themes: the only
+problem is that if a module in an other modules theme have the same name
+this configuration will be also over-read. However, for 
+FvwmButtons-WMakerApplets and others this not a problem.
+
+Now, the above is enough if you use modules@olicha. But, if you want
+to be able to use this module in any modules themes you must add the 
+following to modules-extra (Note that the position of WMakerApplets may 
+be in conflict with modules themes different from olicha; e.g., with
+modules@default if you use icons, the first icon will be masked
+by WMakerApplets).
+
+#-----------------------------------------------------------------------------
+# the following is needed if you alawys want to be able to start
+# FvwmButtons-WMakerApplets
+
+Style "FvwmButtons-WMaker*Applets" NoTitle, NoHandles, BorderWidth 0, Sticky, \
+	WindowListSkip, CirculateHit, NoIcon, TitleAtTop
+
+# Maybe you want to always start this modules (of course in this case
+# disabled any applets in modules@olicha). 
+#AddToFunc   FuncFvwmStartThemeModules
+#+ I FvwmButtons FvwmButtons-WMakerApplets
+
+# Any way we always want it the modules menu
+AddToMenu   MenuFvwmStartThemeModules "&My WMaker Applets" \
+	FuncFvwmRestartMyWMApplets FvwmButtons-WMakerApplets
+AddToMenu   MenuFvwmStopThemeModules "Stop &My WMaker Applets"  \
+	FuncFvwmStopWMakerButtons
+
+DestroyFunc FuncFvwmMyPopupPanel
+AddToFunc   FuncFvwmMyPopupPanel
++ "I" All  ($0 CirculateHit) Iconify
++ "I" None ($0 CirculateHit) FvwmButtons -g +$1+$2 $0
+
+# Function to stop WMakerButtons
+DestroyFunc FuncFvwmStopWMakerButtons
+AddToFunc   FuncFvwmStopWMakerButtons
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-WMakerApplets
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-WMakerClockApplets
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-WMakerCpuApplets
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-WMakerCdApplets
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-WMakerMoreApplets
+
+DestroyFunc FuncFvwmRestartMyWMApplets
+AddToFunc   FuncFvwmRestartMyWMApplets
++ I FuncFvwmStopWMakerButtons
++ I FvwmButtons $0
+
+AddToFunc   FuncFvwmStopThemeModules
++ I FuncFvwmStopWMakerButtons
++ I DestroyStyle "FvwmButtons-WMaker*Applets"
+# All what follows are not really needed since apriorie modules-extra 
+# is loaded each time
++ I DestroyModuleConfig FvwmButtons-WMaker*Applets*
++ I DestroyFunc FuncFvwmStopWMakerButtons
++ I DestroyFunc FuncFvwmRestartMyWMApplets
++ I DestroyStyle "FvwmButtons-WMaker*Applets"
++ I DestroyFunc FuncFvwmMyPopupPanel
+
+#-----------------------------------------------------------------------------
+
+Note that again the above method may apply to others modules in other
+modules themes, but you may have to know what you are doing.
+
+-- 
+olicha, last modified: 07/Nov/2000
