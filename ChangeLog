@@ -1,3 +1,13 @@
+2001-03-20  migo  <migo@homemail.com>
+
+	* themes/default/settings/session-manager/xsm:
+	* forms/FvwmForm-ThemeSettings:
+	* forms/FvwmGtk-Themes:
+	* themes/default/menus-user:
+	* themes/default/settings.cfg:
+	* themes/default/settings/session-manager/generic:
+	added a new "xsm" variant of session-manager
+
 2001-03-19  migo  <migo@homemail.com>
 
 	* themes/default/menus: fixed menu item with '%'

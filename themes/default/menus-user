@@ -264,7 +264,6 @@ DestroyMenu MenuFvwmGraphics
 AddToMenu   MenuFvwmGraphics "Graphics" Title
 + "XV%menu/xv.xpm%"				Exec exec xv
 + "XbmBrowser%menu/image-viewer.xpm%" 		Exec exec xbmbrowser
-+ "" Nop
 + "Gimp%menu/gimp.xpm%"				Exec exec gimp
 + "ImageMagick%menu/image-processor.xpm%"	Exec exec display
 + "Xpaint%menu/image-processor.xpm%"		Exec exec xpaint

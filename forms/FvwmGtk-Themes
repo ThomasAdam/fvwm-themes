@@ -73,8 +73,9 @@ DestroyModuleConfig FvwmGtk-Themes: *
 *FvwmGtk-Themes: Box homogeneous spacing 5 6 
 *FvwmGtk-Themes: RadioGroup session-manager
 *FvwmGtk-Themes: RadioButton "None" 1 on
-*FvwmGtk-Themes: RadioButton "GNOME" 2
-*FvwmGtk-Themes: RadioButton "Generic" 3
+*FvwmGtk-Themes: RadioButton "Generic" 2
+*FvwmGtk-Themes: RadioButton "gnome-session" 3
+*FvwmGtk-Themes: RadioButton "xsm" 4
 *FvwmGtk-Themes: EndRadioGroup
 *FvwmGtk-Themes: EndBox
 *FvwmGtk-Themes: EndFrame

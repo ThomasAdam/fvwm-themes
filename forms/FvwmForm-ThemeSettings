@@ -114,8 +114,9 @@ DestroyModuleConfig FvwmForm-ThemeSettings: *
 *FvwmForm-ThemeSettings: Font 7x14
 *FvwmForm-ThemeSettings: Selection Opt12 single
 *FvwmForm-ThemeSettings: Choice NOSN 1 $NOSN=on  "None   "
-*FvwmForm-ThemeSettings: Choice GNSN 2 $GNSN=off "GNOME  "
-*FvwmForm-ThemeSettings: Choice GESN 3 $GESN=off "Generic"
+*FvwmForm-ThemeSettings: Choice GESN 2 $GESN=off "Generic  "
+*FvwmForm-ThemeSettings: Choice GNSN 3 $GNSN=off "gnome-session"
+*FvwmForm-ThemeSettings: Choice XSSN 4 $GESN=off "xsm"
 *FvwmForm-ThemeSettings: Line center
 *FvwmForm-ThemeSettings: Text ""
 *FvwmForm-ThemeSettings: Line expand
@@ -185,8 +186,9 @@ DestroyModuleConfig FvwmForm-ThemeSettings: *
 '*SavedThemeSettings: ALGTK $(ALGTK?on)'   ; /bin/echo \
 '*SavedThemeSettings: ALFVW $(ALFVW?on)'   ; /bin/echo \
 '*SavedThemeSettings: NOSN $(NOSN?on)'     ; /bin/echo \
+'*SavedThemeSettings: GESN $(GESN?on)'     ; /bin/echo \
 '*SavedThemeSettings: GNSN $(GNSN?on)'     ; /bin/echo \
-'*SavedThemeSettings: GESN $(GESN?on)' \
+'*SavedThemeSettings: XSSN $(XSSN?on)' \
 ) >> $FVWM_USERDIR/.FvwmForm-ThemeSettings
 
 *FvwmForm-ThemeSettings: Button restart "Reset"

@@ -6,9 +6,9 @@ AddToMenu   MenuFvwmQuit "Really Quit Session?" Title
 + "Re&fresh Screen%menu/refresh.xpm%"   Refresh
 + "Re&capture Screen%menu/refresh.xpm%" Recapture
 + "" Nop
-+ "&Yes, Quit Session%menu/choice-yes.xpm%"          QuitSession
-+ "Yes, Quit and &Save Session%menu/choice-yes.xpm%" SaveQuitSession
++ "&Yes, Really Quit%menu/choice-yes.xpm%"           Exec exec killall -TERM xsm
++ "Yes, Quit and &Save Session%menu/choice-yes.xpm%" Exec exec killall -TERM xsm
 + "Quit FVWM &Only%menu/quit.xpm%"      Quit
-+ "&Save Session Only%menu/windows.xpm%"             QuitSession
++ "&Save Session Only%menu/windows.xpm%" Exec exec killall -USR1 xsm
 +  "" Nop
 + "&No, Don't Quit%menu/choice-no.xpm%" Nop
