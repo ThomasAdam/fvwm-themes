@@ -2,15 +2,15 @@ DestroyModuleConfig FvwmButtons-Pager: *
 
 *FvwmButtons-Pager: Colorset 14
 *FvwmButtons-Pager: Font -schumacher-clean-medium-r-*-*-6-*-*-*-*-*-*-*
-*FvwmButtons-Pager: Geometry 100x100
-*FvwmButtons-Pager: Columns 100
+*FvwmButtons-Pager: Geometry 99x99
+*FvwmButtons-Pager: Columns 99
 *FvwmButtons-Pager: Frame 2
 *FvwmButtons-Pager: Padding 1 1
-*FvwmButtons-Pager: (100x90, Frame 0, Padding 0 0, \
+*FvwmButtons-Pager: (99x89, Padding 0 0, \
 	Swallow "FvwmPager-Single" 'FvwmPager FvwmPager-Single * *' \
 )
 *FvwmButtons-Pager: (12x10, Title "<", Action 'Desk -1 0 3')
-*FvwmButtons-Pager: (76x10, \
+*FvwmButtons-Pager: (75x10, \
 	Panel (NoRespawn, down, steps 12, delay 0, position center mtb, indicator) \
 		"FvwmPager-Desker" 'Module FvwmPager FvwmPager-Desker 0 3' \
 )

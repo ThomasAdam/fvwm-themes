@@ -25,7 +25,7 @@ AddToMenu    MenuFvwmWindowGroupOps
 
 DestroyModuleConfig FvwmPager-Single: *
 
-*FvwmPager-Single: Geometry 100x90+0+0
+*FvwmPager-Single: Geometry 99x89+0+0
 *FvwmPager-Single: Rows 1
 *FvwmPager-Single: Columns 1
 
@@ -34,7 +34,7 @@ DestroyModuleConfig FvwmPager-Single: *
 *FvwmPager-Single: BalloonColorset * 16
 *FvwmPager-Single: WindowColorsets 1 2
 
-*FvwmPager-Single: Font -*-lucida-bold-r-*-*-11-*-*-*-*-*-*-*
+*FvwmPager-Single: Font -*-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPager-Single: WindowLabelFormat "%t"
 *FvwmPager-Single: SmallFont 5x8
 *FvwmPager-Single: MiniIcons

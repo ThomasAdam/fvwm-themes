@@ -2,6 +2,9 @@
 
 	* migo/images/decor/title-{in,}active.xpm: restored 1 empty line
 
+	* themes/migo/modules/main:Fvwm*Pager*:
+	small size changes in pagers; try a frame around pager in button bar
+
 2001-03-27  migo  <migo@homemail.com>
 
 	* themes/default/menus:
