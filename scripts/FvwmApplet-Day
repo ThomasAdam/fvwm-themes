@@ -1,11 +1,11 @@
 WindowTitle {FvwmApplet-Day}
 WindowSize 64 64		# Taille
 Font		6x10
-# Background as default FvwmButtons
-BackColor {rgb:90/80/90}
-ForeColor {black}
-ShadowColor	{black}
-HilightColor	{rgb:90/80/90}
+# Better use the FvwmScript default colors.
+#BackColor {rgb:a0/90/80}
+#ForeColor {black}
+#ShadowColor	{black}
+#HilightColor	{rgb:a0/90/80}
 
 Init
  Begin

@@ -1,12 +1,11 @@
 In this directory you can find some scripts for FvwmScript. You can run
 one of these scripts with the command:
 
-	FvwmScript scripts/NameOfTheScript [options]
+	FvwmScript NameOfTheScript [options]
  
-The FvwmApplet-* are more or less poor applets that can replace some
-more pretty and/or powerful applets. With the current colors
-implementation of fvwm-themes a good colorset options are 6 7 or just 7
-for FvwmApplet-DigitalClock.
+The FvwmApplet-* are more or less poor applets that can replace some more
+pretty and/or powerful applets. With the current colors implementation of
+fvwm-themes good colorset options are 10 13 or just 13 for DigitalClock.
 
 * FvwmApplet-Day [Colorset [Colorset]]
   A 64x64 applet that gives the date. You need `date`. The first colorset is

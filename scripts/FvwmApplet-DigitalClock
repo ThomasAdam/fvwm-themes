@@ -1,11 +1,11 @@
 WindowTitle {FvwmApplet-DigitalClock}
 WindowSize 60 14		# Taille
 Font		-*-lucida-bold-r-normal-*-10-*-*-*-*-*-*
-# Background as default FvwmButtons
-BackColor {rgb:90/80/90}
-ForeColor {black}
-ShadowColor	{black}
-HilightColor	{rgb:90/80/90}
+# Use the FvwmScript default colors.
+#BackColor {rgb:a0/90/80}
+#ForeColor {black}
+#ShadowColor	{black}
+#HilightColor	{rgb:a0/90/80}
 
 Init
  Begin
