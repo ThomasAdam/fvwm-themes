@@ -24,7 +24,7 @@ AddToMenu   MenuFvwmShells "Shells" Title
 + "&Aterm	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec aterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
 + "&GNOME Term	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec gnome-terminal --title=$USER@$HOST --geometry=80x40 --login --font=7x14 --foreground=$[fg.cs30] --background=$[bg.cs30]
 + "&Kvt 	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec kvt    -n $USER@$HOST -T $USER@$HOST -vt_geometry 80x40 -sl 4096 -ls -vt_font 7x14 -vt_fg $[fg.cs30] -vt_bg $[bg.cs30]
-+ "&Konsole	80x40%menu/terminal.xpm%"             Exec exec konsole -nowelcome -sl 4096 -ls -vt_sz 80x40
++ "&Konsole	80x40%menu/terminal.xpm%"             Exec exec konsole -nowelcome -ls -vt_sz 80x40
 + "&Dtterm	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec /usr/dt/bin/dtterm -n $USER@$HOST -T $USER@$HOST -sl 4096 -ls -g 80x40 -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
 + "" Nop
 + "Remote login...%menu/terminal-remote.xpm%" FvwmForm FvwmForm-Rlogin
