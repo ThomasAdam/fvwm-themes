@@ -5,6 +5,12 @@
 	* themes/redmondxp/fonts:
 	some updates, added colors for modules
 
+	* themes/redmondxp/modules/*:
+	Added modules, the task-bar like panel should be very configurable
+	in the future; for some reason I can't make transparency work.
+	Used new name scheme for files, no more files with colon.
+	XEmacs bug for such names should be solved by adding Style XEmacs.
+
 2002-05-22  migo  <migo@homemail.com>
 
 	* themes/redmondxp/README:

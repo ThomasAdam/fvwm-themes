@@ -1,0 +1,49 @@
+DeskTopSize 2 2
+
+DestroyMenu  MenuFvwmWindowMove
+AddToMenu    MenuFvwmWindowMove
++ "Move to ..." Title
++ "Page	->%menu/window-move.xpm%"	AnimatedMove w+100 w
++ "Page	<-%menu/window-move.xpm%"	AnimatedMove w-100 w
++ "Page	 v%menu/window-move.xpm%"	AnimatedMove w w+100
++ "Page	 ^%menu/window-move.xpm%"	AnimatedMove w w-100
++ "Page	 \\.%menu/window-move.xpm%"	AnimatedMove w+100 w+100
++ "Page	 \/'%menu/window-move.xpm%"	AnimatedMove w+100 w-100
++ "Page	 .\/%menu/window-move.xpm%"	AnimatedMove w-100 w+100
++ "Page	 '\\%menu/window-move.xpm%"	AnimatedMove w-100 w-100
+
+DestroyMenu  MenuFvwmWindowGroupQuickMove
+AddToMenu    MenuFvwmWindowGroupQuickMove
++ "Page	->%menu/window-move.xpm%"	Pick All ($r) MoveToPage +1p +0p
++ "Page	<-%menu/window-move.xpm%"	Pick All ($r) MoveToPage -1p +0p
++ "Page	 v%menu/window-move.xpm%"	Pick All ($r) MoveToPage +0p +1p
++ "Page	 ^%menu/window-move.xpm%"	Pick All ($r) MoveToPage +0p -1p
++ "Page	 \\.%menu/window-move.xpm%"	Pick All ($r) MoveToPage +1p +1p
++ "Page	 \/'%menu/window-move.xpm%"	Pick All ($r) MoveToPage +1p -1p
++ "Page	 .\/%menu/window-move.xpm%"	Pick All ($r) MoveToPage -1p +1p
++ "Page	 '\\%menu/window-move.xpm%"	Pick All ($r) MoveToPage -1p -1p
+
+DestroyModuleConfig FvwmPager-Single: *
+
+*FvwmPager-Single: Geometry 99x89+0+0
+*FvwmPager-Single: Rows 1
+*FvwmPager-Single: Columns 1
+
+*FvwmPager-Single: Colorset * 14
+*FvwmPager-Single: HilightColorset * 15
+*FvwmPager-Single: BalloonColorset * 16
+*FvwmPager-Single: WindowColorsets 1 2
+
+*FvwmPager-Single: WindowLabelFormat "%t"
+*FvwmPager-Single: MiniIcons
+*FvwmPager-Single: MoveThreshold 1
+*FvwmPager-Single: Balloons All  # Icon, Pager
+*FvwmPager-Single: BalloonBorderWidth 1
+*FvwmPager-Single: BalloonYOffset +14
+*FvwmPager-Single: WindowBorderWidth 1
+*FvwmPager-Single: Window3dBorders
+
+*FvwmPager-Single: Label 0 Main
+*FvwmPager-Single: Label 1 Internet
+*FvwmPager-Single: Label 2 Devel
+*FvwmPager-Single: Label 3 Games

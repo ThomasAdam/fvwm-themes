@@ -1,0 +1,35 @@
+AddToMenu MenuFvwmWindowMove "" Nop
++ "Desk	0%menu/window-move.xpm%"	MoveToDesk 0 0
++ "Desk	1%menu/window-move.xpm%"	MoveToDesk 0 1
++ "Desk	2%menu/window-move.xpm%"	MoveToDesk 0 2
++ "Desk	3%menu/window-move.xpm%"	MoveToDesk 0 3
+
+AddToMenu MenuFvwmWindowGroupQuickMove "" Nop
++ "Desk	0%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 0
++ "Desk	1%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 1
++ "Desk	2%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2
++ "Desk	3%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
+
+DestroyModuleConfig FvwmPager-Desker: *
+ 
+*FvwmPager-Desker: Colorset * 14
+*FvwmPager-Desker: HilightColorset * 15
+*FvwmPager-Desker: BalloonColorset * 16
+*FvwmPager-Desker: WindowColorsets 1 2
+
+*FvwmPager-Desker: Geometry 99x356+0+0
+*FvwmPager-Desker: WindowLabelFormat "%t"
+*FvwmPager-Desker: Rows 1
+*FvwmPager-Desker: Columns 1
+*FvwmPager-Desker: MiniIcons
+*FvwmPager-Desker: MoveThreshold 1
+*FvwmPager-Desker: Balloons All  # Icon, Pager
+*FvwmPager-Desker: BalloonBorderWidth 1
+*FvwmPager-Desker: BalloonYOffset +14
+*FvwmPager-Desker: WindowBorderWidth 1
+*FvwmPager-Desker: Window3dBorders
+
+*FvwmPager-Desker: Label 0 Main
+*FvwmPager-Desker: Label 1 Internet
+*FvwmPager-Desker: Label 2 Devel
+*FvwmPager-Desker: Label 3 Games

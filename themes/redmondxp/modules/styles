@@ -1,0 +1,16 @@
+Style "FvwmButtons-*Panel" NoTitle, TitleAtBottom, NoHandles, Sticky, \
+	WindowListSkip, CirculateSkip, StaysPut, \
+	NeverFocus, FixedSize, FixedPosition
+Style "FvwmIconMan" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
+	NoHandles, TitleAtBottom
+Style "FvwmPager-Desker" NoTitle, NoHandles, Sticky, WindowListSkip, \
+	CirculateSkip, NoLenience, TitleAtTop
+Style "FvwmPager-Single" NoTitle, NoHandles, Sticky, WindowListSkip, \
+	CirculateSkip, NoLenience, TitleAtTop
+
+DestroyFunc FuncFvwmDestroyModulesThemeStyle
+AddToFunc   FuncFvwmDestroyModulesThemeStyle
++ I DestroyStyle "FvwmButtons-*Panel"
++ I DestroyStyle "FvwmIconMan"
++ I DestroyStyle "FvwmPager-Desker"
++ I DestroyStyle "FvwmPager-Single"

@@ -1,0 +1,84 @@
+DestroyMenu MenuFvwmPanelMovePart
+AddToMenu   MenuFvwmPanelMovePart
++ "Move this part to the left"  FuncFvwmShowMessage "Sorry" "This is not implemented yet"
++ "Move this part to the right" FuncFvwmShowMessage "Sorry" "This is not implemented yet"
++ "Configure this part"         FuncFvwmShowMessage "Sorry" "This is not implemented yet"
+
+DestroyModuleConfig FvwmButtons-Panel: *
+*FvwmButtons-Panel: Colorset 10
+# TODO: evaluate resolution-dependent geometry for all parts
+*FvwmButtons-Panel: Geometry 1108x30+0-0
+*FvwmButtons-Panel: Rows 1
+*FvwmButtons-Panel: Frame 0
+*FvwmButtons-Panel: Padding 0 0
+
+*FvwmButtons-Panel: (26x1, Icon module/panel-start.png, \
+	Action `Menu MenuFvwmRoot rectangle $widthx$height+$left+$top 0 -100m`, \
+	Action(Mouse 3) FuncFvwmShowMessage "Sorry" "Configuration of parts is not implemented yet", \
+)
+*FvwmButtons-Panel: (3x1, Icon module/panel-holder.png, \
+	Action `Popup MenuFvwmPanelMovePart rectangle $widthx$height+$left+$top 0 -100m`, \
+)
+*FvwmButtons-Panel: (6x1, Padding 4 7, Icon 16x16/terminal.xpm, \
+	Action(Mouse 1) `FuncFvwmTerminal`, \
+	Action(Mouse 2) `FuncFvwm2Terminal`, \
+	Action(Mouse 3) `FuncFvwm3Terminal`, \
+)
+*FvwmButtons-Panel: (6x1, Padding 4 7, Icon 16x16/netscape.xpm, \
+	Action(Mouse 1) `FuncFvwmWWW`, \
+	Action(Mouse 2) `FuncFvwm2WWW`, \
+	Action(Mouse 3) `FuncFvwm3WWW`, \
+)
+*FvwmButtons-Panel: (6x1, Padding 4 7, Icon 16x16/multimedia.xpm, \
+	Action(Mouse 1) `FuncFvwmToggleMultimediaPanel`, \
+	Action(Mouse 2) `Menu MenuFvwmMultimedia rectangle $widthx$height+$left+$top 0 -100m`, \
+	Action(Mouse 3) `FuncFvwmShowMessage "Sorry" "Configuration is not implemented yet"`, \
+)
+# should be word processors instead editors here, I think
+*FvwmButtons-Panel: (6x1, Padding 4 7, Icon 16x16/editor.xpm, \
+	Action(Mouse 1) `FuncFvwmEditor`, \
+	Action(Mouse 2) `FuncFvwm2Editor`, \
+	Action(Mouse 3) `FuncFvwm3Editor`, \
+)
+*FvwmButtons-Panel: (6x1, Padding 4 7, Icon 16x16/xv.xpm, \
+	Action `FuncFvwmImageView`, \
+	Action(Mouse 2) `FuncFvwmImageEdit`, \
+	Action(Mouse 3) `FuncFvwm3ImageView`, \
+)
+
+*FvwmButtons-Panel: (3x1, Icon module/panel-holder.png, \
+	Action `Popup MenuFvwmPanelMovePart rectangle $widthx$height+$left+$top 0 -100m`, \
+)
+*FvwmButtons-Panel: (200x1, Swallow FvwmIconMan 'Module FvwmIconMan')
+
+# TODO: Should use another colorset for clock
+*FvwmButtons-Panel: (15x1, Swallow FvwmApplet-DigitalClock 'Module FvwmScript FvwmApplet-DigitalClock 23')
+
+# ----------------------------------------------------------------------------
+DestroyFunc FuncFvwmToggleMultimediaPanel
+AddToFunc   FuncFvwmToggleMultimediaPanel
++ I None (FvwmButtons-MultimediaPanel, CirculateHit) FvwmButtons -transientpanel FvwmButtons-MultimediaPanel
++ I Next (FvwmButtons-MultimediaPanel, CirculateHit) Close
+
+DestroyModuleConfig FvwmButtons-MultimediaPanel: *
+*FvwmButtons-MultimediaPanel: Colorset 10
+*FvwmButtons-MultimediaPanel: Geometry 72x30+140-30
+*FvwmButtons-MultimediaPanel: Rows 1
+*FvwmButtons-MultimediaPanel: Frame 0
+*FvwmButtons-MultimediaPanel: Padding 0 0
+
+*FvwmButtons-MultimediaPanel: (6x1, Padding 4 7, Icon 16x16/multimedia.xpm, \
+	Action(Mouse 1) `Exec exec xmms`, \
+	Action(Mouse 2) `Exec exec freeamp`, \
+	Action(Mouse 3) `Exec exec kmid`, \
+)
+*FvwmButtons-MultimediaPanel: (6x1, Padding 4 7, Icon 16x16/sound.xpm, \
+	Action(Mouse 1) `FuncFvwmSound`, \
+	Action(Mouse 2) `FuncFvwm2Sound`, \
+	Action(Mouse 3) `FuncFvwm3Sound`, \
+)
+*FvwmButtons-MultimediaPanel: (6x1, Padding 4 7, Icon 16x16/cd-player.xpm, \
+	Action(Mouse 1) `FuncFvwmCdPlayer`, \
+	Action(Mouse 2) `FuncFvwm2CdPlayer`, \
+	Action(Mouse 3) `FuncFvwm3CdPlayer`, \
+)
