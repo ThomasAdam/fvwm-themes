@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html lang="en">
+<title>FVWM Themen Zentrum Dokumentation</title>
+
+<h1 align=center>FVWM Themen Zentrum Dokumentation</h1>
+<div id="abstract">
+<p>Das <em>Themen Zentrum</em> ist ein FvwmScript, welches Ihnen erlaubt  Ihre Themen konfiguration, allgemeine Einstellungen und FVWM-Themen-Sessions zu managen.
+Starten können Sie es von dem Menü <em>Configuration / Themes Center GUI</em>.
+</div>
+
+<h3>Inhalt</h3>
+<ol>
+	<li>Themen Selector</li>
+	<li>Allgemeine Einstellungen</li>
+	<li>FVWM Themen Sessions</li>
+	<li>Verschiedenes</li>
+	<li>Fehler & Fragen</li>
+</ol>
+
+<h3>1. Themen Selector</h3>
+
+<p>Im linken oberen Feld ist eine Liste von allen gefundenen Themen. Wenn Sie ein Thema wählen erscheint eine Liste deren Komponenten im rechten oberen Feld. Dann können Sie alle Komponenten wählen mit dem linken Knopf<em>Lade Alles</em>, oder nur die das Aussehen ändernden Komponenten mit dem Knopf <em>Lade Stiel</em>, oder Sie wählen direkt eine Komponente im rechten oberen Feld mit Knopf <em>Lade</em>. Sie bekommen Informationen über das gesammte Thema mit dem linken <em>Info</em> Knopf (andere Knöpfe sind noch nicht Eingebunden).
+
+
+<p>Ihre derzeit genutzte Konfiguration und alle Änderungen mittels Themen Selector werden auf dem unteren Feld angezeigt. Die erste Spalte zeigt alle Komponenten, die zweite Spalte zeigt das für die Komponente genutzte Thema und die dritte Spalte (lehr beim Start) zeigt das neu gewählte Thema für diese Komponente (das Setzen eines neuen Themas für eine Komponente wird im oberen Abschnitt erklährt). Die letzte Spalte kann <em>Var</em>, <em>Opt</em> or <em>V/O</em> beinhalten, was zeigen soll, daß die Komponente dieses Themas (die genutzte oder gesetzte) sich variieren oder einstellen läßt.
+
+
+<p>Wenn eine Komponente Varriationen oder Optionen hat können Sie diese mit dem Knopf <em>Optionen</em> bei ausgewählter Komponente (in der unteren Liste) bearbeiten. Dazu können Sie Änderungen der jeweils gewählten Komponente mit dem Knopf <em>Rückgängig</em> rückgängig machen und Sie können Komponenten für Änderungen mit dem Knopf <em>Sperren</em> sperren. Der Knopf <em>Entfernen</em> entfernt Komponenten welche dies zulassen.
+
+
+<p>Um die Änderungen zu Übernehmen drücken Sie bitte unten den Knopf <em>Übernehmen</em>. Der <em>Auffrischen</em> Knopf ist ähnlich dem Knopf <em>Übernehmen</em> dahin gehend daß er die vollständige laufende Konfiguration neu einstellt, Ihre Änderungen jedoch nicht übernimmt. Der Knopf <em>Aktualisieren</em> lerneuert lediglich die Liste im Themen Selector; dies ist brauchbar wenn Sie Änderungen der Komponenten mit anderen Programmen machen, zum Beispiel mit dem Menü <em>Theme Management</em> oder <em>fvwm-themes-config</em> in der Kommando-Zeile.
+
+
+<h3>2. Allgemeine Einstellungen</h3>
+
+<p>Das <em>Allgemeinen Einstellungen</em> Menü ermöglicht die gleichen Arbeiten wie das Untermenü <em>Theme Management -> current -> settings -></em> oder
+gleich die form-basierten und gtk-basierten ThemeSettings Programme. Das opere Feld representiert Ihre benutzten und gesetzten Konfigurationen. Zum ändern einer Einstellung, wähle eine Komponente aus dem obigen Feld und ein neues Feld wird erscheinen worin Änderungen getätigt werden können. Alle darunterliegenden Knöpfe arbeiten wie im <em>Themen Selector</em>.
+
+
+<p>Wichtig: Das klicken auf <em>Übernehmen</em> übernimmt die Änderungen im <em>Themen Selector</em> und in <em>Allgemeine Einstellungen</em>.
+
+
+<h3>3. FVWM Themen Sessions</h3>
+
+<p>FVWM Themen haben ihr eigenes Session Konzept. Siehe die "fvwm-themes-start Manual Page" und die FAQ für Details. Das ist brauchbar um verschiedene  FVWM Themes Konfigurationen zu nutzen. Das GUI sieht wirklich intuitiv aus (da ist schon eine Mini-Documentation drinn).
+
+
+<p>Wie auch immer, hier sind verschiedene Tips, welche Ihnen zeigen wie Sessions benuzt werden können. Wenn Sie einen schnellen Test möchten ohne die laufende Konfiguration zu vergessen, füge eine Session namens <em>test</em> hinzu (oder nutze eine existierende <em>test</em> Session), und definieren Sie Ihre laufende (normalerweise <em>main</em>) Session Konfiguration für sie. Danach definieren Sie die <em>test</em> Session wie beschrieben, und klicken auf <em>Übernehmen</em>.
+Jetzt können Sie mit <em>Themen Selector</em> und den <em>Allgemeinen Einstellungen</em> frei verfügen ohne die Hauptkonfiguration zu ändern. Sie können immer zu Ihrer <em>main</em> Session zurückkehren, indem Sie die vorhergehende Konfiguration wiederherstellen, oder, wenn Sie wollen, können Sie die <em>main</em> Session mit der laufenden Konfiguration <em>test</em> erneuern mit der selben Methode, wie sie gerade beschrieben wurde.
+
+
+<h3>4. Verschiedenes</h3>
+
+<p>Die jene Skripte haben nur wenige Optionen, welche vom <em>Themes Management</em> Menü gestartet werden:
+
+<blockquote>
+  FvwmScript FvwmScript-ThemesCenter
+    --text-colorset 36 --viewer-colorset 33
+</blockquote>
+
+<p>z.B., Farbgebung 36 wird genutzt für die Listenfelder oder Textbereiche und Farbgebung 33 wird genutzt für die Hilfezeile (und dazu nutzt jedes FvwmScript die Farbgebung 35 als ihre Hauptfarbe). Die einzige andere Option ist --lang xx, wobei xx die ersten 2 Buchstaben der Unix LANG sind, wie "ru_RU.koi8r". Normalerweise ist LANG auf die Umgebungsvariable $LANG oder "en" gesetzt. Die derzeit unterstützten Sprachen sind en, fr, de und ru.
+
+
+<h3>5. Fehler & Fragen</h3>
+
+<p>Fehlerberichte an:
+<a href="mailto:fvwm-themes-devel@lists.sourceforge.net">
+fvwm-themes-devel@lists.sourceforge.net</a>.
+
+<p>Fragen stellen an:
+<a href="mailto:fvwm-themes-users@lists.sourceforge.net">
+fvwm-themes-users@lists.sourceforge.net</a>.
