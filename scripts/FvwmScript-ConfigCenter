@@ -75,7 +75,7 @@ Begin
 # Initialization of the com loop and first query
 
     # found the FvwmScript pid
-    Set $cmd = {perl -e '$t=getppid; print $t . "\n"'}
+    Set $cmd = {exec perl -e 'print getppid . "\n"'}
     Set $pid = (GetOutput $cmd 1 -1)
 
     # Run fvwm-themes-script until the end of the script

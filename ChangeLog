@@ -1,3 +1,11 @@
+2001-02-26  olicha  <olivier.chapuis@free.fr>
+
+	* scripts/FvwmScript-ConfigCenter
+	* scripts/FvwmScript-ThemesCenter
+	* scripts/FvwmScript-Menus
+	Added exec in the get parent pid command so that this work for
+	any POSIX os/libc
+	
 2000-02-25  migo  <migo@homemail.com>
 
 	* TODO, NEWS: updated

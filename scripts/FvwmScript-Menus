@@ -69,7 +69,7 @@ Begin
     End
 
     # found the FvwmScript pid
-    Set $cmd = {perl -e '$t=getppid; print $t . "\n"'}
+    Set $cmd = {exec perl -e 'print getppid . "\n"'}
     Set $pid = (GetOutput $cmd 1 -1)
 
     # Run fvwm-themes-menuapp until the end of the script
