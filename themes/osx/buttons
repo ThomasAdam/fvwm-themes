@@ -43,10 +43,13 @@ Mouse 3 	3	A	FuncFvwmIconifySameResource toggle
 Mouse 1 	5	A	FuncFvwmMaximize
 Mouse 2 	5	A	FuncFvwmMaximizeVertically
 Mouse 3 	5	A	FuncFvwmMaximizeHorizontally
+Mouse 1 	5	S	Maximize grow grow
+Mouse 2 	5	S	Maximize    0 grow
+Mouse 3 	5	S	Maximize grow    0
 Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Delete on click^nDestroy on double click"
 Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu or Delete on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
 Mouse 0 	3	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^nMouse 3 - Iconify toggle resource group"
-Mouse 0 	5	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tpartially on click^n^tfully on double click^n^tvertically on hold^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally"
+Mouse 0 	5	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize fully on click^n^tMaximize Menu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
 
 DestroyFunc FuncFvwmStartWindowButtons
 AddToFunc   FuncFvwmStartWindowButtons
@@ -64,6 +67,9 @@ AddToFunc   FuncFvwmStopWindowButtons
 + I Mouse 1 	5	A	-
 + I Mouse 2 	5	A	-
 + I Mouse 3 	5	A	-
++ I Mouse 1 	5	S	-
++ I Mouse 2 	5	S	-
++ I Mouse 3 	5	S	-
 + I Mouse 0 	1	CM	-
 + I Mouse 0 	2	CM	-
 + I Mouse 0 	3	CM	-

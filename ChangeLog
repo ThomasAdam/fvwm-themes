@@ -1,3 +1,19 @@
+2001-05-24  olicha  <olivier.chapuis@free.fr>
+
+	* themes/default/functions:
+	* themes/default/menu:
+	* themes/lutien/buttons:
+	Some Maximizing works. Added some "simple" functions and use it.
+	In the Maximize Menu use "On" in the place of the implicite toggle.
+	Note: unfortunately, the Grow maximizing seems buggy in fvwm,
+	"incremental" Grow does not work.
+
+	* themes/*/buttons:
+ 	Use the FuncFvwmMaximize{,Vertically,Horizontally} functions,
+	in the place of hard coded analogue, Shift All on maximize
+	button give Grow (as lutien) and fix the ShowInfo for the max
+	buttons
+	
 2001-05-24  migo  <migo@homemail.com>
 
 	* themes/default/menus-programs:

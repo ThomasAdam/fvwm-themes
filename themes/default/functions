@@ -70,6 +70,22 @@ AddToFunc   FuncFvwmMaximizeHorizontally
 + M Maximize 100 0
 + C Maximize 100 0
 
+DestroyFunc FuncFvwmSimpleMaximize
+AddToFunc   FuncFvwmSimpleMaximize
++ I Maximize $0
+
+DestroyFunc FuncFvwmSimpleMaximizeVert
+AddToFunc   FuncFvwmSimpleMaximizeVert
++ I Maximize $0 100 0
+
+DestroyFunc FuncFvwmSimpleMaximizeHoriz
+AddToFunc   FuncFvwmSimpleMaximizeHoriz
++ I Maximize $0 0 100
+
+DestroyFunc FuncFvwmSimplePartialMaximizeVert
+AddToFunc   FuncFvwmSimplePartialMaximizeVert
++ I Maximize $0 95 0
+
 DestroyFunc FuncFvwmIconifySameResource
 AddToFunc   FuncFvwmIconifySameResource
 + I All ($r) Iconify $0

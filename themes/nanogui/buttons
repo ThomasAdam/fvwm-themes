@@ -79,6 +79,9 @@ BcC Mouse 0 	BcN	A	FuncFvwmDeleteOrDestroy
 BmC Mouse 1 	BmN	A	FuncFvwmMaximize
 BmC Mouse 2 	BmN	A	FuncFvwmMaximizeVertically
 BmC Mouse 3 	BmN	A	FuncFvwmMaximizeHorizontally
+BmC Mouse 1 	BmN	S	Maximize grow grow
+BmC Mouse 2 	BmN	S	Maximize    0 grow
+BmC Mouse 3 	BmN	S	Maximize grow    0
 BoC Mouse 1 	BoN	A	FuncFvwmWindowOpsOrAction Nop
 BoC MouseXX 2 3	BoN	A	Menu MenuFvwmWindowMove
 BoC MouseXX 3 2	BoN	A	Menu MenuFvwmWindowGroupOps
@@ -91,7 +94,7 @@ BdC Mouse 2 	BdN	A	WindowShade true
 BdC Mouse 3 	BdN	A	WindowShade toggle
 BsC Mouse 0 	BsN	A	Stick
 BcC Mouse 0 	BcN	CM	FuncFvwmShowButtonInfo "Delete on click^nDestroy on double click"
-BmC Mouse 0 	BmN	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tpartially on click^n^tfully on double click^n^tvertically on hold^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally"
+BmC Mouse 0 	BmN	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize fully on click^n^tMaximize Menu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
 BoC Mouse 0 	BoN	CM	FuncFvwmShowButtonInfo "Mouse 1 - WindowOps menu^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
 BiC Mouse 0 	BiN	CM	FuncFvwmShowButtonInfo "Iconify"
 BuC Mouse 0 	BuN	CM	FuncFvwmShowButtonInfo "WindowShade:^n^tMouse 1 - true^n^tMouse 2 - false^n^tMouse 3 - toggle"
@@ -114,6 +117,9 @@ BcC + I Mouse 0 	BcN	A	-
 BmC + I Mouse 1 	BmN	A	-
 BmC + I Mouse 2 	BmN	A	-
 BmC + I Mouse 3 	BmN	A	-
+BmC + I Mouse 1 	BmN	S	-
+BmC + I Mouse 2 	BmN	S	-
+BmC + I Mouse 3 	BmN	S	-
 BoC + I Mouse 1 	BoN	A	-
 BoC + I Mouse 2 	BoN	A	-
 BoC + I Mouse 3 	BoN	A	-

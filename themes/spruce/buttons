@@ -18,16 +18,18 @@ Mouse 1 	1	A	Popup MenuFvwmWindowOps2
 MouseXX 2 3	1	A       Menu MenuFvwmWindowMove
 MouseXX 3 2	1	A	Menu MenuFvwmWindowGroupOps
 Mouse 1 	2	A	FuncFvwmDeleteOrDestroy
-Mouse 0 	4	A	FuncFvwmMaximize
-#Mouse 0 	4	A	Function Maximize 100 -52p
-#Mouse 2 	4	A	Function Maximize   0 -52p
-#Mouse 3 	4	A	Function Maximize 100 0
+Mouse 1 	4	A	FuncFvwmMaximize
+Mouse 2 	4	A	FuncFvwmMaximizeVertically
+Mouse 3 	4	A	FuncFvwmMaximizeHorizontally
+Mouse 1 	4	S	Maximize grow grow
+Mouse 2 	4	S	Maximize    0 grow
+Mouse 3 	2	S	Maximize grow    0
 Mouse 1 	6	A	FuncFvwmIconify
 Mouse 2 	6	A	FuncFvwmIconifySameResource on
 Mouse 3 	6	A	FuncFvwmIconifySameResource toggle
 Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Mouse 1 - popup Window Ops menu^nMouse 2/3 - popup Move menu^nMouse 3/2 - popup Resource Group menu"
 Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Delete on click^nDestroy on double click"
-Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Maximize:^n^tpartially on click^n^tfully on double click^n^tvertically on hold"
+Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize fully^n on click^n^tMaximize Menu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
 Mouse 0 	6	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^nMouse 3 - Iconify toggle resource group"
 
 DestroyFunc FuncFvwmStartWindowButtons
@@ -40,7 +42,12 @@ AddToFunc   FuncFvwmStopWindowButtons
 + I Mouse 2	1	A	-
 + I Mouse 3	1	A       -
 + I Mouse 1 	2	A	-
-+ I Mouse 0 	4	A	-
++ I Mouse 1 	4	A	-
++ I Mouse 2 	4	A	-
++ I Mouse 3 	4	A	-
++ I Mouse 1 	4	S	-
++ I Mouse 2 	4	S	-
++ I Mouse 3 	4	S	-
 + I Mouse 1 	6	A	-
 + I Mouse 2 	6	A	-
 + I Mouse 3 	6	A	-

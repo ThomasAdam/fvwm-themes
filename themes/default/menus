@@ -257,7 +257,7 @@ AddToMenu   MenuFvwmWindowOps "Window Operations" Title
 + "&Move%menu/window-move.xpm%"                 Move
 + "&Resize%menu/window-resize.xpm%"             Resize
 + "(De)&Iconify%menu/window-iconify.xpm%"       Iconify
-+ "(Un)Ma&ximize%menu/window-maximize.xpm%"     Maximize
++ "(Un)Ma&ximize%menu/window-maximize.xpm%"     FuncFvwmSimpleMaximize toggle
 + "(Un)Shade%menu/window-shade.xpm%"            WindowShade
 + "(Un)Stick%menu/window-stick.xpm%"            Stick
 + "R&aise%menu/window-raise.xpm%"               Raise
@@ -285,7 +285,7 @@ AddToMenu   MenuFvwmWindowOps2
 + "&Move	Alt-F7%menu/window-move.xpm%"      Move
 + "&Resize	Alt-F8%menu/window-resize.xpm%"    Resize
 + "&Iconify	Alt-F9%menu/window-iconify.xpm%"   Iconify
-+ "Ma&ximize	Alt-F10%menu/window-maximize.xpm%" Maximize
++ "Ma&ximize	Alt-F10%menu/window-maximize.xpm%" FuncFvwmSimpleMaximize toggle
 + "R&aise	Alt-F5%menu/window-raise.xpm%"     RaiseLower
 + "" Nop
 + "&Close	Alt-F4%menu/window-close.xpm%"     Close
@@ -300,7 +300,7 @@ AddToMenu   MenuFvwmWindowOps3
 + "&Move	Alt-F7"  Move
 + "&Resize	Alt-F8"  Resize
 + "&Iconify	Alt-F9"  Iconify
-+ "Ma&ximize	Alt-F10" Maximize
++ "Ma&ximize	Alt-F10" FuncFvwmSimpleMaximize toggle
 + "R&aise	Alt-F5"  RaiseLower
 + "" Nop
 + "&Close	Alt-F4"  Close
@@ -359,16 +359,21 @@ AddToMenu   MenuFvwmWindowStyle "Window Style" Title
 
 DestroyMenu MenuFvwmWindowMaximize
 AddToMenu   MenuFvwmWindowMaximize "Maximize Window" Title
-+ "%menu/window-maximize.xpm%Maximize Fully	Alt-F10" Maximize 100 100
-+ "%menu/window-maximize.xpm%Unmaximize 	Alt-F10" Maximize false
++ "%menu/window-maximize.xpm%Maximize Fully	Alt-F10" Maximize On 100 100
++ "%menu/window-maximize.xpm%Unmaximize 	Alt-F10" Maximize Off
 + "" Nop
-+ "%menu/window-maximize.xpm%Maximize Vertically"        Maximize   0 100
-+ "%menu/window-maximize.xpm%Maximize Horizontally"      Maximize 100   0
-+ "%menu/window-maximize.xpm%Maximize Vertically 95%%"   Maximize   0  95
++ "%menu/window-maximize.xpm%Maximize Vertically" \
+	FuncFvwmSimpleMaximizeVert On
++ "%menu/window-maximize.xpm%Maximize Horizontally" \
+	Pick FuncFvwmSimpleMaximizeHoriz On
++ "%menu/window-maximize.xpm%Maximize Vertically Partially" \
+	Pick FuncFvwmSimplePartialMaximizeVert On
 + "" Nop
-+ "%menu/window-maximize.xpm%Maximize Grow"              Maximize grow grow
-+ "%menu/window-maximize.xpm%Maximize Grow Vert."        Maximize    0 grow
-+ "%menu/window-maximize.xpm%Maximize Grow Horiz."       Maximize grow    0
+# this does not seems to work well if you use these functions in an incremental
+# way.
++ "%menu/window-maximize.xpm%Maximize Grow"              Maximize On grow grow
++ "%menu/window-maximize.xpm%Maximize Grow Vert."        Maximize On   0 grow
++ "%menu/window-maximize.xpm%Maximize Grow Horiz."       Maximize On grow    0
 + "" Nop
 + "%menu/window-maximize.xpm%Maximize Full Screen	Shift-Ctrl-F11" Pick FuncFvwmMaximizeFullScreen
 + "%menu/window-maximize.xpm%Unmaximize Full Screen	Shift-Ctrl-F12" Pick FuncFvwmUnmaximizeFullScreen
