@@ -4,6 +4,11 @@
 	added --show-info, so "Info for component" in @current now works;
 	requires reloading and restarting
 
+	* README:
+	* NEWS:
+	* doc/README.1st:
+	updated for 0.4.2
+
 2001-03-28  migo  <migo@homemail.com>
 
 	* migo/images/decor/title-{in,}active.xpm: restored 1 empty line
