@@ -2400,7 +2400,8 @@ $siteDir = $searchPath[-1];
 
 if ($install) {
 	my $themesDir = "$workDir";
-	my $version = '@VERSION@';
+	my $version = $version;
+	$version =~ s/\.\d+$/.x/;
 	my $dir = `pwd`;
 	chomp($dir);
 	errDie("Cannot chdir to $themesDir") unless chdir "$themesDir";
@@ -2411,11 +2412,12 @@ if ($install) {
 		my ($dir,$outDir,$ext) = $file =~ m:^(.*/|)([^/]+)\.tar\.(gz|bz2)$:;
 		errDie("File '$file' is not a .tar.gz or .tar.bz2")
 			unless defined $dir || defined $outDir || defined $ext;
-		my ($ver,$extraVer) = $outDir =~ /^[\w-]*[\w\d]*[-]+([\.\d]+)([_\d\.]+|)$/;
+		my ($ver, $extraVer) = $outDir =~ /^[\w-]*[\w\d]*[-]+([\.\dx]+)([_\d\.]+|)$/;
 		errDie("File '$file' does not follow fvwm-themes naming convention")
-			unless defined $ver || defined $extraVer;
-		if ("$ver" ne "$version") {
-			print "WARNING: fvwm-themes version and tarball version differ\n";
+			unless defined $ver && defined $extraVer;
+		$ver =~ s/\.(?:[\d]+|x)$/.x/;
+		if ($ver ne $version) {
+			print "WARNING: fvwm-themes version and tarball version are not compatible\n";
 			if (!$forceInstall) {
 				print "Use the --force-install option if you really want to " .
 					"install this tarball.\n";
@@ -2475,7 +2477,9 @@ if ($install) {
 if (defined $createPack) {
 	errDie("Pack name '$createPack' contains unacceptable symbols")
 		unless $createPack =~ /^[\w\d-]+$/;
-	my $version = '@VERSION@';
+	errDie("No theme names to pack listed") unless @ARGV;
+	my $version = $version;
+	$version =~ s/\.\d+$/.x/;
 	my $themesDir = "$workDir/$themesSubDir";
 	my $tarName = "$createPack-$version";
 	$tarName = $tarName . "_$packExtraVersion"
@@ -2498,7 +2502,7 @@ if (defined $createPack) {
 		errDie("No such theme $theme in $themesDir") unless -d $theme;
 		system("cp -ard $theme $tarDir/");
 	}
-	chdir("$tmpDir") || errDie("cannot chdir to $tmpDir");
+	chdir("$tmpDir") || errDie("Cannot chdir to $tmpDir");
 	system("tar cf - $tarName | gzip -9 >$tarName.tar.gz");
 	system("rm -rf $tarDir");
 	print "Pack $tarName.tar.gz created in $tmpDir\n";
