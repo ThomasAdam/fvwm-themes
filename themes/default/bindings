@@ -195,6 +195,7 @@ MouseXX 2 3	R	SC	Module FvwmPager -transient FvwmPager-Desker 0 3
 # pointer in Window Decorations
 FuncFvwmSetTitleBindings TSF
 Mouse 1 	SF	A	FuncFvwmResizeOrRaiseOrShade
+Mouse 1 	SF	S	ResizeMaximize
 
 # pointer in Icon
 Mouse 1 	I	A	FuncFvwmMoveOrIconify
