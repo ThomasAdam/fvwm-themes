@@ -21,6 +21,10 @@
 	* themes/redmondxp/modules/styles:
 	minor changes
 
+	* themes/underground/background.cfg:
+	* themes/underground/background/main:
+	make background@underground work
+
 2002-12-20  migo  <migo@homemail.com>
 
 	* images.tar.gz:
