@@ -82,7 +82,7 @@ Colorset N |          Meaning           |           Usage Examples
 
 # for feedback windows (like geometry window and NoteMessage) and FvwmScroll
 #
-*FvwmTheme: Colorset 0 fg black, bg #70A0A0
+Colorset 0 fg black, bg #70A0A0
 
 # -----------------------
 # I.2. Window Decorations
@@ -95,13 +95,13 @@ Colorset N |          Meaning           |           Usage Examples
 
 # window title, inactive and active
 #
-*FvwmTheme: Colorset 1 fg black, bg rgb:88/7C/66, Plain, NoShape
-*FvwmTheme: Colorset 2 fg black, bg rgb:CC/BA/99, Plain, NoShape
+Colorset 1 fg black, bg rgb:88/7C/66, Plain, NoShape
+Colorset 2 fg black, bg rgb:CC/BA/99, Plain, NoShape
 
 # window borders, inactive and active
 #
-*FvwmTheme: Colorset 3 fg black, bg rgb:88/7C/66, Plain, NoShape
-*FvwmTheme: Colorset 4 fg black, bg rgb:CC/BA/99, Plain, NoShape
+Colorset 3 fg black, bg rgb:88/7C/66, Plain, NoShape
+Colorset 4 fg black, bg rgb:CC/BA/99, Plain, NoShape
 
 # background for window title, buttons and border
 #
@@ -123,15 +123,15 @@ AddToFunc   FuncFvwmDecorBackground
 
 # inactive menu item fg+bg and menu face if any
 #
-*FvwmTheme: Colorset 5 fg black, bg rgb:80/98/B0, Plain, NoShape
+Colorset 5 fg black, bg rgb:80/98/B0, Plain, NoShape
 
 # active menu item fg+bg
 #
-*FvwmTheme: Colorset 6 fg black, bg rgb:90/A9/C2, Plain, NoShape
+Colorset 6 fg black, bg rgb:90/A9/C2, Plain, NoShape
 
 # greyed menu item fg
 #
-*FvwmTheme: Colorset 7 fg grey48, bg grey48, Plain, NoShape
+Colorset 7 fg grey48, bg grey48, Plain, NoShape
 
 # -------------------------------------------------
 # Colorsets 8 and 9 are reserved for the future use.
@@ -147,54 +147,54 @@ AddToFunc   FuncFvwmDecorBackground
 # default for modules
 # For FvwmButtons, FvwmPager, can be also used for FvwmIconMan, FvwmIconBox.
 #
-*FvwmTheme: Colorset 10 fg black, bg rgb:80/A0/A0, Plain, NoShape
+Colorset 10 fg black, bg rgb:80/A0/A0, Plain, NoShape
 
 # default hilight for modules
 # For hilighting a part of a button bar (some swallowed apps for example).
 #
-*FvwmTheme: Colorset 11 fg black, bg white, Plain, NoShape
+Colorset 11 fg black, bg white, Plain, NoShape
 
 # special or funny: a gradient or a pixmap
 # May be used in certain FvwmButtons, FvwmIconMan, FvwmIconBox.
 #
-*FvwmTheme: Colorset 12 fg black, bg rgb:80/A0/A0, \
+Colorset 12 fg black, bg rgb:80/A0/A0, \
 	VGradient 20 rgb:80/A0/A0 rgb:C0/F0/F0, NoShape
 
 # swallowed window: the hilight and shadow colors should be defined
 # (-hd of xclock and -hl of xload use sh, and -hl of xclock uses hi)
 #
-*FvwmTheme: Colorset 13 fg black, bg rgb:70/8C/8C, hi black, sh gray40, \
+Colorset 13 fg black, bg rgb:70/8C/8C, hi black, sh gray40, \
 	Plain, NoShape
 
 # default #2
 # FvwmPager or to get more colors in FvwmButtons, can be set to 10.
 #
-*FvwmTheme: Colorset 14 fg black, bg rgb:80/A0/A0, Plain, NoShape
+Colorset 14 fg black, bg rgb:80/A0/A0, Plain, NoShape
 
 # default hilight #2
 # FvwmPager or to get more colors in FvwmButtons, can be set to 11.
 #
-*FvwmTheme: Colorset 15 fg black, bg rgb:C0/F0/F0, Plain, NoShape
+Colorset 15 fg black, bg rgb:C0/F0/F0, Plain, NoShape
 
 # tips/balloons (TaskBar and FvwmPager)
 #
-*FvwmTheme: Colorset 16 fg black, bg rgb:F0/F0/C0, Plain, NoShape
+Colorset 16 fg black, bg rgb:F0/F0/C0, Plain, NoShape
 
 # ----------------------------------
 # II.2. Window List Module Colorsets
 # ----------------------------------
 
 # standard item
-*FvwmTheme: Colorset 17 fg black, bg rgb:80/A0/A0, Plain, NoShape
+Colorset 17 fg black, bg rgb:80/A0/A0, Plain, NoShape
 
 # active item
-*FvwmTheme: Colorset 18 fg black, bg rgb:A0/C8/C8, Plain, NoShape
+Colorset 18 fg black, bg rgb:A0/C8/C8, Plain, NoShape
 
 # iconified item
-*FvwmTheme: Colorset 19 fg white, bg rgb:60/78/78, Plain, NoShape
+Colorset 19 fg white, bg rgb:60/78/78, Plain, NoShape
 
 # pointed item
-*FvwmTheme: Colorset 20 fg black, bg rgb:88/AA/AA, Plain, NoShape
+Colorset 20 fg black, bg rgb:88/AA/AA, Plain, NoShape
 
 # ----------------------------
 # II.3. Other Module Colorsets
@@ -202,14 +202,14 @@ AddToFunc   FuncFvwmDecorBackground
 
 # FvwmIdent
 #
-*FvwmTheme: Colorset 21 fg black, bg bisque, Plain, NoShape
+Colorset 21 fg black, bg bisque, Plain, NoShape
 
 # FvwmConsole
 #
-*FvwmTheme: Colorset 22 fg white, bg rgb:00/30/60, Plain, NoShape
+Colorset 22 fg white, bg rgb:00/30/60, Plain, NoShape
 
 # transparent
-#*FvwmTheme: Colorset 23 fg $[fg.cs10], bg $[bg.cs10], Transparent, Plain, NoShape
+#Colorset 23 fg $[fg.cs10], bg $[bg.cs10], Transparent, Plain, NoShape
 
 # ------------------------
 # II.4. External Colorsets
@@ -229,31 +229,31 @@ AddToFunc   FuncFvwmDecorBackground
 
 # regular terminal (xterm, rxvt, Eterm)
 #
-*FvwmTheme: Colorset 30 fg white, bg rgb:00/00/50, Plain, NoShape
+Colorset 30 fg white, bg rgb:00/00/50, Plain, NoShape
 
 # admin terminal (su xterm)
 #
-*FvwmTheme: Colorset 31 fg white, bg rgb:00/50/50, Plain, NoShape
+Colorset 31 fg white, bg rgb:00/50/50, Plain, NoShape
 
 # remote terminal (ssh, telnet)
 #
-*FvwmTheme: Colorset 32 fg white, bg rgb:50/00/00, Plain, NoShape
+Colorset 32 fg white, bg rgb:50/00/00, Plain, NoShape
 
 # viewer terminal (man, less, tail -f)
 #
-*FvwmTheme: Colorset 33 fg white, bg rgb:00/50/00, Plain, NoShape
+Colorset 33 fg white, bg rgb:00/50/00, Plain, NoShape
 
 # application run in the terminal, text editor using ft-xrdb
 #
-*FvwmTheme: Colorset 34 fg rgb:FF/FF/E8, bg rgb:30/48/48, Plain, NoShape
+Colorset 34 fg rgb:FF/FF/E8, bg rgb:30/48/48, Plain, NoShape
 
 # dialog main background (FvwmScript, FvwmForm, xmessage, ft-xrdb)
 #
-*FvwmTheme: Colorset 35 fg black, bg rgb:80/A0/80, Plain, NoShape
+Colorset 35 fg black, bg rgb:80/A0/80, Plain, NoShape
 
 # dialog text area (FvwmScript, FvwmForm, xmessage, ft-xrdb)
 #
-*FvwmTheme: Colorset 36 fg black, bg rgb:A0/C8/A0, Plain, NoShape
+Colorset 36 fg black, bg rgb:A0/C8/A0, Plain, NoShape
 
 # --------------------------------------------------
 # Colorsets 37 to 39 are reserved for the future use.
@@ -279,7 +279,7 @@ AddToFunc   FuncFvwmStopColors
 
 # The actual module configuration commands, including their colorset
 # settings may be found in the theme directory modules/ in files named
-# main:FvwmModule and main:FvwmModule-SubName.
+# FvwmModule and FvwmModule-SubName.
 # 
 # Examples:
 # 
@@ -293,12 +293,12 @@ AddToFunc   FuncFvwmStopColors
 # *FvwmPager-Desker: WindowColorsets 1 2
 # *FvwmPager-Desker: BalloonColorset * 16
 # 
-# *FvwmIconMan: *colorset         12
-# *FvwmIconMan: *iconcolorset     19
-# *FvwmIconMan: *plaincolorset    17
-# *FvwmIconMan: *selectcolorset   20
-# *FvwmIconMan: *focuscolorset    18
-# *FvwmIconMan: *focusandselectcolorset 20
+# *FvwmIconMan: Colorset         12
+# *FvwmIconMan: IconColorset     19
+# *FvwmIconMan: PlainColorset    17
+# *FvwmIconMan: SelectColorset   20
+# *FvwmIconMan: FocusColorset    18
+# *FvwmIconMan: FocusAndSelectColorset 20
 # 
 # *FvwmButtons: Colorset 10
 # 

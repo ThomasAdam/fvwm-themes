@@ -1,3 +1,9 @@
+2002-12-05  migo  <migo@homemail.com>
+
+	* themes/mech/buttons:
+	* doc/colorsets:
+	replaced *FvwmTheme: Colorset
+
 2002-12-05  olicha  <olivier.chapuis@free.fr>
 
 	* themes/minimal/modules/main:
