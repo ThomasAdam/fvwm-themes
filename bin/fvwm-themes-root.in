@@ -17,12 +17,19 @@
 use strict;
 use Getopt::Long;
 
+my $prefix = $ENV{'prefix'} || '@prefix@';
+my $ROOT_PREFIX = $ENV{'ROOT_PREFIX'} || '@ROOT_PREFIX@';
+$ROOT_PREFIX = $ENV{'DESTDIR'} if $ENV{'DESTDIR'};
+my $datadir = "@datadir@";
+my $ftDataDir = "@FT_DATADIR@";
+
 my $version = '@VERSION@';
 my $scriptName = ($0 =~ m:([^/]+)$:, $1);
 
 my $type = 'tile';
 my $bg = 'rgb:c0/c0/c0';
 my $fg = 'rgb:40/40/40';
+my $fallbackTileImage = "$ftDataDir/images/background/stone.xpm";
 
 GetOptions(
 	"help|h|?"     => \&showHelp,
@@ -60,8 +67,8 @@ my $HelperSetRootCommands = {
 		'xv -root -quit $image',
 	],
 	center => [
-		'display -window root -backdrop -foreground $color0 $image',
-		'xv -root -quit -rmode 5 -rfg $color0 $image',
+		'display -window root -backdrop -foreground $fg $image',
+		'xv -root -quit -rmode 5 -rfg $fg $image',
 	],
 	adjust => [
 		'xv -root -quit -max $image',
@@ -81,14 +88,14 @@ my $commands = $HelperSetRootCommands->{$type};
 die "Internal error #1\n" unless defined $commands;
 
 my $found = 0;
-my $command0;  # seems like a bug in 5.8.0 regarding scoping, so separate var
-foreach my $command (@$commands) {
+my $command;
+foreach (@$commands) {
+	$command = $_;  # using $command directly in foreach fails in 5.8.0
 	my ($exe, $args) = split(/ /, $command, 2);
 
 	# check if exists in $PATH, nothing for now
 	next unless isExeInPath($exe);
 	if ($type eq 'solid') {
-		$command0 = $command;
 		$found = 1;
 		last;
 	} else {
@@ -97,7 +104,6 @@ foreach my $command (@$commands) {
 		my $regexp = $HelperImageTypeSupport->{$exe};
 		die "Internal error #2\n" unless defined $regexp;
 		if ($regexp eq "*" || defined $ext && $ext =~ /^$regexp$/) {
-			$command0 = $command;
 			$found = 1;
 			last;
 		}
@@ -106,12 +112,15 @@ foreach my $command (@$commands) {
 
 if (!$found) {
 	my $what = defined $color? "solid color $color": "image $image";
-	die "[fvwm-themes-root]: No utilities found to set root $what\n";
+	warn "[fvwm-themes-root]: No utilities found to set root $what\n"
+		. "\tFalling back to default image $fallbackTileImage\n";
+	$image = $fallbackTileImage;
+	$command = $HelperSetRootCommands->{tile}->[0] || "false";
 }
 
-$command0 = eval "qq($command0)";
-print $command0, "\n" if $ENV{DEBUG};
-system($command0);
+$command =~ s/(\$\w+)/'"' . eval("qq($1)") . '"'/sge;
+print $command, "\n" if $ENV{DEBUG};
+system($command);
 
 #-----------------------------------------------------------------------------
 # The starndard functions

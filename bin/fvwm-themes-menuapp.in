@@ -30,6 +30,7 @@ use Getopt::Long;
 
 my $prefix = $ENV{'prefix'} || '@prefix@';
 my $ROOT_PREFIX = $ENV{'ROOT_PREFIX'} || '@ROOT_PREFIX@';
+$ROOT_PREFIX = $ENV{'DESTDIR'} if $ENV{'DESTDIR'};
 my $datadir = "@datadir@";
 
 # "system variables"

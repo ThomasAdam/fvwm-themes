@@ -27,6 +27,7 @@ use Getopt::Long;
 
 my $prefix = '@prefix@';
 my $ROOT_PREFIX = '@ROOT_PREFIX@';
+$ROOT_PREFIX = $ENV{'DESTDIR'} if $ENV{'DESTDIR'};
 my $datadir = "@datadir@";
 
 my $version = '@VERSION@';

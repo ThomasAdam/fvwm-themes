@@ -4,6 +4,7 @@
 # Put a call to this script as the last line of your .Xclients or .xinitrc.
 
 prefix=@prefix@
+: ${ROOT_PREFIX=$DESTDIR}
 : ${ROOT_PREFIX=@ROOT_PREFIX@}
 
 : ${FVWM_USERDIR=@FVWM_DEFAULT_USERDIR@}

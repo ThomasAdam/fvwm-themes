@@ -16,6 +16,7 @@ my @colorsetNames = qw(
 
 my $prefix = '@prefix@';
 my $ROOT_PREFIX = '@ROOT_PREFIX@';
+$ROOT_PREFIX = $ENV{'DESTDIR'} if $ENV{'DESTDIR'};
 
 my $userHome = $ENV{'HOME'} || "./.";
 my $config = "@bindir@/fvwm-themes-config";

@@ -1,3 +1,8 @@
+2002-06-06 migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-*.in:
+	small experimentation with ROOT_PREFIX and DESTDIR
+
 2002-04-30 migo  <migo@homemail.com>
 
 	* themes/default/menus:

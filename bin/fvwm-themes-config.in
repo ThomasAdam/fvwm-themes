@@ -9,6 +9,7 @@ use Getopt::Long;
 
 my $prefix = $ENV{'prefix'} || '@prefix@';
 my $ROOT_PREFIX = $ENV{'ROOT_PREFIX'} || '@ROOT_PREFIX@';
+$ROOT_PREFIX = $ENV{'DESTDIR'} if $ENV{'DESTDIR'};
 my $bindir = "@bindir@";
 my $datadir = "@datadir@";
 my $ftDataDir = "@FT_DATADIR@";
