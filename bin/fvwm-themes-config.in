@@ -1049,7 +1049,7 @@ sub storeThemeComponentMemory ($$$) {
 	my $cm = {};
 
 	if (ref($cc->{'variant'}) eq 'ARRAY' && $cc->{'current'} &&
-		!$cc->{'variant'}->[$cm->{'current'}]->{'hidden'})
+		!$cc->{'variant'}->[$cc->{'current'} - 1]->{'hidden'})
 	{
 		$cm->{'current'} = $cc->{'current'};
 	}
