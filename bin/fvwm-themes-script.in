@@ -980,7 +980,7 @@ sub getDirListing {
 	my @files = ();
 	my $dir;
 	foreach $dir (@dirList) {
-		open(LSPROC, "ls $lsOptions $dir |");  # pipe implies ls -1
+		open(LSPROC, "ls $lsOptions '$dir' |");  # pipe implies ls -1
 		while (<LSPROC>) {
 			chomp;
 			my $test = $_;

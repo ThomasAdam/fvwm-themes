@@ -1,3 +1,9 @@
+2002-06-12  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-script.in (getDirListing):
+	put a dir in quotes; there is a perl warning in this function
+	(seems like index is out of range), but I don't know why
+
 2002-06-10  migo  <migo@homemail.com>
 
 	* scripts/FvwmApplet-DayClock:
