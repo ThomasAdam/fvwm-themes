@@ -36,6 +36,11 @@ Ideas:
 * background-auto@ component (with a scalar of type Minutes), which will
   iterate over a background@ options randomly or sequencially every n minutes.
 
+* introduce option-value/choice groups, which only affect presentation menus,
+  not logic; for example it is possible to have 6 groups of choices, say,
+  6 types of backgrounds; with inline=1 groups are simply delimited ("" Nop),
+  with inline=0 there are 6 submenus of choices.
+
 Optional items to do:
 --------------------
 
