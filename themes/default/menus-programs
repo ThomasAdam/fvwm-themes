@@ -158,7 +158,7 @@ AddToMenu   MenuFvwmPrograms "   Programs   " Title
 + "&Applications%menu/programs.xpm%"	Popup MenuFvwmApplications
 + "&Science%menu/science.xpm%"		Popup MenuFvwmScience
 + "&Editors%menu/editor.xpm%"		Popup MenuFvwmEditors
-+ "&Internet%menu/www.xpm%"		Popup MenuFvwmInternet
++ "&Internet%menu/network.xpm%"		Popup MenuFvwmInternet
 + "&Graphics%menu/graphics.xpm%"	Popup MenuFvwmGraphics
 + "&Multimedia%menu/multimedia.xpm%"	Popup MenuFvwmMultimedia
 + "&Games%menu/game.xpm%"		Popup MenuFvwmGames
@@ -278,8 +278,8 @@ AddToMenu   MenuFvwmWebBrowsers "Web Browsers" Title
 + "Beonex%menu/netscape.xpm%"		Exec exec beonex-comm
 + "Galeon%menu/gnome.xpm%"		Exec exec galeon
 + "Konqueror%menu/kde.xpm%"		Exec exec konqueror
-+ "Opera%menu/netscape.xpm%"		Exec exec opera
-+ "Amaya%menu/netscape.xpm%"		Exec exec amaya
++ "Opera%menu/www.xpm%"			Exec exec opera
++ "Amaya%menu/www.xpm%"			Exec exec amaya
 + "Lynx%menu/terminal.xpm%"		FuncFvwmRunInXterm "Lynx" "lynx"
 + "Links%menu/terminal.xpm%"		FuncFvwmRunInXterm "Links" "links"
 
