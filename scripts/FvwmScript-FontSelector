@@ -1,0 +1,1996 @@
+WindowTitle {Font Selector}
+WindowSize 600 400
+Font	-adobe-helvetica-bold-r-*-*-12-*
+
+Init
+Begin
+    Set $Lang = {}
+    Set $Color = {}
+    Set $Launched = 0
+    Set $return = {}
+    Set $TextColorset = {}
+    # Arguments
+    Set $i = 1
+    Set $arg = (GetScriptArgument $i)
+    While $arg <> {} Do
+    Begin
+	Set $j = (Add $i 1)
+	If $arg == {--text-colorset} Then
+	    Set $TextColorset = (GetScriptArgument $j)
+	If $arg == {--launched} Then
+	    Set $Launched = (GetScriptArgument $j)
+ 	If $arg == {--lang} Then
+	    Set $Lang = (GetScriptArgument $j)
+	If $arg == {--font} Then
+	    Set $Color = (GetScriptArgument $j)
+	Set $i = (Add $i 2)
+	Set $arg = (GetScriptArgument $i)
+    End
+
+    If $TextColorset <> {} Then
+    Begin
+	ChangeColorset 11 $TextColorset
+	ChangeColorset 110 $TextColorset
+	ChangeColorset 111 $TextColorset
+	ChangeColorset 112 $TextColorset
+	ChangeColorset 113 $TextColorset
+	ChangeColorset 114 $TextColorset
+	ChangeColorset 201 $TextColorset
+	ChangeColorset 311 $TextColorset
+	ChangeColorset 381 $TextColorset
+    End
+
+    # luanched or not
+    If $Launched == 0 Then
+    Begin
+	ShowWidget 3
+    End
+    Else
+    Begin
+	ShowWidget 2
+    End
+
+    # Internationalization
+    Set $IsAdjustable = {The selected font is adjustable}
+    Set $NotAdjustable = {The selected font is not adjustable}
+    
+    # The Font description
+    Set $Foundry = {misc}
+    Set $Family = {fixed}
+    Set $Weight = {*}
+    Set $Slant = {*}
+    Set $Width = {*}
+    Set $Style = {*}
+    Set $PixSize = {*}
+    Set $PtSize = {*}
+    Set $XRes = {*}
+    Set $YRes = {*}
+    Set $Spacing = {*}
+    Set $AvgWidth = {*}
+    Set $Charset = {*-*}
+
+    # More description:
+    Set $ScaleAdjust = 0
+
+    Set $TheFont = {-}$Foundry{-}$Family{-}$Weight{-}$Slant{-}$Width{-}$Style{-}$PixSize{-}$PtSize{-}$XRes{-}$YRes{-}$Spacing{-}$AvgWidth{-}$Charset
+
+    # list of fonts here a font is $Family ($Foundry):
+    Set $FontList = {}
+
+    # Then we have the filter for $FontList
+    Set $FilterFoundry = {*}
+    Set $FilterFamily = {*}
+    Set $FilterWeight = {*}
+    Set $FilterSlant = {*}
+    Set $FilterWidth = {*}
+    Set $FilterStyle = {*}
+    Set $FilterPixSize = {*}
+    Set $FilterPtSize = {*}
+    Set $FilterXRes = {*}
+    Set $FilterYRes = {*}
+    Set $FilterSpacing = {*}
+    Set $FilterAvgWidth = {*}
+    Set $FilterCharset = {*-*}
+
+    # More description:
+    Set $FilterScaleAdjust = 0
+
+    Set $FontFilter = {-}$FilterFoundry{-}$FilterFamily{-}$FilterWeight{-}$FilterSlant{-}$FilterWidth{-}$FilterStyle{-}$FilterPixSize{-}$FilterPtSize{-}$FilterXRes{-}$FilterYRes{-}$FilterSpacing{-}$FilterAvgWidth{-}$FilterCharset
+
+    # Then we have two lists:
+
+    # First list is the current state: the value that can be modified
+    # directely relatively to the $TheFont
+    Set $FoundryList = {*}
+    Set $FamilyList = {*}
+    Set $WeightList = {*}
+    Set $SlantList = {*}
+    Set $WidthList = {*}
+    Set $StyleList = {*}
+    Set $PixSizeList = {*}
+    Set $PtSizeList = {*}
+    Set $XResList = {*}
+    Set $YResList = {*}
+    Set $SpacingList = {*}
+    Set $AvgWidthList = {*}
+    Set $CharsetList = {*-*}
+
+    # Second list is the list of all possible value for setting the filter
+    Set $FilterFoundryList = {*}
+    Set $FilterFamilyList = {*}
+    Set $FilterWeightList = {*}
+    Set $FilterSlantList = {*}
+    Set $FilterWidthList = {*}
+    Set $FilterStyleList = {*}
+    Set $FilterPixSizeList = {*}
+    Set $FilterPtSizeList = {*}
+    Set $FilterXResList = {*}
+    Set $FilterYResList = {*}
+    Set $FilterSpacingList = {*}
+    Set $FilterAvgWidthList = {*}
+    Set $FilterCharsetList = {*-*}
+
+    ChangeValue 311 1
+    ChangeValue 381 1
+
+    #Set $GetFontListAndFilters = 1
+    Set $InStart = 1
+    Set $StartCount = 0
+
+    Set $Window = {Main}
+End
+
+#----------------------------------------------------------------------------
+
+PeriodicTasks
+Begin
+
+    If $HideMain == 1 Then
+    Begin
+	Set $HideMain = 0
+	HideWidget 10
+	HideWidget 11
+	HideWidget 20
+	HideWidget 21
+	HideWidget 30
+	HideWidget 31
+	HideWidget 35
+	HideWidget 36
+	HideWidget 40
+	HideWidget 41
+	HideWidget 50
+	HideWidget 51
+	HideWidget 60
+	HideWidget 61
+	HideWidget 95
+	HideWidget 96
+	HideWidget 100
+	HideWidget 101
+	HideWidget 110
+	HideWidget 111
+	HideWidget 112
+	HideWidget 113
+	HideWidget 114
+    End
+
+    If $HideInfo == 1 Then
+    Begin
+	Set $HideInfo = 0
+	HideWidget 200
+	HideWidget 201
+	HideWidget 202
+    End
+
+    If $HideFilter == 1 Then
+    Begin
+	Set $HideFilter = 0
+	HideWidget 300
+	HideWidget 310
+	HideWidget 311
+	HideWidget 320
+	HideWidget 321
+	HideWidget 330
+	HideWidget 331
+	HideWidget 340
+	HideWidget 341
+	HideWidget 350
+	HideWidget 351
+	HideWidget 360
+	HideWidget 361
+	HideWidget 370
+	HideWidget 371
+	HideWidget 380
+	HideWidget 381
+	HideWidget 500
+	
+    End
+
+    If $ShowMain == 1 Then
+    Begin
+	Set $ShowMain = 0
+	ShowWidget 10
+	ShowWidget 11
+	ShowWidget 20
+	ShowWidget 21
+	ShowWidget 30
+	ShowWidget 31
+	ShowWidget 35
+	ShowWidget 36
+	ShowWidget 40
+	ShowWidget 41
+	ShowWidget 50
+	ShowWidget 51
+	ShowWidget 60
+	ShowWidget 61
+	ShowWidget 95
+	ShowWidget 96
+	ShowWidget 100
+	ShowWidget 101
+	Set $ChangeFont = 1
+	Set $Window = {Main}
+    End
+
+    If $ShowInfo == 1 Then
+    Begin
+	Set $ShowInfo = 0
+	ShowWidget 200
+	ShowWidget 201
+	ShowWidget 202
+	Set $Window = {Info}
+    End
+    
+    If $ShowFilter == 1 Then
+    Begin
+	Set $ShowFilter = 0
+	ShowWidget 300
+	ShowWidget 310
+	ShowWidget 311
+	ShowWidget 320
+	ShowWidget 321
+	ShowWidget 330
+	ShowWidget 331
+	ShowWidget 340
+	ShowWidget 341
+	ShowWidget 350
+	ShowWidget 351
+	ShowWidget 360
+	ShowWidget 361
+	ShowWidget 370
+	ShowWidget 371
+	ShowWidget 380
+	ShowWidget 381
+	ShowWidget 500
+    End
+
+    # -------------------------------------------------------------------
+    If $InStart == 1 Then
+    Begin
+	Set $StartCount = (Add $StartCount 1)
+	If $StartCount == 10 Then
+	Begin
+	    Set $GetFontListAndFilters = 1
+	    Set $ChangeFont = 1
+	    #Set $InStart = 0
+	End
+    End
+
+    #---------------------------------------------------------------------
+    If $UpdateTheFont == 1 Then
+    Begin
+
+	Set $UpdateTheFont = 0
+	Set $TheFont = {-}$Foundry{-}$Family{-}$Weight{-}$Slant{-}$Width{-}$Style{-}$PixSize {-}$PtSize{-}$XRes{-}$YRes{-}$Spacing{-}$AvgWidth{-}$Charset
+
+    End
+
+    #---------------------------------------------------------------------
+    If $GetFontList == 1 Then
+    Begin
+	Set $GetFontList = 0
+	Set $cmd = {fvwm-themes-script --font --type="font-list" --font-cache="create" --font-filter="}$FontFilter{" --font-current="}$TheFont{"}
+	Set $Config = (GetOutput $cmd 1 -1)
+	Set $ParseFontList = 1
+	#Set $ParseLists = 1
+	#Set $SetAllLists = 1
+	Set $index = 0
+    End
+
+    #---------------------------------------------------------------------
+    If $GetFontListAndFilters == 1 Then
+    Begin
+	Set $GetFontListAndFilters = 0
+	Set $cmd = {fvwm-themes-script --font --type="font-list-and-filter" --font-cache="create" --font-filter="}$FontFilter{" --font-current="}$TheFont{"}
+	If $InStart == 1 Then
+	    Set $cmd = $cmd { --font-start}
+	Set $Config = (GetOutput $cmd 1 -1)
+	Set $ParseFontList = 1
+	Set $ParseLists = 1
+	Set $SetFilterLists = 1
+	
+    End
+
+    #---------------------------------------------------------------------
+    If $GetAllLists == 1 Then
+    Begin
+	Set $GetAllLists = 0
+	Set $cmd = {fvwm-themes-script --font --type="all-list" --font-filter="}$FontFilter{" --font-current="}$TheFont{" --font-index=}$FontIndex
+	Set $Config = (GetOutput $cmd 1 -1)
+	Set $ParseLists = 1
+	Set $IndexIsSet = 0
+	Set $SetAllLists = 1
+    End
+
+    #---------------------------------------------------------------------
+    If $ParseFontList == 1 Then
+    Begin
+	Set $ParseFontList = 0
+
+	Set $FontIndex = (StrCopy $Config 1 3)
+	Set $tmp = (StrCopy $FontIndex 1 1)
+	If $tmp == 0 Then
+	    Set $FontIndex = (StrCopy $FontIndex 2 3)
+	Set $tmp = (StrCopy $FontIndex 1 1)
+	If $tmp == 0 Then
+	    Set $FontIndex = (StrCopy $FontIndex 2 2)
+	ChangeValue 11 $FontIndex
+	ChangeMinValue 11 (Add $FontIndex -3)
+	Set $index = 3
+
+	Set $notdone = 1
+	Set $FontList = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $FontList = $FontList $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+	Set $IndexIsSet = 1
+	ChangeTitle 11 $FontList
+	If $FontIndex <> 0 Then
+	Begin
+	    Set $GetAllLists = 1
+	    Set $InStart = 0
+	End
+	Else
+	Begin 
+	    Set $TmpFoundry = {*}
+	    Set $TmpFamily = {*}
+	    Set $TmpWeight = {*}
+	    Set $TmpSlant = {*}
+	    Set $TmpWidth = {*}
+	    Set $TmpStyle = {*}
+	    Set $TmpPixSize = {*}
+	    Set $TmpPtSize = {*}
+	    Set $TmpXRes = {*}
+	    Set $TmpYRes = {*}
+	    Set $TmpSpacing = {*}
+	    Set $TmpAvgWidth = {*}
+	    Set $TmpCharset = {*-*}
+	    Set $TmpFoundryIndex = 0
+	    Set $TmpFamilyIndex = 0
+	    Set $TmpWeightIndex = 0
+	    Set $TmpSlantIndex = 0
+	    Set $TmpWidthIndex = 0
+	    Set $TmpStyleIndex = 0
+	    Set $TmpPixSizeIndex = 0
+	    Set $TmpPtSizeIndex = 0
+	    Set $TmpXResIndex = 0
+	    Set $TmpYResIndex = 0
+	    Set $TmpSpacingIndex = 0
+	    Set $TmpAvgWidthIndex = 0
+	    Set $TmpCharsetIndex = 0
+	    Set $TmpFoundryList = {*}
+	    Set $TmpFamilyList = {*}
+	    Set $TmpWeightList = {*}
+	    Set $TmpSlantList = {*}
+	    Set $TmpWidthList = {*}
+	    Set $TmpStyleList = {*}
+	    Set $TmpPixSizeList = {*}
+	    Set $TmpPtSizeList = {*}
+	    Set $TmpXResList = {*}
+	    Set $TmpYResList = {*}
+	    Set $TmpSpacingList = {*}
+	    Set $TmpAvgWidthList = {*}
+	    Set $TmpCharsetList = {*-*}
+	    Set $TmpScaleAdjust = 0
+	    Set $SetAllLists = 1
+	    Set $Lock = 1
+	 End
+
+    End 
+
+    #---------------------------------------------------------------------
+    If $ParseLists == 1 Then
+    Begin
+	Set $ParseLists = 0
+	
+	If $IndexIsSet <> {1} Then
+	    Set $index = 0
+	
+	If $SetFilterLists == 1 Then
+	Begin
+	    Set $index = (Add $index 1)    
+	    Set $TmpFoundryIndex = (StrCopy $Config $index (Add $index 1))
+	    Set $index = (Add $index 1)
+	    Set $notdone = 1
+	    Set $TmpFoundryList = {}
+	    While $notdone == 1 Do
+	    Begin
+		Set $index = (Add $index 1)
+		Set $id = (StrCopy $Config $index $index)
+		If $id == {!} Then
+		    Set $notdone = 0
+		Else
+		    Set $TmpFoundryList = $TmpFoundryList $id
+		If $id == {} Then
+		    Set $notdone = 0
+	    End
+	    #Do {Echo TFL:}$TmpFoundryList
+	End
+
+	# weight
+	Set $index = (Add $index 1)    
+	Set $TmpWeightIndex = (StrCopy $Config $index (Add $index 1))
+	Set $index = (Add $index 1)
+	Set $notdone = 1
+	Set $TmpWeightList = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpWeightList = $TmpWeightList $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+	
+	If $TmpWeightList == {No fonts} Then
+	Begin
+	    Set $SetAllLists = 0
+	    Set $SetFilterLists = 0
+	    ChangeTitle 11 {No fonts}
+	End
+	    
+	# slant
+	Set $index = (Add $index 1)
+	Set $TmpSlantIndex = (StrCopy $Config $index (Add $index 1))
+	Set $index = (Add $index 1)
+	Set $notdone = 1
+	Set $TmpSlantList = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpSlantList = $TmpSlantList $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+	
+	# width
+	Set $index = (Add $index 1)
+	Set $TmpWidthIndex = (StrCopy $Config $index (Add $index 1))
+	Set $index = (Add $index 1)
+	Set $notdone = 1
+	Set $TmpWidthList = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpWidthList = $TmpWidthList $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# style
+	Set $index = (Add $index 1)
+	Set $TmpStyleIndex = (StrCopy $Config $index (Add $index 1))
+	Set $index = (Add $index 1)
+	Set $notdone = 1
+	Set $TmpStyleList = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpStyleList = $TmpStyleList $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# pixsize
+	Set $index = (Add $index 1)
+	Set $TmpPixSizeIndex = (StrCopy $Config $index (Add $index 1))
+	Set $index = (Add $index 1)
+	Set $notdone = 1
+	Set $TmpPixSizeList = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpPixSizeList = $TmpPixSizeList $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+	
+	# ptsize
+	Set $index = (Add $index 1)
+	Set $TmpPtSizeIndex = (StrCopy $Config $index (Add $index 1))
+	Set $index = (Add $index 1)
+	Set $notdone = 1
+	Set $TmpPtSizeList = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpPtSizeList = $TmpPtSizeList $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# xres
+	Set $index = (Add $index 1)
+	Set $TmpXResIndex = (StrCopy $Config $index (Add $index 1))
+	Set $index = (Add $index 1)
+	Set $notdone = 1
+	Set $TmpXResList = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpXResList = $TmpXResList $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# yres
+	Set $index = (Add $index 1)
+	Set $TmpYResIndex = (StrCopy $Config $index (Add $index 1))
+	Set $index = (Add $index 1)
+	Set $notdone = 1
+	Set $TmpYResList = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpYResList = $TmpYResList $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# Spacing
+	Set $index = (Add $index 1)
+	Set $TmpSpacingIndex = (StrCopy $Config $index (Add $index 1))
+	Set $index = (Add $index 1)
+	Set $notdone = 1
+	Set $TmpSpacingList = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpSpacingList = $TmpSpacingList $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# AvgWidth
+	Set $index = (Add $index 1)
+	Set $TmpAvgWidthIndex = (StrCopy $Config $index (Add $index 1))
+	Set $index = (Add $index 1)
+	Set $notdone = 1
+	Set $TmpAvgWidthList = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpAvgWidthList = $TmpAvgWidthList $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# charset
+	Set $index = (Add $index 1)
+	Set $TmpCharsetIndex = (StrCopy $Config $index (Add $index 1))
+	Set $index = (Add $index 1)
+	Set $notdone = 1
+	Set $TmpCharsetList = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpCharsetList = $TmpCharsetList $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# current Foundry
+	Set $notdone = 1
+	Set $TmpFoundry = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpFoundry = $TmpFoundry $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# current family
+	Set $notdone = 1
+	Set $TmpFamily = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpFamily = $TmpFamily $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# current weight
+	Set $notdone = 1
+	Set $TmpWeight = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpWeight = $TmpWeight $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# current slant
+	Set $notdone = 1
+	Set $TmpSlant = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpSlant = $TmpSlant $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# current width
+	Set $notdone = 1
+	Set $TmpWidth = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpWidth = $TmpWidth $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# current style
+	Set $notdone = 1
+	Set $TmpStyle = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpStyle = $TmpStyle $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# current pixsize
+	Set $notdone = 1
+	Set $TmpPixSize = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpPixSize = $TmpPixSize $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# current PtSize
+	Set $notdone = 1
+	Set $TmpPtSize = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpPtSize = $TmpPtSize $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# current XRes
+	Set $notdone = 1
+	Set $TmpXRes = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpXRes = $TmpXRes $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# current YRes
+	Set $notdone = 1
+	Set $TmpYRes = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpYRes = $TmpYRes $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# current Spacing
+	Set $notdone = 1
+	Set $TmpSpacing = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpSpacing = $TmpSpacing $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# current AvgWidth
+	Set $notdone = 1
+	Set $TmpAvgWidth = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpAvgWidth = $TmpAvgWidth $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	# current Charset
+	Set $notdone = 1
+	Set $TmpCharset = {}
+	While $notdone == 1 Do
+	Begin
+	    Set $index = (Add $index 1)
+	    Set $id = (StrCopy $Config $index $index)
+	    If $id == {!} Then
+		Set $notdone = 0
+	    Else
+		Set $TmpCharset = $TmpCharset $id
+	    If $id == {} Then
+		Set $notdone = 0
+	End
+
+	Set $index = (Add $index 1)
+	Set $TmpScaleAdjust = (StrCopy $Config $index $index)
+
+    End
+
+    #---------------------------------------------------------------------
+    If $SetFilterLists == 1 Then
+    Begin
+	Set $SetFilterLists = 0
+
+	Set $FilterFoundryList = $TmpFoundryList
+	ChangeTitle 311 $FilterFoundryList
+
+	Set $FilterWeightList = $TmpWeightList
+	ChangeTitle 321 $FilterWeightList
+
+	Set $FilterSlantList = $TmpSlantList
+	ChangeTitle 331 $FilterSlantList
+
+	Set $FilterWidthList = $TmpWidthList
+	ChangeTitle 341 $FilterWidthList
+
+	Set $FilterStyleList = $TmpStyleList
+	Set $FilterPixSizeList = $TmpPixSizeList
+	Set $FilterPtSizeList = $TmpPtSizeList
+
+	Set $FilterXResList = $TmpXResList
+	ChangeTitle 351 $FilterXResList
+
+	Set $FilterYResList = $TmpYResList
+	ChangeTitle 361 $FilterYResList
+
+	Set $FilterSpacingList = $TmpSpacingList
+	ChangeTitle 371 $FilterSpacingList
+
+	Set $FilterAvgWidthList = $TmpAvgWidthList
+
+	Set $FilterCharsetList = $TmpCharsetList
+ 	ChangeTitle 381 $FilterCharsetList
+
+    End
+
+    #---------------------------------------------------------------------
+    If $SetAllLists == 1 Then
+    Begin
+	Set $SetAllLists = 0
+
+	Set $WeightList = $TmpWeightList
+	ChangeTitle 31 $WeightList
+	Set $WeightIndex = $TmpWeightIndex
+	ChangeValue 31 $WeightIndex
+
+	Set $SlantList = $TmpSlantList
+	ChangeTitle 41 $SlantList
+	Set $SlantIndex = $TmpSlantIndex
+	ChangeValue 41 $SlantIndex
+
+	Set $WidthList = $TmpWidthList
+	ChangeTitle 51 $WidthList
+	Set $WidthIndex = $TmpWidthIndex
+	ChangeValue 51 $WidthIndex
+
+	Set $StyleList = $TmpStyleList
+
+	Set $PixSizeList = $TmpPixSizeList
+	ChangeTitle 21 $PixSizeList
+	Set $PixSizeIndex = $TmpPixSizeIndex
+	ChangeValue 21 $PixSizeIndex
+
+	Set $PtSizeList = $TmpPtSizeList
+	Set $XResList = $TmpXResList
+	Set $YResList = $TmpYResList
+
+	Set $SpacingList = $TmpSpacingList
+	ChangeTitle 36 $SpacingList
+	Set $SpacingIndex = $TmpSpacingIndex
+	ChangeValue 36 $SpacingIndex
+
+	Set $AvgWidthList = $TmpAvgWidthList
+
+	Set $CharsetList = $TmpCharsetList
+	ChangeTitle 61 $CharsetList
+	Set $CharsetIndex = $TmpCharsetIndex
+	ChangeValue 61 $CharsetIndex
+
+
+	Set $Foundry = $TmpFoundry
+	Set $Family = $TmpFamily
+	Set $Weight = $TmpWeight
+	Set $Slant = $TmpSlant
+	Set $Width = $TmpWidth
+	Set $Style = $TmpStyle
+	Set $PixSize = $TmpPixSize
+	Set $PtSize = $TmpPtSize
+	Set $XRes = $TmpXRes
+	Set $YRes = $TmpYRes
+	Set $Spacing = $TmpSpacing
+	Set $AvgWidth = $TmpAvgWidth
+	Set $Charset = $TmpCharset
+
+ 	Set $ScaleAdjust = $TmpScaleAdjust
+	If $ScaleAdjust == 2 Then
+	Begin
+	    ChangeTitle 95 $IsAdjustable
+	End
+	Else
+	Begin
+	    ChangeTitle 95 $NotAdjustable
+	End
+
+    End
+
+    #---------------------------------------------------------------------
+    If $ChangeFont == 1 Then
+    Begin
+	Set $ChangeFont = 0
+
+	Set $TheFont = {-}$Foundry{-}$Family{-}$Weight{-}$Slant{-}$Width{-}$Style{-}$PixSize {-}$PtSize{-}$XRes{-}$YRes{-}$Spacing{-}$AvgWidth{-}$Charset
+	
+	ChangeTitle 2 $TheFont
+	ChangeTitle 3 $TheFont
+
+	Set $tmp = 110
+	While $tmp <> 115 Do
+	Begin
+	    ChangeFont $tmp $TheFont
+	    HideWidget $tmp
+	    Set $tmp = (Add $tmp 1)
+	End
+	Set $tmp = 0
+	If $PixSize < 13 Then
+	    Set $tmp = 110
+	If $PixSize < 25 Then
+	Begin
+	    If $tmp == 0 Then
+		Set $tmp = 111
+	End
+	If $PixSize < 37 Then
+	Begin
+	    If $tmp == 0 Then
+		Set $tmp = 112
+	End
+	If $PixSize < 51 Then
+	Begin
+	    If $tmp == 0 Then
+		Set $tmp = 113
+	End
+	If $tmp == 0 Then
+	    Set $tmp = 114
+
+	ShowWidget $tmp
+
+    End
+
+    If $BuildAgain == 1 Then
+    Begin
+	Set $BuildAgain = 0
+	Set $GetAllLists = 1
+	Set $ChangeFont = 1
+    End
+
+End
+
+#----------------------------------------------------------------------------
+# The widgets
+#----------------------------------------------------------------------------
+
+# Title for selected fonts Launched
+Widget 1
+Property
+    Flags NoReliefString
+    Position 10 9
+    Type ItemDraw
+    Title {Selected Fonts:     }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# The selected fonts not Lauched
+Widget 3
+Property
+    Font fixed
+    Flags NoReliefString Hidden
+    Position 130 5
+    Size 400 20 
+    Type TextField
+    Title {                                                                       }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# the selected font launched
+Widget 2
+Property
+    Flags NoReliefString Hidden
+    Font fixed
+    Position 130 9
+    Size 420 20
+    Type ItemDraw
+    Title {}
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# the selected font launched
+Widget 5
+Property
+    Position 5 35
+    Size 590 320
+    Type Rectangle
+    Title {}
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# ---------------------------- Fonts lists
+
+# Title for fonts
+Widget 10
+Property
+    Flags NoReliefString
+    Position 15 40
+    Size 200 20
+    Type ItemDraw
+    Title {Fonts:}
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+
+# List of fonts
+Widget 11
+Property
+    Flags NoReliefString
+    Font fixed
+    Position 15 60
+    Size 200 150
+    Type List
+    Title {|||LOADING FONTS ...}
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $tmp = (GetValue 11)
+    If $tmp <> $FontIndex Then
+    Begin
+	Set $FontIndex = $tmp
+	Set $GetAllLists = 1
+	Set $ChangeFont = 1
+	# For simplification conserve only the size
+	#Set $Foundry = {*}
+	#Set $Family = {*}
+	#Set $Weight = {*}
+	#Set $Slant = {*}
+	#Set $Width = {*}
+	#Set $Style = {*}
+	#Set $PixSize = {*}
+	#Set $PtSize = {*}
+	#Set $XRes = {*}
+	#Set $YRes = {*}
+	#Set $Spacing = {*}
+	#Set $AvgWidth = {*}
+	#Set $Charset = {*-*}
+	#Set $UpdateTheFont = 1
+	#Set $BuildAgain = 1
+    End
+ End
+End
+
+# ---------------------------- Font Parameters
+
+# Title for Size
+Widget 20
+Property
+    Flags NoReliefString
+    Position 230 60
+    Type ItemDraw
+    Title {Size:           }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Popup for Size
+Widget 21
+Property
+    Font 6x10
+    Flags NoReliefString
+    Position 320 55
+    Type PopupMenu
+    Title {     }
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $tmpind = (Add (GetValue 21) -1)
+    Set $cmd={perl -e '@l=split(/\s*\|\s*/,"}$PixSizeList{");$a=$l[}$tmpind{];print "$a\n"'}
+    Set $tmp = (GetOutput $cmd 1 -1)
+    If $tmp <> $PixSize Then
+    Begin
+	Set $PixSize = $tmp
+	Set $PixSizeIndex = $tmpind
+	Set $LastChange = {PixSize}
+	Set $UpdateTheFont = 1
+	Set $GetAllLists = 1
+	Set $ChangeFont = 1
+    End
+ End
+End
+
+# Title for Weight
+Widget 30
+Property
+    Flags NoReliefString
+    Position 230 90
+    Type ItemDraw
+    Title {Weight:           }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Popup for Weight
+Widget 31
+Property
+    Font fixed
+    Flags NoReliefString
+    Position 320 85
+    Type PopupMenu
+    Title {        }
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $tmpind = (Add (GetValue 31) -1)
+    Set $cmd={perl -e '@l=split(/\s*\|\s*/,"}$WeightList{");$a=$l[}$tmpind{];print "$a\n"'}
+    Set $tmp = (GetOutput $cmd 1 -1)
+    If $tmp <> $Weight Then
+    Begin
+	Set $Weight = $tmp
+	Set $SizeIndex = $tmpind
+	Set $LastChange = {Weight}
+	Set $GetAllLists = 1
+	Set $ChangeFont = 1
+	Set $UpdateTheFont = 1
+    End
+ End
+End
+
+# Title for Spacing
+Widget 35
+Property
+    Flags NoReliefString
+    Position 425 90
+    Type ItemDraw
+    Title {Spacing:         }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Popup for Spacing
+Widget 36
+Property
+    Font fixed
+    Flags NoReliefString
+    Position 515 85
+    Type PopupMenu
+    Title {     }
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $tmpind = (Add (GetValue 36) -1)
+    Set $cmd={perl -e '@l=split(/\s*\|\s*/,"}$SpacingList{");$a=$l[}$tmpind{];print "$a\n"'}
+    Set $tmp = (GetOutput $cmd 1 -1)
+    If $tmp <> $Spacing Then
+    Begin
+	Set $Spacing = $tmp
+	Set $SpacingIndex = $tmpind
+	Set $LastChange = {Spacing}
+	Set $GetAllLists = 1
+	Set $ChangeFont = 1
+	Set $UpdateTheFont = 1
+    End
+ End
+End
+
+# Title for Slant
+Widget 40
+Property
+    Flags NoReliefString
+    Position 425 60
+    Type ItemDraw
+    Title {Slant:           }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Popup for Slant
+Widget 41
+Property
+    Font fixed
+    Flags NoReliefString
+    Position 515 55
+    Type PopupMenu
+    Title {     }
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $tmpind = (Add (GetValue 41) -1)
+    Set $cmd={perl -e '@l=split(/\s*\|\s*/,"}$SlantList{");$a=$l[}$tmpind{];print "$a\n"'}
+    Set $tmp = (GetOutput $cmd 1 -1)
+    If $tmp <> $Slant Then
+    Begin
+	Set $Slant = $tmp
+	Set $SizeIndex = $tmpind
+	Set $LastChange = {Slant}
+	Set $GetAllLists = 1
+	Set $ChangeFont = 1
+	Set $UpdateTheFont = 1
+    End
+ End
+End
+
+# Title for Width
+Widget 50
+Property
+    Flags NoReliefString
+    Position 230 120
+    Type ItemDraw
+    Title {Width:           }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Popup for Width
+Widget 51
+Property
+    Font fixed
+    Flags NoReliefString
+    Position 320 115
+    Type PopupMenu
+    Title {                   }
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $tmpind = (Add (GetValue 51) -1)
+    Set $cmd={perl -e '@l=split(/\s*\|\s*/,"}$WidthList{");$a=$l[}$tmpind{];print "$a\n"'}
+    Set $tmp = (GetOutput $cmd 1 -1)
+    If $tmp <> $Width Then
+    Begin
+	Set $Width = $tmp
+	Set $SizeIndex = $tmpind
+	Set $LastChange = {Width}
+	Set $GetAllLists = 1
+	Set $ChangeFont = 1
+	Set $UpdateTheFont = 1
+    End
+ End
+End
+
+# Title for Charset
+Widget 60
+Property
+    Flags NoReliefString
+    Position 230 150
+    Type ItemDraw
+    Title {Charset:         }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Popup for Charset
+Widget 61
+Property
+    Font fixed
+    Flags NoReliefString
+    Position 320 145
+    Type PopupMenu
+    Title {                   }
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $tmpind = (Add (GetValue 61) -1)
+    Set $cmd={perl -e '@l=split(/\s*\|\s*/,"}$CharsetList{");$a=$l[}$tmpind{];print "$a\n"'}
+    Set $tmp = (GetOutput $cmd 1 -1)
+    If $tmp <> $Charset Then
+    Begin
+	Set $Charset = $tmp
+	Set $SizeIndex = $tmpind
+	Set $LastChange = {Charset}
+	Set $GetAllLists = 1
+	Set $ChangeFont = 1
+	Set $UpdateTheFont = 1
+    End
+ End
+End
+
+# ---------------------------- Info for the main window
+
+# Is/Not Adjustable
+Widget 95
+Property
+    Flags NoReliefString
+    Position 230 185
+    Type ItemDraw
+    Title {                                                        }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Button for More Info
+Widget 96
+Property
+    Flags NoReliefString
+    Position 480 180
+    Size 100 20
+    Type PushButton
+    Title {More Info}
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $ShowInfo = 1
+    Set $HideMain = 1
+    If $TheFont <> $InfoFont Then
+    Begin
+	Set $InfoFont = $TheFont
+	Set $cmd = {fvwm-themes-script --font-info --font-current="}$TheFont{"}
+	Set $Info = (GetOutput $cmd 1 -1)
+	ChangeTitle 201 $Info
+	ChangeMinValue 201 1
+	ChangeValue 201 0
+    End
+ End
+End
+
+# ---------------------------- Filter for the main window
+
+# Title for the filter
+Widget 100
+Property
+    Flags NoReliefString
+    Position 15 220
+    Size 80 20
+    Type PushButton
+    Title {Filter:}
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $ShowFilter = 1
+    Set $HideMain = 1
+ End
+End
+
+# The filter
+Widget 101
+Property
+    Font fixed
+    Flags NoReliefString
+    Position 130 228
+    Size 460 20
+    Type ItemDraw
+    Title {-*-*-*-*-*-*-*-*-*-*-*-*-*-*}
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# ---------------------------- The Examples
+
+# Exemple 0 - 12
+Widget 110
+Property
+    #Font -misc-fixed-medium-r-normal--12-*-*-*-*-*-iso10646-1
+#    Font -adobe-utopia-bold-r-normal-*-13-*-*-*-p-*-*-*	
+    Font -adobe-*-bold-r-normal-*-13-*-*-*-p-*-*-*	
+    Position 120 290
+    Size 300 50
+    Type TextField
+    Title {abcdefghijk ABCDEFGHIJK ÈÁ‡ÓÎ …»«¿ŒÀ                        }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Exemple 13-24
+Widget 111
+Property
+    #Font -misc-fixed-medium-r-normal--24-*-*-*-*-*-iso10646-1
+#    Font -adobe-utopia-bold-r-normal-*-25-*-*-*-p-*-*-*	
+    Font -adobe-*-bold-r-normal-*-25-*-*-*-p-*-*-*	
+    Flags Hidden
+    Position 38 280
+    Size 300 50
+    Type TextField
+    Title {abcdefghijk ABCDEFGHIJK ÈÁ‡ÓÎ …»«¿ŒÀ}
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Exemple 25-36
+Widget 112
+Property
+    #Font -misc-fixed-medium-r-normal--36-*-*-*-*-*-iso10646-1
+#    Font -adobe-utopia-bold-r-normal-*-36-*-*-*-p-*-*-*	
+    Font -adobe-*-bold-r-normal-*-36-*-*-*-p-*-*-*	
+    Flags Hidden
+    Position 20 272
+    #Size 300 50
+    Type TextField
+    Title {abcdijk ABCDIJK ÈËÁ‡ÓÎ ¿…«Œ }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Exemple 37 - 50
+Widget 113
+Property
+    #Font -misc-fixed-medium-r-normal--50-*-*-*-*-*-iso10646-1
+#    Font -adobe-utopia-bold-r-normal-*-50-*-*-*-p-*-*-*	
+    Font -adobe-*-bold-r-normal-*-50-*-*-*-p-*-*-*	
+    Flags Hidden
+    Position 17 265
+    #Size 300 50
+    Type TextField
+    Title {abcijk ABCIJK ÈÁ‡ ¿…«}
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Exemple 51 - 64
+Widget 114
+Property
+    #Font -misc-fixed-medium-r-normal--64-*-*-*-*-*-iso10646-1
+#    Font -adobe-utopia-bold-r-normal-*-65-*-*-*-p-*-*-*	
+    Font -adobe-*-bold-r-normal-*-65-*-*-*-p-*-*-*	
+    Flags Hidden
+    Position 17 258
+    #Size 300 50
+    Type TextField
+    Title {abijk ABIJK ÈÁ ¿…}
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+#-----------------------------------------------------------------------------
+# Info
+
+# the font
+Widget 200
+Property
+    Flags NoReliefString Hidden
+    Position 15 40
+    Size 570 20
+    #Font fixed
+    Type ItemDraw
+    Title {Obtained font:}
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# the infos
+Widget 201
+Property
+    Flags NoReliefString Hidden
+    Position 15 60
+    Size 570 250
+    Font fixed
+    Type List
+    Title {}
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Ok
+Widget 202
+Property
+    Flags NoReliefString Hidden
+    Position 470 320
+    Size 80 20
+    #Font fixed
+    Type PushButton
+    Title {OK}
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $HideInfo = 1
+    Set $ShowMain = 1
+ End
+End
+
+#-----------------------------------------------------------------------------
+# Filter
+
+# title
+Widget 300
+Property
+    Flags NoReliefString Hidden
+    Position 15 40
+    Size 570 20
+    #Font fixed
+    Type ItemDraw
+    Title {Set your font filter:}
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+
+# Title for Foundry Filter 
+Widget 310
+Property
+    Flags NoReliefString Hidden
+    Position 20 100
+    Type ItemDraw
+    Title {Foundry:        }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Popup for Foundry Filter 
+Widget 311
+Property
+    Font 6x10
+    Size 150 80
+    Flags NoReliefString Hidden
+    Position 120 85
+    Type List
+    Title {                  }
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $tmpind = (Add (GetValue 311) -1)
+    Set $cmd={perl -e '@l=split(/\s*\|\s*/,"}$FilterFoundryList{");$a=$l[}$tmpind{];print "$a\n"'}
+    Set $tmp = (GetOutput $cmd 1 -1)
+    If $tmp <> $FilterFoundry Then
+    Begin
+	Set $FilterFoundry = $tmp
+	Set $FilterFoundryIndex = $tmpind
+    End
+ End
+End
+
+# Title for Weight Filter 
+Widget 320
+Property
+    Flags NoReliefString Hidden
+    Position 20 190
+    Type ItemDraw
+    Title {Weight:        }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Popup for Weight Filter 
+Widget 321
+Property
+    Font 6x10
+    Flags NoReliefString Hidden
+    Position 120 185
+    Type PopupMenu
+    Title {                  }
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $tmpind = (Add (GetValue 321) -1)
+    Set $cmd={perl -e '@l=split(/\s*\|\s*/,"}$FilterWeightList{");$a=$l[}$tmpind{];print "$a\n"'}
+    Set $tmp = (GetOutput $cmd 1 -1)
+    If $tmp <> $FilterWeight Then
+    Begin
+	Set $FilterWeight = $tmp
+	Set $FilterWeightIndex = $tmpind
+    End
+ End
+End
+
+# Title for Slant Filter 
+Widget 330
+Property
+    Flags NoReliefString Hidden
+    Position 20 230
+    Type ItemDraw
+    Title {Slant:        }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Popup for Slant Filter 
+Widget 331
+Property
+    Font 6x10
+    Flags NoReliefString Hidden
+    Position 120 225
+    Type PopupMenu
+    Title {                  }
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $tmpind = (Add (GetValue 331) -1)
+    Set $cmd={perl -e '@l=split(/\s*\|\s*/,"}$FilterSlantList{");$a=$l[}$tmpind{];print "$a\n"'}
+    Set $tmp = (GetOutput $cmd 1 -1)
+    If $tmp <> $FilterSlant Then
+    Begin
+	Set $FilterSlant = $tmp
+	Set $FilterSlantIndex = $tmpind
+    End
+ End
+End
+
+# Title for Width Filter 
+Widget 340
+Property
+    Flags NoReliefString Hidden
+    Position 20 270
+    Type ItemDraw
+    Title {Width:        }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Popup for Width Filter 
+Widget 341
+Property
+    Font 6x10
+    Flags NoReliefString Hidden
+    Position 120 265
+    Type PopupMenu
+    Title {                  }
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $tmpind = (Add (GetValue 341) -1)
+    Set $cmd={perl -e '@l=split(/\s*\|\s*/,"}$FilterWidthList{");$a=$l[}$tmpind{];print "$a\n"'}
+    Set $tmp = (GetOutput $cmd 1 -1)
+    If $tmp <> $FilterWidth Then
+    Begin
+	Set $FilterWidth = $tmp
+	Set $FilterWidthIndex = $tmpind
+    End
+ End
+End
+
+# Title for XRes Filter 
+Widget 350
+Property
+    Flags NoReliefString Hidden
+    Position 320 190
+    Type ItemDraw
+    Title {XRes:        }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Popup for XRes Filter 
+Widget 351
+Property
+    Font 6x10
+    Flags NoReliefString Hidden
+    Position 420 185
+    Type PopupMenu
+    Title {                  }
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $tmpind = (Add (GetValue 351) -1)
+    Set $cmd={perl -e '@l=split(/\s*\|\s*/,"}$FilterXResList{");$a=$l[}$tmpind{];print "$a\n"'}
+    Set $tmp = (GetOutput $cmd 1 -1)
+    If $tmp <> $FilterXRes Then
+    Begin
+	Set $FilterXRes = $tmp
+	Set $FilterXResIndex = $tmpind
+    End
+ End
+End
+
+# Title for YRes Filter 
+Widget 360
+Property
+    Flags NoReliefString Hidden
+    Position 320 230
+    Type ItemDraw
+    Title {YRes:        }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Popup for YRes Filter 
+Widget 361
+Property
+    Font 6x10
+    Flags NoReliefString Hidden
+    Position 420 225
+    Type PopupMenu
+    Title {                  }
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $tmpind = (Add (GetValue 361) -1)
+    Set $cmd={perl -e '@l=split(/\s*\|\s*/,"}$FilterYResList{");$a=$l[}$tmpind{];print "$a\n"'}
+    Set $tmp = (GetOutput $cmd 1 -1)
+    If $tmp <> $FilterYRes Then
+    Begin
+	Set $FilterYRes = $tmp
+	Set $FilterYResIndex = $tmpind
+    End
+ End
+End
+
+# Title for Spacing Filter 
+Widget 370
+Property
+    Flags NoReliefString Hidden
+    Position 320 270
+    Type ItemDraw
+    Title {Spacing:        }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Popup for Spacing Filter 
+Widget 371
+Property
+    Font 6x10
+    Flags NoReliefString Hidden
+    Position 420 265
+    Type PopupMenu
+    Title {                  }
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $tmpind = (Add (GetValue 371) -1)
+    Set $cmd={perl -e '@l=split(/\s*\|\s*/,"}$FilterSpacingList{");$a=$l[}$tmpind{];print "$a\n"'}
+    Set $tmp = (GetOutput $cmd 1 -1)
+    If $tmp <> $FilterSpacing Then
+    Begin
+	Set $FilterSpacing = $tmp
+	Set $FilterSpacingIndex = $tmpind
+    End
+ End
+End
+
+# Title for Charset Filter 
+Widget 380
+Property
+    Flags NoReliefString Hidden
+    Position 320 100
+    Type ItemDraw
+    Title {Charset:        }
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Popup for Charset Filter 
+Widget 381
+Property
+    Font 6x10
+    Size 150 80
+    Flags NoReliefString Hidden
+    Position 420 85
+    Type List
+    Title {}
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $tmpind = (Add (GetValue 381) -1)
+    Set $cmd={perl -e '@l=split(/\s*\|\s*/,"}$FilterCharsetList{");$a=$l[}$tmpind{];print "$a\n"'}
+    Set $tmp = (GetOutput $cmd 1 -1)
+    If $tmp <> $FilterCharset Then
+    Begin
+	Set $FilterCharset = $tmp
+	Set $FilterCharsetIndex = $tmpind
+    End
+ End
+End
+
+
+#------------
+# Ok
+Widget 500
+Property
+    Flags NoReliefString Hidden
+    Position 470 320
+    Size 80 20
+    #Font fixed
+    Type PushButton
+    Title {OK}
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $HideFilter = 1
+    Set $ShowMain = 1
+    Set $tmp = {-}$FilterFoundry{-}$FilterFamily{-}$FilterWeight{-}$FilterSlant{-}$FilterWidth{-}$FilterStyle{-}$FilterPixSize{-}$FilterPtSize{-}$FilterXRes{-}$FilterYRes{-}$FilterSpacing{-}$FilterAvgWidth{-}$FilterCharset
+    If $tmp <> $FontFilter Then
+    Begin
+	Do {Echo FF:}$tmp
+	Set $FontFilter = $tmp
+	Set $GetFontList = 1
+	ChangeValue 11 0
+	ChangeMinValue 11 1
+	ChangeTitle 101 $FontFilter
+    End
+ End
+End
+
+
+#-----------------------------------------------------------------------------
+# Ok, Help, Cancel
+
+# Ok
+Widget 992
+Property
+    Flags NoReliefString
+    Position 30 365
+    Size 80 20
+    #Font fixed
+    Type PushButton
+    Title {OK}
+Main
+Case message of
+ SingleClic :
+ Begin
+    If $Launched <> 0 Then
+    Begin
+	SendToScript (GetScriptFather) $TheFont
+    End
+    Quit
+ End
+End
+
+# Help
+Widget 993
+Property
+    Flags NoReliefString
+    Position 200 365
+    Size 80 20
+    #Font fixed
+    Type PushButton
+    Title {Help}
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# Cancel
+Widget 994
+Property
+    Flags NoReliefString
+    Position 380 365
+    Size 80 20
+    #Font fixed
+    Type PushButton
+    Title {Cancel}
+Main
+Case message of
+ SingleClic :
+ Begin
+    If $Launched <> 0 Then
+	SendToScript (GetScriptFather) {Cancel}
+    Quit
+ End
+End
+

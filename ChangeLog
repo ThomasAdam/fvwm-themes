@@ -1,4 +1,13 @@
-2000-11-12  olicha  <olivier.chapuis@free.fr>
+2000-12-21  migo  <migo@homemail.com>
+
+	* scripts/FvwmScript-FontSelector:
+	added forgotten file to cvs and tagged it, so hopefully
+	cvs update -r version-0_4_1 can be built without errors;
+	replaced some adobe-utopia-bold fonts used in the tool, so
+	it at least loaded for me (I am not sure about this, but I
+	have no, say, font -adobe-utopia-bold-r-normal-*-13-*-*-*-p-*-*-*).
+
+2000-12-20  olicha  <olivier.chapuis@free.fr>
 
 	* configure.in:
 	* NEWS:
