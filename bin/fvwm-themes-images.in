@@ -1779,7 +1779,7 @@ sub hasMatte {
 	my $done= 0;
 	my $r = 0;
 
-	open(IDENT,"identify -verbose $file|");
+	open(IDENT,"$magickPath/identify -verbose $file|");
 	while (<IDENT>) {
 		if (/matte/i && /true/i) { $r = 1; }
 	}
