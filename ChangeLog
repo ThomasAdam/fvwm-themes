@@ -12,6 +12,9 @@
 	* bin/fvwm-themes-root.in:
 	support xsetbg and image extention aliases (jpg -> jpeg)
 
+	* themes/default/background:
+	use fvwm-themes-root to set solid bg, not xsetroot
+
 2003-07-20  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings/session-manager/none:

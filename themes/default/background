@@ -10,7 +10,7 @@ DestroyFunc FuncFvwmBackgroundSolidColor
 AddToFunc   FuncFvwmBackgroundSolidColor
 + I DestroyFunc FuncFvwmStartThemeBackground
 + I AddToFunc   FuncFvwmStartThemeBackground
-+ I + I Exec exec xsetroot -solid "$0"
++ I + I Exec exec fvwm-themes-root --solid "$0"
 
 DestroyFunc FuncFvwmBackgroundPixmapColors
 AddToFunc   FuncFvwmBackgroundPixmapColors
