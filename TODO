@@ -21,6 +21,7 @@
 * Add buttons@multichoice with titlebar button order selector (1 option)
   and button sets from default/redmond98/osx and more (variants or 1 option).
   Button set may contain iconify/maximize/close/shade/stick/options names.
+  And one more option "Use in Options": "Window mini icon", "Static icon".
 
 Optional items to do:
 --------------------
