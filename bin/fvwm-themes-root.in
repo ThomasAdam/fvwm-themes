@@ -63,31 +63,37 @@ my $HelperImageTypeSupport = {
 	'xsetroot'  => 'xbm',
 	'xsetbg'    => 'jpeg|tiff',  # does not support some types of JPG
 	'display'   => '*',
+	'wmsetbg'   => '*',
 	'xv'        => '*',
 };
 
 my $HelperSetRootCommands = {
 	tile => [
 		'fvwm-root -r $image',
+		'wmsetbg --tile --back-color $fg $image',
 		'xsetroot -bg $bg -fg $fg -bitmap $image',
 		'xv -root -quit $image',
 		'xsetbg $image',
 	],
 	center => [
+		'wmsetbg --center --back-color $fg $image',
 		'display -window root -backdrop -foreground $fg $image',
 		'xsetbg -center $image -border $fg',
 		'xv -root -quit -rmode 5 -rfg $fg $image',
 	],
 	adjust => [
+		'wmsetbg --scale $image',
 		'xv -root -quit -max $image',
 		'display -window root -geometry `xwininfo -root | grep geometry | cut -d" " -f4`\! $image',
-		'xsetbg -fullscreen $image -border $fg',
 	],
 	aspect => [
+		'wmsetbg --maxscale --back-color $fg $image',
 		'xv -root -quit -maxpect $image',
+		'xsetbg -fullscreen $image -border $fg',
 	],
 	solid => [
-		'xsetroot -bg $bg -fg $fg -solid $color',
+		'xsetroot -solid $color',
+		'fvwm-themes-images --setroot --sky --sky-colors $color,$color',
 		'xv -root -quit -crop 0 0 0 0 -rmode 5 -rfg $color',  # 1x1 pixel
 	],
 };
@@ -105,11 +111,12 @@ die "Internal error #1\n" unless defined $commands;
 
 my $found = 0;
 my $command;
+my ($exe, $args);
 foreach (@$commands) {
 	$command = $_;  # using $command directly in foreach fails in 5.8.0
-	my ($exe, $args) = split(/ /, $command, 2);
+	($exe, $args) = split(/ /, $command, 2);
 
-	# check if exists in $PATH, nothing for now
+	# check if exists in $PATH
 	next unless isExeInPath($exe);
 	if ($type eq 'solid') {
 		$found = 1;
@@ -137,6 +144,7 @@ if (!$found) {
 }
 
 $command =~ s/(\$\w+)/'"' . eval("qq($1)") . '"'/sge;
+$command =~ s/rgb:[\w\/]+/gray40/sg if $exe eq 'wmsetbg';  # dumb workaround
 print $command, "\n" if $ENV{DEBUG};
 system($command);
 
