@@ -637,13 +637,13 @@ sub buildFontInfo {
 
 sub buildMsg {
 
-	$lang = $ENV{'LANG'} if $lang eq "";
+	$lang = $ENV{'LANG'} if $lang eq "" && $ENV{'LANG'};
 	my $msgExt = "msg";
 	#$lang = "en";
 	#$lang = "ru";
 	my $return = "";
 	my $file = "";
-	$lang = substr($lang,0,2);
+	$lang = substr($lang, 0, 2);
 	if ($getMsg =~ /^\//) {
 		$file = $getMsg;
 	}

@@ -4,6 +4,8 @@
 	* doc/creating-themes:
 	some corrections, use numbers in FAQ
 
+	* bin/fvwm-themes-script.in: fixed a warning
+
 2001-03-13  migo  <migo@homemail.com>
 
 	* doc/FAQ:
