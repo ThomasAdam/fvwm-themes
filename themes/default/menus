@@ -267,17 +267,17 @@ AddToMenu   MenuFvwmWindowOps2
 # migo: probably it is better without menu icons, like in mwm
 DestroyMenu MenuFvwmWindowOps2
 AddToMenu   MenuFvwmWindowOps2
-+ "Restore		Alt-F6"  FuncFvwmRestore
-+ "&Move		Alt-F7"  Move
-+ "&Resize		Alt-F8"  Resize
-+ "&Iconify		Alt-F9"  Iconify
-+ "Ma&ximize		Alt-F10" Maximize
-+ "R&aiseLower		Alt-F5"  RaiseLower
++ "Restore	Alt-F6"  FuncFvwmRestore
++ "&Move	Alt-F7"  Move
++ "&Resize	Alt-F8"  Resize
++ "&Iconify	Alt-F9"  Iconify
++ "Ma&ximize	Alt-F10" Maximize
++ "R&aiseLower	Alt-F5"  RaiseLower
 + "" Nop
-+ "&Close		Alt-F4"  Close
++ "&Close	Alt-F4"  Close
 + "" Nop
-+ "Identify		Alt-F11" Module FvwmIdent
-+ "More&...		Alt-F3"  Menu MenuFvwmWindowOps This 0 0
++ "Identify	Alt-F11" Module FvwmIdent
++ "More&...	Alt-F3"  Menu MenuFvwmWindowOps This 0 0
 
 # Resource window group operations for the root menu and buttons
 DestroyMenu  MenuFvwmWindowGroupOps
