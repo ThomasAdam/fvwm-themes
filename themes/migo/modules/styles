@@ -8,6 +8,8 @@ Style "FvwmPager-Desker" NoTitle, NoHandles, Sticky, WindowListSkip, \
 	NoLenience, TitleAtTop
 Style "FvwmPager-Single" NoTitle, NoHandles, Sticky, WindowListSkip, \
 	NoLenience, TitleAtTop
+Style "FvwmIconMan" NoTitle, NoHandles, WindowListSkip, \
+	NeverFocus, NoLenience, TitleAtBottom
 
 DestroyFunc FuncFvwmDestroyModulesThemeStyle
 AddToFunc   FuncFvwmDestroyModulesThemeStyle
@@ -16,3 +18,4 @@ AddToFunc   FuncFvwmDestroyModulesThemeStyle
 + I DestroyStyle "FvwmPager-Compact"
 + I DestroyStyle "FvwmPager-Desker"
 + I DestroyStyle "FvwmPager-Single"
++ I DestroyStyle "FvwmIconMan"

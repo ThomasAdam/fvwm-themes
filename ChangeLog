@@ -3,6 +3,13 @@
 	* themes/redmondxp/images/module/panel-right-bg.xpm:
 	added forgotten image
 
+	* themes/migo/modules/main:
+	* themes/migo/modules/styles:
+	* themes/olicha/modules/FvwmIconMan:
+	make FvwmIconMan NeverFocus and TitleAtBottom;
+	use "raised" buttons in FvwmIconMan except for focussed, if this
+	is not ok, this FvwmIconMan file may be copied to @migo
+
 2002-06-12  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-script.in (getDirListing):

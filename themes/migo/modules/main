@@ -156,8 +156,8 @@ Read $./FvwmPager-Desker
 Read $./FvwmPager-Compact
 Read $./FvwmButtons-Pager
 # We should think how one theme can reuse module configs of other theme.
-Read themes/olicha/modules/FvwmIconBox
-Read themes/olicha/modules/FvwmIconMan
-Read themes/olicha/modules/FvwmTaskBar
-Read themes/olicha/modules/FvwmWinList
+Read $./../../olicha/modules/FvwmIconBox
+Read $./../../themes/olicha/modules/FvwmIconMan
+Read $./../../themes/olicha/modules/FvwmTaskBar
+Read $./../../themes/olicha/modules/FvwmWinList
 Read $./fonts

@@ -4,10 +4,10 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: resolution desk
 
 *FvwmIconMan: plainbutton  up
-*FvwmIconMan: selectbutton down
-*FvwmIconMan: focusbutton  up
+*FvwmIconMan: selectbutton up
+*FvwmIconMan: focusbutton  down
 *FvwmIconMan: focusandselectbutton down
-*FvwmIconMan: iconbutton down
+*FvwmIconMan: iconbutton up
 
 *FvwmIconMan: colorset		12
 *FvwmIconMan: iconcolorset	19
