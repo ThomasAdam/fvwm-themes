@@ -6,6 +6,7 @@ SUBDIRS = bin doc rpm scripts forms locale
 FT_DATA_SUBDIRS = themes images sounds
 FT_MODULE_SUBDIRS = 
 EXTRA_DIST = images.tar.gz sounds.tar.gz
+EXTRA_THEMES = awol blackbox brushedmetal nanogui osx spruce
 
 install-data-local:
 	FT_DATADIR=@FT_DATADIR@
@@ -78,7 +79,7 @@ dist-hook:
 #    make distclean2  # instead of make distclean
 
 dist2: dist
-	gzip -dc $(distdir).tar.gz | bzip2 -9c >$(distdir).tar.bz2
+	gzip -dc $(distdir).tar.gz | bzip2 -9c >$(distdir).tar.bz2;
 
 distcheck2: dist2 distcheck
 	@banner="$(distdir).tar.bz2 - ready for distribution"; \
@@ -87,6 +88,36 @@ distcheck2: dist2 distcheck
 	echo "$$dashes"
 
 distclean2: distclean
+
+dist3: dist
+	tar xzf $(distdir).tar.gz; \
+	mkdir $(PACKAGE)-extra-$(VERSION); \
+	for t in $(EXTRA_THEMES); do \
+		echo "creating $$t gz tar ball"; \
+		mkdir ft-$$t-$(VERSION); \
+		cp -rdp $(distdir)/themes/$$t $(PACKAGE)-extra-$(VERSION); \
+		mv -f $(distdir)/themes/$$t ft-$$t-$(VERSION); \
+		tar czf ft-$$t-$(VERSION).tar.gz ft-$$t-$(VERSION); \
+		rm -rf ft-$$t-$(VERSION); \
+	done; \
+	echo "creating extra gz tar ball"; \
+	tar czf $(PACKAGE)-extra-$(VERSION).tar.gz $(PACKAGE)-extra-$(VERSION); \
+	rm -rf $(PACKAGE)-extra-$(VERSION); \
+	echo "creating main gz tar ball"; \
+	tar czf $(PACKAGE)-main-$(VERSION).tar.gz $(distdir); \
+	rm -rf $(distdir)
+
+dist4: dist3
+	echo "creating bz2 full tar ball"; \
+	gzip -dc $(distdir).tar.gz | bzip2 -9c >$(distdir).tar.bz2; \
+	for t in $(EXTRA_THEMES); do \
+		echo "creating $$t bz2 tar ball"; \
+		gzip -dc ft-$$t-$(VERSION).tar.gz | bzip2 -9c >ft-$$t-$(VERSION).tar.bz2; \
+	done; \
+	echo "creating extra bz2 tar ball"; \
+	gzip -dc $(PACKAGE)-extra-$(VERSION).tar.gz | bzip2 -9c >$(PACKAGE)-extra-$(VERSION).tar.bz2; \
+	echo "creating main bz2 tar ball"; \
+	gzip -dc $(PACKAGE)-main-$(VERSION).tar.gz | bzip2 -9c >$(PACKAGE)-main-$(VERSION).tar.bz2;
 
 ## ---------------------------------------------------------------------------
 ## Produce an rpm package using dist or from the given tarball
