@@ -134,7 +134,7 @@ if test -z "$UPDATE_MENU"; then
 	MENU_SYSTEM=no
 fi
 if test "$MENU_SYSTEM" = yes; then
-	MENU_SYSTEM_PREFIX=/etc/menu-methods
+	MENU_SYSTEM_PREFIX='${ROOT_PREFIX}'"/etc/menu-methods"
 	MENU_SYSTEM_BINSCRIPTS='fvwm_themes'
 	MENU_SYSTEM_CONFIGDATA='fvwm_themes.h fvwm_themes_data.h'
 	AC_SUBST(MENU_SYSTEM_PREFIX)

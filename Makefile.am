@@ -151,7 +151,9 @@ dist6: dist5
 
 rpm-dist: dist rpm-this
 
-rpm-dist3: dist3 rpm-base-this rpm-extra-this rpm-themes-this
+rpm-dist3: dist3 rpm-base-this rpm-extra-this
+
+rpm-dist5: dist5 rpm-themes-this
 
 rpm-this:
 	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) rpm) || exit 1

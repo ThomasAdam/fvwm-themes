@@ -1460,7 +1460,7 @@ sub getOwnThemeSubMenusRc ($) {
 		}
 		$menusRc .= qq(+ "" Nop\n) unless $m == 2;
 		### Temporarily hardcoded
-		my $dropCommand = !/^(settings|colors$|menus)/ || /-extra$/?
+		my $dropCommand = !/^(settings|colors$|menus|globallook)/ || /-extra$/?
 			qq(FuncFvwmThemesDrop "$_"):
 			'Exec xmessage "Dropping of this component is not supported"';
 		my $lockLabel = $cc->{'locked'}? "Unlock": "Lock";
@@ -3893,7 +3893,8 @@ sub getScriptCurrentCompName($$$$$$$$) {
 			$set = 1 if defined $variantToSet->{"$theme/$comp/$c"};
 		}
 	}
-	$drop = ($comp !~ /^(settings|colors$|menus)/ || $comp =~ /-extra$/)? 1 : 0;
+	$drop = ($comp !~ /^(settings|colors$|menus|globallook)/
+				|| $comp =~ /-extra$/)? 1 : 0;
 	$r1 = $comp;
 	$r2 = $theme;
 	$r3 = $hasProperties . $set . $drop . $lock;

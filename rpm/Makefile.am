@@ -1,12 +1,13 @@
 ## This is a -*- Makefile -*-
 ## Process this file with automake to create Makefile.in
 
-EXTRA_DIST = @PACKAGE@.spec.in @PACKAGE@-base.spec.in @PACKAGE@-themes.spec.in
+EXTRA_DIST = @PACKAGE@.spec.in @PACKAGE@-base.spec.in @PACKAGE@-themes.spec.in \
+	install-menu-system.sh rpm-wa.tar.gz
 EXTRA_THEMES=@EXTRA_THEMES@
 
 version = @VERSION@
 release = 0.`date +%Y%m%d`
-cparams = --without-gnome --without-rplay-library
+cparams = --disable-run-updatemenu --disable-build-menus --disable-menu-system
 mparams = CFLAGS="-O2"
 
 rpm: @PACKAGE@.spec
@@ -41,8 +42,14 @@ rpm-base: @PACKAGE@-base.spec
 	mparams='$(mparams)'; \
 	tarball=@PACKAGE@-base-$$version.tar.gz; \
 	tarball_full=`cd $(top_srcdir) && pwd`/$$tarball; \
+	rpm_wa=rpm-wa.tar.gz; \
+	rpm_wa_full=`cd $(top_srcdir) && pwd`/rpm/$$rpm_wa; \
+	ins_ms=install-menu-system.sh; \
+	ins_ms_full=`cd $(top_srcdir) && pwd`/rpm/$$ins_ms; \
 	if [ ! -f $$tarball_full ]; then echo "No $$tarball"; exit -1; fi; \
 	ln -sf $$tarball_full /tmp/$$tarball || exit -1; \
+	ln -sf $$rpm_wa_full /tmp/$$rpm_wa || exit -1; \
+	ln -sf $$ins_ms_full /tmp/$$ins_ms || exit -1; \
 	echo ""; \
 	echo "==== Creating rpm from /tmp/$$tarball, release $$release ===="; \
 	echo ""; \
@@ -55,6 +62,8 @@ rpm-base: @PACKAGE@-base.spec
 	; \
 	rpm -ba tmp-@PACKAGE@.spec --clean --target=noarch-fvwm-linux; \
 	rm /tmp/$$tarball; \
+	rm /tmp/$$rpm_wa; \
+	rm /tmp/$$ins_ms; \
 	rm tmp-@PACKAGE@.spec
 
 rpm-extra: @PACKAGE@-extra.spec

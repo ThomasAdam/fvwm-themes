@@ -1,7 +1,8 @@
 %define prefix /usr
+%define etc /etc
 %define ver @VERSION@
 %define rel 1
-%define c_p --disable-gnome-icons
+%define c_p --disable-run-updatemenu --disable-build-menus --disable-menu-system
 %define m_p CFLAGS="-O2"
 
 %define _sourcedir /tmp
@@ -12,7 +13,9 @@ Version:   %{ver}
 Release:   %{rel}
 Copyright: GPL
 Group:     X11/Window Managers
-Source:    %{name}-%{version}.tar.gz
+Source0:   %{name}-%{version}.tar.gz
+Source1:   rpm-wa.tar.gz
+Source2:   install-menu-system.sh
 URL:       http://fvwm-themes.sourceforge.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 Packager:  FVWM Themes Developers <fvwm-themes-devel@lists.sourceforge.net>
@@ -55,12 +58,17 @@ FVWM Themes является мощным окружением для оконного менеджера FVWM.
 %setup
 
 %build
-./configure --disable-build-menus --prefix=%{prefix} %{c_p}
+./configure --prefix=%{prefix} %{c_p}
 make %{m_p}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 make prefix=$RPM_BUILD_ROOT%{prefix} ROOT_PREFIX=$RPM_BUILD_ROOT install
+
+# menu-methode stuff
+mkdir -p $RPM_BUILD_ROOT/usr/share/fvwm/menu-system
+cp -f %{SOURCE1} $RPM_BUILD_ROOT/usr/share/fvwm/menu-system/
+cp -f %{SOURCE2} $RPM_BUILD_ROOT/usr/share/fvwm/menu-system/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -74,19 +82,23 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/bin/*
 %{prefix}/man/*/*
 %{prefix}/share/*/*
-#%{bindir}/*
-#%{mandir}/*/*
-#%{FT_DATADIR}/*
 
 %post
 [ -x %{prefix}/bin/fvwm-themes-menuapp ] && %{prefix}/bin/fvwm-themes-menuapp --site --build-menus --remove-popup || true
+sh /usr/share/fvwm/menu-system/install-menu-system.sh Install
 echo ""
 echo "    If you are running fvwm-themes now, to avoid problems choose"
 echo "    'Reset all to the default' from the Theme Management menu."
 echo ""
 
+%preun
+[ -f /usr/share/fvwm/menu-system/install-menu-system.sh ] && sh /usr/share/fvwm/menu-system/install-menu-system.sh Uninstall || true
+
 ## TODO: how to specify the current date in .spec? Or how to run a `command`?
 #%changelog
+#
+#* Tue 23 Oct 2001 18:52:00 UTC  olicha  <olivier.chapuis@free.fr>
+#- added a way to handle the debian menu system on any system
 #
 #* Thu 07 Sep 2000 20:00:00 IDT  FVWM Themes Developers  <fvwm-themes-devel@lists.sourceforge.net>
 #- Auto building %{PACKAGE_VERSION}

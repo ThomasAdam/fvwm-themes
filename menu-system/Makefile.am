@@ -1,7 +1,7 @@
 ## Process this file with automake to create Makefile.in
 
-configdir = @MENU_SYSTEM_PREFIX@
-bindir = @MENU_SYSTEM_PREFIX@
+configdir = @ROOT_PREFIX@@MENU_SYSTEM_PREFIX@
+bindir = @ROOT_PREFIX@@MENU_SYSTEM_PREFIX@
 FT_DATADIR = @FT_DATADIR@
 
 bin_SCRIPTS = @MENU_SYSTEM_BINSCRIPTS@

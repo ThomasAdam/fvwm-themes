@@ -1,5 +1,39 @@
 2001-10-23  olicha  <olivier.chapuis@free.fr>
 
+	* themes/luthien/modules/main
+	Fixed reloading
+
+	* themes/cde/modules/buttonbar/large:
+	* themes/cde/modules/buttonbar/small:
+	* themes/cde/scripts/FvwmApplet-CDEDaySmall: (new file)
+	* themes/cde/scripts/FvwmApplet-CDEDayLarge: (new file)
+	Added "a" CDE day applet
+
+	* themes/default/theme.cfg:
+	* bin/fvwm-themes-config.in:
+	buttons requires FuncFvwmDecorBackground and do so that it is
+	impossible to drop globallook
+
+	* README:
+	fvwm-themes-0.5.1 requires fvwm-2.4.3
+
+	* rpm/fvwm-themes*.spec.in:
+	* rpm/Makefile.am:
+	* rpm/rpm-wa.tar.gz: (new file)
+	* rpm/install-menu-sytem.sh: (new file)
+	removed --disable-gnome-icons (it is a default), added
+	--disable-run-updatemenu --disable-menu-system
+	Did a hack so that the Debian menu stuff is installed only
+	on a system which has it 
+	
+	* Makefile.am:
+	split rpm-dist3 into rpm-dist3 and rpm-dist5
+
+	* menu-system/fvwm_theme.in:
+	An important fix
+
+2001-10-23  olicha  <olivier.chapuis@free.fr>
+
 	* bin/fvwm-themes-config.in:
 	Fixed droping in the Themes Center
 	

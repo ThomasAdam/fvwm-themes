@@ -285,6 +285,7 @@ AddToFunc   FuncFvwm3WindowClose
 # Used in migo & luthien
 DestroyFunc FuncFvwmWmRestart
 AddToFunc   FuncFvwmWmRestart
++ I FuncFvwmConfirm `Do you really want to quit FVWM?` Restart --ok `Yes, Restart`
 + I Restart
 
 DestroyFunc FuncFvwm2WmRestart
@@ -298,6 +299,6 @@ AddToFunc   FuncFvwm3WmRestart
 # used in stroke & luthien; IMHO, both beep and grab are very annoying
 DestroyFunc FuncFvwmQuitVerify
 AddToFunc   FuncFvwmQuitVerify
-+ I FuncFvwmConfirm `Do you really want to quit FVWM?` Beep --ok `Yes, Quit`
++ I FuncFvwmConfirm `Do you really want to quit FVWM?` Quit --ok `Yes, Quit`
 #+ I FvwmForm FvwmForm-QuitVerify
 #+ I Quit

@@ -1,7 +1,6 @@
 %define prefix /usr
 %define ver @VERSION@
 %define rel 1
-%define c_p --disable-gnome-icons
 %define m_p CFLAGS="-O2"
 
 %define _sourcedir /tmp
@@ -70,6 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/share/*/*
 
 %post
+[ -x %{prefix}/bin/fvwm-themes-config ] && %{prefix}/bin/fvwm-themes-config --site --reset || true
 echo ""
 echo "    For new themes to appear in your fvwm-themes menus, choose"
 echo "    'Refresh with no cache' from the Theme Management menu."

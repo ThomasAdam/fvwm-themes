@@ -23,7 +23,6 @@ DestroyFunc FuncFvwmReloadThemeModules
 AddToFunc   FuncFvwmReloadThemeModules
 + I Read $./main:styles
 + I FuncFvwmStartNormalIcons
-+ I FvwmButtons FvwmButtons-Bar
 
 DestroyFunc FuncFvwmReloadColorsModules
 AddToFunc   FuncFvwmReloadColorsModules
@@ -64,7 +63,7 @@ AddToFunc   FuncFvwmUnReloadThemeModules
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "Default Modules" Title
 + "%menu/item.xpm%&Buttons" FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Bar
-+ "%menu/item.xpm%&Desker"  FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker
+#+ "%menu/item.xpm%&Desker"  FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker
 + "" Nop
 + "%menu/choice-no.xpm%No normal icons" \
 	Style * NoIcon  # needed to use NoIcon modules
