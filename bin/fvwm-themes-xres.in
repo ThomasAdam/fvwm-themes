@@ -1,0 +1,115 @@
+#!@PERL@ -w
+
+my $font = "-*-lucidabright-medium-r-*-*-14-*-*-*-*-*-*-*";
+my %fore = ();
+my %back = ();
+
+my @colorsetNames = qw(
+	default          inactivewindow   activewindow     inactivemenuitem
+	activemenuitem   greyedmenuitem   defaultmodule    swallowedwindow
+	hilight          balloons         special          iconmanstandard
+	iconmanactive    iconmaniconified form             formitem
+	defaultpager     ident            scroll           dummy
+	term             term-root        term-special     term-remote
+	term-reserved    
+);
+
+my $userHome = $ENV{'HOME'} || "./.";
+my $config = '@bindir@/fvwm-themes-config';
+my $file = `$config --component colors --show-value read-file`;
+chomp($file);
+open(INFILE, "$file");
+my @lines = <INFILE>;
+close(INFILE);
+
+foreach (@lines) {
+	if (/^\*FvwmThemeColorset\s+(\d+)\s+(.*)$/) {
+		my $cs = $colorsetNames[$1] || '*unknown*';
+		my $options = $2;
+		$fore{$cs} = $2 if $options =~ /(fg|foreground)\s+([^\s,]+)/;
+		$back{$cs} = $2 if $options =~ /(bg|background)\s+([^\s,]+)/;
+	}
+}
+
+$xresources = qq{
+*Menu*background:              $back{form}
+rxvt*background:               $back{term}
+rxvt*foreground:               $fore{term}
+*term*background:              $back{term}
+*term*foreground:              $fore{term}
+*text*background:              $back{term}
+*list*background:              $back{term}
+*Text*background:              $back{term}
+*List*background:              $back{term}
+*Scrollbar*foreground:         $fore{inactivewindow}
+*foreground:                   $fore{form}
+*background:                   $back{form}
+OpenWindows*WindowColor:       $back{form}
+Window.Color.background:       $back{form}
+netscape*background:           $back{form}
+netscape*foreground:           $fore{form}
+Netscape*background:           $back{form}
+Netscape*foreground:           $fore{form}
+.netscape*background:          $back{form}
+.netscape*foreground:          $back{form}
+Ddd*background:                $back{term}
+Emacs*background:              $back{term}
+Emacs*backgroundToolBarColor:  $back{term}
+*fontList:                     $font
+Netscape*fontList:             $font
+.netscape*fontList:            $font
+};
+
+open(XRDB, "|xrdb -merge -");
+#open(XRDB, "|cat -");  # for testing
+print XRDB $xresources;
+close(XRDB);
+
+# It is not very good to write to ~/.gtkrc & ~/.xresources without back uping.
+# GNOME gtk engines create ~/.gtkrc, which includes ~/.gtkrc.mine if exists.
+
+open(OUTFILE, ">$userHome/.xresources");
+print OUTFILE $xresources;
+close(OUTFILE);
+
+open(OUTFILE, ">$userHome/.gtkrc.mine");
+print OUTFILE qq{
+style "process"
+{
+  font              = "$font"
+  fg[NORMAL]        = "$fore{form}"
+  text[NORMAL]      = "$fore{form}"
+  fg[ACTIVE]        = "$fore{form}"
+  text[ACTIVE]      = "$fore{form}"
+  fg[PRELIGHT]      = "$fore{form}"
+  text[PRELIGHT]    = "$fore{form}"
+  fg[SELECTED]      = "$back{form}"
+  text[SELECTED]    = "$back{form}"
+  fg[INSENSITIVE]   = "$fore{form}"
+  text[INSENSITIVE] = "$fore{form}"
+  bg[NORMAL]        = "$back{form}"
+  base[NORMAL]      = "$back{form}"
+  bg[ACTIVE]        = "$back{form}"
+  base[ACTIVE]      = "$back{form}"
+  bg[PRELIGHT]      = "$back{form}"
+  base[PRELIGHT]    = "$back{form}"
+  bg[SELECTED]      = "$fore{form}"
+  base[SELECTED]    = "$fore{form}"
+  bg[INSENSITIVE]   = "$back{form}"
+  base[INSENSITIVE] = "$back{form}"
+}
+style "tooltips-style" {
+  bg[NORMAL] = "#ffffc0"
+  fg[NORMAL] = "#000000"
+  bg_pixmap[NORMAL] = "<none>"
+}
+
+widget_class "*GtkProgress*" style "process"
+widget_class "*Gtk*List*"    style "process"
+widget_class "*Gtk*Tree*"    style "process"
+widget_class "*GtkText*"     style "process"
+widget_class "*GtkEntry*"    style "process"
+widget_class "*"             style "process"
+widget       "gtk-tooltips"  style "tooltips-style"
+};
+close(OUTFILE);

@@ -1,0 +1,312 @@
+# This script is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+#-----------------------------------------------------------------------------
+# This fvwm-themes "module" is a modification of FvwmScript-FileBrowser
+# from fvwm (in fact rewrote from scratch ...)
+#     Copyright 2000, Olivier Chapuis
+#-----------------------------------------------------------------------------
+
+# Note : the mode list is not yet supported!
+
+WindowTitle {Icon Browser}
+WindowSize 390 430		# Taille
+Font		-adobe-helvetica-bold-r-*-*-12-*
+
+Init
+Begin
+    # Name of the "utile" perl script
+    Set $PerlUtile={fvwm-themes-script }
+
+    # Arguments
+    Set $LsOptions = {1}
+    Set $hidden = {}
+    Set $Type = {}
+    Set $Mode = {browser}
+    Set $i = 1
+    Set $ARG = (GetScriptArgument $i)
+    While $ARG <> {} Do
+    Begin
+	Set $j = (Add $i 1)
+	If $ARG == {--dir} Then
+	    Set $Directory = (GetScriptArgument $j)
+	If $ARG == {--mode} Then
+	    Set $Mode = (GetScriptArgument $j)
+	If $ARG == {--ls-options} Then
+	    Set $LsOptions = $LsOptions (GetScriptArgument $j)
+	If $ARG == {--text-colorset} Then
+	    Set $TextColorset = (GetScriptArgument $j)
+	If $ARG == {--icon-colorset} Then
+	    Set $ICON_COLORSET = (GetScriptArgument $j)
+	If $ARG == {--list-title} Then
+	    Set $ListTitle = (GetScriptArgument $j)    
+	Set $i = (Add $i 2)
+	Set $ARG = (GetScriptArgument $i)
+    End
+
+    If $TextColorset <> {} Then
+    Begin
+	ChangeColorset 5 $TextColorset
+	ChangeColorset 7 $TextColorset
+    End
+    If $ICON_COLORSET <> {} Then
+    Begin
+	ChangeColorset 8 $ICON_COLORSET
+    End
+
+    If $Mode == {list} Then
+    Begin
+	Set $UpdateList = 1
+	HideWidget 5
+	HideWidget 4
+	HideWidget 6
+	HideWidget 11
+	HideWidget 12
+	ChangeTitle 20 $ListTitle
+	Set $Type = {file}
+    End
+    
+    If $Mode == {browser} Then
+    Begin
+	Set $UpdateList = 1
+	Set $CMD={cd } $Directory{; pwd}
+	Set $Directory=(GetOutput $CMD 1 -1)
+	ChangeTitle 7 $List
+	ChangeTitle 5 $Directory
+	ChangeTitle 9 {}
+	HideWidget 20
+    End
+
+End
+
+PeriodicTasks
+Begin
+    If $UpdateValue == 1 Then
+    Begin
+	Set $UpdateValue = 0
+	Set $CMD = $PerlUtile {--dirs="}$Directory{" --ls --ls-opt=-"}$LsOptions $hidden{" --item=}$Value{ --type="}$Type{"}
+	Set $TheItem = (GetOutput $CMD 1 -1)
+	Set $CMD = {if [ -d "}$Directory {/} $TheItem{" ]; then echo 1; else echo 0; fi}
+	Set $test = (GetOutput $CMD 1 -1)
+	If $test == 1 Then
+	Begin
+	    Set $UpdateList = 1
+	    Set $Directory = $Directory {/} $TheItem
+	    Set $CMD={cd } $Directory{; pwd}
+	    Set $Directory=(GetOutput $CMD 1 -1)
+	    ChangeTitle 5 $Directory
+	    ChangeTitle 9 {}
+	    ChangeIcon 8 None
+	End
+	Else
+	Begin
+	    ChangeTitle 9 $TheItem
+	    Set $Icon = $Directory {/} $TheItem
+	    ChangeIcon 8 $Icon
+	End
+    End
+
+    If $UpdateList == 1 Then
+    Begin
+	Set $UpdateList = 0
+	Set $GetListCmd= $PerlUtile {--dirs="}$Directory{" --ls --ls-opt="-}$LsOptions $hidden{F" --type="}$Type{"}
+	Set $List = (GetOutput $GetListCmd 1 -1)
+	ChangeTitle 7 $List
+	ChangeTitle 5 $Directory
+	ChangeTitle 9 {}
+	ChangeIcon 8 None
+	ChangeValue 7 0
+    End
+
+End
+
+Widget 1
+Property
+ Size 50 30
+ Position 190 390
+ Type PushButton
+ Title {OK}
+Main
+ Case message of
+ SingleClic :
+ Begin
+    If $Mode == {list} Then
+	SendToScript (GetScriptFather) (GetTitle 9)
+    Else
+	SendToScript (GetScriptFather) $Directory {/} (GetTitle 9)
+   Quit
+  End
+End
+
+Widget 2
+Property
+ Size 50 30
+ Position 280 390
+ Type PushButton
+ Title {Cancel}
+Main
+ Case message of
+ SingleClic :
+ Begin
+    SendToScript (GetScriptFather) {Cancel}
+    Quit
+  End
+End
+
+Widget 3
+Property
+ Position 10 10
+ Size 370 370
+ Type Rectangle
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 4
+Property
+ Position 20 25
+ Type PushButton
+ Title {Path:}
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $Directory = (GetTitle 5)
+    Set $UpdateList = 1
+  End
+End
+
+Widget 5
+Property
+ Position 75 25
+ Size 295 0
+ Type TextField
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 20
+Property
+ Position 20 45
+ Size 320 20
+ Type ItemDraw
+ Title {All Applications in Path}
+Main
+ Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+Widget 6
+Property
+ Position 40 62
+ Size 50 18
+ Title {up}
+ #Icon up.xpm
+ Type PushButton
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $CMD={cd } $Directory {; cd ../; pwd}
+    Set $Directory=(GetOutput $CMD 1 -1)
+    Set $UpdateList = 1
+  End
+End
+
+Widget 11
+Property
+ Position 110 62
+ Size 50 18
+ Title {home}
+ #Icon home.xpm
+ Type PushButton
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $Directory={~/}
+    Set $CMD={cd } $Directory{; pwd}
+    Set $Directory=(GetOutput $CMD 1 -1)
+    Set $UpdateList = 1
+  End
+End
+
+Widget 12
+Property
+ Position 200 67
+ Type CheckBox
+ Title { Show hidden files}
+Main
+ Case message of
+ SingleClic :
+ Begin
+    If (GetValue 12) == 1 Then
+	Set $hidden={A}
+    Else
+	Set $hidden={ }
+    Set $UpdateList = 1   
+ End
+End
+
+Widget 7
+Property
+ Position 30 105
+ Size 330 165
+ Type List
+ Title {}
+Main
+ Case message of
+ SingleClic :
+ Begin
+    Set $Value = (GetValue 7)
+    Set $UpdateValue = 1
+ End
+End
+
+Widget 8
+Property
+ Position 160 280
+ Size 70 70
+ Type ItemDraw
+ Icon None
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 9
+Property
+ Position 30 355
+ Size 330 20
+ Type ItemDraw
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+

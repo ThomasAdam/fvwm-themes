@@ -1,0 +1,355 @@
+#!@PERL@ -w
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+#-----------------------------------------------------------------------------
+# This "fvwm-themes" module is all original code by Olivier Chapuis
+# Copyright 2000, Olivier Chapuis
+#     You may use this code for any purpose, as long as the original
+#     copyright remains in the code and all documentation
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Filter this script to pod2man to get a man page:
+#   pod2man -c "Fvwm Utility" fvwm-themes-com | nroff -man | less -e
+#-----------------------------------------------------------------------------
+
+use Getopt::Long;
+
+my $version = '@VERSION@';
+my $fvwmVersion = '@FVWM_VERSION@';
+
+my $scriptName = ($0 =~ m:([^/]+)$:, $1);
+my $message = "";
+my $lockAndGet = 0;
+my $getBuf = 0;
+my $line = 0;
+my $name = "";
+my $clearBuf = 0;
+my $mainDir = $ENV{'FVWM_USERDIR'};
+my $l;
+
+chdir($mainDir) || die "No FvwmConfigHome $mainDir";
+
+GetOptions(
+	"help"         => \&showHelp,
+	"version"      => \&showVersion,
+	"name=s"       => \$name,
+	"message=s"    => \$message,
+	"lock-and-get" => \$lockAndGet,
+	"get-buffer"   => \$getBuf,
+	"clear-buffer" => \$clearBuf,
+	"line=i"       => \$line
+) || wrongUsage();
+
+my $bufFile = ".tmp-com-buf-$name";
+
+if ($getBuf) {
+	$l = 0; $line-- if ($line > 0);
+	open(IN,"$bufFile") || die "cannot open $bufFile";
+	while(<IN>) {
+		if ($line == $l || !$line) { print $_; } 
+		$l++;
+	}
+	close(IN);
+}
+
+if ($clearBuf) { unlink($bufFile); }
+
+if ($message ne "") {
+
+	my $outFifo = ".tmp-com-out-$name";
+	my $inFifo = ".tmp-com-in-$name";
+	my $lockFifo =".tmp-com-lock-$name";
+	my $done = 0;
+	my $i = 0;
+
+	# Nbr of second we wait for "?" to start and go to its com loop
+	my $startTimeOut = 20;
+	# 1 sec as infinity must be ok, but ...  
+	my $smallTimeOut = 10;
+	# Nbr of 1/10 of second we wait an answer of "?"
+	my $workTimeOut = 200;
+
+	unlink($outFifo);
+	unlink($inFifo);
+	myMakeFifo($outFifo);
+
+	# unlock the "?", wait $startTimeOut sec so that the "?" have the time
+	# to go in its communication loop (useful only when we
+	# start the "?")
+	$done = 0;
+	$i=0;
+
+	while(!$done) {
+		if (! -p $lockFifo) {
+			if ($i == $startTimeOut) {
+				unlink($outFifo);
+				die "com: No lock Fifo $lockFifo for $name communication\n";
+			}
+			$i++;
+			sleep(1);
+		} else {
+		  	eval {
+				local $SIG{ALRM} = sub { die "Timeout" };
+				alarm("$smallTimeOut");
+				# block unless "?" is ready to write on $lockFifo
+				open(LOCK,"$lockFifo") || die "cannot";
+				close(LOCK);
+			};
+			if ($@ =~ /^Timeout/) {
+				print STDERR "com: $name does not want to communicate\n";
+				unlink($outFifo);
+				exit(0);
+			}
+			if ($@ =~ /^cannot/) {
+				print STDERR "com: cannot open fifo $outFifo\n";
+				unlink($outFifo);
+				exit(0);
+			}
+			$done = 1;
+		}
+	}
+
+	# send the message to "?"
+	eval {
+		local $SIG{ALRM} = sub { die "Timeout" };
+		alarm("$smallTimeOut");
+		# this line block until the "?" read the message
+		open(OUT,">$outFifo") || die "cannot";
+		alarm(0);
+		print OUT $message."\n";
+		close(OUT);
+	};
+	if ($@ =~ /^Timeout/) {
+		print STDERR "com: $name does not want to read the message\n";
+		unlink($outFifo);
+		exit(0);
+	}
+	if ($@ =~ /^cannot/) {
+		print STDERR "com: cannot write on fifo $outFifo\n";
+		unlink($outFifo);
+		exit(0);
+	}
+	unlink($outFifo);
+
+	exit(0) unless ($lockAndGet);
+
+	$done = 0;
+	$i = 0;
+
+	while(!$done) {
+		if (-p $inFifo) {
+			$answer[0]="";
+
+			eval {
+				local $SIG{ALRM} = sub { die "Timeout" };
+				alarm("$smallTimeOut");
+				# block unless "?" is ready to write on $inFifo
+				open(IN,"$inFifo") || die "cannot";
+				alarm(0);
+			};
+			if ($@ =~ /Timeout/) {
+				print STDERR "com: $name does not answer!\n";
+				unlink($outFifo);
+				#unlink($lockFifo);
+				exit(0);
+			}
+			if ($@ =~ /cannot/) {
+				print STDERR "com: cannot read fifo $inFifo\n";
+				exit(0);
+			}
+
+			@answer = (<IN>);
+			chomp($answer[0]);
+			if ($answer[0] eq "ok") {
+				$l=1;
+				open(BUF,">$bufFile") if ($line != 0); 
+				while(defined $answer[$l]) {
+					print $answer[$l] if ($line == $l || $line == 0); 
+					print BUF $answer[$l] if ($line != 0);
+					$l++;
+				}
+				close(BUF) if ($line != 0);
+				$done=1;
+		  	}
+			if ($answer[0] eq "error") {
+				alarm(0);
+				print STDERR "com: An error happen in $name\n";
+				$done = 1;
+			}
+			close(IN);
+		}
+		# 
+		if ($i == $workTimeOut) {
+			print STDERR "com: $name does not answer the message!\n";
+			$done = 1;
+		}
+		select(undef,undef,undef,0.1);
+		$i++;
+	}
+}
+#-----------------------------------------------------------------------------
+# 
+# make a fifo
+#
+# ----------------------------------------------------------------------------
+
+sub myMakeFifo {
+	my ($fifo) = @_;
+	system("mknod '$fifo' p");
+}
+#-----------------------------------------------------------------------------
+# 
+# The standard functions
+#
+# ----------------------------------------------------------------------------
+
+sub showHelp {
+	print "The fvwm-themes communicator utility.\n";
+	print "Usage: $scriptName [OPTIONS]\n";
+	print "Options:\n";
+	print "\t--help            show this help and exit\n";
+	print "\t--version         show the version and exit\n";
+	print "\t--name name       the name of the communication\n"; 
+	print "\t--message message a one line message to be sent\n";
+	print "\t--lock-and-get    wait for an answer of the message\n";
+	print "\t--line n          concern the nth line of the buffer or answer\n";
+	print "\t--get-buffer      Out put the buffer file\n";
+	print "\t--clear-buffer    remove the buffer file\n";
+	exit 0;
+}
+
+sub showVersion {
+	print "$version\n";
+	exit 0;
+}
+
+sub wrongUsage {
+	print STDERR "Try '$scriptName --help' for more information.\n";
+	exit -1;
+}
+
+# ----------------------------------------------------------------------------
+
+=head1 NAME
+
+fvwm-themes-com - fvwm-themes communication center
+
+=head1 SYNOPSIS
+
+B<fvwm-themes-com>
+[ B<--help>]
+[ B<--version>]
+[ B<--name> name ]
+[ B<--message> message]
+[ B<--lock-and-get>]
+[ B<--get-buffer>]
+[ B<--clear-buffer>]
+[ B<--line> lineNbr]
+
+=head1 DESCRIPTION
+
+This script is not a user script. It is used by Fvwm-Themes for communication
+between some FvwmScript scripts and some other programs. Basically, you want
+to start a programs in the background which support the fvwm-themes-com 
+communication protocol (e.g., fvwm-themes-menuapp with the com-mode option
+can be used as a generic example),  then you can use fvwm-themes-com to ask 
+questions or to give instructions to the background program. The answer are 
+displayed by fvwm-themes-com in the standard out put and can be used by a 
+FvwmScript script via the GetoutPut instruction. 
+The advantage of using this method is that the background program
+have to do its main job only once (e.g., parsing a lot of informations and
+storing them in some variables) and a script can have very fast answer
+from the background program via fvwm-themes-com.
+
+=head1 OPTIONS
+
+B<--help>    - show the help and exit
+
+B<--version> - show the version and exit
+
+B<--name> name - the name of the communication (e.g., if you start 
+fvwm-themes-menuapp with --com-name pid option you must use menuapp-pid
+as name to communicate with it). The pipe used for communication are
+$FVWM_DATADIR/{.tmp-com-in-name,tmp-com-out-name,tmp-com-lock-name}.
+The "buffer" file is $FVWM_USERDIR/.tmp-com-buffer-name
+
+B<--message> - A one line message to be sent to the back program. 
+
+B<--lock-and-get> - Wait (a certain "time out") for an answer of the message.
+Then, the answer is displayed on STDOUT.
+
+B<--line> n - n must be an integer n > 0. In the case of a lock and get
+message, fvwm-themes-com will out put only the nth line of the answer of 
+the back program on STDOUT and will copy the complete answer in a "buffer" 
+file. If you use the get-buffer option the nth line of the buffer is out
+put on STDOUT.   
+
+B<--get-buffer> Out put the buffer file on STDOUT.
+
+B<--clear-buffer> - remove the buffer file.
+
+=head1 USAGE
+
+Here an example:
+
+In the Script FvwmScript-Menus you first start the back program, here
+fvwm-themes-menuapp, and you set some variables for an easy use of
+fvwm-themes-com:
+
+  # found the FvwmScript pid
+  Set $CMD = {perl -e '$t=getppid; print $t . "\n"'}
+  Set $PID = (GetOutput $CMD 1 -1)
+  # Run fvwm-themes-menuapp until the end of the script
+  Do {Exec fvwm-themes-menuapp --com-mode --com-name=menuapp-}$PID{ &}
+  # to send fvwm-themes-com command
+  Set $SendMsgAndGet = {fvwm-themes-com --name menuapp-}$PID{ --lock-and-get --message=}
+  Set $SendMsg = {fvwm-themes-com --name menuapp-}$PID{  --message=}
+  Set $GetLine = {fvwm-themes-com --name menuapp-}$PID{  --get-buffer --line=}
+
+Then in the Script you can ask fvwm-themes-menuapp for some informations:
+
+  # Get the menu list
+  Set $CMD = $SendMsgAndGet{"menu-items }$MENU{"}
+  Set $ItemsList = (GetOutput $CMD 1 -1)
+  ChangeTitle 11 $ItemsList
+
+You can also just send an instruction to fvwm-themes-menuapp:
+
+  Set $CMD = $SendMsg{"exit"}
+  Do {Exec }$CMD
+
+Of course your back program have to support the fvwm-themes-com
+protocol. See fvwm-themes-menuapp for an example (com-mode option).
+See also FvwmScript-Menus for more examples.
+
+=head1 AUTHORS
+
+Olivier Chapuis <olivier.chapuis@free.fr>, 5 May 2000.
+
+=head1 COPYING
+
+The script is distributed by the same terms as fvwm itself.
+See GNU General Public License for details.
+
+=head1 BUGS
+
+Report bugs to fvwm-themes-devel@lists.sourceforge.net
+
+=cut
+
+# ----------------------------------------------------------------------------

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# This script runs fvwm with fvwm-themes config.  It should be run under X.
+# Put a call to this script as the last line of your .xinitrc or .Xclients.
+
+: ${FVWM_USERDIR=@FVWM_DEFAULT_USERDIR@}
+rcName=themes-rc
+rcFile=$FVWM_USERDIR/$rcName
+
+# check whether this is a first run
+if [ ! -f $rcFile -o "`head -1 $rcFile | cut -d' ' -f3`" != "@VERSION@" ]; then
+	@bindir@/fvwm-themes-config --reset
+	echo '[fvwm-themes]: Welcome to FVWM Themes @VERSION@!'
+	xmessage -center -timeout 30 'Welcome to FVWM Themes @VERSION@!' &
+fi
+
+# check that @FVWM_BINDIR@ is in $PATH
+if ! which fvwm2 >/dev/null; then
+	PATH="@FVWM_BINDIR@:$PATH"
+fi
+
+echo "[fvwm-themes]: Starting FVWM"
+exec fvwm2 -f "$rcName" "$@"

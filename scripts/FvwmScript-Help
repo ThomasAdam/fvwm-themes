@@ -1,0 +1,103 @@
+# This script is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+#-----------------------------------------------------------------------------
+# This fvwm-themes "module" is all original code by Olivier Chapuis
+# Copyright 2000, Olivier Chapuis
+#     You may use this code for any purpose, as long as the original
+#     copyright remains in the code and all documentation
+#-----------------------------------------------------------------------------
+
+# For text with 70 characters per line
+# Work in progress !!
+
+WindowTitle {Fvwm-Themes Documentation}
+WindowSize 480 500
+Font		-adobe-helvetica-bold-r-*-*-12-*
+
+Init
+Begin
+    Set $message = {}
+    Set $title = {}
+    Set $file = {}
+
+    # Arguments
+    Set $i = 1
+    Set $arg = (GetScriptArgument $i)
+    While $arg <> {} Do
+    Begin
+	Set $j = (Add $i 1)
+	If $arg == {--file} Then
+	    Set $file = (GetScriptArgument $j)
+	If $arg == {--message} Then
+	    Set $message = (GetScriptArgument $j)
+  	If $arg == {--title} Then
+	    Set $title = (GetScriptArgument $j)
+	If $arg == {--text-colorset} Then
+	    Set $TextColorset = (GetScriptArgument $j)
+	Set $i = (Add $i 2)
+	Set $arg = (GetScriptArgument $i)
+    End
+
+    If $TextColorset <> {} Then
+	ChangeColorset 2 $TextColorset
+    If $message <> {} Then
+	ChangeTitle 2 $message
+    If $title <> {} Then
+	ChangeTitle 1 $title
+End
+
+Widget 1
+Property
+    Position 10 5
+    Size 480 20
+    Type ItemDraw
+    Title {}
+Main
+ Case message of
+ SingleClic :
+ Begin
+    Quit
+ End
+End
+
+Widget 2
+Property
+    Position 10 30
+    Size 460 430
+    Type List
+    Font fixed
+    Title {}
+    Flags NoReliefString
+Main
+ Case message of
+ SingleClic :
+ Begin
+    ChangeValue 2 0
+ End
+End
+
+Widget 3
+Property
+    Position 400 465
+    Type PushButton
+    Title {Quit}
+Main
+ Case message of
+ SingleClic :
+ Begin
+    Quit
+ End
+End

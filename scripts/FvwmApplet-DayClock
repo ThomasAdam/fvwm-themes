@@ -1,0 +1,158 @@
+WindowTitle {FvwmApplet-DayClock}
+WindowSize 64 64		# Taille
+Font		6x10
+# Background as default FvwmButtons
+BackColor {rgb:90/80/90}
+ForeColor {black}
+ShadowColor	{black}
+HilightColor	{rgb:90/80/90}
+
+Init
+ Begin
+  Set $MainColorset=(GetScriptArgument 1)
+  If $MainColorset <> {} Then
+  Begin
+   ChangeColorset 0 $MainColorset
+   ChangeColorset 10 $MainColorset
+   ChangeColorset 11 $MainColorset
+  End
+
+  Set $Colorset=(GetScriptArgument 2)
+  If $Colorset <> {} Then
+  Begin
+   ChangeColorset 12 $Colorset
+   ChangeColorset 4 $Colorset
+   ChangeColorset 2 $Colorset
+   ChangeColorset 1 $Colorset
+  End
+
+ Set $tmp = (GetOutput {exec date} $pos 4)
+ Set $tmp = (StrCopy $tmp 1 5)
+ ChangeTitle 1 $tmp
+ Set $day  = (GetOutput {exec date} $pos 1)
+ Set $month =  (GetOutput {exec date} $pos 2)
+ Set $title = $day { } $month
+ Set $time = (GetOutput {exec date} $pos 3)
+ ChangeTitle  4 $time
+ ChangeTitle  2 $title
+End
+
+PeriodicTasks
+ Begin
+ If (RemainderOfDiv (GetTime) 30)==0 Then
+ Begin
+  Set $tmp = (GetOutput {exec date} $pos 4)
+  Set $tmp = (StrCopy $tmp 1 5)
+  ChangeTitle 1 $tmp
+  Set $day  = (GetOutput {exec date} $pos 1)
+  Set $month =  (GetOutput {exec date} $pos 2)
+  Set $title = $day { } $month
+  ChangeTitle  4 (GetOutput {exec date} $pos 3)
+  ChangeTitle  2 $title
+ End
+End
+
+Widget 10
+Property
+ Size 60 19
+ Position 2 2
+ ForeColor	{black}
+ BackColor	{white}
+ ShadowColor	{grey55}
+ HilightColor	{grey100}
+ Type Rectangle
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 11
+Property
+ Size 60 40
+ Position 2 22
+ ForeColor	{black}
+ BackColor	{white}
+ ShadowColor	{grey55}
+ HilightColor	{grey100}
+ Type Rectangle
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 12
+Property
+ Size 53 33
+ Position 6 26
+ ForeColor	{black}
+ BackColor	{white}
+ ShadowColor	{grey55}
+ HilightColor	{grey100}
+ Type ItemDraw
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 1
+Property
+ Position 6 6
+ Size 53 12
+ Font 6x10
+ Type ItemDraw
+ Flags NoReliefString
+ ForeColor	{black}
+ BackColor	{white}
+ ShadowColor	{grey55}
+ HilightColor	{grey100}
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 2
+Property
+ Position 6 28
+ Size 52 10
+ Font 6x10
+ Type ItemDraw
+ Flags NoReliefString
+ ForeColor	{black}
+ BackColor	{white}
+ ShadowColor	{grey55}
+ HilightColor	{grey100}
+ Title {50}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 4
+Property
+ Position 22 40
+ Size 20 10
+ Font 9x15
+ Type ItemDraw
+ Flags NoReliefString
+ ForeColor	{black}
+ BackColor	{white}
+ ShadowColor	{grey55}
+ HilightColor	{grey100}
+ Title {50}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End

@@ -1,0 +1,25 @@
+WindowTitle {XNoteMessage}
+WindowPosition 0 0
+WindowSize 200 200
+Font		-*-lucida-bold-r-normal-*-12-*-*-*-*-*-*
+
+Init
+ Begin
+  Set $MESSAGE=(GetScriptArgument 1)
+  ChangeTitle 1 $MESSAGE
+  ChangeColorset 1 0
+End
+
+
+Widget 1
+Property
+ Position 0 0
+ Size 200 200
+ Type ItemDraw
+ Flags NoReliefString
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End

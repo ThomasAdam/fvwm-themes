@@ -1,0 +1,1735 @@
+# This script is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+#-----------------------------------------------------------------------------
+# Copyright 2000, Olivier Chapuis
+#-----------------------------------------------------------------------------
+
+
+WindowTitle {Fvwm Menus Editor}
+WindowSize 650 405
+Font		-adobe-helvetica-bold-r-*-*-12-*
+#Flags NoReliefString
+
+Init
+Begin
+
+    # Arguments
+    Set $i = 1
+    Set $arg = (GetScriptArgument $i)
+    While $arg <> {} Do
+    Begin
+	Set $j = (Add $i 1)
+	If $arg == {--files} Then
+	    Set $file = (GetScriptArgument $j)
+	If $arg == {--menus} Then
+	    Set $Menu = (GetScriptArgument $j)
+	If $arg == {--images-dir} Then
+	    Set $ImagesDir = (GetScriptArgument $j)
+	If $arg == {--text-colorset} Then
+	    Set $TextColorset = (GetScriptArgument $j)
+	If $arg == {--icon-colorset} Then
+	    Set $IconColorset = (GetScriptArgument $j)	
+	Set $i = (Add $i 2)
+	Set $arg = (GetScriptArgument $i)
+    End
+
+    If $ImagesDir == {} Then
+    Begin
+	Set $cmd = {echo "$FT_DATADIR"}
+	Set $dir = (GetOutput $cmd 1 -1)
+	Set $ImagesDir=$dir{/images/menu/}
+    End
+    If $TextColorset <> {} Then
+    Begin
+	ChangeColorset 4 $TextColorset
+	ChangeColorset 22 $TextColorset
+	ChangeColorset 39 $TextColorset
+	ChangeColorset 44 $TextColorset
+	ChangeColorset 48 $TextColorset
+	ChangeColorset 51 $TextColorset
+	ChangeColorset 53 $TextColorset
+    End
+    If $IconColorset <> {} Then
+    Begin
+	ChangeColorset 41 $IconColorset
+    End
+
+    # found the FvwmScript pid
+    Set $cmd = {perl -e '$t=getppid; print $t . "\n"'}
+    Set $pid = (GetOutput $cmd 1 -1)
+
+    # Run fvwm-themes-menuapp until the end of the script
+    Do {Exec fvwm-themes-menuapp --com-mode --com-name=menuapp-}$pid{ &}
+
+    # to send fvwm-themes-com command
+    Set $SendMsgAndGet = {fvwm-themes-com --name menuapp-}$pid{ --lock-and-get --message=}
+    Set $SendMsg = {fvwm-themes-com --name menuapp-}$pid{  --message=}
+    Set $GetLine = {fvwm-themes-com --name menuapp-}$pid{  --get-buffer --line=}
+    
+    Set $MenuLevel = 0
+    If $Menu == {} Then
+    Begin
+	Set $UseRootMenusList = 1
+	Set $isRootMenu = 1
+	Set $cmd = $SendMsgAndGet{"root-menus-list"}
+	Set $RootMenus = (GetOutput $cmd 1 -1)
+	ChangeTitle 2 $RootMenus
+	HideWidget 3
+	Set $cmd = $SendMsgAndGet{"root-menu 1"}
+	Set $Menu = (GetOutput $cmd 1 -1)
+    End
+    Else
+    Begin
+	Set $cmd={echo "}$Menu{"| grep -e '|'}
+	Set $tmp = (GetOutput $cmd 1 -1)
+	If $tmp == {} Then
+	Begin
+	    Set $t = {Menu } $Menu
+	    HideWidget 1
+	    HideWidget 2
+	    ChangeTitle 3 $t
+	    Set $UseRootMenusList = 0
+	    Set $isRootMenu = 0
+	End
+	Else
+	Begin
+	    Set $RootMenus = $Menu
+	    ChangeTitle 2 $RootMenus
+	    HideWidget 3
+	    Set $MenuLevel = 0
+	    Set $cmd={perl -e '$M="} $Menu {";$M=substr($M,0,index($M,"|")); print "$M\n";'}
+	    Set $Menu = (GetOutput $cmd 1 -1)
+	    Set $UseRootMenusList = 2
+	    Set $isRootMenu = 1
+	End
+
+    End
+    #Do {Echo URM:}$UseRootMenusList{, RM:}$RootMenus{, M:}$Menu
+
+    # Get the menu list
+    Set $cmd = $SendMsgAndGet{"menu-items }$Menu{"}
+    Set $ItemsList = (GetOutput $cmd 1 -1)
+    Set $cmd = $SendMsgAndGet{"nbr-of-items }$Menu{"}
+    Set $NbrOfItems = (GetOutput $cmd 1 -1)
+
+    If $ItemList == 0 Then
+	Set $ItemsList = {}
+
+    ChangeTitle 4 $ItemsList
+
+    Set $t={Selected: }
+    ChangeTitle 5 $t
+    Set $t={Type: }
+    ChangeTitle 6 $t
+    Set $t={Action: }
+    ChangeTitle 7 $t
+
+    Set $t={Msg: Warning Message are displayed here}
+    ChangeTitle 16 $t
+
+    Set $Empty = {}
+    # Nbr of items in the selection
+    Set $SelNumber = O
+    Set $SelFont = {-adobe-helvetica-bold-r-*-*-12-*}
+    Set $ShadeFont = {-adobe-helvetica-medium-r-*-*-12-*}
+    Set $EditorType = {Separator}
+    Set $MenuIconBrowser = {}
+    Set $FileDirBrowser = {}
+    Set $FindItBrowser = {}
+    #
+    ChangeFont 13 $ShadeFont
+    ChangeFont 15 $ShadeFont
+    Set $tmp = 18
+    While $tmp <> 22 Do
+    Begin
+ 	ChangeFont $tmp $ShadeFont
+	Set $tmp = (Add $tmp 1)
+    End
+    Set $HideEditorWidgets = 0
+    Set $tmp = 36
+    While $tmp <> 54 Do
+    Begin
+	HideWidget $tmp
+	Set $tmp = (Add $tmp 1)
+    End
+    HideWidget 70
+    HideWidget 71
+
+    # Periodic Tasks command variables
+    Set $HideEditorWidgets = 0
+    Set $HideMainWidgets = 0
+    Set $ShowMainWidgets = 0
+    Set $EditMess = {No message}
+    Set $MenuListValueIsZero = 1
+
+    # number of possible items the lists minus one 
+    Set $NbrOfVisibleItems = 10
+    Set $NbrOfVisibleSelItems = 3
+End
+
+# ---------------------------------------------------------------------------
+#
+# Periodic Task
+#
+# ---------------------------------------------------------------------------
+# Almost every thing is done in the Periodic Task 
+
+PeriodicTasks
+Begin
+
+#--------------------------------------
+# Hide/show, Hiding before Show
+
+    If $HideMainWidgets == 1 Then
+    Begin
+	Set $HideMainWidgets = 0
+	Set $tmp = 1
+	While $tmp <> 27 Do
+	Begin
+	    HideWidget $tmp
+ 	    Set $tmp = (Add $tmp 1)
+	End
+    End
+
+    If $HideEditorWidgets == 1 Then
+    Begin
+	Set $HideEditorWidgets = 0
+	Set $tmp = 36
+	While $tmp <> 54 Do
+	Begin
+	    HideWidget $tmp
+	    Set $tmp = (Add $tmp 1)
+	End
+	HideWidget 70
+	HideWidget 71
+    End
+
+    If $ShowMainWidgets == 1 Then
+    Begin
+	Set $ShowMainWidgets = 0
+
+	If $isRootMenu == 1 Then
+	Begin
+	    ShowWidget 1
+	    ShowWidget 2
+	End
+	Else
+	    ShowWidget 3
+
+	Set $tmp = 4
+	While $tmp <> 27 Do
+	Begin
+	    ShowWidget $tmp
+ 	    Set $tmp = (Add $tmp 1)
+	End
+    End
+
+#--------------------------------------
+# "Message" from the command editor (OK), the menu is modified here!
+
+    If $EditMess <> {No message} Then
+    Begin
+	Set $Err = (GetOutput $EditMess 1 -1)
+	Set $EditMess = {No message}
+	#Do {Echo ErrEM:}$Err
+	If $Value == 0 Then
+	    Set $Value = 1
+    End
+
+#-------------------------------------
+# 
+
+    If $UpdateEditorWidgets == 1 Then
+    Begin
+	Set $UpdateEditorWidgets = 0
+
+	Set $lastWidget = 36
+	Set $hasTitle = 0
+	Set $isMenu = 0
+
+	If $EditorType == {Separator} Then
+	Begin
+	    ChangeValue 37 1
+	    Set $lastWidget = 37
+	End
+	If $EditorType == {X Application} Then
+	Begin
+	    Set $lastWidget = 49
+	    Set $ActionTitle = {Exec:       }
+	    ChangeValue 37 2
+	End
+	If $EditorType == {Run in a Terminal} Then
+	Begin
+	    Set $lastWidget = 48
+	    ChangeValue 37 3
+	    Set $ActionTitle = {Exec:       }
+	    Set $hasTitle = 1
+	End
+	If $EditorType == {Tail File} Then
+	Begin
+	    Set $lastWidget = 48
+	    ChangeValue 37 4
+	    Set $ActionTitle = {File:        }
+	    Set $hasTitle = 1
+	End
+	If $EditorType == {Title} Then
+	Begin
+	    Set $lastWidget = 42
+	    ChangeValue 37 5
+	End
+	If $EditorType == {Fvwm Command} Then
+	Begin
+	    ChangeValue 37 6
+	    Set $ActionTitle = {Command:}
+	    Set $lastWidget = 45
+	End
+	If $EditorType == {Sub Menu} Then
+	Begin
+	    ChangeValue 37 7
+	    Set $lastWidget = 44
+	    Set $ActionTitle = {Menu:      }
+	    Set $isMenu = 1
+	End
+	If $EditorType == {Menu} Then
+	Begin
+	    ChangeValue 37 8
+	    Set $lastWidget = 44
+	    Set $ActionTitle = {Menu:      }
+	    Set $isMenu = 1
+	End
+
+	ChangeTitle 43 $ActionTitle
+
+	If $hasTitle == {1} Then
+	Begin
+	    Set $t = {Window Title:}
+	    If $EditOrAdd == {E} Then
+		ChangeTitle 48 $WindowTitle
+	End
+	Else
+	Begin
+	    Set $t = {Working Dir:  }
+	    If $EditOrAdd == {E} Then
+		ChangeTitle 48 $WorkingDir
+	End
+	ChangeTitle 47 $t
+
+	Set $W = (Add $lastWidget 1)
+	Set $tmp = 36
+	While $tmp <> $W Do
+	Begin
+	    ShowWidget $tmp
+	    Set $tmp = (Add $tmp 1)
+	End
+	ShowWidget 70
+	ShowWidget 71
+
+	If $isMenu == {1} Then
+	Begin
+	    Set $cmd = $SendMsgAndGet{"menus-list"}
+	    Set $MenusList =(GetOutput $cmd 1 -1)
+	    ChangeTitle 51 $MenusList
+	    Set $tmp = 50
+	    While $tmp <> 54 Do
+	    Begin
+		ShowWidget $tmp
+		Set $tmp = (Add $tmp 1)
+	    End
+	End
+    End
+
+#--------------------------------------
+# Click on OK or "Double Click" on a submenu in the list
+
+    If $OpenSubMenu == 1 Then
+    Begin
+	Set $OpenSubMenu = 0
+	Set $LevelMenu = (Add $LevelMenu 1)
+    	If $UP <> {} Then
+	Begin
+    		Set $UP=$UP{ }$Menu
+	End
+    	Else
+	Begin
+		Set $UP=$Menu
+		If $UseRootMenusList <> {0} Then
+		Begin
+		    HideWidget 1
+		    HideWidget 2
+		    ShowWidget 3
+		    Set $isRootMenu = 0
+		End
+	End
+    	ChangeFont 15 $SelFont 
+    	Set $Menu=$Action
+    	Set $t = $UP{ }$Menu
+    	Set $cmd={echo "}$t{"|sed -e 's/ /->/g'}
+    	Set $t = (GetOutput $cmd 1 -1)
+    	Set $t = {Menu: }$t
+    	ChangeTitle 3 $t
+    
+	Set $UpdateItemsList = 1
+	Set $MenuListValueIsZero = 1
+
+    End
+
+#--------------------------------------
+#
+
+    If $UpdateItemsList == 1 Then
+    Begin
+	Set $UpdateItemsList = 0
+	Set $cmd=$SendMsgAndGet{"menu-items }$Menu{"}
+	Set $ItemsList = (GetOutput $cmd 1 -1)
+	If $ItemsList == 0 Then
+	    Set $ItemsList = {}
+	ChangeTitle 4 $ItemsList
+	Set $cmd = $SendMsgAndGet{"nbr-of-items }$Menu{"}
+	Set $NbrOfItems = (GetOutput $cmd 1 -1)
+	If $Value == 0 Then
+	    Set $MenuListValueIsZero = 1
+	#Do {Echo List updated}
+	Set $t={}
+	ChangeTitle 16 $t
+    End
+
+#--------------------------------------
+# Update the selected item in the list
+
+    If $UpdateTheItem == 1 Then
+    Begin
+	Set $UpdateTheItem = 0
+	If $Value == 0 Then
+	Begin
+	    Set $Value = 1
+	End
+	ChangeValue 4 $Value
+
+	# Show the selected items!
+	# first visible item
+	Set $tmp = (GetMinValue 4)
+	# last visible item
+ 	Set $tmp1 = (Add $NbrOfVisibleItems $tmp)
+	If $Value < $tmp Then
+	Begin
+	    ChangeMinValue 4 $Value
+	    ChangeTitle 4 $ItemsList
+	End
+	If $Value > $tmp1 Then
+	Begin
+	    Set $tmp1 = (Mult $tmp1 -1)
+	    Set $tmp1 = (Add $Value $tmp1)
+	    Set $tmp = (Add $tmp $tmp1)
+	    ChangeMinValue 4 $tmp
+	    ChangeTitle 4 $ItemsList
+	End
+
+	Set $cmd = $SendMsgAndGet{"item }$Menu{:}$Value{" --line=1}
+
+	Set $Name=(GetOutput $cmd 1 -1)
+	Set $t={Selected: }$Name
+	ChangeTitle 5 $t
+
+	Set $cmd = $GetLine{2}
+	Set $Type=(GetOutput $cmd 1 -1)
+	Set $t={Type: }$Type
+	ChangeTitle 6 $t
+
+	Set $cmd = $GetLine{3}
+	Set $Action=(GetOutput $cmd 1 -1)
+	Set $t={Action: }$Action
+	Set $ti=(StrCopy $t  1  40)
+	Set $tmp=(StrCopy $t  41  41)
+	If $tmp <> {} Then
+	    Set $ti=$ti{ ...}
+	ChangeTitle 7 $ti
+
+	If $Type <> {} Then
+	Begin
+	    ChangeFont 8 $SelFont 
+	    ChangeFont 9 $SelFont 
+	    ChangeFont 10 $SelFont 
+	    ChangeFont 11 $SelFont 
+	    ChangeFont 12 $SelFont 
+	End
+	If $Type == {Sub Menu} Then
+	Begin
+	    ChangeFont 13 $SelFont
+	End
+	Else
+	Begin
+	    ChangeFont 13 $ShadeFont
+	End
+	
+	Set $t={}
+	ChangeTitle 16 $t
+
+	Set $cmd = $GetLine{4}
+	Set $WorkingDir=(GetOutput $cmd 1 -1)
+
+	Set $cmd = $GetLine{5}
+	Set $WindowTitle=(GetOutput $cmd 1 -1)
+
+    	Set $cmd = $GetLine{6 --clear-buffer}
+	Set $MenuIcon=(GetOutput $cmd 1 -1)
+	#Do {Echo The Item is updated}
+    End
+
+#--------------------------------------
+
+    If $UpdateSelectionList == 1 Then
+    Begin
+	Set $UpdateSelectionList = 0
+	Set $cmd=$SendMsgAndGet{"selection-items"}
+	Set $SelectedList = (GetOutput $cmd 1 -1)
+	#ChangeTitle 22 $SelectedList
+	ChangeValue 22 $SelNumber
+	If $SelNumber == 0 Then
+	Begin
+	    Set $tmp = 18
+	    While $tmp <> 22 Do
+	    Begin
+		ChangeFont $tmp $ShadeFont
+		Set $tmp = (Add $tmp 1)
+	    End
+	End
+	Else
+	Begin
+	    Set $tmp = 18
+	    While $tmp <> 22 Do
+	    Begin
+		ChangeFont $tmp $SelFont
+		Set $tmp = (Add $tmp 1)
+	    End
+	    Set $SelValue = (Add $SelValue -1)
+	    If $SelNumber == $tmpSelValue Then
+	    Begin
+		ChangeValue 22 $SelNumber
+		Set $SelValue = $SelNumber
+	    End
+	End
+
+	# Show the selected items!
+	# first visible item
+	Set $tmp = (GetMinValue 22)
+	# last visible item
+ 	Set $tmp1 = (Add $NbrOfVisibleSelItems $tmp)
+	If $SelNumber < $tmp Then
+	Begin
+	    ChangeMinValue 22 $SelValue
+	End
+	If $SelNumber > $tmp1 Then
+	Begin
+	    Set $tmp1 = (Mult $tmp1 -1)
+	    Set $tmp1 = (Add $SelNumber $tmp1)
+	    Set $tmp = (Add $tmp $tmp1)
+	    ChangeMinValue 22 $tmp
+	End
+	ChangeTitle 22 $SelectedList
+
+	Set $t={}
+ 	ChangeTitle 16 $t
+    End
+
+#--------------------------------------
+
+    If $MenuListValueIsZero == 1 Then
+    Begin
+	Set $Value = 0
+	Set $MenuListValueIsZero = 0
+	ChangeValue 4 0
+	Set $t={Selected: }
+	ChangeTitle 5 $t
+	Set $t={Type: }
+	ChangeTitle 6 $t
+	Set $t={Action: }
+	ChangeTitle 7 $t
+	ChangeFont 8 $ShadeFont
+	ChangeFont 9 $ShadeFont
+	ChangeFont 10 $ShadeFont
+	ChangeFont 11 $ShadeFont
+	ChangeFont 12 $ShadeFont
+	ChangeFont 13 $ShadeFont
+    End
+
+#--------------------------------------
+# Communication with the Bowsers
+    
+    If $MenuIconBrowser <> {} Then
+    Begin
+	Set $MSG = (ReceivFromScript $MenuIconBrowser)
+	If $MSG <> {No message} Then
+	Begin
+	    Set $MenuIconBrowser = {}
+	    If $MSG <> {Cancel} Then 
+	    Begin
+		Set $EditorMenuIcon = $MSG
+		ChangeIcon 41 $MSG
+	    End
+	End
+    End
+
+    If $FileDirBrowser <> {} Then
+    Begin
+	Set $MSG = (ReceivFromScript $FileDirBrowser)
+	If $MSG <> {No message} Then
+	Begin
+	    Set $FileDirBrowser = {}
+	    If $MSG <> {Cancel} Then 
+	    Begin
+		ChangeTitle 48 $MSG
+	    End
+	End
+    End
+
+    If $FindItBrowser <> {} Then
+    Begin
+	Set $MSG = (ReceivFromScript $FindItBrowser)
+	If $MSG <> {No message} Then
+	Begin
+	    Set $FindItBrowser = {}
+	    If $MSG <> {Cancel} Then 
+	    Begin
+		ChangeTitle 44 $MSG
+	    End
+	End
+    End
+
+End
+
+# ---------------------------------------------------------------------------
+#
+# Now the widgets
+#
+# ---------------------------------------------------------------------------
+
+#---------------------------------------------------------------------------
+# Root Menus list or path to the MENU
+
+Widget 1
+Property
+    Flags NoReliefString
+    Position 200 10
+    Type ItemDraw
+    Title {Root Menus:}
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
+Widget 2
+Property
+    Flags NoReliefString
+    Position 300 5
+    Type PopupMenu
+    Title {                                                }
+Main
+ Case message of
+ SingleClic :
+ Begin
+    Set $RootValue = (GetValue 2)
+    Set $cmd = {perl -e '$M="}$RootMenus{"; $I=}$RootValue{;$I--; @A=split("\\|",$M); print $A[$I] . "\n"'}
+    Set $Menu = (GetOutput $cmd 1 -1)
+
+    Set $UpdateItemsList = 1
+    Set $MenuListValueIsZero = 1
+
+ End
+End
+
+
+# Menu path
+Widget 3
+Property
+    Flags NoReliefString
+    Size 630 20
+    Position 10 10
+    Type ItemDraw
+    Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+#---------------------------------------------------------------------------
+# Items List
+
+Widget 4
+Property
+    Flags NoReliefString
+    Position 20 40
+    Size 300 200
+    Type List
+    Title {}
+Main
+ Case message of
+ SingleClic :
+ Begin
+    # Double click simulation hum ...
+    Set $tmpValue = (GetValue 4)
+    Set $t = 0
+    Set $t1 = 0
+    Set $t2 = 0
+    If $tmpValue == $Value Then
+	Set $t = 1
+    If $Type == {Sub Menu} Then
+	Set $t1 = 1
+    If $Type == {Menu} Then
+	Set $t1 = 1
+    If $Menu <> $Action Then
+	Set $t2 = 1
+    Set $t = (Mult $t $t1)
+    Set $t = (Mult $t $t2)
+    Set $Value = $tmpValue
+    If $t == 1 Then
+    Begin
+	Set $OpenSubMenu = 1	  
+    End
+    Else
+    Begin
+	Set $UpdateTheItem = 1
+    End
+
+ End
+End
+
+#----------------------------------------------------------------------------
+
+#Selected items
+Widget 5
+Property
+    Flags NoReliefString
+    Size 320 20
+    Position 330 50
+    Type ItemDraw
+    Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+# Type of the item
+Widget 6
+Property
+    Flags NoReliefString
+    Size 320 20
+    Position 330 70
+    Type ItemDraw
+    Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+# Action of the item
+Widget 7
+Property
+    Flags NoReliefString
+    Size 320 20
+    Position 330 90
+    Type ItemDraw
+    Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+# -----------------------------------------------------------------------------
+# "Files" buttons
+
+# Edit
+Widget 8
+Property
+    Flags NoReliefString
+    Position 340 130
+    Type PushButton
+    Title {Edit}
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $EditorValue = (GetValue 4)
+    If $EditorValue == 0 Then
+    Begin
+	Set $t={Msg: You need to select an item!}
+	ChangeTitle 16 $t
+    End
+    Else
+    Begin
+	Set $EditOrAdd = {E}
+	Set $HideMainWidgets = 1
+	Set $EditorType = $Type
+	Set $EditorMenuIcon = $MenuIcon
+ 	ChangeValue 39 0
+	ChangeMinValue 39 0
+	ChangeMaxValue 39 0
+	ChangeTitle 39 $Name
+	ChangeIcon 41 $MenuIcon
+	ChangeMinValue 44 0
+	ChangeMaxValue 44 0
+	ChangeValue 44 0
+	ChangeTitle 44 $Action
+	ChangeMinValue 48 0
+	ChangeMaxValue 48 0
+	ChangeValue 48 0
+	Set $UpdateEditorWidgets = 1
+    End
+  End
+End
+
+Widget 9
+Property
+    Flags NoReliefString
+    Position 400 130
+    Type PushButton
+    Title {Copy}
+Main
+ Case message of
+ SingleClic :
+ Begin
+    Set $Value = (GetValue 4)
+    If $Value == 0 Then
+    Begin
+	Set $t={Msg: You need to select an item!}
+	ChangeTitle 16 $t
+    End
+    Else
+    Begin
+	Set $cmd=$SendMsgAndGet{"add-item-to-selection }$Menu{:}$Value{"}
+	Set $Err=(GetOutput $cmd 1 -1)
+	If $Err <> 0 Then
+	Begin
+	    Set $SelNumber = (Add $SelNumber 1)
+	    Set $UpdateSelectionList = 1
+	End
+    End
+ End
+End
+
+Widget 10
+Property
+    Flags NoReliefString
+    Position 467 130
+    Type PushButton
+    Title {Cut}
+Main
+ Case message of
+ SingleClic :
+ Begin
+    Set $Value = (GetValue 4)
+    If $Value == 0 Then
+    Begin
+	Set $t={Msg: You need to select an item!}
+	ChangeTitle 16 $t
+    End
+    Else
+    Begin
+	Set $cmd=$SendMsgAndGet{"add-item-to-selection }$Menu{:}$Value{"}
+	Set $Err=(GetOutput $cmd 1 -1)
+	If $Err <> 0 Then
+	Begin
+	    Set $SelNumber = (Add $SelNumber 1)
+	    Set $UpdateSelectionList = 1
+	    Set $cmd=$SendMsgAndGet{"remove-item }$Menu{:}$Value{"}
+	    Set $Err=(GetOutput $cmd 1 -1)
+	    If $Err == {0} Then
+	    Begin
+		Set $t = {Msg: Impossible to Remove "}$Title{"}
+ 		ChangeTitle 16 $t
+	    End
+	    Else
+	    Begin
+		If $Value == $NbrOfItems Then
+		    Set $Value = (Add $Value -1)
+		Set $UpdateItemsList = 1
+		Set $UpdateTheItem = 1
+	    End
+    	End
+    End	
+ End
+End
+
+# Move Up Push Button
+Widget 11
+Property
+    Flags NoReliefString
+    Position 524 130
+    Type PushButton
+    Title {Up }
+Main
+ Case message of
+ SingleClic :
+ Begin
+    Set $Value = (GetValue 4)
+    If $Value == 0 Then
+    Begin
+	Set $t={Msg: You need to select an item!}
+	ChangeTitle 16 $t
+    End
+    Else
+    Begin
+    	Set $cmd=$SendMsgAndGet{"move-up }$Menu{:}$Value{"}
+    	Set $Err=(GetOutput $cmd 1 -1)
+    	If $Err == {0} Then
+    	Begin
+		Set $t = {Msg: Impossible to Move Up "}$Name{"}
+ 		ChangeTitle 16 $t
+    	End
+    	Else
+    	Begin
+	    Set $UpdateItemsList = 1
+	    Set $Value =(Add $Value -1)
+	    Set $UpdateTheItem = 1
+	End
+    End
+ End
+End
+
+# Move Down Push Button
+Widget 12
+Property
+    Flags NoReliefString
+    Position 581 130
+    Type PushButton
+    Title {Down}
+Main
+ Case message of
+ SingleClic :
+ Begin
+    Set $Value = (GetValue 4)
+    If $Value == 0 Then
+    Begin
+	Set $t={Msg: You need to select an item!}
+	ChangeTitle 16 $t
+    End
+    Else
+    Begin
+    	Set $cmd=$SendMsgAndGet{"move-down }$Menu{:}$Value{"}
+    	Set $Err=(GetOutput $cmd 1 -1)
+    	If $Err == {0} Then
+    	Begin
+		Set $t = {Msg: Impossible to Move Down "}$Name{"}
+ 		ChangeTitle 16 $t
+    	End
+    	Else
+    	Begin
+	    Set $UpdateItemsList = 1
+	    Set $Value =(Add $Value 1)
+	    Set $UpdateTheItem = 1
+    	End
+    End
+ End
+End
+
+#-----------------------------------------------------------------------------
+# Up, Open and Add Item
+
+#open push button
+Widget 13
+Property
+    Flags NoReliefString
+    Position 260 255
+    Type PushButton
+    Title {Open}
+Main
+ Case message of
+ SingleClic :
+ Begin
+    Set $Value = (GetValue 4)
+    Set $tmp = 0
+    If $Type == {Sub Menu} Then
+	Set $tmp = 1
+    If $Type == {Menu} Then
+	Set $tmp = 1
+    Set $tmp = (Mult $tmp $Value) 
+    If $tmp == 0 Then
+    Begin
+	Set $t={Msg: You need to select a (Sub)Menu!}
+	ChangeTitle 16 $t
+    End
+    Else
+    Begin
+	Set $OpenSubMenu = 1
+    End
+ End
+End
+
+#add item push button
+Widget 14
+Property
+    Flags NoReliefString
+    Position 120 255
+    Type PushButton
+    Title {Add Item}
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $EditorValue = (GetValue 4)
+    If $EditorValue == 0 Then
+	Set $EditorValue = $NbrOfItems
+    Set $EditOrAdd = {A}
+    ChangeMinValue 39 0
+    ChangeMaxValue 39 0
+    ChangeValue 39 0
+    ChangeTitle 39 $Empty
+    Set $EditorMenuIcon = {}
+    ChangeIcon 41 None
+    ChangeMinValue 44 0
+    ChangeMaxValue 44 0
+    ChangeValue 44 0
+    ChangeTitle 44 $Empty
+    ChangeMinValue 48 0
+    ChangeMaxValue 48 0
+    ChangeValue 48 0
+    ChangeTitle 48 $Empty
+    Set $HideMainWidgets = 1
+    Set $UpdateEditorWidgets = 1
+  End
+End
+
+# Up menu push button
+Widget 15
+Property
+    Flags NoReliefString
+    Position 30 255
+    Type PushButton
+    Title {Up}
+Main
+ Case message of
+ SingleClic :
+ Begin
+    If $UP == {} Then
+    Begin
+	Set $t={Msg: No Up Menu}
+	ChangeTitle 16 $t
+    End
+    Else
+    Begin
+	Set $LevelMenu = (Add $LevelMenu -1)
+    	Set $cmd={perl -e '@l=split(" ","}$UP{"); print "$l[-1]\n"'}
+    	Set $Menu=(GetOutput $cmd 1 -1)
+    	Set $cmd={perl -e '@l=split(" ","}$UP{"); pop(@l); print "@l\n"'}
+    	Set $UP=(GetOutput $cmd 1 -1)
+    	#Do {echo } $UP
+    	Set $cmd={echo "}$UP{"|sed -e 's/ /->/g'}
+    	Set $t = (GetOutput $cmd 1 -1)
+    	If $t <> {} Then
+	Begin
+		Set $t = {Menu: }$t{->}$Menu
+		ChangeTitle 3 $t
+	End
+    	Else
+	Begin
+		If $UseRootMenusList <> {0} Then
+		Begin
+		    HideWidget 3
+		    ShowWidget 1
+		    ShowWidget 2
+		    ChangeValue 2 $RootValue
+		    Set $isRootMenu = 1
+		 End
+		 Else
+		 Begin
+		    Set $t = {Menu: }$Menu
+		    ChangeTitle 3 $t
+		End
+	End
+    	If $UP == {} Then
+		ChangeFont 15  $ShadeFont
+
+	Set $UpdateItemsList = 1
+	Set $MenuListValueIsZero = 1 
+    End
+ End
+End
+
+#----------------------------------------------------------------------------
+# Message
+
+Widget 16
+Property
+    Flags NoReliefString
+    Size 330 20
+    Position 10 310
+    Type ItemDraw
+    Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+#----------------------------------------------------------------------------
+# Selection area
+
+Widget 17
+Property
+    Flags NoReliefString
+    Position 450 190
+    Type ItemDraw
+    Title {Selection}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 18
+Property
+    Flags NoReliefString
+    Position 345 220
+    Type PushButton
+    Title {Copy}
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $SelValue = (GetValue 22)
+    Set $tmpValue  = (GetValue 4)
+    If $tmpValue == 0 Then
+	Set $tmpValue = $NbrOfItems
+    If $SelValue == 0 Then
+    Begin
+	Set $t={Msg: No "selection" item selected!}
+	ChangeTitle 16 $t
+    End
+    Else
+    Begin
+	Set $cmd=$SendMsgAndGet{"copy-sel-item }$Menu{:}$tmpValue{:}$SelValue{"}
+    	Set $Err=(GetOutput $cmd 1 -1)
+    	If $Err == {0} Then
+    	Begin
+	    Set $t = {Msg: No items in selection!}
+	    ChangeTitle 16 $t
+    	End
+	Else
+	Begin
+	    Set $Value = (Add $tmpValue 1)
+	    Set $UpdateTheItem = 1
+	    Set $UpdateItemsList = 1
+    	End	
+    End
+  End
+End
+
+Widget 19
+Property
+    Flags NoReliefString
+    Position 400 220
+    Type PushButton
+    Title {Copy All}
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $tmpValue  = (GetValue 4)
+    If $tmpValue == 0 Then
+	Set $tmpValue = $NbrOfItems
+    Set $cmd=$SendMsgAndGet{"copy-all-sel }$Menu{:}$tmpValue{"}
+    Set $Err=(GetOutput $cmd 1 -1)
+    #Do {Echo }$Err
+    If $Err == {0} Then
+    Begin
+	Set $t = {Msg: No items in selection!}
+ 	ChangeTitle 16 $t
+    End
+    Else
+    Begin
+	Set $Value = (Add $tmpValue $SelNumber)
+	Set $UpdateTheItem = 1
+	Set $UpdateItemsList = 1
+    End
+ 
+  End
+End
+
+Widget 20
+Property
+    Flags NoReliefString
+    Position 472 220
+    Type PushButton
+    Title {Remove}
+Main
+ Case message of
+ SingleClic :
+ Begin
+    Set $SelValue = (GetValue 22)
+    If $SelValue == 0 Then
+    Begin
+	Set $t={Msg: No "selection" item selected!}
+	ChangeTitle 16 $t
+    End
+    Else
+    Begin
+	Set $cmd=$SendMsgAndGet{"remove-sel-item }$SelValue{"}
+    	Set $Err=(GetOutput $cmd 1 -1)
+	#Do {Echo }$Err
+    	If $Err == {0} Then
+    	Begin
+		Set $t = {Msg: No items in selection!}
+ 		ChangeTitle 16 $t
+    	End
+	Else
+	Begin
+	    Set $UpdateSelectionList = 1
+	    Set $SelNumber = (Add $SelNumber -1)
+	End
+    End
+ End
+End
+
+Widget 21
+Property
+    Flags NoReliefString
+    Position 544 220
+    Type PushButton
+    Title {Remove All}
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $cmd=$SendMsgAndGet{"remove-all-sel-item"}
+    Set $Err=(GetOutput $cmd 1 -1)
+    If $Err == {0} Then
+    Begin
+	Set $t = {Msg: Error!}
+	ChangeTitle 16 $t
+    End
+    ChangeTitle 22 $Empty
+    Set $SelNumber = 0
+    ChangeValue 22 0
+    Set $tmp = 18
+    While $tmp <> 22 Do
+    Begin
+	ChangeFont $tmp $ShadeFont
+	Set $tmp = (Add $tmp 1)
+    End
+
+  End
+End
+
+Widget 22
+Property
+    Flags NoReliefString
+    Position 340 260
+    Size 290 80
+    Type List
+    Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+ End
+End
+
+#-----------------------------------------------------------------------------
+# Down buttons
+
+Widget 23
+Property
+    Flags NoReliefString
+    Position 50 370
+    Type PushButton
+    Title {Try}
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $cmd=$SendMsgAndGet{"try"}
+    Do {PipeRead '}$cmd{'}
+
+    Set $t={}
+    ChangeTitle 16 $t
+
+  End
+End
+
+Widget 24
+Property
+    Flags NoReliefString
+    Position 200 370
+    Type PushButton
+    Title {Apply And Save}
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $cmd=$SendMsgAndGet{"try"}
+    Do {PipeRead '}$cmd{'}
+
+    Set $cmd=$SendMsg{"save"}
+    Do {Exec }$cmd
+
+    Set $t={}
+    ChangeTitle 16 $t
+
+  End
+End
+
+Widget 25
+Property
+    Flags NoReliefString
+    Position 420 370
+    Type PushButton
+    Title {Help}
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $arg={FvwmScript-Help --text-colorset }$TextColorset{ --message "                    Documentation in progress" --title "Help for the Menu Editor}
+    Set $MenuIconBrowser = (LaunchScript $arg )    
+  End
+End
+
+Widget 26
+Property
+    Flags NoReliefString
+ Position 580 370
+ Type PushButton
+ Title {Quit}
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $cmd = $SendMsg{"exit"}
+    Do {Exec }$cmd
+    Quit
+  End
+End
+
+#-----------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
+#
+#
+################### Editor
+#
+#-----------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
+# At first I do a special script and swallow it but I've got some
+# problems in communication between the two scripts ... We can do such 
+# thing in the case of the communication do not need big message!
+
+
+Widget 36
+Property
+    Flags NoReliefString
+    Position 30 30
+    Type ItemDraw
+    Title {Type of the Command:}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 37
+Property
+    Flags NoReliefString
+ Position 200 25
+ Type PopupMenu
+ Title {Separator|X Application|Run in a Terminal|Tail File|Title|Fvwm Command|Sub Menu|Menu}
+Main
+ Case message of
+ SingleClic :
+ Begin
+
+    Set $selTypeValue = (GetValue 37)
+
+    If $selTypeValue == 1 Then
+	Set $EditorType = {Separator}
+    If $selTypeValue == 2 Then
+	Set $EditorType = {X Application}
+    If $selTypeValue == 3 Then
+	Set $EditorType = {Run in a Terminal}
+    If $selTypeValue == 4 Then
+	Set $EditorType = {Tail File}
+    If $selTypeValue == 5 Then
+	Set $EditorType = {Title}
+    If $selTypeValue == 6 Then
+	Set $EditorType = {Fvwm Command}
+    If $selTypeValue == 7 Then
+	Set $EditorType = {Sub Menu}
+    If $selTypeValue == 8 Then
+	Set $EditorType = {Menu}
+    Set $HideEditorWidgets = 1 
+    Set $UpdateEditorWidgets = 1
+ End
+End
+
+
+#----------------------------------------------------------------------
+# Name
+
+Widget 38
+Property
+    Flags NoReliefString
+    Position 30 80
+    Type ItemDraw
+    Title {Name:}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 39
+Property
+    Flags NoReliefString
+    Size 200 20
+    Position 120 75
+    Type TextField
+    Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+#---------------------------------------------------------------------------
+# Menu Icon
+
+Widget 40
+Property
+    Flags NoReliefString
+    Position 350 80
+    Type ItemDraw
+    Title {Menu Icon: }
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 41
+Property
+    Flags NoReliefString
+    Size 50 30
+    Position 440 72
+    Type ItemDraw
+    Icon None
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 42
+Property
+    Flags NoReliefString
+    Size 85 20
+    Position 520 75
+    Type PushButton
+    Title {Set/Change}
+Main
+ Case message of
+ SingleClic :
+  Begin
+    If $MenuIconBrowser == {} Then
+    Begin		
+	Set $arg={FvwmScript-IconBrowser --dir } $ImagesDir { --icon-colorset }$IconColorset{ --text-colorset }$TextColorset
+	Set $MenuIconBrowser = (LaunchScript $arg )
+    End
+ End
+End
+
+#----------------------------------------------------------------------------
+# Action
+
+Widget 43
+Property
+    Flags NoReliefString
+    Position 30 120
+    Type ItemDraw
+    Title {Command:}
+    #Command, Exec, File, Menu
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 44
+Property
+    Flags NoReliefString
+    Size 280 20
+    Position 120 115
+    Type TextField
+    Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+#----------------------------------------------------------------------------
+# Run
+
+Widget 45
+Property
+    Flags NoReliefString
+    Position 285 225
+    Type PushButton
+    Title {   RUN   }
+Main
+ Case message of
+ SingleClic :
+ Begin
+    Set $a = (GetTitle 44)
+    Set $dt = (GetTitle 48)
+    If $EditorType == {X Application} Then
+    Begin
+	Set $a = {exec } $a
+	If $dt <> {} Then 
+	    Set $a = {cd }$dt { ; ./}$a
+	Set $a = {Exec }$a
+    End
+    If $EditorType == {Run in a Terminal} Then
+	Set $a = {FuncFvwmRunInXterm "}$dt{" "}$a{"}
+    If $EditorType == {Tail File} Then
+	Set $a = {FuncFvwmViewFileTail "}$dt{" "}$a{"}
+
+    Do $a
+
+  End
+End
+
+#----------------------------------------------------------------------------
+# Find app in path 
+
+Widget 46
+Property
+    Flags NoReliefString
+    Size 85 20
+    Position 520 115
+    Type PushButton
+    Title {Find it}
+Main
+ Case message of
+  SingleClic :
+  Begin
+    If $FindItBrowser == {} Then
+    Begin
+	Set $tmp = {}
+
+	If $EditorType == {Tail File} Then
+	Begin
+	    Set $mode = {browser}
+	    Set $tmp = (GetTitle 44)
+	    If $tmp == {} Then
+		Set $tmp = {~/}
+	    Set $t = {dummy}
+	End
+	Else
+	Begin
+	    If $EditorType == {X Application} Then
+		Set $tmp = (GetTitle 48)
+	    Set $t= {"files in the working directory"}
+	    If $tmp == {} Then
+	    Begin
+		Set $tmp = {PATH}
+		Set $t = {"All files in the path"}
+	    End
+	    Set $mode = {list}
+	End
+
+	Set $arg={FvwmScript-Browser --dir }$tmp { --text-colorset }$TextColorset{ --mode }$mode{ --list-title }$t
+	Set $FindItBrowser = (LaunchScript $arg )
+
+    End
+  End
+End
+
+#----------------------------------------------------------------------------
+# Working dir/Title
+
+Widget 47
+Property
+    Flags NoReliefString
+    Position 30 160
+    Type ItemDraw
+    Title {Window Title:}
+	  #Working Dir:
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 48
+Property
+    Flags NoReliefString
+    Size 280 20
+    Position 120 155
+    Type TextField
+    Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+#----------------------------------------------------------------------------
+# Browser for working dir ...
+
+Widget 49
+Property
+    Flags NoReliefString
+    Size 85 20
+    Position 520 155
+    Type PushButton
+    Title {Browse}
+Main
+ Case message of
+ SingleClic :
+ Begin
+    If $FileDirBrowser == {} Then
+    Begin
+	Set $tmp = (GetTitle 48)
+	If $tmp == {} Then
+	    Set $tmp = {~/}
+	Set $arg={FvwmScript-Browser --dir }$tmp { --text-colorset }$TextColorset{ --type dir}
+	Set $FileDirBrowser = (LaunchScript $arg )
+    End
+ End
+End
+
+
+#----------------------------------------------------------------------------
+# Menu List
+
+Widget 50
+Property
+    Flags NoReliefString
+    Position 110 160
+    Type ItemDraw
+    Title {List of Menus:}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 51
+Property
+    Flags NoReliefString
+    Size 250 100
+    Position 40 190
+    Type List
+    Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+
+Widget 52
+Property
+    Flags NoReliefString
+    Position 420 160
+    Type ItemDraw
+    Title {Special Menus:}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 53
+Property
+    Flags NoReliefString
+    Size 250 100
+    Position 350 190
+    Type List
+    Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+#----------------------------------------------------------------------------
+# Ok and Cancel
+
+Widget 70
+Property
+    Flags NoReliefString
+    Position 190 340
+    Type PushButton
+    Title {  OK  }
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $HideEditorWidgets = 1
+    Set $ShowMainWidgets = 1
+    # need to do some protection here!
+    # problem with the { and }
+    # get problem with space (fixable in menuapp) and ":" in $Menus
+    # real problem is the action
+    Set $EditMess = $SendMsgAndGet{'add-or-edit-item }$EditOrAdd{ --it="}$Menu{:}$EditorValue{" --ti="}$EditorType{" --na="}(GetTitle 39){" --mi="}$EditorMenuIcon{" --ac="}(GetTitle 44){" --wd="}(GetTitle 48){"'}
+    #Do {Echo }$EditMess
+    If $EditOrAdd == {A} Then
+	Set $Value = (Add $EditorValue 1)
+    Else
+	Set $Value = $EditorValue
+    Set $UpdateItemsList = 1
+    Set $UpdateTheItem = 1
+  End
+End
+
+Widget 71
+Property
+    Flags NoReliefString
+    Position 400 340
+    Type PushButton
+    Title {Cancel}
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $HideEditorWidgets = 1
+    Set $ShowMainWidgets = 1
+  End
+End
+
+
