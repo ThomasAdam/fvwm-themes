@@ -11,10 +11,12 @@ Shell account
 
 If you are a fvwm-themes developer, you should have an account at
 shell1.sourceforge.net. Use ssh1 to connect. ssh2 on top of ssh1 is optional.
-You should be a member of fvwm-themes unix group on that and others machines.
-If you want to up load file into source forge you can use scp1, e.g., if you
-want to up load foo in /dir do:
-	scp1 foo login@shell1.sourceforge.net:/dir
+You should be a member of fvwm-themes unix group on this and other machines.
+You can use scp1 to upload files into sourceforge:
+  scp1 my-local-file login@shell1.sourceforge.net:/my/remote/dir
+
+Unfortunately when scp1 is used, the files are uploaded with bad permissions,
+you should correct them manually, see the section "Creating new files" below.
 
 Home Page
 ---------
@@ -65,7 +67,7 @@ http://fvwm.org/cvs.html to learn how to use cvs.
 
 Every change should be documented in ChangeLog.
 When you commit, always use a one line (or several lines) log, i.e.:
-  cvs -m "updated X; added Y" commit
+  cvs -m 'updated X; added Y' commit
   cvs -F file.log commit
 
 Good luck!
