@@ -5,6 +5,9 @@
 	better for me than the previous ones; the color scheme is based
 	on cyan, white on dark in terminals and black on light otherwise
 
+	* themes/default/menustyle:
+	use less annoying PopupOffset
+
 2001-08-01  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:

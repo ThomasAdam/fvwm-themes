@@ -1,6 +1,6 @@
 MenuStyle * Hilight3DThickness 1
 MenuStyle * PopupDelayed, PopupDelay 150, PopdownDelayed, PopdownDelay 150
-MenuStyle * PopupOffset -20 100, TitleWarpOff
+MenuStyle * PopupOffset -15 100, TitleWarpOff
 MenuStyle * TitleUnderlines1, SeparatorsLong, TrianglesRelief
 MenuStyle * Animation, AutomaticHotkeysOff, DoubleClickTime
 MenuStyle * BorderWidth 2, SidePic, SideColor
