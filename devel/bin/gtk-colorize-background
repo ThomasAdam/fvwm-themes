@@ -1,0 +1,74 @@
+#!/usr/bin/perl -w
+
+use Gtk;
+use Gtk::ColorSelectButton;
+
+if (@ARGV != 2) {
+	print "Usage: $0 image_file color_num\n";
+	exit 1;
+}
+
+my $imageFile = shift;
+my $colorNum = shift;
+
+unless (-f $imageFile) {
+	print "No image $imageFile found\n";
+	exit 1;
+}
+
+unless ($colorNum =~ /^\d+$/ && $colorNum > 2 && $colorNum <= 9) {
+	print "color_num parameter should be in the range [2 .. 9]\n";
+	exit 1;
+}
+
+init Gtk;
+init Gtk::ColorSelectButton;
+
+my @colorButtons = ();
+foreach (0 .. $colorNum - 1) {
+	my $button = new Gtk::ColorSelectButton;
+	my $br = int($_ / $colorNum * 256);
+	$button->set(color => "$br $br $br");
+	push @colorButtons, $button;
+}
+
+sub colorizeRoot {
+	my @colors = ();
+	foreach (@colorButtons) {
+		push @colors, sprintf "rgb:%02x/%02x/%02x", split / /, $_->color;
+	}
+	my $colorStr = join(',', @colors);
+	print $colorStr, "\n";
+	system(qq(fvwm-themes-images --in-file "$imageFile" --setroot --colorize --colorize-colors "$colorStr"));
+}
+
+# -------- main --------
+
+my $dialog = new Gtk::Dialog;
+$dialog->set_title("Colorizing Backround");
+$dialog->set_border_width(4);
+$dialog->set_usize(400, 160);
+
+my $label = new Gtk::Label("Image: " . substr($imageFile, -60));
+$dialog->vbox->pack_start($label, 1, 1, 8);
+
+my $hbox = new Gtk::HBox(1, 0);
+$dialog->vbox->pack_end($hbox, 1, 1, 8);
+
+foreach (0 .. $colorNum - 1) {
+	$hbox->pack_start($colorButtons[$_], 1, 1, 8);
+}
+
+my $button;
+
+$button = new Gtk::Button " Set Backgound ";
+$dialog->action_area->pack_start($button, 0, 0, 8);
+$button->signal_connect("clicked", sub { colorizeRoot(); });
+
+$button = new Gtk::Button " Quit ";
+$dialog->action_area->pack_start($button, 0, 0, 8);
+$button->signal_connect("clicked", sub { Gtk->main_quit; });
+
+$dialog->show_all;
+
+Gtk->main;
