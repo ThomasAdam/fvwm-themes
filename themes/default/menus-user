@@ -3,30 +3,30 @@
 
 DestroyMenu MenuFvwmShells
 AddToMenu   MenuFvwmShells "Shells" Title
-+ "&Xterm	standard%menu/xterm.xpm%" Exec exec xterm  -fg $[fg.cs30] -bg $[bg.cs30]
-+ "Xterm/r&oot	standard%menu/xterm.xpm%" Exec exec xterm  -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
-+ "&NXterm	standard%menu/xterm.xpm%" Exec exec nxterm -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Rxvt	standard%menu/xterm.xpm%" Exec exec rxvt   -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Eterm	standard%menu/xterm.xpm%" Exec exec Eterm
-+ "X&iterm	standard%menu/xterm.xpm%" Exec exec xiterm -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Aterm	standard%menu/xterm.xpm%" Exec exec aterm -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Gnome Term	standard%menu/xterm.xpm%" Exec exec gnome-terminal --foreground=$[fg.cs30] --background=$[bg.cs30]
-+ "&Kvt	standard%menu/xterm.xpm%" Exec exec kvt -vt_fg $[fg.cs30] -vt_bg $[bg.cs30]
-+ "&Konsole	standard%menu/xterm.xpm%" Exec exec konsole
-+ "&Dtterm	standard%menu/xterm.xpm%" Exec exec /usr/dt/bin/dtterm -fg $[fg.cs30] -bg $[bg.cs30]
-+ ""                                                Nop
-+ "&Xterm	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec xterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk -si -sl 2048 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
-+ "Xterm/r&oot	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec xterm  -n root@$HOST  -T root@$HOST  -g 80x40 -sb +sk -si -sl 2048 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
-+ "&NXterm	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec nxterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk -si -sl 2048 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Rxvt 	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec rxvt   -n $USER@$HOST -T $USER@$HOST -g 80x40 -fn 7x14  -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Eterm	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec Eterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 --font 7x14
-+ "X&iterm 	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec xiterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -fn 7x14  -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Aterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec aterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -fn 7x14 -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Gnome Term	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec gnome-terminal --geometry=80x40 --font=7x14 --foreground=$[fg.cs30] --background=$[bg.cs30]
-+ "&Kvt	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec kvt -vt_font 7x14 -vt_geometry 80x40 -vt_fg $[fg.cs30] -vt_bg $[bg.cs30]
-+ "&Konsole	80x40%menu/xterm.xpm%" Exec exec konsole -vt_sz 80x40
-+ "&Dtterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec /usr/dt/bin/dtterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -fn 7x14 -fg $[fg.cs30] -bg $[bg.cs30]
-+ ""                                                Nop
++ "&Xterm	default%menu/xterm.xpm%" Exec exec xterm  -fg $[fg.cs30] -bg $[bg.cs30]
++ "Xterm/r&oot	default%menu/xterm.xpm%" Exec exec xterm  -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
++ "&NXterm	default%menu/xterm.xpm%" Exec exec nxterm -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Rxvt	default%menu/xterm.xpm%" Exec exec rxvt   -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Eterm	default%menu/xterm.xpm%" Exec exec Eterm
++ "X&iterm	default%menu/xterm.xpm%" Exec exec xiterm -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Aterm	default%menu/xterm.xpm%" Exec exec aterm -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Gnome Term	default%menu/xterm.xpm%" Exec exec gnome-terminal --foreground=$[fg.cs30] --background=$[bg.cs30]
++ "&Kvt	default%menu/xterm.xpm%"         Exec exec kvt -vt_fg $[fg.cs30] -vt_bg $[bg.cs30]
++ "&Konsole	default%menu/xterm.xpm%" Exec exec konsole
++ "&Dtterm	default%menu/xterm.xpm%" Exec exec /usr/dt/bin/dtterm -fg $[fg.cs30] -bg $[bg.cs30]
++ "" Nop
++ "&Xterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec xterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "Xterm/r&oot	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec xterm  -n root@$HOST  -T root@$HOST  -g 80x40 -sb +sk +si -sl 4096 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
++ "&NXterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec nxterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Rxvt 	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec rxvt   -n $USER@$HOST -T $USER@$HOST -g 80x40 --loginShell -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Eterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec Eterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 --login-shell --font 7x14 --bold-font 7x14bold
++ "X&iterm 	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec xiterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Aterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec aterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Gnome Term	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec gnome-terminal --title=$USER@$HOST --geometry=80x40 --login --font=7x14 --foreground=$[fg.cs30] --background=$[bg.cs30]
++ "&Kvt	80x40 (7x14 font)%menu/xterm.xpm%"         Exec exec kvt    -n $USER@$HOST -T $USER@$HOST -vt_geometry 80x40 -sl 4096 -ls -vt_font 7x14 -vt_fg $[fg.cs30] -vt_bg $[bg.cs30]
++ "&Konsole	80x40%menu/xterm.xpm%"             Exec exec konsole -nowelcome -sl 4096 -ls -vt_sz 80x40
++ "&Dtterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec /usr/dt/bin/dtterm -n $USER@$HOST -T $USER@$HOST -sl 4096 -ls -g 80x40 -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "" Nop
 + "Remote login...%menu/xterm.xpm%" FvwmForm FormFvwmRlogin.
 
 
