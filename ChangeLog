@@ -1,3 +1,20 @@
+2000-08-06  migo  <migo@homemail.com>
+
+	* themes/default/bindings (FuncFvwmWindowsOpsOrAction):
+	* themes/*/buttons:
+	s/FuncFvwmActionOrWindowsOps/FuncFvwmWindowOpsOrAction/,
+	changed 'C' to 'I' in the default implementation
+
+	* themes/default/theme.cfg:
+	* bin/fvwm-themes-config.in:
+	* NEWS:
+	Implemented component groups, by default two - 'all' and 'main look'.
+	I first added background@ & cursors@ to look group, but then removed.
+	Every such feature adds decisecond or more to the execution time. :(
+
+	* themes/migo/modules/main:FvwmPager-Desker:
+	use TAB in Move to Desk menu labels
+
 2000-08-03  migo  <migo@homemail.com>
 
 	* NEWS:

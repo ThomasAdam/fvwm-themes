@@ -28,6 +28,7 @@ my $defaultReadCommand = 'Read "%f"';
 my $idKey = 'file';
 my $themeKey = 'theme';
 my $componentKey = 'component';
+my $componentGroupKey = 'group';
 my $pipe = 0;  # produce fvwm commands for fvwm's PipeRead if set
 
 # ----------------------------------------------------------------------------
@@ -68,19 +69,25 @@ sub wrongUsage {
 }
 
 sub isArrayElement ($$) {
-	my $arrayRef = shift;
+	my $array = shift;
 	my $element = shift;
-	return int(grep { /^\Q$element\E$/ } @$arrayRef);
+	return int(grep { /^\Q$element\E$/ } @$array);
 }
 
 sub getArrayElementIndex ($$) {
-	my $arrayRef = shift;
+	my $array = shift;
 	my $element = shift;
 	my $i;
-	foreach ($i = 0; $i < @$arrayRef; $i++) {
-		return $i if $arrayRef->[$i] eq $element;
+	foreach ($i = 0; $i < @$array; $i++) {
+		return $i if $array->[$i] eq $element;
 	}
 	return undef;
+}
+
+sub conjunctArrays ($$) {
+	my $array1 = shift;
+	my $array2 = shift;
+	return [ grep { isArrayElement($array2, $_) } @$array1 ];
 }
 
 sub dumpPerlValue ($;$$) {
@@ -239,6 +246,7 @@ sub searchThemeCfgIncludeFile ($$) {
 # unfortunately fvwm is inconsistent, so the second parameter.
 sub escapeMenuName ($;$) {
 	my $name = shift;
+	$name = "unknown" unless defined $name;  # maybe die?
 	my $hasUnderline = shift;
 	my $escapeStr = $hasUnderline? '\\': '&';
 	$name =~ s/\\/\\\\/g;
@@ -431,6 +439,23 @@ sub getThemeComponents ($) {
 
 #	my @components = keys %{loadThemeCfg($theme)->[1]};
 #	return \@components;
+}
+
+sub getThemeComponentsAndGroups ($) {
+	my $theme = shift;
+
+	my $components = getThemeComponents($theme);
+	my $groups = clonePerlValue(loadThemeCfg($theme)->[0]->{$componentGroupKey});
+	# use reasonable default if not given
+	$groups = [ { 'name' => "all", $componentKey => ['*'] } ] unless ref($groups) eq 'ARRAY';
+	foreach (@$groups) {
+		my $groupComponents = $_->{$componentKey};
+		# for technical reasons [ "" ] represents all components to load
+		$_->{$componentKey} =
+			(ref($groupComponents) ne 'ARRAY' || @$groupComponents == 1 && $groupComponents->[0] =~ /^\*?$/)?
+			[ "" ]: conjunctArrays($components, $groupComponents);
+	}
+	return ($components, $groups);
 }
 
 sub getAllThemes () {
@@ -820,7 +845,7 @@ sub useNewComponents ($$$;$) {
 sub setNewComponentValues ($$$) {
 	my $self = shift;
 	my ($options, $choices) = @_;
-	return unless %$options || %$choices;
+	return unless keys %$options || keys %$choices;
 	$self->setModified();
 
 	my ($key, $value);
@@ -863,12 +888,19 @@ sub getAllThemeSubMenusRc ($) {
 
 	my $theme;
 	foreach $theme (@$allThemes) {
-		my $components = getThemeComponents($theme);
+		my ($components, $groups) = getThemeComponentsAndGroups($theme);
 		my $used = 0;
 
 		$menuRc .= qq(DestroyMenu "MenuFvwmTheme-$theme"\n);
 		$menuRc .= qq(AddToMenu   "MenuFvwmTheme-$theme" "Load components" Title\n);
-		$menuRc .= qq(+ "[ all ]"\tFuncFvwmThemesLoad "\@$theme"\n);
+		foreach (@$groups) {
+			my $name = escapeMenuName($_->{'name'});
+			my $groupComponents = $_->{$componentKey};
+			my $groupAction = !@$groupComponents? "Nop":
+				'FuncFvwmThemesConfigAndUpdate "' . join(' ',
+					map { "--load $_\@$theme" } @$groupComponents) . '"';
+			$menuRc .= qq(+ "[ $name ]"\t$groupAction\n);
+		}
 		$menuRc .= qq(+ "" Nop\n);
 		$menuRc .= join('', map {
 			my $used0 = isArrayElement($currentComponents, $_) &&
@@ -1122,9 +1154,15 @@ sub getSortedComponentsToRead ($) {
 	return \@sortedComponents;
 }
 
-#olicha3: implemented choice.external-imagepath. I do not think that
+# olicha3: implemented choice.external-imagepath. I do not think that
 # we need the "config" key. Do we need to implement
 # option.value.external-imagepath+=
+# migo: with choice.config:anykey and option.value.config:anykey this is
+# more structured, but this is only a technical issue.
+# What we need is a method, which gets key and returns the value accourding
+# to the component value, the current option and choice values (if any).
+# If array, all values are added.
+
 sub getExternalImagePath ($) {
 	my $self = shift;
 	my $currentComponents = [keys %{$self->{cc}}];
@@ -1138,17 +1176,17 @@ sub getExternalImagePath ($) {
 		my $choices = $cc->{'choice'};
 		if (ref($choices) eq 'ARRAY') {
 			my $index = defined $cc->{'current'} ?
-				$cc->{'current'}:$cc->{'default'};
+				$cc->{'current'}: $cc->{'default'};
 			$index = $index - 1;
 			$index = 0 if ($index < 0 || $index >= @$choices);
 			my $choice = $choices->[$index];
 			@array = @{$choice->{'external-imagepath'}}
 				if ref($choice->{'external-imagepath'}) eq 'ARRAY';
 		}
-		@array = (@array, @{$cc->{'external-imagepath'}})
+		push @array, @{$cc->{'external-imagepath'}}
 			if ref($cc->{'external-imagepath'}) eq 'ARRAY';
 		foreach (@array) {
-			next if isArrayElement($tmp,$_);
+			next if isArrayElement($tmp, $_);
 			$imagePath .= ":$_"; push @$tmp, $_;
 		}
 	}
@@ -1175,14 +1213,14 @@ sub getAllHooksRc ($) {
 		my $choices = $cc->{'choice'};
 		if (ref($choices) eq 'ARRAY') {
 			my $index = defined $cc->{'current'} ?
-				$cc->{'current'}:$cc->{'default'};
+				$cc->{'current'}: $cc->{'default'};
 			$index = $index - 1;
 			$index = 0 if ($index < 0 || $index >= @$choices);
 			my $choice = $choices->[$index];
 			@array = @{$choice->{'start-stop'}}
 				if ref($choice->{'start-stop'}) eq 'ARRAY';
 		}
-		@array = (@array, @{$cc->{'start-stop'}})
+		push @array, @{$cc->{'start-stop'}}
 			if ref($cc->{'start-stop'}) eq 'ARRAY';
 		foreach (@array) {
 			next if isArrayElement($tmp, $_);
