@@ -4,7 +4,7 @@ AddToMenu MenuFvwmWindowMove "" Nop
 + "Devel	Desk%menu/window-move.xpm%"	MoveToDesk 0 2
 + "Games	Desk%menu/window-move.xpm%"	MoveToDesk 0 3
 
-AddToMenu MenuFvwmWindowGroupOps "" Nop
+AddToMenu MenuFvwmWindowGroupQuickMove "" Nop
 + "Desk		Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 0
 + "Web/Mail	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 1
 + "Devel	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2

@@ -8,7 +8,7 @@ AddToMenu MenuFvwmWindowMove "" Nop
 + "Internet	Desk%menu/window-move.xpm%"	MoveToDesk 0 2
 + "Misc 	Desk%menu/window-move.xpm%"	MoveToDesk 0 3
 
-AddToMenu MenuFvwmWindowGroupOps "" Nop
+AddToMenu MenuFvwmWindowGroupQuickMove "" Nop
 + "Fvwm 	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 0
 + "Devel	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 1
 + "Internet	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2

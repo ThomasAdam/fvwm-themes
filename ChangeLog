@@ -1,5 +1,9 @@
 2001-10-07  olicha  <olivier.chapuis@free.fr>
 
+	* themes/*/modules/main:FvwmPager*:
+	* themes/default/menus:
+	Put the the Res group move to desk and desk into a separted menu
+	
 	* themes/*/modules/main:
 	Use "screen w" in all IconBox. Fixed y IconGrid
 

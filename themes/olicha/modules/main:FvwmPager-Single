@@ -9,8 +9,8 @@ AddToMenu    MenuFvwmWindowMove "Move to ..." Title
 + "Page	2 2%menu/window-move.xpm%"	MoveToPage 1 1
 + "Page	3 2%menu/window-move.xpm%"	MoveToPage 2 1
 
-
-AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
+DestroyMenu  MenuFvwmWindowGroupQuickMove
+AddToMenu    MenuFvwmWindowGroupQuickMove
 + "Page	1 1%menu/window-move.xpm%"	Pick All ($r) MoveToPage 0 0
 + "Page	2 1%menu/window-move.xpm%"	Pick All ($r) MoveToPage 1 0
 + "Page	3 1%menu/window-move.xpm%"	Pick All ($r) MoveToPage 2 0

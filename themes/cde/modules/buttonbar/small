@@ -8,7 +8,8 @@ AddToMenu    MenuFvwmWindowMove "Move to ..." Title
 #+  "&Down	Page%menu/window-move.xpm%" AnimatedMove w w+100
 #+    "&Up	Page%menu/window-move.xpm%" AnimatedMove w w-100
 
-AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
+DestroyMenu  MenuFvwmWindowGroupQuickMove
+AddToMenu    MenuFvwmWindowGroupQuickMove
 + "&Right	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +1p +0p
 +  "&Left	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage -1p +0p
 #+  "D&own	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p +1p

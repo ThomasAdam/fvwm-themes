@@ -333,6 +333,8 @@ AddToMenu    MenuFvwmWindowGroupOps "Resource Group Ops" Title
 + "&Delete%menu/window-delete.xpm%"     Pick All ($r) Delete
 + "&Close%menu/window-close.xpm%"       Pick All ($r) Close
 + "Destroy%menu/window-destroy.xpm%"    Pick All ($r) Destroy
++ "" Nop
++ "Quick Move To ...%menu/window-move.xpm%" Popup MenuFvwmWindowGroupQuickMove
 
 # Needed for the initial placement style options
 DestroyFunc FuncFvwmStyleAndRecapture
