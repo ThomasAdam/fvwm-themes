@@ -3,6 +3,11 @@
 	* bin/fvwm-themes-config.in (comLoop): 
 	ThemesCenter support component with choices and options
 
+	* bin/fvwm-themes-script.in:
+ 	* scripts/FvwmApplet-Mixer:
+	* TODO:
+	FvwmApplet-Mixer check for aumix availability
+	
 2000-09-12  migo  <migo@homemail.com>
 
 	* themes/luthien/background/*:

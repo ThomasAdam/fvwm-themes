@@ -25,6 +25,10 @@ Init
    ChangeColorset 2 $Colorset
    ChangeColorset 20 $Colorset
    ChangeColorset 3 $Colorset
+   ChangeColorset 96 $Colorset
+   ChangeColorset 97 $Colorset
+   ChangeColorset 98 $Colorset
+   ChangeColorset 99 $Colorset
   End
 
   Set $COPT = {v}
@@ -40,14 +44,40 @@ Init
   
   ChangeTitle 3 $VOLUME
 
-  Set $VAL = (GetOutput {exec aumix -vq} 1 3)
+  Set $cmd = {fvwm-themes-script --check-exec aumix}
+  Set $HaveAumix =(GetOutput $cmd 1 1)
+
+  If $HaveAumix == 1 Then
+  Begin
+    HideWidget 96
+    HideWidget 97
+    HideWidget 98
+    HideWidget 99    
+    Set $VAL = (GetOutput {exec aumix -vq} 1 3)
+  End
+  Else
+  Begin
+    HideWidget 10
+    HideWidget 11
+    HideWidget 2
+    HideWidget 20    
+    HideWidget 3
+    HideWidget 5
+    HideWidget 15
+  End
   ChangeTitle 2 $VAL
   ChangeValue 11 $VAL
 End
 
 PeriodicTasks
  Begin
+ Set $test = 0
  If (RemainderOfDiv (GetTime) 5)==0 Then
+    Set $test = 1
+ If $HaveAumix == 0 Then
+    Set $test = 0
+
+ If $test == 1 Then
  Begin
     Set $GET = {exec aumix -} $COPT {q}	
     Set $tmp = (GetOutput $GET 1 3)
@@ -396,4 +426,61 @@ Main
    End
 End
 
+# ---------------------
+
+Widget 96
+Property
+ Position 10 10
+ Size 45 10
+ Type ItemDraw
+ Flags NoReliefString
+ Title {You need}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 97
+Property
+ Position 10 20
+ Size 45 10
+ Type ItemDraw
+ Flags NoReliefString
+ Title {aumix}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 98
+Property
+ Position 10 30
+ Size 45 10
+ Type ItemDraw
+ Flags NoReliefString
+ Title {for this}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 99
+Property
+ Position 10 40
+ Size 45 10
+ Type ItemDraw
+ Flags NoReliefString
+ Title {applet}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
 

@@ -19,8 +19,6 @@ out of purpose. It is not very critical. Just a note.
 
 * Write some documentation about CCDS. [migo]
 
-* FvwmApplet-Mixer should check for aumix availability first?
-
 * Fix FvwmForm-ThemeSettings (session is obsolete).
 
 * Add luthien theme [migo; started]

@@ -30,6 +30,7 @@ my $lsOptions = "";
 my $type = "";
 my $fileOnly = 0;
 my $dirOnly = 0;
+my $checkExec = "";
 
 GetOptions(
 	"help"          => \&showHelp,
@@ -38,7 +39,8 @@ GetOptions(
 	"ls"            => \$command_ls,
 	"ls-opt:s"      => \$lsOptions,
 	"type:s"        => \$type,
-	"item=i"        => \$item
+	"item=i"        => \$item,
+	"check-exec=s"    => \$checkExec,
 ) || wrongUsage();
 
 
@@ -47,6 +49,10 @@ if ($command_ls) {
 	elsif ( "$type" eq "file" ) { $fileOnly =1; }
 	$return = getLsList($item);
 	print "$return";
+}
+elsif ($checkExec ne "") {
+	my $r = checkExecInPath($checkExec);
+	print "$r\n";
 }
 
 #----------------------------------------------------------------------------
@@ -116,4 +122,15 @@ sub getLsList {
 		for($i=1; defined $a[$i]; $i++) { $return .="|".$a[$i];}
 	}
 	return $return . "\n";
+}
+
+
+sub checkExecInPath {
+	my($app) = @_;
+	my @pathDirs = split(':',$ENV{PATH});
+	my $dir ="";
+	foreach $dir (@pathDirs) {
+		if ( -x "$dir/$app" ) { return 1 }
+	}
+	return 0;
 }
