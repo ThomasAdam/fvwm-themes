@@ -115,6 +115,9 @@ DestroyModuleConfig FvwmButtons-Laptop: *
 	'Module FvwmPager FvwmPager-Single * *')
 *FvwmButtons-Laptop: (3x4, Frame 1, Swallow (kill) "xapm" \
 	'Exec exec xapm -bg $$[bg.cs13] -fg $$[fg.cs13] -geometry 63x15 -p')
+# size does not fit well
+#*FvwmButtons-Laptop: (3x4, Frame 1, \
+#	Swallow (Kill) "FvwmApplet-APMMon" 'FvwmScript FvwmApplet-APMMon'))
 
 # --------------- Desktop buttons
 DestroyModuleConfig FvwmButtons-Desktop: *

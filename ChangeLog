@@ -1,5 +1,13 @@
 2002-12-05  olicha  <olivier.chapuis@free.fr>
 
+	* themes/minimal/modules/main:
+	* themes/default/menus: 
+	* AUTHORS:
+	* scripts/README:
+	* scripts/FvwmApplet-APMMon:
+	* scripts/Makefile.am:
+	Added FvwmApplet-APMMon from Jason White <jdwhite@jdwhite.org>
+
 	* scripts/FvwmScript-ColorSelector:
 	*FvwmTheme: Colorset --> Colorset
 

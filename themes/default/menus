@@ -177,6 +177,7 @@ AddToMenu   MenuFvwmForms "FvwmForm Tools" Title
 
 DestroyMenu MenuFvwmApplets
 AddToMenu   MenuFvwmApplets "FvwmScript Applets" Title
++ "APM%menu/monitoring.xpm%"     Module FvwmScript FvwmApplet-APMMon
 + "Day%menu/clock.xpm%"		 Module FvwmScript FvwmApplet-Day
 + "DayClock%menu/clock.xpm%"	 Module FvwmScript FvwmApplet-DayClock
 + "DigitalClock%menu/clock.xpm%" Module FvwmScript FvwmApplet-DigitalClock

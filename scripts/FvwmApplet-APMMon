@@ -1,0 +1,155 @@
+WindowTitle {FvwmApplet-APMMon}
+WindowSize 69 25
+#Font           -*-lucida-bold-r-normal-*-11-*-*-*-*-*-*
+Font            -*-helvetica-bold-r-normal-*-12-*-*-*-*-*-*
+# Use the FvwmScript default colors.
+#BackColor {rgb:a0/90/80}
+#ForeColor {black}
+#ShadowColor    {black}
+#HilightColor   {rgb:a0/90/80}
+
+Init
+Begin
+  Set $APMQuery = {cat /proc/apm}
+  # No time remaining info
+  #Set $APMQuery = {echo 1.16 1.2 0x03 0x01 0x00 0x01 100% -1 \?}
+  # On battery
+  #Set $APMQuery = {echo 1.16 1.2 0x03 0x00 0x00 0x01 95% -1 min}
+  # On AC, Charging
+  #Set $APMQuery = {echo 1.16 1.2 0x03 0x01 0x03 0x09 92% -1 min}
+
+  Set $MainColorset=(GetScriptArgument 1)
+  Set $MainColorset=5
+  If $MainColorset <> {} Then
+  Begin
+    ChangeColorset 0 $MainColorset
+    ChangeColorset 1 $MainColorset
+    ChangeColorset 2 $MainColorset
+    ChangeColorset 3 $MainColorset
+
+    ChangeForeColor 1 {#ff0028}
+    ChangeForeColor 2 {black}
+    ChangeForeColor 3 {blue}
+  End
+End
+
+PeriodicTasks
+Begin
+  If (RemainderOfDiv (GetTime) 5)==0 Then
+  Begin
+    # 1.16 1.2 0x03 0x01 0x00 0x01 100% 200 min
+    Set $save_ac_bat = $ac_bat
+    Set $save_charging = $charging
+    Set $changed = 0
+    Set $batcharge = (GetOutput $APMQuery 1 7)
+    Set $remaining = (GetOutput $APMQuery 1 8)
+    Set $ac_batt  =  (GetOutput $APMQuery 1 4)
+    Set $charging =  (GetOutput $APMQuery 1 5)
+  
+    If $remaining == {-1} Then
+      Set $remaining = {}
+
+    Set $remain_hrs = (Div $remaining 60)
+    Set $raw_remain_min = (RemainderOfDiv $remaining 60)
+    Set $cmd = {printf %02d }$raw_remain_min
+    Set $remain_min = (GetOutput $cmd 1 1)
+    
+    If $ac_batt <> $save_ac_batt Then
+      Set $changed = 1
+    If $save_charging <> $charging Then
+      Set $changed = 1
+
+    If $changed == 1 Then
+    Begin
+      Set $title = $batcharge
+      If $remaining <> {} Then
+        Set $title = $title{ }$remain_hrs{:}$remain_min
+    
+      If $save_title <> $title Then
+      Begin
+        Set $save_title= $title
+        ChangeTitle 1 $title
+        ChangeTitle 2 $title
+        ChangeTitle 3 $title
+      End
+    
+      If $ac_batt=={0x01} Then
+      Begin
+        # On AC power
+        If $charging=={0x03} Then
+        Begin
+          # On AC power, battery charging 
+          HideWidget 2
+          HideWidget 3
+          ShowWidget 1
+          #ChangeForeColor 1 {#ff0028} 
+        End
+        Else
+        Begin
+          # On AC power, battery charged
+          HideWidget 1
+          HideWidget 3
+          ShowWidget 2
+          #ChangeForeColor 2 {black}
+        End
+      End  
+      Else
+      Begin
+        # On Battery
+        HideWidget 1
+        HideWidget 2
+        ShowWidget 3
+        #ChangeForeColor 1 {#ff6400}
+        #ChangeForeColor 3 {blue}
+      End
+    End
+  End
+End
+    
+Widget 1
+# AC/Charging
+Property
+  Position 0 0
+  Size 69 25
+  Type ItemDraw
+  Flags NoReliefString
+  Title {APMMon}
+  ForeColor {#ff0028} 
+Main
+  Case message of
+  SingleClic :
+  Begin    
+  End
+End
+        
+Widget 2
+# AC/Charged
+Property
+  Position 0 0
+  Size 69 25
+  Type ItemDraw
+  Flags NoReliefString
+  Title {APMMon}
+  ForeColor {black}
+Main
+  Case message of
+  SingleClic :
+  Begin 
+  End
+End
+  
+Widget 3
+# On Battery
+Property
+  Position 0 0
+  Size 69 25
+  Type ItemDraw
+  Flags NoReliefString
+  Title {APMMon}
+  ForeColor {blue}
+Main    
+  Case message of
+  SingleClic :
+  Begin 
+  End
+End

@@ -7,6 +7,10 @@ The FvwmApplet-* are more or less poor applets that can replace some more
 pretty and/or powerful applets. With the current colors implementation of
 fvwm-themes good colorset options are 10 13 or just 13 for DigitalClock.
 
+* FvwmApplet-APMMon Colorset
+  A 69x25 applet that monitor your battery charge
+  Author: Jason White     <jdwhite@jdwhite.org>
+
 * FvwmApplet-Day [Colorset [Colorset]]
   A 64x64 applet that gives the date. You need `date`. The first colorset is
   for the background, the second one is for the widgets.

@@ -9,6 +9,6 @@ config_DATA = \
 	FvwmScript-ThemesCenter FvwmScript-ComponentProperties \
 	FvwmScript-ColorSelector FvwmScript-GlobalFeel \
 	FvwmScript-FontSelector FvwmScript-ImageBrowser \
-	FvwmScript-Confirm
+	FvwmScript-Confirm FvwmApplet-APMMon
 
 EXTRA_DIST = $(config_DATA)
