@@ -1,3 +1,10 @@
+2000-11-28  olicha  <olivier.chapuis@free.fr>
+
+	* locale/{en,fr}/Makefile.am:
+	* locale/{en,fr}/FvwmScript-ConfigCenter.msg:
+	* scripts/FvwmScript-ConfigCenter
+	Use the new locale methode for The Config Center
+
 2000-11-27  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-menuapp.in:

@@ -154,314 +154,307 @@ Begin
     Set $ShadeFont = {-adobe-helvetica-medium-r-*-*-12-*}
     Set $nonDefaultFont = 0
 
-    #Set $Lang = {en}
+    Set $Lang = {en}
     #Set $Lang = {ru}
-    Set $locateSet = 0
+    Set $locateSet = 1
     If $Lang == {} Then
     Begin
 	Set $cmd = {echo "$LANG" | cut -c1-2}
 	Set $Lang = (GetOutput $cmd 1 -1)
     End
-    Set $locateSet = 0
-    If $Lang == {fr} Then
+
+    Set $msg = {}
+    Set $id = {}
+    Set $cmd = {fvwm-themes-script --get-msg }FvwmScript-ConfigCenter{ --lang }$Lang
+    Set $MSG = (GetOutput $cmd 1 -1)
+    Set $index = 0
+    Set $notdone = 1
+    While $notdone == 1 Do
     Begin
-	### Head
-	Set $locateSet = 1
-	ChangeTitle 1 {Fichier|thèmes Personels|Quitter}
-	ChangeTitle 2 {Général|Focus et Placement|Déplacement & Dimension|Pagination & Paramètres Souris|Fenètres Transitoires & Animation|Indications & Paramètres Avancés|Préférences ...}
-	ChangeTitle 3 {Racourcis|Clavier|Souris|Applications|Stroke|Préférences ...}
-	ChangeTitle 4 {Look|Bouttons|Couleurs|Styles du Menu|Styles des Fenètres|Curseurs|Préférences ...}
-	ChangeTitle 5 {Divers|Effets de Sons|Fond d'écran|Démarrage|Préférences ...}
-	Set $l_OnlyGlobal = {Seulement Global est implementé}
+	Set $index = (Add $index 1)
+	Set $id = (StrCopy $MSG $index (Add $index 11))
+	Set $index = (Add $index 12)
+	Set $tmp = (StrCopy $MSG $index (Add $index 3))
+	Set $index = (Add $index 4)
+	Set $pos = (Add $index $tmp)
+	Set $msg = (StrCopy $MSG $index $pos)
+	Set $index = (Add $index $tmp)
+
+	If $index > 9999 Then
+	    Set $notdone = 0
+	If $id == {END         } Then
+	    Set $notdone = 0
+	If $id == {} Then
+	    Set $notdone = 0
+
+	### Menus
+	If $id == {Menu1       } Then
+	    ChangeTitle 1 $msg
+	If $id == {Menu2       } Then
+	    ChangeTitle 2 $msg
+	If $id == {Menu3       } Then
+	    ChangeTitle 3 $msg
+	If $id == {Menu4       } Then
+	    ChangeTitle 4 $msg
+	If $id == {Menu5       } Then
+	    ChangeTitle 5 $msg
+	If $id == {OnlyGlobal  } Then
+	    Set $l_OnlyGlobal = $msg
+
 	### Focus
-	# no more that 44 characteres in title from 10 to 17
-	ChangeTitle 10 { Règle pour le Focus }
-	ChangeTitle 11 {Cliquer pour avoir le focus}
-	ChangeTitle 12 {Le focus suit la souris}
-	ChangeTitle 13 {Le focus suit la souris sauf sur le fond}
-	ChangeTitle 14 { Options pour le Focus }
-	ChangeTitle 15 {Passer les cliques qui donnent le focus}
-	ChangeTitle 16 {Un clique dans une fenètre la met en avant}
-	ChangeTitle 17 {La "ColorMap" suit le Focus}
+	If $id == {FocusPolicy } Then
+	    ChangeTitle 10 $msg
+	If $id == {ClickToFocus} Then
+	    ChangeTitle 11 $msg
+	If $id == {MouseFocus  } Then
+	    ChangeTitle 12 $msg
+	If $id == {SloppyFocus } Then
+	    ChangeTitle 13 $msg
+	If $id == {FocusOptions} Then
+	    ChangeTitle 14 $msg
+	If $id == {PassClick   } Then
+	    ChangeTitle 15 $msg
+	If $id == {ClickRaise  } Then
+	    ChangeTitle 16 $msg
+	If $id == {ColorMap    } Then
+	    ChangeTitle 17 $msg
+
 	### Placement
-	ChangeTitle 18 { Placement des Fenètres }
-	ChangeTitle 19 { Placement intelligent s'il y de la place, aléatoires si non}
-	ChangeTitle 20 { Placement intelligent s'il y de la place, intéractif si non}
-	ChangeTitle 21 { On essaie toujours de placer intelligemment les fenètres}
-	ChangeTitle 22 { Placement des fenètres toujours interactifs}
-	ChangeTitle 23 { Placement des fenètres en "cascade" (jamais interactif)}
-	ChangeTitle 24 { Options pour le Placement des Fenètres }
-	ChangeTitle 25 { Les nouvelles fenètres prennent le focus }
-	ChangeTitle 26 { On respecte les indications de positions données par les nouvelles fenètres}
+	If $id == {WinPlacement} Then
+	    ChangeTitle 18 $msg
+	If $id == {SmartRandom } Then
+	    ChangeTitle 19 $msg
+	If $id == {SmartActive } Then
+	    ChangeTitle 20 $msg
+	If $id == {CleverPlace } Then
+	    ChangeTitle 21 $msg
+	If $id == {DumbActive  } Then
+	    ChangeTitle 22 $msg
+	If $id == {DumbRandom  } Then
+	    ChangeTitle 23 $msg
+	If $id == {PlacementOpt} Then
+	    ChangeTitle 24 $msg
+	If $id == {GrabFocus   } Then
+	    ChangeTitle 25 $msg
+	If $id == {PPosition   } Then
+	    ChangeTitle 26 $msg
+
 	### Move & Resize
-	ChangeTitle 30 { Déplacement et Redimensionnement }
-	# No more than 25 characteres for 31, 32 and 33, be exact for 31
-	ChangeTitle 31 {Redimensionnement:      }
-	ChangeTitle 32 {Opaque              }
-	ChangeTitle 33 {Avec des lignes     }
-	# be exact
-	ChangeTitle 34 {Déplacement Opaque pour les fenètres prenant moins de      }
-	# No more than
-	ChangeTitle 36 {% de l'écran}
-	# Exactly
-	ChangeTitle 37 {Position de la fenètre de géometrie:      }
-	ChangeTitle 38 {Centrée                }
-	ChangeTitle 39 {En Haut à gauche       }
-	ChangeTitle 40 {Cacher la fenètre de géometrie pour:      }
-	ChangeTitle 41 {Redimensionnement      }
-	ChangeTitle 42 {Déplacement            }
-	ChangeTitle 43 {Activer cette option seulment si les fenètres "flash" lors du déplacement}
-	# Snap attraction
-	ChangeTitle 44 {Attraction des Fenètres lors du Déplacement}
-	# 44 and 46 exactly the same size
-	ChangeTitle 45 {Distance:     }
-	ChangeTitle 47 {Contexte:     }
-	ChangeTitle 48 {Icones & Fenètres|Même type|Fenètres|Icones|Icones, Fenètres & écran|Même type & écran|Fenètres & écran|Icones & écran}
-	# Slow server
-	ChangeTitle 49 {Grille d'attraction:      }
-	ChangeTitle 54{Couleur ou Pixmap XOR pour les "lignes" (et Stroke)}
-	ChangeTitle 55 {Utiliser une couleur          }
-	ChangeTitle 56 {Utiliser un pixmap (xpm)           }
-#	ChangeTitle 57 {Une couleur:       }
-	Set $l_OneColor =  {Une couleur (pixels):     x}
-	Set $l_OnePixmap = {Un Pixmap (xpm):           }
-	Set $l_StartColorSel = {Palette}
-	Set $l_StartImages = {Images}
-	ChangeTitle 59 $l_StartColorSel
+	If $id == {MoveResize  } Then
+	    ChangeTitle 30 $msg
+	If $id == {OpaqueResize} Then
+	    ChangeTitle 32 $msg
+	If $id == {OutLineRes  } Then
+	    ChangeTitle 33 $msg
+	If $id == {Resizing    } Then
+	    ChangeTitle 31 $msg
+	If $id == {OpaqueMove  } Then
+	    ChangeTitle 34 $msg
+	If $id == {ScreenPer   } Then
+	    ChangeTitle 36 $msg
+	If $id == {GeoPosition } Then
+	    ChangeTitle 37 $msg
+	If $id == {GeoCenter   } Then
+	    ChangeTitle 38 $msg
+	If $id == {GeoTopLeft  } Then
+	    ChangeTitle 39 $msg
+	If $id == {HideGeoWin  } Then
+	    ChangeTitle 40 $msg
+	If $id == {HideResize  } Then
+	    ChangeTitle 41 $msg
+	If $id == {HideMove    } Then
+	    ChangeTitle 42 $msg
+	If $id == {BugyMove    } Then
+	    ChangeTitle 43 $msg
+
+	### Snap attraction
+	If $id == {SnapAtract  } Then
+	    ChangeTitle 44 $msg
+	If $id == {SnapDist    } Then
+	    ChangeTitle 45 $msg
+	If $id == {SnapContext } Then
+	    ChangeTitle 47 $msg
+	If $id == {SnapPopup   } Then
+	    ChangeTitle 48 $msg
+	If $id == {SnapGrid    } Then
+	    ChangeTitle 49 $msg
+	If $id == {ColorOrXOR  } Then
+	    ChangeTitle 54 $msg
+	If $id == {UseAColor   } Then
+	    ChangeTitle 55 $msg
+	If $id == {UseAPixmap  } Then
+	    ChangeTitle 56 $msg
+	# line colors
+	If $id == {OneColor    } Then
+	    Set $l_OneColor = $msg
+	If $id == {OnePixmap   } Then
+	    Set $l_OnePixmap = $msg
+	If $id == {SColorSel   } Then
+	    Set $l_StartColorSel = $msg
+	If $id == {StartImages } Then
+	    Set $l_StartImages = $msg
+
 	### Pagination
-	ChangeTitle 60 { Pagination }
-	ChangeTitle 61 {Pagination Horizontale:       }
-	ChangeTitle 62 {Non active|100 %|90 %|75 %|66 %|50 %|33 %|25 %|10 %|5%}
-	ChangeTitle 63 {Pagination Ciculaire          }
-	ChangeTitle 64 {Pagination Verticale:         }
-	ChangeTitle 65 {Non active|100 %|90 %|75 %|66 %|50 %|33 %|25 %|10 %|5%}
-	ChangeTitle 66 {Pagination Ciculaire          }
-	ChangeTitle 67 {Délais avant le changement de page:                }
-	ChangeTitle 69 {ms}
-	ChangeTitle 70 {Résistance pour changer de page une fenètre:       }
-	ChangeTitle 72 {pixels}
-	ChangeTitle 73 {Épaisseur des fenètres de pagination (si active):     }
-	ChangeTitle 75 {pixels}
+	If $id == {Paging      } Then
+	    ChangeTitle 60 $msg
+	If $id == {HPaging     } Then
+	    ChangeTitle 61 $msg
+	If $id == {CirPaging   } Then
+	Begin
+	    ChangeTitle 63 $msg
+	    ChangeTitle 66 $msg
+	End
+	If $id == {Vpaging     } Then
+	    ChangeTitle 64 $msg
+	If $id == {PagingList  } Then
+	Begin
+	    ChangeTitle 62 $msg
+	    ChangeTitle 65 $msg
+	End
+	If $id == {PagingDelay } Then
+	    ChangeTitle 67 $msg
+	If $id == {EdgeResist  } Then
+	    ChangeTitle 70 $msg
+	If $id == {PanFrame    } Then
+	    ChangeTitle 73 $msg
+	If $id == {Msec        } Then
+	Begin
+	    ChangeTitle 69 $msg
+	    ChangeTitle 79 $msg
+	End
+	If $id == {Pixels      } Then
+	Begin
+	    ChangeTitle 72 $msg
+	    ChangeTitle 75 $msg
+	    ChangeTitle 82 $msg
+	End
+
 	### Mouse Parameters
-	ChangeTitle 76 {Paramètres pour la Souris}
-	ChangeTitle 77 {Délais maximum pour un double clique:           }
-	ChangeTitle 79 {ms}
-	ChangeTitle 80 {Distance minimal pour un porté de souris:       }
-	ChangeTitle 82 {pixels}
+	If $id == {MousePara   } Then
+	    ChangeTitle 76 $msg
+	If $id == {DoubleClick } Then
+	    ChangeTitle 77 $msg
+	If $id == {MouseDrag   } Then
+	    ChangeTitle 80 $msg
+
 	### Transient
-	ChangeTitle 90 { Fenètres Transitoires }
-	ChangeTitle 91 { Ne pas décorer les fenètres transitoires }
-	ChangeTitle 92 { Si la fenètre maitre est mis en avant ces fenètres transitoires le sont aussi   }
-	ChangeTitle 93 { Si la fenètre maitre est mis en arrière ces fenètres transitoires le sont aussi }
-	ChangeTitle 94 { Activer la réciproque des 2 options précédentes (si elles sont actives)         }
-	ChangeTitle 95 { Les fenètres transitoires prennent automatiquement le focus                     }
-	# Animation speed
-	ChangeTitle 96 {Vitesse d'animations pour l'ombrage, les menus et les déplacements (non interactifs)}
-	ChangeTitle 97 {Nombre d'étapes pour l'ombrage:       }
-	ChangeTitle 99 { Animer l'intérieur de la fenètre lors d'un ombrage                              }
-	ChangeTitle 100 {Menus et Déplacements:         }
-	ChangeTitle 101 {Vitesse (ms):          }
-	ChangeTitle 103 {Liste des déplacements:          }
-	ChangeTitle 105 {Exemples:      }
-	# max 24
-      	ChangeTitle 106 {Défault|Rapide|Immédiat|Lent|Lent/Rapide|Rapide/Lent}
+	If $id == {TransientWin} Then
+	    ChangeTitle 90 $msg
+	If $id == {TransNDecor } Then
+	    ChangeTitle 91 $msg
+	If $id == {TransRaise  } Then
+	    ChangeTitle 92 $msg
+	If $id == {TransLower  } Then
+	    ChangeTitle 93 $msg
+	If $id == {TransMore   } Then
+	    ChangeTitle 94 $msg
+	If $id == {TransGrab   } Then
+	    ChangeTitle 95 $msg
+
+	### Animation speed
+	If $id == {AnimTitle   } Then
+	    ChangeTitle 96 $msg
+	If $id == {ShadeStep   } Then
+	    ChangeTitle 97 $msg
+	If $id == {ShadeScroll } Then
+	    ChangeTitle 99 $msg
+	If $id == {AnimMenu    } Then
+	    ChangeTitle 100 $msg
+	If $id == {AnimSpeed   } Then
+	    ChangeTitle 101 $msg
+	If $id == {AnimSeq     } Then
+	    ChangeTitle 103 $msg
+	If $id == {AnimEx      } Then
+	    ChangeTitle 105 $msg
+	If $id == {AnimList    } Then
+	    ChangeTitle 106 $msg
+
 	### Hints
-	# no more that 39 characteres in title from 111 to 116
-	ChangeTitle 110 { Accèpter les Indications du type suivant: (dites oui à tout!)}
-	ChangeTitle 111 {Décores MWM}
-	ChangeTitle 112 {OLD}
-	ChangeTitle 113 {À l'exception de l'ombrage}
-	ChangeTitle 114 {Fonctions MWM}
-	ChangeTitle 115 {GNOME}
-	ChangeTitle 116 {À l'exception des fenètres modales}
+	If $id == {HintsTitle  } Then
+	    ChangeTitle 110 $msg
+	If $id == {MWMDecor    } Then
+	    ChangeTitle 111 $msg
+	If $id == {OLDHints    } Then
+	    ChangeTitle 112 $msg
+	If $id == {ButShade    } Then
+	    ChangeTitle 113 $msg
+	If $id == {MWMFunctions} Then
+	    ChangeTitle 114 $msg
+	If $id == {GNOMEHints  } Then
+	    ChangeTitle 115 $msg
+	If $id == {ButModal    } Then
+	    ChangeTitle 116 $msg
+
 	### Busy cursor
-	ChangeTitle 117 {Afficher le curseur "je suis occupé" lors des commandes suivantes}
-	
-	### 
-	ChangeTitle 122 {Avancés: voir la page de manuel de fvwm2 (les défauts sont bons!)}
-	ChangeTitle 123 {Limité le nombre de couleurs à:               }
-	ChangeTitle 127 {Temps accordé à un module pour obtenir une réponse:        }
+	If $id == {BusyTitle   } Then
+	    ChangeTitle 117 $msg
+
+	### Advenced
+	If $id == {AdvTitle    } Then
+	    ChangeTitle 122 $msg
+	If $id == {ColorLimit  } Then
+	    ChangeTitle 123 $msg
+	If $id == {ModTimeOut  } Then
+	    ChangeTitle 127 $msg
+
 	### Preference
-	ChangeTitle 950 {Thèmes et Fichers}
-	Set $tmp = {Au démarrage la composente } $Component { courrante, provenant de "} $GF_CurrentTheme {", a été chargé}
-	ChangeTitle 951 $tmp
-	ChangeTitle 952 {Charger la configuration de:        }
-	ChangeTitle 955 {Charger}
-	ChangeTitle 956 {Thème pour sauvé:        }
-	ChangeTitle 958 {En choisir un autre:            }
-	ChangeTitle 960 {OK}
-	ChangeTitle 961 {Préférences}
-	ChangeTitle 962 {"Essayer" s'applique à tout et pas seulement à la page courrante                          }
-	ChangeTitle 963 {"Défauts" recharge les défauts pour tout et pas seulement pour la page courrante           }
-	ChangeTitle 964 {"Sauver" s'applique à tout et pas seulement à la page courrant                            }
-	### end
-	Set $l_ConfigLoaded = {Configuration Chargée}
-	ChangeTitle 991 {Sauver}
-	Set $l_SavedInternally = {Changements Sauvés (Localement)}
-	Set $l_SavedExternally = {Changements Sauvés (Globalement)}
-	ChangeTitle 992 {Essayer}
-	Set $l_AppliedInternally = {Changement Appliqués Localement}
-	Set $l_AppliedExternally = {Changement Appliqués Globalement}
-	Set $l_NoEffectHere = {Ceci ne fait rien ici}
-	Set $l_Error = {Erreur:}
-	ChangeTitle 993 {Défauts}
-	ChangeTitle 994 {Aide}
-	ChangeTitle 995 {Quitter}
-    End
-    If $Lang == {ru} Then
-    Begin
-    End
-    If $locateSet == 0 Then
-    Begin
-	# Head
-	# Check for the first entries of 1 to 5
-	ChangeTitle 1 {File|Personal themes|Quit}
-	ChangeTitle 2 {Global Feel|Focus and Placement|Move & Resize|Paging & Mouse Parameters|Transient Windows & Animation|Hints & Advanced Parameters|Preferences...}
-	ChangeTitle 3 {Bindings|Keybooard|Mouse|Applications|Stroke|Preferences...}
-	ChangeTitle 4 {Look|Buttons|Colours|Menu Style|Window Look|Cursors|Preferences...}
-	ChangeTitle 5 {Misc|Sound Effect|Background|Start|Preferences...}
-	Set $l_OnlyGlobal = {Only Global Feel is implemented}
-	### Focus
-	# no more that 44 characteres in title from 10 to 17
-	ChangeTitle 10 { Focus Policy }
-	ChangeTitle 11 {Click on a window to get Focus}
-	ChangeTitle 12 {The Focus follows mouse}
-	ChangeTitle 13 {The Focus follows mouse but on the root}
-	ChangeTitle 14 { Options for the Focus }
-	ChangeTitle 15 {Click to Focus passes a click to the window}
-	ChangeTitle 16 {A click on a window raises it}
-	ChangeTitle 17 {The "ColorMap" follows the Focus}
-	### Placement
-	ChangeTitle 18 { Window Placement }
-	ChangeTitle 19 { Placement is smart if there is free place, stairs if not}
-	ChangeTitle 20 { Placement is smart if there is free place, active if not}
-	ChangeTitle 21 { Placement is always clever }
-	ChangeTitle 22 { Placement is always active }
-	ChangeTitle 23 { Placement is always stairs }
-	ChangeTitle 24 { Options for the Window Placement }
-	ChangeTitle 25 { New windows take the focus }
-	ChangeTitle 26 { Take into account the program specified position (PPosition hint) }
-	### Move & Resize
-	ChangeTitle 30 { Move and Resize }
-	# No more than 25 characteres for 31, 32 and 33, be exact for 31
-	ChangeTitle 31 {Resize:                 }
-	ChangeTitle 32 {Opaque              }
-	ChangeTitle 33 {Out Line            }
-	# be exact
-	ChangeTitle 34 {Use Opaque Move for windows which take less than           }
-	# No more than 20
-	ChangeTitle 36 {% of the screen}
-	# Exactly for 37 & 40, fit in the box for the others
-	ChangeTitle 37 {Position of the geometry window:          }
-	ChangeTitle 38 {Centered               }
-	ChangeTitle 39 {On the top left        }
-	ChangeTitle 40 {Hide the geometry window for:             }
-	ChangeTitle 41 {Resizing               }
-	ChangeTitle 42 {Moving                 }
-	# check
-	ChangeTitle 43 { Activate this option only if your windows flash when moved }
-	# Snap attraction
-	ChangeTitle 44 { Attraction of the Windows during a Move }
-	# be exact, but check 48 
-	ChangeTitle 45 {Distance:     }
-	ChangeTitle 47 {Context:      }
-	ChangeTitle 48 {Icons & Windows|Same type|Windows|Icons|Icons, Windows & screen|Same type & screen|Windows & screen|Icons & screen}
-	ChangeTitle 49 {Attraction Grid:      }
-	ChangeTitle 54 { Color or Pixmap XOR for the Lines (and Stroke) }
-	ChangeTitle 55 {Use a Color                  }
-	ChangeTitle 56 {Use a Pixmap (xpm)                 }
-#	ChangeTitle 57 {A color:           }
-	Set $l_OneColor =  {A Color (pixels):         }
-	Set $l_OnePixmap = {A Pixmap (xpm):           }
-	# check
-	Set $l_StartColorSel = {Palette}
-	Set $l_StartImages = {Images}
-	ChangeTitle 59 $l_StartColorSel
-	### Pagination (be exact for 61,64,67,70,73); check the others
-	ChangeTitle 60 { Paging }
-	ChangeTitle 61 {Horizontal Paging:            }
-	ChangeTitle 62 {Disabled|100 %|90 %|75 %|66 %|50 %|33 %|25 %|10 %|5%}
-	ChangeTitle 63 {Circular Paging               }
-	ChangeTitle 64 {Vertical Paging               }
-	ChangeTitle 65 {Disabled|100 %|90 %|75 %|66 %|50 %|33 %|25 %|10 %|5%}
-	ChangeTitle 66 {Circular Paging               }
-	ChangeTitle 67 {Delay before a page switching:                     }
-	ChangeTitle 69 {msec}
-	ChangeTitle 70 {Resistance for moving a window between pages:      }
-	ChangeTitle 72 {pixels}
-	ChangeTitle 73 {Edge thickness when paging (if enabled):              }
-	ChangeTitle 75 {pixels}
-	### Mouse Parameters (be exact for 77,80)
-	ChangeTitle 76 { Mouse parameters }
-	ChangeTitle 77 {Maximal delay for a double click:               }
-	ChangeTitle 79 {msec}
-	ChangeTitle 80 {Minimal distance for a mouse drag:              }
-	ChangeTitle 82 {pixels}
-	### Transient (check)
-	ChangeTitle 90 { Transient Windows }
-	ChangeTitle 91 { Do not decorate transient windows }
-	ChangeTitle 92 { Raise all window transients together with the parent window }
-	ChangeTitle 93 { Lower all window transients together with the parent window }
-	# this boolean should be reversed, with the default "true"
-	ChangeTitle 94 { Don't transfer raise/lower action from the transient to the parent }
-	ChangeTitle 95 { A new transient window automaticaly takes the focus }
-	# Animation speed
-	ChangeTitle 96 { Animation for shading, menus and animated moves }
-	# be exact for 97,100,101,103,105, use the box for 99
-	ChangeTitle 97 {Number of steps for shading:          }
-	ChangeTitle 99 { Animate the interior of the window when shading                                 }
-	ChangeTitle 100 {Menus and animated Move:       }
-	ChangeTitle 101 {Speed (msec):          }
-	ChangeTitle 103 {List of the positions:           }
-	ChangeTitle 105 {Examples:      }
-	# max 24
-      	ChangeTitle 106 {Default|Fast|Immediate|Slow|Slow/Fast|Fast/Slow}
-	### Hints
-	# no more that 39 characteres in title from 111 to 116
-	ChangeTitle 110 { Use the hints of the following types (say yes to all!) }
-	ChangeTitle 111 {MWM Decor}
-	ChangeTitle 112 {OLD Hints}
-	ChangeTitle 113 {Ignore shading hints}
-	ChangeTitle 114 {MWM Function}
-	ChangeTitle 115 {GNOME Hints}
-	ChangeTitle 116 {Ignore modality hints}
-	### Busy cursor
-	ChangeTitle 117 { Display the Busy Cursor during execution of the following commands }
-	### Advanced
-	ChangeTitle 122 { Advanced: see fvwm2 manual page (defaults are good!) }
-	# be exact with 123 and 127
-	ChangeTitle 123 {Limit the numbers of colors to:               }
-	ChangeTitle 127 {Maximal time given to a module to return an answer:       }
-	### Preferences
-	ChangeTitle 950 { Themes and Files }
-	Set $tmp = {At start the current component } $Component {, from the theme } $GF_CurrentTheme {, has been loaded}
-	ChangeTitle 951 $tmp
-	# exact, but check for 955,960 
-	ChangeTitle 952 {Load the configuration from:        }
-	ChangeTitle 955 {Load}
-	ChangeTitle 956 {Theme for saving:        }
-	ChangeTitle 958 {Choose another one:             }
-	ChangeTitle 960 {OK}
-	# Preference
-	ChangeTitle 961 { Preferences }
-	ChangeTitle 962 {Apply "Try" to the all globalfeel screens, not only to the current one }
-	ChangeTitle 963 {Apply "Default" to the all globalfeel screens, not only to the current one }
-	ChangeTitle 964 {Apply "Save" to the all globalfeel screens, not only to the current one }
-	### end
-	Set $l_ConfigLoaded = { Configuration Loaded }
-	ChangeTitle 991 {Save}
-	Set $l_SavedInternally = { Modifications Saved (Internally)}
-	Set $l_SavedExternally = { Modifications Saved (Globally)}
-	ChangeTitle 992 {Try}
-	Set $l_AppliedInternally = { Modifications Applied Internally}
-	Set $l_AppliedExternally = { Modifications Applied Globally}
-	Set $l_NoEffectHere = { This has no effect here }
-	Set $l_Error = {Error:}
-	ChangeTitle 993 {Default}
-	ChangeTitle 994 {Help}
-	ChangeTitle 995 {Quit}
+	If $id == {PrefFile    } Then
+	    ChangeTitle 950 $msg
+	If $id == {BPrefLoaded } Then
+	    Set $l_BPrefLoaded = $msg
+	If $id == {MPrefLoaded } Then
+	    Set $l_MPrefLoaded = $msg
+	If $id == {APrefLoaded } Then
+	    Set $l_APrefLoaded = $msg	    
+	If $id == {PrefLoad    } Then
+	    ChangeTitle 952 $msg    
+	If $id == {PrefSave    } Then
+	    ChangeTitle 956 $msg
+	If $id == {PrefAnother } Then
+	    ChangeTitle 958 $msg
+	If $id == {Load        } Then
+	    ChangeTitle 955 $msg
+	If $id == {Ok          } Then
+	    ChangeTitle 960 $msg    
+	If $id == {Preference  } Then
+	    ChangeTitle 961 $msg
+	If $id == {TryIsGlobal } Then
+	    ChangeTitle 962 $msg
+	If $id == {DefIsGlobal } Then
+	    ChangeTitle 963 $msg
+	If $id == {SaveIsGlobal} Then
+	    ChangeTitle 964 $msg
+
+	### End
+	If $id == {ConfigLoaded} Then
+	    Set $l_ConfigLoaded = $msg
+	If $id == {Save        } Then
+	    ChangeTitle 991 $msg
+	If $id == {SavedInter  } Then
+	    Set $l_SavedInternally = $msg
+	If $id == {SavedExter  } Then
+	    Set $l_SavedExternally = $msg
+	If $id == {Try         } Then
+	    ChangeTitle 992 $msg
+	If $id == {AppliedInter} Then
+	    Set $l_AppliedInternally = $msg
+	If $id == {AppliedExter} Then    
+	    Set $l_AppliedExternally = $msg
+	If $id == {NoEffectHere} Then
+	    Set $l_NoEffectHere = $msg
+	If $id == {Error       } Then
+	    Set $l_Error = $msg
+	If $id == {Default     } Then
+	    ChangeTitle 993 $msg
+	If $id == {Help        } Then
+	    ChangeTitle 994 $msg
+	If $id == {Quit        } Then
+	    ChangeTitle 995 $msg	
     End
 
+    ChangeTitle 59 $l_StartColorSel
+    Set $tmp = $l_BPrefLoaded $Component $l_MPrefLoaded $GF_CurrentTheme $l_APrefLoaded
+    ChangeTitle 951 $tmp
 
 
     ChangeFont 991 $ShadeFont
