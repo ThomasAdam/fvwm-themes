@@ -511,7 +511,7 @@ sub loadCfgCacheFile () {
 			require "$userDir/$cfgCacheFileName";
 		};
 		if ($@) {
-			print STDERR "Warning: a problem arise when loding " .
+			print STDERR "Warning: a problem arised when loading " .
 				"$userDir/$cfgCacheFileName:\n$@\n";
 			unlink "$userDir/$cfgCacheFileName";
 		}
