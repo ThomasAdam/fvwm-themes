@@ -4,6 +4,10 @@
 	* themes/afterstep/buttons: correction
 	* themes/default/styles: panel is now GNOMEIgnoreHints...
 
+	* themes/multichoice/buttons/images/shinymetal.tar.gz:
+	* themes/multichoice/buttons.cfg:
+	added a new button image set from Enlightenment DR15 :)
+
 2001-05-13  migo  <migo@homemail.com>
 
 	* themes/multichoice/buttons.cfg:
