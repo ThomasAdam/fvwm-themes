@@ -31,7 +31,7 @@ while [ "x$1" != "x" ]; do
 		whoseArgs="fvwm" ;;
 	*)
 		if [ "$whoseArgs" = "fvwm" ]; then
-			fvwmArgs="$fvwmArgs '$1'"
+			fvwmArgs="$fvwmArgs $1"
 		else
 			case "$1" in
 			--no-start|-no-start|-n)

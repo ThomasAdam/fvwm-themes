@@ -3,6 +3,9 @@
 	* bin/fvwm-themes-config.in:
 	reenabled FuncFvwmRemove*Bindings
 
+	* bin/fvwm-themes-start.in:
+	fixed parameters after --, still problematical if contain a space
+
 2000-10-29  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
