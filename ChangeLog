@@ -18,6 +18,11 @@
 	* themes/awol/images/background/bckgnd[2456].xpm:
 	added some new page backgrounds
 
+	* themes/awol/README:
+	updated
+	* themes/awol/colors:
+	replaced lightgreen (rgb:90/ee/90) with more pleasing rgb:50/a0/50
+
 2003-10-01  migo  <migo@homemail.com>
 
 	* NEWS:
