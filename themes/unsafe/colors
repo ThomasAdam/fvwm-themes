@@ -70,22 +70,22 @@ Colorset 7 fg grey40, bg grey40, Plain, NoShape
 Colorset 10 fg black, bg grey50, Plain, NoShape
 
 # default hilight
-Colorset 11 fg red, bg black, Plain, NoShape
+Colorset 11 fg gray20, bg gray64, Plain, NoShape
 
 # special
 Colorset 12 fg grey60, bg grey20, VGradient 50 grey35 black, NoShape
 
 # swallowed window
-Colorset 13 fg grey60, bg black,  hi grey60, sh gray40, Plain, NoShape
+Colorset 13 fg black, bg gray44, Plain, NoShape
 
 # default2 (FvwmPager or to get more colors in Buttons)
 Colorset 14 fg grey70, bg grey35, Plain, NoShape
 
 # default hilight2: (FvwmPager or to get more colors in a Buttons)
-Colorset 15 fg grey70, bg #475293, Plain, NoShape
+Colorset 15 fg grey70, bg rgb:47/52/93, Plain, NoShape
 
 # tips/balloons
-Colorset 16 fg rgb:c0/31/20, bg black, Plain, NoShape
+Colorset 16 fg rgb:e0/e0/a0, bg rgb:50/20/20, Plain, NoShape
 
 # ----------------------------
 # Window List Module Colorsets
@@ -113,7 +113,7 @@ Colorset 20 fg grey, bg grey40, \
 Colorset 21 fg grey70, bg black, Plain, NoShape
 
 # FvwmConsole
-Colorset 22 fg yellow4, bg grey30, Plain, NoShape
+Colorset 22 fg yellow4, bg grey26, Plain, NoShape
 
 # ----------------------------------------------------------------------------
 # III. Application Colorsets
@@ -134,7 +134,7 @@ Colorset 33 fg white, bg rgb:00/30/00, Plain, NoShape
 Colorset 34 fg black, bg grey70, Plain, NoShape
 
 # dialog main area
-Colorset 35 fg grey70, bg black, Plain, NoShape
+Colorset 35 fg grey, bg rgb:50/20/40, Plain, NoShape
 
 # dialog text area
 Colorset 36 fg black, bg grey70, Plain, NoShape
