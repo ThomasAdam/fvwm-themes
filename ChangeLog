@@ -20,6 +20,15 @@
 	* themes/default/settings/iconstyles/disabled:
 	temporarily disable EWMH*Donate*Icon
 
+	* themes/default/settings/iconstyles/wm-icons-menu:
+	remove binding on unload
+
+	* themes/default/settings.cfg:
+	* themes/default/settings/automenus/headlines/disabled:
+	* themes/default/settings/automenus/headlines/enabled:
+	* NEWS:
+	added new setting: Auto Menus / Headlines
+
 2002-06-02  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings.cfg: 

@@ -1,0 +1,41 @@
+AddToMenu MenuFvwmPrograms
++ "%menu/www.xpm%Headlines" Popup MenuFvwmHeadlines
+
+DestroyFunc FuncFvwmMenuHeadlines
+AddToFunc   FuncFvwmMenuHeadlines
++ I PipeRead `fvwm-menu-headlines --frontpage --wm-icons --site $0`
+
+DestroyMenu MenuFvwmHeadlines
+AddToMenu   MenuFvwmHeadlines "Headlines" Title
++ MissingSubmenuFunction FuncFvwmMenuHeadlines
++ "%menu/www.xpm%FreshMeat"  Popup freshmeat
++ "%menu/www.xpm%LinuxToday" Popup linuxtoday
++ "%menu/www.xpm%Slashdot"   Popup slashdot
++ "%menu/www.xpm%LinuxApps"  Popup linuxapps
++ "%menu/www.xpm%DaemonNews" Popup daemonnews
++ "%menu/www.xpm%GNOME News" Popup gnome-news
++ "%menu/www.xpm%KDE News"   Popup kde-news
++ "%menu/www.xpm%RootPrompt" Popup rootprompt
++ "%menu/www.xpm%NewsForge"  Popup newsforge
++ "%menu/www.xpm%Kuro5hin"   Popup kuro5hin
++ "%menu/www.xpm%BBSpot"     Popup bbspot
++ "%menu/www.xpm%LinuxFr"    Popup linuxfr
++ "%menu/www.xpm%ThinkGeek"  Popup thinkgeek
++ "" Nop
++ "%menu/refresh.xpm%Reset all"  FuncFvwmResetHeadlines
+
+DestroyFunc FuncFvwmResetHeadlines
+AddToFunc   FuncFvwmResetHeadlines
++ I DestroyMenu freshmeat
++ I DestroyMenu linuxtoday
++ I DestroyMenu slashdot
++ I DestroyMenu linuxapps
++ I DestroyMenu daemonnews
++ I DestroyMenu gnome-news
++ I DestroyMenu kde-news
++ I DestroyMenu rootprompt
++ I DestroyMenu newsforge
++ I DestroyMenu kuro5hin
++ I DestroyMenu bbspot
++ I DestroyMenu linuxfr
++ I DestroyMenu thinkgeek
