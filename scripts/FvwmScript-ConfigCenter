@@ -138,7 +138,7 @@ Begin
     Set $nonDefaultFont = 0
 
     #Set $Lang = {en}
-    Set $Lang = {ru}
+    #Set $Lang = {ru}
     If $Lang == {} Then
     Begin
 	Set $cmd = {echo "$LANG" | cut -c1-2}
