@@ -6,6 +6,10 @@
 	* configure.in:
 	rewrite fvwm version matching, so it should work on Solaris too
 
+	* bin/fvwm-themes-start.in:
+	replace "which" (it always returns 0 on Solaris) with "type",
+	hopefully it is portable; also Solaris /bin/sh does not recognize "!"
+
 2001-03-05  migo  <migo@homemail.com>
 
 	* forms/FvwmForm-ThemeSettings:

@@ -94,12 +94,12 @@ if [ "$isNewVersion" = 1 -o "$isNewSession" = 1 ]; then
 fi
 
 # check that @FVWM_BINDIR@ (fvwm2) is in $PATH
-if ! which fvwm2 >/dev/null; then
+if type fvwm2 >/dev/null 2>&1; then :; else
 	PATH="@FVWM_BINDIR@:$PATH"
 fi
 
 # check that @bindir@ (fvwm-themes-config) is in $PATH
-if ! which fvwm-themes-config >/dev/null; then
+if type fvwm-themes-config >/dev/null 2>&1; then :; else
 	PATH="@bindir@:$PATH"
 fi
 
