@@ -100,7 +100,10 @@ Begin
 	ChangeTitle 16 {Composantes des Thèmes Utilisées et Sélectionnées}
 	ChangeTitle 18 {Propriétés}
 	ChangeTitle 19 {Rétablir}
-	ChangeTitle 20 {Supprimer}
+	ChangeTitle 20 {Enlever}
+	Set $l_Lock = {Bloquer}
+	Set $l_Unlock = {Débloquer}
+	ChangeTitle 100 $l_Lock
 	Set $l_NoProperties = {Cette composente n'a pas d'options ni de sous composantes}
 	Set $l_OnlyThreeEditor = {Vous pouvez utilisez seulement 3 éditeurs de Propriétés}
 	Set $l_PropertyEditor = {L'éditeur de Propriétés pour}
@@ -112,7 +115,7 @@ Begin
 	ChangeTitle 21 {Composantes Utilisées et Sélectionnées}
 	ChangeTitle 23 {Rétablir}
 	ChangeTitle 24 {Info}
-	ChangeTitle 25 {Supprimer}
+	ChangeTitle 25 {Enlever}
 	ChangeTitle 26 {Sélectionnez une composante}
 	Set $l_VariantsFor = {Variante pour}
 	ChangeTitle 28 {Sélectionner}
@@ -192,6 +195,10 @@ Begin
 	ChangeTitle 18 {ó×ÏÊÓÔ×Á}
 	ChangeTitle 19 {÷ÏÚ×ÒÁÔ}
 	ChangeTitle 20 {õÄÁÌÉÔØ}
+	# need translation!
+	Set $l_Lock = {Lock}
+	Set $l_Unlock = {Unlock}
+	ChangeTitle 100 $l_Lock
 	Set $l_NoProperties = {üÔÏÔ ËÏÍĞÏÎÅÎÔ ÎÅ ÉÍÅÅÔ ÏĞÃÉÊ, ×ÁÒÉÁÎÔÏ× ÉÌÉ ĞÏÄ-ËÏÍĞÏÎÅÎÔÏ×}
 	Set $l_PropertyEditor = {òÅÄÁËÔÏÒ Ó×ÏÊÓÔ× ÄÌÑ}
 	Set $l_AlreadyActive = {ÕÖÅ ÁËÔÉ×ÎÙÊ}
@@ -276,6 +283,9 @@ Begin
 	ChangeTitle 18 {Properties}
 	ChangeTitle 19 {Restore}
 	ChangeTitle 20 {Drop}
+	Set $l_Lock = {Bloquer}
+	Set $l_Unlock = {Débloquer}
+	ChangeTitle 100 $l_Lock
 	Set $l_NoProperties = {This used or set component has no options, variants or subcomponents}
 	Set $l_PropertyEditor = {Property editor for}
 	Set $l_AlreadyActive = {already active}
@@ -429,6 +439,7 @@ Begin
     ChangeFont 24 $ShadeFont
     ChangeFont 25 $ShadeFont
     ChangeFont 28 $ShadeFont
+    ChangeFont 100 $ShadeFont
     # change the fonts for non west-european language
     If $nonDefaultFont == 1 Then
     Begin
@@ -516,6 +527,7 @@ Begin
 	    HideWidget $tmp
  	    Set $tmp = (Add $tmp 1)
 	End
+	HideWidget 100
     End
 
     If $HideGeneralSettings == {1} Then
@@ -556,6 +568,7 @@ Begin
 	    ShowWidget $tmp
  	    Set $tmp = (Add $tmp 1)
 	End
+	ShowWidget 100
     End
 
     If $ShowGeneralSettings == {1} Then
@@ -731,12 +744,18 @@ Begin
 	    Set $CSCompHasOpt = (StrCopy $tmp 1 1)
 	    Set $CSCompIsSet = (StrCopy $tmp 2 2)
 	    Set $CSCompCanBeDropped = (StrCopy $tmp 3 3)
+	    Set $CSCompIsLocked = (StrCopy $tmp 4 4)
 	    Set $UpdateCSButtons = 1
 	End
     End
 
     If $UpdateCSButtons == 1 Then
     Begin
+	ChangeFont 100 $SelFont
+	If $CSCompIsLocked == 1 Then
+	    ChangeTitle 100 $l_Unlock
+	Else
+	    ChangeTitle 100 $l_Lock
 	Set $UpdateCSButtons = 0
 	If $CSCompHasOpt == 1 Then
 	    ChangeFont 18 $SelFont
@@ -1219,7 +1238,7 @@ Widget 17
 Property
     Flags NoReliefString
     Position 30 290
-    Size 445 110
+    Size 445 115
     Font fixed
     Type List
     Title {}
@@ -1241,7 +1260,7 @@ End
 Widget 18
 Property
     Flags NoReliefString
-    Position 490 295
+    Position 490 290
     Size 80 20
     Type PushButton
     Title {}
@@ -1324,7 +1343,7 @@ End
 Widget 19
 Property
     Flags NoReliefString
-    Position 490 330
+    Position 490 320
     Size 80 20
     Type PushButton
     Title {}
@@ -1367,7 +1386,7 @@ End
 Widget 20
 Property
     Flags NoReliefString
-    Position 490 365
+    Position 490 350
     Size 80 20
     Type PushButton
     Title {}
@@ -1393,6 +1412,35 @@ SingleClic :
     If $break == 1 Then
     Begin
 	ChangeTitle 95 $l_DropNotImp
+    End
+ End
+End
+
+# Lock
+Widget 100
+Property
+    Flags NoReliefString
+    Position 490 380
+    Size 80 20
+    Type PushButton
+    Title {}
+Main
+Case message of
+SingleClic :
+ Begin
+    Set $break = 1
+    Set $test = 0
+    If $CSCompIndex == 0 Then
+    Begin
+	ChangeTitle 95 $l_MustSelectCurrentComp
+	Set $break = 0
+    End
+    If $break == 1 Then
+    Begin
+	Set $cmd = $SendMsgAndGet{"lock }$CSCompName{"}
+	Set $dummy = (GetOutput $cmd 1 -1)
+	Set $UpdateTSLists = 1
+	Set $NullMessage = 1
     End
  End
 End

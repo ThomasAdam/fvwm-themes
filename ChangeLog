@@ -1,3 +1,24 @@
+2000-10-10 olicha  <olivier.chapuis@free.fr>
+
+	* themes/spurce/{colors,buttons}:
+	* TODO:
+	Use vector buttons in the place of XPM for buttons. If there
+	no objections I will remove the spruce XPM buttons
+
+	* themes/olicha/README:
+	* themes/afterstep/README:
+	* themes/blackbox/README:
+	* themes/migo/README:
+	Updated
+
+	* TODO:
+	Updated (discutions in fvwm-themes-devel)
+ 
+	* bin/fvwm-themes-config.in (comLoop): 
+	* scripts/FvwmScript-ThemesCenter:
+	Implementation of "lock" in the ThemeCenter. Starting the 
+	implementation of "drop"
+
 2000-10-09  olicha  <olivier.chapuis@free.fr>
 
 	* themes/{afterstep,awol,blackbox,olicha}/*

@@ -1625,6 +1625,8 @@ sub comLoop {
 	my %componentToLoad = ();
 	my %optionToSet = ();
 	my %variantToSet = ();
+	my %componentToLock = ();
+	my %componentToDrop = ();
 
 	my $allThemes = getAllThemes();
 	my $tmp = $self->{$componentKey};
@@ -1752,27 +1754,47 @@ sub comLoop {
 				my $usedString;
 				my $set = 0;
 				my $theme;
+				my $cc;
 				if (defined $self->{'cc'}->{$_}) { 
-					my $cc = $self->getComponentCfg($_);
+					$cc = $self->getComponentCfg($_);
 					$theme = $cc->{'theme'};
 					$usedString = ($cc->{'locked'}) ? "Locked: " : "Used: ";
 					$usedString .= "$theme";
 				} else {
 					$usedString = "Not Used";
+					$set = -1;
 				}
 				my $stateString = "";
-				$set = 1 if defined $componentToLoad{$_};
-				$usedString = "(" . $usedString . ")" if $set;
+				my $setOrLock = "Set: ";
+				if (defined $componentToLoad{$_}) {
+					$set = 1;
+					$theme = $componentToLoad{$_};
+					$setOrLock = "Lock: " 
+						if (defined $componentToLock{$_} && 
+							$componentToLock{$_} == 1);
+				} elsif (defined $componentToDrop{$_}) {
+					$set = -1;
+				} elsif (defined $componentToLock{$_}) {
+					$set = 2;
+					$setOrLock = ($componentToLock{"$_"}) ? "Lock it" : "Unlock it";
+					$setOrLock = "" if ($componentToLock{"$_"} == $cc->{'locked'})
+				}
+				$usedString = "(" . $usedString . ")" if $set == 1;
 				my $l = $maxLength - length($usedString);
 				$l = 1 if $l < 1;
-				$stateString = " " x $l . "Set: $componentToLoad{$_}" if $set;
+				$stateString = " " x $l . $setOrLock . "$componentToLoad{$_}" 
+					if $set == 1;
+				$stateString = " " x $l . "Drop it!" 
+					if $set == -1;
+				$stateString = " " x $l . $setOrLock
+					if $set == 2;
 				my $l1 = $maxLength - 3 - length($stateString) + $l;
 				$l1 = 1 if $l1 < 1;
-				if ($set) {
+				if ($set == 1) {
 					my $themeCfg = new Fvwm::ThemeCfg($componentToLoad{$_});
 					$dd = $themeCfg->getComponentCfg($_);
 					$theme = $dd->{'theme'};
-				} else {
+				} elsif ($set == 0 || $set == 2) {
 					$dd = $self->getComponentCfg($_);
 				}
 				my $contains = $dd->{'contains'};
@@ -1816,7 +1838,8 @@ sub comLoop {
 			my $dd = [];
 			my $index = $1;
 			my $i = 1;
-			my ($comp,$theme,$hasProperties,$drop,$set) = ("","","0","0","0");
+			my ($comp,$theme,$hasProperties,$drop,$set,$lock) = 
+				("","","0","0","0","0");
 			foreach (@currentComponents) {
 				next if $_ eq "settings";
 				if ($i == $index) {
@@ -1827,6 +1850,10 @@ sub comLoop {
 					} else {
 						my $cc = $self->getComponentCfg($_);
 						$theme = "$cc->{'theme'}";
+						$lock = "$cc->{'locked'}";
+					}
+					if (defined $componentToLock{$_}) {
+						$lock = $componentToLock{$_};
 					}
 				}
 				$i++;
@@ -1865,16 +1892,18 @@ sub comLoop {
 			}
 			### fixe me: How to know if the component is drop-able??
 			$drop = 1;
-			$return = "$comp\n$theme\n$hasProperties$set$drop";
+			$return = "$comp\n$theme\n$hasProperties$set$drop$lock";
 		}
 		# -------------------------------------------------
 		elsif ($command =~ /^restore\s+(.+)$/) {
 			my $comp = $1;
 			my $theme = "";
 			my $cc;
+			delete($componentToLock{$comp}) 
+					if (defined $componentToLock{$comp});
 			if (defined $componentToLoad{$comp}) {
 				$theme=$componentToLoad{$comp};
-				delete($componentToLoad{$comp});	
+				delete($componentToLoad{$comp});
 				my $i = 0;
 				my @tmp = @currentComponents;
 				foreach (@tmp) {
@@ -1885,6 +1914,8 @@ sub comLoop {
 				my $themeCfg = new Fvwm::ThemeCfg($theme);
 				$cc = $themeCfg->getComponentCfg($comp);
 			} else {
+				delete $componentToDrop{$comp}
+					if (defined $componentToDrop{$comp});
 				$cc = $self->getComponentCfg($comp);
 				$theme = $cc->{'theme'};
 			}
@@ -1908,11 +1939,39 @@ sub comLoop {
 			}
 		}
 		#----------------------------------------
+		elsif ($command =~ /^lock\s+(.+)$/) {
+			my $comp = $1;
+			my $cc;
+			if (defined $self->{'cc'}->{$comp}) { 
+				my $cc = $self->getComponentCfg($comp);
+		 		if (! defined $componentToLoad{$comp}) {
+					if (defined $componentToLock{$comp}) {
+						delete $componentToLock{$comp};
+					} else {
+						$componentToLock{$comp}= ($cc->{'locked'}) ? 0:1;
+					}
+				} else {
+					if (defined $componentToLock{$comp}) {
+						delete $componentToLock{$comp};
+					} else {
+						$componentToLock{$comp}= 1;
+					}
+				}
+			} elsif (defined $componentToLock{$comp} && 
+				defined $componentToLoad{$comp}) {
+				delete $componentToLock{$comp};
+			} elsif (defined $componentToLoad{$comp}) { 
+				$componentToLock{$comp} = 1;
+			}
+		}
+		#----------------------------------------
 		elsif ($command =~ /^load-all\s+(.+)$/) {
 			my ($components, $groups) = getThemeComponentsAndGroups($1);
 			foreach (@$components) {
-				next if (defined $self->{'cc'}->{$_} && 
-					$self->{'cc'}->{$_}->{'locked'}); 
+				next if ((defined $self->{'cc'}->{$_} && 
+					$self->{'cc'}->{$_}->{'locked'} && 
+					! defined $componentToLoad{$_}) || 
+					(defined $componentToLock{$_} && $componentToLock{$_})); 
 				$componentToLoad{$_} = $1;
 				updateCurrentComponents(\@currentComponents,$_);
 			}
@@ -1923,9 +1982,11 @@ sub comLoop {
 			my $g;
 			foreach $g (@$groups) {
 				my $name = $g->{'name'};
-				if ($name eq "main look") {
+				if ($name eq "basic look") {
 					my $groupComponents = $g->{$componentKey};
 					foreach (@$groupComponents) {
+						delete $componentToLock{$_} if defined $componentToLock{$_};
+						delete $componentToDrop{$_} if defined $componentToDrop{$_};
 						$componentToLoad{$_} = $1;
 						updateCurrentComponents(\@currentComponents,$_);
 					}
@@ -1935,6 +1996,8 @@ sub comLoop {
 		# ----------------------------------------------
 		elsif ($command =~ /^load-one\s+(.+)\s+(.+)$/) {
 			$componentToLoad{$2} = $1;
+			delete $componentToLock{$2} if defined $componentToLoad{$2};
+			delete $componentToDrop{$2} if defined $componentToDrop{$2};
 			updateCurrentComponents(\@currentComponents,$2);
 		}
 		# -----------------------------------------------------
@@ -1950,17 +2013,29 @@ sub comLoop {
 		# -----------------------------------------
 		elsif ($command =~ /^apply-ts-cmd-opts$/) {
 			my @compLoad = ();
+			my @compDrop = ();
+			my %compLock = ();
 			my %optLoad = ();
 			my %variantLoad = ();
 			my @deleteOpt = ();
 			my @deleteVariant = ();
+			my @deleteLock = ();
 			foreach (keys %componentToLoad) {
 				$return .= "--load $_\@$componentToLoad{$_} ";
 				push @compLoad, "$_\@$componentToLoad{$_}";
 			}
-			$self->useNewComponents(\@compLoad, []);
-			# pbs: options and variant can be set only for the current
-			# themes. IMHO this may be changed ??? migo: I don't think so.
+			foreach (keys %componentToDrop) {
+				$return .= "--load $_\@$componentToDrop{$_} ";
+				push @compDrop, "$_\@$componentToDrop{$_}";
+			}
+			$self->useNewComponents(\@compLoad, \@compDrop);
+			foreach (keys %componentToLock) {
+				if (defined $CC->{$_}) {
+					$return .= "--set-locked $_=$componentToLock{$_} ";
+					$compLock{$_}=$componentToLock{$_};
+					push @deleteLock, $_;
+				}
+			}
 			foreach (keys %optionToSet) {
 				my $opt = substr($_,index($_,"/")+1);
 				my $theme = substr($_,0,index($_,"/"));
@@ -1980,12 +2055,14 @@ sub comLoop {
 					push @deleteVariant, $_;
 				}
 			}
-			$self->setNewComponentValues(\%optLoad, \%variantLoad);
+			$self->setNewComponentValues(\%optLoad, \%variantLoad, \%compLock);
 			%componentToLoad = ();
+			%componentToDrop = ();
 	  		$tmp = $self->{$componentKey};
 			@currentComponents = sort @$tmp;
 			foreach (@deleteOpt) { delete $optionToSet{$_} }
 			foreach (@deleteVariant) { delete $variantToSet{$_} }
+			foreach (@deleteLock) { delete $componentToLock{$_} }
 			$settingsConfig = getAllSubComponents($self,"default","settings",0,0);
 		}
 		# -----------------------------------------
@@ -2316,6 +2393,8 @@ sub comLoop {
 			$settingsConfig = getAllSubComponents($self,"default","settings",0,0);
 			# discard the change in ts
 			%componentToLoad = ();
+			%componentToDrop = ();
+			%componentToLock = ();
 			%optionToSet = ();
 			%variantToSet = ();
 		}

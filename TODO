@@ -5,23 +5,15 @@
 Important items to do:
 ---------------------
 
-* colors@ components. Check if every things is ok with the new colors
-files. migo: Maybe one colorset for swallowing is not enough?
-I don't think xload's check-like can somehow be related to xclock
-darts colors, probably a separate color would be ok, also hi, sh used
-out of purpose. It is not very critical. Just a note.
-
-* settings@default: think which subcomponents to remove/move.
-  Move settings/stroke@ to bindings@ option.
-
 * Think where belong all functions sitting in different components.
   Probably rename functions-appbind to functions-user. [migo]
 
 * Write some documentation about CCDS. [migo]
 
 * Fix FvwmForm-ThemeSettings (session is obsolete).
+[Alex; if not done before 0.4.0 comment the entries in the menu]
 
-* Add luthien theme [migo; started]
+* Add luthien theme [migo; started], olicha: maybe add a Desker? 
 
 * Fix all crashes.
 
@@ -76,8 +68,14 @@ Optional items to do:
 
 * Completing 'cde' theme. need a windowlook and a modules theme [olivier, jos]
 
-* Fix button@spruce: can we do these buttons with vectors? The problems
-  is that they have fixed colors.
+* colors@ components. Check if every things is ok with the new colors
+files. migo: Maybe one colorset for swallowing is not enough?
+I don't think xload's check-like can somehow be related to xclock
+darts colors, probably a separate color would be ok, also hi, sh used
+out of purpose. It is not very critical. Just a note.
+
+* settings@default: think which subcomponents to remove/move.
+  Move settings/stroke@ to bindings@ option.
 
 Problems without obvious soluton:
 --------------------------------

@@ -1,19 +1,11 @@
 Style "*" Button 1, Button 2, Button 4, Button 6
-Style "*" FvwmButtons  # button relief does not follow the state
+Style "*" MwmButtons  # button relief does follow the state
 
-AddButtonStyle 1 ActiveUp	Pixmap button/titlebar_menu.xpm        -- flat
-AddButtonStyle 1 ActiveDown	Pixmap button/titlebar_menu_s.xpm      -- flat
-AddButtonStyle 1 Inactive	Pixmap button/titlebar_menu_i.xpm      -- flat
-AddButtonStyle 2 ActiveUp	Pixmap button/titlebar_mod_close.xpm   -- flat
-AddButtonStyle 2 ActiveDown	Pixmap button/titlebar_mod_close_s.xpm -- flat
-AddButtonStyle 2 Inactive	Pixmap button/titlebar_mod_close_i.xpm -- flat
-AddButtonStyle 4 ActiveUp	Pixmap button/titlebar_mod_max.xpm     -- flat
-AddButtonStyle 4 ActiveDown	Pixmap button/titlebar_mod_max_s.xpm   -- flat
-AddButtonStyle 4 Inactive	Pixmap button/titlebar_mod_max_i.xpm   -- flat
-AddButtonStyle 6 ActiveUp	Pixmap button/titlebar_mod_min.xpm     -- flat
-AddButtonStyle 6 ActiveDown	Pixmap button/titlebar_mod_min_s.xpm   -- flat
-AddButtonStyle 6 Inactive	Pixmap button/titlebar_mod_min_i.xpm   -- flat
-
+AddButtonStyle 1 Vector 5 35x35@1 65x35@1 65x55@0 35x55@0 35x35@1
+AddButtonStyle 2 Vector 17 25x25@1 35x25@1 50x40@1 65x25@1 75x25@1 75x35@0 60x50@0 75x65@1 75x75@0 65x75@0 50x60@0 35x75@0 25x75@0 25x65@0 40x50@1 25x35@0 25x25@1
+AddButtonStyle 4 Vector 12 40x60@1 40x75@1 20x75@1 20x50@1 35x50@1 35x50@1 35x20@1 75x20@1 75x60@0 35x60@0 35x55@0 35x50@1
+AddButtonStyle 6 Vector  10 40x50@1 40x75@0 20x75@0 20x50@1 40x50@1 30x50@1 30x20@1 70x20@1 70x60@1 45x60@1
+# Nested Boxes
 ButtonStyle 1 - Clear MWMDecorMenu
 ButtonStyle 2 - Clear
 ButtonStyle 4 - Clear MWMDecorMax
