@@ -1,3 +1,12 @@
+2002-12-20  migo  <migo@homemail.com>
+
+	* images.tar.gz:
+	* themes/default/background.cfg:
+	new default background and its colored variants;
+	I tried many tiles and different intensities and can't find anything
+	perfect to be the default background, this one is at least much more
+	usable and nicer than the previous one, although it uses 63 colors
+
 2002-12-19  migo  <migo@homemail.com>
 
 	* themes/redmondxp/images/module/panel-start.png:
