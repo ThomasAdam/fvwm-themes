@@ -1,7 +1,0 @@
-DestroyFunc FuncFvwmStartThemeBackground
-AddToFunc   FuncFvwmStartThemeBackground
-+ I Exec exec xpmroot $FT_DATADIR/images/background/stone.xpm
-
-DestroyFunc FuncFvwmStopThemeBackground
-AddToFunc   FuncFvwmStopThemeBackground
-+ I Nop

@@ -1,5 +1,18 @@
 2000-11-20  migo  <migo@homemail.com>
 
+	* themes/default/background:
+	* themes/default/background.cfg:
+	* themes/default/background.d/* [removed]:
+	used the same method as in @migo, variant changed to option;
+	I didn't added exotic values like darkred,cyan,navy :);
+	I will improve ".d" dirs and menu delimeters in fvwm-themes-config
+
+	* themes/migo/background:
+	* themes/migo/background.cfg:
+	small changes
+
+2000-11-20  migo  <migo@homemail.com>
+
 	* doc/FAQ:
 	added "Q. Can I use fvwm-themes on my multi-headed display system?"
 

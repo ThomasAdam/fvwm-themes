@@ -6,9 +6,8 @@ DestroyFunc FuncFvwmStopThemeBackground
 AddToFunc   FuncFvwmStopThemeBackground
 + I Nop
 
-DestroyFunc FuncFvwmDefineColoring
-AddToFunc   FuncFvwmDefineColoring
+DestroyFunc FuncFvwmBackgroundPixmapColors
+AddToFunc   FuncFvwmBackgroundPixmapColors
 + I DestroyFunc FuncFvwmStartThemeBackground
 + I AddToFunc   FuncFvwmStartThemeBackground
 + I + I Exec exec fvwm-themes-images --in-file $./images/background/circle-energy.xpm --colorize --colorize-colors $* --setroot
-

@@ -1,7 +1,0 @@
-DestroyFunc FuncFvwmStartThemeBackground
-AddToFunc   FuncFvwmStartThemeBackground
-+ I exec xsetroot -solid rgb:58/58/58
-
-DestroyFunc FuncFvwmStopThemeBackground
-AddToFunc   FuncFvwmStopThemeBackground
-+ I Nop
