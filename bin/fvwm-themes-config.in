@@ -37,26 +37,27 @@ sub showHelp {
 	print "The fvwm-themes management utility.\n";
 	print "Usage: $scriptName [OPTIONS]\n";
 	print "Options:\n";
-	print "\t--help            show this help and exit\n";
-	print "\t--version         show the version and exit\n";
-	print "\t--info [theme]    print info about current or given theme\n";
-	print "\t--site            use site config dir for output, not user's\n";
-	print "\t--com-mode        run under the communication mode\n";
-	print "\t--com-name name   name for communication with fvwm-themes-com\n";
-	print "\t--show-themes     show all themes list\n";
-	print "\t--show-components show components in all themes\n";
-	print "\t--show-dir        show all theme directory full paths\n";
-	print "\t--theme theme     limit --show-* only to this/these theme(s)\n";
-	print "\t--show-value key  shows value for component given in --component\n";
-	print "\t--component comp  defines a working component\n";
-	print "\t--expand-rc file  expand fvwm configuration file to stdout\n";
-	print "\t--fresh           refresh (regenerate) current theme configs\n";
-	print "\t--reset           reset all components to default theme\n";
-	print "\t--load [c]\@t      load the given theme component(s)\n";
-	print "\t--drop c[\@t]      unload the current theme component\n";
-	print "\t--option c:o=v    change the component option value.\n";
-	print "\t--choice c=ch     change the component choice\n";
-	print "\t--pipe            generate fvwm commands\n";
+	print "\t--help             show this help and exit\n";
+	print "\t--version          show the version and exit\n";
+	print "\t--info [theme]     print info about current or given theme\n";
+	print "\t--site             use site config dir for output, not user's\n";
+	print "\t--com-mode         run under the communication mode\n";
+	print "\t--com-name name    name for communication with fvwm-themes-com\n";
+	print "\t--show-themes      show all themes list\n";
+	print "\t--show-components  show components in all themes\n";
+	print "\t--show-dir         show all theme directory full paths\n";
+	print "\t--theme theme      limit --show-* only to this/these theme(s)\n";
+	print "\t--show-value key   shows value for component given in --component\n";
+	print "\t--component comp   defines a working component\n";
+	print "\t--expand-rc file   expand fvwm configuration file to stdout\n";
+	print "\t--fresh            refresh (regenerate) current theme configs\n";
+	print "\t--reset            reset all components to default theme\n";
+	print "\t--load [c]\@t       load the given theme component(s)\n";
+	print "\t--drop c[\@t]       unload the current theme component\n";
+	print "\t--option c:o=v     change the component option value.\n";
+	print "\t--choice c=ch      change the component choice\n";
+	print "\t--pipe             generate fvwm commands\n";
+	print "\t--install theme..  install theme.tar.gz or theme.tar.bz2 files\n";
 	exit 0;
 }
 
@@ -1272,9 +1273,10 @@ sub getMenusAndHooksAndReadsRc ($) {
 	foreach (@{$self->getSortedComponentsToRead()}) {
 		my $cc = $self->getComponentCfg($_);
 		my $readFile = $cc->{'read-file'};
+		my $optionReadAfterward = $cc->{'option-read-afterward'};
 		my $options = $cc->{'option'};
 		my $o;
-		my $readRc = "";
+		my ($readRc1, $readRc2) = ("", "");
 		for ($o = 0; ref($options) eq 'ARRAY' && $o < @$options; $o++) {
 			my $optionEntry = $options->[$o];
 			my $command = $optionEntry->{'read-command'} || $defaultReadCommand;
@@ -1287,16 +1289,16 @@ sub getMenusAndHooksAndReadsRc ($) {
 				. $valueFile;
 			$command =~ s/%f/$valueFile/sg;
 			$command =~ s/%d/getThemeDir($self->{$idKey})/seg;
-			$readRc .= "$command\n";
+			my $readAfterward = $optionEntry->{'read-afterward'};
+			$readAfterward = $optionReadAfterward unless defined $readAfterward;
+			($readAfterward? $readRc2: $readRc1) .= "$command\n";
 #			$optionEntry->{'read-file'} = $valueFile;
 #			$self->setModified();
 		}
 		my $command = $cc->{'read-command'} || $defaultReadCommand;
 		$command =~ s/%f/$readFile/sg;
 		$command =~ s/%d/getThemeDir($self->{$idKey})/seg;
-		$readRc = $cc->{'option-read-afterward'}?
-			"$command\n$readRc": "$readRc$command\n";
-		$rc .= $readRc;
+		$rc .= "$readRc1$command\n$readRc2";
 	}
 	return $rc;
 }
@@ -1469,6 +1471,7 @@ my $choices = {};
 my $comMode = 0;
 my $comName = "config";
 my $comPid = 0;
+my $install = 0;
 
 GetOptions(
 	"help"        => \&showHelp,
@@ -1488,9 +1491,36 @@ GetOptions(
 	"option=s%"   => $options,
 	"choice=s%"   => $choices,
 	"pipe"        => \$pipe,
+	"install"     => \$install,
 	"com-mode"    => \$comMode,
 	"com-name=s"  => \$comName,
 ) || wrongUsage();
+
+shift @searchPath if $site;
+$workDir = $searchPath[0];
+$siteDir = $searchPath[-1];
+
+if ($install) {
+	my $themesDir = "$workDir/$themesSubDir";
+	my $file;
+	foreach $file (@ARGV) {
+		errDie("No such file $file") unless -f $file;
+		my ($dir, $theme, $ext) = $file =~ m:^(.*/|)+([^/]+)\.tar\.(gz|bz2)$:;
+		errDie("File '$file' is not a .tar.gz or .tar.bz2")
+			unless defined $dir || defined $theme || defined $ext;
+		errDie("Theme name '$theme' contains unacceptable symbols")
+			unless $theme =~ /^[\w\d-]+$/;
+		my $zcatProg = $ext eq 'gz'? "gzip -cd": "bzip2 -cd";
+		open(TAR, "$zcatProg $file| tar xvf - -C '$themesDir' $theme|")
+			|| sysDie("Can't open untar for $file");
+		my $output = join('', <TAR>);
+		close(TAR) || errDie("\nErrors while installing $file");
+		print "Theme $theme is successfully installed in $themesDir\n";
+	}
+	exit(0);
+}
+
+errDie("Unexpected parameters @ARGV") if @ARGV;
 
 if (defined $expandFile) {
 	$expandFile ||= $rcFile;
@@ -1499,10 +1529,6 @@ if (defined $expandFile) {
 	exit(0);
 }
 
-#$searchPath[0] = ".";
-shift @searchPath if $site;
-$workDir = $searchPath[0];
-$siteDir = $searchPath[-1];
 showThemeComponents($themes, $showComponents) if $showThemes || $showComponents;
 showThemeDirs($themes) if $showDir;
 showThemeComponentValues($component, $showValues) if $component && @$showValues;
@@ -2196,15 +2222,15 @@ END {
 		if ($?) {
 			my $lockFifo = ".tmp-com-lock-" . $comName;
 			my $inFifo = ".tmp-com-in-" . $comName;
-			my $message="fvwm-themes-config: internal error $?";
+			my $message = "fvwm-themes-config: internal error $?";
 
 			unlink($lockFifo);
 			unlink($inFifo);
 		  	if ($comPid) {
-				kill(9,$comPid);
-				$message .= ", kill FvwmScript-ThemesCenter";
+				kill(9, $comPid);
+				$message .= ", killing FvwmScript-ThemesCenter";
 			}
-			print STDERR "$message\n"; 
+			print STDERR "$message\n";
 		}
 	}
 }
@@ -2240,6 +2266,7 @@ B<fvwm-themes-config>
 [ B<--drop>|B<-u> component@theme ]
 [ B<--option>|B<-o> component:option=value ]
 [ B<--choice>|B<-c> component=choice ]
+[ B<--install} file ... ]
 
 =head1 DESCRIPTION
 
@@ -2330,6 +2357,10 @@ B<--choice> I<component=choice> - set another component choice value.
 The I<choice> may be either the choice name or its index in the choice list
 starting from 1 (use 0 to represent the default choice).
 
+B<--install> I<theme.tar.{gz,bz2} ...> - install the specified tarballs
+into the site (if B<--site> is alo given) or into the user's I<themes>
+directory by verifying and unpacking the contents of the tarballs.
+
 Four last parameters may be combined together and multiple parameters are
 possible. If B<--load> and B<--drop> parameters are given, first it will
 be unloaded all given components and then loaded all given components, not
@@ -2367,6 +2398,8 @@ Other examples:
   fvwm-themes-config --choice settings/stroke=2  # turn on stroke
   fvwm-themes-config --choice settings/stroke=0  # use default (1)
   fvwm-themes-config --option bindings:switch-mouse-2-3=no
+
+  fvwm-themes-config --install --site metallic.tar.gz wooden.tar.gz
 
 =head1 AUTHORS
 

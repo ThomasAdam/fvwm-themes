@@ -273,21 +273,130 @@ AddToMenu   MenuFvwmMultimedia "Multimedia" Title
 + "MiXViews%menu/sound.xpm%" 		Exec exec mxv
 + "X&ltwav%menu/music.xpm%"		Exec exec xltwavplay
 
+# ----------------------------------------------------------------------------
+# ---------- Games
+
+## some game menu icons are temporary, should be covered in wm-icons-0.3.0
+
 DestroyMenu MenuFvwmGames
 AddToMenu   MenuFvwmGames "Games" Title
-+ "Xboard%menu/game-chess.xpm%" 	Exec exec xboard -size Small
-+ "XBagammon%menu/game-chess.xpm%" 	Exec exec xgammon
-+ "X&mahjongg%menu/game-chess.xpm%" 	Exec exec xmahjongg
++ "Action%menu/game.xpm%"		Popup MenuFvwmGamesAction
++ "Board%menu/game-chess.xpm%"		Popup MenuFvwmGamesBoard
++ "Cards%menu/game-cards.xpm%"		Popup MenuFvwmGamesCards
++ "Puzzle%menu/game.xpm%"		Popup MenuFvwmGamesPuzzle
++ "Strategy%menu/game.xpm%"		Popup MenuFvwmGamesStrategy
++ "Tetris%menu/game.xpm%"		Popup MenuFvwmGamesTetris
++ "Ace of Penguins%menu/penguin.xpm%"	Popup MenuFvwmGamesPenguins
++ "Misc%menu/game.xpm%"			Popup MenuFvwmGamesOther
+
+DestroyMenu MenuFvwmGamesAction
+AddToMenu   MenuFvwmGamesAction "Action" Title
 + "X&lander%menu/game.xpm%"		Exec exec xlander
-+ "Xhextris%menu/game.xpm%" 		Exec exec xhextris
-+ "Xjewel%menu/game.xpm%" 		Exec exec xjewel
-+ "&Spider%menu/game.xpm%"		Exec exec spider
-+ "xsokoban%menu/game.xpm%" 		Exec exec xsokoban
-+ "Koules%menu/game.xpm%" 		Exec exec xkoules
-+ "Maelstrom%menu/window-destroy.xpm%" 	Exec exec Maelstrom -gamma 5
++ "XKoules%menu/game.xpm%" 		Exec exec xkoules
++ "XKobo%menu/game.xpm%"		Exec exec xkobo
++ "XGalaga%menu/game.xpm%"		Exec exec xgal
++ "Xoids%menu/game.xpm%"		Exec exec xoids
++ "XSoldier%menu/game.xpm%"		Exec exec xsoldier
+##+ "Xlander%menu/game.xpm%"		Exec xterm -name info -geometry 44x4 -e xlander
++ "Xlander%menu/game.xpm%"		Exec exec xlander
++ "XEvil%menu/game.xpm%"		Exec exec xevil
++ "XBill%menu/game.xpm%"		Exec exec xbill
++ "Scavenger%menu/game.xpm%"		Exec exec scavenger
+# Pac-man like
++ "" Nop
++ "XChomp%menu/game.xpm%"		Exec exec xchomp
++ "XMris%menu/game.xpm%"		Exec exec xmris
++ "" Nop
++ "Xonix%menu/game.xpm%"		Exec exec xonix
++ "XTron%menu/game.xpm%"		Exec exec xtron
+
+DestroyMenu MenuFvwmGamesBoard
+AddToMenu   MenuFvwmGamesBoard "Board" Title
++ "Xboard%menu/game-chess.xpm%" 	Exec exec xboard -size small
++ "Xboard (net)%menu/game-chess.xpm%"	Exec FuncFvwmRunInXterm "Chess (net)" "xboard -size small -ics -icshost fics.onenet.net"
++ "XBagammon%menu/game-chess.xpm%" 	Exec exec xgammon
++ "Pente%menu/game-chess.xpm%"		Exec pente
++ "XGoban%menu/game-chess.xpm%"		Exec xgoban
+
+DestroyMenu MenuFvwmGamesCards
+AddToMenu   MenuFvwmGamesCards "Cards" Title
++ "PySol%menu/game-cards.xpm%"		Exec exec pysol
++ "Xpat2%menu/game-cards.xpm%"		Exec exec xpat2
++ "DontSpace%menu/game-cards.xpm%"	Exec exec dontspace
++ "Klondike%menu/game-cards.xpm%"	Exec exec klondike
++ "Spider%menu/game-cards.xpm%"		Exec exec spider
++ "" Nop
+## GNOME/KDE cards
++ "FreeCell%menu/game-cards.xpm%"	Exec exec freecell
++ "AisleRiot%menu/game-cards.xpm%"	Exec exec sol
++ "kpat%menu/game-cards.xpm%"		Exec exec kpat
++ "kpoker%menu/game-cards.xpm%"		Exec exec kpoker
+
+DestroyMenu MenuFvwmGamesPuzzle
+AddToMenu   MenuFvwmGamesPuzzle "Puzzle" Title
++ "XSokoban%menu/game.xpm%" 		Exec exec xsokoban
++ "XSoko%menu/game.xpm%"		Exec exec xsoko >/dev/null
++ "XSok%menu/game.xpm%"			Exec exec xsok
++ "Xmahjongg%menu/game.xpm%"		Exec exec xmahjongg
++ "XBlockade%menu/game.xpm%"		Exec exec blockade
++ "XAttax%menu/game.xpm%"		Exec exec xattax
++ "XBomb%menu/game.xpm%"		Exec exec FuncFvwmRunInXterm "info" "xbomb"
++ "XJig%menu/game.xpm%"			Exec xjig -file $[HOME]/flowers/3.gif >/dev/null
++ "" Nop
+## new category?
++ "BoulderDash%menu/game.xpm%"		Exec exec BoulderDash
++ "Rocks'n'Diamonds%menu/game.xpm%"	Exec exec rocksndiamonds
++ "Mirror Magic%menu/game.xpm%"		Exec exec mirrormagic
++ "GFingerPoken%menu/game.xpm%"		Exec exec gfpoken
++ "Illust Logic%menu/game.xpm%"		Exec exec illust
++ "" Nop
++ "XCubes%menu/game.xpm%"		Exec exec xcubes
++ "XDino%menu/game.xpm%"		Exec exec xdino
++ "XHexagons%menu/game.xpm%"		Exec exec xhexagons
++ "XMBall%menu/game.xpm%"		Exec exec xmball
++ "XMLink%menu/game.xpm%"		Exec exec xmlink
++ "XOct%menu/game.xpm%"			Exec exec xoct
++ "XPanex%menu/game.xpm%"		Exec exec xpanex
++ "XPyraminx%menu/game.xpm%"		Exec exec xpyraminx
++ "XRubik%menu/game.xpm%"		Exec exec xrubik
++ "XSkewb%menu/game.xpm%"		Exec exec xskewb
++ "XTriangles%menu/game.xpm%"		Exec exec xtriangles
+
+DestroyMenu MenuFvwmGamesStrategy
+AddToMenu   MenuFvwmGamesStrategy "Strategy" Title
+
+DestroyMenu MenuFvwmGamesTetris
+AddToMenu   MenuFvwmGamesTetris "Tetris" Title
++ "Xtetris%menu/game.xpm%"		Exec exec xtetris
++ "Xtrojka%menu/game.xpm%"		Exec exec xtrojka
++ "Xjewel%menu/game.xpm%"		Exec exec xjewel
++ "Xhextris%menu/game.xpm%"		Exec exec xhextris
++ "Xemeraldia%menu/game.xpm%"		Exec exec xemeraldia
++ "Cosmo%menu/game.xpm%"		Exec exec cosmo >/dev/null
+
+DestroyMenu MenuFvwmGamesPenguins
+AddToMenu   MenuFvwmGamesPenguins "Ace of Penguins" Title
+## Unfortunately the name freecell clombers other card game (from GNOME)
+##+ "freecell%menu/game-cards.xpm%"	Exec exec freecell
++ "golf%menu/game-cards.xpm%"		Exec exec golf
++ "penguins%menu/game-cards.xpm%"	Exec exec penguins
++ "solitaire%menu/game-cards.xpm%"	Exec exec solitaire
++ "thornq%menu/game-cards.xpm%"		Exec exec thornq
++ "mastermind%menu/game.xpm%"		Exec exec mastermind  # puzzle
++ "merlin%menu/game-chess.xpm%"		Exec exec merlin
++ "minesweeper%menu/game.xpm%"		Exec exec minesweeper  # puzzle
++ "pegged%menu/game.xpm%"		Exec exec pegged
++ "taipei%menu/game.xpm%"		Exec exec taipei  # mahjongg-like
++ "taipedit%menu/game.xpm%"		Exec exec taipedit
+
+DestroyMenu MenuFvwmGamesOther
+AddToMenu   MenuFvwmGamesOther "Other" Title
++ "Maelstrom%menu/window-destroy.xpm%"	Exec exec Maelstrom -gamma 5
 + "Quake%menu/window-destroy.xpm%" 	Exec cd /usr/local/games/quake/ ; exec ./stquake
 + "Quake2%menu/window-destroy.xpm%" 	Exec cd /usr/local/games/quake2/ ; exec ./quake2 +set vid_ref softx
 + "Hopkins FBI%menu/game.xpm%" 		FuncFvwmKillEventAndRun "Hopkins_FBI"
+##+ "FreeCiv%menu/game.xpm%"		FvwmForm FvwmForm-FreeCiv
++ "LinCity%menu/game.xpm%"		Exec exec xlincity
 
 DestroyFunc FuncFvwmKillEventAndRun
 AddToFunc   FuncFvwmKillEventAndRun
@@ -295,6 +404,9 @@ AddToFunc   FuncFvwmKillEventAndRun
 + "I" Exec exec $0
 
 ## http://www.met.rdg.ac.uk/~swrhgnrj/xpenguins/
+
+# ----------------------------------------------------------------------------
+# ---------- Amusements
 
 DestroyMenu MenuFvwmAmusements
 AddToMenu   MenuFvwmAmusements "Amusements" Title

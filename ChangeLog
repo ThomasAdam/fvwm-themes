@@ -1,3 +1,25 @@
+2000-08-27  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	Added support "read-afterward" config key for individual options,
+	overriding common-option key option-read-afterward.
+	Added --install parameter for installing new theme tarballs.
+
+	* themes/migo/modules.cfg:
+	* themes/migo/modules/main:FvwmButtons-Compact:
+	* themes/migo/modules/buttonbar/compact{,2,3,4,5,6}:
+	Added more options, no duplication if non-application FvwmButtons
+	config. Note, swallowing of the Pager in both Buttons works badly.
+
+	I get NoteMessage freezed here until a mouse button is pressed/moved!
+
+	* themes/default/settings/iconstyles/wm-icons:menu:
+	solved a problem (temporary FuncFvwmStartAllHooks hack) of needness
+	to read this component before menus, but the submenu after menus.
+
+	* themes/default/menus-user:
+	more Games submenus from my personal menus (I don't have all of them)
+
 2000-08-24  migo  <migo@homemail.com>
 
 	* configure.in:
@@ -6,7 +28,6 @@
 	* doc/FAQ:
 	* doc/README.1st:
 	spell-checked and revised
-
 
 2000-08-23  migo  <migo@homemail.com>
 
