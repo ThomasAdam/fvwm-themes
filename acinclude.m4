@@ -4,7 +4,7 @@ dnl mg_ARG_WITH(NAME, HELP-STRING, VAR [, DEFAULT-VALUE])
 AC_DEFUN(mg_ARG_WITH, [
 	AC_DIVERT_PUSH(AC_DIVERSION_NOTICE)dnl
 	ac_help="$ac_help
-	[$2]"
+[$2]"
 	AC_DIVERT_POP()dnl
 
 dnl	# This is for autoconf-2.50+, but it is not finished,
