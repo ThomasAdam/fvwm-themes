@@ -1,3 +1,8 @@
+2000-10-18  migo  <migo@homemail.com>
+
+	* fvwm-themes-config.in:
+	renamed --show-user to --only-user, some clean up in code and doc
+
 2000-10-17  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-script-config.in:

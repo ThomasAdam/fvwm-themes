@@ -53,6 +53,9 @@ sub showHelp {
 	print "\t--theme theme      limit --show-* only to this/these theme(s)\n";
 	print "\t--show-value key   shows value for component given in --component\n";
 	print "\t--component comp   defines a working component\n";
+	print "\t--only-site        limit --show-* only to the site directory\n";
+	print "\t--only-user        limit --show-* only to the user directory\n";
+	print "\t--fvwmscript       format output of --show-* differently\n";
 	print "\t--expand-rc file   expand fvwm configuration file to stdout\n";
 	print "\t--fresh            refresh (regenerate) current theme configs\n";
 	print "\t--reset            reset all components to default theme\n";
@@ -468,13 +471,13 @@ sub getThemeComponentsAndGroups ($) {
 	return ($components, $groups);
 }
 
-sub getAllThemes {
-	my $showSite = shift || 0;
-	my $showUser = shift || 0;
+sub getAllThemes (;$$) {
+	my $onlySite = shift || 0;
+	my $onlyUser = shift || 0;
 	my @dirList = ();
-	push @dirList, $siteDir if $showSite;
-	push @dirList, $userDir if $showUser;
-	@dirList = @searchPath if ! defined $dirList[0];
+	push @dirList, $siteDir if $onlySite;
+	push @dirList, $userDir if $onlyUser;
+	@dirList = @searchPath unless @dirList;
 	my $themes = {};
 	foreach $dir (@dirList) {
 		my $dir = "$dir/$themesSubDir";
@@ -491,30 +494,25 @@ sub getAllThemes {
 }
 
 sub showThemeComponents ($$$$$$) {
-	my ($themes,$withComponents,$component,$script,$showSite,$showUser) = @_;
-	my $out = "";
-	$themes = getAllThemes($showSite,$showUser) unless @$themes;
+	my ($themes, $withComponents, $component, $script, $onlySite, $onlyUser) = @_;
+	my $output = "";
+	my $delim0 = $script? "    ": "\t";
+	my $delim1 = $script? "|": "\n";
+	$themes = getAllThemes($onlySite, $onlyUser) unless @$themes;
+
 	my $theme;
 	foreach $theme (@$themes) {
-		my $tmp1 = "$theme";
-		my $tmp2 = "";
-		my $test = 0;
-		foreach (@{getThemeComponents($theme)}) {
-			$tmp2 .= ($script) ? "    " : "\t";
-			$tmp2 .= "$_";
-			$tmp2 .= ($script) ? "|" : "\n";
-			$test = 1 if defined $component && $_ eq "$component";
+		my $components = getThemeComponents($theme);
+		next if defined $component && !isArrayElement($components, $component);
+		$output .= $theme . $delim1;
+		if ($withComponents) {
+			foreach (@$components) {
+				$output .= $delim0 . $_ . $delim1;
+			}
 		}
-		next if defined  $component && !$test;
-		$out .= $tmp1;
-		$out .= ($script) ? "|" : "\n";
-		$out .= $tmp2 if $withComponents;
+		$output =~ s/\Q$delim1\E$/\n/ if $script;
 	}
-	if ($script) {
-		$out =~ s/\|$//;
-		$out .= "\n";
-	}
-	print $out;
+	print $output;
 	exit(0);
 }
 
@@ -1547,8 +1545,8 @@ my $comName = "config";
 my $comPid = 0;
 my $install = 0;
 my $fvwmscript = 0;
-my $showSite = 0;
-my $showUser = 0;
+my $onlySite = 0;
+my $onlyUser = 0;
 
 GetOptions(
 	"help"        => \&showHelp,
@@ -1573,8 +1571,8 @@ GetOptions(
 	"com-mode"    => \$comMode,
 	"com-name=s"  => \$comName,
 	"fvwmscript"  => \$fvwmscript,
-	"show-site"	  => \$showSite,
-	"show-user"	  => \$showUser,
+	"only-site"	  => \$onlySite,
+	"only-user"	  => \$onlyUser,
 ) || wrongUsage();
 
 shift @searchPath if $site;
@@ -1610,8 +1608,8 @@ if (defined $expandFile) {
 	exit(0);
 }
 
-showThemeComponents($themes, $showComponents, $component, $fvwmscript, 
-	$showSite, $showUser) if $showThemes || $showComponents;
+showThemeComponents($themes, $showComponents, $component, $fvwmscript,
+	$onlySite, $onlyUser) if $showThemes || $showComponents;
 showThemeDirs($themes) if $showDir;
 showThemeComponentValues($component, $showValues) if $component && @$showValues;
 
@@ -2719,8 +2717,8 @@ B<fvwm-themes-config>
 [ B<--theme>|B<-t> theme ]
 [ B<--show-value> key ]
 [ B<--component> component ]
-[ B<--show-site> ]
-[ B<--show-user> ]
+[ B<--only-site> ]
+[ B<--only-user> ]
 [ B<--fvwmscript> ]
 [ B<--expand-rc>|B<-e> [file] ]
 [ B<--fresh>|B<-f> ]
@@ -2771,14 +2769,14 @@ C<--component> parameter.
 B<--component> component - a working component for other parameters,
 may be of form component@theme.
 
-B<--show-site> - Take in acount only the site directory for B<--show-themes>
-and B<--show-components>
+B<--only-site> - when specified together with B<--show-themes>
+or B<--show-components> causes to take into account only the site directory.
 
-B<--show-site> - Take in acount only the user directory for B<--show-themes>
-and B<--show-components>
+B<--only-user> - when specified together with B<--show-themes>
+or B<--show-components> causes to take into account only the user directory.
 
-B<--fvwmscript> - Build output for FvwmScript (B<--show-themes> and 
-B<--show-components>)
+B<--fvwmscript> - when specified together with B<--show-themes>
+or B<--show-components> causes the output to be formatted for FvwmScript.
 
 Example: fvwm-themes-config --component colors --show-value theme --show-value
 read-file
