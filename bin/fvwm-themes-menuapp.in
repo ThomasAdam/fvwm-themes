@@ -27,8 +27,8 @@
 use Getopt::Long;
 
 my $prefix = $ENV{'prefix'} || '@prefix@';
-my $datadir = "@datadir@";
 my $ROOT_PREFIX = $ENV{'ROOT_PREFIX'} || '@ROOT_PREFIX@';
+my $datadir = "@datadir@";
 
 # "system variables"
 my $version = '@VERSION@';

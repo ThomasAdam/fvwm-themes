@@ -96,10 +96,12 @@ AC_SUBST(ROOT_PREFIX)dnl
 if echo "${prefix}NONE" | awk '/^NONE/ { exit 1 }'; then
 	mg_DEFAULT_DIR_ARG(bindir,     '${prefix}/bin')
 	mg_DEFAULT_DIR_ARG(mandir,     '${prefix}/man')
+	mg_DEFAULT_DIR_ARG(datadir,    '${prefix}/share')
 	mg_DEFAULT_DIR_ARG(FT_DATADIR, '${datadir}/fvwm')
 else
 	mg_DEFAULT_DIR_ARG(bindir,     '${ROOT_PREFIX}'"`$FVWM_CONFIG --bindir`")
 	mg_DEFAULT_DIR_ARG(mandir,     '${ROOT_PREFIX}'"`$FVWM_CONFIG --mandir`")
+	mg_DEFAULT_DIR_ARG(datadir,    '${ROOT_PREFIX}'"`$FVWM_CONFIG --datadir`")
 	mg_DEFAULT_DIR_ARG(FT_DATADIR, '${ROOT_PREFIX}'"`$FVWM_CONFIG --fvwm-datadir`")
 fi
 
@@ -149,6 +151,7 @@ if test -n "$DEBUG"; then
 	echo "[prefix:            ${prefix}]"
 	echo "[bindir:            ${bindir}]"
 	echo "[mandir:            ${mandir}]"
+	echo "[datadir:           ${datadir}]"
 	echo "[ft-datadir:        ${FT_DATADIR}]"
 	echo "[ft-fvwmscript-dir: ${FT_FVWMSCRIPT_DIR}]"
 	echo "[ft-fvwmform-dir:   ${FT_FVWMFORM_DIR}]"

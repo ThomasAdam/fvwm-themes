@@ -24,15 +24,18 @@ use Getopt::Long;
 
 my $version = '@VERSION@';
 my $fvwmVersion = '@FVWM_VERSION@';
+
 my $prefix = $ENV{'prefix'} || '@prefix@';
+my $ROOT_PREFIX = $ENV{'ROOT_PREFIX'} || '@ROOT_PREFIX@';
 my $datadir = "@datadir@";
+
 my $userHome = $ENV{'HOME'} || "./.";
 my $userDir = $ENV{'FVWM_USERDIR'} || "$userHome/.fvwm";
 my $currentThemeName = 'current';
 my $themesSubDir = 'themes';
 my $currentThemeSubDir = "$themesSubDir/$currentThemeName";
 my $personalDirName = 'personal';
-my $localeDir = "$datadir/fvwm/locale";
+my $localeDir = "@FT_DATADIR@/locale";
 
 my $scriptName = ($0 =~ m:([^/]+)$:, $1);
 my $path = "";
@@ -646,15 +649,16 @@ sub buildMsg {
 	}
 	else {
 		$file = "$localeDir/$lang/$getMsg.$msgExt" if ($lang ne "");
-		$file = "$localeDir/C/$getMsg.$msgExt" if (! -f $file);
 		$file = "$localeDir/en/$getMsg.$msgExt" if (! -f $file);
 	}
 	if (! -f $file) {
+		my $file = "$getMsg.$msgExt";
+		print STDERR "[fvwm-themes]: Cannot find localized or default $file\n";
 		print "END         0003end\n";
 		exit 0;
 	}
 
-	open(MSG,"$file") || die "cannot open the msg for $getMsg";
+	open(MSG, $file) || die "Cannot open the msg for $getMsg: [$!]\n";
 
 	while(<MSG>) {
 		chomp;

@@ -4,6 +4,11 @@
 	* themes/redmond98/buttons:
 	incorporated press-able buttons for @redmond98 from Lorenz Minder
 
+	* configure.in:
+	* bin/fvwm-themes-{config,images,menuapp,script}.in:
+	Several datadir related fixes. This also fixes the problem of
+	empty messages when fvwm-themes is installed in non-default place.
+
 2000-02-03  migo  <migo@homemail.com>
 
 	* themes/migo/modules/main:FvwmPager-Single:

@@ -8,8 +8,8 @@ use strict;
 use Getopt::Long;
 
 my $prefix = $ENV{'prefix'} || '@prefix@';
-my $datadir = "@datadir@";
 my $ROOT_PREFIX = $ENV{'ROOT_PREFIX'} || '@ROOT_PREFIX@';
+my $datadir = "@datadir@";
 
 my $version = '@VERSION@';
 my $fvwmVersion = '@FVWM_VERSION@';
@@ -2829,8 +2829,8 @@ sub comLoop {
 					#unlink("themes/current-$opt[1]/$rcFile2");
 					if ($dirConfig eq "") {
 						# need to use the default config
-						system("cp -f $datadir/fvwm/$rcFile2 $dest/; " .
-							"cp -f $datadir/fvwm/themes/current/theme.cfg $dest/");
+						system("cp -f $siteDir/$rcFile2 $dest/; " .
+							"cp -f $siteDir/themes/current/theme.cfg $dest/");
 					} else {
 						chdir("$dirConfig");
 						system("cp -af * ../../" . $dest);
