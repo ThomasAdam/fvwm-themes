@@ -23,6 +23,9 @@
 	* themes/cde/modules/buttonbar/{large,small}:
 	disable unexisting CDEDate applet
 
+	* themes/default/colors:
+	Colorset 34 s/bg white/bg gray80/
+
 2000-11-11  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ConfigCenter:
