@@ -1,3 +1,9 @@
+2000-11-12  migo  <migo@homemail.com>
+
+	* configure.in:
+	* NEWS:
+	increased version to 0.4.1 after setting a cvs tag version-0_4_0;
+
 2000-11-11  migo  <migo@homemail.com>
 
 	* README:
