@@ -3,6 +3,15 @@
 	* scripts/FvwmScript-ThemesCenter:
 	more locale changes
 
+	* images.tar.gz:
+	removed background/stone-yellow.xpm, updated background/stone.xpm
+
+	* themes/default/background.cfg:
+	* themes/default/background.d/solid-gray:
+	* themes/default/background.d/stone-gray:
+	* themes/default/background.d/stone-yellow:
+	Now stone-gray is a default, yellow is an option.
+
 2000-10-02  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmApplets-DayClock
