@@ -233,7 +233,8 @@ AddToMenu   MenuFvwmConfiguration "Configuration" Title
 + "" Nop
 + "Restore Theme &Background%menu/display.xpm%"	FuncFvwmStartThemeBackground
 + "Restore Theme &Cursors%menu/display.xpm%"	PipeRead `printf 'Read '; fvwm-themes-config --component cursors --show-value read-file`
-+ "Show Current Palette Shift-Ctrl-F9%menu/colors.xpm%" FuncFvwmShowColourTable
++ "Show All Colorsets	Shift-Ctrl-F8%menu/colors.xpm%" FuncFvwmShowAllColorsets
++ "Show Current Palette	Shift-Ctrl-F9%menu/colors.xpm%" FuncFvwmShowColourTable
 # settings/iconstyles
 FuncFvwmAddToMenusWMIcons
 

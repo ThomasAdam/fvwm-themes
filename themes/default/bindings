@@ -199,6 +199,7 @@ Key F11 	A	SC	Pick FuncFvwmMaximizeFullScreen
 Key F12 	A	SC	Pick FuncFvwmMaximizeFullScreen
 
 # misc.
+Key F8		A	SC	FuncFvwmShowAllColorsets
 Key F9		A	SC	FuncFvwmShowColourTable
 
 # ---------------------------------------------------------------------------

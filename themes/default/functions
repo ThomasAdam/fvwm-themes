@@ -137,9 +137,22 @@ AddToFunc   FuncFvwmConfirm
 + I FvwmScript FvwmScript-Confirm --line2 `$0` --command `$1` \
 	`$2` `$3` `$4` `$5` `$6` `$7` `$8` `$9`
 
+DestroyFunc FuncFvwmShowColorset
+AddToFunc   FuncFvwmShowColorset
++ I SetEnv COLORSET_DUMP "Will be implemented later"
+# migo: This does not work for some reason and I have no time to fix it now
+#+ I SetEnv COLORSET_DUMP "FvwmPerl does not appear to work^nSee error messages"
+#+ I ModuleSynchronous FvwmPerl FvwmPerl-DumpColorset
+#+ I SendToModule FvwmPerl-DumpColorset eval cmd("SetEnv COLORSET_DUMP " . $module->track('Colorsets')->dump($0)); stop();
++ I FuncFvwmShowMessage "Colorset $0 Information" "$[COLORSET_DUMP]"
+
+DestroyFunc FuncFvwmShowAllColorsets
+AddToFunc   FuncFvwmShowAllColorsets
++ I FvwmButtons X $[FT_DATADIR]/FvwmButtons-Colorsets
+
 DestroyFunc FuncFvwmNoColourTable
 AddToFunc   FuncFvwmNoColourTable
-+ I FuncFvwmShowMessage "Information" "No pallet defined for the current colors component"
++ I FuncFvwmShowMessage "Information" "No palette defined for the current colors component"
 
 DestroyFunc FuncFvwmShowColourTable
 AddToFunc   FuncFvwmShowColourTable

@@ -1,0 +1,48 @@
+# Run this tool as:
+#
+#   FvwmButtons X $[FT_DATADIR]/FvwmButtons-ShowColorsets
+
+Columns 8
+ButtonGeometry 64x64
+Frame 2
+Font "Shadow=1:xft:Luxi Serif:Bold:pixelsize=14:minspace=true;-*-helvetica-bold-r-normal-*-12-*"
+(Title  [0], Colorset  0, Action 'FuncFvwmShowColorset  0')
+(Title  [1], Colorset  1, Action 'FuncFvwmShowColorset  1')
+(Title  [2], Colorset  2, Action 'FuncFvwmShowColorset  2')
+(Title  [3], Colorset  3, Action 'FuncFvwmShowColorset  3')
+(Title  [4], Colorset  4, Action 'FuncFvwmShowColorset  4')
+(Title  [5], Colorset  5, Action 'FuncFvwmShowColorset  5')
+(Title  [6], Colorset  6, Action 'FuncFvwmShowColorset  6')
+(Title  [7], Colorset  7, Action 'FuncFvwmShowColorset  7')
+(Title  [8], Colorset  8, Action 'FuncFvwmShowColorset  8')
+(Title  [9], Colorset  9, Action 'FuncFvwmShowColorset  9')
+(Title [10], Colorset 10, Action 'FuncFvwmShowColorset 10')
+(Title [11], Colorset 11, Action 'FuncFvwmShowColorset 11')
+(Title [12], Colorset 12, Action 'FuncFvwmShowColorset 12')
+(Title [13], Colorset 13, Action 'FuncFvwmShowColorset 13')
+(Title [14], Colorset 14, Action 'FuncFvwmShowColorset 14')
+(Title [15], Colorset 15, Action 'FuncFvwmShowColorset 15')
+(Title [16], Colorset 16, Action 'FuncFvwmShowColorset 16')
+(Title [17], Colorset 17, Action 'FuncFvwmShowColorset 17')
+(Title [18], Colorset 18, Action 'FuncFvwmShowColorset 18')
+(Title [19], Colorset 19, Action 'FuncFvwmShowColorset 19')
+(Title [20], Colorset 20, Action 'FuncFvwmShowColorset 20')
+(Title [21], Colorset 21, Action 'FuncFvwmShowColorset 21')
+(Title [22], Colorset 22, Action 'FuncFvwmShowColorset 22')
+(Title [23], Colorset 23, Action 'FuncFvwmShowColorset 23')
+(Title [24], Colorset 24, Action 'FuncFvwmShowColorset 24')
+(Title [25], Colorset 25, Action 'FuncFvwmShowColorset 25')
+(Title [26], Colorset 26, Action 'FuncFvwmShowColorset 26')
+(Title [27], Colorset 27, Action 'FuncFvwmShowColorset 27')
+(Title [28], Colorset 28, Action 'FuncFvwmShowColorset 28')
+(Title [29], Colorset 29, Action 'FuncFvwmShowColorset 29')
+(Title [30], Colorset 30, Action 'FuncFvwmShowColorset 30')
+(Title [31], Colorset 31, Action 'FuncFvwmShowColorset 31')
+(Title [32], Colorset 32, Action 'FuncFvwmShowColorset 32')
+(Title [33], Colorset 33, Action 'FuncFvwmShowColorset 33')
+(Title [34], Colorset 34, Action 'FuncFvwmShowColorset 34')
+(Title [35], Colorset 35, Action 'FuncFvwmShowColorset 35')
+(Title [36], Colorset 36, Action 'FuncFvwmShowColorset 36')
+(Title [37], Colorset 37, Action 'FuncFvwmShowColorset 37')
+(Title [38], Colorset 38, Action 'FuncFvwmShowColorset 38')
+(Title [39], Colorset 39, Action 'FuncFvwmShowColorset 39')

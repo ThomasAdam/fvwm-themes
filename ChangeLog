@@ -1,5 +1,12 @@
 2002-06-11 migo  <migo@homemail.com>
 
+	* forms/FvwmButtons-Colorsets:
+	* forms/Makefile.am:
+	* themes/default/functions:
+	* themes/default/menus:
+	* themes/default/bindings:
+	add "Show All Colorsets" tool
+
 	* themes/default/settings/banner/enabled:
 	increase FvwmBanner timeout to 5 seconds, I am biased :)
 
