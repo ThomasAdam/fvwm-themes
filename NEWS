@@ -1,4 +1,6 @@
-fvwm-themes-0.3.16 - not released yet (cvs)
+fvwm-themes-0.3.17 - ? (cvs)
+
+fvwm-themes-0.3.16 - 20000819 (cvs)
 
 * A GUI Theme Selector: FvwmScript-ThemesCenter.
 * FVWM Themes has now its own session concept (fvwm-themes-start).

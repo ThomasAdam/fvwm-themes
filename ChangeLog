@@ -1,5 +1,10 @@
 2000-08-19  olicha  <olivier.chapuis@free.fr>
 
+	* NEWS:
+	* configure.in: set cvs version to 0.3.17
+	
+2000-08-19  olicha  <olivier.chapuis@free.fr>
+
 	* bin/fvwm-themes-start.1:
 	* bin/fvwm-themes-images.in
 	* doc/FAQ:
