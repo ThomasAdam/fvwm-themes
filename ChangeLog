@@ -1,3 +1,9 @@
+2002-03-14  migo  <migo@homemail.com>
+
+	* NEWS:
+	* AUTHORS:
+	updated for new themes
+
 2002-03-11  migo  <migo@homemail.com>
 
 	* themes/migo/colors:
@@ -9,6 +15,12 @@
 	* bin/fvwm-themes-root.in:
 	* themes/default/menus:
 	added new utility to set root
+
+2002-03-10  Kathryn Andersen  <kat@katspace.com>
+
+	* themes/plainbow/**:
+	* themes/celticbow/**:
+	added PlainBow and CelticBow themes
 
 2002-01-25  migo  <migo@homemail.com>
 
