@@ -18,7 +18,7 @@ AddToFunc   FuncFvwmSetFont-Menu
 # for FvwmIdent (called in colors ... maybe not a very good thing) 
 DestroyFunc FuncFvwmSetFont-FvwmIdent
 AddToFunc   FuncFvwmSetFont-FvwmIdent
-+ I *FvwmIdent: Font fixed
++ I *FvwmIdent: Font -*-fixed-medium-r-semicondensed-*-13-*
 
 #-----------------------------------------------------------------------------
 # Modules Theme fonts

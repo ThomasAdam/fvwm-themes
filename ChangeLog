@@ -1,3 +1,12 @@
+2002-06-02  olicha  <olivier.chapuis@free.fr>
+
+	* themes/*/windowlook:
+	* themes/*/menustyle:
+	* themes/*/fonts:
+	* themes/*/modules/fonts:
+	Replaced any font aliase name by a true font name. Removed some
+	not necessary "*-* ...". Others very small things
+
 2002-06-01  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ThemesCenter: 

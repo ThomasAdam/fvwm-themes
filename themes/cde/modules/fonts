@@ -1,12 +1,12 @@
 FuncFvwmSetFont-ModuleTips "*FvwmPager-Single: BalloonFont" \
-	-*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*
+	-*-lucidabright-medium-r-*-*-12-*
 FuncFvwmSetFont-ModuleTips "*FvwmPager-Desker: BalloonFont" \
-	-*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*
+	-*-lucidabright-medium-r-*-*-12-*
 
 FuncFvwmSetFont-ModuleSmall "*FvwmPager-Single: SmallFont" \
-	"-*-lucidabright-medium-r-*-*-8-*-*-*-*-*-*-*"
+	"-*-lucidabright-medium-r-*-*-8-*"
 FuncFvwmSetFont-ModuleSmall "*FvwmPager-Desker: SmallFont" \
-	"-*-lucidabright-medium-r-*-*-8-*-*-*-*-*-*-*"
+	"-*-lucidabright-medium-r-*-*-8-*"
 
 *FvwmPager-Single: Font none
 *FvwmPager-Desker: Font none

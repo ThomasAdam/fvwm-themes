@@ -8,5 +8,5 @@ MenuStyle * PopupAsSubmenu, HoldSubmenus, SubmenusRight
 MenuStyle * ItemFormat "%.4s%.3|%.5l%.5l%.5r%2.3>%1|"
 MenuStyle * VerticalItemSpacing 2 2, VerticalTitleSpacing 2 2
 
-FuncFvwmSetFont-Menu * -adobe-helvetica-bold-r-*-*-14-*-*-*-*-*-*-*
+FuncFvwmSetFont-Menu * -adobe-helvetica-bold-r-*-*-14-*
 BusyCursor DynamicMenu True

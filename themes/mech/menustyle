@@ -8,5 +8,5 @@ MenuStyle * PopupAsSubmenu, HoldSubmenus, SubmenusRight
 MenuStyle * ItemFormat ""  # use default
 MenuStyle * VerticalItemSpacing, VerticalTitleSpacing
 
-FuncFvwmSetFont-Menu * -*-lucida-medium-r-normal-*-*-120-*-*-*-*-*-*
+FuncFvwmSetFont-Menu * -*-lucida-medium-r-normal-*-*-120-*
 BusyCursor DynamicMenu True

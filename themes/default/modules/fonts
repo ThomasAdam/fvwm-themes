@@ -1,31 +1,34 @@
 FuncFvwmSetFont-ModuleWindowList "*FvwmTaskBar: Font" \
-	"-adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*"
+	"-adobe-helvetica-medium-r-*-*-12-*"
 
 FuncFvwmSetFont-ModuleSelectedWindowList "*FvwmTaskBar: SelFont" \
-	"-adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*"
+	"-adobe-helvetica-bold-r-*-*-12-*"
 
 FuncFvwmSetFont-ModuleWindowList "*FvwmWinList: Font" \
-	"-adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*"
+	"-adobe-helvetica-bold-r-*-*-12-*"
 
 FuncFvwmSetFont-ModuleWindowList "*FvwmIconBox: Font" \
-	" -adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*"
+	" -adobe-helvetica-medium-r-*-*-12-*"
 
 FuncFvwmSetFont-ModuleWindowList "*FvwmIconMan: *font" \
-	"7x13bold"
+	"-*-fixed-bold-r-normal-*-13-*"
 
-FuncFvwmSetFont-ModuleTips "*FvwmTaskBar: StatusFont" "fixed"
+FuncFvwmSetFont-ModuleTips "*FvwmTaskBar: StatusFont" \
+	"-*-fixed-medium-r-semicondensed-*-13-*"
 
 FuncFvwmSetFont-ModuleTips "*FvwmPager-Single: BalloonFont" \
-	-*-lucidatypewriter-medium-r-normal-sans-12-*-*-*-*-*-*-*
+	-*-lucidatypewriter-medium-r-normal-sans-12-*
 FuncFvwmSetFont-ModuleTips "*FvwmPager-Desker: BalloonFont" \
-	-*-lucidatypewriter-medium-r-normal-sans-14-*-*-*-*-*-*-*
+	-*-lucidatypewriter-medium-r-normal-sans-14-*
 
-FuncFvwmSetFont-ModuleSmall "*FvwmPager-Single: SmallFont" "5x8"
-FuncFvwmSetFont-ModuleSmall "*FvwmPager-Desker: SmallFont" "5x8"
+FuncFvwmSetFont-ModuleSmall "*FvwmPager-Single: SmallFont" \
+	"-*-fixed-medium-r-normal-*-8-*"
+FuncFvwmSetFont-ModuleSmall "*FvwmPager-Desker: SmallFont" \
+	"-*-fixed-medium-r-normal-*-8-*"
 
 FuncFvwmSetFont-ModuleLabel "*FvwmPager-Single: Font" \
-	"-adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*"
+	"-adobe-helvetica-bold-r-*-*-10-*"
 
 FuncFvwmSetFont-ModuleLabel "*FvwmPager-Desker: Font" \
-	"-adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*"
+	"-adobe-helvetica-bold-r-*-*-10-*"
 

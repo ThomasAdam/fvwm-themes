@@ -1,5 +1,5 @@
-FuncFvwmSetFont-WindowTitle * -*-lucidatypewriter-medium-r-*-*-12-*-*-*-*-*-*-*
-FuncFvwmSetFont-IconTitle   * fixed
+FuncFvwmSetFont-WindowTitle * -*-lucidatypewriter-medium-r-*-*-12-*
+FuncFvwmSetFont-IconTitle   * -*-fixed-medium-r-semicondensed-*-13-*
 
 Style "*"	BorderWidth 5, HandleWidth 5
 Style "*"	FvwmBorder, FirmBorder
@@ -12,8 +12,8 @@ TitleStyle	-- Flat
 ButtonStyle	All -- Flat
 
 AddToFunc   FuncFvwmReloadDecor
-+ I FuncFvwmSetFont-WindowTitle * -*-lucidatypewriter-medium-r-*-*-12-*-*-*-*-*-*-*
-+ I FuncFvwmSetFont-IconTitle   * fixed
++ I FuncFvwmSetFont-WindowTitle * -*-lucidatypewriter-medium-r-*-*-12-*
++ I FuncFvwmSetFont-IconTitle   * -*-fixed-medium-r-semicondensed-*-13-*
 + I BorderStyle	Simple -- HiddenHandles NoInset Raised
 + I TitleStyle	-- Flat
 + I ButtonStyle	All -- Flat

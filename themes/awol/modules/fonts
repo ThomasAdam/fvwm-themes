@@ -1,20 +1,24 @@
 FuncFvwmSetFont-ModuleWindowList "*FvwmIconMan: *font" \
-	 "-adobe-times-*-*-*-*-20-*-*-*-*-*-*-*"
+	 "-adobe-times-*-*-*-*-20-*"
 
-FuncFvwmSetFont-ModuleTips "*FvwmPager-Single: BalloonFont" fixed
-FuncFvwmSetFont-ModuleTips "*FvwmPager-Desker: BalloonFont" fixed
+FuncFvwmSetFont-ModuleTips "*FvwmPager-Single: BalloonFont" \
+	-*-fixed-medium-r-semicondensed-*-13-*
+FuncFvwmSetFont-ModuleTips "*FvwmPager-Desker: BalloonFont" \
+	-*-fixed-medium-r-semicondensed-*-13-*
 
-FuncFvwmSetFont-ModuleSmall "*FvwmPager-Single: SmallFont" "8x12"
-FuncFvwmSetFont-ModuleSmall "*FvwmPager-Desker: SmallFont" "8x12"
+FuncFvwmSetFont-ModuleSmall "*FvwmPager-Single: SmallFont" \
+	"-*-fixed-medium-r-normal-*-13-*"
+FuncFvwmSetFont-ModuleSmall "*FvwmPager-Desker: SmallFont" \
+	"-*-fixed-medium-r-normal-*-13-*"
 
 FuncFvwmSetFont-ModuleSmallLabel "*FvwmPager-Single: Font" \
-	"-b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1"
+	"-*-lucida-medium-r-normal-sans-8-*"
 
 FuncFvwmSetFont-ModuleSmallLabel "*FvwmPager-Desker: Font" \
-	"-b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1"
+	"-*-lucida-medium-r-normal-sans-8-*"
 
 FuncFvwmSetFont-ModuleSmallLabel "*FvwmButtons-DaLo: Font" \
-	 "-b&h-lucida-medium-r-normal-sans-8-*-75-75-p-45-iso8859-1"
+	 "-*-lucida-medium-r-normal-sans-8-*"
 
 FuncFvwmSetFont-ModuleSmallLabel "*FvwmButtons-Default: Font" \
-	 "-b&h-lucida-medium-r-normal-sans-8-*-75-75-p-45-iso8859-1"
+	 "-*-lucida-medium-r-normal-sans-8-*"

@@ -8,5 +8,5 @@ MenuStyle * PopupAsSubmenu, RemoveSubmenus, SubmenusRight
 MenuStyle * ItemFormat "%.4s%.1|%.5i%.5l%.5l%.5r%.5i%2.3>%1|"
 MenuStyle * VerticalItemSpacing 2 3, VerticalTitleSpacing 2 3
 
-FuncFvwmSetFont-Menu * "xft:Luxi Sans:Bold:size=12:minspace=true,-adobe-helvetica-medium-r-*-*-12-*"
+FuncFvwmSetFont-Menu * "xft:Luxi Sans:Bold:size=12:minspace=true;-adobe-helvetica-medium-r-*-*-12-*"
 BusyCursor DynamicMenu True

@@ -1,6 +1,6 @@
 # migo: -adobe-*chancery- replaced with -adobe-times-
-FuncFvwmSetFont-WindowTitle * -adobe-times-*-*-*-*-18-*-*-*-*-*-*-*
-FuncFvwmSetFont-IconTitle   * -adobe-times-*-*-*-*-14-*-*-*-*-*-*-*
+FuncFvwmSetFont-WindowTitle * -adobe-times-*-*-*-*-18-*
+FuncFvwmSetFont-IconTitle   * -adobe-times-*-*-*-*-14-*
 
 Style "*"	BorderWidth 8, HandleWidth 8
 Style "*"	FvwmBorder, FirmBorder
@@ -16,8 +16,8 @@ TitleStyle	Inactive   -- Raised
 ButtonStyle	All -- Raised
 
 AddToFunc   FuncFvwmReloadDecor
-+ I FuncFvwmSetFont-WindowTitle * -adobe-times-*-*-*-*-18-*-*-*-*-*-*-*
-+ I FuncFvwmSetFont-IconTitle   * -adobe-times-*-*-*-*-14-*-*-*-*-*-*-*
++ I FuncFvwmSetFont-WindowTitle * -adobe-times-*-*-*-*-18-*
++ I FuncFvwmSetFont-IconTitle   * -adobe-times-*-*-*-*-14-*
 + I BorderStyle	Active   -- !HiddenHandles !NoInset
 + I BorderStyle	Inactive --  HiddenHandles  NoInset
 + I TitleStyle	ActiveUp   -- Raised
