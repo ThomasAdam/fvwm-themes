@@ -137,7 +137,7 @@ Property
  Size 50 30
  Position 190 390
  Type PushButton
- Flags NoReliefString Hidden
+ Flags NoReliefString
  Title {OK}
 Main
  Case message of
@@ -156,7 +156,7 @@ Property
  Size 50 30
  Position 280 390
  Type PushButton
- Flags NoReliefString Hidden
+ Flags NoReliefString
  Title {Cancel}
 Main
  Case message of
@@ -183,7 +183,7 @@ Widget 4
 Property
  Position 20 25
  Type PushButton
- Flags NoReliefString Hidden
+ Flags NoReliefString
  Title {Path:}
 Main
  Case message of
@@ -199,7 +199,7 @@ Property
  Position 75 25
  Size 295 0
  Type TextField
- Flags NoReliefString Hidden
+ Flags NoReliefString
  Title {}
 Main
  Case message of
@@ -213,7 +213,7 @@ Property
  Position 20 45
  Size 320 20
  Type ItemDraw
- Flags NoReliefString Hidden
+ Flags NoReliefString
  Title {All Applications in Path}
 Main
  Case message of
@@ -226,7 +226,7 @@ Widget 6
 Property
  Position 40 62
  Size 50 18
- Flags NoReliefString Hidden
+ Flags NoReliefString
  Title {up}
  #Icon up.xpm
  Type PushButton
@@ -244,7 +244,7 @@ Widget 11
 Property
  Position 110 62
  Size 50 18
- Flags NoReliefString Hidden
+ Flags NoReliefString
  Title {home}
  #Icon home.xpm
  Type PushButton
@@ -263,7 +263,7 @@ Widget 12
 Property
  Position 200 67
  Type CheckBox
- Flags NoReliefString Hidden
+ Flags NoReliefString
  Title { Show hidden files}
 Main
  Case message of
@@ -282,7 +282,7 @@ Property
  Position 30 105
  Size 330 165
  Type List
- Flags NoReliefString Hidden
+ Flags NoReliefString
  Title {}
 Main
  Case message of
@@ -311,7 +311,7 @@ Property
  Position 30 355
  Size 330 20
  Type ItemDraw
- Flags NoReliefString Hidden
+ Flags NoReliefString
  Title {}
 Main
  Case message of
