@@ -6,6 +6,9 @@
 	switch MenuFvwmWindowOps2 and MenuFvwmWindowOps3;
 	try the new MenuFvwmWindowOps2 anywhere for now even in CDE
 
+	* bin/fvwm-themes-start.in:
+	fixed syntax
+
 2001-04-05  migo  <migo@homemail.com>
 
 	* AUTHORS: added Kristian Peters
