@@ -1,6 +1,7 @@
-FuncFvwmSetFont-WindowTitle * "xft:Trebuchet MS:style=Bold:pixelsize=11:minspace=True,-*-trebuchet-bold-r-normal-*-11-*-*-*-*-*-*-*,-misc-fixed-bold-r-normal-*-13-*-*-*-c-*-*-*"
-FuncFvwmSetFont-IconTitle   * "xft:Trebuchet MS:style=Bold:pixelsize=11:minspace=True,-*-trebuchet-bold-r-normal-*-11-*-*-*-*-*-*-*,-misc-fixed-bold-r-normal-*-13-*-*-*-c-*-*-*"
+FuncFvwmSetFont-WindowTitle * "shadow=1 center :xft:Trebuchet MS:style=Bold:pixelsize=11:minspace=True,-*-trebuchet ms-bold-r-normal-*-11-*-*-*-*-*-*-*,-misc-fixed-bold-r-normal-*-13-*-*-*-c-*-*-*"
+FuncFvwmSetFont-IconTitle   * "xft:Trebuchet MS:style=Regular:pixelsize=9:minspace=True,-*-trebuchet ms-bold-r-normal-*-9-*-*-*-*-*-*-*"
 
+DefaultFont "xft:verdana:bold:pixelsize=16:minspace=True"
 Style "*"	BorderWidth 4, HandleWidth 4
 Style "*"	FvwmBorder, FirmBorder
 
@@ -8,12 +9,12 @@ BorderStyle	Simple -- HiddenHandles !NoInset Raised
 
 TitleStyle	LeftJustified
 TitleStyle	-- Flat
-ButtonStyle	All -- Flat
+ButtonStyle	All -- Flat UseTitleStyle
 
 AddToFunc   FuncFvwmReloadDecor
-+ I FuncFvwmSetFont-WindowTitle * "xft:Trebuchet MS:style=Bold:pixelsize=11:minspace=True,-*-trebuchet-bold-r-normal-*-11-*-*-*-*-*-*-*,-misc-fixed-bold-r-normal-*-13-*-*-*-c-*-*-*"
-+ I FuncFvwmSetFont-IconTitle   * "xft:Trebuchet MS:style=Bold:pixelsize=11:minspace=True,-*-trebuchet-bold-r-normal-*-11-*-*-*-*-*-*-*,-misc-fixed-bold-r-normal-*-13-*-*-*-c-*-*-*"
++ I FuncFvwmSetFont-WindowTitle * "shadow=1 center :xft:Trebuchet MS:style=Bold:pixelsize=11:minspace=True,-*-trebuchet ms-bold-r-normal-*-11-*-*-*-*-*-*-*,-misc-fixed-bold-r-normal-*-13-*-*-*-c-*-*-*"
++ I FuncFvwmSetFont-IconTitle   * "xft:Trebuchet MS:style=Regular:pixelsize=9:minspace=True,-*-trebuchet ms-bold-r-normal-*-9-*-*-*-*-*-*-*"
 + I BorderStyle	Simple -- HiddenHandles !NoInset Raised
 + I TitleStyle	-- Flat
-+ I ButtonStyle	All -- Flat
++ I ButtonStyle	All -- Flat UseTitleStyle
 + I FuncFvwmOverRideWindowLook
