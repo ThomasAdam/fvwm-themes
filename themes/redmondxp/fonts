@@ -18,7 +18,7 @@ AddToFunc   FuncFvwmSetFont-Menu
 # for FvwmIdent (called in colors ... maybe not a very good thing) 
 DestroyFunc FuncFvwmSetFont-FvwmIdent
 AddToFunc   FuncFvwmSetFont-FvwmIdent
-+ I *FvwmIdent: Font shadowsize=1:
++ I *FvwmIdent: Font shadowsize=1:xft:Verdana:Bold:pixelsize=10:minspace=true
 
 #-----------------------------------------------------------------------------
 # Modules Theme fonts

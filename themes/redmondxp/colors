@@ -58,10 +58,12 @@ Colorset 7 fg grey, bg grey, Plain, NoShape
 # Common Colorsets
 
 # default for modules
-Colorset 10 fg black, bg rgb:98/B0/C8, Plain, NoShape
+Colorset 10 fg contrast, bg average, \
+	VGradient 300 3 rgb:14/6f/ea 2 rgb:00/3f/aa 6 rgb:14/6f/ea 1 rgb:00/3f/aa, NoShape
 
 # default hilight
-Colorset 11 fg black, bg white, Plain, NoShape
+Colorset 11 fg contrast, bg average, \
+	VGradient 300 3 rgb:06/3d/c6 2 rgb:00/0d/86 6 rgb:06/3d/c6 1 rgb:00/0d/86, NoShape
 
 # special
 #Colorset 12 CopyAll 5
@@ -79,31 +81,31 @@ Colorset 14 fg black, bg rgb:98/B0/C8, Plain, NoShape
 Colorset 15 fg black, bg white, Plain, NoShape
 
 # tips/balloons
-Colorset 16 fg white, bg DarkBlue, Plain, NoShape
+Colorset 16 fg white, bg rgb:14/58/bc, Plain, NoShape
 
 # ----------------------------
 # Window List Module Colorsets
 
 # standard item
-Colorset 17 fg black, bg rgb:98/B0/C8, \
-	TiledPixmap decor/title-inactive.xpm, NoShape
+Colorset 17 fg contrast, bg average, \
+	VGradient 300 3 rgb:14/6f/ea 2 rgb:00/3f/aa 6 rgb:14/6f/ea 1 rgb:00/3f/aa, NoShape
 
 # active item
-Colorset 18 fg black, bg white, \
-	TiledPixmap decor/title-active.xpm, NoShape
+Colorset 18 fg contrast, bg average, \
+	VGradient 300 3 rgb:06/3d/c6 2 rgb:00/0d/86 6 rgb:06/3d/c6 1 rgb:00/0d/86, NoShape
 
 # iconified item
-Colorset 19 fg white, bg rgb:98/B0/C8, \
-	TiledPixmap decor/title-inactive.xpm, NoShape
+Colorset 19 fg white, bg rgb:18/70/d0, Plain, NoShape
 
 # pointed item
-Colorset 20 fg black, bg rgb:98/B0/C8, Plain, NoShape
+Colorset 20 fg white, bg rgb:34/88/de, Plain, NoShape
 
 # ----------------------
 # Other Module Colorsets
 
 # FvwmIdent
-Colorset 21 fg white, bg DarkBlue, Plain, NoShape
+Colorset 21 fg rgb:d0/f8/ff, bg rgb:14/58/bc, fgsh rgb:40/30/a8, NoShape, \
+	VGradient 300 3 rgb:14/58/bc 1 rgb:10/60/d0 6 rgb:20/50/a8 1 rgb:14/58/bc
 
 # FvwmConsole
 Colorset 22 fg white, bg rgb:10/60/90, Plain, NoShape
