@@ -64,6 +64,7 @@ Begin
 
     Set $SelFont = {-adobe-helvetica-bold-r-*-*-12-*}
     Set $ShadeFont = {-adobe-helvetica-medium-r-*-*-12-*}
+    Set $nonDefaultFont = 0
 
     #Set $Lang = {en}
     #Set $Lang = {ru}
@@ -72,7 +73,7 @@ Begin
     # The methode below is a ok for 3 or 4 languages ...
     If $Lang == {} Then
     Begin
-	Set $cmd = {echo "$LANG"}
+	Set $cmd = {echo "$LANG" | cut -c1-2}
 	Set $Lang = (GetOutput $cmd 1 -1)
     End
     Set $locateSet = 0
@@ -168,6 +169,8 @@ Begin
 	Set $locateSet = 1
 	Set $SelFont = {-cronyx-times-bold-r-*-*-12-*-*-*-*-*-koi8-*}
 	Set $ShadeFont = {-cronyx-times-medium-r-*-*-12-*-*-*-*-*-koi8-*}
+	Set $FixedFont = {-cronyx-fixed-medium-r-semicondensed--*-*-*-*-*-*-koi8-*}
+	Set $nonDefaultFont = 1
 	ChangeTitle 1 {Раздел Конфигурации:}
 	ChangeTitle 2 {       Выбор Тем              |       Общие Установки       |       Сессии FVWM Themes      }
 	ChangeTitle 5 {Список Тем:}
@@ -218,7 +221,10 @@ Begin
 	ChangeTitle 43 {Добавить}
 	ChangeTitle 44 {Удалить}
 	ChangeTitle 45 {Выбранная сессия:}
-	# See widget 46, 47, 48, 58
+	ChangeTitle 46 {* Для загрузки сессии, выберите её и нажмите "Применить"                       }
+	ChangeTitle 47 {* Для перезагрузки текущей сессии, нажмите на "Освежить"                       }
+	ChangeTitle 48 {* Нажатие на "Обновить" перестоит список сессий                                }
+	ChangeTitle 58 {* При выборе "Применить" потеряются неприменнённые изменения в других разделах }
 	Set $l_AddSession = {Добавить новую сессию}
 	Set $l_NotRemoveMain = {Вы не можете удалить сессию main}
 	Set $l_NotRemoveCur = {Вы не можете удалить текущую сессию!}
@@ -299,7 +305,10 @@ Begin
 	ChangeTitle 43 {Add}
 	ChangeTitle 44 {Remove}
 	ChangeTitle 45 {Selected Session:}
-	# See widget 46, 47, 48, 58
+	ChangeTitle 46 {* To load a session, select it and click on Apply                              }
+	ChangeTitle 47 {* To Reload the current session, click on Refresh                              }
+	ChangeTitle 48 {* A click on "Update" will rebuild the session list                            }
+	ChangeTitle 58 {* If you Apply, the not applied changes in the others config tools will be lost}
 	Set $l_AddSession = {Add a new session}
 	Set $l_NotRemoveMain = {You cannot remove the main session}
 	Set $l_NotRemoveCur = {You cannot remove the currently used session!}
@@ -421,9 +430,8 @@ Begin
     ChangeFont 25 $ShadeFont
     ChangeFont 28 $ShadeFont
     # change the fonts for non west-european language
-    If $Lang == {ru} Then
+    If $nonDefaultFont == 1 Then
     Begin
-	Set $FixedFont = {-cronyx-fixed-medium-r-semicondensed--0-0-75-75-c-0-koi8-r}
 	ChangeFont 1 $SelFont
 	ChangeFont 2 $SelFont
 	ChangeFont 6 $FixedFont
