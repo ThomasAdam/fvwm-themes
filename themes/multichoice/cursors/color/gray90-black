@@ -1,0 +1,3 @@
+DestroyFunc FuncFvwmCursorStyle
+AddToFunc   FuncFvwmCursorStyle
++ I CursorStyle "$0" "$1" gray90 black
