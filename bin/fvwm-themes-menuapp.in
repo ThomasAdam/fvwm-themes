@@ -208,7 +208,7 @@ sub comLoop {
 			exit(1);
 		}
 		if ($@ =~ /^Timeout/) {
-			print STDERR "$comName: com give an unvalide unlock!\n";
+			print STDERR "$comName: com gave an invalid unlock!\n";
 			next;
 		}
 		
@@ -1679,35 +1679,24 @@ sub myCopyFile {
 	close(IN);
 	close(OUT);
 }
- 
+
+# returns the next quoted token, modifies the parameter (ref to line)
 sub getNextQuotedToken {
 	my ($line) = @_;
-	my $token = "";
 
-	$$line =~ s/^\s*//;
-	my $quote = " ";
-	$quote = "\"" if ($$line =~ /^\"/);
-	$quote = "\'" if ($$line =~ /^\'/);
-	$quote = "\`" if ($$line =~ /^\`/);
+	$$line =~ s/^\s+//;
+	my $quote = '\s';
+	$quote = substr($$line, 0, 1) if $$line =~ /^["'`]/;
+
 	$$line =~ s/^$quote//;
-	#print "$$line\n";
-	if ($$line =~ /$quote/) {
-		$token = substr($$line,0,index($$line,$quote));
+	if ($$line =~ /^(.*?)$quote\s*(.*)$/) {
+		$$line = $2;
+		return $1;
 	} else {
-		$token = $$line;
+		my $token = $$line;
+		$$line = "";
+		return $token;
 	}
-	#print "$token\n";
-	$tmp = $token;
-	# fixe me, need to protecte other char ...
-	$tmp =~ s/\(/\\(/g;
-	$tmp =~ s/\)/\\)/g;
-	$tmp =~ s/\^/\\^/g;
-	#$tmp =~ s/\@/\\@/g;
-	$$line =~ s/^$tmp//;
-	$$line =~ s/^$quote//;
-	$$line =~ s/^\s*//;
-	$token =~ s/$quote$//;
-	return $token;
 }
 
 sub eqi {

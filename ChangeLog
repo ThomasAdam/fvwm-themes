@@ -1,3 +1,8 @@
+2000-02-27  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-menuapp.in:
+	reimplemented getNextQuotedToken(), this should fix all problems
+
 2001-02-26  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ConfigCenter
