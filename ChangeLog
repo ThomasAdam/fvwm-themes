@@ -11,6 +11,9 @@
 	* themes/*/buttons*:
 	optimize TitleStyle using new state aliases like AllActive
 
+	* configure.in:
+	require 2.5.4 for now, probably will be 2.5.6
+
 2002-12-28  migo  <migo@homemail.com>
 
 	* devel/bin/gtk-colorize-background:
