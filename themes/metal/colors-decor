@@ -21,7 +21,7 @@ AddToFunc   FuncFvwmDecorBackground
 	ActiveDown (TiledPixmap $./images/decor/title-active.xpm) \
 	Inactive   (TiledPixmap $./images/decor/title-inactive.xpm)
 
-+ I ButtonStyle All Pixmap 16x16-general/empty.xpm
++ I ButtonStyle All Pixmap 16x16/empty.xpm
 + I ButtonStyle All \
 	ActiveUp   (TiledPixmap $./images/decor/underline-active.xpm) \
 	ActiveDown (TiledPixmap $./images/decor/underline-active.xpm) \

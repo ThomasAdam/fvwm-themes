@@ -16,7 +16,7 @@ can choose FvwmTaskBar, FvwmIconMan or nothing at all at the bottom.
 
 The button bar is wm-icons compatible, it uses icon set 'bar', so,
 in case you have wm-icons package installed, you can point it using a menu
-to any other existing icon set, not only to the default 16x16-general.
+to any other existing icon set, not only to the default 16x16-kde.
 The change in 'bar' icon set is done dynamically, no need to restart fvwm.
 
 Regards,

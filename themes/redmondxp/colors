@@ -35,7 +35,7 @@ AddToFunc   FuncFvwmDecorBackground
 + I TitleStyle ToggledActiveDown TiledPixmap decor/title-active.xpm
 + I TitleStyle ToggledInactive   TiledPixmap decor/title-inactive.xpm
 #
-+ I ButtonStyle All Pixmap 16x16-general/empty.xpm
++ I ButtonStyle All Pixmap 16x16/empty.xpm
 + I ButtonStyle All -- UseTitleStyle
 
 # --------------

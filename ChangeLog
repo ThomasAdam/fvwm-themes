@@ -32,6 +32,14 @@
 	* themes/migo/modules/README:
 	deleted
 
+	* NEWS:
+	* README:
+	* images.tar.gz:
+	* doc/colorsets:
+	* themes/*/colors*:
+	add and link 16x16-kde icon set, remove 16x16-general; it's nicer,
+	it uses 52 colors and 84 icons instead of 38 colors and 82 icons
+
 2002-06-02  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings.cfg: 

@@ -35,7 +35,7 @@ AddToFunc   FuncFvwmDecorBackground
 + I AddTitleStyle ActiveDown Pixmap decor/titlebutton-mod.xpm      -- Right
 + I AddTitleStyle Inactive   Pixmap decor/titlebutton-mod-dark.xpm -- Right
 
-+ I ButtonStyle All Pixmap 16x16-general/empty.xpm
++ I ButtonStyle All Pixmap 16x16/empty.xpm
 + I ButtonStyle All ActiveUp          TiledPixmap decor/titlebar_fill.xpm
 + I ButtonStyle All ActiveDown        TiledPixmap decor/titlebar_fill_s.xpm
 + I ButtonStyle All Inactive          TiledPixmap decor/titlebar_fill_i.xpm

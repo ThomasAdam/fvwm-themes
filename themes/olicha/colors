@@ -32,7 +32,7 @@ AddToFunc   FuncFvwmDecorBackground
 + I TitleStyle ActiveDown HGradient 100 LightSlateBlue MidnightBlue
 + I TitleStyle Inactive   HGradient 100 grey60 grey30
 
-+ I ButtonStyle All Pixmap 16x16-general/empty.xpm
++ I ButtonStyle All Pixmap 16x16/empty.xpm
 
 + I AddButtonStyle Left  ActiveUp           Solid LightSlateBlue
 + I AddButtonStyle Left  ActiveDown         Solid LightSlateBlue
