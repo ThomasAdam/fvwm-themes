@@ -9,6 +9,12 @@
 	removed not now needed dependances;
 	I will work on better names and removing repeating dependances later
 
+	* themes/default/menus:
+	added menu icons and corrected english labels in ConfigUtilities.
+
+	* themes/default/styles:
+	Trying to continue UsePPosition experiment... Netscape is broken.
+
 2000-01-02  migo  <migo@homemail.com>
 
 	* locale/ru/FvwmScript-ThemesCenter.html:

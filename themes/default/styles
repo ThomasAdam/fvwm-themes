@@ -1,5 +1,6 @@
 # Experimental. This may be FVWM default.
 Style "*"		UsePPosition
+Style "Netscape"	NoPPosition
 
 Style "Fvwm*"		Sticky, Title, Handles, WindowListHit, CirculateSkip
 Style "FvwmBanner"	NoTitle, StaysOnTop, WindowListSkip, NeverFocus

@@ -218,16 +218,15 @@ AddToMenu   MenuFvwmXConfiguration "X Configuration" Title
 
 DestroyMenu MenuFvwmConfigUtilities
 AddToMenu   MenuFvwmConfigUtilities "Configuration Utilities" Title
-+ "&Colors Selector"		FvwmScript FvwmScript-ColorSelector \
-		--text-colorset 34 --viewer-colorset 33
-+ "&Fonts Selector"		FvwmScript FvwmScript-FontSelector \
-		--text-colorset 34 --viewer-colorset 33
-+ "&Icons Browser"		FvwmScript FvwmScript-IconBrowser \
-		--text-colorset 34 --icon-colorset 5 --launched 0 \
-		--dir $[FT_DATADIR]/images/
-+ "&Images Browser"		FvwmScript FvwmScript-ImageBrowser \
-		--text-colorset 34 --launched 0 \
-		--dir $[FT_DATADIR]/images/
++ "&Color Selector%menu/image-viewer.xpm%" FvwmScript FvwmScript-ColorSelector \
+	--text-colorset 34 --viewer-colorset 33
++ "&Font Selector%menu/font.xpm%"          FvwmScript FvwmScript-FontSelector \
+	--text-colorset 34 --viewer-colorset 33
++ "&Icon Browser%menu/image-viewer.xpm%"   FvwmScript FvwmScript-IconBrowser \
+	--text-colorset 34 --icon-colorset 5 --launched 0 \
+	--dir $[FT_DATADIR]/images/
++ "&Image Browser%menu/image-viewer.xpm%"  FvwmScript FvwmScript-ImageBrowser \
+	--text-colorset 34 --launched 0 --dir $[FT_DATADIR]/images/
 
 # -----------------------------------------------------------------------------
 # ---------- MenuFvwmQuit
