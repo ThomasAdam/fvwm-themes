@@ -1,3 +1,8 @@
+2002-06-16  migo  <migo@homemail.com>
+
+	* themes/default/settings.cfg:
+	make the default for EWMH - disabled, needed for 2.5.x
+
 2002-06-14  migo  <migo@homemail.com>
 
 	* themes/redmondxp/images/module/panel-right-bg.xpm:
