@@ -6,6 +6,17 @@
 	fixed a problem where the component is removed/renamed from a theme,
 	but still is used in @current (f.e. in old session)
 
+	* themes/{awol,default,luthien,migo}/modules.cfg: s/Variant/Flavor/
+	* themes/awol/modules/main: s/Standar/Standard/
+
+	* themes/olicha/README:
+	rewording and spell correction; I would not write the last section,
+	this may easily confuse users
+
+	* themes/olicha/modules/main:FvwmTaskBar:
+	* themes/redmond98/modules/taskbarpos/bottom:
+	ok, but at least don't open immediately Quit menu
+
 2000-11-09  olicha  <olivier.chapuis@free.fr>
 
 	* themes/olicha/README:

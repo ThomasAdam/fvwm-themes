@@ -44,7 +44,7 @@ AddToFunc   FuncFvwmStopThemeModules
 
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "Awol Modules" Title
-+ "Standar &Buttons"  		FuncFvwmButtonsSwitch FvwmButtons-Default
++ "Standard &Buttons"  		FuncFvwmButtonsSwitch FvwmButtons-Default
 + "&Dali \& kLo Buttons"  	FuncFvwmButtonsSwitch FvwmButtons-DaLo
 + "&Desker"      FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '-7 7'
 + "" Nop
