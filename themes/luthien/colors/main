@@ -18,7 +18,7 @@ esyscmd({{awk '{ print "define(CDE_COLOR" (NR <= 8? NR "_BG": (NR - 8) "_FG") ",
 *FvwmTheme: Colorset 0 fg CDE_COLOR2_FG, \
 	bg CDE_COLOR2_BG, Plain, NoShape
 
-PDefaultColorset 0
+DefaultColorset 0
 DestroyModuleConfig FvwmScroll: Colorset*
 *FvwmScroll: Colorset 0
 
@@ -70,11 +70,13 @@ ButtonStyle	All -- UseTitleStyle
 
 # inactive menu item fg+bg and menu face
 *FvwmTheme: Colorset 5 fg CDE_COLOR2_FG, \
-	bg CDE_COLOR2_BG, Plain, NoShape
+	bg CDE_COLOR2_BG, \
+	VGradient 100 CDE_COLOR6_BG \
+	CDE_COLOR2_BG, NoShape
 
 # active menu item fg+bg
-*FvwmTheme: Colorset 6 fg CDE_COLOR1_FG, \
-	bg CDE_COLOR1_BG, Plain, NoShape
+*FvwmTheme: Colorset 6 fg CDE_COLOR2_FG, \
+	bg CDE_COLOR2_BG, Plain, NoShape
 
 # greyed menu item fg
 *FvwmTheme: Colorset 7 fg CDE_COLOR4_BG, \
@@ -91,12 +93,12 @@ MenuStyle * ActiveFore, HilightBack
 # Common Colorsets
 
 # default for modules
-*FvwmTheme: Colorset 10 fg CDE_COLOR8_FG, \
-	bg CDE_COLOR8_BG, Plain, NoShape
+*FvwmTheme: Colorset 10 fg CDE_COLOR2_FG, \
+	bg CDE_COLOR2_BG, Plain, NoShape
 
 # default hilight
-*FvwmTheme: Colorset 11 fg CDE_COLOR1_FG, \
-	bg CDE_COLOR1_BG, Plain, NoShape
+*FvwmTheme: Colorset 11 fg CDE_COLOR8_FG, \
+	bg CDE_COLOR8_BG, Plain, NoShape
 
 # special
 *FvwmTheme: Colorset 12 fg CDE_COLOR1_FG, \
@@ -105,22 +107,24 @@ MenuStyle * ActiveFore, HilightBack
 	CDE_COLOR2_BG, NoShape
 
 # swallowed window
-*FvwmTheme: Colorset 13 fg CDE_COLOR6_FG, \
-	bg CDE_COLOR6_BG, \
+*FvwmTheme: Colorset 13 fg CDE_COLOR2_FG, \
+	bg CDE_COLOR2_BG, \
 	hi CDE_COLOR1_FG, \
 	sh CDE_COLOR1_BG, Plain, NoShape
 
 # default2 (FvwmPager or to get more colors in Buttons)
-*FvwmTheme: Colorset 14 fg CDE_COLOR8_FG, \
-	bg CDE_COLOR8_BG, Plain, NoShape
+*FvwmTheme: Colorset 14 fg CDE_COLOR2_FG, \
+	bg CDE_COLOR2_BG, Plain, NoShape
 
 # default hilight2: (FvwmPager or to get more colors in a Buttons)
-*FvwmTheme: Colorset 15 fg CDE_COLOR1_FG, \
-	bg CDE_COLOR1_BG, Plain, NoShape
+*FvwmTheme: Colorset 15 fg CDE_COLOR8_FG, \
+	bg CDE_COLOR8_BG, Plain, NoShape
 
 # tips/balloons
 *FvwmTheme: Colorset 16 fg CDE_COLOR2_FG, \
-	bg CDE_COLOR2_BG, Plain, NoShape
+	bg CDE_COLOR2_BG, \
+	VGradient 100 CDE_COLOR6_BG \
+	CDE_COLOR2_BG, NoShape
 
 # ----------------------
 # Window Lists Colorsets
@@ -186,8 +190,8 @@ DestroyModuleConfig FvwmFormDefault: ItemColorset*
 	bg CDE_COLOR4_BG, Plain, NoShape
 
 # Not in one of the above category (for Script and Form, ft-xres)
-*FvwmTheme: Colorset 36 fg CDE_COLOR6_FG, \
-	bg CDE_COLOR6_BG, Plain, NoShape
+*FvwmTheme: Colorset 36 fg CDE_COLOR2_FG, \
+	bg CDE_COLOR2_BG, Plain, NoShape
 
 DestroyModuleConfig FvwmScript: DefaultColorset*
 *FvwmScript: DefaultColorset 36
