@@ -1010,7 +1010,7 @@ Begin
 	    Set $index = (Add $index 1)
 	    Set $tmp = (StrCopy $GF_Config $index $index)
 	    ChangeValue 124 $tmp
-	    # MixedVisualWorkArround
+	    # MixedVisualWorkaround
 	    Set $index = (Add $index 1)
 	    Set $tmp = (StrCopy $GF_Config $index $index)
 	    ChangeValue 125 $tmp
@@ -3116,7 +3116,7 @@ Case message of
     End
 End
 
-# Some preconfigurated value title
+# Some preconfigured value title
 Widget 105
 Property
     Position 50 382
@@ -3131,7 +3131,7 @@ Case message of
     End
 End
 
-# Some preconfigurated value: value
+# Some preconfigured value: value
 Widget 106
 Property
     Position 255 379
@@ -3318,14 +3318,14 @@ Main
   End
 End
 
-# ModuleSynchrnous
+# ModuleSynchronous
 Widget 121
 Property
     Position 400 200
     Type CheckBox
     Font fixed
     Flags NoReliefString Hidden   
-    Title {ModuleSynchornous}
+    Title {ModuleSynchronous}
 Main
  Case message of
   SingleClic :
@@ -3334,7 +3334,7 @@ Main
 End
 
 #--------------------------------
-# Avanced (default are good!)
+# Advanced (defaults are good!)
 Widget 122
 Property
     Size 580 15
@@ -3349,7 +3349,7 @@ Case message of
     End
 End
 
-# CloroLimit: title
+# ColorLimit: title
 Widget 123
 Property
     Position 35 275
@@ -3364,7 +3364,7 @@ Case message of
     End
 End
 
-# CloroLimit: value
+# ColorLimit: value
 Widget 124
 Property
     Position 320 270
@@ -3379,14 +3379,14 @@ Case message of
     End
 End
 
-# MixedVisualWorkArround
+# MixedVisualWorkaround
 Widget 125
 Property
     Position 35 310
     Type CheckBox
     Font fixed
     Flags NoReliefString Hidden
-    Title { MixedVisualWorkArround}
+    Title { MixedVisualWorkaround}
 Main
  Case message of
   SingleClic :

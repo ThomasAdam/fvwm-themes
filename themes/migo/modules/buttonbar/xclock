@@ -1,8 +1,7 @@
 DestroyFunc FuncFvwmButtons-CompactClock
 AddToFunc   FuncFvwmButtons-CompactClock
-#+ I *FvwmButtons-Compact: (4x4, Padding 0 0, Colorset 23, Swallow "xclock" `FuncFvwmButtons-StartXClock`)
-# xclock do not support transparent background ...
-+ I *FvwmButtons-Compact: (4x4, Padding 0 0, Swallow "xclock" `FuncFvwmButtons-StartXClock`)
+# xclock does not support transparency, remove "Colorset 23" in modules-extra
++ I *FvwmButtons-Compact: (4x4, Padding 0 0, Colorset 23, Swallow "xclock" `FuncFvwmButtons-StartXClock`)
 
 # not in the previous func because of a variable expansion problem
 DestroyFunc FuncFvwmButtons-StartXClock

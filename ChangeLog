@@ -1,3 +1,11 @@
+2001-10-17  migo  <migo@homemail.com>
+
+	* locale/{en,ru}/FvwmScript-GlobalFeel.msg:
+	* scripts/FvwmScript-GlobalFeel:
+	* themes/migo/modules/buttonbar/xclock:
+	* themes/multichoice/cursors/pixmap1:
+	small corrections
+
 2001-10-20  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:

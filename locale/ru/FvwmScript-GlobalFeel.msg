@@ -43,7 +43,7 @@ MoveResize 	{ Перемещение u Размер }
 OpaqueResize	{Непрозрачное        }
 OutLineRes	{Прозрачное          }
 # be exact for the next 2
-Resizing	{Изменение Размера Окон:  }
+Resizing	{Изменение Размера Окон: }
 OpaqueMove	{Непрозрачное Перемещение для окон занимающих менее чем     }
 # No more than 20 characteres
 ScreenPer	{% экрана}
@@ -51,7 +51,7 @@ ScreenPer	{% экрана}
 GeoPosition	{Позиция окна показывающего геометрию окон:}
 GeoCenter	{В центре экрана        }
 GeoTopLeft	{В левом верхнем углу   }
-HideGeoWin	{Skryt' окнo с геометрией окон при:        }
+HideGeoWin	{Скрыть окно с геометрией окон при:        }
 HideResize	{Изменении Размера      }
 HideMove	{Перемещении          }
 BuggyMove	{ Попробывать эту опцию, лишь если окна перемещаются с треском }
@@ -130,7 +130,7 @@ ModTimeOut	{Maximal time given to a module to return an answer:       }
 
 ### Preferences
 PrefFile	{ Themes and Files }
-BPrefLoaded	{At start the current component }
+BPrefLoaded	{Initially the current component }
 MPrefLoaded	{, from the theme }
 APrefLoaded	{, has been loaded}
 # be exact for the next 3
@@ -149,7 +149,7 @@ SaveIsGlobal	{Apply "Save" to the all globalfeel screens, not only to the curren
 #KeyTitle	{Keyboard Bindings}
 #MouseTitle	{Mouse Bindings}
 #StrokeTitle	{Mouse Stroke Bindings}
-#AppBindTitle    {Prefered Applications}
+#AppBindTitle	{Preferred Applications}
 
 ### End
 ConfigLoaded	{ Configuration Loaded }
