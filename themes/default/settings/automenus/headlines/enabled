@@ -1,4 +1,4 @@
-AddToMenu MenuFvwmPrograms
+AddToMenu MenuFvwmWebBrowsing
 + "%menu/www.xpm%Headlines" Popup MenuFvwmHeadlines
 
 DestroyFunc FuncFvwmMenuHeadlines

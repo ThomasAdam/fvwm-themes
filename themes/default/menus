@@ -12,6 +12,7 @@ AddToMenu   MenuFvwmRoot "Root Menu" Title
 + "FVWM &Modules%menu/modules.xpm%"		Popup MenuFvwmModules
 + "&Window Operations%menu/window.xpm%"		Popup MenuFvwmWindowOps
 + "" Nop
++ "Web &Browsing%menu/www.xpm%"			Popup MenuFvwmWebBrowsing
 + "Sc&reen Saver%menu/display.xpm%"		Popup MenuFvwmScreenSaver
 + "&Quit FVWM%menu/quit.xpm%"			Popup MenuFvwmQuit
 
@@ -452,3 +453,11 @@ AddToMenu   MenuFvwmWindowUtility "Window Utility" Title
 + "" Nop
 + "%menu/window-resize.xpm%Scroll&Bar (1/2 app)"  Pick Module FvwmScroll 2 2
 + "%menu/window-resize.xpm%ScrollBar (&75%% scr)" Pick Module FvwmScroll 75p 75p
+
+# -----------------------------------------------------------------------------
+# ---------- MenuFvwmWebBrowsing*
+
+DestroyMenu MenuFvwmWebBrowsing
+AddToMenu   MenuFvwmWebBrowsing "Web Browsing" Title
++ "FVWM Web Pages" Popup MenuFvwmWebPages
+

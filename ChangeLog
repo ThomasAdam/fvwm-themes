@@ -16,6 +16,11 @@
 	* forms/FvwmGtk-Themes:
 	added Headlines variant in settings
 
+	* themes/default/menus:
+	* themes/default/settings.cfg:
+	* themes/default/settings/automenus/headlines/enabled:
+	added a new "Web Browsing" menu, add Headlines to it
+
 2002-06-05  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings/iconstyles/style-icon-miniicon:
