@@ -24,6 +24,9 @@
 	* themes/olicha/modules/FvwmTaskBar:
 	the start menu now has correct position
 
+	* themes/redmondxp/modules/FvwmButtons-Panel:
+	replaced Cond with TestRc
+
 2003-10-12  migo  <migo@homemail.com>
 
 	* themes/awol/modules/main:

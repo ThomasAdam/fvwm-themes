@@ -14,8 +14,8 @@ AddToFunc   FuncFvwmPopupMenuPanelApps
 	+ "%menu/window-iconify.xpm%Unhide hidden apps on this page" \
 	All (CurrentPage, !CirculateHit, Iconic, State 0) FuncFvwmHideApp false
 + I Next (CurrentPage, !CirculateHit, !Iconic) Nop
-+ I Cond (NoMatch) Next (CurrentPage, !CirculateHit, Iconic, State 0) Nop
-+ I Cond (NoMatch) \
++ I TestRc (!Match) Next (CurrentPage, !CirculateHit, Iconic, State 0) Nop
++ I TestRc (!Match) \
 	+ "%menu/information.xpm%No apps on this page to hide or hidden" Nop
 + I + "" Nop
 + I + "%menu/configuration.xpm%Configure this part" \
@@ -26,7 +26,7 @@ DestroyFunc FuncFvwmHideAllApps
 AddToFunc   FuncFvwmHideAllApps
 + I Next (CurrentPage, !CirculateHit, !Iconic) \
 	All (CurrentPage, !CirculateHit, !Iconic) FuncFvwmHideApp true
-+ I Cond (NoMatch) Next (CurrentPage, !CirculateHit, Iconic, State 0) \
++ I TestRc (!Match) Next (CurrentPage, !CirculateHit, Iconic, State 0) \
 	All (CurrentPage, !CirculateHit, Iconic, State 0) FuncFvwmHideApp false
 
 DestroyModuleConfig FvwmButtons-Panel: *
