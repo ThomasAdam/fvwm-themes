@@ -1,3 +1,27 @@
+2001-05-21  olicha  <olivier.chapuis@free.fr>
+
+	* Makefile.am:
+	* bin/fvwm-themes-config.in:
+	make dist3 build:
+	- fvwm-themes-main-version.tar.gz with the base distribution plus
+	  8 themes:
+	  afterstep, cde, default, migo, multichoice, olicha, redmond98
+	- fvwm-themes-extra-version.tar.gz with the extra themes:
+	  awol, blackbox, brushmetal, nanogui, osx, spruce
+	- ft-name-version.tar.gz for each extra themes name
+	make dist4 build the corresponding bz2 tarballs and make dist{,2}
+	are not changed.
+	The fvwm-themes-extra and the ft-name-version tarballs can be installed
+	with fvwm-themes-config [--site] --install tarballs
+
+	* bin/fvwm-themes-config.in:
+	New option --create-themes name theme1 theme2 ... which create a tarball
+	in the good formate made of theme1 theme2 ... from the site or user
+	dir. New utils options --force-install and --tmp-dir.
+ 
+	* themes/default/themes/settings/stroke/enabled
+	Use A modifier in the place of N for the R context
+
 2001-05-21  migo  <migo@homemail.com>
 
 	* themes/brushedmetal/fonts:
