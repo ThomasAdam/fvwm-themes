@@ -1,3 +1,9 @@
+2001-08-09  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	restored one small cmd:arg change :) The intention was that a
+	separator between cmd and arg may be just space.
+
 2001-08-09  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:

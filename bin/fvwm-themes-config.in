@@ -424,9 +424,7 @@ my @dependencyKeys = qw(
 sub checkUnhideIf ($) {
 	my $check = shift;
 
-	my ($cmd, $arg) = split(':', $check, 2);
-	$cmd =~ s/\s+//g;
-	$arg =~ s/^\s+//; $arg =~ s/\s+$//;
+	my ($cmd, $arg) = split(/[\s:]+/, $check, 2);
 	if ($cmd eq 'in-path') {
 		my $dir;
 		my @pathDirs = split(':', $ENV{'PATH'});
@@ -1650,7 +1648,7 @@ sub getReloadDependency () {
 		'globalfeel-extra' => [ 'globalfeel' ],
 		'globallook-extra' => [ 'globallook' ],
 		'menus-extra' => [ 'menus' ],
-   	'menus-programs-extra' => [ 'menus-programs' ],
+		'menus-programs-extra' => [ 'menus-programs' ],
 		'menustyle-extra' => [ 'menustyle' ],
 		'modules-extra' => [ 'modules' ],
 		'sound-extra' => [ 'sound' ],
