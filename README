@@ -15,11 +15,12 @@ The developement continues.
 How To Install
 --------------
 
-Note, starting from 0.5.0, fvwm-themes is divided to 2 packages,
-fvwm-themes-base and fvwm-themes-extra. You should install fvwm-themes-base.
+Note, starting from 0.6.2, fvwm-themes is divided to 2 packages,
+fvwm-themes and fvwm-themes-extra. In the past (0.5.0 - 0.6.1)
+the package names were fvwm-themes-base and fvwm-themes-extra.
 
-Please read INSTALL file for instructions.
-In short, after untarring fvwm-themes-base package you should execute:
+Please read INSTALL file for installation instructions.
+In short, after untarring fvwm-themes package you should execute:
 
 	./configure
 	make install

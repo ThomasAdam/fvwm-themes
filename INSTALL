@@ -4,7 +4,7 @@ Welcome to FVWM Themes, a beta release.
 HOW TO INSTALL
 --------------
 
-To install this package unpack the fvwm-themes-base tarball and execute:
+To install this package unpack the fvwm-themes tarball and execute:
 
 	./configure
 	make
@@ -22,7 +22,7 @@ regardless of fvwm installation, but you should really know what you do,
 see the last section of this file for instructions.
 
 To install additional themes from fvwm-themes-extra pack, you may execute
-this command as the same user that did "make install" for fvwm-themes-base:
+this command as the same user that did "make install" for fvwm-themes:
 
 	[/path/]fvwm-themes-config --site --install fvwm-themes-extra.tar.gz
 
@@ -59,6 +59,14 @@ If fvwm bin directory (fvwm-config utility is part of fvwm-2.3.17+) is not
 in your $PATH, we suggest you to add this directory to your $PATH or specify
 --with-fvwm-bindir parameter to ./configure. Adding fvwm bin to your $PATH
 is needed anyway if you want to use all features (like fvwm-menu-* scripts).
+
+IMPORTANT NOTE: If you have 2 fvwm installations, for example the
+stable and unstable one, you should install fvwm-themes twice for each
+installation with different --with-fvwm-bindir parameters. Then run correct
+/path/[un]stable/fvwm-themes-start, everything else should work as expected.
+Just be aware that if you have different fvwm-themes versions installed,
+your ~/.fvwm/themes* files and directories may be out of sync. On problems
+do "Reset all to default", or "/path/[un]stable/fvwm-themes-config --reset".
 
 
 HOW TO CHANGE THE DEFAULT DIRECTORIES

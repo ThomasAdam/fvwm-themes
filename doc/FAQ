@@ -107,7 +107,7 @@ when you switch themes. See also the answer to the next question.
 ------------------------------------------------------------------------------
 1.4  On my system switching themes crashes FVWM! What to do?
 
-A: There is a known problem on some systems, FVWM may (or may not) randomly
+A: In the past there was a known problem on some systems, FVWM may randomly
 crash on them when switching themes. You should try a workaround for this
 problem, which does work on at least one such system.
 
