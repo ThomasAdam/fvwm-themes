@@ -70,7 +70,7 @@ AddToMenu   MenuFvwmStopThemeModules "Osx Modules" Title
 # ----------------------------------------------------------------------------
 # Modules configuration
 
-ModuleSynchronous FvwmM4 -lock -m4-squote { -m4-equote } -debug themes/osx/modules/main:FvwmButtons-MenuBar
+ModuleSynchronous FvwmM4 -lock -m4-squote { -m4-equote } themes/osx/modules/main:FvwmButtons-MenuBar
 Read themes/osx/modules/main:FvwmButtons-OsxApps
 Read themes/osx/modules/main:FvwmButtons-OsxCentral
 Read themes/osx/modules/main:FvwmButtons-OsxStartApplets

@@ -13,14 +13,15 @@ DestroyModuleConfig FvwmButtons-WMaker*Applets*
 	Swallow "wmCalClock" 'Exec exec wmCalClock -24', Action(Mouse 1) \
 	'FuncFvwmMyPopupPanel "FvwmButtons-WMakerClockApplets" $right $top', \
 	Action(Mouse 3) 'All (FvwmButtons-WMakerClockApplets) Close')
+# a good monitor:
+# Swallow "asmon" 'Exec exec asmon
 *FvwmButtons-WMakerApplets: (1x11, Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmmon" 'Exec exec wmmon', Action(Mouse 1) \
 	'FuncFvwmMyPopupPanel "FvwmButtons-WMakerCpuApplets" $right $top', \
 	Action(Mouse 3) 'All (FvwmButtons-WMakerCpuApplets) Close')
-#*FvwmButtons-WMakerApplets: (1x11, Frame 1, Size 64 64, Colorset 12, \
-#	Swallow "asapm" 'Exec exec asapm -u 5', Action(Mouse 1) \
-#	'FuncFvwmMyPopupPanel "FvwmButtons-WMakerCdApplets" $right $top', \
-#	Action(Mouse 3) 'All (FvwmButtons-WMakerCdApplets) Close')
+# with a laptop you may want to use:
+# Swallow "asapm" 'Exec exec asapm -u 5
+# in the place of wmjmail 
 *FvwmButtons-WMakerApplets: (1x11, Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmjmail" 'Exec exec wmjmail', Action(Mouse 1) \
 	'FuncFvwmMyPopupPanel "FvwmButtons-WMakerCdApplets" $right $top', \
@@ -54,10 +55,15 @@ DestroyModuleConfig FvwmButtons-WMaker*Applets*
 # Cd
 *FvwmButtons-WMakerCdApplets: Rows 1
 *FvwmButtons-WMakerCdApplets: Colorset 12
+# some version do not have the -s option
 *FvwmButtons-WMakerCdApplets: (Frame 1, Size 64 64, Colorset 12, \
-	Swallow "wmmount" 'Exec exec  wmmount -s')
+	Swallow "wmmount" 'Exec exec wmmount -s')
+# an other mounter:
+# Swallow "mount" 'Exec exec  mount.app -n'
 *FvwmButtons-WMakerCdApplets: (Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmmixer" 'Exec exec  wmmixer -s')
+# an other mixer:
+# Swallow "mixer_app" 'Exec exec /usr/local/GNUstep/Apps/Mixer.app/Mixer'
 *FvwmButtons-WMakerCdApplets: (Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmcdplay" 'Exec exec  wmcdplay -s')
 
@@ -67,7 +73,8 @@ DestroyModuleConfig FvwmButtons-WMaker*Applets*
 *FvwmButtons-WMakerMoreApplets: Colorset 12
 *FvwmButtons-WMakerMoreApplets: (Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmppp" 'Exec exec  wmppp')
+# an other ppp applets:
+# Swallow "yawmppp" 'Exec exec yawmppp'
 *FvwmButtons-WMakerMoreApplets: (Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wminet" 'Exec exec  wminet')
-#*FvwmButtons-WMakerMoreApplets: (Frame 1, Size 64 64, \
-#	Swallow "wmcdplay" 'Exec exec  wmcdplay')
+

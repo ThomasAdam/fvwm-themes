@@ -362,8 +362,8 @@ sub getImagePath {
 				$multiline = $multiline . $_;
 				next;
 			} else {
-			$line= $multiline . $_;
-			$multiline = "";
+				$line= $multiline . $_;
+				$multiline = "";
 			}
 			chomp($line);
 			$line =~ s/\s+//;
@@ -373,19 +373,26 @@ sub getImagePath {
 				$tmp = `echo $tmp`;
 				chomp($tmp);
 				if ($tmp =~ /^\+/) {
-					$tmp =~ s/^\+//;
+					$tmp =~ s/\+//g;
 					$tmp =~ s/^://;
 					$tmp =~ s/:$//;
 					if ($im ne "") { $im = $im .":". $tmp; }
 					else  { $im = $tmp; }
 				}
 				elsif ($tmp =~ /\+$/) {
-					$tmp =~ s/\+$//;
+					$tmp =~ s/\+//g;
 					$tmp =~ s/^://;
 					$tmp =~ s/:$//;
 					if ($im ne "") { $im = $tmp .":". $im; }
 					else  { $im = $tmp; }
-				} else {
+				}
+				elsif ($tmp =~ /\+/) {
+					my ($tmp1,$tmp2) = split(/\+/,$tmp);
+					$tmp1 =~ s/\+//g; $tmp2 =~ s/\+//g;
+					$im = $tmp1 .":". $im . ":" . $tmp2;
+					$im =~ s/^://; $im =~ s/^:$//;
+				}
+				else {
 					$tmp =~ s/^://;
 					$tmp =~ s/:$//;
 					$im = $tmp;
@@ -399,6 +406,7 @@ sub getImagePath {
 sub getPrettyIconName {
 	my ($icon) = @_;
 	foreach $path (@imagePath) {
+		next if $path eq "";
 		return $1 if $icon =~ m!^$path/*(.*)$!;
 	}
 	return $icon;

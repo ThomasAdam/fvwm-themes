@@ -1,3 +1,22 @@
+2000-10-06  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in (generateThemesRc):
+	Commented FuncFvwmRemoveBindings and FuncFvwmRemoveButtonsBindings
+	in FuncFvwmThemesConfigAndUpdate (these functions are not needed, 
+	but maybe for a droping).
+	
+	* themes/osx/modules/main:
+	Remove -debug option to FvwmM4
+	
+	* themes/olicha/modules/main:FvwmButtons-WMakerApplets
+	Minor Change
+
+	* themes/luthien/modules/main:
+	Destroy the functions needed in the Buttons in the Stop function
+
+	* themes/bin/fvwm-themes-menuapp.in
+	fixed image path computation
+	
 2000-10-05  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

@@ -77,7 +77,7 @@ PERL = /usr/bin/perl
 REQUIRED_FVWM_VERSION = 2.3.22
 ROOT_PREFIX = 
 SETTINGS_FILE = ${FT_DATADIR}/themes/default/settings.cfg
-VERSION = 0.3.20
+VERSION = 0.3.21
 
 EXTRA_DIST = FAQ README.1st colorsets
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
