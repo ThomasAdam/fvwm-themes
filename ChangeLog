@@ -1,9 +1,16 @@
+2000-11-22  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	only consider component.d directory if there is no component file/dir;
+	don't add a title for inline option if the option name is empty
+
 2000-11-20  migo  <migo@homemail.com>
 
+	* NEWS:
 	* themes/default/background:
 	* themes/default/background.cfg:
 	* themes/default/background.d/* [removed]:
-	used the same method as in @migo, variant changed to option;
+	used the same method as in @migo, variants changed to option;
 	I didn't added exotic values like darkred,cyan,navy :);
 	I will improve ".d" dirs and menu delimeters in fvwm-themes-config
 
@@ -21,7 +28,7 @@
 	* devel/doc/sourceforge-developer:
 	minor clean-up
 
-	* fvwm-themes-images.in:
+	* bin/fvwm-themes-images.in:
 	document --tile*; --tile* now have ',' delimiter before file/color,
 	--setroot can be used even without any transformation
 

@@ -669,8 +669,8 @@ sub new ($$;$$) {
 			} elsif ($component eq '_core') {
 				$readFile = "*virtual*";
 			} else {
-				my $readDir0 = "$dir/$component.d";
-				$readFile = -d $readDir0? $readDir0: "$dir/$component";
+				$readFile = "$dir/$component";
+				$readFile .= ".d" if -d "$readFile.d" && !-e $readFile;
 				$readFile .= "/$mainDirFile" if -d $readFile;
 			}
 			$cc->{'read-file'} = $readFile;
@@ -1038,8 +1038,9 @@ sub getOwnThemeSubMenusRc ($) {
 						$index = 0;  # maybe die on this error?
 						$optionEntry->{'current'} = $index + 1;
 					}
-					if ($inline) {
-						$menusRc .= qq(+ "$name" Title\n);
+					if ($inline || $name eq "") {
+						$menusRc .= $name ne ""? qq(+ "$name" Title\n):
+							$menusRc =~ / Title\n$/? "": qq(+ "" Nop\n);
 					} else {
 						$subRc1 .= qq(+ "$name"\tPopup "$currMenu-$optionFile"\n);
 						$subRc2 .= qq(DestroyMenu "$currMenu-$optionFile"\n);
