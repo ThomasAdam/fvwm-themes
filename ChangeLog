@@ -3,6 +3,15 @@
 	* bin/fvwm-themes-config.in:
 	fixed FvwmScript-Confirm command and spelling
 
+	* themes/default/globallook:
+	* themes/default/theme.cfg:
+	* themes/migo/colors:
+	Added a new component globallook (another name?).
+	colors@ now contains only colorsets and FuncFvwmTitleStyle,
+	all other pretty static stuff is moved to globallook@.
+	Currently this is done to one colors@migo, I think this is a good
+	thing to do, I am waiting for objections, and will finish this soon.
+
 2001-07-23  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/Makefile.am:
