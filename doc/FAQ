@@ -11,6 +11,7 @@ Q. The themes are nice, but how can I define my personal contents?
 Q. How can I redefine the applications started by clicking on a button?
 Q. What are the default bindings?
 Q. What is the "Stroke" option and what are the default stroke bindings?
+Q. Can I use fvwm-themes on my multi-headed display system?
 Q. Can I use fvwm-themes with a session manager?
 Q. Can I use fvwm-themes with GNOME?
 Q. I am screwed. How can I get fvwm config in one file?
@@ -282,6 +283,32 @@ A. Maybe. If you are a perfect painter. :) If not, stick to simple figures
 - line, 2 lines, triangle, square. Currently it is not easy to add new
 stroke motions, although we are working on making everything configurable.
 But redefining existing motion bindings is easy.
+==============================================================================
+
+------------------------------------------------------------------------------
+Q. Can I use fvwm-themes on my multi-headed display system?
+
+A. Yes, there are several solutions depending on what you want to get.
+
+1) If you want the same theme to be on all your displays, you can simply
+run fvwm-themes-start as usual. In this case, when you change theme
+components on one screen the changes are not synchronized on all other
+screens until you Restart. You can also freely use fvwm-themes sessions.
+This is a simple and easy solution, you just need to remember that what you
+see is not always what you will get after Restart or on the next start-up.
+
+2) If you want to have completely separated setups on all screens, you can
+run fvwm-themes like this:
+
+	env FVWM_USERDIR=$HOME/.fvwm:0.0 fvwm-themes-start -- -s -d :0.0 &
+	env FVWM_USERDIR=$HOME/.fvwm:0.1 fvwm-themes-start -- -s -d :0.1
+
+The feature (or misfeature) of this second solution is that user themes
+and sessions, if there are any, can't be shared on different screens.
+This can be solved by symlinking some themes and sessions, like:
+
+	ln -s ../../.fvwm/themes/personal $HOME/.fvwm:0.0/themes/personal
+	ln -s ../../.fvwm/themes/personal $HOME/.fvwm:0.1/themes/personal
 ==============================================================================
 
 ------------------------------------------------------------------------------
