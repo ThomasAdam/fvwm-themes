@@ -1,0 +1,13 @@
+DestroyFunc FuncFvwmStartThemeBackground
+AddToFunc   FuncFvwmStartThemeBackground
+
+
++ I Exec convert -modulate 100,100,75  $./images/background/red_lace10.png - | display -window root -
+
+
+
+DestroyFunc FuncFvwmStopThemeBackground
+AddToFunc   FuncFvwmStopThemeBackground
++ I Nop
+
+

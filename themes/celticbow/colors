@@ -1,0 +1,284 @@
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+Colorset 0 fg #61E61ED99 , bg #4CC199800 
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+Colorset 1 fg rgb:4cc/199/800 , bg rgb:828/2b8/d99 , Plain, NoShape
+
+
+Colorset 2 fg rgb:800/400/800 , bg rgb:ccc/7ae/ccc , Plain, NoShape
+
+
+ 
+
+Colorset 3 fg rgb:000/000/000 , bg rgb:828/2b8/d99 , Plain, NoShape
+Colorset 4 fg rgb:000/000/000 , bg rgb:ccc/7ae/ccc , Plain, NoShape
+
+DestroyFunc FuncFvwmDecorBackground
+AddToFunc   FuncFvwmDecorBackground
+
++ I AddTitleStyle ActiveUp   (VGradient 64 2 rgb:fd7/e41/fd7  40 rgb:ccc/7ae/ccc  60 rgb:800/400/800 )
+
++ I AddTitleStyle ActiveUp (Pixmap decor/knots.png -- left)
++ I AddTitleStyle ActiveUp (Pixmap decor/knots.png -- right)
+
++ I AddTitleStyle ActiveDown   (VGradient 64 2 rgb:800/400/800  60 rgb:ccc/7ae/ccc  40 rgb:fd7/e41/fd7 )
+
+
+
++ I AddTitleStyle Inactive   (VGradient 64 2 rgb:acc/733/e66  40 rgb:828/2b8/d99  60 rgb:4cc/199/800 )
++ I AddTitleStyle Inactive (TiledPixmap decor/knots.png)
+
+
+ 
+ 
+ 
+
++ I ButtonStyle All	 ActiveUp   (VGradient 64 2 rgb:fd7/e41/fd7  40 rgb:ccc/7ae/ccc  60 rgb:800/400/800  -- Flat)
+
+
++ I ButtonStyle All	 ActiveDown   (VGradient 64 2 rgb:800/400/800  60 rgb:ccc/7ae/ccc  40 rgb:fd7/e41/fd7  -- Raised)
+
+
++ I ButtonStyle All	 Inactive   (VGradient 64 2 rgb:acc/733/e66  40 rgb:828/2b8/d99  60 rgb:4cc/199/800  -- flat)
+
+
+ 
+
+
+
+
+
+ 
+
+
+Colorset 5 fg rgb:000/000/000 , bg rgb:828/2b8/d99 , DGradient 64 3 rgb:e66/a14/e66  30 rgb:ccc/7ae/ccc  60 rgb:828/2b8/d99  30 rgb:acc/733/e66 
+
+
+ 
+
+
+Colorset 6 fg rgb:000/000/000 , bg rgb:e66/a14/e66 , Plain, NoShape
+
+
+ 
+
+Colorset 7 fg rgb:acc/733/e66 , bg rgb:828/2b8/d99 , Plain, NoShape
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Colorset 10 fg rgb:e70/dae/f33 , bg rgb:4cc/199/800 , Plain, NoShape
+
+ 
+ 
+
+Colorset 11 fg rgb:114/114/733 , bg rgb:61e/61e/d99 , Plain, NoShape
+
+ 
+ 
+
+
+Colorset 12 fg rgb:000/000/000 , bg rgb:828/2b8/d99 , 	VGradient 20 rgb:828/2b8/d99  rgb:acc/733/e66 , NoShape
+
+
+ 
+ 
+
+Colorset 13 fg rgb:e70/dae/f33 , bg rgb:4cc/199/800 , hi rgb:000/000/000 , sh rgb:acc/733/e66 , 	Plain, NoShape
+
+ 
+ 
+
+Colorset 14 fg rgb:e70/dae/f33 , bg rgb:4cc/199/800 , Plain, NoShape
+
+ 
+ 
+
+Colorset 15 fg rgb:cf5/cf5/e66 , bg rgb:114/114/733 , Plain, NoShape
+
+ 
+
+Colorset 16 fg rgb:000/000/000 , bg rgb:acc/733/e66 , Plain, NoShape
+
+ 
+
+
+
+
+
+ 
+
+Colorset 17 fg rgb:000/000/000 , bg rgb:828/2b8/d99 , Plain, NoShape
+
+
+ 
+
+Colorset 18 fg rgb:000/000/000 , bg rgb:ccc/7ae/ccc , Plain, NoShape
+
+
+ 
+Colorset 19 fg rgb:e70/dae/f33 , bg rgb:4cc/199/800 , Plain, NoShape
+
+ 
+
+
+Colorset 20 fg rgb:114/114/733 , bg rgb:ccc/7ae/ccc , Plain, NoShape
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+Colorset 21 fg rgb:000/000/000 , bg rgb:acc/733/e66 , Plain, NoShape
+
+
+ 
+
+Colorset 22 fg rgb:e70/dae/f33 , bg rgb:4cc/199/800 , Plain, NoShape
+
+ 
+ 
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+Colorset 30 fg black, bg GhostWhite, Plain, NoShape
+
+ 
+
+Colorset 31 fg rgb:000/000/000 , bg rgb:cf5/cf5/e66 , Plain, NoShape
+
+ 
+
+Colorset 32 fg rgb:e70/dae/f33 , bg rgb:4cc/199/800 , Plain, NoShape
+
+ 
+
+Colorset 33 fg rgb:000/000/000 , bg rgb:e70/dae/f33 , Plain, NoShape
+
+ 
+
+Colorset 34 fg rgb:000/000/000 , bg rgb:e70/dae/f33 , Plain, NoShape
+
+ 
+
+Colorset 35 fg rgb:000/000/000 , bg rgb:828/2b8/d99 , Plain, NoShape
+
+ 
+
+Colorset 36 fg rgb:000/000/000 , bg rgb:e70/dae/f33 , Plain, NoShape
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+DestroyFunc FuncFvwmStartColors
+AddToFunc   FuncFvwmStartColors
+
+DestroyFunc FuncFvwmStopColors
+AddToFunc   FuncFvwmStopColors

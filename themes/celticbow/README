@@ -1,0 +1,31 @@
+Celtic-Bow (2) theme by Kathryn Andersen
+====================================
+
+This is basically the PlainBow theme with Celtic buttons.
+The buttons were based on (but not the same as) the Celtic buttons
+in Dorothy's celtic themes at <http://www.twobarleycorns.net/fvwm-decors.html>
+
+background
+	A delicate lace pattern of my own design, hued to match
+	the theme. (requires ImageMagic)
+
+buttons
+	5 buttons: menu (knot), maximize (up arrow), sticky (left arrow)
+	on the left, and iconize (down arrow), kill (swirly X) on the right.
+	The active buttons have a 3D look, the inactive ones are flat.
+
+colors
+	There are two main sets of colours, default, and active, plus a
+	little bit of highlight colours (like used in the Pager
+	highlighting).  This means there is a lot more unity of look
+	than in the default colors, since a fair few of the Colorsets
+	are identical.
+	This sets the titlebars to a vertical gradient, so it looks curved.
+	This also sets the menus to a diagonal blend gradient between
+	the "active" colours and the "default" colours.
+
+windowlook
+	This windowlook is basically flat, except when buttons are
+	pressed in.
+
+See: <http://www.katspace.com/tools/col_scheme>

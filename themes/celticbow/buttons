@@ -1,0 +1,93 @@
+FuncFvwmDecorBackground
+
+Style "*" Button 1, Button 3, Button 5, Button 2, Button 4
+#Style "*" MWMButtons  # button relief follows the state
+
+# menu
+AddButtonStyle 1	InActive Pixmap button/knot_flat.xpm -- Flat
+AddButtonStyle 1	ActiveUp Pixmap button/knot.xpm -- Flat
+AddButtonStyle 1	ActiveDown Pixmap button/knot_in.xpm -- Raised
+# maximize
+AddButtonStyle 3	InActive Pixmap button/carr_up_flat.xpm -- Flat
+AddButtonStyle 3	ActiveUp Pixmap button/carr_up.xpm -- Flat
+AddButtonStyle 3	ActiveDown Pixmap button/carr_up_in.xpm -- Raised
+# sticky
+AddButtonStyle 5	InActive Pixmap button/carr_left_flat.xpm -- Flat
+AddButtonStyle 5	ActiveUp Pixmap button/carr_left.xpm -- Flat
+AddButtonStyle 5	ActiveDown Pixmap button/carr_left_in.xpm -- Raised
+# Kill
+AddButtonStyle 2	InActive Pixmap button/spin2_flat.xpm -- Flat
+AddButtonStyle 2	ActiveUp Pixmap button/spin2.xpm -- Flat
+AddButtonStyle 2	ActiveDown Pixmap button/spin2_in.xpm -- Raised
+# Minimize
+AddButtonStyle 4	InActive Pixmap button/carr_down_flat.xpm -- Flat
+AddButtonStyle 4	ActiveUp Pixmap button/carr_down.xpm -- Flat
+AddButtonStyle 4	ActiveDown Pixmap button/carr_down_in.xpm -- Raised
+
+ButtonStyle 1 - Clear MWMDecorMenu
+ButtonStyle 3 - Clear MWMDecorMax
+ButtonStyle 5 - Clear
+ButtonStyle 2 - Clear
+ButtonStyle 4 - Clear MWMDecorMin
+
+TitleStyle Height 21
+
+
+#     button	context	modifie	function
+Mouse 1 	1	A	FuncFvwmWindowOpsOrAction Delete
+Mouse 1 	3	A	FuncFvwmMaximize
+Mouse 2 	3	A	FuncFvwmMaximizeVertically
+Mouse 3 	3	A	FuncFvwmMaximizeHorizontally
+Mouse 1 	3	S	Maximize    0 grow
+Mouse 2 	3	S	Maximize grow    0
+Mouse 3 	3	S	Maximize grow grow
+Mouse 0 	5	A	Stick
+Mouse 0 	2	A	FuncFvwmDeleteOrDestroy
+Mouse 1 	4	A	FuncFvwmIconify
+Mouse 2 	4	A	FuncFvwmIconifySameResource on
+Mouse 3 	4	A	FuncFvwmIconifySameResource toggle
+
+DestroyFunc FuncFvwmUnReloadDecor
+AddToFunc   FuncFvwmUnReloadDecor
+
+DestroyFunc FuncFvwmReloadDecor
+AddToFunc   FuncFvwmReloadDecor
++ I FuncFvwmDecorBackground
++ I AddButtonStyle 1	InActive Pixmap button/knot_flat.xpm -- Flat
++ I AddButtonStyle 1	ActiveUp Pixmap button/knot.xpm -- Flat
++ I AddButtonStyle 1	ActiveDown Pixmap button/knot_in.xpm -- Raised
++ I AddButtonStyle 3	InActive Pixmap button/carr_up_flat.xpm -- Flat
++ I AddButtonStyle 3	ActiveUp Pixmap button/carr_up.xpm -- Flat
++ I AddButtonStyle 3	ActiveDown Pixmap button/carr_up_in.xpm -- Raised
++ I AddButtonStyle 5	InActive Pixmap button/carr_left_flat.xpm -- Flat
++ I AddButtonStyle 5	ActiveUp Pixmap button/carr_left.xpm -- Flat
++ I AddButtonStyle 5	ActiveDown Pixmap button/carr_left_in.xpm -- Raised
++ I AddButtonStyle 2	InActive Pixmap button/spin2_flat.xpm -- Flat
++ I AddButtonStyle 2	ActiveUp Pixmap button/spin2.xpm -- Flat
++ I AddButtonStyle 2	ActiveDown Pixmap button/spin2_in.xpm -- Raised
++ I AddButtonStyle 4	InActive Pixmap button/carr_down_flat.xpm -- Flat
++ I AddButtonStyle 4	ActiveUp Pixmap button/carr_down.xpm -- Flat
++ I AddButtonStyle 4	ActiveDown Pixmap button/carr_down_in.xpm -- Raised
+
+DestroyFunc FuncFvwmOverRideWindowLook
+AddToFunc   FuncFvwmOverRideWindowLook
+
+DestroyFunc FuncFvwmStartWindowButtons
+AddToFunc   FuncFvwmStartWindowButtons
+
+DestroyFunc FuncFvwmStopWindowButtons
+AddToFunc   FuncFvwmStopWindowButtons
++ I FuncFvwmRemoveAllButtons
++ I Mouse 1 	1	A	-
++ I Mouse 2	1	A	-
++ I Mouse 3	1	A       -
++ I Mouse 0 	2	A	-
++ I Mouse 1 	4	A	-
++ I Mouse 2 	4	A	-
++ I Mouse 3 	4	A	-
++ I Mouse 1 	4	S	-
++ I Mouse 2 	4	S	-
++ I Mouse 3 	4	S	-
++ I Mouse 1 	6	A	-
++ I Mouse 2 	6	A	-
++ I Mouse 3 	6	A	-
