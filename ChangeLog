@@ -1,3 +1,9 @@
+2001-05-24  migo  <migo@homemail.com>
+
+	* themes/default/menus-programs:
+	don't recreate xlock menus on every read (it may take 3 seconds!),
+	instead create on request (and only once), much faster :)
+
 2001-05-22  migo  <migo@homemail.com>
 
 	* rpm/fvwm-themes-*.spec.in:

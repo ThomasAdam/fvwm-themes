@@ -73,11 +73,12 @@ AddToMenu   MenuFvwmSystem "System" Title
 
 DestroyMenu MenuFvwmScreenSaver
 AddToMenu   MenuFvwmScreenSaver "Screen Saver" Title
++ MissingSubmenuFunction FuncFvwmMenuXlock
 + "Screen Saver%menu/display.xpm%" Exec xlock -nolock -nice 19 -mode random
-+ "Screen Lock%menu/lock.xpm%"  Exec xlock -nice 19 -mode random
++ "Screen Locker%menu/lock.xpm%"   Exec xlock -nice 19 -mode random
 + "" Nop
-+ "Screen Saver Modes%menu/display.xpm%" Popup MenuFvwmScreenSaverModes
-+ "Screen Lock Modes%menu/lock.xpm%"  Popup MenuFvwmScreenLockModes
++ "Screen Saver Modes%menu/display.xpm%" Popup MenuXlockSaver
++ "Screen Locker Modes%menu/lock.xpm%"   Popup MenuXlockLocker
 + "" Nop
 + "(Re)start &XscreenSaver%menu/display.xpm%" Exec xscreensaver-command -exit ; exec xscreensaver -no-splash
 + "&Stop XscreenSaver%menu/choice-no.xpm%" Exec exec xscreensaver-command -exit
@@ -86,9 +87,18 @@ AddToMenu   MenuFvwmScreenSaver "Screen Saver" Title
 + "&Locked XscreenSaver%menu/lock.xpm%" Exec exec xscreensaver-command -lock
 + "&Activate XscreenSaver%menu/display.xpm%" Exec exec xscreensaver-command -activate
 
-PipeRead 'fvwm-menu-xlock --name MenuFvwmScreenSaverModes --title "Screen Saver Modes" --icon-item menu/display.xpm --special-first -- -nice 19 -nolock'
+# don't build xclock submenus immediately, use lazy loading (build when used)
+DestroyFunc FuncFvwmMenuXlock
+AddToFunc   FuncFvwmMenuXlock
++ I FuncFvwm$0
 
-PipeRead 'fvwm-menu-xlock --name MenuFvwmScreenLockModes  --title "Screen Lock Modes"  --icon-item menu/lock.xpm --special-first -- -nice 19'
+DestroyFunc FuncFvwmMenuXlockSaver
+AddToFunc   FuncFvwmMenuXlockSaver
++ I PipeRead 'fvwm-menu-xlock --name MenuXlockSaver --title "Screen Saver Modes" --icon-item menu/display.xpm --special-first -- -nice 19 -nolock'
+
+DestroyFunc FuncFvwmMenuXlockLocker
+AddToFunc   FuncFvwmMenuXlockLocker
++ I PipeRead 'fvwm-menu-xlock --name MenuXlockLocker --title "Screen Locker Modes" --icon-item menu/lock.xpm --special-first -- -nice 19'
 
 # ----------------------------------------------------------------------------
 # ---------- WindowManager
