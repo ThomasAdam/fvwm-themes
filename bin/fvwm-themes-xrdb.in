@@ -14,8 +14,11 @@ my @colorsetNames = qw(
 	term-reserved    
 );
 
+my $prefix = '@prefix@';
+my $ROOT_PREFIX = '@ROOT_PREFIX@';
+
 my $userHome = $ENV{'HOME'} || "./.";
-my $config = '@bindir@/fvwm-themes-config';
+my $config = "@bindir@/fvwm-themes-config";
 my $file = `$config --component colors --show-value read-file`;
 chomp($file);
 open(INFILE, "$file");

@@ -3,6 +3,9 @@
 # This script runs fvwm with fvwm-themes config.  It should be run under X.
 # Put a call to this script as the last line of your .Xclients or .xinitrc.
 
+prefix=@prefix@
+ROOT_PREFIX=@ROOT_PREFIX@
+
 : ${FVWM_USERDIR=@FVWM_DEFAULT_USERDIR@}
 rcName=themes-rc
 rcFile=$FVWM_USERDIR/$rcName
@@ -53,15 +56,15 @@ destRcFile2="$themesName/$realCurrentThemeName/$rcName2"
 [ -d $themesDir ] || mkdir -p $themesDir
 cd $themesDir
 if [ ! -d $realCurrentThemeName ]; then
-    mkdir -p $realCurrentThemeName
-    build="yes"
+	mkdir -p $realCurrentThemeName
+	build="yes"
 fi
-rm -f $currentThemeName
+rm -rf $currentThemeName
 ln -s $realCurrentThemeName $currentThemeName
 cd $FVWM_USERDIR
 if [ ! -f $destRcFile2 ]; then
-    touch $destRcFile2
-    build="yes"
+	touch $destRcFile2
+	build="yes"
 fi
 rm -f $rcName2
 ln -s $destRcFile2 $rcName2

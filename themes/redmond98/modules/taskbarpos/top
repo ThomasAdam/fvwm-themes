@@ -1,4 +1,5 @@
 DestroyFunc FuncFvwmStartChosenTaskBarPos
 AddToFunc   FuncFvwmStartChosenTaskBarPos
-+ I *FvwmTaskBarGeometry +0+0
-+ I *FvwmButtons-PagerGeometry +0-0
++ I *FvwmTaskBar: Geometry +0+0
++ I *FvwmTaskBar: StartMenu MenuFvwmStartMenu Root +1p o0+27p
++ I *FvwmButtons-Pager: Geometry +0-0

@@ -2,9 +2,10 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.12)
 AC_REVISION(0.2.3)
 AC_INIT(themes/default/README)
-AM_INIT_AUTOMAKE(fvwm-themes, 0.3.17)
+AM_INIT_AUTOMAKE(fvwm-themes, 0.3.18)
 
 REQUIRED_FVWM_VERSION=2.3.21
+AC_SUBST(REQUIRED_FVWM_VERSION)dnl
 
 mg_ARG_WITH(fvwm-bindir, [  --with-fvwm-bindir DIR  specify fvwm bin directory, if not in PATH], FVWM_BINDIR, "")
 mg_ARG_WITH(ft-datadir,  [  --with-ft-datadir DIR   specify data dir, if different from fvwm], FT_DATADIR, "")
@@ -64,34 +65,37 @@ if awk "BEGIN { exit($FVWM_VERSION >= $REQUIRED_FVWM_VERSION) }"; then
 	You need at least fvwm-$REQUIRED_FVWM_VERSION])
 fi
 
+ROOT_PREFIX=""
+AC_SUBST(ROOT_PREFIX)dnl
+
 if echo "${prefix}NONE" | awk '/^NONE/ { exit 1 }'; then
-	mg_DEFAULT_DIR_ARG(bindir,     "$prefix/bin")
-	mg_DEFAULT_DIR_ARG(mandir,     "$prefix/man")
-	mg_DEFAULT_DIR_ARG(FT_DATADIR, "$datadir/fvwm")
+	mg_DEFAULT_DIR_ARG(bindir,     '${ROOT_PREFIX}'"$prefix/bin")
+	mg_DEFAULT_DIR_ARG(mandir,     '${ROOT_PREFIX}'"$prefix/man")
+	mg_DEFAULT_DIR_ARG(FT_DATADIR, '${ROOT_PREFIX}'"$datadir/fvwm")
 else
-	mg_DEFAULT_DIR_ARG(bindir,     "`$FVWM_CONFIG --bindir`")
-	mg_DEFAULT_DIR_ARG(mandir,     "`$FVWM_CONFIG --mandir`")
-	mg_DEFAULT_DIR_ARG(FT_DATADIR, "`$FVWM_CONFIG --fvwm-datadir`")
+	mg_DEFAULT_DIR_ARG(bindir,     '${ROOT_PREFIX}'"`$FVWM_CONFIG --bindir`")
+	mg_DEFAULT_DIR_ARG(mandir,     '${ROOT_PREFIX}'"`$FVWM_CONFIG --mandir`")
+	mg_DEFAULT_DIR_ARG(FT_DATADIR, '${ROOT_PREFIX}'"`$FVWM_CONFIG --fvwm-datadir`")
 fi
 
-#FT_FVWMSCRIPT_DIR="$FT_DATADIR/scripts"
-#FT_FVWMFORM_DIR="$FT_DATADIR/forms"
-FT_FVWMSCRIPT_DIR="$FT_DATADIR"
-FT_FVWMFORM_DIR="$FT_DATADIR"
+#FT_FVWMSCRIPT_DIR='${FT_DATADIR}/scripts'
+#FT_FVWMFORM_DIR='${FT_DATADIR}/forms'
+FT_FVWMSCRIPT_DIR='${FT_DATADIR}'
+FT_FVWMFORM_DIR='${FT_DATADIR}'
 
 AC_SUBST(FT_DATADIR)dnl
 AC_SUBST(FT_FVWMSCRIPT_DIR)dnl
 AC_SUBST(FT_FVWMFORM_DIR)dnl
 
-SETTINGS_FILE=$FT_DATADIR/themes/default/settings.cfg
+SETTINGS_FILE='${FT_DATADIR}/themes/default/settings.cfg'
 AC_SUBST(SETTINGS_FILE)dnl
 
 AC_OUTPUT(
 	Makefile
 	bin/Makefile
 	doc/Makefile
-	scripts/Makefile
 	forms/Makefile
+	scripts/Makefile
 	bin/fvwm-themes-config
 	bin/fvwm-themes-start
 	bin/fvwm-themes-xrdb
@@ -99,6 +103,8 @@ AC_OUTPUT(
 	bin/fvwm-themes-com
 	bin/fvwm-themes-script
 	bin/fvwm-themes-images
+	doc/fvwm-themes.lsm
+	rpm/fvwm-themes.spec
 )
 
 if test -n "$DEBUG"; then
@@ -112,7 +118,7 @@ if test -n "$DEBUG"; then
 	echo "[gnome-images-dir: $GNOME_IMAGES_DIR]"
 	echo "[settings-file: $SETTINGS_FILE]"
 	echo "[x-libs: $X_LIBS]"
-	echo "[x-extra-lib: $X_EXTRA_LIBS]"
+	echo "[x-extra-libs: $X_EXTRA_LIBS]"
 fi
 
 echo "

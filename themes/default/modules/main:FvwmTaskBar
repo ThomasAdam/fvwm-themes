@@ -1,35 +1,37 @@
 Style "FvwmTaskBar" NoTitle, Sticky, WindowListSkip, CirculateSkip, TitleAtTop
 
 DestroyModuleConfig FvwmTaskBar*
-*FvwmTaskBarGeometry +0+0
+*FvwmTaskBar: Geometry +0+0
 
-*FvwmTaskBarColorset 17
-*FvwmTaskBarFocusColorset 18
-*FvwmTaskBarIconColorset 19
-*FvwmTaskBarTipsColorset 16
+*FvwmTaskBar: Colorset 17
+*FvwmTaskBar: FocusColorset 18
+*FvwmTaskBar: IconColorset 19
+*FvwmTaskBar: TipsColorset 16
 
-*FvwmTaskBarFont -adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
-*FvwmTaskBarSelFont -adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
-*FvwmTaskBarStatusFont fixed
+*FvwmTaskBar: Font -adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
+*FvwmTaskBar: SelFont -adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
+*FvwmTaskBar: StatusFont fixed
 
-*FvwmTaskBarAction Click1 FuncFvwmDeiconifyFocusAndRaise
-*FvwmTaskBarAction Click2 Iconify
-*FvwmTaskBarAction Click3 Menu MenuFvwmWindowOps2 Mouse c +1p
+*FvwmTaskBar: Action Click1 FuncFvwmDeiconifyFocusAndRaise
+*FvwmTaskBar: Action Click2 Iconify
+*FvwmTaskBar: Action Click3 Menu MenuFvwmWindowOps2 Mouse c +1p
 
-*FvwmTaskBarUseSkipList
-*FvwmTaskBarUseIconNames
-*FvwmTaskBarAutoStick
-*FvwmTaskBarShowTips
+*FvwmTaskBar: UseSkipList
+*FvwmTaskBar: UseIconNames
+*FvwmTaskBar: AutoStick
+*FvwmTaskBar: ShowTips
 
-*FvwmTaskBarButtonWidth 180
-*FvwmTaskBarBellVolume 20
-*FvwmTaskBarMailCommand FuncFvwmMail
-*FvwmTaskBarClockFormat %H:%M
+*FvwmTaskBar: ButtonWidth 180
+*FvwmTaskBar: BellVolume 20
+*FvwmTaskBar: MailCommand FuncFvwmMail
+*FvwmTaskBar: ClockFormat %H:%M
 
-*FvwmTaskBarStartName Start
+*FvwmTaskBar: StartName Start
 # olicha: IMHO the position is good!
-*FvwmTaskBarStartMenu MenuFvwmRoot Mouse c
-*FvwmTaskBarStartIcon 16x16/penguin.xpm
+# migo: I don't think so.
+#*FvwmTaskBar: StartMenu MenuFvwmRoot Mouse c
+*FvwmTaskBar: StartMenu MenuFvwmStartMenu Root +1p +27p
+*FvwmTaskBar: StartIcon 16x16/penguin.xpm
 
 # Animation
-*FvwmTaskBarNoIconAction SendToModule FvwmAnimate animate
+*FvwmTaskBar: NoIconAction SendToModule FvwmAnimate animate

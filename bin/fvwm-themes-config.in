@@ -5,6 +5,9 @@
 
 use Getopt::Long;
 
+my $prefix = '@prefix@';
+my $ROOT_PREFIX = '@ROOT_PREFIX@';
+
 my $version = '@VERSION@';
 my $fvwmVersion = '@FVWM_VERSION@';
 my $fvwmDefaultImagePath = '@FVWM_DEFAULT_IMAGEPATH@';
@@ -15,7 +18,7 @@ my $rcFile = "themes-rc";
 my $rcFile2 = "$rcFile-2";
 my $userHome = $ENV{'HOME'} || "./.";
 my $userDir = $ENV{'FVWM_USERDIR'} || "$userHome/.fvwm";
-my @searchPath = ($userDir, '@FT_DATADIR@');
+my @searchPath = ($userDir, "@FT_DATADIR@");
 my ($workDir, $siteDir);
 my $themesSubDir = 'themes';
 my $currentThemeName = 'current';
@@ -1007,7 +1010,12 @@ sub getOwnThemeSubMenusRc ($) {
 					$index = 0;  # maybe die on this error?
 					$cc->{'current'} = $index + 1;
 				}
-				$cc->{'read-file'} =~ s:/[^/]+$:/$choices->[$index]->{'file'}:;
+				my $readFile = $cc->{'read-file'};
+				$readFile =~ s:/[^/]+$:/$choices->[$index]->{'file'}:;
+				if ($readFile ne $cc->{'read-file'}) {
+					$cc->{'read-file'} = $readFile;
+					$self->setModified();
+				}
 				my $i;
 				for ($i = 0; $i < @$choices; $i++) {
 					my $isCurrent = $i eq $index;
@@ -1295,8 +1303,10 @@ sub getMenusAndHooksAndReadsRc ($) {
 			my $readAfterward = $optionEntry->{'read-afterward'};
 			$readAfterward = $optionReadAfterward unless defined $readAfterward;
 			($readAfterward? $readRc2: $readRc1) .= "$command\n";
-#			$optionEntry->{'read-file'} = $valueFile;
-#			$self->setModified();
+#			if (($optionEntry->{'read-file'} || "") ne $valueFile) {
+#				$optionEntry->{'read-file'} = $valueFile;
+#				$self->setModified();
+#			}
 		}
 		my $command = $cc->{'read-command'} || $defaultReadCommand;
 		$command =~ s/%f/$readFile/sg;
@@ -1551,8 +1561,8 @@ if ($comMode) {
 }
 $cfg->useNewComponents($loadComponents, $dropComponents);
 $cfg->setNewComponentValues($options, $choices);
-$cfg->save() if $cfg->isModified();
 $cfg->generateThemesRc();
+$cfg->save() if $cfg->isModified();
 
 exit(0);
 

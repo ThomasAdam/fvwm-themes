@@ -25,7 +25,8 @@ DestroyModuleConfig FvwmTaskBar*
 *FvwmTaskBarShowTips
 
 *FvwmTaskBarStartName 
-*FvwmTaskBarStartMenu MenuFvwmRoot Mouse c -100m
+#*FvwmTaskBarStartMenu MenuFvwmRoot Mouse c -100m
+*FvwmTaskBarStartMenu MenuFvwmRoot Root +1p o100-27p
 *FvwmTaskBarStartIcon 16x16/penguin.xpm
 
 *FvwmTaskBarMailCommand FuncFvwmMail

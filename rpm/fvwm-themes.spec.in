@@ -1,0 +1,66 @@
+%define prefix %{_prefix}
+#%define bindir @bindir@
+#%define mandir @mandir@
+#%define FT_DATADIR @FT_DATADIR@
+
+Summary:   FVWM Themes, configurational framework for FVWM
+Name:      fvwm-themes
+Version:   @VERSION@
+Release:   1
+Copyright: GPL
+Group:     X11/Window Managers
+Source:    %{name}-%{PACKAGE_VERSION}.tar.gz
+URL:       http://fvwm-themes.sourceforge.org/
+BuildRoot: %{_tmppath}/%{name}-%{version}-root
+Packager:  FVWM Themes Developers <fvwm-themes-devel@lists.sourceforge.net>
+Autoreq:   0
+
+Requires:  fvwm >= @REQUIRED_FVWM_VERSION@
+#Requires:  perl
+Requires:  perl >= 5.002
+
+Provides:  fvwm-themes
+
+Docdir:    %{prefix}/share/doc
+
+%description
+FVWM Themes is a powerful configurational framework for FVWM,
+designed to be easily extendible and configurable, includes
+several pre-built themes, a pack of images and sounds.
+
+%prep
+%setup
+
+%build
+#./configure --prefix=%{prefix}
+./configure
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+#make prefix=$RPM_BUILD_ROOT%{prefix} install
+make prefix=$RPM_BUILD_ROOT/`fvwm-config -P` install
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-, root, root)
+
+%doc AUTHORS COPYING INSTALL NEWS README TODO
+%doc doc/FAQ doc/README.1st doc/colorsets doc/fvwm-themes.lsm
+%{prefix}/bin/*
+%{prefix}/man/*/*
+%{prefix}/share/*/*
+#%{bindir}/*
+#%{mandir}/*/*
+#%{FT_DATADIR}/*
+
+#%changelog
+#
+#* Thu 07 Sep 2000 20:00:00 AM IDT  FVWM Themes Developers  <fvwm-themes-devel@lists.sourceforge.net>
+#- %{_date} = %{BUILDTIME} = %{PACKAGE_BUILDTIME}  FVWM Themes Developers  <fvwm-themes-devel@lists.sourceforge.net>
+#- Auto building %{PACKAGE_VERSION}
+#
+#* Thu 07 Sep 2000 IDT  Mikhael Goikhman  <migo@homemail.com>
+#- First try at making the package

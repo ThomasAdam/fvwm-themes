@@ -8,6 +8,7 @@
 # Also, MenuFvwmIconSets is not Destroyed when you quit this component...
 
 AddToFunc FuncFvwmStartAllHooks
++ I AddToMenu MenuFvwmConfiguration "" Nop
 + I AddToMenu MenuFvwmConfiguration "wm-icons Icons" Popup MenuFvwmIconSets
 
 DestroyMenu MenuFvwmIconSets

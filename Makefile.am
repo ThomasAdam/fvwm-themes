@@ -62,7 +62,8 @@ dist-hook:
 
 
 ## ---------------------------------------------------------------------------
-## If we want bzip2 archives too (dist2, distcheck2, distclean2)
+## Produce bzip2 archives too (dist2, distcheck2, distclean2)
+
 dist2: dist
 	gzip -dc $(distdir).tar.gz | bzip2 -9c >$(distdir).tar.bz2
 
@@ -81,3 +82,12 @@ predist predist2:
 		sed -e 's/ cp -p/ cp -dp/g' -e 's/$$(TAR) chozf/$$(TAR) czf/g' \
 			<$$file >$$file.tmp && mv $$file.tmp $$file; \
 	done
+
+## ---------------------------------------------------------------------------
+## Produce an rpm package from a dist or tarball (rpm, rpm-other)
+
+rpm: rpm/Makefile rpm/fvwm-themes.spec dist fvwm-themes-@VERSION@.tar.gz
+	@echo Press Enter to start building rpm, Ctrl-C to cancel
+	@head -1 >/dev/null
+	cp fvwm-themes-@VERSION@.tar.gz $$HOME/redhat/SOURCES || true
+	rpm -bb rpm/fvwm-themes.spec

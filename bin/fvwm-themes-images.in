@@ -25,9 +25,12 @@
 #use strict;
 use Getopt::Long;
 
+my $prefix = '@prefix@';
+my $ROOT_PREFIX = '@ROOT_PREFIX@';
+
 my $version = '@VERSION@';
 my $fvwmVersion = '@FVWM_VERSION@';
-my $ftDataDir = '@FT_DATADIR@';
+my $ftDataDir = "@FT_DATADIR@";
 my @xlibPath = qw(@X_LIBS@ @X_EXTRA_LIBS@);
 my $scriptName = ($0 =~ m:([^/]+)$:, $1);
 my $ftImagesDir = "$ftDataDir/images";

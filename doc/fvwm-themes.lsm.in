@@ -1,0 +1,18 @@
+Begin3
+Title:          FVWM Themes
+Version:        @VERSION@
+Entered-date:   06SEP2000
+Description:    FVWM Themes is a powerful configurational framework for FVWM,
+                designed to be easily extendible and configurable, includes
+                several pre-built themes, a pack of images and sounds.
+Keywords:       window manager, fvwm, themes, icons, sounds, X11, fvwm2,
+                fvwm-themes
+Author:         fvwm-themes-devel@lists.sourceforge.net (FVWM Themes Devel)
+Maintained-by:  
+Primary-site:   http://fvwm-themes.sourceforge.net/
+                800k fvwm-themes-@VERSION@.tar.gz
+Alternate-site: 
+Original-site:  
+Platforms:      GNU or Unix, X11
+Copying-policy: GPL
+End

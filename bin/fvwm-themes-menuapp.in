@@ -26,6 +26,9 @@
 
 use Getopt::Long;
 
+my $prefix = '@prefix@';
+my $ROOT_PREFIX = '@ROOT_PREFIX@';
+
 # "system variables"
 my $version = '@VERSION@';
 my $fvwmVersion = '@FVWM_VERSION@';
@@ -37,10 +40,10 @@ my $userHome = $ENV{'HOME'} || "./.";
 my $userDir = $ENV{'FVWM_USERDIR'} || "$userHome/.fvwm";
 my $persThemeDir = "$userDir/themes/personal";
 # site
-my $ftDir =  '@FT_DATADIR@';
+my $ftDir = "@FT_DATADIR@";
 my $siteMenusUser="$ftDir/themes/default/menus-user";
-my $siteDataDir = "$ftDir/data";
-my @siteDataFiles = ("$siteDataDir/applications.db");
+#my $siteDataDir = "$ftDir/data";
+#my @siteDataFiles = ("$siteDataDir/applications.db");
 # general
 my @imagePath = ();
 my @pathDirs = split(':',$ENV{PATH});

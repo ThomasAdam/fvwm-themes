@@ -110,7 +110,7 @@ AddToFunc   FuncFvwmStartMyPager
 + I FuncFvwmStopMyPager
 + I $0
 
-AddToMenu   MenuFvwmConfiguration "" Nop
+AddToMenu   MenuFvwmConfiguration
 + "wm-icons &Bar Icons" Popup MenuFvwmBarIconSet
 
 ###

@@ -7,7 +7,7 @@
 # ----------------------------------------------------------------------------
 # Icon related configuration
 
-Style "*"	IconBox 130 5 -130 700, IconGrid 64 64, IconFill left top
+Style "*"	IconBox 10 24 -130 700, IconGrid 64 64, IconFill left top
 Style "*"	SlipperyIcon, IconTitle
 
 # ----------------------------------------------------------------------------
