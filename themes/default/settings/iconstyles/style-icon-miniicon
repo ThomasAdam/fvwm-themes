@@ -85,6 +85,7 @@ Style "Composition"            Icon norm/mail.xpm,             MiniIcon mini/mai
 Style "NcFtp"                  Icon norm/network.xpm,          MiniIcon mini/network.xpm
 Style "nscal*"                 Icon norm/clock.xpm,            MiniIcon mini/clock.xpm
 Style "News"                   Icon norm/news.xpm,             MiniIcon mini/news.xpm
+Style "opera"                  Icon norm/www.xpm,              MiniIcon mini/www.xpm
 Style "panel"                  Icon norm/home.xpm,             MiniIcon mini/home.xpm
 Style "pine"                   Icon norm/mail.xpm,             MiniIcon mini/mail.xpm
 Style "pixmap*"                Icon norm/image-processor.xpm,  MiniIcon mini/image-processor.xpm
