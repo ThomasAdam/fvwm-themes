@@ -182,8 +182,6 @@ AddToFunc   FuncFvwmRemoveBindings
 + I Key Tab 	A	SM	-
 + I Key Tab 	A	CM	-
 + I Key Tab 	A	SCM	-
-+ I Key Enter	A	CM	-
-+ I Key Enter	A	SM	-
 + I Mouse 1 	R	A	-
 + I MouseXX 2 3	R	A	-
 + I MouseXX 3 2	R	A	-
@@ -205,7 +203,3 @@ AddToFunc   FuncFvwmRemoveBindings
 + I Mouse 1 	WI	CM	-
 + I MouseXX 2 3	WI	M	-
 + I MouseXX 3 2	WI	M	-
-
-#-----------------------------------------------------------------------------
-# stroke support
-#Read options/current/stroke

@@ -88,7 +88,7 @@ Begin
     Set $CSThemeName = {}
     Set $CSCompHasOpt = 0
     Set $CSCompIsSet = 0
-    Set $CSCompCanBeDrop = 0
+    Set $CSCompCanBeDropped = 0
     Set $OptionEditorOne = {}
     Set $OptionEditorOneTandC = {}
     Set $OptionEditorTwo = {}
@@ -337,7 +337,7 @@ Begin
 	    Set $tmp = (GetOutput $cmd 1 -1)
 	    Set $CSCompHasOpt = (StrCopy $tmp 1 1)
 	    Set $CSCompIsSet = (StrCopy $tmp 2 2)
-	    Set $CSCompCanBeDrop = (StrCopy $tmp 3 3)
+	    Set $CSCompCanBeDropped = (StrCopy $tmp 3 3)
 	    Set $UpdateCSButtons = 1
 	End
     End
@@ -353,7 +353,7 @@ Begin
 	    ChangeFont 19 $SelFont
 	Else
 	    ChangeFont 19 $ShadeFont   
-	If $CSCompCanBeDrop == 1 Then
+	If $CSCompCanBeDropped == 1 Then
 	    ChangeFont 20 $SelFont
 	Else
 	    ChangeFont 20 $ShadeFont
@@ -732,7 +732,8 @@ Property
     Flags NoReliefString
     Position 490 295
     Type PushButton
-    Title {Opt/Cho/Sub}
+#    Title {Opt/Cho/Sub}
+    Title {  Properties  }
 Main
 Case message of
 SingleClic :
@@ -768,7 +769,7 @@ SingleClic :
 	    Set $break = 1
 	If $break == 1 Then
 	Begin
-	    Set $msg = {Warn: Option editors for }$tmp{ already out}
+	    Set $msg = {Warn: Option editors for }$tmp{ already active}
 	    ChangeTitle 95 $msg
 	End
 	Else
@@ -872,7 +873,7 @@ SingleClic :
 	ChangeTitle 95 $msg
 	Set $break = 0
     End
-    If $CSCompCanBeDrop == 0 Then
+    If $CSCompCanBeDropped == 0 Then
 	Set $test = 1
     Set $test = (Mult $break $test) 
     If $test == 1 Then

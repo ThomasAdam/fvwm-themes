@@ -1,3 +1,15 @@
+2000-09-11  migo  <migo@homemail.com>
+
+	* scripts/FvwmScript-ThemesCenter:
+	minor renamings; 'Opt/Cho/Sub' button renamed to 'Properties', this
+	is especially needed when I add scalar property (similar to option)
+
+	* themes/default/bindings:
+	don't remove 2 unexisting Enter bindings, this caused a core dump
+
+	* bin/fvwm-themes-config.in: corrected locking icon
+	* TODO: added some ideas
+
 2000-09-10  migo  <migo@homemail.com>
 
 	* themes/*/desktop:

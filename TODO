@@ -5,9 +5,6 @@
 Important items to do:
 ---------------------
 
-* migo: I think, 'Opt/Cho/Sub' button should be renamed to 'Properties',
-this especially needed when I add scalar property (similar to option).
-
 * colors@ components. Check if every things is ok with the new colors
 files. migo: Maybe one colorset for swallowing is not enough?
 I don't think xload's check-like can somehow be related to xclock
@@ -24,7 +21,22 @@ out of purpose. It is not very critical. Just a note.
 
 * FvwmApplet-Mixer should check for aumix availability first?
 
+* Fix FvwmForm-ThemeSettings (session is obsolete).
+
+* Add luthien theme [migo; started]
+
 * Fix all crashes.
+
+Ideas:
+-----
+
+* component's scalar property, which unlike options, where only values
+  from a range (1 .. options) are accepted, can be freely set by a user.
+  Examples of scalar types: Color, String, Minutes, Milliseconds etc.
+  There should be individual editors for this scalar property.
+
+* background-auto@ component (with a scalar of type Minutes), which will
+  iterate over a background@ options randomly or sequencially every n minutes.
 
 Optional items to do:
 --------------------

@@ -1037,8 +1037,8 @@ sub getOwnThemeSubMenusRc ($) {
 		my $lockLabel = $cc->{'locked'}? "Unlock": "Lock";
 		my $lockCommand = 'Exec exec xmessage "Help is not available yet"';
 		my $infoCommand = 'Exec exec xmessage "Help is not available yet"';
-		$menusRc .= qq(+ "%menu/choice-no.xpm%&$lockLabel this component"\t$dropCommand\n);
-		$menusRc .= qq(+ "%menu/choice-no.xpm%&Drop this component"\t$lockCommand\n);
+		$menusRc .= qq(+ "%menu/wm-lock.xpm%&$lockLabel this component"\t$lockCommand\n);
+		$menusRc .= qq(+ "%menu/choice-no.xpm%&Drop this component"\t$dropCommand\n);
 		$menusRc .= qq(+ "%menu/information.xpm%&Info for $_\@$cc->{'theme'}"\t$infoCommand\n);
 
 		# use $name instead of $_?
