@@ -135,6 +135,13 @@ Preference	{ Preferences }
 TryIsGlobal	{Apply "Try" to the all globalfeel screens, not only to the current one }
 DefIsGlobal	{Apply "Default" to the all globalfeel screens, not only to the current one }
 SaveIsGlobal	{Apply "Save" to the all globalfeel screens, not only to the current one }
+
+### Bindings
+KeyTitle	{Keyboard Bindings}
+MouseTitle	{Mouse Bindings}
+StrokeTitle	{Mouse Stroke Bindings}
+AppBindTitle    {Prefered Applications}
+
 ### End
 ConfigLoaded	{ Configuration Loaded }
 Save		{Save}

@@ -353,7 +353,7 @@ sub configCenterComLoop {
 	my $command = "";
 	my $return = "";
 
-	my @components = ("globalfeel");
+	my @components = ("globalfeel","bindings");
 
 	# "files" and "script" config
 	my $lastBuild = "";
@@ -361,23 +361,30 @@ sub configCenterComLoop {
 	my $lastComp = "";
 	my $saveState = { };
 	my $hardRead = { };
-	foreach (@components) {
-		$saveState->{$_}->{'file'} = "$userDir/$themesSubDir/personal/$_";
-		$saveState->{$_}->{'theme'} = "personal";
-		$hardRead->{$_} = "";
-	}
 
-	# "themes" config
+	# "themes" config init
 	my $personalThemes = [ ];
 	$personalThemes->[0] = "personal";
 	my $themesConfig = { };
 	my $currentConfig = { };
-	getThemesConfig($personalThemes,$themesConfig,$currentConfig,$hardRead);
+	my $optConfig = { };
+
+	# set up default
+	foreach (@components) {
+		$saveState->{$_}->{'file'} = "$userDir/$themesSubDir/personal/$_";
+		$saveState->{$_}->{'theme'} = "personal";
+		$hardRead->{$_} = "";
+		$currentConfig->{$_} = "default";
+	}
+
+	# get "themes" config
+	getThemesConfig($personalThemes,$themesConfig,$currentConfig,
+		$optConfig,$hardRead);
 	
 	my $tmp;
 	foreach $tmp (@components) {
 		foreach (@$personalThemes) {
-			if ($currentConfig->{$tmp} eq $_) {
+			if (defined $currentConfig->{$tmp} && $currentConfig->{$tmp} eq $_) {
 				$saveState->{$tmp}->{'file'} = "$userDir/$themesSubDir/$_/$tmp";
 				$saveState->{$tmp}->{'theme'} = "$_"; 
 			}
@@ -386,8 +393,6 @@ sub configCenterComLoop {
 
 	# X info:
 	my	($redMask,$greenMask,$blueMask) = getXdpyInfo();
-	#my ($redMask,$greenMask,$blueMask) = ("63488", "2016", "31");
-	#print STDERR "RGB Mask: ($redMask,$greenMask,$blueMask)\n";
 
 	# persistante fvwm Config:
 	my $internalConfig = { };
@@ -445,24 +450,31 @@ sub configCenterComLoop {
 		chomp($command);
 		my $return = "";
 		#-----------------------------------
-		if ($command eq "get-themes-info") {
+		if ($command eq "get-perso-themes") {
 			foreach (@$personalThemes) {
 				$return .= "$_|";
 			}
 			$return =~ s/\|$//;
-			$return .= "\n";
-			my $c;
-			foreach $c (@components) {
-				$return .= "$saveState->{$c}->{'theme'}!";
-				$return .= "$currentConfig->{$c}!";
-				my $compCfg = $themesConfig->{$c};
-				my $themesList = "";
-				my $key;
-				foreach $key (sort keys %$compCfg) {
-					$themesList .= "$key|";
+		}
+		#-----------------------------------
+		elsif ($command =~ /^get-themes-info\s+(.+)$/) {
+			my $comp = $1;
+			$return .= "$saveState->{$comp}->{'theme'}\n";
+			$return .= "$currentConfig->{$comp}\n";
+			my $compCfg = $themesConfig->{$comp};
+			my $themesList = "";
+			my $k;
+			foreach $k (sort keys %$compCfg) {
+				$themesList .= "$k|";
+			}
+			$themesList =~ s/\|$//;
+			$return .= "$themesList\n";
+			my $options = $optConfig->{$comp};
+			my $opt;
+			if (ref($options) eq 'ARRAY') {
+				foreach $opt (@$options) {
+					$return .= "$opt->{'current'}\n";
 				}
-				$themesList =~ s/\|$//;
-				$return .= "$themesList" . "!\n";
 			}
 		}
 		#--------------------------------------------------------
@@ -494,19 +506,25 @@ sub configCenterComLoop {
 				else { $t = $theme; }
 				my $file;
 				$file = $themeshash->{$t}->{'file'};
-				my $parseFunc = "parse_" . $ct . "_Config";
-				my $configForScript = { };
-				my $keys = [ ];
-				#print STDERR "$file, $theme, $ct\n";
-				my $error = eval {
-					no strict 'refs';
-					$parseFunc->($file,$configForScript,$keys);
-				};
-				$error = "Internal: $@" if $@;
-				$return .= "$error\n";
-				foreach (@$keys) {
-				 	$return .= "$configForScript->{$_}" 
-						if $_ eq $whichPart || $whichPart eq "All";
+				if (defined $file && -f $file) {
+					my $parseFunc = "parse_" . $ct . "_Config";
+					my $configForScript = { };
+					my $keys = [ ];
+					#print STDERR "$file, $theme, $ct\n";
+					my $error = eval {
+						no strict 'refs';
+						$parseFunc->($file,$configForScript,$keys,
+							$internalConfig,$optConfig->{$ct});
+					};
+					$error = "Internal: $@" if $@;
+					$return .= "$error\n";
+					foreach (@$keys) {
+				 		$return .= "$configForScript->{$_}" 
+							if $_ eq $whichPart || $whichPart eq "All";
+					}
+				}
+				else {
+					$return = "config file for $ct\@$t not found!";
 				}
 				$return .= "\n"; 
 			}
@@ -701,6 +719,7 @@ sub getThemesConfig {
 	my $personalThemes = shift;
 	my $themesConfig = shift;
 	my $currentConfig = shift;
+	my $optConfig = shift;
 	my $hardRead = shift;
 
 	my $in = `fvwm-themes-config --config-center`;
@@ -712,6 +731,8 @@ sub getThemesConfig {
 	my $comp = "";
 	my $theme = "";
 	my $inHardRead = 1;
+	my $inOptions = 0;
+	my $o = 0;
 	while(defined $input[$i]) {
 		if ($input[$i] =~ /^configuration of (.+) for the Config Center$/) {
 			$comp = $1;
@@ -724,6 +745,23 @@ sub getThemesConfig {
 			else { $hardRead->{'globalfeel'} .= "Read $input[$i]\n" }
 			$i++;
 			next
+		}
+		if ($input[$i] =~ /^OPTIONS/) {
+			$inOptions = 1;
+			$i++;
+			$o = 0;
+			next;
+		}
+		if ($inOptions) {
+			if ($input[$i] =~ /^END/) { $inOptions = 0 }
+			else { 
+				my ($tmp1,$tmp2) = split (":",$input[$i]);
+				$optConfig->{$comp}->[$o]->{'file'} = $tmp1;
+				$optConfig->{$comp}->[$o]->{'current'} = $tmp2;
+				$o++;
+			}
+			$i++;
+			next;
 		}
 		if ($comp eq "") {
 			$personalThemes->[$k] = $input[$i] if $input[$i] ne "personal";
@@ -1754,10 +1792,13 @@ sub parse_bindings_Config {
 	my $configForScript = shift;
 	my $keys = shift;
 	my $config = shift || {};
+	my $options = shift;
 
 	my ($keyIndex, $mouseIndex) = (0,0);
-	default_globalfeel_Config($config);
-	@$keys = ("Key", "Mouse");
+	@$keys = ("KeyBindings", "MouseBindings");
+
+	my $switchButtons  = $options->[0]->{'current'};
+	my $modifiersShift = $options->[1]->{'current'};
 
 	open(FILE,"$file") || return "Err: cannot open $file";
 	my $multiline = "";
@@ -1781,19 +1822,72 @@ sub parse_bindings_Config {
 		$line =~ s/\s+\#.*$//;
 		$line =~ s/\s+$//;
 
-		if ($line =~ (/^Key\s+(.*)\s+(.*)\s+(.*)\s+(.*)$/)) {
-			$config->{'Key'}->[$keyIndex]->{'key'} = $1;
-			$config->{'Key'}->[$keyIndex]->{'context'} = $2;
-			$config->{'Key'}->[$keyIndex]->{'modifier'} = $3;
-			$config->{'Key'}->[$keyIndex]->{'action'} = $4;
+		if ($line =~ /^Key/i) {
+			$line =~ s/^Key\s*//i;
+			my $mm = 0;
+			if ($line =~ /^MM/i) {
+				$line =~ s/^MM\s+//i;
+				$mm = 1;
+			}
+			$line =~ s/\s+/ /g;
+			my $key = "";
+			$key = substr($line,0,index($line," "));
+			$line = substr($line,length($key));
+			my $context = "";
+			$line =~ s/^\s*//;
+			$context = substr($line,0,index($line," "));
+			$line = substr($line,length($context));
+			my $modifiers = "";
+			$line =~ s/^\s*//;
+			$modifiers = substr($line,0,index($line," "));
+			$line = substr($line,length($modifiers));
+			if ($mm) {
+				$line =~ s/^\s*//;
+				$mm = substr($line,0,index($line," "));
+				$line = substr($line,length($mm));
+				if ($modifiersShift == 2) { $modifiers = "$mm($modifiers)" } 
+				else { $modifiers = "$modifiers($mm)" }
+			}
+			my $action = "";
+			$line =~ s/^\s*//;
+			$action = $line;
+			$action =~ s/\s*$//;
+			$config->{'Key'}->[$keyIndex]->{'key'} = $key;
+			$config->{'Key'}->[$keyIndex]->{'context'} = $context;
+			$config->{'Key'}->[$keyIndex]->{'modifiers'} = $modifiers;
+			$config->{'Key'}->[$keyIndex]->{'action'} = $action;
 			$keyIndex++;
 		}
-		if ($line =~ (/^Mouse(X*X*)\s+(.*)\s+(.*)\s+(.*)\s+(.*)$/)) {
-			$config->{'Mouse'}->[$mouseIndex]->{'xx'} = (defined $1) ? 1 : 0;
-			$config->{'Mouse'}->[$mouseIndex]->{'button'} = $1;
-			$config->{'Mouse'}->[$mouseIndex]->{'context'} = $2;
-			$config->{'Mouse'}->[$mouseIndex]->{'modifier'} = $3;
-			$config->{'Mouse'}->[$mouseIndex]->{'action'} = $4;
+
+		if ($line =~ /^Mouse/) {
+			$line =~ s/\s+/ /g;
+			$line =~ s/^Mouse\s*//i;
+			my $button = "";
+			if ($line =~ /^XX/) {
+				$line =~ s/^XX\s+//i;
+				$line =~ s/([2-3])\s+([2-3])\s+//;
+				if ($switchButtons == 2) { $button = "$2($1)" }
+				else { $button = "$1($2)" }
+			} else {	
+				$button = substr($line,0,index($line," "));
+				$line = substr($line,length($button));
+			}
+			my $context = "";
+			$line =~ s/^\s*//;
+			$context = substr($line,0,index($line," "));
+			$line = substr($line,length($context));
+			my $modifiers = "";
+			$line =~ s/^\s*//;
+			$modifiers = substr($line,0,index($line," "));
+			$line = substr($line,length($modifiers));
+			my $action = "";
+			$line =~ s/^\s*//;
+			$action = $line;
+			$action =~ s/\s*$//;
+			$config->{'Mouse'}->[$mouseIndex]->{'button'} = $button;
+			$config->{'Mouse'}->[$mouseIndex]->{'context'} = $context;
+			$config->{'Mouse'}->[$mouseIndex]->{'modifiers'} = $modifiers;
+			$config->{'Mouse'}->[$mouseIndex]->{'action'} = $action;
 			$mouseIndex++;
 		}
 
@@ -1810,12 +1904,34 @@ sub parse_bindings_Config {
 		$l = length($b->{'context'});
 		$l = 7-$l;
 		$configForScript->{KeyBindings} .= " " x $l;
-		$configForScript->{KeyBindings} .= $b->{'modifier'};
-		$l = length($b->{'modifier'});
+		$configForScript->{KeyBindings} .= $b->{'modifiers'};
+		$l = length($b->{'modifiers'});
 		$l = 7-$l;
 		$configForScript->{KeyBindings} .= " " x $l;
 		$configForScript->{KeyBindings} .= "$b->{'action'}|";
 	}
+	$configForScript->{KeyBindings} =~ s/\|$//;
+	$configForScript->{KeyBindings} .= "\n";
+
+	my $MouseBindings = $config->{'Mouse'};
+	foreach $b (@$MouseBindings) {
+		my $l = 0;
+		$configForScript->{MouseBindings} .= $b->{'button'};
+		$l = length($b->{'button'});
+		$l = 7-$l;
+		$configForScript->{MouseBindings} .= " " x $l;
+		$configForScript->{MouseBindings} .= $b->{'context'};
+		$l = length($b->{'context'});
+		$l = 7-$l;
+		$configForScript->{MouseBindings} .= " " x $l;
+		$configForScript->{MouseBindings} .= $b->{'modifiers'};
+		$l = length($b->{'modifiers'});
+		$l = 7-$l;
+		$configForScript->{MouseBindings} .= " " x $l;
+		$configForScript->{MouseBindings} .= "$b->{'action'}|";
+	}
+	$configForScript->{MouseBindings} =~ s/\|$//;
+		
 }
 
 # -----------------------------------------------------------------------------

@@ -1668,11 +1668,14 @@ sub showInfoForConfigCenter {
 	my $site = "";
 	my $cc = $self->{'cc'};
 
-	my @components = ("globalfeel");
+	my @components = ("globalfeel","bindings");
 	my $allThemes = getAllThemes();
 	my $userThemes = getAllThemes(0, 1);
 
 	### all this hardcoding is unacceptable, should be defuned in .cfg
+	### olicha: How? This is just a tmp solution it is not unacceptable: 
+	### Currently fvwm-themes-config can only reload everythings ... 
+	### So I do that so that the Config Center can be usable.
 
 	$return .= "$cc->{'styles'}->{'read-file'}\n"
 		if defined $cc->{'styles'}->{'read-file'};
@@ -1709,6 +1712,15 @@ sub showInfoForConfigCenter {
 			my $dd = $themeCfg->getComponentCfg($c);
 			my $file = $dd->{'read-file'} || "";
 			$return .= "$file\n";
+			my $options  = $cc->{$c}->{'option'};
+			if (ref($options) eq 'ARRAY') {
+				$return .= "OPTIONS\n";
+				my $opt;
+				foreach $opt (@$options) {
+					$return .= "$opt->{'file'}:$opt->{'current'}\n";
+				}
+				$return .= "END\n";
+			}
 		}
 	}
 
