@@ -14,7 +14,8 @@ email = fvwm-themes-devel@lists.sourceforge.net
 arch ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
 distdir = $(PACKAGE)-$(version)
 tarball = $(distdir).tar.gz
-DESTDIR = $(CURDIR)/debian/tmp
+instdir = inst-$(version)
+fullinstdir ?= $(shell cd $(top_srcdir) && pwd)/$(instdir)
 
 this0:
 	@if [ ! -d debian ]; then echo "Wrong working dir `pwd`"; exit -1; fi
@@ -53,36 +54,36 @@ inplace:
 	echo "  * new upstream release" >> debian/changelog
 	echo "" >> debian/changelog
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
-	./configure --prefix=/usr --mandir='/${prefix}/share/man' $(cparams)
+	./configure --prefix=/usr --mandir='/$$'{prefix}/share/man $(cparams)
 	cp -f debian/full-control debian/control
-	fakeroot dh_clean
+	fakeroot dh_clean -P$(fullinstdir)
 	(cd  .. && dpkg-source -b $(CURDIR))
-	fakeroot dh_testdir
-	fakeroot dh_testroot
+	fakeroot dh_testdir -P$(fullinstdir)
+	fakeroot dh_testroot -P$(fullinstdir)
 	$(MAKE) $(mparams)
-	$(MAKE) prefix=$(DESTDIR)/usr ROOT_PREFIX=$(DESTDIR) install
-	chmod 0644 $(DESTDIR)/usr/share/fvwm/themes/cde/background/pattern
-	-mkdir $(DESTDIR)/usr/lib
-	-mkdir $(DESTDIR)/usr/lib/menu
-	cp debian/fvwm-themes.menu $(DESTDIR)/usr/lib/menu/fvwm-themes
-	fakeroot dh_testdir
-	fakeroot dh_testroot
-	fakeroot dh_installchangelogs
-	fakeroot dh_installdocs
-	fakeroot dh_installmenu
-	fakeroot dh_link
-	fakeroot dh_strip
-	fakeroot dh_compress
-	fakeroot dh_fixperms
-	fakeroot dh_perl
-	fakeroot dh_installdeb
-	fakeroot dh_shlibdeps
-	fakeroot dh_gencontrol
-	fakeroot dh_md5sums
-	fakeroot dh_builddeb
+	$(MAKE) prefix=$(fullinstdir)/usr ROOT_PREFIX=$(fullinstdir) install
+	chmod 0644 $(fullinstdir)/usr/share/fvwm/themes/cde/background/pattern
+	-mkdir $(fullinstdir)/usr/lib
+	-mkdir $(fullinstdir)/usr/lib/menu
+	cp debian/fvwm-themes.menu $(fullinstdir)/usr/lib/menu/fvwm-themes
+	fakeroot dh_testdir -P$(fullinstdir)
+	fakeroot dh_testroot -P$(fullinstdir)
+	fakeroot dh_installchangelogs -P$(fullinstdir)
+	fakeroot dh_installdocs -P$(fullinstdir)
+	fakeroot dh_installmenu -P$(fullinstdir)
+	fakeroot dh_link -P$(fullinstdir)
+	fakeroot dh_strip -P$(fullinstdir)
+	fakeroot dh_compress -P$(fullinstdir)
+	fakeroot dh_fixperms -P$(fullinstdir)
+	fakeroot dh_perl -P$(fullinstdir)
+	fakeroot dh_installdeb -P$(fullinstdir)
+	fakeroot dh_shlibdeps -P$(fullinstdir)
+	fakeroot dh_gencontrol -P$(fullinstdir)
+	fakeroot dh_md5sums -P$(fullinstdir)
+	fakeroot dh_builddeb -P$(fullinstdir)
 	-dpkg-genchanges > ../fvwm-themes-full_$(version)-$(release)_$(arch).changes
 	-debsign ../fvwm-themes-full_$(version)-$(release)_$(arch).changes
-	fakeroot dh_clean
+	fakeroot dh_clean -P$(fullinstdir)
 	rm -f debian/control debian/full-control
 
 inplace-base:
@@ -92,39 +93,39 @@ inplace-base:
 	echo "  * new upstream release" >> debian/changelog
 	echo "" >> debian/changelog
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
-	./configure --prefix=/usr --mandir='/${prefix}/share/man' $(cparams)
+	./configure --prefix=/usr --mandir='/$$'{prefix}/share/man $(cparams)
 	cp -f debian/base-control debian/control
-	fakeroot dh_clean
+	fakeroot dh_clean -P$(fullinstdir)
 	(cd .. && dpkg-source -b $(CURDIR))
-	fakeroot dh_testdir
-	fakeroot dh_testroot
+	fakeroot dh_testdir -P$(fullinstdir)
+	fakeroot dh_testroot -P$(fullinstdir)
 	$(MAKE) $(mparams)
-	$(MAKE) prefix=$(DESTDIR)/usr ROOT_PREFIX=$(DESTDIR) install
+	$(MAKE) prefix=$(fullinstdir)/usr ROOT_PREFIX=$(fullinstdir) install
 	@for t in $(EXTRA_THEMES); do \
-		rm -r $(DESTDIR)/usr/share/fvwm/themes/$$t ; \
+		rm -r $(fullinstdir)/usr/share/fvwm/themes/$$t ; \
 	done
-	chmod 0644 $(DESTDIR)/usr/share/fvwm/themes/cde/background/pattern
-	-mkdir $(DESTDIR)/usr/lib
-	-mkdir $(DESTDIR)/usr/lib/menu
-	cp debian/fvwm-themes.menu $(DESTDIR)/usr/lib/menu/fvwm-themes
-	fakeroot dh_testdir
-	fakeroot dh_testroot
-	fakeroot dh_installchangelogs
-	fakeroot dh_installdocs
-	fakeroot dh_installmenu
-	fakeroot dh_link
-	fakeroot dh_strip
-	fakeroot dh_compress
-	fakeroot dh_fixperms
-	fakeroot dh_perl
-	fakeroot dh_installdeb
-	fakeroot dh_shlibdeps
-	fakeroot dh_gencontrol
-	fakeroot dh_md5sums
-	fakeroot dh_builddeb
+	chmod 0644 $(fullinstdir)/usr/share/fvwm/themes/cde/background/pattern
+	-mkdir $(fullinstdir)/usr/lib
+	-mkdir $(fullinstdir)/usr/lib/menu
+	cp debian/fvwm-themes.menu $(fullinstdir)/usr/lib/menu/fvwm-themes
+	fakeroot dh_testdir -P$(fullinstdir)
+	fakeroot dh_testroot -P$(fullinstdir)
+	fakeroot dh_installchangelogs -P$(fullinstdir)
+	fakeroot dh_installdocs -P$(fullinstdir)
+	fakeroot dh_installmenu -P$(fullinstdir)
+	fakeroot dh_link -P$(fullinstdir)
+	fakeroot dh_strip -P$(fullinstdir)
+	fakeroot dh_compress -P$(fullinstdir)
+	fakeroot dh_fixperms -P$(fullinstdir)
+	fakeroot dh_perl -P$(fullinstdir)
+	fakeroot dh_installdeb -P$(fullinstdir)
+	fakeroot dh_shlibdeps -P$(fullinstdir)
+	fakeroot dh_gencontrol -P$(fullinstdir)
+	fakeroot dh_md5sums -P$(fullinstdir)
+	fakeroot dh_builddeb -P$(fullinstdir)
 	-dpkg-genchanges > ../fvwm-themes_$(version)-$(release)_$(arch).changes
 	-debsign ../fvwm-themes_$(version)-$(release)_$(arch).changes
-	fakeroot dh_clean
+	fakeroot dh_clean -P$(fullinstdir)
 	rm -f debian/control debian/base-control
 
 inplace-extra:
@@ -135,38 +136,38 @@ inplace-extra:
 	echo "" >> debian/changelog
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
 	cp -f debian/extra-control debian/control
-	fakeroot dh_clean
+	fakeroot dh_clean -P$(fullinstdir)
 	(cd .. && dpkg-source -b $(CURDIR))
-	fakeroot dh_testdir
-	fakeroot dh_testroot
-	-[ -d $(DESTDIR) ] || mkdir  $(DESTDIR)
-	-[ -d $(DESTDIR)/usr ] || mkdir $(DESTDIR)/usr
-	-[ -d $(DESTDIR)/usr/share ] || mkdir $(DESTDIR)/usr/share
-	-[ -d $(DESTDIR)/usr/share/fvwm ] || mkdir $(DESTDIR)/usr/share/fvwm
-	-[ -d $(DESTDIR)/usr/share/fvwm/themes ] || mkdir $(DESTDIR)/usr/share/fvwm/themes
-	-[ -d $(DESTDIR)/DEBIAN ] || mkdir $(DESTDIR)/DEBIAN
+	fakeroot dh_testdir -P$(fullinstdir)
+	fakeroot dh_testroot -P$(fullinstdir)
+	-[ -d $(fullinstdir) ] || mkdir $(fullinstdir)
+	-[ -d $(fullinstdir)/usr ] || mkdir $(fullinstdir)/usr
+	-[ -d $(fullinstdir)/usr/share ] || mkdir $(fullinstdir)/usr/share
+	-[ -d $(fullinstdir)/usr/share/fvwm ] || mkdir $(fullinstdir)/usr/share/fvwm
+	-[ -d $(fullinstdir)/usr/share/fvwm/themes ] || mkdir $(fullinstdir)/usr/share/fvwm/themes
+	-[ -d $(fullinstdir)/DEBIAN ] || mkdir $(fullinstdir)/DEBIAN
 	-@for t in $(EXTRA_THEMES); do \
-		cp -r themes/$$t $(DESTDIR)/usr/share/fvwm/themes/; \
+		cp -r themes/$$t $(fullinstdir)/usr/share/fvwm/themes/; \
 	done
-	fakeroot dh_testdir
-	fakeroot dh_testroot
-	fakeroot dh_installchangelogs
-	fakeroot dh_installdocs
-	fakeroot dh_installmenu
-	fakeroot dh_link
-	fakeroot dh_strip
-	fakeroot dh_compress
-	fakeroot dh_fixperms
-	fakeroot dh_perl
-	fakeroot dh_installdeb
-	fakeroot dh_shlibdeps
-	fakeroot dh_gencontrol
-	fakeroot dh_md5sums
-	-rm $(DESTDIR)/DEBIAN/postinst
-	-rm $(DESTDIR)/DEBIAN/postrm
-	fakeroot dh_builddeb
+	fakeroot dh_testdir -P$(fullinstdir)
+	fakeroot dh_testroot -P$(fullinstdir)
+	fakeroot dh_installchangelogs -P$(fullinstdir)
+	fakeroot dh_installdocs -P$(fullinstdir)
+	fakeroot dh_installmenu -P$(fullinstdir)
+	fakeroot dh_link -P$(fullinstdir)
+	fakeroot dh_strip -P$(fullinstdir)
+	fakeroot dh_compress -P$(fullinstdir)
+	fakeroot dh_fixperms -P$(fullinstdir)
+	fakeroot dh_perl -P$(fullinstdir)
+	fakeroot dh_installdeb -P$(fullinstdir)
+	fakeroot dh_shlibdeps -P$(fullinstdir)
+	fakeroot dh_gencontrol -P$(fullinstdir)
+	fakeroot dh_md5sums -P$(fullinstdir)
+	-rm $(fullinstdir)/DEBIAN/postinst
+	-rm $(fullinstdir)/DEBIAN/postrm
+	fakeroot dh_builddeb -P$(fullinstdir)
 	-dpkg-genchanges > ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes
 	-debsign  ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes
-	fakeroot dh_clean
+	fakeroot dh_clean -P$(fullinstdir)
 	rm -f debian/control debian/extra-control
 
