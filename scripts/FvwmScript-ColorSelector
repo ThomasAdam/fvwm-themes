@@ -657,7 +657,7 @@ Main
 Case message of
  SingleClic :
  Begin
-    If $Launched <> {} Then
+    If $Launched == {yes} Then
     Begin
 	Set $ret = $CurrentColor
 	SendToScript (GetScriptFather) $ret
@@ -743,7 +743,7 @@ Main
 Case message of
  SingleClic :
  Begin
-    If $Launched <> {} Then
+    If $Launched == {yes} Then
 	SendToScript (GetScriptFather) {Cancel}
     Quit
  End

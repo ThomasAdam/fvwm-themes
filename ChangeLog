@@ -1,3 +1,7 @@
+2001-03-09  olicha  <olivier.chapuis@free.fr>
+
+	* scripts/FvwmScript-ColorSelector: fixed core dump
+	
 2001-03-09  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-start.1:
