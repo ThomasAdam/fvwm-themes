@@ -1276,7 +1276,7 @@ FuncFvwmInitInitFunctions
 
 DestroyFunc FuncFvwmThemesConfigAndUpdate
 AddToFunc   FuncFvwmThemesConfigAndUpdate
-+ I FvwmScript scripts/FvwmScript-NoteMessage "Theme switching"
++ I FvwmScript FvwmScript-NoteMessage "Theme switching"
 + I Wait FvwmScript-NoteMessage
 + I PipeRead `@$scriptFile@ $0 --pipe`
 + I FuncFvwmInitInitFunctions

@@ -1,4 +1,16 @@
 2000-07-28  olicha <olivier.chapuis@free.fr>
+	
+	* themes/modules/Applets/fvwm:
+	* bin/fvwm-themes-config.in:
+	a few "modules massive renaming" fixes
+	FvwmScript-NoteMessage was called as scripts/FvwmScript-NoteMessage
+	so no theme switch without ctl-alt-escape ...
+
+	* themes/redmond98/background/*
+	use 8bits hex nbr in the place of the X name for colors 
+	(for speed: win 5%).
+ 	
+2000-07-28  olicha <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-images.in:
 	clean up and speed the code (note the --be-fast option for
