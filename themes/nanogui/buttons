@@ -68,6 +68,9 @@ ButtonStyle All - Clear
 BmC ButtonStyle BmN - MWMDecorMax
 BoC ButtonStyle BoN - MWMDecorMenu
 BiC ButtonStyle BiN - MWMDecorMin
+BuC ButtonStyle BuN - MWMDecorShade
+BdC ButtonStyle BdN - MWMDecorShade
+BsC ButtonStyle BsN - MWMDecorStick
 
 TitleStyle	Height 16
 

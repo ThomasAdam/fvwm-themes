@@ -4,6 +4,8 @@
 
 	* rpm/fvwm-themes.spec.in: include doc/creating-themes to rpm
 
+	* themes/nanogui/buttons: added stick and shade hints for completeness
+
 2001-04-26  migo  <migo@homemail.com>
 
 	* themes/default/settings/iconstyles/style-icon-miniicon:
