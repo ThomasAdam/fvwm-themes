@@ -1,7 +1,20 @@
 DestroyModuleConfig FvwmIconMan*
 *FvwmIconMan*numManagers 1
-*FvwmIconMan*Resolution  desk
-*FvwmIconMan*Colorset    11
+*FvwmIconMan*resolution desk
+
+*FvwmIconMan*Colorset		12
+*FvwmIconMan*iconcolorset	19
+*FvwmIconMan*plaincolorset	17
+*FvwmIconMan*selectcolorset	20
+*FvwmIconMan*focuscolorset	18
+*FvwmIconMan*focusandselectcolorset 20
+
+*FvwmIconMan*iconbutton		up
+*FvwmIconMan*plainbutton	up
+*FvwmIconMan*selectbutton	down
+*FvwmIconMan*focusbutton	up
+*FvwmIconMan*focusandselectbutton down
+
 *FvwmIconMan*font        7x13bold
 *FvwmIconMan*format      "%t"
 *FvwmIconMan*action   Mouse   1 N sendcommand "FuncFvwmDeiconifyFocusAndRaise"
@@ -9,16 +22,6 @@ DestroyModuleConfig FvwmIconMan*
 *FvwmIconMan*action   Mouse   3 N sendcommand "Popup MenuFvwmWindowOps2 Mouse c -102m"
 *FvwmIconMan*followfocus true
 *FvwmIconMan*sort        none
-*FvwmIconMan*iconbutton		up
-*FvwmIconMan*iconcolorset	13
-*FvwmIconMan*plainbutton	up
-*FvwmIconMan*plaincolorset	11
-*FvwmIconMan*selectbutton	down
-*FvwmIconMan*selectcolorset	11
-*FvwmIconMan*focusbutton	up
-*FvwmIconMan*focuscolorset	12
-*FvwmIconMan*focusandselectbutton down
-*FvwmIconMan*focusandselectcolorset 12
 *FvwmIconMan*dontshow icon=Untitled resource=Untitled
 *FvwmIconMan*drawicons false
 *FvwmIconMan*buttongeometry  300x0

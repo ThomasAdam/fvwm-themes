@@ -1,10 +1,10 @@
 Style "FvwmButtons-OsxApps" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
-	NoHandles, BorderWidth 1
+	NoHandles, BorderWidth 1, TitleAtBottom
 
 DestroyModuleConfig FvwmButtons-OsxApps*
 
 *FvwmButtons-OsxAppsGeometry 271x63+0-0
-*FvwmButtons-OsxAppsColorset 6
+*FvwmButtons-OsxAppsColorset 10
 *FvwmButtons-OsxAppsFrame 1
 *FvwmButtons-OsxAppsRows 6
 *FvwmButtons-OsxApps(1x5, Icon 32x32/terminal.xpm, \
@@ -31,5 +31,5 @@ DestroyModuleConfig FvwmButtons-OsxApps*
 	Action(Mouse 1) 'FuncFvwmDocView', \
 	Action(Mouse 2) 'FuncFvwm2DocView', \
 	Action(Mouse 3) 'FuncFvwm3DocView')
-*FvwmButtons-OsxApps(6x1,Colorset 8)
+*FvwmButtons-OsxApps(6x1,Colorset 11)
 

@@ -1,6 +1,5 @@
-Style "FvwmPager-Desker" NoTitle, Sticky, WindowListSkip
-
-DestroyModuleConfig FvwmPager-Desker*
+Style "FvwmPager-Desker" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
+	TitleAtBottom
 
 AddToMenu MenuFvwmWindowMove "" Nop
 + "Desk One%menu/window-move.xpm%"	MoveToDesk 0 0
@@ -14,24 +13,22 @@ AddToMenu MenuFvwmWindowGroupOps "" Nop
 + "Desk Three%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2
 + "Desk Four%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
 
-*FvwmPager-DeskerColorset "*" 16
-*FvwmPager-DeskerHilightColorset "*" 8
-*FvwmPager-DeskerBalloonColorset "*" 9
-*FvwmPager-DeskerWindowColorsets 1 2
-
-*FvwmPager-DeskerNoLabel
-
-*FvwmPager-DeskerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-
-*FvwmPager-DeskerBalloons null
- 
-*FvwmPager-DeskerMiniIcons
-
-*FvwmPager-DeskerColumns 1
-
+DestroyModuleConfig FvwmPager-Desker*
 *FvwmPager-DeskerGeometry +5000+5000
 *FvwmPager-DeskerDeskTopScale 35
+*FvwmPager-DeskerColumns 1
+
+*FvwmPager-DeskerColorset * 14
+*FvwmPager-DeskerHilightColorset * 15
+*FvwmPager-DeskerBalloonColorset * 16
+
+*FvwmPager-DeskerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPager-DeskerSmallFont 5x8
+
+*FvwmPager-DeskerBalloons null
+*FvwmPager-DeskerNoLabel
+*FvwmPager-DeskerMiniIcons
+
 *FvwmPager-DeskerLabel 0 One
 *FvwmPager-DeskerLabel 1 Two
 *FvwmPager-DeskerLabel 2 Three

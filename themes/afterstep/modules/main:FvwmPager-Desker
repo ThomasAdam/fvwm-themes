@@ -15,10 +15,11 @@ DestroyModuleConfig FvwmPager-Desker*
 *FvwmPager-DeskerDeskTopScale 30
 *FvwmPager-DeskerRows 1
 *FvwmPager-DeskerSolidSeparators
-*FvwmPager-DeskerColorset * 16
-*FvwmPager-DeskerHilightColorset * 8
-*FvwmPager-DeskerWindowColorsets 1 2
-*FvwmPager-DeskerBalloonColorset * 9
+
+*FvwmPager-DeskerColorset * 14
+*FvwmPager-DeskerHilightColorset * 15
+*FvwmPager-DeskerBalloonColorset * 16
+
 *FvwmPager-DeskerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPager-DeskerLabel 0 Desk
 *FvwmPager-DeskerLabel 1 Web & Mail

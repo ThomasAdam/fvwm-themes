@@ -18,24 +18,22 @@ AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
 + "Page 2 2%menu/window-move.xpm%"	Pick All ($r) MoveToPage 1 1
 + "Page 2 3%menu/window-move.xpm%"	Pick All ($r) MoveToPage 2 1
 
-Style "FvwmPager-Single"  NoTitle, Sticky, NoHandles, WindowListSkip
+Style "FvwmPager-Single"  NoTitle, Sticky, NoHandles, WindowListSkip, \
+	CirculateSkip
 
 DestroyModuleConfig FvwmPager-Single*
-
-*FvwmPager-SingleColorset "*" 	16
-*FvwmPager-SingleHilightColorset "*" 8
-*FvwmPager-SingleBalloonColorset "*" 9
-*FvwmPager-SingleWindowColorsets 1 2
-
-*FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-
-*FvwmPager-SingleMiniIcons
-
 *FvwmPager-SingleGeometry +5000+5000
 
+*FvwmPager-SingleColorset * 14
+*FvwmPager-SingleHilightColorset * 15
+*FvwmPager-SingleBalloonColorset * 16
+
+*FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPager-SingleSmallFont 5x8
+
+*FvwmPager-SingleMiniIcons
 *FvwmPager-SingleSolidSeparators
 
-*FvwmPager-SingleSmallFont 5x8
 *FvwmPager-SingleLabel 0 One
 *FvwmPager-SingleLabel 1 Two
 *FvwmPager-SingleLabel 2 Three

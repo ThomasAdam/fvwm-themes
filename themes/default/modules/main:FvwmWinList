@@ -1,14 +1,16 @@
-Style "FvwmWinList" Notitle, Sticky, WindowListSkip,CirculateSkip, NoHandles
+Style "FvwmWinList" Notitle, Sticky, WindowListSkip,CirculateSkip, NoHandles, \
+	TitleAtBottom
 
 DestroyModuleConfig FvwmWinList*
+
 *FvwmWinListGeometry +0-0
-*FvwmWinListFocusColorset 12
-*FvwmWinListColorset 11
-*FvwmWinListIconColorset 13
+*FvwmWinListColorset 17
+*FvwmWinListFocusColorset 18
+*FvwmWinListIconColorset 19
 *FvwmWinListFont -adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
 *FvwmWinListAction Click1 FuncFvwmDeiconifyFocusAndRaise
 *FvwmWinListAction Click2 Iconify
-*FvwmWinListAction Click3 Popup MenuFvwmWindowOps2 Mouse -105m c
+*FvwmWinListAction Click3 Popup MenuFvwmWindowOps2 Mouse -102m c
 *FvwmWinListUseSkipList
 *FvwmWinListMaxWidth 180
 *FvwmWinListMinWidth 150

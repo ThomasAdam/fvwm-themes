@@ -1,19 +1,21 @@
-Style "FvwmWinList"  NoHandles, NoTitle, Sticky, WindowListSkip
+Style "FvwmWinList"  NoHandles, NoTitle, Sticky, WindowListSkip, \
+	TitleAtBottom, CirculateSkip
 
 DestroyModuleConfig FvwmWinList*
-*FvwmWinListColorset 11
-*FvwmWinListFocusColorset 12
-*FvwmWinListIconColorset 13
+
+*FvwmWinListGeometry +0-0
+
+*FvwmWinListColorset 17
+*FvwmWinListFocusColorset 18
+*FvwmWinListIconColorset 19
+
 *FvwmWinListFont -adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
+
 *FvwmWinListAction Click1 FuncFvwmDeiconifyFocusAndRaise
 *FvwmWinListAction Click2 Iconify
 *FvwmWinListAction Click3 Popup MenuFvwmWindowOps2 Mouse -105m c
-*FvwmWinListUseSkipList
-# En bas a gauche
-*FvwmWinListGeometry +0-0
-# Affiche juste les fenetres du bureau courant 
-*FvwmWinListShowCurrentDesk
 
+*FvwmWinListUseSkipList
 *FvwmWinListMinWidth 180
 *FvwmWinListMaxWidth 220 
 

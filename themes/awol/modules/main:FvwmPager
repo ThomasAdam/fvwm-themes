@@ -17,10 +17,9 @@ Style "FvwmPager-Single" Handles, Sticky, WindowListSkip, BorderWidth 0
 
 DestroyModuleConfig FvwmPager-Single*
 
-*FvwmPager-SingleColorset * 16
-*FvwmPager-SingleHilightColorset * 8
-*FvwmPager-SingleWindowColorsets 1 2
-*FvwmPager-SingleBalloonColorset * 9
+*FvwmPager-SingleColorset * 14
+*FvwmPager-SingleHilightColorset * 15
+*FvwmPager-SingleBalloonColorset * 16
 
 *FvwmPager-SingleGeometry 800x48+0-80
 #*FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
@@ -49,10 +48,9 @@ DestroyModuleConfig FvwmPager-Single*
 
 DestroyModuleConfig FvwmPager-Desker*
 
-*FvwmPager-DeskerColorset * 16
-*FvwmPager-DeskerHilightColorset * 8
-*FvwmPager-DeskerWindowColorsets 1 2
-*FvwmPager-DeskerBalloonColorset * 9
+*FvwmPager-DeskerColorset * 14
+*FvwmPager-DeskerHilightColorset * 15
+*FvwmPager-DeskerBalloonColorset * 16
 
 *FvwmPager-DeskerGeometry -0+0
 #*FvwmPager-DeskerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*

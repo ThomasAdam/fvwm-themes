@@ -15,14 +15,15 @@ AddToMenu MenuFvwmWindowGroupOps "" Nop
 + "Misc 	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
 
 
-Style FvwmPager-Desker NoTitle, NoHandles, Sticky, WindowListSkip, CirculateSkip \
-	NoLenience, BorderWidth 5
+Style FvwmPager-Desker NoTitle, NoHandles, Sticky, WindowListSkip, \
+	CirculateSkip NoLenience, BorderWidth 5, TitleAtTop
 
 DestroyModuleConfig FvwmPager-Desker*
-*FvwmPager-DeskerColorset * 16
-*FvwmPager-DeskerWindowColorsets 1 2
-*FvwmPager-DeskerHilightColorset * 8
-*FvwmPager-DeskerBalloonColorset * 9
+
+*FvwmPager-DeskerColorset * 14
+*FvwmPager-DeskerHilightColorset * 15
+*FvwmPager-DeskerBalloonColorset * 16
+
 *FvwmPager-DeskerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPager-DeskerHilight white
 *FvwmPager-DeskerGeometry 319x69+5000+5000

@@ -1,3 +1,26 @@
+2000-08-06  olicha  <olivier.chapuis@free.fr>
+
+	* themes/*/colors:
+	* themes/*/modules/*:
+	* themes/default/menus:
+	* themes/default/menus-users:
+	* themes/default/functions-appbind:
+	* doc/colorsets:
+	New colors implementation
+
+	* themes/cde/colors/schemes/*:
+	* themes/cde/colors/main:
+	* bin/fvwm-themes-images.in:
+	Added 8 colors to a cde scheme: the text colors. This has been 
+	done automaticaly using new options of fvwm-themes-images.
+	The text colors of colors number x (for x in {1,...8}) is colors
+	x+8.
+	
+	* themes/*/modules/*: Add some TitleAtTop/TitleAtBottom in the good
+	place
+
+	* TODO: Updated
+
 2000-08-06  migo  <migo@homemail.com>
 
 	* themes/default/bindings (FuncFvwmWindowsOpsOrAction):
@@ -35,7 +58,7 @@
 
 	* themes/redomond98/windowlook:
 	Fixed
-	
+
 2000-07-30  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings.cfg:

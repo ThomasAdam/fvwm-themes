@@ -16,13 +16,15 @@ AddToMenu    MenuFvwmWindowGroupOps
 + "Page	 ^%menu/window-move.xpm%"	Pick All ($r) MoveToPage +0p -1p
 
 
-Style FvwmPager-Single NoTitle, NoHandles, Sticky, WindowListSkip, NoLenience
+Style FvwmPager-Single NoTitle, NoHandles, Sticky, WindowListSkip, \
+	NoLenience, TitleAtTop
 
 DestroyModuleConfig FvwmPager-Single*
-*FvwmPager-SingleColorset * 16
-*FvwmPager-SingleHilightColorset * 8
-*FvwmPager-SingleWindowColorsets 1 2
-*FvwmPager-SingleBalloonColorset * 9
+
+*FvwmPager-SingleColorset * 14
+*FvwmPager-SingleHilightColorset * 15
+*FvwmPager-SingleBalloonColorset * 16
+
 #*FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPager-SingleFont -*-lucida-bold-r-*-*-11-*-*-*-*-*-*-*
 #*FvwmPager-SingleHilightPixmap /usr/local/images/marble3.xpm

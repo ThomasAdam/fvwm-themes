@@ -1,9 +1,9 @@
 Style "FvwmWinList"  NoHandles, NoTitle, Sticky, WindowListSkip
 
 DestroyModuleConfig FvwmWinList*
-*FvwmWinListFocusColorset 12
-*FvwmWinListColorset 11
-*FvwmWinListIconColorset 13
+*FvwmWinListFocusColorset 18
+*FvwmWinListColorset 17
+*FvwmWinListIconColorset 19
 *FvwmWinListFont -adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
 *FvwmWinListAction Click1 FuncFvwmDeiconifyFocusAndRaise
 *FvwmWinListAction Click2 Iconify

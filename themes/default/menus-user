@@ -3,29 +3,29 @@
 
 DestroyMenu MenuFvwmShells
 AddToMenu   MenuFvwmShells "Shells" Title
-+ "&Xterm	standard%menu/xterm.xpm%" Exec exec xterm  -fg $[fg.cs20] -bg $[bg.cs20]
-+ "Xterm/r&oot	standard%menu/xterm.xpm%" Exec exec xterm  -fg $[fg.cs21] -bg $[bg.cs21] -e su -l
-+ "&NXterm	standard%menu/xterm.xpm%" Exec exec nxterm -fg $[fg.cs20] -bg $[bg.cs20]
-+ "&Rxvt	standard%menu/xterm.xpm%" Exec exec rxvt   -fg $[fg.cs20] -bg $[bg.cs20]
++ "&Xterm	standard%menu/xterm.xpm%" Exec exec xterm  -fg $[fg.cs30] -bg $[bg.cs30]
++ "Xterm/r&oot	standard%menu/xterm.xpm%" Exec exec xterm  -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
++ "&NXterm	standard%menu/xterm.xpm%" Exec exec nxterm -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Rxvt	standard%menu/xterm.xpm%" Exec exec rxvt   -fg $[fg.cs30] -bg $[bg.cs30]
 + "&Eterm	standard%menu/xterm.xpm%" Exec exec Eterm
-+ "X&iterm	standard%menu/xterm.xpm%" Exec exec xiterm -fg $[fg.cs20] -bg $[bg.cs20]
-+ "&Aterm	standard%menu/xterm.xpm%" Exec exec aterm -fg $[fg.cs20] -bg $[bg.cs20]
-+ "&Gnome Term	standard%menu/xterm.xpm%" Exec exec gnome-terminal --foreground=$[fg.cs20] --background=$[bg.cs20]
-+ "&Kvt	standard%menu/xterm.xpm%" Exec exec kvt -vt_fg $[fg.cs20] -vt_bg $[bg.cs20]
++ "X&iterm	standard%menu/xterm.xpm%" Exec exec xiterm -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Aterm	standard%menu/xterm.xpm%" Exec exec aterm -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Gnome Term	standard%menu/xterm.xpm%" Exec exec gnome-terminal --foreground=$[fg.cs30] --background=$[bg.cs30]
++ "&Kvt	standard%menu/xterm.xpm%" Exec exec kvt -vt_fg $[fg.cs30] -vt_bg $[bg.cs30]
 + "&Konsole	standard%menu/xterm.xpm%" Exec exec konsole
-+ "&Dtterm	standard%menu/xterm.xpm%" Exec exec /usr/dt/bin/dtterm -fg $[fg.cs20] -bg $[bg.cs20]
++ "&Dtterm	standard%menu/xterm.xpm%" Exec exec /usr/dt/bin/dtterm -fg $[fg.cs30] -bg $[bg.cs30]
 + ""                                                Nop
-+ "&Xterm	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec xterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk -si -sl 2048 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs20] -bg $[bg.cs20]
-+ "Xterm/r&oot	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec xterm  -n root@$HOST  -T root@$HOST  -g 80x40 -sb +sk -si -sl 2048 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs21] -bg $[bg.cs21] -e su -l
-+ "&NXterm	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec nxterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk -si -sl 2048 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs20] -bg $[bg.cs20]
-+ "&Rxvt 	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec rxvt   -n $USER@$HOST -T $USER@$HOST -g 80x40 -fn 7x14  -fg $[fg.cs20] -bg $[bg.cs20]
++ "&Xterm	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec xterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk -si -sl 2048 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "Xterm/r&oot	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec xterm  -n root@$HOST  -T root@$HOST  -g 80x40 -sb +sk -si -sl 2048 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
++ "&NXterm	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec nxterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk -si -sl 2048 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Rxvt 	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec rxvt   -n $USER@$HOST -T $USER@$HOST -g 80x40 -fn 7x14  -fg $[fg.cs30] -bg $[bg.cs30]
 + "&Eterm	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec Eterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 --font 7x14
-+ "X&iterm 	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec xiterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -fn 7x14  -fg $[fg.cs20] -bg $[bg.cs20]
-+ "&Aterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec aterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -fn 7x14 -fg $[fg.cs20] -bg $[bg.cs20]
-+ "&Gnome Term	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec gnome-terminal --geometry=80x40 --font=7x14 --foreground=$[fg.cs20] --background=$[bg.cs20]
-+ "&Kvt	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec kvt -vt_font 7x14 -vt_geometry 80x40 -vt_fg $[fg.cs20] -vt_bg $[bg.cs20]
++ "X&iterm 	80x40 (7x14 font)%menu/xterm.xpm%"  Exec exec xiterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -fn 7x14  -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Aterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec aterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -fn 7x14 -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Gnome Term	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec gnome-terminal --geometry=80x40 --font=7x14 --foreground=$[fg.cs30] --background=$[bg.cs30]
++ "&Kvt	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec kvt -vt_font 7x14 -vt_geometry 80x40 -vt_fg $[fg.cs30] -vt_bg $[bg.cs30]
 + "&Konsole	80x40%menu/xterm.xpm%" Exec exec konsole -vt_sz 80x40
-+ "&Dtterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec /usr/dt/bin/dtterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -fn 7x14 -fg $[fg.cs20] -bg $[bg.cs20]
++ "&Dtterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec /usr/dt/bin/dtterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -fn 7x14 -fg $[fg.cs30] -bg $[bg.cs30]
 + ""                                                Nop
 + "Remote login...%menu/xterm.xpm%" FvwmForm FormFvwmRlogin.
 
@@ -64,10 +64,10 @@ AddToMenu   MenuFvwmSystem "System" Title
 + "Home dir%menu/home.xpm%"        Popup ~
 
 DestroyMenu MenuFvwmBrowser
-AddToMenu   MenuFvwmBrowser DynamicPopupAction Piperead 'fvwm-menu-directory -r -na MenuBrowser -d $HOME -s --exec-file ^emacs --xte="xterm -e" --wm-icons --check-subdir'
+AddToMenu   MenuFvwmBrowser DynamicPopupAction Piperead 'fvwm-menu-directory -r -na MenuFvwmBrowser -d $HOME -s --exec-file ^emacs --xte="xterm -e" --wm-icons --check-subdir'
 
 DestroyMenu MenuFvwmBrowserCached
-AddToMenu   MenuFvwmBrowserCached DynamicPopupAction Piperead 'fvwm-menu-directory -all -r -na MenuBrowser -d $HOME -s --exec-file ^emacs --xte="xterm -e" --wm-icons --check-subdir'
+AddToMenu   MenuFvwmBrowserCached DynamicPopupAction Piperead 'fvwm-menu-directory -all -r -na MenuFvwmBrowserCached -d $HOME -s --exec-file ^emacs --xte="xterm -e" --wm-icons --check-subdir'
 
 #------------------------------------------------------------------------------
 #--------- MenuFvwmScreenSaver
@@ -126,7 +126,7 @@ AddToMenu   MenuFvwmWindowManager "Window Managers" Title
 + "&uwm"		Restart uwm
 + "&wm2"		Restart wm2
 + "&wmaker"		Restart wmaker
-+ "&xwm"		Restart xwm
++ "&xwm"		Restart wmx
 + "" Nop
 + "Just &xterm"         Restart xterm
 + "More&..."            FvwmForm FvwmForm-Restart

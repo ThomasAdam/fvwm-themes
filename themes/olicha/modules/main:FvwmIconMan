@@ -1,15 +1,10 @@
-Style "FvwmIconMan"   NoTitle, NoHandles, Sticky, WindowListSkip
+Style "FvwmIconMan"   NoTitle, NoHandles, Sticky, WindowListSkip, \
+	CirculateSkip, TitleAtBottom
 
 DestroyModuleConfig FvwmIconMan*
 
 *FvwmIconMan*nummanagers 1 
-
-#*FvwmIconMan*Resolution page
-#*FvwmIconMan*title "Page IconMan"
-#*FvwmIconMan*Resolution desk
-#*FvwmIconMan*title "Desk IconMan"
-*FvwmIconMan*Resolution global
-*FvwmIconMan*title "Global IconMan"
+*FvwmIconMan*resolution desk
 
 *FvwmIconMan*plainbutton  up
 *FvwmIconMan*selectbutton down
@@ -17,12 +12,13 @@ DestroyModuleConfig FvwmIconMan*
 *FvwmIconMan*focusandselectbutton down
 *FvwmIconMan*iconbutton down
 
-*FvwmIconMan*colorset 10
-*FvwmIconMan*plaincolorset 11
-*FvwmIconMan*selectcolorset 11
-*FvwmIconMan*focusandselectcolorset 12
-*FvwmIconMan*focuscolorset 12
-*FvwmIconMan*iconcolorset 13
+*FvwmIconMan*Colorset		12
+*FvwmIconMan*iconcolorset	19
+*FvwmIconMan*plaincolorset	17
+*FvwmIconMan*selectcolorset	20
+*FvwmIconMan*focuscolorset	18
+*FvwmIconMan*focusandselectcolorset 20
+
 *FvwmIconMan*font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 
 *FvwmIconMan*usewinlist true

@@ -1,12 +1,12 @@
-Style "FvwmTaskBar" NoTitle, Sticky, WindowListSkip, CirculateSkip
+Style "FvwmTaskBar" NoTitle, Sticky, WindowListSkip, CirculateSkip, TitleAtTop
 
 DestroyModuleConfig FvwmTaskBar*
 *FvwmTaskBarGeometry +0+0
 
-*FvwmTaskBarColorset 11
-*FvwmTaskBarFocusColorset 12
-*FvwmTaskBarIconColorset 13
-*FvwmTaskBarTipsColorset 9
+*FvwmTaskBarColorset 17
+*FvwmTaskBarFocusColorset 18
+*FvwmTaskBarIconColorset 19
+*FvwmTaskBarTipsColorset 16
 
 *FvwmTaskBarFont -adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
 *FvwmTaskBarSelFont -adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
@@ -14,7 +14,7 @@ DestroyModuleConfig FvwmTaskBar*
 
 *FvwmTaskBarAction Click1 FuncFvwmDeiconifyFocusAndRaise
 *FvwmTaskBarAction Click2 Iconify
-*FvwmTaskBarAction Click3 Popup MenuFvwmWindowOps2 Mouse c -102m
+*FvwmTaskBarAction Click3 Menu MenuFvwmWindowOps2 Mouse c +1p
 
 *FvwmTaskBarUseSkipList
 *FvwmTaskBarUseIconNames
@@ -23,15 +23,13 @@ DestroyModuleConfig FvwmTaskBar*
 
 *FvwmTaskBarButtonWidth 180
 *FvwmTaskBarBellVolume 20
-#*FvwmTaskBarMailBox /var/spool/mail/...
 *FvwmTaskBarMailCommand FuncFvwmMail
 *FvwmTaskBarClockFormat %H:%M
 
 *FvwmTaskBarStartName Start
-*FvwmTaskBarStartMenu MenuFvwmRoot Root +0p +32p
+# olicha: IMHO the position is good!
+*FvwmTaskBarStartMenu MenuFvwmRoot Mouse c
 *FvwmTaskBarStartIcon 16x16/penguin.xpm
-
-*FvwmTaskBarAutoHide
 
 # Animation
 *FvwmTaskBarNoIconAction SendToModule FvwmAnimate animate

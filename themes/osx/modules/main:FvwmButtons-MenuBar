@@ -20,7 +20,7 @@ define({X_POS10},eval(28*X_DELTA))
 define({X_POS11},eval(29*X_DELTA))
 
 *FvwmButtons-MenuBarGeometry GEOMETRY
-*FvwmButtons-MenuBarColorset 3
+*FvwmButtons-MenuBarColorset 5
 *FvwmButtons-MenuBarFont -adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
 *FvwmButtons-MenuBarRows 1
 *FvwmButtons-MenuBarFrame 0
@@ -47,7 +47,7 @@ define({X_POS11},eval(29*X_DELTA))
 *FvwmButtons-MenuBar(3x1, Title (Left) WinOps, Action(Mouse 1) \
 	'Menu MenuFvwmWindowOps  Context +X_POS9{p} +27p')
 *FvwmButtons-MenuBar(2x1, Swallow "FvwmApplet-DigitalClock" \
-	'FvwmScript FvwmApplet-DigitalClock 3')
+	'FvwmScript FvwmApplet-DigitalClock 5')
 *FvwmButtons-MenuBar(1x1, Right, Icon 16x16/display.xpm, Action(Mouse 1) \
 	'Menu MenuFvwmScreenSaver Context +X_POS10{p} +27p')
 *FvwmButtons-MenuBar(1x1, Right, Icon 16x16/wm-quit.xpm, Action(Mouse 1) \

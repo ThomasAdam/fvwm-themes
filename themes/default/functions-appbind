@@ -6,11 +6,11 @@
 
 DestroyFunc FuncFvwmViewManPage
 AddToFunc   FuncFvwmViewManPage
-+ I Exec exec xterm -fg $[fg.cs22] -bg $[bg.cs22] -g 80x40 -fn 7x14 -fb 7x14bold -n "Manual page - $0" -T "Manual page - $0" -e man "$0"
++ I Exec exec xterm -fg $[fg.cs33] -bg $[bg.cs33] -g 80x40 -fn 7x14 -fb 7x14bold -n "Manual page - $0" -T "Manual page - $0" -e man "$0"
 
 DestroyFunc FuncFvwmViewFile
 AddToFunc   FuncFvwmViewFile
-+ I Exec exec xterm -fg $[fg.cs22] -bg $[bg.cs22] -g 80x24 -fn 7x14 -fb 7x14bold -n "File Viewer - $0" -T "File Viewer - $0" -e less -e "$0"
++ I Exec exec xterm -fg $[fg.cs33] -bg $[bg.cs33] -g 80x24 -fn 7x14 -fb 7x14bold -n "File Viewer - $0" -T "File Viewer - $0" -e less -e "$0"
 
 DestroyFunc FuncFvwmEditFile
 AddToFunc   FuncFvwmEditFile
@@ -18,7 +18,7 @@ AddToFunc   FuncFvwmEditFile
 
 DestroyFunc FuncFvwmViewFileTail
 AddToFunc   FuncFvwmViewFileTail
-+ I Exec exec xterm -fg $[fg.cs22] -bg $[bg.cs22] -g 80x40 -fn 7x14 -fb 7x14bold -n "Tail - $0" -T "Tail - $0" -e less -f "$1"
++ I Exec exec xterm -fg $[fg.cs33] -bg $[bg.cs33] -g 80x40 -fn 7x14 -fb 7x14bold -n "Tail - $0" -T "Tail - $0" -e less -f "$1"
 
 DestroyFunc FuncFvwmOpenURL
 AddToFunc   FuncFvwmOpenURL
@@ -26,7 +26,7 @@ AddToFunc   FuncFvwmOpenURL
 
 DestroyFunc FuncFvwmRunInXterm
 AddToFunc   FuncFvwmRunInXterm
-+ I exec xterm -fg $[fg.cs22] -bg $[bg.cs22] -g 80x40 -fn 7x14 -fb 7x14bold +sb -ut -T "$0" -n "$0" -name xxterm -e $1
++ I exec xterm -fg $[fg.cs35] -bg $[bg.cs35] -g 80x40 -fn 7x14 -fb 7x14bold +sb -ut -T "$0" -n "$0" -name xxterm -e $1
 
 # ----------------------------------------------------------------------------
 # 'man fvwm-menu-directory' for details.
@@ -57,11 +57,11 @@ AddToFunc   FuncFvwm3FileManager
 # Used in aftersep, migo, olicha, redmond98, osx
 DestroyFunc FuncFvwmTerminal
 AddToFunc   FuncFvwmTerminal
-+ I Exec exec xterm -fg $[fg.cs20] -bg $[bg.cs20] -n $USER@$HOST -T $USER@$HOST
++ I Exec exec xterm -fg $[fg.cs30] -bg $[bg.cs30] -n $USER@$HOST -T $USER@$HOST
 
 DestroyFunc FuncFvwm2Terminal
 AddToFunc   FuncFvwm2Terminal
-+ I Exec exec xterm -fg $[fg.cs21] -bg $[bg.cs21] -n root@$HOST  -T root@$HOST  -e su -l
++ I Exec exec xterm -fg $[fg.cs31] -bg $[bg.cs31] -n root@$HOST  -T root@$HOST  -e su -l
 
 DestroyFunc FuncFvwm3Terminal
 AddToFunc   FuncFvwm3Terminal
@@ -188,7 +188,7 @@ AddToFunc   FuncFvwm3WWW
 # Used in migo
 DestroyFunc FuncFvwmIrc
 AddToFunc   FuncFvwmIrc
-+ I Exec exec xterm -g 80x40 -sb +sk -si -sl 500 -j -ls -fn 7x14 -fb 7x14bold -n irc -T irc -e irc
++ I Exec exec xterm -fg $[fg.cs34] -bg $[bg.cs34] -g 80x40 -sb +sk -si -sl 500 -j -ls -fn 7x14 -fb 7x14bold -n irc -T irc -e irc
 
 DestroyFunc FuncFvwm2Irc
 AddToFunc   FuncFvwm2Irc

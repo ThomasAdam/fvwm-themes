@@ -1,26 +1,26 @@
 Style "FvwmButtons-Fvwm*Applets" NoTitle, NoHandles, BorderWidth 0, Sticky, \
-	WindowListSkip, CirculateSkip
+	WindowListSkip, CirculateSkip, TitleAtTop
 
 DestroyModuleConfig FvwmButtons-Fvwm*Applets*
 
 *FvwmButtons-FvwmAppletsGeometry 63x210+0+0
 *FvwmButtons-FvwmAppletsColumns 1
-*FvwmButtons-FvwmAppletsColorset 6
+*FvwmButtons-FvwmAppletsColorset 10
 *FvwmButtons-FvwmApplets(Title --->, Frame 3 Swallow(NoHints) "xclock" \
-	`Exec exec xclock -bg $[bg.cs7] -fg $[fg.cs7] \
-	-hd $[fg.cs7] -hl $[fg.cs7] -padding 0 -update 1 -geometry +5000+5000`, \
+	`Exec exec xclock -bg $[bg.cs13] -fg $[fg.cs13] \
+	-hd $[fg.cs13] -hl $[fg.cs13] -padding 0 -update 1 -geometry +5000+5000`, \
 	Action(Mouse 1) \
 	'FuncFvwmMyPopupPanel "FvwmButtons-FvwmClockApplets" "$right" "$top"', \
      	Action(Mouse 3) 'All (FvwmButtons-FvwmClockApplets) Delete')
 *FvwmButtons-FvwmApplets(Title top, Frame 3, \
 	Swallow(UseOld,NoHints) "xload" \
-	`Exec exec xload -fg $[fg.cs7] -bg $[bg.cs7] -hl grey40 \
+	`Exec exec xload -fg $[fg.cs13] -bg $[bg.cs13] -hl $[shadow.cs13] \
 	-update 5 -nolabel -geometry +5000+5000`, \
 	Action(Mouse 1) 'FuncFvwmProcess', \
 	Action(Mouse 2) 'FuncFvwm2Process', \
 	Action(Mouse 3) 'FuncFvwm3Process')
 *FvwmButtons-FvwmApplets(Title mail, Frame 3 Swallow "xbiff" \
-	`Exec exec xbiff -bg $[bg.cs7] -fg $[fg.cs7] -geometry +5000+5000` \
+	`Exec exec xbiff -bg $[bg.cs13] -fg $[fg.cs13] -geometry +5000+5000` \
 	Action(Mouse 1) 'FuncFvwmMail', \
 	Action(Mouse 2) 'FuncFvwm2Mail', \
 	Action(Mouse 3) 'FuncFvwm3Mail')
@@ -28,10 +28,10 @@ DestroyModuleConfig FvwmButtons-Fvwm*Applets*
 #-----------------
 # Clock Panel
 *FvwmButtons-FvwmClockAppletsRows 1
-*FvwmButtons-FvwmClockAppletsColorset 6
+*FvwmButtons-FvwmClockAppletsColorset 10
 *FvwmButtons-FvwmClockApplets(Frame 3, Size 64 64, \
-	Swallow (Kill) "FvwmApplet-Day" 'FvwmScript FvwmApplet-Day 6 7')
+	Swallow (Kill) "FvwmApplet-Day" 'FvwmScript FvwmApplet-Day 10 13')
 *FvwmButtons-FvwmClockApplets(Frame 3, Size 64 64, \
-	Swallow (Kill) "FvwmApplet-Mixer" 'FvwmScript FvwmApplet-Mixer 6 7')
+	Swallow (Kill) "FvwmApplet-Mixer" 'FvwmScript FvwmApplet-Mixer 10 13')
 *FvwmButtons-FvwmClockApplets(Title xeyes, Frame 3, Size 64 64, \
 	Swallow "xeyes" 'Exec exec xeyes -geometry +5000+5000')

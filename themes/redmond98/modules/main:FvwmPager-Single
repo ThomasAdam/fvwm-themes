@@ -21,10 +21,11 @@ AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
 Style FvwmPager-Single NoTitle, NoHandles, Sticky, WindowListSkip, CirculateSkip
 
 DestroyModuleConfig FvwmPager-Single*
-*FvwmPager-SingleColorset * 16
-*FvwmPager-SingleWindowColorsets 1 2
-*FvwmPager-SingleHilightColorset * 8
-*FvwmPager-SingleBalloonColorset * 9
+
+*FvwmPager-SingleColorset * 14
+*FvwmPager-SingleHilightColorset * 15
+*FvwmPager-SingleBalloonColorset * 16
+
 *FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPager-SingleHilight white
 *FvwmPager-SingleGeometry 319x69+5000+5000

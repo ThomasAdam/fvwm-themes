@@ -18,8 +18,17 @@ AddToMenu   MenuFvwmIconManOptions
 
 DestroyModuleConfig FvwmIconMan*
 ### the first and last config lines cause core dump...
+### I've uncommented the last line ...
 # it should be 0x1+0-0 anyway
 *FvwmIconMan*1*managergeometry 10x1+0-0
+
+*FvwmIconMan*Colorset		12
+*FvwmIconMan*iconcolorset	19
+*FvwmIconMan*plaincolorset	17
+*FvwmIconMan*selectcolorset	20
+*FvwmIconMan*focuscolorset	18
+*FvwmIconMan*focusandselectcolorset 20
+
 *FvwmIconMan*1*buttongeometry 100x14
 *FvwmIconMan*1*font -*-lucida-bold-r-normal-*-10-*-*-*-*-*-*
 *FvwmIconMan*1*plainbutton flat
@@ -35,14 +44,8 @@ DestroyModuleConfig FvwmIconMan*
 *FvwmIconMan*1*action Mouse 2 N sendcommand FuncFvwmIconManWarpToMiddle
 *FvwmIconMan*1*action Mouse 3 N sendcommand FuncFvwmIconFocusAndOptions
 *FvwmIconMan*1*shape true
-*FvwmIconMan*colorset 6
-*FvwmIconMan*iconcolorset 13
-*FvwmIconMan*focuscolorset 12
-*FvwmIconMan*focusandselectcolorset 12
-*FvwmIconMan*plaincolorset 11
-*FvwmIconMan*selectcolorset 11
-*FvwmIconMan*titlecolorset 6
-###*FvwmIconMan*NoIconAction "SendToModule FvwmAnimate animate"
+
+*FvwmIconMan*NoIconAction "SendToModule FvwmAnimate animate"
 
 Style "FvwmIconMan" BorderWidth 0, NoTitle, NoHandles, Sticky, FVWMBorder
 Style "FvwmIconMan" ForeColor grey, BackColor rgb:55/5d/5d, WindowListSkip

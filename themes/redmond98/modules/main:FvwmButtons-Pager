@@ -3,13 +3,13 @@
 #------------------------------------------------------------------------------
 
 Style "FvwmButtons-Pager" NoTitle, NoHandles, Sticky, WindowListSkip, \
-	BorderWidth 0, CirculateSkip
+	BorderWidth 0, CirculateSkip, TitleAtTop
 #Style "FvwmButtons-Pager" StayOnTop
 Style "FvwmButtons-Pager" StaysPut
 
 DestroyModuleConfig FvwmButtons-Pager*
 
-*FvwmButtons-PagerColorset 6
+*FvwmButtons-PagerColorset 10
 *FvwmButtons-PagerGeometry 12x78
 *FvwmButtons-PagerRows 1
 *FvwmButtons-PagerFrame 1

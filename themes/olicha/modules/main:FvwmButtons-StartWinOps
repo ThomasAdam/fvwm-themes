@@ -10,7 +10,7 @@ DestroyModuleConfig FvwmButtons-WinOps*
 # Starters:
 
 *FvwmButtons-StartWinOpsGeometry 10x52+0+350
-*FvwmButtons-StartWinOpsColorset 10
+*FvwmButtons-StartWinOpsColorset 12
 *FvwmButtons-StartWinOpsColumns 1
 *FvwmButtons-StartWinOpsFrame 0
 *FvwmButtons-StartWinOps(Panel(indicator 8, right, position center  mtb mlr) \
@@ -20,7 +20,7 @@ DestroyModuleConfig FvwmButtons-WinOps*
 # Buttons:
 
 *FvwmButtons-WinOpsRows 2
-*FvwmButtons-WinOpsColorset 10
+*FvwmButtons-WinOpsColorset 12
 *FvwmButtons-WinOpsFrame 1
 *FvwmButtons-WinOpsGeometry TM_FvwmButtons-WinOpsGeometry
 *FvwmButtons-WinOps(Icon 16x16/window-move.xpm, Action 'Move')

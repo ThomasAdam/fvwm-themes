@@ -5,10 +5,10 @@
 ### rename to Fvwm*Adjective*BarButtons? (if we want to enable some bars)
 
 Style FvwmButtons-Bar  NoTitle, NoHandles, Sticky, WindowListSkip, \
-	CirculateSkip, StaysPut
+	CirculateSkip, StaysPut, TitleAtBottom
 
 DestroyModuleConfig FvwmButtons-Bar*
-*FvwmButtons-BarColorset 6
+*FvwmButtons-BarColorset 10
 *FvwmButtons-BarFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 #*FvwmButtons-BarGeometry 127x440-5-64
 *FvwmButtons-BarGeometry 127x440-0-80
@@ -54,8 +54,10 @@ DestroyModuleConfig FvwmButtons-Bar*
 *FvwmButtons-Bar(End)
 *FvwmButtons-Bar(1x1, Title "xload", \
 	Swallow "xload" "Exec exec nice -16 xload -nolabel -update 4 \
-		-fg $[fg.cs7] -bg $[bg.cs7] -hl grey40 -geometry -1500-1500")
+		-fg $[fg.cs13] -bg $[bg.cs13] -hl $[shadow.cs13] \
+		-geometry -1500-1500")
 *FvwmButtons-Bar(1x1, Title "xclock", \
-	Swallow "xclock" "Exec exec xclock -fg $[fg.cs7] -bg $[bg.cs7] \
-		-hd $[fg.cs7] -hl $[fg.cs7] -padding 0 -geometry -1500-1500")
+	Swallow "xclock" "Exec exec xclock -fg $[fg.cs11] -bg $[bg.cs11] \
+		-hd $[fg.cs11] -hl $[fg.cs11] -padding 0 \
+		-geometry -1500-1500")
 *FvwmButtons-Bar(2x1, Swallow(UseOld) "FvwmPager-Single" 'FvwmPager FvwmPager-Single * *')

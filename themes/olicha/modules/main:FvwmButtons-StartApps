@@ -1,7 +1,7 @@
 Style "FvwmButtons-StartApps" NoTitle, NoHandles, BorderWidth 2, \
-	Sticky, WindowListSkip
+	Sticky, WindowListSkip, CirculateSkip
 Style "FvwmButtons-Apps" NoTitle, NoHandles, BorderWidth 2, \
-	Sticky, WindowListSkip
+	Sticky, WindowListSkip, CirculateSkip
 
 DestroyModuleConfig FvwmButtons-StartApps*
 DestroyModuleConfig FvwmButtons-Apps*
@@ -9,7 +9,7 @@ DestroyModuleConfig FvwmButtons-Apps*
 # Starter
 
 *FvwmButtons-StartAppsGeometry 44x12-0+0
-*FvwmButtons-StartAppsColorset 10
+*FvwmButtons-StartAppsColorset 12
 *FvwmButtons-StartAppsColumns 1
 *FvwmButtons-StartAppsFrame 0
 *FvwmButtons-StartApps(Panel(indicator, smooth, down, \
@@ -21,7 +21,7 @@ DestroyModuleConfig FvwmButtons-Apps*
 
 *FvwmButtons-AppsColumns 2
 *FvwmButtons-AppsButtonGeometry 20x20
-*FvwmButtons-AppsColorset 10
+*FvwmButtons-AppsColorset 12
 *FvwmButtons-AppsFrame 1
 *FvwmButtons-AppsGeometry +5000+5000
 *FvwmButtons-Apps(Icon 16x16/folders.xpm, \

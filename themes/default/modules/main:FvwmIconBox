@@ -1,20 +1,20 @@
-Style "FvwmIconBox" NoTitle, Sticky, WindowListSkip,CirculateSkip, NoHandles
+Style "FvwmIconBox" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
+	NoHandles, TitleAtTop
 
 DestroyModuleConfig FvwmIconBox*
 *FvwmIconBoxGeometry +0+0
-*FvwmIconBoxColorset   10 
-*FvwmIconBoxIconColorset 11
-*FvwmIconBoxIconHiColorset 12
+
+*FvwmIconBoxColorset   12
+*FvwmIconBoxIconColorset 17
+*FvwmIconBoxIconHiColorset 18
 
 *FvwmIconBoxGeometry    4x1+0+0
+*FvwmIconBoxLines 4
 *FvwmIconBoxMaxIconSize 64x48
 *FvwmIconBoxFont        -adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
 *FvwmIconBoxSortIcons   IconName
 *FvwmIconBoxPadding     10
-*FvwmIconBoxLines       6
-*FvwmIconBoxSBWidth     11
-*FvwmIconBoxFrameWidth 3 3 
-*FvwmIconBoxPlacement   Left Top
+*FvwmIconBoxFrameWidth 3 3
 *FvwmIconBoxUseSkipList
 *FvwmIconBoxHideSC Horizontal
 *FvwmIconBoxSetWMIconSize
@@ -35,5 +35,4 @@ DestroyModuleConfig FvwmIconBox*
 *FvwmIconBoxKey         j       Down
 *FvwmIconBoxKey         k       Up
 *FvwmIconBoxKey         l       Right
-# Animation
 *FvwmIconBoxNoIconAction SendToModule FvwmAnimate animate

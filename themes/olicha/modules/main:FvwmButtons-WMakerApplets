@@ -1,5 +1,5 @@
 Style "FvwmButtons-WMaker*Applets" NoTitle, NoHandles, BorderWidth 0, Sticky, \
-	WindowListSkip, CirculateHit, NoIcon
+	WindowListSkip, CirculateHit, NoIcon, TitleAtTop
 
 DestroyModuleConfig FvwmButtons-WMaker*Applets*
 
@@ -7,25 +7,25 @@ DestroyModuleConfig FvwmButtons-WMaker*Applets*
 # Buttons:
 
 *FvwmButtons-WMakerAppletsColumns 1
-*FvwmButtons-WMakerAppletsColorset 10
+*FvwmButtons-WMakerAppletsColorset 12
 *FvwmButtons-WMakerAppletsButtonGeometry 66x6
-*FvwmButtons-WMakerApplets(1x11, Frame 1, Size 64 64, Colorset 10, \
+*FvwmButtons-WMakerApplets(1x11, Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmCalClock" 'Exec exec wmCalClock -24', Action(Mouse 1) \
 	'FuncFvwmMyPopupPanel "FvwmButtons-WMakerClockApplets" $right $top', \
 	Action(Mouse 3) 'All (FvwmButtons-WMakerClockApplets) Close')
-*FvwmButtons-WMakerApplets(1x11, Frame 1, Size 64 64, Colorset 10, \
+*FvwmButtons-WMakerApplets(1x11, Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmmon" 'Exec exec wmmon', Action(Mouse 1) \
 	'FuncFvwmMyPopupPanel "FvwmButtons-WMakerCpuApplets" $right $top', \
 	Action(Mouse 3) 'All (FvwmButtons-WMakerCpuApplets) Close')
-#*FvwmButtons-WMakerApplets(1x11, Frame 1, Size 64 64, Colorset 10, \
+#*FvwmButtons-WMakerApplets(1x11, Frame 1, Size 64 64, Colorset 12, \
 #	Swallow "asapm" 'Exec exec asapm -u 5', Action(Mouse 1) \
 #	'FuncFvwmMyPopupPanel "FvwmButtons-WMakerCdApplets" $right $top', \
 #	Action(Mouse 3) 'All (FvwmButtons-WMakerCdApplets) Close')
-*FvwmButtons-WMakerApplets(1x11, Frame 1, Size 64 64, Colorset 10, \
+*FvwmButtons-WMakerApplets(1x11, Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmjmail" 'Exec exec wmjmail', Action(Mouse 1) \
 	'FuncFvwmMyPopupPanel "FvwmButtons-WMakerCdApplets" $right $top', \
 	Action(Mouse 3) 'All (FvwmButtons-WMakerCdApplets) Close')
-*FvwmButtons-WMakerApplets(1x1, Colorset 10, Frame 0, Padding 1 1, NoSize, \
+*FvwmButtons-WMakerApplets(1x1, Colorset 12, Frame 0, Padding 1 1, NoSize, \
 	Action(Mouse 1) 'FuncFvwmMyPopupPanel "FvwmButtons-WMakerMoreApplets" \
 	$left $bottom', Action(Mouse 3) 'All (FvwmButtons-WMakerMoreApplets) Close')
 
@@ -35,39 +35,39 @@ DestroyModuleConfig FvwmButtons-WMaker*Applets*
 #-----------------
 # Clock
 *FvwmButtons-WMakerClockAppletsRows 1
-*FvwmButtons-WMakerClockAppletsColorset 10
-*FvwmButtons-WMakerClockApplets(Frame 1, Size 64 64, Colorset 10, \
+*FvwmButtons-WMakerClockAppletsColorset 12
+*FvwmButtons-WMakerClockApplets(Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmglobe" 'Exec exec  wmglobe')
-*FvwmButtons-WMakerClockApplets(Frame 1, Size 64 64, Colorset 10, \
+*FvwmButtons-WMakerClockApplets(Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmMoonClock" 'Exec exec  wmMoonClock')
 
 #-----------------
 # Cpu
 *FvwmButtons-WMakerCpuAppletsRows 1
-*FvwmButtons-WMakerCpuAppletsColorset 10
-*FvwmButtons-WMakerCpuApplets(Frame 1, Size 64 64, Colorset 10, \
+*FvwmButtons-WMakerCpuAppletsColorset 12
+*FvwmButtons-WMakerCpuApplets(Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmload" 'Exec exec  wmload')
-*FvwmButtons-WMakerCpuApplets(Frame 1, Size 64 64, Colorset 10, \
+*FvwmButtons-WMakerCpuApplets(Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmsysmon" 'Exec exec  wmsysmon')
 
 #-----------------
 # Cd
 *FvwmButtons-WMakerCdAppletsRows 1
-*FvwmButtons-WMakerCdAppletsColorset 10
-*FvwmButtons-WMakerCdApplets(Frame 1, Size 64 64, Colorset 10, \
+*FvwmButtons-WMakerCdAppletsColorset 12
+*FvwmButtons-WMakerCdApplets(Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmmount" 'Exec exec  wmmount -s')
-*FvwmButtons-WMakerCdApplets(Frame 1, Size 64 64, Colorset 10, \
+*FvwmButtons-WMakerCdApplets(Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmmixer" 'Exec exec  wmmixer -s')
-*FvwmButtons-WMakerCdApplets(Frame 1, Size 64 64, Colorset 10, \
+*FvwmButtons-WMakerCdApplets(Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmcdplay" 'Exec exec  wmcdplay -s')
 
 #-----------------
 # More
 *FvwmButtons-WMakerMoreAppletsColumns 1
-*FvwmButtons-WMakerMoreAppletsColorset 10
-*FvwmButtons-WMakerMoreApplets(Frame 1, Size 64 64, Colorset 10, \
+*FvwmButtons-WMakerMoreAppletsColorset 12
+*FvwmButtons-WMakerMoreApplets(Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmppp" 'Exec exec  wmppp')
-*FvwmButtons-WMakerMoreApplets(Frame 1, Size 64 64, Colorset 10, \
+*FvwmButtons-WMakerMoreApplets(Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wminet" 'Exec exec  wminet')
 #*FvwmButtons-WMakerMoreApplets(Frame 1, Size 64 64, \
 #	Swallow "wmcdplay" 'Exec exec  wmcdplay')

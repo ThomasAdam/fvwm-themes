@@ -1,15 +1,15 @@
 Style FvwmButtons-As  NoTitle, NoHandles, Sticky, WindowListSkip, \
-	CirculateSkip, StaysPut
+	CirculateSkip, StaysPut, TitleAtTop
 Style FvwmButtons-AsPanel  NoTitle, NoHandles, Sticky, WindowListSkip, \
-	CirculateSkip, StaysPut
+	CirculateSkip, StaysPut, TitleAtTop
 Style FvwmButtons-AsAppletsPanel NoTitle, NoHandles, Sticky, WindowListSkip, \
-	CirculateSkip, StaysPut
-Style FvwmPager-Desker NoTitle, Sticky, WindowListSkip, CirculateSkip, NoHandles, \
-	NoLenience, StaysPut
+	CirculateSkip, StaysPut,TitleAtTop 
+Style FvwmPager-Desker NoTitle, Sticky, WindowListSkip, CirculateSkip, \
+	NoHandles, NoLenience, StaysPut, TitleAtTop
 Style FvwmPager-Single NoTitle, Sticky, WindowListSkip, CirculateSkip, \
-	NoHandles, NoLenience, StaysPut
+	NoHandles, NoLenience, StaysPut, TitleAtTop
 Style FvwmIconMan NoTitle, NoHandles, Sticky, WindowListSkip, \
-	CirculateSkip, BorderWidth 0, StaysPut
+	CirculateSkip, BorderWidth 0, StaysPut, TitleAtTop 
 
 #DestroyFunc FuncModulesThemeDestroyStyle
 #AddToFunc   FuncModulesThemeDestroyStyle

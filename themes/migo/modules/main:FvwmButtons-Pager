@@ -3,7 +3,7 @@ Style "FvwmButtons-Pager" NoTitle, NoHandles, Sticky, NeverFocus, \
 
 DestroyModuleConfig FvwmButtons-Pager*
 
-*FvwmButtons-PagerColorset 16
+*FvwmButtons-PagerColorset 14
 *FvwmButtons-PagerFont -schumacher-clean-medium-r-*-*-6-*-*-*-*-*-*-*
 *FvwmButtons-PagerGeometry 100x100
 *FvwmButtons-PagerColumns 100

@@ -3,12 +3,12 @@ Style "FvwmIconMan" NoTitle, WindowListSkip, Sticky, StaysOnTop, \
 
 DestroyModuleConfig FvwmIconMan*
 
-*FvwmIconMan*colorset		6
-*FvwmIconMan*iconcolorset	13
-*FvwmIconMan*plaincolorset	11
-*FvwmIconMan*selectcolorset	11
-*FvwmIconMan*focuscolorset	12
-*FvwmIconMan*focusandselectcolorset 12
+*FvwmIconMan*Colorset		12
+*FvwmIconMan*iconcolorset	19
+*FvwmIconMan*plaincolorset	17
+*FvwmIconMan*selectcolorset	20
+*FvwmIconMan*focuscolorset	18
+*FvwmIconMan*focusandselectcolorset 20
 
 *FvwmIconMan*title "   awol's customised button bar for Fvwm2000 -:- to boldly GNU..."
 *FvwmIconMan*resolution desk

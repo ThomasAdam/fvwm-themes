@@ -10,14 +10,15 @@ AddToMenu MenuFvwmWindowGroupOps "" Nop
 + "Desk 2%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2
 + "Desk 3%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
 
-Style FvwmPager-Desker NoTitle, NoHandles, Sticky, WindowListSkip, NoLenience
+Style FvwmPager-Desker NoTitle, NoHandles, Sticky, WindowListSkip, \
+	NoLenience, TitleAtTop
 
 DestroyModuleConfig FvwmPager-Desker*
  
-*FvwmPager-DeskerColorset * 16
-*FvwmPager-DeskerHilightColorset * 8
-*FvwmPager-DeskerWindowColorsets 1 2
-*FvwmPager-DeskerBalloonColorset * 9
+*FvwmPager-DeskerColorset * 14
+*FvwmPager-DeskerHilightColorset * 15
+*FvwmPager-DeskerBalloonColorset * 16
+
 *FvwmPager-DeskerFont -*-lucida-bold-r-*-*-11-*-*-*-*-*-*-*
 #*FvwmPager-DeskerHilightPixmap /usr/local/images/marble3.xpm
 *FvwmPager-DeskerGeometry 100x360+0+0

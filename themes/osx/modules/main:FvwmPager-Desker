@@ -1,6 +1,5 @@
-Style "FvwmPager-Desker" NoTitle, Sticky, WindowListSkip, CirculateSkip, NoHandles \
-	NoLenience, BorderWidth 0
-
+Style "FvwmPager-Desker" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
+	NoHandles NoLenience, BorderWidth 0, TitleAtBottom
 AddToMenu MenuFvwmWindowMove "" Nop
 + "Desk 	Desk%menu/window-move.xpm%"	MoveToDesk 0 0
 + "Web & Mail	Desk%menu/window-move.xpm%"	MoveToDesk 0 1
@@ -16,10 +15,11 @@ AddToMenu MenuFvwmWindowGroupOps "" Nop
 DestroyModuleConfig FvwmPager-Desker*
 *FvwmPager-DeskerGeometry 255x55+5000+5000
 *FvwmPager-DeskerRows 1
-*FvwmPager-DeskerColorset * 16
-*FvwmPager-DeskerHilightColorset * 8
-*FvwmPager-DeskerWindowColorsets 1 2
-*FvwmPager-DeskerBalloonColorset * 9
+
+*FvwmPager-DeskerColorset * 14
+*FvwmPager-DeskerHilightColorset * 15
+*FvwmPager-DeskerBalloonColorset * 16
+
 *FvwmPager-DeskerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPager-DeskerLabelsBelow
 *FvwmPager-DeskerSolidSeparator

@@ -13,14 +13,14 @@ AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
 + "D&own	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p +1p
 + "&Up  	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p -1p
 
-Style "FvwmPager-Single" NoTitle, Sticky, WindowListSkip, CirculateSkip, NoHandles
 
 DestroyModuleConfig FvwmPager-Single*
 *FvwmPager-SingleColumns 1
-*FvwmPager-SingleColorset * 16
-*FvwmPager-SingleHilightColorset * 8
-*FvwmPager-SingleWindowColorsets 1 2
-*FvwmPager-SingleBalloonColorset * 9
+
+*FvwmPager-SingleColorset * 14
+*FvwmPager-SingleHilightColorset * 15
+*FvwmPager-SingleBalloonColorset * 16
+
 *FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPager-SingleSmallFont 5x8
 *FvwmPager-SingleLabel 0 Desk

@@ -1,25 +1,25 @@
-Style "FvwmIconBox" NoTitle, NoHandles, Sticky, WindowListSkip
+Style "FvwmIconBox" NoTitle, NoHandles, Sticky, WindowListSkip, \
+	CirculateSkip, TitleAtBottom
+
 DestroyModuleConfig FvwmIconBox*
 
-*FvwmIconBoxIconColorSet 11
-*FvwmIconBoxIconHiColorset 12
-*FvwmIconBoxColorset 10
-#*FvwmIconBoxFore blue
-#*FvwmIconBoxGeometry 4x1+0-0
+*FvwmIconBoxIconColorSet 17
+*FvwmIconBoxIconHiColorset 18
+*FvwmIconBoxColorset 12
+
 *FvwmIconBoxGeometry 5x1+0-0
+*FvwmIconBoxLines 5
 *FvwmIconBoxMaxIconSize 48x48
 *FvwmIconBoxFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmIconBoxSortIcons    IconName
-#*FvwmIconBoxSortIcons    ResClass
+
 *FvwmIconBoxPadding 10
 *FvwmIconBoxFrameWidth 0 0
-*FvwmIconBoxLines 6
-*FvwmIconBoxSBWidth 11
+*FvwmIconBoxSBWidth 7
 *FvwmIconBoxPlacement Left Top
 *FvwmIconBoxHideSC Horizontal
 *FvwmIconBoxSetWMIconSize
 *FvwmIconBoxHilightFocusWin
-#*FvwmIconBoxResolution  Desk
 *FvwmIconBoxUseSkipList
 # 
 # mouse bindings 

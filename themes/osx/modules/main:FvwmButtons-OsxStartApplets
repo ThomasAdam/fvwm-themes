@@ -1,12 +1,12 @@
-Style "FvwmButtons-OsxStartApplets" NoTitle, NoHandles, BorderWidth 1, Sticky, \
-	WindowListSkip, CirculateSkip
+Style "FvwmButtons-OsxStartApplets" NoTitle, NoHandles, BorderWidth 1, \
+	Sticky, WindowListSkip, CirculateSkip, TitleAtTop
 Style "FvwmButtons-OsxApplets" NoTitle, NoHandles, BorderWidth 1, Sticky, \
-	WindowListSkip, CirculateHit
+	WindowListSkip, CirculateHit, TitleAtTop
 
 DestroyModuleConfig FvwmButtons-OsxStartApplets*
 DestroyModuleConfig FvwmButtons-OsxApplets*
 
-*FvwmButtons-OsxStartAppletsColorset 6
+*FvwmButtons-OsxStartAppletsColorset 10
 *FvwmButtons-OsxStartAppletsFrame 1
 *FvwmButtons-OsxStartAppletsGeometry 10x66+0-200
 *FvwmButtons-OsxStartApplets(Panel(right, indicator) \
@@ -16,11 +16,11 @@ DestroyModuleConfig FvwmButtons-OsxApplets*
 # Panel
 *FvwmButtons-OsxAppletsRows 1
 *FvwmButtons-OsxAppletsFrame 1
-*FvwmButtons-OsxAppletsColorset 7
+*FvwmButtons-OsxAppletsColorset 13
 *FvwmButtons-OsxApplets(Size 64 64, \
-	Swallow (Kill) "FvwmApplet-Day" 'FvwmScript FvwmApplet-Day 6 7')
+	Swallow (Kill) "FvwmApplet-Day" 'FvwmScript FvwmApplet-Day 10 13')
 *FvwmButtons-OsxApplets(Size 64 64, \
-	Swallow (Kill) "FvwmApplet-Mixer" 'FvwmScript FvwmApplet-Mixer 6 7')
+	Swallow (Kill) "FvwmApplet-Mixer" 'FvwmScript FvwmApplet-Mixer 10 13')
 *FvwmButtons-OsxApplets(Title xeyes, Size 64 64, \
 	Swallow "xeyes" 'Exec exec xeyes -geometry +5000+5000')
 

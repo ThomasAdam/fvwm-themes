@@ -5,15 +5,8 @@
 Important items to do:
 ---------------------
 
-* colors@ components. We should improve colorset list, probably add some
-  items and move others. Application bar modules have only 3 colorsets, it
-  is inacceptable, there should be 4-6. [Olivier]
-
-* Fix problem with FvwmTheme: sometimes the colors of the swallowed window
-of the Buttons are not the good one. May be we can restart FvwmTheme in
-colors as before. Mikhael any objections? - Yes, any. :)
-I think I fixed this, DestroyModuleConfig FvwmTheme* was commented in.
-If not, how can I reproduce this?
+* colors@ components. Check if every things is ok with the new colors
+files.
 
 * settings@default: think which subcomponents to remove/move.
   Move settings/stroke@ to bindings@ option.
@@ -21,11 +14,12 @@ If not, how can I reproduce this?
 * Think where belong all functions sitting in different components.
   Probably rename functions-appbind to functions-user. [migo]
 
-* Completing 'cde' theme. [olivier, jos]
+* Completing 'cde' theme. need a windowlook and a modules theme [olivier, jos]
 
 * Do so that the session support works again (need discussion).
 
-* Finish colors@spruce.
+* Finish colors@spruce. I've done some works but maybe it is too much
+green (olicha).
 
 * Begin "FvwmScript-ThemeCenter".
 
