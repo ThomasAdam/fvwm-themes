@@ -7,6 +7,9 @@
 	* themes/luthien/modules/main:
 	remove stopping desker
 
+	* doc/fvwm-themes.lsm.in:
+	move to format-4
+
 2001-10-25  olicha  <olivier.chapuis@free.fr>
 
 	* configure.in:
