@@ -192,8 +192,7 @@ rpm-themes-this:
 
 ## ---------------------------------------------------------------------------
 ## Produce a deb package
-# you need fakeroot and dpkg
-#
+## you need fakeroot and dpkg
 #  Usage:
 #    make deb-dist   # creates -full deb
 #    make release=1 deb-dist

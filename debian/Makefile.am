@@ -1,11 +1,13 @@
 ## This is a -*- Makefile -*-
 ## Process this file with automake to create Makefile.in
 
+EXTRA_THEMES = @EXTRA_THEMES@
+
 version = @VERSION@
 release = 0.`date +%Y%m%d`
 datum = `date "+%a, %d %b %Y %X %z"`
-fullname = `finger $$USER | head -1 | cut -d: -f3 | cut -c2-`
-email = $$USER@$$HOST
+fullname = FVWM Themes Developers
+email = fvwm-themes-devel@lists.sourceforge.net
 
 deb:
 	@\
@@ -19,7 +21,7 @@ deb:
 	echo ""  >> debian/changelog; \
 	echo "  * new upstream release" >> debian/changelog; \
 	echo "" >> debian/changelog; \
-	echo " -- $$fullname <$$email>  $$datum" >>  debian/changelog; \
+	echo " -- $$fullname <$$email>  $$datum" >> debian/changelog; \
 	echo "" >> debian/changelog; \
 	cat debian/full-changelog >> debian/changelog; \
 	chmod 744 debian/rules
@@ -43,9 +45,9 @@ deb:
 	fakeroot dh_installdeb
 	fakeroot dh_shlibdeps
 	fakeroot dh_gencontrol
-	fakeroot dh_md5sums;
+	fakeroot dh_md5sums
 	fakeroot dh_builddeb
-	rm -f debian/control
+	-rm -f debian/control
 
 
 deb-base:
@@ -58,7 +60,7 @@ deb-base:
 	echo ""  >> debian/changelog; \
 	echo "  * new upstream release" >> debian/changelog; \
 	echo "" >> debian/changelog; \
-	echo " -- $$fullname <$$email>  $$datum" >>  debian/changelog; \
+	echo " -- $$fullname <$$email>  $$datum" >> debian/changelog; \
 	echo "" >> debian/changelog; \
 	cat debian/base-changelog >> debian/changelog; \
 	fakeroot make -f debian/rules clean
@@ -88,7 +90,7 @@ deb-base:
 	fakeroot dh_installdeb
 	fakeroot dh_shlibdeps
 	fakeroot dh_gencontrol
-	fakeroot dh_md5sums;
+	fakeroot dh_md5sums
 	fakeroot dh_builddeb
 	-rm -f debian/control
 
