@@ -102,34 +102,43 @@ dist3: dist
 	@rm -rf $(PACKAGE)-extra-$(VERSION)
 	@mkdir $(PACKAGE)-extra-$(VERSION)
 	@for t in $(EXTRA_THEMES); do \
-		echo "creating ft-$$t-$(VERSION).tar.gz"; \
-		rm -rf ft-$$t-$(VERSION); \
-		mkdir ft-$$t-$(VERSION); \
-		cp -rdp $(distdir)/themes/$$t $(PACKAGE)-extra-$(VERSION); \
-		mv -f $(distdir)/themes/$$t ft-$$t-$(VERSION); \
-		$(TAR) czf ft-$$t-$(VERSION).tar.gz ft-$$t-$(VERSION); \
-		rm -rf ft-$$t-$(VERSION); \
+		mv -f $(distdir)/themes/$$t $(PACKAGE)-extra-$(VERSION); \
 	done
 	@echo "creating $(PACKAGE)-extra-$(VERSION).tar.gz"
 	@$(TAR) czf $(PACKAGE)-extra-$(VERSION).tar.gz $(PACKAGE)-extra-$(VERSION);
-	@rm -rf $(PACKAGE)-extra-$(VERSION);
+	@rm -r $(PACKAGE)-extra-$(VERSION);
 	@echo "creating $(PACKAGE)-base-$(VERSION).tar.gz";
 	@rm -rf $(PACKAGE)-base-$(VERSION);
 	@mv -f $(distdir) $(PACKAGE)-base-$(VERSION);
 	@$(TAR) czf $(PACKAGE)-base-$(VERSION).tar.gz $(PACKAGE)-base-$(VERSION);
-	@rm -rf $(PACKAGE)-base-$(VERSION)
+	@rm -r $(PACKAGE)-base-$(VERSION)
 
 dist4: dist3
 	@echo "creating $(distdir).tar.bz2"
 	@gzip -dc $(distdir).tar.gz | bzip2 -9 >$(distdir).tar.bz2
-	@for t in $(EXTRA_THEMES); do \
-		echo "creating ft-$$t-$(VERSION).tar.bz2"; \
-		gzip -dc ft-$$t-$(VERSION).tar.gz | bzip2 -9 >ft-$$t-$(VERSION).tar.bz2; \
-	done
 	@echo "creating $(PACKAGE)-extra-$(VERSION).tar.bz2"
 	@gzip -dc $(PACKAGE)-extra-$(VERSION).tar.gz | bzip2 -9 >$(PACKAGE)-extra-$(VERSION).tar.bz2
 	@echo "creating $(PACKAGE)-base-$(VERSION).tar.bz2"
 	@gzip -dc $(PACKAGE)-base-$(VERSION).tar.gz | bzip2 -9 >$(PACKAGE)-base-$(VERSION).tar.bz2
+
+dist5: dist3
+	@$(TAR) xzf $(PACKAGE)-extra-$(VERSION).tar.gz
+	@for t in $(EXTRA_THEMES); do \
+		echo "creating ft-$$t-$(VERSION).tar.gz"; \
+		rm -rf ft-$$t-$(VERSION); \
+		mkdir ft-$$t-$(VERSION); \
+		mv -f $(PACKAGE)-extra-$(VERSION)/$$t ft-$$t-$(VERSION); \
+		$(TAR) czf ft-$$t-$(VERSION).tar.gz ft-$$t-$(VERSION); \
+		rm -r ft-$$t-$(VERSION); \
+	done
+	@rm -r $(PACKAGE)-extra-$(VERSION)
+
+dist6: dist5
+	@for t in $(EXTRA_THEMES); do \
+		echo "creating ft-$$t-$(VERSION).tar.bz2"; \
+		gzip -dc ft-$$t-$(VERSION).tar.gz | bzip2 -9 >ft-$$t-$(VERSION).tar.bz2; \
+	done
+
 
 ## ---------------------------------------------------------------------------
 ## Produce an rpm package using dist or from the given tarball

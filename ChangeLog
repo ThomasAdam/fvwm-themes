@@ -11,6 +11,9 @@
 	* acinclude.m4:
 	use ${AWK} instead of awk
 
+	* Makefile.am:
+	splitted dist3 and dist4 to dist5 and dist6
+
 	* menu-system/.cvsignore:
 	added
 
