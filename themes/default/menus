@@ -275,7 +275,6 @@ AddToMenu   MenuFvwmWindowOps "Window Operations" Title
 + "" Nop
 + "Identify%menu/window-identify.xpm%"          Module FvwmIdent
 + "Switch to...%menu/windows.xpm%"              WindowList
-+ "Arrange Icons%menu/refresh.xpm%" All (CurrentDesk Iconic) RecaptureWindow
 
 # A trimmed down version of MenuFvwmWindowOps, good for binding to decorations
 DestroyMenu MenuFvwmWindowOps3
@@ -383,6 +382,8 @@ AddToMenu   MenuFvwmRearrangeWindows "Rearrange Windows" Title
 + "" Nop
 + "%menu/refresh.xpm%Tile &horizontally" FvwmRearrange -tile -h -m 2 2 98 98
 + "%menu/refresh.xpm%Tile &vertically"   FvwmRearrange -tile    -m 2 2 98 98
++ "" Nop
++ "%menu/refresh.xpm%Arrange Icons" All (CurrentDesk Iconic) RecaptureWindow
 
 DestroyFunc FuncFvwmRaiseAndExec
 AddToFunc   FuncFvwmRaiseAndExec
