@@ -18,7 +18,7 @@ AddToMenu   StartMenuFvwmSettings "Settings" Title
 + "&Shells%menu/terminal.xpm%"			Popup MenuFvwmShells
 + "S&ystem%menu/system.xpm%"			Popup MenuFvwmSystem
 + "&Theme Management%menu/themes.xpm%"		Popup MenuFvwmThemes
-+ "&Fvwm Configuration%menu/configuration.xpm%"	Popup MenuFvwmConfiguration
++ "&Configuration%menu/configuration.xpm%"	Popup MenuFvwmConfiguration
 #+ "&X Configuration"				Popup MenuFvwmXConfiguration
 
 DestroyMenu StartMenuFvwmDocuments

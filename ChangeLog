@@ -1,3 +1,17 @@
+2002-06-10  migo  <migo@homemail.com>
+
+	* scripts/FvwmApplet-DayClock:
+	removed debug Echo
+
+	* themes/default/globallook:
+	minor changes
+
+	* themes/default/styles:
+	added FreeAmp
+
+	* themes/redmond98/modules/*:
+	s/Fvwm/Main/, s/Fvwm//
+
 2002-06-06  migo  <migo@homemail.com>
 
 	* themes/redmondxp/background:

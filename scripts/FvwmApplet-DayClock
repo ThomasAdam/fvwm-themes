@@ -25,8 +25,6 @@ Init
    ChangeColorset 2 $Colorset
    ChangeColorset 1 $Colorset
   End
- Set $tmp = (GetOutput $cmd 1 -1)
- Do {echo }$tmp 
  Set $tmp = (GetOutput {date} 1 4)
  Set $tmp = (StrCopy $tmp 1 5)
  ChangeTitle 1 $tmp

@@ -8,9 +8,8 @@ Style * HilightColorset 2
 Style * BorderColorset 3
 Style * HilightBorderColorset 4
 
-MenuStyle * MenuFace
+MenuStyle * MenuFace, ActiveFore, HilightBack
 MenuStyle * MenuColorset 5, ActiveColorset 6, GreyedColorset 7
-MenuStyle * ActiveFore, HilightBack
 
 DestroyModuleConfig FvwmIdent: *
 FuncFvwmSetFont-FvwmIdent
@@ -25,15 +24,11 @@ DestroyModuleConfig FvwmFormDefault: Colorset*
 DestroyModuleConfig FvwmFormDefault: ItemColorset*
 *FvwmFormDefault: ItemColorset 36
 
-# Moved in buttons!
-#FuncFvwmDecorBackground
-
 DestroyFunc FuncFvwmUnReloadGlobalLook
 AddToFunc   FuncFvwmUnReloadGlobalLook
-+ I DestroyModuleConfig FvwmIdent: Fon*
-+ I MenuStyle * MenuFace
++ I DestroyModuleConfig FvwmIdent: Font*
++ I MenuStyle * MenuFace, ActiveFore, HilightBack
 #+ I MenuStyle * MenuColorset 5, ActiveColorset 6, GreyedColorset 7
-+ I MenuStyle * ActiveFore, HilightBack
 
 DestroyFunc FuncFvwmReloadGlobalLook
 AddToFunc   FuncFvwmReloadGlobalLook
