@@ -1,12 +1,6 @@
                       Things to do before 1.0.0
                       -------------------------
 
-* Improve wm-icons icon sets, release 0.3.0 as soon as possible.
-
-* Fully support a new wm-icons icon list (84 icons) in fvwm-themes.
-
-* Fix GUI problems on FreeBSD.
-
 * Localization (actual translations).
 [In progress]
 
@@ -120,3 +114,9 @@ Closed items (will be deleted after 1.0.0):
 
 * Convert all hardcoded $FT_DATADIR/... paths to relative $./ .
   (not fully)
+
+* Improve wm-icons icon sets, release 0.3.0 as soon as possible.
+
+* Fully support a new wm-icons icon list (84 icons) in fvwm-themes.
+
+* Fix problems on FreeBSD and Solaris.

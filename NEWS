@@ -1,6 +1,8 @@
 fvwm-themes-0.4.2 - Not yet released
 
-* improved @redmond98, press-able buttons and gradien titles
+* converted all icons to a new extended wm-icons-0.3 list
+* Solaris and FreeBSD related fixed
+* improved @redmond98, press-able buttons and gradient titles
 * some work on a minimal reload (optional); reload is now a bit faster
 
 fvwm-themes-0.4.1 - 20001220
