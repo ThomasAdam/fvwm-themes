@@ -418,8 +418,8 @@ AddToMenu   MenuFvwmWindowUtility "Window Utility" Title
 + "%menu/window.xpm%Create &Screenshot"   Pick (CirculateHit) FuncFvwmWindowCreateScreenshot
 + "%menu/display.xpm%&Desktop Screenshot" Pick (CirculateHit) FuncFvwmDesktopCreateScreenshot
 + "" Nop
-+ "%menu/utility.xpm%&Print"              Pick (CirculateHit) FuncFvwmWindowPrint
-+ "%menu/utility.xpm%Print &Reverse"      Pick (CirculateHit) FuncFvwmWindowPrintReverse
++ "%menu/printing.xpm%&Print"             Pick (CirculateHit) FuncFvwmWindowPrint
++ "%menu/printing.xpm%Print &Reverse"     Pick (CirculateHit) FuncFvwmWindowPrintReverse
 + "" Nop
 + "%menu/window-raise.xpm%Layer +1"       Pick (CirculateHit) Layer +1
 + "%menu/window-lower.xpm%Layer -1"       Pick (CirculateHit) Layer -1
