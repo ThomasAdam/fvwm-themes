@@ -1,10 +1,23 @@
 This theme is close to my main fvwm configuration used for months.
 
-It does not include modules; the modules, which I use are in wm-icons theme,
-but I am thinking about moving these modules to this theme, since now
-fvwm-themes is wm-icons compatible anyway.
+I find a pager at the left-top and FvwmButtons-Compact at the right-top
+to be very useful, it is my favorite module feel. Since my wife, on her
+machine, likes the pager to be together with other buttons at the
+right-top, and also likes to combine xload and clock (xloadtime),
+I have added different options to the pager and the button bar.
 
-He! Mikhael, the modules are know included (olicha).
+I find the included globalfeel one of the best feels for FVWM (my personal
+opinion). For example, I don't like a window to be auto raised, especially
+when I click into it just to copy from or paste to it. For explicit raise
+I use Alt-Mouse2 inside a window or clicking on window borders or title.
+
+I usually use a full GNOME panel at the bottom of the screen, but one
+can choose FvwmTaskBar, FvwmIconMan or nothing at all at the bottom.
+
+The button bar is wm-icons compatible, it uses icon set 'bar', so,
+in case you have wm-icons package installed, you can point it using a menu
+to any other existing icon set, not only to the default 16x16-general.
+The change in 'bar' icon set is done dynamically, no need to restart fvwm.
 
 Regards,
 Mikhael Goikhman.

@@ -38,10 +38,31 @@ with:
 and rerun X. See the fvwm-themes-start manual page for more details.
 You should get the default theme, which you can change using the root menu.
 
+How to use
+----------
+
+Once you start fvwm with the themes configuration, you get a very modular
+fvwm setup, including menus, bindings, colors, background, modules and more.
+
+There is a "Theme Management" menu. To change theme components, choose
+a theme and click on "[ all ]" to load all components in the chosen theme
+or on a specific component to load only it. Different components may have
+different options, they can be changed in the "current" theme submenu.
+For example, there are 42 color schemes in the cde theme, and 32 in the
+luthien theme. You first choose cde->colors, then current->colors->scheme.
+You can also fully manipulate theme components using the Themes Center GUI.
+
+You will find more interesting things (about a possibility to ask a window
+button itself what it does, about changing icon sets, or redefining bound
+applications, or defining sessions and more) while exploring wm-icons.
+Don't expect to learn wm-icons in one day. Just trying all the possible
+combinations of different theme components and their options may take years.
+There are more explanations in the FAQ.
+
 Documentation
 -------------
 
-There is some documentation in doc/ directory.
+There is plenty of documentation in the doc/ directory.
 Please read it before asking your questions. Thank you.
 
 Notes
@@ -51,12 +72,12 @@ Notes
   Since fvwm is changing right now, we only test fvwm-themes against the
   latest fvwm version as of fvwm-themes release date (2.3.22 for now).
   This will be changed after the stable fvwm-2.4 is out.
-* For sound effects to work you need one of the sounds player under
+* For sound effects to work you need one of the sounds player listed under
   Theme Management->current->settings->Sound Player to be installed (but
-  using one which can play .wav sound is a good idea). You can use esdplay 
-  with esd runing or not. rplayd must be run for rplay. You should update your 
-  rplay.conf file with the sounds in sounds/ and themes/awol/sounds for 
-  rplayD.
+  having one which can play .wav sound is a good idea). You can use esdplay
+  with esd running or not. rplayd must be run for rplay. You should update
+  your rplay.conf file with the sounds in sounds/ and themes/awol/sounds
+  for rplayD.
 * fvwm-themes is wm-icons compatible. If you want to use more icon sets
   than included 16x16-general and 48x48-general, you should install wm-icons
   package and choose wm-icons variant of current/settings/Icon Styles.
