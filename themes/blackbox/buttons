@@ -18,14 +18,10 @@ ButtonStyle 1 - Clear MWMDecorMin
 ButtonStyle 2 - Clear MWMDecorMax
 ButtonStyle 4 - Clear
 
-
-
 TitleStyle	Height 18
 
 #     button	context	modifie	function
 Mouse 1 	1	A	FuncFvwmIconify
-#Mouse 2	1	A       Menu MenuFvwmWindowMove
-#Mouse 3	1	A	FuncFvwmIconifySameResource toggle
 MouseXX 2 3	1	A       Menu MenuFvwmWindowMove
 MouseXX 3 2	1	A	FuncFvwmIconifySameResource toggle
 Mouse 0 	2	A	FuncFvwmMaximize

@@ -22,8 +22,6 @@ TitleStyle	Height 22
 
 #     button    context modifie function
 Mouse 1 	1	A	FuncFvwmWindowOpsOrAction Delete
-#Mouse 2 	1	A	Menu MenuFvwmWindowMove
-#Mouse 3 	1	A	Menu MenuFvwmWindowGroupOps
 MouseXX 2 3	1	A       Menu MenuFvwmWindowMove
 MouseXX 3 2	1	A	Menu MenuFvwmWindowGroupOps
 Mouse 0 	2	A	FuncFvwmDeleteOrDestroy

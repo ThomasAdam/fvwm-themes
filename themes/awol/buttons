@@ -22,13 +22,13 @@ Mouse 3 	2	N	WindowShade
 Mouse 1 	4	N	Maximize
 Mouse 2 	4	N	Maximize 100 0
 Mouse 3 	4	N	Maximize 0 100
-# window shade does not work here ... I do not see why it should work!
-Mouse 0 	6	N	Iconify WindowShade
+Mouse 1 	6	N	Iconify
+Mouse 2 	6	N	WindowShade
 Mouse 3 	6	N	Recapture
 Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu, or FvwmIdent on double click^nMouse 3 - WindowShade"
 Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Close on click^nMouse 3 - WindowShade"
 Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Maximize:^n^tMouse 1 - fully^n^tMouse 2 - horizontally^n^tMouse 3 - vertically"
-Mouse 0 	6	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify, or WindowShade on double click^n^nMouse 3 - Recapture"
+Mouse 0 	6	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - WindowShade^nMouse 3 - Recapture"
 
 DestroyFunc FuncFvwmRemoveButtonsBindings
 AddToFunc   FuncFvwmRemoveButtonsBindings
@@ -39,7 +39,8 @@ AddToFunc   FuncFvwmRemoveButtonsBindings
 + I Mouse 1 	4	N	-
 + I Mouse 2 	4	N	-
 + I Mouse 3 	4	N	-
-+ I Mouse 0 	6	N	-
++ I Mouse 1 	6	N	-
++ I Mouse 2 	6	N	-
 + I Mouse 3 	6	N	-
 + I Mouse 0 	1	CM	-
 + I Mouse 0 	2	CM	-

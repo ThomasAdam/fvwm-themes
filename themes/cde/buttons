@@ -1,15 +1,12 @@
 Style "*" Button 1, Button 2, Button 4
 Style "*" MWMButtons  # button relief follows the state
 
-#ButtonStyle 1 Simple -- UseTitleStyle
 AddButtonStyle 1 3 23x58@0 77x58@0 77x42@0 
 AddButtonStyle 1 3 23x58@1 23x42@1 77x42@1 
 
-#ButtonStyle 2 Simple -- UseTitleStyle
 AddButtonStyle 2 3 21x79@0 79x79@0 79x21@0 
 AddButtonStyle 2 3 21x79@1 21x21@1 79x21@1 
 
-#ButtonStyle 4 Simple -- UseTitleStyle
 AddButtonStyle 4 3 42x58@0 58x58@0 58x42@0 
 AddButtonStyle 4 3 42x58@1 42x42@1 58x42@1 
 
@@ -30,7 +27,7 @@ Mouse 1 	4	A	FuncFvwmIconify
 Mouse 2 	4	A	Close
 Mouse 3 	4	A	Destroy
 Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu, or Delete on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
-Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize^nMouse 2 - Maximize Vertically^nMouse 3 - Maximize Horizontally"
+Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally"
 Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Close^nMouse 3 - Destroy"
 
 DestroyFunc FuncFvwmRemoveButtonsBindings
@@ -47,4 +44,3 @@ AddToFunc   FuncFvwmRemoveButtonsBindings
 + I Mouse 0 	1	CM	-
 + I Mouse 0 	2	CM	-
 + I Mouse 0 	4	CM	-
-
