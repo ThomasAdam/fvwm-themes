@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # This script runs fvwm with fvwm-themes config.  It should be run under X.
-# Put a call to this script as the last line of your .xinitrc or .Xclients.
+# Put a call to this script as the last line of your .Xclients or .xinitrc.
 
 : ${FVWM_USERDIR=@FVWM_DEFAULT_USERDIR@}
 rcName=themes-rc
@@ -17,26 +17,26 @@ build="no"
 # Arguments
 fvwmArgs=""
 whoseArgs="my"
-session="default"
+session="main"
 
 while [ "x$1" != "x" ]; do
-    case "$1" in
+	case "$1" in
 	--)	whoseArgs="fvwm" ;;
 	*)	if [ "$whoseArgs" = "fvwm" ]; then
-		    fvwmArgs="$fvwmArgs $1"
+			fvwmArgs="$fvwmArgs '$1'"
 		else
-		    case "$1" in
+			case "$1" in
 			--session|-session|-s)
-			    shift
-			    session="$1"
- 			    if [ "$session" = "--" ]; then
-				session="default"
-				whoseArgs="fvwm"
-			    fi ;;
-		    esac
+				shift
+ 				if [ "$1" = "--" ]; then
+					whoseArgs="fvwm"
+				else
+					session="$1"
+				fi ;;
+			esac
 		fi ;;
-    esac
-    shift
+	esac
+	shift
 done
 
 realRcFile2="$rcFile2-$session"
@@ -46,10 +46,10 @@ realCurrentThemeDir="$themesDir/$realCurrentThemeName"
 
 # backward compatibility (may be removed before 0.3.16)
 if [ -f $rcFile2 -a ! -L $rcFile2 ]; then
-    mv -f $rcFile2 $realRcFile2
+	mv -f $rcFile2 $realRcFile2
 fi
 if [ -d $currentThemeDir -a ! -L $currentThemeDir ]; then
-    mv -f  $currentThemeDir $realCurrentThemeDir
+	mv -f  $currentThemeDir $realCurrentThemeDir
 fi
 
 # create the symbolic links
@@ -58,16 +58,16 @@ fi
 [ -d $FVWM_USERDIR ] || mkdir -p $FVWM_USERDIR
 cd $FVWM_USERDIR
 if [ ! -f $realRcName2 ]; then
-    touch $realRcName2
-    build="yes"
+	touch $realRcName2
+	build="yes"
 fi
 ln -sf $realRcName2 $rcName2
 
 [ -d $themesDir ] || mkdir -p $themesDir
 cd $themesDir
 if [ ! -d $realCurrentThemeName ]; then
-    mkdir -p $realCurrentThemeName
-    build="yes"
+	mkdir -p $realCurrentThemeName
+	build="yes"
 fi
 ln -sf $realCurrentThemeName $currentThemeName
 
@@ -75,10 +75,10 @@ ln -sf $realCurrentThemeName $currentThemeName
 if [ ! -f $rcFile -o "$build" = "yes" -o "`head -1 $rcFile | cut -d' ' -f3`" != "@VERSION@" ]; then
 	@bindir@/fvwm-themes-config --reset
 	if [ ! -f $rcFile -o "`head -1 $rcFile | cut -d' ' -f3`" != "@VERSION@" ]; then
-	    echo '[fvwm-themes]: Welcome to FVWM Themes @VERSION@!'
-	    xmessage -center -timeout 30 'Welcome to FVWM Themes @VERSION@!' &
+		echo '[fvwm-themes]: Welcome to FVWM Themes @VERSION@!'
+		xmessage -center -timeout 30 'Welcome to FVWM Themes @VERSION@!' &
 	else
-	    echo "[fvwm-themes]: initial $session FVWM Themes session"
+		echo "[fvwm-themes]: initial $session FVWM Themes session"
 	fi
 fi
 

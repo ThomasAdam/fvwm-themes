@@ -1,7 +1,7 @@
 Requirements
 ------------
 
-You need at least fvwm-2.3.18, but the latest version is preferable.
+You need at least fvwm-2.3.20, but the latest version is preferable.
 You need perl 5.002 or better.
 
 Contact info
@@ -10,7 +10,7 @@ Contact info
 Project home page:
 	http://fvwm-themes.sourceforge.net/
 Project developement page:
-	https://sourceforge.net/project/?group_id=1738
+	http://sourceforge.net/projects/fvwm-themes/
 Developer mailing list, feel free to get subscribed:
 	http://lists.sourceforge.net/mailman/listinfo/fvwm-themes-devel
 Private questions (please try fvwm-themes-devel list):

@@ -114,13 +114,9 @@ Key F12 	A	SC	Pick FuncFvwmUnmaximizeFullScreen
 
 # pointer in Root
 Mouse 1 	R	A	Menu MenuFvwmRoot
-#Mouse 2 	R	A	WindowList
-#Mouse 3 	R	A	Menu MenuFvwmWindowOps
 MouseXX 2 3	R	A	WindowList
 MouseXX 3 2	R	A	Menu MenuFvwmWindowOps
 
-#Mouse 2 	R	C	Module FvwmPager -transient FvwmPager-Single * *
-#Mouse 2 	R	SC	Module FvwmPager -transient FvwmPager-Desker 0 3
 MouseXX 2 3	R	C	Module FvwmPager -transient FvwmPager-Single * *
 MouseXX 2 3	R	SC	Module FvwmPager -transient FvwmPager-Desker 0 3
 
@@ -136,32 +132,23 @@ MouseXX 2 3	R	SC	Module FvwmPager -transient FvwmPager-Desker 0 3
 Mouse 1 	T	A	FuncFvwmMoveOrRaiseOrShade
 Mouse 1 	SF	A	FuncFvwmResizeOrRaiseOrShade
 Mouse 1 	TSF	C	FuncFvwmMoveOrRaiseLower
-#Mouse 2 	TSF	A	FuncFvwmMoveOrRaiseLower
-#Mouse 3 	TSF	A	Menu MenuFvwmWindowOps2
-#Mouse 3 	TSF	M	Menu MenuFvwmWindowOps
 MouseXX 2 3	TSF	A	FuncFvwmMoveOrRaiseLower
 MouseXX 3 2	TSF	A	Menu MenuFvwmWindowOps2
 MouseXX 3 2	TSF	M	Menu MenuFvwmWindowOps
 
-# pointer in Window
-Mouse 1 	W	M	Menu MenuFvwmRoot
-Mouse 1 	W	CM	FuncFvwmMoveOrRaiseLower
-#Mouse 2 	W	M	FuncFvwmMoveOrRaiseLower
-#Mouse 3 	W	M	Menu MenuFvwmWindowOps
-MouseXX 2 3	W	M	FuncFvwmMoveOrRaiseLower
-MouseXX 3 2	W	M	Menu MenuFvwmWindowOps
-
 # pointer in Icon
 Mouse 1 	I	A	FuncFvwmMoveOrIconify
-#Mouse 2 	I	A	FuncFvwmIconify
-#Mouse 3 	I	A	Menu MenuFvwmWindowOps2
 MouseXX 2 3	I	A	FuncFvwmIconify
 MouseXX 3 2	I	A	Menu MenuFvwmWindowOps2
 Mouse 1 	I	S	FuncFvwmIconify
-#Mouse 2 	I	S	FuncFvwmIconifySameResource off
-#Mouse 3 	I	S	FuncFvwmIconifySameResource toggle
 MouseXX 2 3	I	S	FuncFvwmIconifySameResource off
 MouseXX 3 2	I	S	FuncFvwmIconifySameResource toggle
+
+# pointer in Window (and in Icon for consistency)
+Mouse 1 	WI	M	Menu MenuFvwmRoot
+Mouse 1 	WI	CM	FuncFvwmMoveOrRaiseLower
+MouseXX 2 3	WI	M	FuncFvwmMoveOrRaiseLower
+MouseXX 3 2	WI	M	Menu MenuFvwmWindowOps
 
 
 # ---------------------------------------------------------------------------
@@ -216,16 +203,16 @@ AddToFunc   FuncFvwmRemoveBindings
 + I MouseXX 2 3	TSF	A	-
 + I MouseXX 3 2	TSF	A	-
 + I MouseXX 3 2	TSF	M	-
-+ I Mouse 1 	W	M	-
-+ I Mouse 1 	W	CM	-
-+ I MouseXX 2 3	W	M	-
-+ I MouseXX 3 2	W	M	-
 + I Mouse 1 	I	A	-
 + I MouseXX 2 3	I	A	-
 + I MouseXX 3 2	I	A	-
 + I Mouse 1 	I	S	-
 + I MouseXX 2 3	I	S	-
 + I MouseXX 3 2	I	S	-
++ I Mouse 1 	WI	M	-
++ I Mouse 1 	WI	CM	-
++ I MouseXX 2 3	WI	M	-
++ I MouseXX 3 2	WI	M	-
 
 #-----------------------------------------------------------------------------
 # stroke support

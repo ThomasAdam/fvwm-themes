@@ -3,17 +3,16 @@
 fvwm-themes-start \- FVWM Themes starter
 .SH "SYNOPSIS"
 \fBfvwm-themes-start\fR
-[ \fB--session\fR|\fB\-s\fR  name ]
+[ \fB--session\fR|\fB\-s\fR name ] [ \fB--\fR fvwm-args ]
 .SH "DESCRIPTION"
 This script runs fvwm with FVWM Themes.  It should be run under X.
-Put a call to this script as the last line of your .xinitrc, .xsession 
-or .Xclients file.
+Put a call to this script as the last line of your .Xclients, .xinitrc
+or .xsession file.
 .SH "OPTIONS"
 \fB--session\fR name \- name of the FVWM Themes session. By default it
-is "default". This allows to have and run different FVWM Themes configuration.
+is "main". This allows to have and run different FVWM Themes configuration.
 .SH "COPYING"
 The script is distributed by the same terms as fvwm-themes itself.
 See GNU General Public License for details.
 .SH "BUGS"
 Report bugs to fvwm-themes-devel@lists.sourceforge.net.
-
