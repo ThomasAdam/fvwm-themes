@@ -1,15 +1,16 @@
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground
-+ I Colorset 12 fg rgb:ff/ff/da, bg average, Pixmap background/lightsky.png, NoShape
-+ I Colorset 15 fg rgb:ff/ff/da, bg average, Pixmap background/lightsky.png, NoShape
-+ I DestroyModuleConfig FvwmBacker: *
-+ I *FvwmBacker: Command (Desk *, Page * *) Colorset 12
-+ I FuncFvwmRestartModule FvwmBacker
++ I Exec exec fvwm-themes-root -f $./images/background/x-xp-sky.jpg
+#+ I Colorset 12 fg rgb:ff/ff/da, bg average, Pixmap background/lightsky.png, NoShape
+#+ I Colorset 15 fg rgb:ff/ff/da, bg average, Pixmap background/lightsky.png, NoShape
+#+ I DestroyModuleConfig FvwmBacker: *
+#+ I *FvwmBacker: Command (Desk *, Page * *) Colorset 12
+#+ I FuncFvwmRestartModule FvwmBacker
 
 DestroyFunc FuncFvwmStopThemeBackground
 AddToFunc   FuncFvwmStopThemeBackground
-+ I FuncFvwmStopModule FvwmBacker
-+ I DestroyModuleConfig FvwmBacker: *
-# This is very bad, but we should restore modified colorsets
-+ I PipeRead `fvwm-themes-config --component colors --show-value read-file | grep -v /main | xargs -r echo Read`
-+ I PipeRead `fvwm-themes-config --component colors-decor --show-value read-file 2>/dev/null | xargs -r echo Read`
+#+ I FuncFvwmStopModule FvwmBacker
+#+ I DestroyModuleConfig FvwmBacker: *
+## This is very bad, but we should restore modified colorsets
+#+ I PipeRead `fvwm-themes-config --component colors --show-value read-file | grep -v /main | xargs -r echo Read`
+#+ I PipeRead `fvwm-themes-config --component colors-decor --show-value read-file 2>/dev/null | xargs -r echo Read`

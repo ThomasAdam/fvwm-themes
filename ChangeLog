@@ -7,6 +7,13 @@
 	* bin/fvwm-themes-root.in:
 	a bit improved
 
+	* themes/redmondxp/background:
+	* themes/redmondxp/images/background/lightsky.png:
+	* themes/redmondxp/images/background/x-xp-sky.jpg:
+	replaced lightsky.png with a new background from xpde,
+	it was not the best idea to use FvwmBacker with colorset
+	(and it seems to be buggy now, loaded on every page switch?)
+
 2002-09-07  migo  <migo@homemail.com>
 
 	* configure.in:
