@@ -3,6 +3,9 @@
 	* TODO:
 	updated, added many items
 
+	* themes/multichoice/theme.cfg:
+	fixed the background default variant
+
 2000-11-13  olicha  <olivier.chapuis@free.fr>
 
 	* themes/awol/{background,images/bacground/bckgnd1.xpm}:
