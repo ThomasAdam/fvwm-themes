@@ -54,6 +54,7 @@ AddToFunc   FuncFvwmReloadColorsModules
 
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
++ I Deschedule 34543  # just to be sure
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Panel
 + I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Single
 + I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
