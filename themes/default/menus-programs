@@ -314,13 +314,14 @@ AddToMenu   MenuFvwmGames "Games" Title
 + "Board%menu/game-board.xpm%"		Popup MenuFvwmGamesBoard
 + "Cards%menu/game-cards.xpm%"		Popup MenuFvwmGamesCards
 + "Puzzle%menu/game-logic.xpm%"		Popup MenuFvwmGamesPuzzle
-##+ "Strategy%menu/game.xpm%"		Popup MenuFvwmGamesStrategy
++ "Strategy%menu/game.xpm%"		Popup MenuFvwmGamesStrategy
 + "Tetris%menu/game.xpm%"		Popup MenuFvwmGamesTetris
 + "Ace of Penguins%menu/game-cards.xpm%" Popup MenuFvwmGamesPenguins
 + "Other%menu/game.xpm%"		Popup MenuFvwmGamesOther
 
 DestroyMenu MenuFvwmGamesAction
 AddToMenu   MenuFvwmGamesAction "Action" Title
++ "GRustibus (XMame)%menu/game-action.xpm%"	Exec exec grustibus
 + "Heroes%menu/game-action.xpm%"		Exec exec heroes
 + "PowerManga%menu/game-action.xpm%"		Exec exec powermanga
 + "XKoules%menu/game-action.xpm%" 		Exec exec xkoules
@@ -346,7 +347,7 @@ DestroyMenu MenuFvwmGamesBoard
 AddToMenu   MenuFvwmGamesBoard "Board" Title
 + "Xboard%menu/game-board.xpm%" 	Exec exec xboard -size small
 + "Xboard (net)%menu/game-board.xpm%"	Exec FuncFvwmRunInXterm "Chess (net)" "xboard -size small -ics -icshost fics.onenet.net"
-+ "XBagammon%menu/game-board.xpm%" 	Exec exec xgammon
++ "XGammon%menu/game-board.xpm%" 	Exec exec xgammon
 + "Pente%menu/game-board.xpm%"		Exec pente
 + "XGoban%menu/game-board.xpm%"		Exec xgoban
 
@@ -395,8 +396,15 @@ AddToMenu   MenuFvwmGamesPuzzle "Puzzle" Title
 + "XSkewb%menu/game-logic.xpm%"		Exec exec xskewb
 + "XTriangles%menu/game-logic.xpm%"	Exec exec xtriangles
 
-##DestroyMenu MenuFvwmGamesStrategy
-##AddToMenu   MenuFvwmGamesStrategy "Strategy" Title
+# we need game-strategy.xpm
+DestroyMenu MenuFvwmGamesStrategy
+AddToMenu   MenuFvwmGamesStrategy "Strategy" Title
++ "LinCity%menu/game.xpm%"		Exec exec xlincity
++ "Crimson%menu/game.xpm%"		Exec exec crimson
++ "LiquidWar%menu/game.xpm%"		Exec exec liquidwar
++ "FreeCraft%menu/game.xpm%"		Exec exec freecraft
++ "FreeCiv Server%menu/game.xpm%"	Exec exec civserver-wrapper
++ "FreeCiv Client%menu/game.xpm%"	Exec exec civclient-wrapper
 
 DestroyMenu MenuFvwmGamesTetris
 AddToMenu   MenuFvwmGamesTetris "Tetris" Title
@@ -427,14 +435,13 @@ AddToMenu   MenuFvwmGamesOther "Other" Title
 + "Maelstrom%menu/game-action.xpm%"	Exec exec Maelstrom -gamma 5
 + "Quake%menu/game-action.xpm%" 	Exec cd /usr/local/games/quake/ ; exec ./stquake
 + "Quake2%menu/game-action.xpm%" 	Exec cd /usr/local/games/quake2/ ; exec ./quake2 +set vid_ref softx
-+ "Hopkins FBI%menu/game.xpm%" 		FuncFvwmKillEventAndRun "Hopkins_FBI"
-##+ "FreeCiv%menu/game.xpm%"		FvwmForm FvwmForm-FreeCiv
-+ "LinCity%menu/game.xpm%"		Exec exec xlincity
++ "Hopkins FBI%menu/game.xpm%" 		FuncFvwmKillEventAndRun Hopkins_FBI
 
+# What exactly is the problem with FvwmEvent? There are several aliases.
 DestroyFunc FuncFvwmKillEventAndRun
 AddToFunc   FuncFvwmKillEventAndRun
 + "I" KillModule FvwmEvent
-+ "I" Exec exec $0
++ "I" Exec exec $*
 
 ## http://www.met.rdg.ac.uk/~swrhgnrj/xpenguins/
 
