@@ -6,7 +6,7 @@
 # ----------------------------------------------------------------------------
 # Icon related configuration
 
-Style "*" IconBox screen w 10 6 -400 -100, IconGrid 64 14, IconFill left top
+Style "*" IconBox screen w 10 56 -400 -100, IconGrid 74 14, IconFill left top
 Style "*" SlipperyIcon, IconTitle
 
 # ----------------------------------------------------------------------------

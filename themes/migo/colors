@@ -72,7 +72,7 @@ Colorset 12 fg rgb:f8/f8/f3, bg rgb:47/47/68, \
 	CGradient 50 rgb:50/50/78 rgb:40/40/5a, NoShape
 
 # swallowed window
-Colorset 13 fg black, bg rgb:0b/2e/46, Plain, NoShape
+Colorset 13 fg rgb:f0/f0/f4, bg rgb:0b/2e/46, Plain, NoShape
 
 # default2 (FvwmPager or to get more colors in Buttons)
 Colorset 14 fg rgb:f0/f0/f4, bg average, \
@@ -98,11 +98,11 @@ Colorset 18 fg rgb:ff/ff/60, bg average, \
 
 # iconified item
 Colorset 19 fg rgb:f0/f0/f4, bg average, \
-	Pixmap modcolor/plast-blue.png, Tint cyan 20, NoShape
+	Pixmap modcolor/plast-blue.png, Tint cyan 20, bgTint cyan 20, NoShape
 
 # pointed item
 Colorset 20 fg rgb:f0/f0/f4, bg average, \
-	Pixmap modcolor/plast-blue.png, Tint violet 20, NoShape
+	Pixmap modcolor/plast-blue.png, Tint violet 20, bgTint violet 20, NoShape
 
 # ----------------------
 # Other Module Colorsets
