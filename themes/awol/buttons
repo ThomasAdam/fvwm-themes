@@ -15,7 +15,7 @@ TitleStyle Height 25
 
 #     button	context	modifie	function
 # FvwmIdent does not work ... fvwm2 must be fixed
-Mouse 0 	1	N	FuncFvwmWindowsOpsOrAction FvwmIdent
+Mouse 0 	1	N	FuncFvwmWindowOpsOrAction FvwmIdent
 Mouse 3 	1	N	WindowShade
 Mouse 0 	2	N	Close
 Mouse 3 	2	N	WindowShade 

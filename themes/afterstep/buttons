@@ -13,7 +13,7 @@ TitleStyle	Height 19
 Mouse 0 	1	A	Next (!Iconic) FuncFvwmFocusAndWrap
 Mouse 1 	2	A	FuncFvwmDeleteOrDestroy
 Mouse 3 	2	A	WindowShade
-Mouse 1 	3	A	FuncFvwmWindowsOpsOrAction Delete
+Mouse 1 	3	A	FuncFvwmWindowOpsOrAction Delete
 #Mouse 2 	3	A	Menu MenuFvwmWindowMove
 #Mouse 3 	3	A	Menu MenuFvwmWindowGroupOps
 MouseXX 2 3	3	A       Menu MenuFvwmWindowMove

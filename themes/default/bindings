@@ -42,9 +42,9 @@ AddToFunc   FuncFvwmUnmaximizeFullScreen
 + I WindowId "$w" Maximize false
 + I Style $n Title, Handles, BorderWidth 5
 
-DestroyFunc FuncFvwmWindowsOpsOrAction
-AddToFunc   FuncFvwmWindowsOpsOrAction
-+ C Menu MenuFvwmWindowOps2 $*
+DestroyFunc FuncFvwmWindowOpsOrAction
+AddToFunc   FuncFvwmWindowOpsOrAction
++ I Menu MenuFvwmWindowOps2 $*
 #+ C Menu MenuFvwmWindowOps2
 #+ D $*
 

@@ -8,7 +8,7 @@ AddButtonStyle 4	Pixmap button/mac-window-maximize.xpm
 
 TitleStyle	Height 17
 
-Mouse 1 	1	A	FuncFvwmWindowsOpsOrAction  Close
+Mouse 1 	1	A	FuncFvwmWindowOpsOrAction Close
 #Mouse 2	1	A       Menu MenuFvwmWindowMove
 #Mouse 3	1	A	Menu MenuFvwmWindowGroupOps
 MouseXX 2 3	1	A       Menu MenuFvwmWindowMove
