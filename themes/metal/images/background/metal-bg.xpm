@@ -1,0 +1,22 @@
+/* XPM */
+static char *metal-bg[] = {
+/* width height num_colors chars_per_pixel */
+"    12    12        3            1",
+/* colors */
+". c #666666 s sh",
+"  c #999999 s bg",
+"@ c #cccccc s fg",
+/* pixels */
+"@@     .    ",
+"  @         ",
+".  @        ",
+" .  @       ",
+"  .  @      ",
+"   .        ",
+"    .     @@",
+"     ..  @  ",
+"        @  .",
+"       @  . ",
+"      @  .  ",
+"        .   ",
+};
