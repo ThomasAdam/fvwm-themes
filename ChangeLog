@@ -1,5 +1,14 @@
 2000-09-07  migo  <migo@homemail.com>
 
+	* configure.in:
+	increased version to 0.3.19
+
+	* bin/fvwm-themes-config.in:
+	* themes/*/modules/main:
+	removed commented FuncFvwmSessionStartThemeModules
+
+2000-09-07  migo  <migo@homemail.com>
+
 	* themes/spruce/theme.cfg:
 	added needed file
 

@@ -1,22 +1,13 @@
 # 1. Icon related configuration
-# 2. Initialization functions
-# 3. Switch functions
-# 4. Theme module menus
-# 5. Modules configuration
+# 2. Switch functions
+# 3. Theme module menus
+# 4. Modules configuration
 
 # ----------------------------------------------------------------------------
 # Icon related configuration
 
 Style "*"	IconBox 10 6 -400 -100, IconGrid 64 64, IconFill left top
 Style "*"	SlipperyIcon, IconTitle
-
-# ----------------------------------------------------------------------------
-# Initialization functions
-
-# migo: temporary
-#
-#AddToFunc StartFunction
-#+ I FuncFvwmStartThemeModules
 
 # ----------------------------------------------------------------------------
 # Switch functions
@@ -72,7 +63,7 @@ AddToFunc   FuncFvwmButtonsSwitch
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-DaLo
 + I FvwmButtons $0
 
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Modules configuration
 
 Read themes/awol/modules/main:FvwmButtons-Default

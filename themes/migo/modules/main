@@ -1,6 +1,10 @@
-###
-#  Icon related configuration
-###
+# 1. Icon related configuration
+# 2. Switch functions
+# 3. Theme module menus
+# 4. Modules configuration
+
+# ----------------------------------------------------------------------------
+# Icon related configuration
 
 Style * IconBox 130 5 -130 700, IconGrid 64 64, IconFill left top
 Style * SlipperyIcon, IconTitle
@@ -11,42 +15,14 @@ ImagePath $HOME/.wm-icons:/usr/local/share/icons/wm-icons:+
 # Create alias 'bar' if it does not exist yet (actually needed only once).
 Exec test \! -d $HOME/.wm-icons || wm-icons-config -q -p -w bar || wm-icons-config -q -p -f bar 14x14-general
 
-###
-#  Initialization & Switch functions
-###
-
-### Initialization functions
-
-# migo: temporary
-#
-#AddToFunc InitFunction
-#+ I FuncFvwmStartThemeModules
-#
-#AddToFunc RestartFunction
-#+ I FuncFvwmStartThemeModules
-#
-## When used with a session manager fvwm uses SessionInitFunction and 
-## SessionRestartFunction
-#
-#AddToFunc SessionInitFunction
-#+ I FuncFvwmSessionStartThemeModules
-#
-#AddToFunc SessionRestartFunction
-#+ I FuncFvwmSessionStartThemeModules
-
-### Switch functions
+# ----------------------------------------------------------------------------
+# Switch functions
 
 DestroyFunc FuncFvwmStartThemeModules
 AddToFunc   FuncFvwmStartThemeModules
 + I FuncFvwmStartChosenPager
 + I FuncFvwmStartChosenButtons
 + I FuncFvwmStartNormalIcons
-
-# I don't think we need this, because we have options.
-#DestroyFunc FuncFvwmSessionStartThemeModules
-#AddToFunc   FuncFvwmSessionStartThemeModules
-#+ I FuncFvwmStartChosenPager
-#+ I FuncFvwmStartChosenButtons
 
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
@@ -65,9 +41,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmStopModule FvwmTaskBar
 + I FuncFvwmStopModule FvwmWinList
 
-###
-#  Theme module menus
-###
+# ----------------------------------------------------------------------------
+# Theme module menus
 
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "Migo Modules" Title
@@ -142,9 +117,8 @@ AddToMenu   MenuFvwmBarIconSet "Change Icon Set" Title
 
 Mouse 3 R SCM Menu MenuFvwmBarIconSet Nop
 
-###
-#  Modules configuration
-###
+# ----------------------------------------------------------------------------
+# Modules configuration
 
 Read themes/migo/modules/main:FvwmButtons-Compact
 Read themes/migo/modules/main:FvwmPager-Single

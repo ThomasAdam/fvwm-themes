@@ -1377,7 +1377,6 @@ AddToFunc   FuncFvwmThemesConfigAndUpdate
 #+ I FuncFvwmRestartFvwmTheme
 #+ I DestroyModuleConfig FvwmTheme*
 + I Read @$rcFile2@
-#+ I FuncFvwmFvwmOrSessionOrGnome 'FuncFvwmStartThemeModules' 'FuncFvwmSessionStartThemeModules' 'FuncFvwmSessionStartThemeModules'
 + I FuncFvwmStartAllHooks
 + I All (FvwmScript-NoteMessage) Delete
 

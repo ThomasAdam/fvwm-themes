@@ -1,37 +1,16 @@
-# 1. Icon related style 
-# 2. Initialization functions
-# 3. Switch functions
-# 4. Theme module menus
-# 5. Modules configuration
+# 1. Icon related configuration
+# 2. Switch functions
+# 3. Theme module menus
+# 4. Modules configuration
 
 # ----------------------------------------------------------------------------
 # Icon related configuration
 
-# No icons ...
+# No icons at all...
 
 DestroyFunc FuncFvwmStartNormalIcons
 AddToFunc   FuncFvwmStartNormalIcons
 + I Style * NoIcon
-
-# ----------------------------------------------------------------------------
-# Initialization functions
-
-# migo: temporary
-#
-#AddToFunc InitFunction
-#+ I FuncFvwmStartThemeModules
-#
-#AddToFunc RestartFunction
-#+ I FuncFvwmStartThemeModules
-#
-## When used with a session manager fvwm uses SessionInitFunction and 
-## SessionRestartFunction
-#
-#AddToFunc SessionInitFunction
-#+ I FuncFvwmSessionStartThemeModules
-#
-#AddToFunc SessionRestartFunction
-#+ I FuncFvwmSessionStartThemeModules
 
 # ----------------------------------------------------------------------------
 # Switch functions

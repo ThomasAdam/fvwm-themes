@@ -1,36 +1,15 @@
 # 1. Icon related configuration
-# 2. Initialization functions
-# 3. Switch functions
-# 4. Theme module menus
-# 5. Modules configuration
+# 2. Switch functions
+# 3. Theme module menus
+# 4. Modules configuration
 
-#-----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Icon related configuration
 
 Style "*"	IconBox 10 5 -130 700, IconGrid 64 64, IconFill left top
 Style "*" 	SlipperyIcon, IconTitle
 
-#-----------------------------------------------------------------------------
-# Initialization functions
-
-# migo: temporary
-#
-#AddToFunc InitFunction
-#+ I FuncFvwmStartThemeModules
-#
-#AddToFunc RestartFunction
-#+ I FuncFvwmStartThemeModules
-#
-## When used with a session manager fvwm uses SessionInitFunction and 
-## SessionRestartFunction
-#
-#AddToFunc SessionInitFunction
-#+ I FuncFvwmSessionStartThemeModules
-#
-#AddToFunc SessionRestartFunction
-#+ I FuncFvwmSessionStartThemeModules
-
-#-----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Switch functions
 
 DestroyFunc FuncFvwmStartThemeModules
@@ -69,7 +48,7 @@ AddToMenu   MenuFvwmStopThemeModules "BlackBox Modules" Title
 + "Stop &Desker"    FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
 + "Stop Icon&Man"   FuncFvwmStopModule FvwmIconMan
 
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Modules configuration
 
 Read themes/blackbox/modules/main:FvwmPager-Single

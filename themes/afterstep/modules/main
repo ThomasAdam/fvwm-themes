@@ -1,34 +1,13 @@
 # 1. Icon related configuration
-# 2. Initialization functions
-# 3. Switch functions
-# 4. Theme module menus
-# 5. Modules configuration
+# 2. Switch functions
+# 3. Theme module menus
+# 4. Modules configuration
 
 # ----------------------------------------------------------------------------
 # Icon related configuration
 
 Style "*"       IconBox 10 -10 -250 300, IconGrid 64 64, IconFill left top
 Style "*"       SlipperyIcon, IconTitle
-
-# ----------------------------------------------------------------------------
-# Initialization functions
-
-# migo: temporary
-#
-#AddToFunc InitFunction
-#+ I FuncFvwmStartThemeModules
-#
-#AddToFunc RestartFunction
-#+ I FuncFvwmStartThemeModules
-#
-## When used with a session manager fvwm uses SessionInitFunction and 
-## SessionRestartFunction
-#
-#AddToFunc SessionInitFunction
-#+ I FuncFvwmSessionStartThemeModules
-#
-#AddToFunc SessionRestartFunction
-#+ I FuncFvwmSessionStartThemeModules
 
 # ----------------------------------------------------------------------------
 # Switch functions
@@ -76,7 +55,7 @@ AddToMenu   MenuFvwmStopThemeModules "Default Modules" Title
 + "Stop &Desker"  FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
 + "Stop Icon&Man" FuncFvwmStopModule FvwmIconMan
 
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Modules configuration
 
 Read themes/afterstep/modules/main:styles
