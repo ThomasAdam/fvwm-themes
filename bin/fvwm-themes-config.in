@@ -1186,8 +1186,8 @@ sub getSortedComponentsToRead ($) {
 	return \@sortedComponents;
 }
 
-# returns component key value, which can be overridden by choice/optionValue
-# key values. If it is array, all found values are joined together.
+# returns component key value, which can be overridden by the current choice
+# or options key values. If it is array, all found values are joined together.
 sub getComponentNamedValue ($$$) {
 	my $self = shift;
 	my $component = shift;
@@ -1197,6 +1197,7 @@ sub getComponentNamedValue ($$$) {
 	return undef unless $cc->{'used'};
 	my $value = $cc->{$name};
 
+	my $choices = $cc->{'choice'};
 	if (ref($choices) eq 'ARRAY') {
 		my $index = defined $cc->{'current'}?
 			$cc->{'current'}: $cc->{'default'};
@@ -1204,14 +1205,16 @@ sub getComponentNamedValue ($$$) {
 		$index = 0 if ($index < 0 || $index >= @$choices);
 		my $choice = $choices->[$index];
 		my $newValue = $choice->{$name};
-		next unless defined $newValue;
-		errDie("Mixed '$name' types (" . (ref($value) || "scalar") . " and "
-			. (ref($newValue) || "scalar") . ") for component $component")
-			if defined $value && ref($value) ne ref($newValue);
-		if (ref($value) eq 'ARRAY') {
-			push @$value, @$newValue;
-		} else {
-			$value = $newValue;
+		if (defined $newValue) {
+			errDie("Mixed '$name' types (" . (ref($value) || "scalar") . " and "
+				. (ref($newValue) || "scalar") . ") for component $component")
+				if defined $value && ref($value) ne ref($newValue);
+			if (ref($newValue) eq 'ARRAY') {
+				$value ||= [];
+				push @$value, @$newValue;
+			} else {
+				$value = $newValue;
+			}
 		}
 	}
 	### should probably handle the named value of all current options here
@@ -1219,10 +1222,10 @@ sub getComponentNamedValue ($$$) {
 	return $value;
 }
 
-sub getExternalImagePath ($) {
+sub getAdditionalImagePath ($) {
 	my $self = shift;
 	my $currentComponents = [keys %{$self->{cc}}];
-	my $imagePathDirs = [];
+	my @imagePathDirs = ([], []);  # one before and one after '+'
 
 	foreach (@$currentComponents) {
 		my $dirs = $self->getComponentNamedValue($_, 'external-imagepath');
@@ -1230,11 +1233,15 @@ sub getExternalImagePath ($) {
 		errDie("external-imagepath ($dirs) in component '$_' is not ARRAY")
 			unless ref($dirs) eq 'ARRAY';
 		foreach (@$dirs) {
-			next if isArrayElement($imagePathDirs, $_);
-			push @$imagePathDirs, $_;
+			my $i = /wm-icons$/? 0: 1;  # we are wm-icons compatible
+			next if isArrayElement($imagePathDirs[$i], $_);
+			push @{$imagePathDirs[$i]}, $_;
 		}
 	}
-	return join(':', @$imagePathDirs);
+	my $imagePath = "+";
+	$imagePath = join(':', @{$imagePathDirs[0]}, $imagePath);
+	$imagePath = join(':', $imagePath, @{$imagePathDirs[1]});
+	return $imagePath;
 }
 
 sub getAllHooksRc ($) {
@@ -1471,8 +1478,8 @@ Read @$rcFile2@
 	$imagePath =~ s=(^|:)\Q$userHome\E(/|:|$)=$1\$HOME$2=g;
 	$imagePath =~ s=(^|:)\Q$siteDir\E(/|:|$)=$1\$FT_DATADIR$2=g;
 	#olicha 2
-	my $extImagePath = $self->getExternalImagePath();
-	$imagePath .= $extImagePath if $extImagePath ne "";
+	my $addImagePath = $self->getAdditionalImagePath();
+	$imagePath .= "\nImagePath $addImagePath" if $addImagePath =~ /\+/;
 	my $menusAndHooksRc = $self->getMenusAndHooksAndReadsRc();
 
 	$contents = "# fvwm/$rcFile2 $version$header";
