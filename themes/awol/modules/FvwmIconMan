@@ -1,36 +1,36 @@
 DestroyModuleConfig FvwmIconMan: *
 
-*FvwmIconMan: colorset		12
-*FvwmIconMan: iconcolorset	19
-*FvwmIconMan: plaincolorset	17
-*FvwmIconMan: selectcolorset	20
-*FvwmIconMan: focuscolorset	18
-*FvwmIconMan: focusandselectcolorset 20
+*FvwmIconMan: Colorset		12
+*FvwmIconMan: IconColorset	19
+*FvwmIconMan: PlainColorset	17
+*FvwmIconMan: SelectColorset	20
+*FvwmIconMan: FocusColorset	18
+*FvwmIconMan: FocusAndSelectColorset 20
 
-*FvwmIconMan: title "   awol's customised button bar for Fvwm2000 -:- to boldly GNU..."
-*FvwmIconMan: resolution desk
-#*FvwmIconMan: font -adobe-*chancery-*-*-*-*-24-*-*-*-*-*-*-*
-*FvwmIconMan: font -adobe-times-*-*-*-*-20-*-*-*-*-*-*-*
-*FvwmIconMan: buttongeometry 50x25
-#*FvwmIconMan: managergeometry 15x1+45-80
-*FvwmIconMan: managergeometry 15x1
-*FvwmIconMan: dontshow icon=Untitled
-*FvwmIconMan: usewinlist true
-*FvwmIconMan: resolution desk
-*FvwmIconMan: sort name
-*FvwmIconMan: drawicons always
-*FvwmIconMan: shape true
-*FvwmIconMan: format "%i"
-*FvwmIconMan: action Mouse 1 N sendcommand FuncFvwmDeiconifyFocusAndRaise
-*FvwmIconMan: action Mouse 2 N sendcommand FvwmIdent
-*FvwmIconMan: action Mouse 3 N sendcommand Iconify
+*FvwmIconMan: Title "   awol's customised button bar for Fvwm2000 -:- to boldly GNU..."
+*FvwmIconMan: Resolution desk
+#*FvwmIconMan: Font -adobe-*chancery-*-*-*-*-24-*-*-*-*-*-*-*
+*FvwmIconMan: Font -adobe-times-*-*-*-*-20-*-*-*-*-*-*-*
+*FvwmIconMan: ButtonGeometry 50x25
+#*FvwmIconMan: ManagerGeometry 15x1+45-80
+*FvwmIconMan: ManagerGeometry 15x1
+*FvwmIconMan: DontShow icon=Untitled
+*FvwmIconMan: UseWinList true
+*FvwmIconMan: Resolution desk
+*FvwmIconMan: Sort name
+*FvwmIconMan: DrawIcons always
+*FvwmIconMan: Shape true
+*FvwmIconMan: Format "%i"
+*FvwmIconMan: Action Mouse 1 N sendcommand FuncFvwmDeiconifyFocusAndRaise
+*FvwmIconMan: Action Mouse 2 N sendcommand FvwmIdent
+*FvwmIconMan: Action Mouse 3 N sendcommand Iconify
 
-*FvwmIconMan: plainbutton sunkedge
-*FvwmIconMan: selectbutton sunkedge
-*FvwmIconMan: focusandselectbutton down
-*FvwmIconMan: titlebutton raisededge
-*FvwmIconMan: iconbutton raisededge
-*FvwmIconMan: focusbutton down
-*FvwmIconMan: followfocus true 
+*FvwmIconMan: PlainButton sunkedge
+*FvwmIconMan: SelectButton sunkedge
+*FvwmIconMan: FocusAndSelectButton down
+*FvwmIconMan: TitleButton raisededge
+*FvwmIconMan: IconButton raisededge
+*FvwmIconMan: FocusButton down
+*FvwmIconMan: FollowFocus true
 
 *FvwmIconMan: NoIconAction "SendToModule FvwmAnimate animate"
