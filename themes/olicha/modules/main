@@ -16,7 +16,12 @@ Style "*"       SlipperyIcon, IconTitle
 DestroyFunc FuncFvwmStartThemeModules
 AddToFunc   FuncFvwmStartThemeModules
 + I FuncFvwmStartNormalIcons
-# defined in the other components
+# defined in the options files
+
+DestroyFunc FuncFvwmReLoadThemeModules
+AddToFunc   FuncFvwmReLoadThemeModules
++ I FuncFvwmStartNormalIcons
+# defined in Applets/fvwm (only) 
 
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
@@ -61,6 +66,9 @@ AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmDestroyModulesThemeStyle
 
+DestroyFunc FuncFvwmPreReLoadThemeModules
+AddToFunc   FuncFvwmPreReloadThemeModules
++ I  
 # ----------------------------------------------------------------------------
 # Theme module menus
 

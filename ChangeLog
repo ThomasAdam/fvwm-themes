@@ -1,3 +1,38 @@
+2001-08-16  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	Fixed reload vs load or start if $fresh
+	Fixed an undef "start stop" problems
+	Fixed FuncFvwmRestartFvwmTheme in themes-rc-3
+	minimal relaod cleanup
+
+	* bin/fvwm-themes-config.in:
+	New ft cfg command reload-read-command=cmd. The cmd is executed in
+	the place of the read-command if the component is reloaded (component
+	state does not change). The 'used' value is used to determine the
+	state of the component at theme switching. If the value is
+	  1: the component is used but nothing have to be done about this
+	     component during theme switching.
+          2: the component must be reloaded but not (re)started, the
+	     reload-read-command and the reload-prereload "start stop" function
+	     is executed.
+          3: the component must be (re)started (the read-command and the
+	     start-stop or load-unload "start stop" function are executed).
+	If !isMinimalReload() the 'used' value is at least set to 2 (1 is
+	never used).
+
+	* themes/olicha/modules.cfg:
+	* themes/olicha/modules/main:reload (new file):
+	* themes/olicha/modules/main:
+	* themes/olicha/modules/Applets/*
+	* themes/default/settings.cfg:
+	* themes/default/settings/ewmh/enabled
+	Used the new ft cfg command reload-read-command in modules@olicha
+	and ewmh support. Unfortunately the FvwmButtons Applet should be 
+	restarted at reload because of a Buttons core dump.
+	The question is do we have to continue? I really think that the answer
+	is yes and that we have to improve the dependency ft cfg cmd.
+
 2001-08-15  migo  <migo@homemail.com>
 
 	* configure.in:

@@ -417,7 +417,8 @@ BEGIN { $cfgFileCache = {}; $cfgCacheFileStatus = 0; }
 
 my @dependencyKeys = qw(
 	provides requires complements precedes follows
-	local-imagepath start-stop uses auto-drops load-unload reload-prereload
+	local-imagepath start-stop uses auto-drops
+	load-unload reload-prereload reload-read-command
 );
 
 # returns 0 if the given condition is false (so should be hidden), 1 - if true
@@ -533,7 +534,7 @@ sub loadThemeCfg ($) {
 	# check for unhide-if
 	my $components = $cfg->[0]->{$componentKey};
 	my @allComponents = ();
-	if ($theme ne 'current') {
+	if ($theme ne 'current' && defined $components) {
 		push @allComponents, @$components;
 	}
 	my $comp;
@@ -958,8 +959,8 @@ sub new ($$;$$) {
 		}
 		$cc->{'locked'} = 0 unless exists $cc->{'locked'};
 		$cc->{'used'} = 1 unless exists $cc->{'used'};
-		#ccds 1
 		$cc->{'used'} = 1 if $cc->{'used'} >= 2;
+		$cc->{'used'} = 3 if ($fresh && $cc->{'used'});
 		errDie("Duplicated component '$component' for theme '$theme'")
 			if exists $self->{'cc'}->{$component} &&
 				$self->{'cc'}->{$component}->{'used'};
@@ -1574,6 +1575,53 @@ sub getSortedComponentsToRead ($) {
 	return \@currentComponents;
 }
 
+# set the 'used' flag:
+#  1: the component is used but nothing have to be done about this component
+#     during theme switching (if isMinimalReloading !!!!)
+#  2: the component must be reloaded but not (re)started
+#  3: the component must be (re)started
+sub setUsedFlags($) {
+	my $self = shift;
+
+	my @currentComponents;
+	my $component;
+
+	# complements
+	foreach $component (sort keys %{$self->{'cc'}}) {
+		my $cc = $self->getComponentCfg($component);
+		next if $component =~ /^_/;
+		next unless $cc->{'used'};
+		next if $cc->{'hidden'};
+		if (exists $cc->{'complements'}) {
+			my $comp = $cc->{'complements'};
+			my $dd = $self->getComponentCfg($comp);
+			if ($cc->{'used'} == 3) {
+				$dd->{'used'} = 3;
+				$self->setComponentCfg($comp, $dd);
+			}
+			if ($dd->{'used'} == 3) {
+				$cc->{'used'} = 3;
+				$self->setComponentCfg($component, $cc);
+			}
+		}
+	}
+
+	if ($self->isMinimalReload()) {
+		$self->setComponentsToReload();
+		return;
+	}
+
+	# every thing have to be at least reloaded
+	foreach $component (keys %{$self->{'cc'}}) {
+		my $cc = $self->getComponentCfg($component);
+		if ($cc->{'used'} == 1) {
+			$cc->{'used'} = 2;
+			$self->setComponentCfg($component, $cc);
+		}
+	}
+
+}
+
 #ccds next function
 sub getReloadDependency () {
 
@@ -1819,10 +1867,8 @@ sub getAllHooksRc ($) {
 	my $loadHooksRc =
 		"DestroyFunc FuncFvwmLoadAllHooks\n" .
 		"AddToFunc   FuncFvwmLoadAllHooks\n";
-	#ccds: 3, the Stop Hooks must be computed before somewhere!
-	my $minimalStartHooksRc = $startHooksRc;
-	my $minimalStopHooksRc = "";
 	my $hardCodedStopHooks = "";
+
 	my $c;
 	foreach $c (@$currentComponents) {
 		my $cc = $self->getComponentCfg($c);
@@ -1925,19 +1971,17 @@ sub getAllHooksRc ($) {
 		
 		foreach (@$startFunctions) {
 			next if isArrayElement($startItems, $_);
-			push @$startItems, $_;
-			$startHooksRc .= "+ I FuncFvwm$startFunctionsType$_\n";
 			if ($cc->{'used'} >= 2) {
-				$minimalStartHooksRc .= "+ I FuncFvwm$startFunctionsType$_\n";
+				push @$startItems, $_;
+				$startHooksRc .= "+ I FuncFvwm$startFunctionsType$_\n";
 			}
 		}
 
 		foreach (@stopFunctions) {
 			next if isArrayElement($stopItems, $_);
-			push @$stopItems, $_;
-			$stopHooksRc  .= "FuncFvwm$stopFunctionsType$_\n";
 			if ($cc->{'used'} >= 2) {
-				$minimalStopHooksRc .= "FuncFvwm$stopFunctionsType$_\n";
+				push @$stopItems, $_;
+				$stopHooksRc .= "FuncFvwm$stopFunctionsType$_\n";
 			}
 		}
 
@@ -1951,7 +1995,6 @@ sub getAllHooksRc ($) {
 
 	# get the remaining stop functions ("dropped" component)
 	foreach $c (keys %$saveStop) {
-		print STDERR "sS: $c\n";
 		my @stopFunctions = ();
 		my $stopFunctionsType = "Stop";
 		# from the strongest
@@ -1978,36 +2021,31 @@ sub getAllHooksRc ($) {
 			next if isArrayElement($stopItems, $_);
 			push @$stopItems, $_;
 			$stopHooksRc  .= "FuncFvwm$stopFunctionsType$_\n";
-			$minimalStopHooksRc .= "FuncFvwm$stopFunctionsType$_\n";
 		}
 	}
 
 	# save the stop functions
 	$_c->{'stop'} = $cs;
 
-	return ("$loadHooksRc\n","$stopHooksRc\n$startHooksRc\n",
-			  "$minimalStopHooksRc$hardCodedStopHooks\n$minimalStartHooksRc\n");
+	return ("$loadHooksRc\n","$stopHooksRc$hardCodedStopHooks\n$startHooksRc\n");
 }
 
 sub getMenusAndHooksAndReadsRc ($) {
 	my $self = shift;
 	my $currentComponents = [keys %{$self->{cc}}];  # $self->{$componentKey};
 	my $rc = "";
-	#ccds 1
-	my $minimalRc = "";
-	my $normalRc = "";
+	my $switchRc = "";
 
 	my ($ownThemeListRc, $ownThemeMenuRc) = $self->getOwnThemeSubMenusRc();
 	my ($allThemeListRc, $allThemeMenuRc) = $self->getAllThemeSubMenusRc();
 
-	#ccds 1 (need to be done before the theme hook)
-	$self->setComponentsToReload() if $self->isMinimalReload();
+	# set the "reload" rules
+	$self->setUsedFlags();
 	# add current theme hooks
-	#ccds: 2nd arg
-	($rc,$normalRc,$minimalRc) = $self->getAllHooksRc();
+	($rc,$switchRc) = $self->getAllHooksRc();
 
 	# include components themselves (Read)
-	my $tmpRc .= "### We will decide later whether to use full paths here.\n";
+	$rc .= "### We will decide later whether to use full paths here.\n";
 	foreach (@{$self->getSortedComponentsToRead()}) {
 		my $cc = $self->getComponentCfg($_);
 		my $readFile = $cc->{'read-file'};
@@ -2016,6 +2054,7 @@ sub getMenusAndHooksAndReadsRc ($) {
 		my $optionExports = [];
 		my $o;
 		my ($readRc1, $readRc2) = ("", "");
+		my ($switchReadRc2, $switchReadRc1) = ("", "");
 		for ($o = 0; ref($options) eq 'ARRAY' && $o < @$options; $o++) {
 			my $optionEntry = $options->[$o];
 			my $optionFile = $optionEntry->{'file'};
@@ -2044,9 +2083,22 @@ sub getMenusAndHooksAndReadsRc ($) {
 			$command =~ s/%F/$valueFile0/sg;  # to be obsolete?
 			$command =~ s/%v/$valueFile0/sg;
 			$command =~ s/%d/$optionFile/sg;
+
 			my $readAfterward = $optionEntry->{'read-afterward'};
 			$readAfterward = $optionReadAfterward unless defined $readAfterward;
 			($readAfterward? $readRc2: $readRc1) .= "$command\n";
+			
+			my $reloadCommand = $command;
+			if (defined $optionEntry->{'reload-read-command'}&& $cc->{'used'} < 3){ 
+				$reloadCommand = $optionEntry->{'reload-read-command'};
+				$reloadCommand =~ s/%f/$valueFile/sg;
+				$reloadCommand =~ s/%F/$valueFile0/sg;  # to be obsolete?
+				$reloadCommand =~ s/%v/$valueFile0/sg;
+				$reloadCommand =~ s/%d/$optionFile/sg;
+				next if $reloadCommand eq "*none*";
+			}
+			($readAfterward? $switchReadRc2: $switchReadRc1) .= "$reloadCommand\n";
+
 #			if (($optionEntry->{'read-file'} || "") ne $valueFile) {
 #				$optionEntry->{'read-file'} = $valueFile;
 #				$self->setModified();
@@ -2057,15 +2109,21 @@ sub getMenusAndHooksAndReadsRc ($) {
 		$command =~ s/%f/$readFile/sg;
 		$command =~ s/%d/getThemeDir($cc->{$themeKey})/seg;
 		$command =~ s/%o([\d]+)(\w)/$optionExports->[$1-1]->{$2} || ""/seg;
-		$tmpRc .= "$readRc1$command\n$readRc2";
-		#ccds 1
-		$minimalRc .= "$readRc1$command\n$readRc2" if $cc->{'used'} >= 2;
+		$rc .= "$readRc1$command\n$readRc2";
+
+		my $reloadCommand = $command;
+		if (defined $cc->{'reload-read-command'} && $cc->{'used'} < 3) {
+			$reloadCommand = $cc->{'reload-read-command'};
+			next if $reloadCommand eq "*none*";
+			$reloadCommand =~ s/%f/$readFile/sg;
+			$reloadCommand =~ s/%d/getThemeDir($cc->{$themeKey})/seg;
+			$reloadCommand =~ s/%o([\d]+)(\w)/$optionExports->[$1-1]->{$2}||""/seg;
+		}
+		$switchRc .= "$switchReadRc1$reloadCommand\n$switchReadRc2"
+		  if $cc->{'used'} >= 2;
 	}
-	$rc .= $tmpRc;
-	$normalRc .= $tmpRc;
 
 	# add main menu entries
-	#ccds: some changes ...
 	my $menu = "";
 	my $minimalSwitch = "";
 	if ($self->isMinimalReload()) {
@@ -2101,9 +2159,8 @@ sub getMenusAndHooksAndReadsRc ($) {
 	$menu .= "$allThemeMenuRc\n";
 
 	$rc .= $menu;
-	$normalRc .= $menu;
-	$minimalRc .= $menu;
-	return ($rc,$normalRc,$minimalRc);
+	$switchRc .= $menu;
+	return ($rc,$switchRc);
 }
 
 sub generateThemesRc ($) {
@@ -2181,7 +2238,6 @@ AddToFunc   FuncFvwmThemesCenterUpdate
 + I FvwmScript FvwmScript-NoteMessage "Theme switching"
 + I Wait FvwmScript-NoteMessage
 + I FuncFvwmResetInitFunctions
-#+ I FuncFvwmStopAllHooks
 + I Read @$rcFile3@
 + I FuncFvwmStartAllHooks
 + I All (FvwmScript-NoteMessage) Delete
@@ -2227,7 +2283,6 @@ DestroyFunc FuncFvwmMinimalThemesConfigAndUpdate
 AddToFunc   FuncFvwmMinimalThemesConfigAndUpdate
 + I FvwmScript FvwmScript-NoteMessage "Minimal theme switching"
 + I Wait FvwmScript-NoteMessage
-# The stop functions are executed in the begining of themes-rc-3
 + I PipeRead `@$scriptFile@ $0 --pipe`
 + I Read @$rcFile3@
 + I FuncFvwmStartAllHooks
@@ -2237,7 +2292,6 @@ DestroyFunc FuncFvwmThemesCenterMinimalUpdate
 AddToFunc   FuncFvwmThemesCenterMinimalUpdate
 + I FvwmScript FvwmScript-NoteMessage "Minimal theme switching"
 + I Wait FvwmScript-NoteMessage
-# The stop functions are executed in the begining of themes-rc-3
 + I Read @$rcFile3@
 + I FuncFvwmStartAllHooks
 + I All (FvwmScript-NoteMessage) Delete
@@ -2248,7 +2302,7 @@ AddToFunc   FuncFvwmMinimalThemesLoad
 
 DestroyFunc FuncFvwmMinimalThemesDrop
 AddToFunc   FuncFvwmMinimalThemesDrop
-+ I FuncFvwmThemesConfigAndUpdate "--drop=$0"
++ I FuncFvwmMinimalThemesConfigAndUpdate "--drop=$0"
 
 DestroyFunc FuncFvwmMinimalThemesOption
 AddToFunc   FuncFvwmMinimalThemesOption
@@ -2307,7 +2361,7 @@ Read @$rcFile2@
 	$imagePath =~ s=(^|:)\Q$siteDir\E(/|:|$)=$1\$FT_DATADIR$2=g;
 	my $addImagePath = $self->getAdditionalImagePath();
 	$imagePath .= "\nImagePath $addImagePath" if $addImagePath =~ /\+/;
-	my ($menusAndHooksRc, $normalMenusAndHooksRc, $minimalMenusAndHooksRc) = 
+	my ($menusAndHooksRc, $switchMenusAndHooksRc) = 
 			$self->getMenusAndHooksAndReadsRc();
 
 	$contents = "# fvwm/$rcFile2 $version$header";
@@ -2322,31 +2376,16 @@ Mouse 2 A CM Menu MenuFvwmThemes
 };
 	saveFile("$workDir/$rcFile2", \$contents);
 
-	#ccds: next block
-	if ($self->isMinimalReload() || $setMinimalReload ne "") {
-		$contents = "# fvwm/$rcFile3 $version$header";
-		$contents .= qq{
+	$contents = "# fvwm/$rcFile3 $version$header";
+	$contents .= qq{
 SetEnv FT_DATADIR '$siteDir'
 ImagePath $imagePath
 
-$minimalMenusAndHooksRc
+$switchMenusAndHooksRc
 Mouse 2 A CM Menu MenuFvwmThemes
 };
-		
-		saveFile("$workDir/$rcFile3", \$contents);
-	}
-	else {
-		$contents = "# fvwm/$rcFile3 $version$header";
-		$contents .= qq{
-SetEnv FT_DATADIR '$siteDir'
-ImagePath $imagePath
 
-$normalMenusAndHooksRc
-Mouse 2 A CM Menu MenuFvwmThemes
-};
-		
-		saveFile("$workDir/$rcFile3", \$contents);
-	}
+	saveFile("$workDir/$rcFile3", \$contents);
 
 }
 
