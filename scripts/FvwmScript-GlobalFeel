@@ -18,7 +18,7 @@
 #-----------------------------------------------------------------------------
 
 
-WindowTitle {FVWM Themes Configuration Center}
+WindowTitle {FVWM Themes Global Feel}
 WindowSize 610 480
 Font	-adobe-helvetica-bold-r-*-*-12-*
 
@@ -63,7 +63,6 @@ Begin
 	ChangeColorset 98 $TextColorset
 	ChangeColorset 102 $TextColorset
 	ChangeColorset 104 $TextColorset
-	ChangeColorset 201 $TextColorset
     End
 
     If $ViewerColorset <> {} Then
@@ -79,7 +78,7 @@ Begin
     Set $pid = (GetOutput $cmd 1 -1)
 
     # Run fvwm-themes-script until the end of the script
-    Do {Exec fvwm-themes-script --config-center --com-name=script-}$pid{ &}
+    Do {Exec fvwm-themes-script --globalfeel --com-name=script-}$pid{ &}
 
     # to send fvwm-themes-com command
     Set $SendMsgAndGet = {fvwm-themes-com --name script-}$pid{ --lock-and-get --message=}
@@ -88,7 +87,6 @@ Begin
 
 
     Set $GF_FileName = {globalfeel}
-    Set $BD_FileName = {bindings}
 
     # component at start
     Set $Component = $GF_FileName
@@ -108,27 +106,6 @@ Begin
     Set $cmd = $GetLine{2 --clear-buffer}
     Set $GF_Config = (GetOutput $cmd 1 -1)
     #Do {Echo CC: GF config loaded}
-    ### ------------------- Loading BD config
-    # loaded in widget 1 signal 3
-    ## Themes config
-    Set $BD_SaveBindings = {}
-    Set $BD_bindingsCurrentTheme = {}
-    Set $BD_Switch23Button = {}
-    Set $BD_KeyModifiers = {}
-    Set $BD_BindingsThemesWith = {}
-    Set $BD_KeyConfig = {}
-    Set $BD_MouseConfig = {}
-
-    # Min Value in the List:
-    Set $BD_KeyboradMinValue = 1
-    Set $BD_MouseMinValue = 1
-    Set $BD_StrokeMinValue = 1
-    Set $BD_AppBindMinValue = 1
-    # Selected item in the List
-    Set $BD_KeyboradValue = 0
-    Set $BD_MouseValue = 0
-    Set $BD_StrokeValue = 0
-    Set $BD_AppBindValue = 0
 
 # ----------------------------------------------------------------------------
 # Internationalization.
@@ -149,7 +126,7 @@ Begin
 
     Set $msg = {}
     Set $id = {}
-    Set $cmd = {fvwm-themes-script --get-msg }FvwmScript-ConfigCenter{ --lang }$Lang
+    Set $cmd = {fvwm-themes-script --get-msg }FvwmScript-GlobalFeel{ --lang }$Lang
     Set $MSG = (GetOutput $cmd 1 -1)
     Set $index = 0
     Set $notdone = 1
@@ -176,14 +153,6 @@ Begin
 	    ChangeTitle 1 $msg
 	If $id == {Menu2       } Then
 	    ChangeTitle 2 $msg
-	If $id == {Menu3       } Then
-	    ChangeTitle 3 $msg
-	If $id == {Menu4       } Then
-	    ChangeTitle 4 $msg
-	If $id == {Menu5       } Then
-	    ChangeTitle 5 $msg
-	If $id == {OnlyGlobal  } Then
-	    Set $l_OnlyGlobal = $msg
 
 	### Focus
 	If $id == {FocusPolicy } Then
@@ -411,16 +380,6 @@ Begin
 	If $id == {SaveIsGlobal} Then
 	    ChangeTitle 964 $msg
 
-	### Bindings
-	If $id == {KeyTitle    } Then
-	    Set $l_KeyTitle = $msg
-	If $id == {MouseTitle  } Then
-	    Set $l_MouseTitle = $msg
-	If $id == {AppBindTitle} Then
-	    Set $l_AppBindTitle = $msg
-	If $id == {StrokeTitle } Then
-	    Set $l_StrokeTitle = $msg
-
 	### End
 	If $id == {ConfigLoaded} Then
 	    Set $l_ConfigLoaded = $msg
@@ -572,8 +531,6 @@ Begin
 	ChangeFont 129 $FixedFont
 	ChangeFont 130 $FixedFont
 
-	ChangeFont 200 $SelFont
-
 	ChangeFont 950 $SelFont
 	ChangeFont 951 $FixedFont
 	ChangeFont 952 $FixedFont
@@ -605,9 +562,6 @@ Begin
 
     # not yet implemented
     ChangeFont 1 $ShadeFont
-    ChangeFont 3 $ShadeFont
-    ChangeFont 4 $ShadeFont
-    ChangeFont 5 $ShadeFont
 
     #Do {Echo ConfigCenter: GF inter loaded}
 #------------------------------------------------------------------------------
@@ -1235,104 +1189,6 @@ Begin
 	End
     End
 
-    # ---------------------------- Bindings
-
-    If $BD_HideKeyboard == {1} Then
-    Begin
-	Set $BD_HideKeyboard = 0
-	Set $tmp = 200
-	While $tmp <> 203 Do
-	Begin
-	    HideWidget $tmp
- 	    Set $tmp = (Add $tmp 1)
-	End
-    End
-
-    If $BD_HideMouse == {1} Then
-    Begin
-	Set $BD_HideMouse = 0
-	Set $tmp = 200
-	While $tmp <> 203 Do
-	Begin
-	    HideWidget $tmp
- 	    Set $tmp = (Add $tmp 1)
-	End
-    End
-
-    If $BD_HideAppBind == {1} Then
-    Begin
-	Set $BD_HideAppBind = 0
-	Set $tmp = 200
-	While $tmp <> 203 Do
-	Begin
-	    HideWidget $tmp
- 	    Set $tmp = (Add $tmp 1)
-	End
-    End
-
-    If $BD_HideStroke == {1} Then
-    Begin
-	Set $BD_HideStroke = 0
-	Set $tmp = 200
-	While $tmp <> 203 Do
-	Begin
-	    HideWidget $tmp
- 	    Set $tmp = (Add $tmp 1)
-	End
-    End
-
-    If $BD_ShowKeyboard == {1} Then
-    Begin
-	Set $BD_ShowKeyboard = 0
-	Set $ConfigTool = {Keyboard}
-	# common BD part
-	Set $tmp = 200
-	While $tmp <> 203 Do
-	Begin
-	    ShowWidget $tmp
- 	    Set $tmp = (Add $tmp 1)
-	End
-    End
-
-    If $BD_ShowMouse == {1} Then
-    Begin
-	Set $BD_ShowMouse = 0
-	Set $ConfigTool = {Mouse}
-	# common BD part
-	Set $tmp = 200
-	While $tmp <> 203 Do
-	Begin
-	    ShowWidget $tmp
- 	    Set $tmp = (Add $tmp 1)
-	End
-    End
-
-    If $BD_ShowAppBind == {1} Then
-    Begin
-	Set $BD_ShowAppBind = 0
-	Set $ConfigTool = {AppBind}
-	# common BD part
-	Set $tmp = 200
-	While $tmp <> 203 Do
-	Begin
-	    ShowWidget $tmp
- 	    Set $tmp = (Add $tmp 1)
-	End
-    End
-
-    If $BD_ShowStroke == {1} Then
-    Begin
-	Set $BD_ShowStroke = 0
-	Set $ConfigTool = {Stroke}
-	# common BD part
-	Set $tmp = 200
-	While $tmp <> 203 Do
-	Begin
-	    ShowWidget $tmp
- 	    Set $tmp = (Add $tmp 1)
-	End
-    End
-
 #----------------------------------------------------------------------------
 # Update "font" : first part
 
@@ -1710,10 +1566,37 @@ Case message of
     Set $tmp = (GetValue 1)
     If $tmp == 1 Then
     Begin
+	Set $GF_HideFocus = 1
+	Set $GF_HideMove = 1
+	Set $GF_HidePaging = 1
+	Set $GF_HideTransient = 1
+	Set $GF_HideHints = 1
+	Set $GF_HidePreference = 1
+	Set $BD_HideKeyboard = 1
+	Set $NullMessage = 1
+	ChangeFont 2 $ShadeFont
+	ChangeFont 1 $SelFont
+	If $GF_CurrentTheme == {} Then
+	    SendSignal 1 2
+	If $PersonalThemes == {} Then
+	    SendSignal 1 1
+	Set $GF_ShowPreference = 1
+	If $TryFont <> {Shade} Then
+	Begin
+	    ChangeFont 992 $ShadeFont
+	    Set $TryFont = {Shade}
+	End
+	If $SaveFont <> {Sel} Then
+	Begin
+	    ChangeFont 991 $SelFont
+	    Set $SaveFont = {Sel}
+	End
+	ChangeFont 993 $ShadeFont
+	Set $DefaulFont = {Shade}
+	Set $Component = {GF_Preference}
     End
     If $tmp == 2 Then
 	SendSignal 995 1
-    ChangeTitle 990 $l_OnlyGlobal	
  End
 
  1 :
@@ -1743,34 +1626,6 @@ Case message of
     ChangeTitle 951 $tmp
  End
 
- # --- BD themes and config
- 3 :
- Begin
-    ## Themes config
-    Set $cmd = $SendMsgAndGet{"get-themes-info bindings" --line=1}
-    # where we save: the theme
-    Set $BD_SaveBindings = (GetOutput $cmd 1 -1)
-    # current theme
-    Set $cmd = $GetLine{2}
-    Set $BD_bindingsCurrentTheme = (GetOutput $cmd 1 -1)
-    # themes with a globalfeel component
-    Set $cmd = $GetLine{3}
-    # options
-    Set $cmd = $GetLine{4}
-    Set $BD_Switch23Button = (GetOutput $cmd 1 -1)
-    Set $cmd = $GetLine{5 --clear-buffer}
-    Set $BD_KeyModifiers = (GetOutput $cmd 1 -1)
-
-    ## Configuration:
-    Set $BD_BindingsThemesWith = (GetOutput $cmd 1 -1)
-    Set $cmd = $SendMsgAndGet{"get-config current bindings All" --line=1}
-    Set $error = (GetOutput $cmd 1 -1)
-    Set $cmd = $GetLine{2}
-    Set $BD_KeyConfig = (GetOutput $cmd 1 -1)
-    Set $cmd = $GetLine{3 --clear-buffer}
-    Set $BD_MouseConfig = (GetOutput $cmd 1 -1)
- End
-
 End
 
 Widget 2
@@ -1778,7 +1633,7 @@ Property
     Flags NoReliefString
     Position 270 5
     Type Menu
-    Title {                          }
+    Title {                                      }
 Main
 Case message of
  SingleClic :
@@ -1786,29 +1641,6 @@ Case message of
     Set $tmp = (GetValue 2)
     If $tmp <> 0 Then
     Begin
-	If $Component == {bindings} Then
-	Begin
-	    If $ConfigTool == {Keyboard} Then
-	    Begin
-		Set $BD_KeyboardValue = (GetValue 201)
-		Set $BD_KeyboardMinValue = (GetMinValue 201)
-	    End
-	    If $ConfigTool == {Mouse} Then
-	    Begin
-		Set $BD_MouseMinValue = (GetMinValue 201)
-		Set $BD_MouseValue = (GetValue 201)
-	    End
-	End
-	If $Component == {settings/stroke} Then
-	Begin
-	    Set $BD_StrokeMinValue = (GetMinValue 201)
-	    Set $BD_StrokeValue = (GetValue 201)
-	End
-	If $Component == {functions-appbind} Then
-	Begin
-	    Set $BD_AppBindMinValue = (GetMinValue 201)
-	    Set $BD_AppBindValue = (GetValue 201)
-	End		
 	Set $Component = {globalfeel}
 	Set $GF_HideFocus = 1
 	Set $GF_HideMove = 1
@@ -1820,9 +1652,6 @@ Case message of
 	Set $NullMessage = 1
 	ChangeFont 1 $ShadeFont
 	ChangeFont 2 $SelFont
-	ChangeFont 3 $ShadeFont
-	ChangeFont 4 $ShadeFont
-	ChangeFont 5 $ShadeFont
 	ChangeFont 993 $SelFont
 	Set $DefaultFont = {Sel}
     End
@@ -1851,172 +1680,8 @@ Case message of
 	Set $GF_ShowHints = 1
 	Set $GF_HideHints = 0
     End
-    If $tmp == 6 Then
-    Begin
-	If $GF_CurrentTheme == {} Then
-	    SendSignal 1 2
-	If $PersonalThemes == {} Then
-	    SendSignal 1 1
-	Set $GF_ShowPreference = 1
-	Set $GF_HidePreference = 0
-	If $TryFont <> {Shade} Then
-	Begin
-	    ChangeFont 992 $ShadeFont
-	    Set $TryFont = {Shade}
-	End
-	If $SaveFont <> {Sel} Then
-	Begin
-	    ChangeFont 991 $SelFont
-	    Set $SaveFont = {Sel}
-	End
-	ChangeFont 993 $ShadeFont
-	Set $DefaulFont = {Shade}
-	Set $Component = {GF_Preference}
-    End
  End
 End
-
-Widget 3
-Property
-    Flags NoReliefString
-    Position 90 10
-    Size 175 20
-    Type Menu
-    Title {                           } 
-Main
-Case message of
- SingleClic :
- Begin
-    ChangeTitle 990 $l_OnlyGlobal
-    Set $tmp = (GetValue 3)
-    If $tmp <> 0 Then
-    Begin
-	If $Component == {bindings} Then
-	Begin
-	    If $ConfigTool == {Keyboard} Then
-	    Begin
-		Set $BD_KeyboardValue = (GetValue 201)
-		Set $BD_KeyboardMinValue = (GetMinValue 201)
-	    End
-	    If $ConfigTool == {Mouse} Then
-	    Begin
-		Set $BD_MouseMinValue = (GetMinValue 201)
-		Set $BD_MouseValue = (GetValue 201)
-	    End
-	End
-	If $Component == {settings/stroke} Then
-	Begin
-	    Set $BD_StrokeMinValue = (GetMinValue 201)
-	    Set $BD_StrokeValue = (GetValue 201)
-	End
-	If $Component == {functions-appbind} Then
-	Begin
-	    Set $BD_AppBindMinValue = (GetMinValue 201)
-	    Set $BD_AppBindValue = (GetValue 201)
-	End
-	Set $GF_HideFocus = 1
-	Set $GF_HideMove = 1
-	Set $GF_HidePaging = 1
-	Set $GF_HideTransient = 1
-	Set $GF_HideHints = 1
-	Set $GF_HidePreference = 1
-	Set $BD_HideKeyboard = 1
-	#Set $NullMessage = 1
-	ChangeFont 1 $ShadeFont
-	ChangeFont 2 $ShadeFont
-	ChangeFont 3 $SelFont
-	ChangeFont 4 $ShadeFont
-	ChangeFont 5 $ShadeFont
-	ChangeFont 993 $ShadeFont
-	ChangeFont 992 $ShadeFont
-	ChangeFont 991 $ShadeFont
-	Set $SaveFont = {Shade}
-	Set $TryFont = {Shade}
-	Set $DefaulFont = {Shade}
-	If $BD_SaveBindings == {} Then
-	    SendSignal 1 3
-    End
-    If $tmp == 1 Then
-    Begin
-	Set $BD_ShowKeyboard = 1
-	Set $BD_HideKeyboard = 0
-	Set $Component = {bindings}
-	ChangeTitle 200 $l_KeyTitle
-	ChangeTitle 201 $BD_KeyConfig
-	ChangeMinValue 201 $BD_KeyboardMinValue
-	ChangeValue 201 $BD_KeyboardValue
-    End
-    If $tmp == 2 Then
-    Begin
-	Set $BD_ShowMouse = 1
-	Set $BD_HideMouse = 0
-	Set $Component = {bindings}
-	ChangeTitle 200 $l_MouseTitle
-	ChangeTitle 201 $BD_MouseConfig
-	ChangeMinValue 201 $BD_MouseMinValue
-	ChangeValue 201 $BD_MouseValue
-    End
-    If $tmp == 3 Then
-    Begin
-	Set $BD_ShowAppBind = 1
-	Set $BD_HideAppBind = 0
-	Set $Component = {functions-appbind}
-	ChangeTitle 200 $l_AppBindTitle
-	ChangeTitle 201 $BD_AppBindConfig
-	ChangeMinValue 201 $BD_AppBindMinValue
-	ChangeValue 201 $BD_AppBindValue
-    End
-    If $tmp == 4 Then
-    Begin
-	Set $BD_ShowStroke = 1
-	Set $BD_HideStroke = 0
-	Set $Component = {settings/stroke}
-	ChangeTitle 200 $l_StrokeTitle
-	ChangeTitle 201 $BD_StrokeConfig
-	ChangeMinValue 201 $BD_StrokeMinValue
-	ChangeValue 201 $BD_StrokeValue
-    End
-    If $tmp == 5 Then
-    Begin
-	Set $BD_ShowPreference = 1
-	Set $BD_HidePreference = 0
-	Set $Component = {BD_Preference}
-    End
-  End
-
-End
-
-
-Widget 4
-Property
-    Flags NoReliefString
-    Position 90 10
-    Size 175 20
-    Type Menu
-    Title {                           }
-Main
-Case message of
- SingleClic :
- Begin
-    ChangeTitle 990 $l_OnlyGlobal
- End
-End
-
-Widget 5
-Property
-    Flags NoReliefString
-    Position 90 10
-    Size 175 20
-    Type Menu
-    Title {                           }
-Main
-Case message of
- SingleClic :
- Begin
-    ChangeTitle 990 $l_OnlyGlobal
- End
-End
-
 
 Widget 9
 Property
@@ -4042,66 +3707,6 @@ Case message of
     Set $GF_SaveIsGlobal = (GetValue 964)
  End
 End
-
-##############################################################################
-#
-# Bindings
-#
-##############################################################################
-
-#-----------------------------------------------------------------------------
-#
-# Keyboard
-#
-#-----------------------------------------------------------------------------
-
-# Title:
-Widget 200
-Property
-    Size 480 15
-    Position 20 45
-    Type ItemDraw
-    Flags NoReliefString Hidden
-    Title {Keyboard Bindings}
-Main
-Case message of
-    SingleClic :
-    Begin
-    End
-End
-
-# List:
-Widget 201
-Property
-    Size 500 130
-    Position 20 70
-    Type List
-    Flags NoReliefString Hidden
-    Font Fixed
-    Title {}
-Main
-Case message of
-    SingleClic :
-    Begin
-    End
-End
-
-
-# In Progress:
-Widget 202
-Property
-    Size 280 15
-    Position 70 230
-    Type ItemDraw
-    Flags NoReliefString Hidden
-    Title {Work in Progress ...}
-Main
-Case message of
-    SingleClic :
-    Begin
-    End
-End
-
 
 
 ##############################################################################

@@ -6,12 +6,13 @@ FixedFont	{-cronyx-fixed-medium-r-semicondensed--*-*-*-*-*-*-koi8-*}
 
 [Msg]
 ### Menus:
-Menu1		{Файл|Персональные темы|Выход}
-Menu2		{Среда|Фокус и Размещение|Перемещение u Размер|Листание и Параметры Мышки|Временные Окна и Анимация|Хинты и Продвинутые Параметры|Установки...}
-Menu3		{Привязки|Клавиатура|Мышка|Приложения|Штрихи Мышки|Установки...}
-Menu4		{Вид|Кнопки|Цвета|Стили Меню|Вид Окон|Курсоры|Установки...}
-Menu5		{Разное|Звуковые Эффекты|Фон|Запуск|Установки...}
-OnlyGlobal	{Пока доступно лишь Среда}
+#Menu1		{Файл|Персональные темы|Выход}
+Menu1		{Файл|Установки...|Выход}
+Menu2		{Configuration...|Фокус и Размещение|Перемещение u Размер|Листание и Параметры Мышки|Временные Окна и Анимация|Хинты и Продвинутые Параметры|Установки...}
+#Menu3		{Привязки|Клавиатура|Мышка|Приложения|Штрихи Мышки|Установки...}
+#Menu4		{Вид|Кнопки|Цвета|Стили Меню|Вид Окон|Курсоры|Установки...}
+#Menu5		{Разное|Звуковые Эффекты|Фон|Запуск|Установки...}
+#OnlyGlobal	{Пока доступно лишь Среда}
 
 ### Focus
 # no more that 44 characteres for the next 8
@@ -145,10 +146,10 @@ DefIsGlobal	{Apply "Default" to the all globalfeel screens, not only to the curr
 SaveIsGlobal	{Apply "Save" to the all globalfeel screens, not only to the current one }
 
 ### Bindings
-KeyTitle	{Keyboard Bindings}
-MouseTitle	{Mouse Bindings}
-StrokeTitle	{Mouse Stroke Bindings}
-AppBindTitle    {Prefered Applications}
+#KeyTitle	{Keyboard Bindings}
+#MouseTitle	{Mouse Bindings}
+#StrokeTitle	{Mouse Stroke Bindings}
+#AppBindTitle    {Prefered Applications}
 
 ### End
 ConfigLoaded	{ Configuration Loaded }

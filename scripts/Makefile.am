@@ -7,7 +7,7 @@ config_DATA = \
 	FvwmApplet-Mixer FvwmScript-IconBrowser FvwmScript-Menus \
 	FvwmScript-NoteMessage FvwmScript-Browser FvwmScript-Help \
 	FvwmScript-ThemesCenter FvwmScript-ComponentProperties \
-	FvwmScript-ColorSelector FvwmScript-ConfigCenter \
+	FvwmScript-ColorSelector FvwmScript-GlobalFeel \
 	FvwmScript-FontSelector FvwmScript-ImageBrowser \
 	FvwmScript-Confirm
 

@@ -1,10 +1,6 @@
 ### Menus:
-Menu1		{File|Personal themes|Quit}
-Menu2		{Global Feel|Focus and Placement|Move & Resize|Paging & Mouse Parameters|Transient Windows & Animation|Hints & Advanced Parameters|Preferences...}
-Menu3 		{Bindings|Keybooard|Mouse|Applications|Stroke|Preferences...}
-Menu4		{Look|Buttons|Colours|Menu Style|Window Look|Cursors|Preferences...}
-Menu5		{Misc|Sound Effect|Background|Start|Preferences...}
-OnlyGlobal	{Only Global Feel is implemented}
+Menu1		{File|Pereference|Quit}
+Menu2		{Configuration ...|Focus and Placement|Move & Resize|Paging & Mouse Parameters|Transient Windows & Animation|Hints & Advanced Parameters|Preferences...}
 
 ### Focus
 # no more that 44 characteres for the next 8
@@ -138,10 +134,10 @@ DefIsGlobal	{Apply "Default" to the all globalfeel screens, not only to the curr
 SaveIsGlobal	{Apply "Save" to the all globalfeel screens, not only to the current one }
 
 ### Bindings
-KeyTitle	{Keyboard Bindings}
-MouseTitle	{Mouse Bindings}
-StrokeTitle	{Mouse Stroke Bindings}
-AppBindTitle    {Prefered Applications}
+#KeyTitle	{Keyboard Bindings}
+#MouseTitle	{Mouse Bindings}
+#StrokeTitle	{Mouse Stroke Bindings}
+#AppBindTitle    {Prefered Applications}
 
 ### End
 ConfigLoaded	{ Configuration Loaded }

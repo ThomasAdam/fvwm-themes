@@ -44,8 +44,8 @@ my $lsOptions = "";
 my $type = "";
 my $item = -1;
 my $checkExec = "";
-# config center com loop
-my $configCenter = 0;
+# globalfeel com loop
+my $globalFeel = 0;
 my $comName = "script";
 my $comPid = 0;
 # in line doc and script msg
@@ -72,7 +72,7 @@ GetOptions(
 	"type:s"             => \$type,
 	"item=i"             => \$item,
 	"check-exec=s"       => \$checkExec,
-	"config-center"      => \$configCenter,
+	"globalfeel"         => \$globalFeel,
 	"com-name=s"         => \$comName,
 	"in-line-doc=s"      => \$inLineDoc,
 	"line-length=i"      => \$lineLength,
@@ -88,11 +88,11 @@ GetOptions(
 ); # || wrongUsage();
 
 
-if ($configCenter) {
+if ($globalFeel) {
 	$comPid = $comName;
 	$comPid =~ s/script-//;
 	$comPid = 0 if ($comPid !~ /^\d+$/);
-	configCenterComLoop()
+	globalFeelComLoop()
 	# we never return here
 }
 elsif ($command_ls) {
@@ -1014,18 +1014,18 @@ sub checkExecInPath {
 
 #----------------------------------------------------------------------------
 #
-# the configuration center com loop
+# the global feel com loop
 #
 #----------------------------------------------------------------------------
 
-sub configCenterComLoop {
+sub globalFeelComLoop {
 	my $outFifo = ".tmp-com-out-" . $comName;
 	my $inFifo = ".tmp-com-in-"  . $comName;
 	my $lockFifo = ".tmp-com-lock-" . $comName;
 	my $command = "";
 	my $return = "";
 
-	my @components = ("globalfeel","bindings");
+	my @components = ("globalfeel");
 
 	# "files" and "script" config
 	my $lastBuild = "";
@@ -1359,7 +1359,7 @@ sub myMakeFifo {
 #-----------------------------------------------------------------------------
 # For killing FvwmScript-ConfigCenter if an error happen in this script!
 END {
-	if ($configCenter) {
+	if ($globalFeel) {
 		if ($?) {
 			my $lockFifo = ".tmp-com-lock-" . $comName;
 			my $inFifo = ".tmp-com-in-" . $comName;
@@ -2495,156 +2495,6 @@ sub default_globalfeel_Config {
 	$config->{'ModuleTimeout'} = 30;
 	$config->{'module_timeout'} = 6;
 
-}
-
-# -----------------------------------------------------------------------------
-# parsing bindings
-
-sub parse_bindings_Config {
-	my $file = shift;
-	my $configForScript = shift;
-	my $keys = shift;
-	my $config = shift || {};
-	my $options = shift;
-
-	my ($keyIndex, $mouseIndex) = (0,0);
-	@$keys = ("KeyBindings", "MouseBindings");
-
-	my $switchButtons  = $options->[0]->{'current'};
-	my $modifiersShift = $options->[1]->{'current'};
-
-	open(FILE,"$file") || return "Err: cannot open $file";
-	my $multiline = "";
-	my $line;
-
-	while(<FILE>) {
-		chomp;		
-		if ( /\\$/ && ! /\\\\$/) {
-			s/\\$//;
-			$multiline = $multiline . $_;
-			next;
-	  	} else {
-			$line= $multiline . $_;
-			$multiline = "";
-		}
-		# remove starting blanc:
-		$line =~ s/^\s+//;
-		# removing comments
-		next if $line =~ /^\#/;
-		# humm ...
-		$line =~ s/\s+\#.*$//;
-		$line =~ s/\s+$//;
-
-		if ($line =~ /^Key/i) {
-			$line =~ s/^Key\s*//i;
-			my $mm = 0;
-			if ($line =~ /^MM/i) {
-				$line =~ s/^MM\s+//i;
-				$mm = 1;
-			}
-			$line =~ s/\s+/ /g;
-			my $key = "";
-			$key = substr($line,0,index($line," "));
-			$line = substr($line,length($key));
-			my $context = "";
-			$line =~ s/^\s*//;
-			$context = substr($line,0,index($line," "));
-			$line = substr($line,length($context));
-			my $modifiers = "";
-			$line =~ s/^\s*//;
-			$modifiers = substr($line,0,index($line," "));
-			$line = substr($line,length($modifiers));
-			if ($mm) {
-				$line =~ s/^\s*//;
-				$mm = substr($line,0,index($line," "));
-				$line = substr($line,length($mm));
-				if ($modifiersShift == 2) { $modifiers = "$mm($modifiers)" } 
-				else { $modifiers = "$modifiers($mm)" }
-			}
-			my $action = "";
-			$line =~ s/^\s*//;
-			$action = $line;
-			$action =~ s/\s*$//;
-			$config->{'Key'}->[$keyIndex]->{'key'} = $key;
-			$config->{'Key'}->[$keyIndex]->{'context'} = $context;
-			$config->{'Key'}->[$keyIndex]->{'modifiers'} = $modifiers;
-			$config->{'Key'}->[$keyIndex]->{'action'} = $action;
-			$keyIndex++;
-		}
-
-		if ($line =~ /^Mouse/) {
-			$line =~ s/\s+/ /g;
-			$line =~ s/^Mouse\s*//i;
-			my $button = "";
-			if ($line =~ /^XX/) {
-				$line =~ s/^XX\s+//i;
-				$line =~ s/([2-3])\s+([2-3])\s+//;
-				if ($switchButtons == 2) { $button = "$2($1)" }
-				else { $button = "$1($2)" }
-			} else {	
-				$button = substr($line,0,index($line," "));
-				$line = substr($line,length($button));
-			}
-			my $context = "";
-			$line =~ s/^\s*//;
-			$context = substr($line,0,index($line," "));
-			$line = substr($line,length($context));
-			my $modifiers = "";
-			$line =~ s/^\s*//;
-			$modifiers = substr($line,0,index($line," "));
-			$line = substr($line,length($modifiers));
-			my $action = "";
-			$line =~ s/^\s*//;
-			$action = $line;
-			$action =~ s/\s*$//;
-			$config->{'Mouse'}->[$mouseIndex]->{'button'} = $button;
-			$config->{'Mouse'}->[$mouseIndex]->{'context'} = $context;
-			$config->{'Mouse'}->[$mouseIndex]->{'modifiers'} = $modifiers;
-			$config->{'Mouse'}->[$mouseIndex]->{'action'} = $action;
-			$mouseIndex++;
-		}
-
-	}
-	
-	my $keysBindings = $config->{'Key'};
-	foreach $b (@$keysBindings) {
-		my $l = 0;
-		$configForScript->{KeyBindings} .= $b->{'key'};
-		$l = length($b->{'key'});
-		$l = 7-$l;
-		$configForScript->{KeyBindings} .= " " x $l;
-		$configForScript->{KeyBindings} .= $b->{'context'};
-		$l = length($b->{'context'});
-		$l = 7-$l;
-		$configForScript->{KeyBindings} .= " " x $l;
-		$configForScript->{KeyBindings} .= $b->{'modifiers'};
-		$l = length($b->{'modifiers'});
-		$l = 7-$l;
-		$configForScript->{KeyBindings} .= " " x $l;
-		$configForScript->{KeyBindings} .= "$b->{'action'}|";
-	}
-	$configForScript->{KeyBindings} =~ s/\|$//;
-	$configForScript->{KeyBindings} .= "\n";
-
-	my $MouseBindings = $config->{'Mouse'};
-	foreach $b (@$MouseBindings) {
-		my $l = 0;
-		$configForScript->{MouseBindings} .= $b->{'button'};
-		$l = length($b->{'button'});
-		$l = 7-$l;
-		$configForScript->{MouseBindings} .= " " x $l;
-		$configForScript->{MouseBindings} .= $b->{'context'};
-		$l = length($b->{'context'});
-		$l = 7-$l;
-		$configForScript->{MouseBindings} .= " " x $l;
-		$configForScript->{MouseBindings} .= $b->{'modifiers'};
-		$l = length($b->{'modifiers'});
-		$l = 7-$l;
-		$configForScript->{MouseBindings} .= " " x $l;
-		$configForScript->{MouseBindings} .= "$b->{'action'}|";
-	}
-	$configForScript->{MouseBindings} =~ s/\|$//;
-		
 }
 
 # -----------------------------------------------------------------------------

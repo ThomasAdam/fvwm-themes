@@ -206,8 +206,8 @@ DestroyMenu MenuFvwmConfiguration
 AddToMenu   MenuFvwmConfiguration "Configuration" Title
 + "Themes Center GUI%menu/themes.xpm%" \
   FvwmScript FvwmScript-ThemesCenter --text-colorset 36 --viewer-colorset 33
-+ "Configuration Center%menu/configuration.xpm%" FvwmScript \
-	FvwmScript-ConfigCenter --text-colorset 36 --icon-colorset 5 \
++ "Global Feel GUI%menu/configuration.xpm%" FvwmScript \
+	FvwmScript-GlobalFeel --text-colorset 36 --icon-colorset 5 \
 	--viewer-colorset 33
 + "Theme Settings (form)%menu/themes.xpm%" FuncFvwmFormThemeSettings
 + "Theme Settings (gtk)%menu/themes.xpm%"  FuncFvwmWithGtk FuncFvwmGtkThemeSettings

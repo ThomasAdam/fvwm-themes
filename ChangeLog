@@ -1,8 +1,20 @@
 2001-10-07  olicha  <olivier.chapuis@free.fr>
 
+	* scripts/FvwmScrit-GlobalFeel (renamed file):
+	* locale/*/Makefile.am:
+	* locale/*/FvwmScrit-GlobalFeel.msg (renamed files):
+	* themes/default/menus:
+	* bin/fvwm-themes-script.in:
+	Renamed FvwmScrit-ConfigCenter by FvwmScrit-GlobalFeel. Do not
+	have the time to complet it, several Script is maybe better and
+	we may want to use a toolkit as gtk+ for a true "configuration center".
+	locale/ru/FvwmScript-GlobalFeel.msg need translation :o)
+	
+2001-10-07  olicha  <olivier.chapuis@free.fr>
+
 	* themes/*/modules/main:FvwmPager*:
 	* themes/default/menus:
-	Put the the Res group move to desk and desk into a separted menu
+	Put the  Res group move to desk and page into a separted submenu
 	
 	* themes/*/modules/main:
 	Use "screen w" in all IconBox. Fixed y IconGrid

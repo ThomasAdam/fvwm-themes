@@ -1,10 +1,10 @@
 ### Menus:
-Menu1		{Fichier|thèmes Personels|Quitter}
-Menu2		{Général|Focus et Placement|Déplacement & Dimension|Pagination & Paramètres Souris|Fenètres Transitoires & Animation|Indications & Paramètres Avancés|Préférences ...}
-Menu3 		{Racourcis|Clavier|Souris|Applications|Stroke|Préférences ...}
-Menu4		{Look|Bouttons|Couleurs|Styles du Menu|Styles des Fenètres|Curseurs|Préférences ...}
-Menu5		{Divers|Effets de Sons|Fond d'écran|Démarrage|Préférences ...}
-OnlyGlobal	{Seulement Général est implementé}
+Menu1		{Fichier|Préférences|Quitter}
+Menu2		{Configuration ...|Focus et Placement|Déplacement & Dimension|Pagination & Paramètres Souris|Fenètres Transitoires & Animation|Indications & Paramètres Avancés}
+#Menu3 		{Racourcis|Clavier|Souris|Applications|Stroke|Préférences ...}
+#Menu4		{Look|Bouttons|Couleurs|Styles du Menu|Styles des Fenètres|Curseurs|Préférences ...}
+#Menu5		{Divers|Effets de Sons|Fond d'écran|Démarrage|Préférences ...}
+#OnlyGlobal	{Seulement Général est implementé}
 
 ### Focus
 # no more that 44 characteres for the next 8
@@ -137,10 +137,10 @@ TryIsGlobal	{"Essayer" s'applique à tout et pas seulement à la page courrante   
 DefIsGlobal	{"Défauts" recharge les défauts pour tout et pas seulement pour la page courrante           }
 SaveIsGlobal	{"Sauver" s'applique à tout et pas seulement à la page courrant                            }
 ### Bindings
-KeyTitle	{Racourcis Clavier}
-MouseTitle	{Racourcis Souris}
-StrokeTitle	{Racourcis "Stroke"}
-AppBindTitle    {Applications Préférés}
+#KeyTitle	{Racourcis Clavier}
+#MouseTitle	{Racourcis Souris}
+#StrokeTitle	{Racourcis "Stroke"}
+#AppBindTitle    {Applications Préférés}
 
 ### End
 ConfigLoaded	{Configuration Chargée}

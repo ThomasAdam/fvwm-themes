@@ -6,6 +6,6 @@ config_DATA = \
 	FvwmScript-ColorSelector.html FvwmScript-ColorSelector.msg \
 	FvwmScript-ThemesCenter.html FvwmScript-ThemesCenter.msg \
 	FvwmScript-ComponentProperties.msg \
-	FvwmScript-ConfigCenter.msg
+	FvwmScript-GlobalFeel.msg
 
 EXTRA_DIST = $(config_DATA)
