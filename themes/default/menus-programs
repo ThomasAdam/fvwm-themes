@@ -408,6 +408,7 @@ AddToMenu   MenuFvwmGamesStrategy "Strategy" Title
 + "FreeCraft%menu/game.xpm%"		Exec exec freecraft
 + "FreeCiv Server%menu/game.xpm%"	Exec exec civserver-wrapper
 + "FreeCiv Client%menu/game.xpm%"	Exec exec civclient-wrapper
++ "Heroes of Might && Magic III%menu/game.xpm%"	Exec exec heroes3
 
 DestroyMenu MenuFvwmGamesTetris
 AddToMenu   MenuFvwmGamesTetris "Tetris" Title
