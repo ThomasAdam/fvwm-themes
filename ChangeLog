@@ -15,6 +15,9 @@
 	* doc/colorsets:
 	finished colorset description
 
+	* locale/ru/FvwmScript-ThemesCenter.html:
+	translated one more paragraph
+
 2001-07-23  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/Makefile.am:
