@@ -1,3 +1,12 @@
+2003-12-09  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-root.in:
+	support wmsetbg, it supports all formats and works like Esetroot,
+	but it does not support any color names like "#a0a000" or rgb:...
+
+	* themes/underground/background/main:
+	use fvwm-themes-root instead of xv, uhh, 0.7.0 is broken here then
+
 2003-12-01  migo  <migo@homemail.com>
 
 	* themes/e17/colors-decor:

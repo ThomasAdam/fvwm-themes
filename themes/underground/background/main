@@ -9,4 +9,4 @@ DestroyFunc FuncFvwmBackgroundImage
 AddToFunc   FuncFvwmBackgroundImage
 + I DestroyFunc FuncFvwmStartThemeBackground
 + I AddToFunc   FuncFvwmStartThemeBackground
-+ I + I Exec exec xv -root -quit -viewonly $./images/"$0"
++ I + I Exec exec fvwm-themes-root $./images/"$0"
