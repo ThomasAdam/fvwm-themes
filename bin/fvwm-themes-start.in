@@ -93,18 +93,22 @@ if [ "$isNewVersion" = 1 -o "$isNewSession" = 1 ]; then
 	@bindir@/fvwm-themes-config --load @personal 2>/dev/null
 fi
 
-# check that @FVWM_BINDIR@ (fvwm2) is in $PATH
-if type fvwm2 >/dev/null 2>&1; then :; else
+# check that @FVWM_BINDIR@ is in $PATH and first for fvwm-config
+if [ "`which fvwm-config 2>/dev/null`" != "@FVWM_BINDIR@/fvwm-config" ]; then
+	echo "[FVWM-Themes]: There is no correct fvwm-config in your PATH; updated"
 	PATH="@FVWM_BINDIR@:$PATH"
+	export PATH
 fi
 
-# check that @bindir@ (fvwm-themes-config) is in $PATH
-if type fvwm-themes-config >/dev/null 2>&1; then :; else
+# check that @bindir@ is in $PATH and first for fvwm-themes-config
+if [ "`which fvwm-themes-config 2>/dev/null`" != "@bindir@/fvwm-themes-start" ]; then
+	echo "[FVWM-Themes]: There is no correct fvwm-themes-config in your PATH; updated"
 	PATH="@bindir@:$PATH"
+	export PATH
 fi
 
 cd $startDir
 echo "[FVWM-Themes]: Starting FVWM under the $session fvwm-themes session"
 if [ "$start" = "yes" ]; then
-    exec $fvwm -f "$rcName" $fvwmArgs
+	exec $fvwm -f "$rcName" $fvwmArgs
 fi

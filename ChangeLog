@@ -5,6 +5,12 @@
 	this is to enable user versions of sub-files in ~/.fvwm to be Read,
 	probably it is not a good idea to enable user versions of sub-files
 
+	* bin/fvwm-themes-start.in:
+	actually prepend bindir to PATH even if it is here, but not first;
+	the problem is that PATH is now not that user had initially,
+	but running wrong versions of fvwm and fvwm-themes utilities
+	(if there are several instalations) is probably worse for us
+
 2001-03-30  migo  <migo@homemail.com>
 
 	* configure.in:
