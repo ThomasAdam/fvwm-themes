@@ -4,15 +4,15 @@
 #  Send your comments to migo@homemail.com.
 ###
 
-Style Eterm* IconOverride
-#Style * IconOverride
+#Style Eterm* IconOverride
+Style * IconOverride
 
 ###
 #  Known applications
 ###
 
 # Setting window style icons; style is defined by window name/resource/class.
-# Note, todo can be replaced by unknown or empty, but since it is yet beta,
+# Note, todo can be replaced by unknown or empty, but since it is beta yet,
 # todo is a notice to do something about an icon for this application.
 
 Style "*"                      Icon norm/unknown.xpm,         MiniIcon mini/unknown.xpm
@@ -54,7 +54,7 @@ Style "Fvwm*"                  Icon norm/utility.xpm,         MiniIcon mini/util
 Style "ghostview"              Icon norm/ghostview.xpm,       MiniIcon mini/ghostview.xpm
 Style "ghostscript"            Icon norm/ghostview.xpm,       MiniIcon mini/ghostview.xpm
 Style "gifview"                Icon norm/image-viewer.xpm,    MiniIcon mini/image-viewer.xpm
-Style "gv"                     Icon norm/ghostview.xpm,       MiniIcon mini/ghostview.xpm
+Style "GV"                     Icon norm/ghostview.xpm,       MiniIcon mini/ghostview.xpm
 Style "Help_popup"             Icon norm/help.xpm,            MiniIcon mini/help.xpm
 Style "ixset"                  Icon norm/todo.xpm,            MiniIcon mini/todo.xpm
 Style "matlab"                 Icon norm/todo.xpm,            MiniIcon mini/todo.xpm
@@ -86,6 +86,7 @@ Style "vmware"                 Icon norm/utility.xpm,         MiniIcon mini/util
 Style "wmCalClock"             Icon norm/clock.xpm,           MiniIcon mini/clock.xpm
 Style "workman"                Icon norm/cd-player.xpm,       MiniIcon mini/cd-player.xpm
 Style "X11Amp"                 Icon norm/music.xpm,           MiniIcon mini/music.xpm
+Style "X3270xad"               Icon norm/terminal.xpm,        MiniIcon mini/terminal.xpm
 Style "xanim"                  Icon norm/image-viewer.xpm,    MiniIcon mini/image-viewer.xpm
 Style "xbiff"                  Icon norm/mail.xpm,            MiniIcon mini/mail.xpm
 Style "xbm*"                   Icon norm/image-viewer.xpm,    MiniIcon mini/image-viewer.xpm
@@ -160,6 +161,7 @@ Style "about"                  Icon norm/information.xpm,     MiniIcon mini/info
 Style "*kps"                   Icon norm/todo.xpm,            MiniIcon mini/todo.xpm
 
 # GNOME/Gtk Apps
+Style "Galeon-bin"             Icon norm/www.xpm,             MiniIcon mini/www.xpm
 Style "gcolorsel"              Icon norm/utility.xpm,         MiniIcon mini/utility.xpm
 Style "gdiskfree"              Icon norm/disk.xpm,            MiniIcon mini/disk.xpm
 Style "gEdit"                  Icon norm/editor.xpm,          MiniIcon mini/editor.xpm
@@ -178,6 +180,7 @@ Style "GnomeHelpBrowser"       Icon norm/help.xpm,            MiniIcon mini/help
 Style "gnome-ppp"              Icon norm/network.xpm,         MiniIcon mini/network.xpm
 Style "gnome-run"              Icon norm/utility.xpm,         MiniIcon mini/utility.xpm
 Style "gnome-sync"             Icon norm/folder.xpm,          MiniIcon mini/folder.xpm
+Style "Gnome-linuxconf"        Icon norm/utility.xpm,         MiniIcon mini/utility.xpm
 Style "gnomecal"               Icon norm/clock.xpm,           MiniIcon mini/clock.xpm
 Style "gnomecard"              Icon norm/information.xpm,     MiniIcon mini/information.xpm
 Style "gnomecc"                Icon norm/home.xpm,            MiniIcon mini/home.xpm
@@ -198,20 +201,25 @@ Style "X-Chat"                 Icon norm/chat.xpm,            MiniIcon mini/chat
 
 # KDE Apps
 Style "kdf"                    Icon norm/disk.xpm,            MiniIcon mini/disk.xpm
+Style "kedit"                  Icon norm/editor.xpm,          MiniIcon mini/editor.xpm
 Style "kfind"                  Icon norm/todo.xpm,            MiniIcon mini/todo.xpm
 Style "kfm"                    Icon norm/folders.xpm,         MiniIcon mini/folders.xpm
 Style "kdehelp"                Icon norm/help.xpm,            MiniIcon mini/help.xpm
 Style "kmid"                   Icon norm/sound.xpm,           MiniIcon mini/sound.xpm
 Style "kppp"                   Icon norm/network.xpm,         MiniIcon mini/network.xpm
 Style "kscd"                   Icon norm/cd-player.xpm,       MiniIcon mini/cd-player.xpm
+Style "kvt"                    Icon norm/shell.xpm,           MiniIcon mini/shell.xpm
 
 # Games
 Style "*angband"               Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "gcfclient"              Icon norm/game.xpm,            MiniIcon mini/game.xpm
+Style "MirrorMagic"            Icon norm/game.xpm,            MiniIcon mini/game.xpm
+Style "PySol"                  Icon norm/game-cards.xpm,      MiniIcon mini/game-cards.xpm
+Style "Rocks'n'Diamonds"       Icon norm/game.xpm,            MiniIcon mini/game.xpm
+Style "XGammon"                Icon norm/game.xpm,            MiniIcon mini/game.xpm
+Style "XGammon-Buttons"        Icon norm/information.xpm,     MiniIcon mini/information.xpm
 Style "xgoban"                 Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "comment"                Icon norm/information.xpm,     MiniIcon mini/information.xpm
-Style "xgammon"                Icon norm/game.xpm,            MiniIcon mini/game.xpm
-Style "XGammon-Buttons"        Icon norm/information.xpm,     MiniIcon mini/information.xpm
 Style "xmahjongg"              Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "*tetris"                Icon norm/game.xpm,            MiniIcon mini/game.xpm
 Style "xtrojka"                Icon norm/game.xpm,            MiniIcon mini/game.xpm

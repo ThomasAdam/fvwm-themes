@@ -6,14 +6,12 @@ Important items to do:
 ---------------------
 
 * Think where belong all functions sitting in different components.
-  Probably rename functions-appbind to functions-user. [migo]
+  [optional]
 
 * Write some documentation about CCDS. [migo]
 
 * Fix FvwmForm-ThemeSettings (session is obsolete).
 [Alex; if not done before 0.4.0 comment the entries in the menu]
-
-* Add luthien theme [migo; started], olicha: maybe add a Desker? 
 
 * Fix all crashes.
 
@@ -28,10 +26,10 @@ Ideas:
 * background-auto@ component (with a scalar of type Minutes), which will
   iterate over a background@ options randomly or sequencially every n minutes.
 
-* introduce option-value/choice groups, which only affect presentation menus,
-  not logic; for example it is possible to have 6 groups of choices, say,
-  6 types of backgrounds; with inline=1 groups are simply delimited ("" Nop),
-  with inline=0 there are 6 submenus of choices.
+* introduce option-value/variant groups, which only affect presentation menus,
+  not logic; for example it is possible to have 6 groups of variants, say,
+  6 types of backgrounds. With inline=1 groups are simply delimited ("" Nop),
+  with inline=0 there are 6 submenus of variants.
 
 Optional items to do:
 --------------------
@@ -88,3 +86,7 @@ Closed (will be deleted after 0.4.0):
 ------------------------------------
 
 * modules@ components. Several things may be improved.
+
+* Add luthien theme. olicha: maybe add a Desker? 
+migo: do you want all themes to be the same? :)
+
