@@ -52,15 +52,12 @@ Begin
     If $TextColorset <> {} Then
     Begin
 	ChangeColorset 5 $TextColorset
-	#ChangeColorset 12 $TextColorset
-	#ChangeColorset 17 $TextColorset
-	#ChangeColorset 44 $TextColorset
     End
 
     # to send fvwm-themes-com command
     Set $SendMsgAndGet = {fvwm-themes-com --name config-}$pid{ --lock-and-get --message=}
-    Set $SendMsg = {fvwm-themes-com --name config-}$pid{  --message=}
-    Set $GetLine = {fvwm-themes-com --name config-}$pid{  --get-buffer --line=}	
+    Set $SendMsg = {fvwm-themes-com --name config-}$pid{ --message=}
+    Set $GetLine = {fvwm-themes-com --name config-}$pid{ --get-buffer --line=}	
      # Get all the options
     Set $cmd = $SendMsgAndGet{"options }$MainComponent{ }$MainTheme{" --line 1}
     Set $NbrOfOptions = (GetOutput $cmd 1 -1)

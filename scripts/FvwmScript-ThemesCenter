@@ -68,8 +68,8 @@ Begin
     
     # to send fvwm-themes-com command
     Set $SendMsgAndGet = {fvwm-themes-com --name config-}$pid{ --lock-and-get --message=}
-    Set $SendMsg = {fvwm-themes-com --name config-}$pid{  --message=}
-    Set $GetLine = {fvwm-themes-com --name config-}$pid{  --get-buffer --line=}
+    Set $SendMsg = {fvwm-themes-com --name config-}$pid{ --message=}
+    Set $GetLine = {fvwm-themes-com --name config-}$pid{ --get-buffer --line=}
 
     # Get the themes list
     Set $cmd = $SendMsgAndGet{"themes-list"}

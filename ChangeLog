@@ -1,3 +1,9 @@
+2000-08-15  olicha <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in: move the Themes Center menu entries
+	* scripts/FvwmScript-ThemeOptions: 
+	* scripts/FvwmScript-ThemesCenter: Some fixes?
+
 2000-08-13  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in: s/eq/=~/, s/restor/restore/
