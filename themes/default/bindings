@@ -33,11 +33,11 @@ AddToFunc   FuncFvwmMoveOrIconify
 
 DestroyFunc FuncFvwmMaximizeFullScreen
 AddToFunc   FuncFvwmMaximizeFullScreen
-+ I ThisWindow (Maximized) Style $n Title, Borders
-+ I CondCase (NoMatch) Style $n NoTitle, !Borders
-+ I CondCase (NoMatch) Raise
-+ I CondCase (NoMatch) UpdateStyles
-+ I Maximize
++ I ThisWindow (Maximized) WindowStyle Title, Borders
++ I KeepRc TestRc (NoMatch) WindowStyle NoTitle, !Borders
++ I KeepRc TestRc (NoMatch) Raise
++ I KeepRc TestRc (NoMatch) UpdateStyles
++ I Maximize ewmhiwa
 
 DestroyFunc FuncFvwmWindowOpsOrAction
 AddToFunc   FuncFvwmWindowOpsOrAction
@@ -243,14 +243,6 @@ Mouse 1 	WI	CM	FuncFvwmMoveOrRaiseLower
 MouseXX 2 3	WI	M	FuncFvwmMoveOrRaiseLower
 MouseXX 3 2	WI	M	Menu MenuFvwmWindowOps
 
-# for ewmh
-DestroyFunc FuncFvwmEWMHCtlButtonXXOnRootWindow
-AddToFunc   FuncFvwmEWMHCtlButtonXXOnRootWindow
-+ I Module FvwmPager -transient FvwmPager-Single * *
-
-DestroyFunc FuncFvwmEWMHShiftCtlButtonXXOnRootWindow
-AddToFunc   FuncFvwmEWMHShiftCtlButtonXXOnRootWindow
-+ I Module FvwmPager -transient FvwmPager-Desker 0 3
 # ---------------------------------------------------------------------------
 # We need to destroy the bindings to avoid current problems with fvwm.
 

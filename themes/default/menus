@@ -123,10 +123,6 @@ AddToMenu   MenuFvwmManPages "FVWM Man Pages" Title
 # ----------------------------------------------------------------------------
 # ---------- Modules
 
-# fix some warning
-AddToFunc   FuncFvwmAddToMenusStartEWMH
-AddToFunc   FuncFvwmAddToMenusStopEWMH
-
 DestroyMenu MenuFvwmModules
 AddToMenu   MenuFvwmModules "FVWM Modules" Title
 + "Start Theme Modules%menu/modules.xpm%"	Popup MenuFvwmStartThemeModules
@@ -142,7 +138,7 @@ AddToMenu   MenuFvwmStartRegularModules "Regular Modules" Title
 + "Ba&nner%menu/display.xpm%"		Module FvwmBanner
 + "Co&mmandS%menu/terminal-special.xpm%" FuncFvwmRestartModule FvwmCommandS
 + "&Console%menu/terminal-special.xpm%"		FuncFvwmConsole
-+ "&GtkDebug%menu/developement.xpm%"		Module FvwmGtkDebug
++ "&GtkDebug%menu/development.xpm%"		Module FvwmGtkDebug
 + "&Identify%menu/window-identify.xpm%"		Module FvwmIdent
 + "&ScrollBar (1/2 app)%menu/window-resize.xpm%"  Module FvwmScroll 2 2
 # FVWM has problems with '%' escaping...
@@ -155,10 +151,10 @@ AddToMenu   MenuFvwmStartRegularModules "Regular Modules" Title
 + "&Forms%menu/utility.xpm%"                Popup  MenuFvwmForms
 + "&Applets%menu/utility.xpm%"              Popup  MenuFvwmApplets
 + "" Nop
-# defined in settings/{autoraise,soud-player,ewmh}/*
+# defined in settings/{autoraise,soud-player,events-handler}/*
 FuncFvwmAddToMenusFvwmAutoRaise
 FuncFvwmAddToMenusStartSoundEffect
-FuncFvwmAddToMenusStartEWMH
+FuncFvwmAddToMenusStartFvwmEvent-Events
 
 DestroyMenu MenuFvwmStopRegularModules
 AddToMenu   MenuFvwmStopRegularModules "Regular Modules" Title
@@ -174,7 +170,7 @@ AddToMenu   MenuFvwmStopRegularModules "Regular Modules" Title
 + "Stop All &Buttons%menu/quit.xpm%"	KillModule FvwmButtons
 + "Stop All &Forms%menu/quit.xpm%"	KillModule FvwmForm
 FuncFvwmAddToMenusStopSoundEffect
-FuncFvwmAddToMenusStopEWMH
+FuncFvwmAddToMenusStopFvwmEvent-Events
 
 DestroyMenu MenuFvwmForms
 AddToMenu   MenuFvwmForms "FvwmForm Tools" Title
@@ -349,28 +345,28 @@ AddToMenu    MenuFvwmWindowGroupOps "Resource Group Ops" Title
 
 DestroyMenu MenuFvwmWindowStyle
 AddToMenu   MenuFvwmWindowStyle "Window Style" Title
-+ "%menu/window.xpm%TitleAtTop"    Pick (CirculateHit) Style $n TitleAtTop
-+ "%menu/window.xpm%TitleAtBottom" Pick (CirculateHit) Style $n TitleAtBottom
-+ "%menu/window.xpm%Title"         Pick (CirculateHit) Style $n Title
-+ "%menu/window.xpm%NoTitle"       Pick (CirculateHit) Style $n NoTitle
++ "%menu/window.xpm%TitleAtTop"    WindowStyle TitleAtTop
++ "%menu/window.xpm%TitleAtBottom" WindowStyle TitleAtBottom
++ "%menu/window.xpm%Title"         WindowStyle Title
++ "%menu/window.xpm%NoTitle"       WindowStyle NoTitle
 + "" Nop
-+ "%menu/window.xpm%FvwmBorder"           Pick (CirculateHit) Style $n FvwmBorder
-+ "%menu/window.xpm%MWMBorder"            Pick (CirculateHit) Style $n MWMBorder
-+ "%menu/window.xpm%DepressableBorder"    Pick (CirculateHit) Style $n DepressableBorder
-+ "%menu/window.xpm%FirmBorder"           Pick (CirculateHit) Style $n FirmBorder
-+ "%menu/window.xpm%Handles"              Pick (CirculateHit) Style $n Handles
-+ "%menu/window.xpm%NoHandles"            Pick (CirculateHit) Style $n NoHandles
-+ "%menu/window.xpm%BorderWidth 0"        Pick (CirculateHit) Style $n BorderWidth 0
-+ "%menu/window.xpm%BorderWidth 5"        Pick (CirculateHit) Style $n BorderWidth 5
-+ "%menu/window.xpm%HandleWidth 0"        Pick (CirculateHit) Style $n HandleWidth 0
-+ "%menu/window.xpm%HandleWidth 7"        Pick (CirculateHit) Style $n HandleWidth 7
++ "%menu/window.xpm%FvwmBorder"           WindowStyle FvwmBorder
++ "%menu/window.xpm%MWMBorder"            WindowStyle MWMBorder
++ "%menu/window.xpm%DepressableBorder"    WindowStyle DepressableBorder
++ "%menu/window.xpm%FirmBorder"           WindowStyle FirmBorder
++ "%menu/window.xpm%Handles"              WindowStyle Handles
++ "%menu/window.xpm%NoHandles"            WindowStyle NoHandles
++ "%menu/window.xpm%BorderWidth 0"        WindowStyle BorderWidth 0
++ "%menu/window.xpm%BorderWidth 5"        WindowStyle BorderWidth 5
++ "%menu/window.xpm%HandleWidth 0"        WindowStyle HandleWidth 0
++ "%menu/window.xpm%HandleWidth 7"        WindowStyle HandleWidth 7
 + "" Nop
-+ "%menu/window-resize.xpm%ResizeOpaque"  Pick (CirculateHit) Style $n ResizeOpaque
-+ "%menu/window-resize.xpm%ResizeOutline" Pick (CirculateHit) Style $n ResizeOutline
-+ "%menu/mouse.xpm%SloppyFocus"           Pick (CirculateHit) Style $n SloppyFocus
-+ "%menu/mouse.xpm%ClickToFocus"          Pick (CirculateHit) Style $n ClickToFocus
-+ "%menu/mouse.xpm%MouseFocus"            Pick (CirculateHit) Style $n MouseFocus
-+ "%menu/mouse.xpm%NeverFocus"            Pick (CirculateHit) Style $n NeverFocus
++ "%menu/window-resize.xpm%ResizeOpaque"  WindowStyle ResizeOpaque
++ "%menu/window-resize.xpm%ResizeOutline" WindowStyle ResizeOutline
++ "%menu/mouse.xpm%SloppyFocus"           WindowStyle SloppyFocus
++ "%menu/mouse.xpm%ClickToFocus"          WindowStyle ClickToFocus
++ "%menu/mouse.xpm%MouseFocus"            WindowStyle MouseFocus
++ "%menu/mouse.xpm%NeverFocus"            WindowStyle NeverFocus
 
 DestroyMenu MenuFvwmWindowMaximize
 AddToMenu   MenuFvwmWindowMaximize "Maximize Window" Title
@@ -390,7 +386,7 @@ AddToMenu   MenuFvwmWindowMaximize "Maximize Window" Title
 + "%menu/window-maximize.xpm%Maximize Grow Horiz." Maximize On grow    0
 + "" Nop
 + "%menu/window-maximize.xpm%Maximize Full Screen	Shift-Ctrl-F11" Pick FuncFvwmMaximizeFullScreen
-+ "%menu/window-maximize.xpm%Unmaximize Full Screen	Shift-Ctrl-F12" Pick FuncFvwmUnmaximizeFullScreen
++ "%menu/window-maximize.xpm%Unmaximize Full Screen	Shift-Ctrl-F12" Pick FuncFvwmMaximizeFullScreen
 
 DestroyMenu MenuFvwmWindowRefresh
 AddToMenu   MenuFvwmWindowRefresh "Refresh Window" Title

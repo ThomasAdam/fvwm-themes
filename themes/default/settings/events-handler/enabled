@@ -1,0 +1,216 @@
+DestroyFunc FuncFvwmStartFvwmEvent-Events
+AddToFunc   FuncFvwmStartFvwmEvent-Events
++ I Module FvwmEvent FvwmEvent-Events
+
+DestroyFunc FuncFvwmStopFvwmEvent-Events
+AddToFunc   FuncFvwmStopFvwmEvent-Events
++ I KillModule FvwmEvent FvwmEvent-Events
+
+DestroyFunc FuncFvwmAddToMenusStartFvwmEvent-Events
+AddToFunc   FuncFvwmAddToMenusStartFvwmEvent-Events
++ I + "Events &Handler%menu/window.xpm%" \
+	FuncFvwmRestartModuleByAlias FvwmEvent FvwmEvent-Events
+
+DestroyFunc FuncFvwmAddToMenusStopFvwmEvent-Events
+AddToFunc   FuncFvwmAddToMenusStopFvwmEvent-Events
++ I + "Stop Events &Handler%menu/quit.xpm%" killmodule FvwmEvent FvwmEvent-Events
+
+DestroyModuleConfig FvwmEvent-Events: *
+
+*FvwmEvent-Events: StartDelay 0
+*FvwmEvent-Events: Delay 0
+
+*FvwmEvent-Events: error            FuncFvwmEventsHandler_error
+*FvwmEvent-Events: add_window       FuncFvwmEventsHandler_add_window
+*FvwmEvent-Events: raise_window     FuncFvwmEventsHandler_raise_window
+*FvwmEvent-Events: lower_window     FuncFvwmEventsHandler_lower_window
+*FvwmEvent-Events: focus_change     FuncFvwmEventsHandler_focus_change
+*FvwmEvent-Events: destroy_window   FuncFvwmEventsHandler_destroy_window
+*FvwmEvent-Events: iconify          FuncFvwmEventsHandler_iconify
+*FvwmEvent-Events: deiconify        FuncFvwmEventsHandler_deiconify
+*FvwmEvent-Events: windowshade      FuncFvwmEventsHandler_windowshade
+*FvwmEvent-Events: dewindowshade    FuncFvwmEventsHandler_dewindowshade
+*FvwmEvent-Events: new_page         FuncFvwmEventsHandler_new_page
+*FvwmEvent-Events: new_desk         FuncFvwmEventsHandler_new_desk
+*FvwmEvent-Events: configure_window FuncFvwmEventsHandler_configure_window
+*FvwmEvent-Events: window_name      FuncFvwmEventsHandler_window_name
+*FvwmEvent-Events: icon_name        FuncFvwmEventsHandler_icon_name
+*FvwmEvent-Events: icon_file        FuncFvwmEventsHandler_icon_file
+*FvwmEvent-Events: icon_location    FuncFvwmEventsHandler_icon_location
+*FvwmEvent-Events: mini_icon        FuncFvwmEventsHandler_mini_icon
+*FvwmEvent-Events: default_icon     FuncFvwmEventsHandler_default_icon
+*FvwmEvent-Events: res_class        FuncFvwmEventsHandler_res_class
+*FvwmEvent-Events: res_name         FuncFvwmEventsHandler_res_name
+*FvwmEvent-Events: end_windowlist   FuncFvwmEventsHandler_end_windowlist
+*FvwmEvent-Events: end_config_info  FuncFvwmEventsHandler_end_config_info
+*FvwmEvent-Events: config_info      FuncFvwmEventsHandler_config_info
+*FvwmEvent-Events: string           FuncFvwmEventsHandler_string
+*FvwmEvent-Events: map              FuncFvwmEventsHandler_map
+*FvwmEvent-Events: mini_icon        FuncFvwmEventsHandler_mini_icon
+*FvwmEvent-Events: visible_name     FuncFvwmEventsHandler_visible_name
+*FvwmEvent-Events: sendconfig       FuncFvwmEventsHandler_sendconfig
+*FvwmEvent-Events: restack          FuncFvwmEventsHandler_restack
+
+*FvwmEvent-Events: visible_icon_name FuncFvwmEventsHandler_visible_icon_name
+*FvwmEvent-Events: leave_window      FuncFvwmEventsHandler_leave_window
+*FvwmEvent-Events: enter_window      FuncFvwmEventsHandler_enter_window
+*FvwmEvent-Events: property_change   FuncFvwmEventsHandler_property_change
+
+*FvwmEvent-Events: startup          FuncFvwmEventsHandler_startup
+*FvwmEvent-Events: shutdown         FuncFvwmEventsHandler_shutdown
+*FvwmEvent-Events: unknown          FuncFvwmEventsHandler_unknown
+
+DestroyFunc FuncFvwmEventsHandlerVerbose
+AddToFunc   FuncFvwmEventsHandlerVerbose
++ I Nop
+#+ I Echo $0 $[w.name]
+
+DestroyFunc FuncFvwmEventsHandler_error
+AddToFunc   FuncFvwmEventsHandler_error
++ I FuncFvwmEventsHandlerVerbose error
+
+DestroyFunc FuncFvwmEventsHandler_add_window
+AddToFunc   FuncFvwmEventsHandler_add_window
++ I FuncFvwmEventsHandlerVerbose add_window
+
+DestroyFunc FuncFvwmEventsHandler_raise_window
+AddToFunc   FuncFvwmEventsHandler_raise_window
++ I FuncFvwmEventsHandlerVerbose raise_window
+
+DestroyFunc FuncFvwmEventsHandler_lower_window
+AddToFunc   FuncFvwmEventsHandler_lower_window
++ I FuncFvwmEventsHandlerVerbose lower_window
+
+DestroyFunc FuncFvwmEventsHandler_focus_change
+AddToFunc   FuncFvwmEventsHandler_focus_change
++ I FuncFvwmEventsHandlerVerbose focus_change
+
+DestroyFunc FuncFvwmEventsHandler_destroy_window
+AddToFunc   FuncFvwmEventsHandler_destroy_window
++ I FuncFvwmEventsHandlerVerbose destroy_window
+
+DestroyFunc FuncFvwmEventsHandler_iconify
+AddToFunc   FuncFvwmEventsHandler_iconify
++ I FuncFvwmEventsHandlerVerbose iconify
+
+DestroyFunc FuncFvwmEventsHandler_deiconify
+AddToFunc   FuncFvwmEventsHandler_deiconify
++ I FuncFvwmEventsHandlerVerbose deiconify
+
+DestroyFunc FuncFvwmEventsHandler_windowshade
+AddToFunc   FuncFvwmEventsHandler_windowshade
++ I FuncFvwmEventsHandlerVerbose windowshade
+
+DestroyFunc FuncFvwmEventsHandler_dewindowshade
+AddToFunc   FuncFvwmEventsHandler_dewindowshade
++ I FuncFvwmEventsHandlerVerbose dewindowshade
+
+DestroyFunc FuncFvwmEventsHandler_new_page
+AddToFunc   FuncFvwmEventsHandler_new_page
++ I FuncFvwmEventsHandlerVerbose new_page
+
+DestroyFunc FuncFvwmEventsHandler_new_desk
+AddToFunc   FuncFvwmEventsHandler_new_desk
++ I FuncFvwmEventsHandlerVerbose new_desk
+
+DestroyFunc FuncFvwmEventsHandler_configure_window
+AddToFunc   FuncFvwmEventsHandler_configure_window
++ I FuncFvwmEventsHandlerVerbose configure_window
+
+DestroyFunc FuncFvwmEventsHandler_window_name
+AddToFunc   FuncFvwmEventsHandler_window_name
++ I FuncFvwmEventsHandlerVerbose window_name
+
+DestroyFunc FuncFvwmEventsHandler_icon_name
+AddToFunc   FuncFvwmEventsHandler_icon_name
++ I FuncFvwmEventsHandlerVerbose icon_name
+
+DestroyFunc FuncFvwmEventsHandler_icon_file
+AddToFunc   FuncFvwmEventsHandler_icon_file
++ I FuncFvwmEventsHandlerVerbose icon_file
+
+DestroyFunc FuncFvwmEventsHandler_icon_location
+AddToFunc   FuncFvwmEventsHandler_icon_location
++ I FuncFvwmEventsHandlerVerbose icon_location
+
+DestroyFunc FuncFvwmEventsHandler_mini_icon
+AddToFunc   FuncFvwmEventsHandler_mini_icon
++ I FuncFvwmEventsHandlerVerbose mini_icon
+
+DestroyFunc FuncFvwmEventsHandler_default_icon
+AddToFunc   FuncFvwmEventsHandler_default_icon
++ I FuncFvwmEventsHandlerVerbose default_icon
+
+DestroyFunc FuncFvwmEventsHandler_res_class
+AddToFunc   FuncFvwmEventsHandler_res_class
++ I FuncFvwmEventsHandlerVerbose res_class
+
+DestroyFunc FuncFvwmEventsHandler_res_name
+AddToFunc   FuncFvwmEventsHandler_res_name
++ I FuncFvwmEventsHandlerVerbose res_name
+
+DestroyFunc FuncFvwmEventsHandler_end_windowlist
+AddToFunc   FuncFvwmEventsHandler_end_windowlist
++ I FuncFvwmEventsHandlerVerbose end_windowlist
+
+DestroyFunc FuncFvwmEventsHandler_end_config_info
+AddToFunc   FuncFvwmEventsHandler_end_config_info
++ I FuncFvwmEventsHandlerVerbose end_config_info
+
+DestroyFunc FuncFvwmEventsHandler_config_info
+AddToFunc   FuncFvwmEventsHandler_config_info
++ I FuncFvwmEventsHandlerVerbose config_info
+
+DestroyFunc FuncFvwmEventsHandler_string
+AddToFunc   FuncFvwmEventsHandler_string
++ I FuncFvwmEventsHandlerVerbose string
+
+DestroyFunc FuncFvwmEventsHandler_map
+AddToFunc   FuncFvwmEventsHandler_map
++ I FuncFvwmEventsHandlerVerbose map
+
+DestroyFunc FuncFvwmEventsHandler_mini_icon
+AddToFunc   FuncFvwmEventsHandler_mini_icon
++ I FuncFvwmEventsHandlerVerbose mini_icon
+
+DestroyFunc FuncFvwmEventsHandler_visible_name
+AddToFunc   FuncFvwmEventsHandler_visible_name
++ I FuncFvwmEventsHandlerVerbose visible_name
+
+DestroyFunc FuncFvwmEventsHandler_sendconfig
+AddToFunc   FuncFvwmEventsHandler_sendconfig
++ I FuncFvwmEventsHandlerVerbose sendconfig
+
+DestroyFunc FuncFvwmEventsHandler_restack
+AddToFunc   FuncFvwmEventsHandler_restack
++ I FuncFvwmEventsHandlerVerbose restack
+
+DestroyFunc FuncFvwmEventsHandler_visible_icon_name
+AddToFunc   FuncFvwmEventsHandler_visible_icon_name
++ I FuncFvwmEventsHandlerVerbose visible_icon_name
+
+DestroyFunc FuncFvwmEventsHandler_leave_window
+AddToFunc   FuncFvwmEventsHandler_leave_window
++ I FuncFvwmEventsHandlerVerbose leave_window
+
+DestroyFunc FuncFvwmEventsHandler_enter_window
+AddToFunc   FuncFvwmEventsHandler_enter_window
++ I FuncFvwmEventsHandlerVerbose enter_window
+
+DestroyFunc FuncFvwmEventsHandler_property_change
+AddToFunc   FuncFvwmEventsHandler_property_change
++ I FuncFvwmEventsHandlerVerbose property_change
+
+DestroyFunc FuncFvwmEventsHandler_startup
+AddToFunc   FuncFvwmEventsHandler_startup
++ I FuncFvwmEventsHandlerVerbose startup
+
+DestroyFunc FuncFvwmEventsHandler_shutdown
+AddToFunc   FuncFvwmEventsHandler_shutdown
++ I FuncFvwmEventsHandlerVerbose shutdown
+
+DestroyFunc FuncFvwmEventsHandler_unknown
+AddToFunc   FuncFvwmEventsHandler_unknown
++ I FuncFvwmEventsHandlerVerbose unknown
+
+

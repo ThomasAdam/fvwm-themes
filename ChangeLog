@@ -1,3 +1,34 @@
+2003-07-16  olicha  <olivier.chapuis@free.fr>
+
+	* themes/default/bindings:
+	* themes/default/bindings.switch-mouse-2-3.yes:
+	* themes/default/bindings.switch-mouse-2-3.no:
+	* themes/default/menus:
+	* themes/default/theme.cfg: 
+	* themes/default/settings.cfg:
+	Remove old ewmh support support
+
+	* themes/default/menus:
+	* themes/default/theme.cfg:
+	* themes/default/settings/events-handlers/disabled (new file):
+	* themes/default/settings/events-handlers/enabled (new file):
+	* themes/default/settings.cfg:
+	Added a general propose FvwmEvent events handler FvwmEvent-Events.
+	For each FvwmEvent events a function is defined
+	               FuncFvwmEventsHandler_name_of_the_event
+	which do nothing. These functions are called by FvwmEvent-Events when
+	the corresponding event is received by FvwmEvent-Events. These functions
+	should be defined in user space in events-handlers-extra.
+	
+	* themes/default/settings.cfg:
+	* themes/default/settings/autoraise/modules:
+	Use -menterleave option of FvwmAuto and remove the MouseFocus Styles
+	and the dependencies that these styles needed
+
+	* themes/default/menus:
+	* themes/default/bindings:
+	Replace Style $n by WindowStyle
+
 2002-07-13 migo  <migo@homemail.com>
 
 	* debian/README.Debian:

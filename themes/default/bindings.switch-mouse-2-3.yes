@@ -14,16 +14,3 @@ AddToFunc   FuncFvwmButton3OnRootWindow
 DestroyFunc FuncFvwmButton3OnWindow
 AddToFunc   FuncFvwmButton3OnWindow
 + I RaiseLower
-
-# For ewmh
-DestroyFunc FuncFvwmEWMHBindingsButton3OnRootWindow
-AddToFunc   FuncFvwmEWMHBindingsButton3OnRootWindow
-+ I Mouse 3 R M WindowList
-
-DestroyFunc FuncFvwmNoEWMHBindingsButton3OnRootWindow
-AddToFunc   FuncFvwmNoEWMHBindingsButton3OnRootWindow
-+ I Mouse 3 R A WindowList
-
-DestroyFunc FuncFvwmEWMHButton2OnRootWindow
-AddToFunc   FuncFvwmEWMHButton2OnRootWindow
-+ I Menu MenuFvwmWindowOps

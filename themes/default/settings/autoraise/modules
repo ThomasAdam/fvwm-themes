@@ -1,24 +1,15 @@
-Style "FvwmButtons" MouseFocus
-Style "FvwmIconBox" MouseFocus
-Style "FvwmIconMan" MouseFocus
-Style "FvwmTaskBar" MouseFocus
-Style "FvwmWinList" MouseFocus
-Style "FvwmPager" MouseFocus, Lenience
-Style "panel" MouseFocus
-Style "xsm" MouseFocus
-
-# ----------------------------------------------------------------------------
-
 DestroyFunc FuncFvwmModulesAutoRaise
 AddToFunc   FuncFvwmModulesAutoRaise  
-+ I Current (FvwmButtons) Raise
-+ I Current (FvwmIconBox) Raise
-+ I Current (FvwmIconMan) Raise
-+ I Current (FvwmTaskBar) Raise
-+ I Current (FvwmWinList) Raise
-+ I Current (FvwmPager) Raise
-+ I Current (panel) Raise
-+ I Current (xsm) Raise
++ I PointerWindow (FvwmButtons) Raise
++ I PointerWindow (FvwmIconBox) Raise
++ I PointerWindow (FvwmIconMan) Raise
++ I PointerWindow (FvwmTaskBar) Raise
++ I PointerWindow (FvwmWinList) Raise
++ I PointerWindow (FvwmPager) Raise
++ I PointerWindow (panel) Raise
++ I PointerWindow (gnome-panel) Raise
++ I PointerWindow (kicker) Raise
++ I PointerWindow (xsm) Raise
 
 DestroyFunc FuncFvwmModulesAutoLower
 AddToFunc   FuncFvwmModulesAutoLower 
@@ -29,7 +20,7 @@ AddToFunc   FuncFvwmModulesAutoLower
 DestroyFunc FuncFvwmRestartFvwmAutoRaiseModules
 AddToFunc   FuncFvwmRestartFvwmAutoRaiseModules
 + I KillModule FvwmAuto
-+ I FvwmAuto 200 "Silent FuncFvwmModulesAutoRaise" "Silent FuncFvwmModulesAutoLower"
++ I FvwmAuto 300 -menterleave "Silent FuncFvwmModulesAutoRaise" "Silent FuncFvwmModulesAutoLower"
 
 DestroyFunc FuncFvwmLoadFvwmAutoRaise
 AddToFunc   FuncFvwmLoadFvwmAutoRaise
@@ -46,16 +37,3 @@ AddToFunc   FuncFvwmUnLoadFvwmAutoRaise
 + I DestroyFunc FuncFvwmAddToMenusFvwmAutoRaise
 + I KillModule FvwmAuto
 
-DestroyFunc FuncFvwmReLoadFvwmAutoRaise
-AddToFunc   FuncFvwmReLoadFvwmAutoRaise
-+ I Style "FvwmButtons" MouseFocus
-+ I Style "FvwmIconBox" MouseFocus
-+ I Style "FvwmIconMan" MouseFocus
-+ I Style "FvwmTaskBar" MouseFocus
-+ I Style "FvwmWinList" MouseFocus
-+ I Style "FvwmPager" MouseFocus, Lenience
-+ I Style "panel" MouseFocus
-+ I Style "xsm" MouseFocus
-
-DestroyFunc FuncFvwmUnReLoadFvwmAutoRaise
-AddToFunc   FuncFvwmUnReLoadFvwmAutoRaise
