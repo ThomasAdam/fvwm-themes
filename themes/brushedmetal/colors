@@ -89,18 +89,21 @@ AddToFunc   FuncFvwmTitleBackground
 # ----------------------------
 # Window List Module Colorsets
 
-### the next 4 colorsets are not good
 # standard item
-*FvwmTheme: Colorset 17 fg black, bg rgb:7d/83/81, Plain, NoShape
+*FvwmTheme: Colorset 17 fg black, bg rgb:c2/c2/c2, \
+	TiledPixmap decor/border-activeup.xpm, NoShape
 
 # active item
-*FvwmTheme: Colorset 18 fg black, bg rgb:c6/c5/c7, Plain, NoShape
+*FvwmTheme: Colorset 18 fg black, bg rgb:d6/d6/d6, \
+	TiledPixmap decor/border-activedown.xpm, NoShape
 
 # iconified item
-*FvwmTheme: Colorset 19 fg white, bg rgb:77/78/7b, Plain, NoShape
+*FvwmTheme: Colorset 19 fg black, bg rgb:c2/c2/c2, \
+	TiledPixmap decor/border-inactive.xpm, NoShape
 
 # pointed item
-*FvwmTheme: Colorset 20 fg black, bg rgb:98/90/96, Plain, NoShape
+*FvwmTheme: Colorset 20 fg gray30, bg rgb:d6/d6/d6, \
+	TiledPixmap decor/border-activedown.xpm, NoShape
 
 # ----------------------
 # Other Module Colorsets
@@ -115,26 +118,25 @@ AddToFunc   FuncFvwmTitleBackground
 # III. Application Colorsets
 
 # regular terminal
-*FvwmTheme: Colorset 30 fg white, bg rgb:00/00/60, Plain, NoShape
+*FvwmTheme: Colorset 30 fg white, bg rgb:00/00/50, Plain, NoShape
 
 # admin terminal
-*FvwmTheme: Colorset 31 fg white, bg rgb:00/60/60, Plain, NoShape
+*FvwmTheme: Colorset 31 fg white, bg rgb:00/50/50, Plain, NoShape
 
 # remote terminal
-*FvwmTheme: Colorset 32 fg white, bg rgb:60/00/00, Plain, NoShape
+*FvwmTheme: Colorset 32 fg white, bg rgb:50/00/00, Plain, NoShape
 
 # viewer terminal
-*FvwmTheme: Colorset 33 fg white, bg rgb:60/60/60, Plain, NoShape
+*FvwmTheme: Colorset 33 fg white, bg rgb:50/50/50, Plain, NoShape
 
-### the next 3 colorsets are not good
 # application run in the terminal, text editor
-*FvwmTheme: Colorset 34 fg black, bg rgb:90/96/95, Plain, NoShape
+*FvwmTheme: Colorset 34 fg black, bg rgb:95/95/95, Plain, NoShape
 
 # dialog main area
-*FvwmTheme: Colorset 35 fg white, bg rgb:77/78/7b, Plain, NoShape
+*FvwmTheme: Colorset 35 fg white, bg rgb:70/70/70, Plain, NoShape
 
 # dialog text area
-*FvwmTheme: Colorset 36 fg black, bg rgb:90/96/95, Plain, NoShape
+*FvwmTheme: Colorset 36 fg black, bg rgb:95/95/95, Plain, NoShape
 
 # ----------------------------------------------------------------------------
 # IV. Start/Stop Functions
