@@ -1,9 +1,6 @@
                       Things to do before 1.0.0
                       -------------------------
 
-* Internationalization using locale/LANG/ directories.
-[done in my opinion (olicha)]
-
 * Localization (actual translations).
 [In progress]
 
@@ -103,6 +100,8 @@ Problems without obvious soluton:
 
 Closed items (will be deleted after 1.0.0):
 ------------------------------------------
+* Internationalization using locale/LANG/ directories.
+
 * Improve fvwm-themes-images:
   + without args it should exit with "Try --help."
   + option names are not intuitive, probably rename some
