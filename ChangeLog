@@ -14,17 +14,23 @@
 	Clean ups, enhanced MenuFvwmAmusements, added "Restore All Cursors".
 
 	* bin/fvwm-themes-xrdb.in:
+	* bin/.cvsignore:
 	* bin/Makefile.am:
 	renamed from fvwm-themes-xres (like grdb, krdb)
 
 	* images/background/* (i.e. images.tar.gz):
-	* themes/default/background:
+	* themes/default/background/solid-yellow:
+	* themes/default/background/stone-yellow:
 	* themes/default/background.cfg:
 	* themes/olicha/background:
 	added stone-yellow.xpm, renamed fvwm-win.xpm to fvwm-flying.xpm;
 	added stone.xpm (gray scale), I am not sure whether we need two;
 	moved freon_mist.xpm to olicha theme (a background distribution is
 	not needed with theme components or could be in a separate package)
+
+	It is not trivial (if at all possible, I am still trying) to make
+	a directory instead of a file in CVS. I.e. themes/default/background;
+	I think 'commit' is needed between 'delete' and 'add'.
 
 2000-08-19  olicha  <olivier.chapuis@free.fr>
 
