@@ -6,6 +6,9 @@
 	* themes/default/menus-programs:
 	added two apps
 
+	* themes/default/functions:
+	added FuncFvwmIconifyOrFocusAndRaise; use it in redmond98?
+
 2002-07-31  migo  <migo@homemail.com>
 
 	* images.tar.gz:

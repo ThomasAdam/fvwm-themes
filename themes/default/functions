@@ -21,6 +21,21 @@ AddToFunc   FuncFvwmDeiconifyFocusAndRaise
 + I Focus
 + I Raise
 
+DestroyFunc FuncFvwmIconifyOrFocusAndRaise
+AddToFunc   FuncFvwmIconifyOrFocusAndRaise
++ I DestroyFunc RealIconifyOrFocusAndRaise
++ I AddToFunc   RealIconifyOrFocusAndRaise
++ I ThisWindow ( Iconic)         + I Iconify off
++ I ThisWindow ( Iconic)         + I Focus
++ I ThisWindow (!Iconic  Raised) + I Iconify on
++ I ThisWindow (!Iconic !Raised) + I Focus
++ I ThisWindow (!Iconic !Raised) + I Raise
++ I RealIconifyOrFocusAndRaise
+#+ I ThisWindow (Iconic) Iconify off
+#+ I Cond (NoMatch) ThisWindow (Raised) Iconify on
+#+ I ThisWindow (!Iconic) Focus
+#+ I ThisWindow (!Iconic) Raise
+
 DestroyFunc FuncFvwmDeiconifyFocusAndWarp
 AddToFunc   FuncFvwmDeiconifyFocusAndWarp
 + I Iconify off
