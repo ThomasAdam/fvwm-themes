@@ -9,6 +9,9 @@
 	* themes/*/buttons:
 	minor corrections
 
+	* themes/{awol,default}/sound:
+	finally use $. in module commands
+
 2001-05-24  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/functions:
