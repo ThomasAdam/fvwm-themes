@@ -12,25 +12,25 @@ fullname = FVWM Themes Developers
 email = fvwm-themes-devel@lists.sourceforge.net
 arch ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
 
-dist:
-	tar -xzf ../fvwm-themes-$(version).tar.gz
-	(cd fvwm-themes-$(version) && ./configure) || exit 1
-	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-this) || exit 1
-	-rm -rf fvwm-themes-$(version)
-
-dist-base:
-	tar -xzf ../fvwm-themes-$(version).tar.gz
-	(cd fvwm-themes-$(version) && ./configure) || exit 1
-	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-base-this) || exit 1
-	-rm -rf fvwm-themes-$(version)
-
-dist-extra:
-	tar -xzf ../fvwm-themes-$(version).tar.gz
-	(cd fvwm-themes-$(version) && ./configure) || exit 1
-	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-extra-this) || exit 1
-	-rm -rf fvwm-themes-$(version)
-
 this:
+	tar -xzf `cd $(top_srcdir) && pwd`/fvwm-themes-$(version).tar.gz
+	(cd fvwm-themes-$(version) && ./configure) || exit 1
+	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-inline) || exit 1
+	-rm -rf fvwm-themes-$(version)
+
+this-base:
+	tar -xzf `cd $(top_srcdir) && pwd`/fvwm-themes-$(version).tar.gz
+	(cd fvwm-themes-$(version) && ./configure) || exit 1
+	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-inline-base) || exit 1
+	-rm -rf fvwm-themes-$(version)
+
+this-extra:
+	tar -xzf `cd $(top_srcdir) && pwd`/fvwm-themes-$(version).tar.gz
+	(cd fvwm-themes-$(version) && ./configure) || exit 1
+	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-inline-extra) || exit 1
+	-rm -rf fvwm-themes-$(version)
+
+inline:
 	$(MAKE) clean
 	echo "fvwm-themes-full ($(version)-$(release)) unstable; urgency=low" > debian/changelog
 	echo "" >> debian/changelog
@@ -66,7 +66,7 @@ this:
 	fakeroot dh_clean
 	rm -f debian/control debian/full-control
 
-this-base:
+inline-base:
 	$(MAKE) clean
 	echo "fvwm-themes ($(version)-$(release)) unstable; urgency=low" > debian/changelog
 	echo "" >> debian/changelog
@@ -113,7 +113,7 @@ this-base:
 	fakeroot dh_clean
 	rm -f debian/control debian/base-control
 
-this-extra:
+inline-extra:
 	$(MAKE) clean
 	echo "fvwm-themes-extra ($(version)-$(release)) unstable; urgency=low" > debian/changelog
 	echo "" >> debian/changelog

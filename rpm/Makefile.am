@@ -10,7 +10,7 @@ release = 0.`date +%Y%m%d`
 cparams = --disable-run-updatemenu --disable-build-menus --disable-menu-system --with-fvwm-bindir=\/usr\/bin
 mparams = CFLAGS="-O2"
 
-rpm: @PACKAGE@.spec
+this: @PACKAGE@.spec
 	@\
 	version=$(version); \
 	release=$(release); \
@@ -42,7 +42,7 @@ rpm: @PACKAGE@.spec
 	rm /tmp/$$ins_ms; \
 	rm tmp-@PACKAGE@.spec
 
-rpm-base: @PACKAGE@-base.spec
+this-base: @PACKAGE@-base.spec
 	@\
 	version=$(version); \
 	release=$(release); \
@@ -74,7 +74,7 @@ rpm-base: @PACKAGE@-base.spec
 	rm /tmp/$$ins_ms; \
 	rm tmp-@PACKAGE@.spec
 
-rpm-extra: @PACKAGE@-extra.spec
+this-extra: @PACKAGE@-extra.spec
 	@\
 	version=$(version); \
 	release=$(release); \
@@ -98,7 +98,7 @@ rpm-extra: @PACKAGE@-extra.spec
 	rm /tmp/$$tarball; \
 	rm tmp-@PACKAGE@.spec
 
-rpm-themes: @PACKAGE@-themes.spec
+this-themes: @PACKAGE@-themes.spec
 	@\
 	version=$(version); \
 	release=$(release); \

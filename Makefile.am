@@ -173,25 +173,25 @@ dist6: dist5
 
 rpm-dist: dist3 rpm-this
 
-rpm-dist3: dist3 rpm-base-this rpm-extra-this
+rpm-dist3: dist3 rpm-this-base rpm-this-extra
 
-rpm-dist5: dist5 rpm-themes-this
+rpm-dist5: dist5 rpm-this-themes
 
 # automatical regeneration is missing for other dirs, so do it explicitly
 rpm-regenerate:
 	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) Makefile *.spec) || exit 1
 
 rpm-this: rpm-regenerate
-	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) rpm) || exit 1
+	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) this) || exit 1
 
-rpm-base-this: rpm-regenerate
-	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) rpm-base) || exit 1
+rpm-this-base: rpm-regenerate
+	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) this-base) || exit 1
 
-rpm-extra-this: rpm-regenerate
-	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) rpm-extra) || exit 1
+rpm-this-extra: rpm-regenerate
+	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) this-extra) || exit 1
 
-rpm-themes-this: rpm-regenerate
-	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) rpm-themes) || exit 1
+rpm-this-themes: rpm-regenerate
+	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) this-themes) || exit 1
 
 ## ---------------------------------------------------------------------------
 ## Produce a deb package
@@ -203,27 +203,30 @@ rpm-themes-this: rpm-regenerate
 #    make version=2.3.22 release=2 deb-this
 #    make deb-dist cparams='--enable-gnome --quiet' mparams='CFLAGS="-O2 -g"'
 #    make deb-dist3  # creates -base and -extra debs
+#    make deb-inline release=1  # works on sources directly
 
 # automatical regeneration is missing for other dirs, so do it explicitly
 deb-regenerate:
 	(cd debian && $(MAKE) $(AM_MAKEFLAGS) Makefile *-control) || exit 1
 
-deb-dist: dist deb-regenerate
-	(cd debian && $(MAKE) $(AM_MAKEFLAGS) dist) || exit 1
+deb-dist: dist deb-this
 
-deb-dist3: dist deb-base-dist deb-extra-dist
-
-deb-base-dist: deb-regenerate
-	(cd debian && $(MAKE) $(AM_MAKEFLAGS) dist-base) || exit 1
-
-deb-extra-dist: deb-regenerate
-	(cd debian && $(MAKE) $(AM_MAKEFLAGS) dist-extra) || exit 1
+deb-dist3: dist deb-this-base deb-this-extra
 
 deb-this: deb-regenerate
-	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) this || exit 1
+	(cd debian && $(MAKE) $(AM_MAKEFLAGS) this) || exit 1
 
-deb-base-this: deb-regenerate
-	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) this-base || exit 1
+deb-this-base: deb-regenerate
+	(cd debian && $(MAKE) $(AM_MAKEFLAGS) this-base) || exit 1
 
-deb-extra-this: deb-regenerate
-	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) this-extra || exit 1
+deb-this-extra: deb-regenerate
+	(cd debian && $(MAKE) $(AM_MAKEFLAGS) this-extra) || exit 1
+
+deb-inline: deb-regenerate
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) inline || exit 1
+
+deb-inline-base: deb-regenerate
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) inline-base || exit 1
+
+deb-inline-extra: deb-regenerate
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) inline-extra || exit 1

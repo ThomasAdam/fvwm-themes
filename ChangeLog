@@ -4,6 +4,12 @@
 	* debian/Makefile.am:
 	improved deb procedure
 
+	* Makefile.am:
+	* rpm/Makefile.am:
+	* Makefile.am:
+	* debian/Makefile.am:
+	synchronized deb and rpm naming
+
 2003-10-20  migo  <migo@homemail.com>
 
 	* themes/*/colors*:
