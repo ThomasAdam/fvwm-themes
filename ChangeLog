@@ -1,5 +1,8 @@
 2002-01-09  migo  <migo@homemail.com>
 
+	* themes/migo/windowlook:
+	updated fonts
+
 	* themes/luthien/colors.cfg:
 	* themes/luthien/colors/palettes/OldMigo.dp:
 	a try to preserve colors@migo (pretty unsuccesful) before replacing it
