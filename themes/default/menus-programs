@@ -366,33 +366,34 @@ AddToMenu   MenuFvwmGamesCards "Cards" Title
 
 DestroyMenu MenuFvwmGamesPuzzle
 AddToMenu   MenuFvwmGamesPuzzle "Puzzle" Title
-+ "XSokoban%menu/game.xpm%" 		Exec exec xsokoban
-+ "XSoko%menu/game.xpm%"		Exec exec xsoko >/dev/null
-+ "XSok%menu/game.xpm%"			Exec exec xsok
-+ "Xmahjongg%menu/game.xpm%"		Exec exec xmahjongg
-+ "XBlockade%menu/game.xpm%"		Exec exec blockade
-+ "XAttax%menu/game.xpm%"		Exec exec xattax
-+ "XBomb%menu/game.xpm%"		Exec exec FuncFvwmRunInXterm "info" "xbomb"
-+ "XJig%menu/game.xpm%"			Exec xjig -file $[HOME]/flowers/3.gif >/dev/null
++ "XSokoban%menu/game-logic.xpm%" 	Exec exec xsokoban
++ "XSoko%menu/game-logic.xpm%"		Exec exec xsoko >/dev/null
++ "XSok%menu/game-logic.xpm%"		Exec exec xsok
++ "Xmahjongg%menu/game-logic.xpm%"	Exec exec xmahjongg
++ "XBlockade%menu/game-logic.xpm%"	Exec exec blockade
++ "XAttax%menu/game-logic.xpm%"		Exec exec xattax
++ "XBomb%menu/game-logic.xpm%"		Exec exec FuncFvwmRunInXterm "info" "xbomb"
++ "XJig%menu/game-logic.xpm%"		Exec xjig -file $[HOME]/flowers/3.gif >/dev/null
 + "" Nop
 ## new category?
-+ "BoulderDash%menu/game.xpm%"		Exec exec BoulderDash
-+ "Rocks'n'Diamonds%menu/game.xpm%"	Exec exec rocksndiamonds
-+ "Mirror Magic%menu/game.xpm%"		Exec exec mirrormagic
-+ "GFingerPoken%menu/game.xpm%"		Exec exec gfpoken
-+ "Illust Logic%menu/game.xpm%"		Exec exec illust
++ "BoulderDash%menu/game-logic.xpm%"	Exec exec BoulderDash
++ "Rocks'n'Diamonds%menu/game-logic.xpm%"	Exec exec rocksndiamonds
++ "Mirror Magic%menu/game-logic.xpm%"	Exec exec mirrormagic
++ "GFingerPoken%menu/game-logic.xpm%"	Exec exec gfpoken
++ "Illust Logic%menu/game-logic.xpm%"	Exec exec illust
++ "Marbles%menu/game-logic.xpm%"	Exec exec marbles
 + "" Nop
-+ "XCubes%menu/game.xpm%"		Exec exec xcubes
-+ "XDino%menu/game.xpm%"		Exec exec xdino
-+ "XHexagons%menu/game.xpm%"		Exec exec xhexagons
-+ "XMBall%menu/game.xpm%"		Exec exec xmball
-+ "XMLink%menu/game.xpm%"		Exec exec xmlink
-+ "XOct%menu/game.xpm%"			Exec exec xoct
-+ "XPanex%menu/game.xpm%"		Exec exec xpanex
-+ "XPyraminx%menu/game.xpm%"		Exec exec xpyraminx
-+ "XRubik%menu/game.xpm%"		Exec exec xrubik
-+ "XSkewb%menu/game.xpm%"		Exec exec xskewb
-+ "XTriangles%menu/game.xpm%"		Exec exec xtriangles
++ "XCubes%menu/game-logic.xpm%"		Exec exec xcubes
++ "XDino%menu/game-logic.xpm%"		Exec exec xdino
++ "XHexagons%menu/game-logic.xpm%"	Exec exec xhexagons
++ "XMBall%menu/game-logic.xpm%"		Exec exec xmball
++ "XMLink%menu/game-logic.xpm%"		Exec exec xmlink
++ "XOct%menu/game-logic.xpm%"		Exec exec xoct
++ "XPanex%menu/game-logic.xpm%"		Exec exec xpanex
++ "XPyraminx%menu/game-logic.xpm%"	Exec exec xpyraminx
++ "XRubik%menu/game-logic.xpm%"		Exec exec xrubik
++ "XSkewb%menu/game-logic.xpm%"		Exec exec xskewb
++ "XTriangles%menu/game-logic.xpm%"	Exec exec xtriangles
 
 ##DestroyMenu MenuFvwmGamesStrategy
 ##AddToMenu   MenuFvwmGamesStrategy "Strategy" Title
@@ -423,9 +424,9 @@ AddToMenu   MenuFvwmGamesPenguins "Ace of Penguins" Title
 
 DestroyMenu MenuFvwmGamesOther
 AddToMenu   MenuFvwmGamesOther "Other" Title
-+ "Maelstrom%menu/window-destroy.xpm%"	Exec exec Maelstrom -gamma 5
-+ "Quake%menu/window-destroy.xpm%" 	Exec cd /usr/local/games/quake/ ; exec ./stquake
-+ "Quake2%menu/window-destroy.xpm%" 	Exec cd /usr/local/games/quake2/ ; exec ./quake2 +set vid_ref softx
++ "Maelstrom%menu/game-action.xpm%"	Exec exec Maelstrom -gamma 5
++ "Quake%menu/game-action.xpm%" 	Exec cd /usr/local/games/quake/ ; exec ./stquake
++ "Quake2%menu/game-action.xpm%" 	Exec cd /usr/local/games/quake2/ ; exec ./quake2 +set vid_ref softx
 + "Hopkins FBI%menu/game.xpm%" 		FuncFvwmKillEventAndRun "Hopkins_FBI"
 ##+ "FreeCiv%menu/game.xpm%"		FvwmForm FvwmForm-FreeCiv
 + "LinCity%menu/game.xpm%"		Exec exec xlincity
