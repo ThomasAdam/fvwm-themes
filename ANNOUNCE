@@ -28,6 +28,7 @@ New features in fvwm-themes 0.6.2 as compared to fvwm-themes 0.6.1:
   * Included 48x48-infox icon set (was 48x48-general) for normal icons.
   * Added support for wheel mouse in settings.
   * Several improvements including better mini icons and more bindings.
+  * Now the packages are called fvwm-themes and fvwm-themes-extra.
   * This is probably the last version for fvwm-2.4.x.
 
-The FVWM Themes developers, 5 December 2002
+The FVWM Themes developers, 6 December 2002

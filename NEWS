@@ -3,13 +3,14 @@ fvwm-themes-0.7.0 - not yet released
 * New full-featured theme: RedmondXP.
 * Several new themes.
 
-fvwm-themes-0.6.2 - 20021205
+fvwm-themes-0.6.2 - 20021206
 
 * Fixes for perl-5.8.0 and a unicode locale (RedHat 8.0).
 * File names are now compatible with Solaris's pkgmk.
 * Included 48x48-infox icon set (was 48x48-general) for normal icons.
 * Added support for wheel mouse in settings.
 * Several improvements including better mini icons and more bindings.
+* Now the packages are called fvwm-themes and fvwm-themes-extra.
 * This is probably the last version for fvwm-2.4.x.
 
 fvwm-themes-0.6.1 - 20020619
