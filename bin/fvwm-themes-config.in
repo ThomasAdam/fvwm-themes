@@ -1440,8 +1440,8 @@ AddToFunc   FuncFvwmThemesConfigAndUpdate
 + I PipeRead `@$scriptFile@ $0 --pipe`
 + I FuncFvwmResetInitFunctions
 + I FuncFvwmStopAllHooks
-#+ I FuncFvwmRemoveBindings
-#+ I FuncFvwmRemoveButtonsBindings
++ I FuncFvwmRemoveBindings
++ I FuncFvwmRemoveButtonsBindings
 + I FuncFvwmRemoveAllButtons
 #+ I FuncFvwmRestartFvwmTheme
 #+ I DestroyModuleConfig FvwmTheme: *

@@ -1,3 +1,8 @@
+2000-10-31  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	reenabled FuncFvwmRemove*Bindings
+
 2000-10-29  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
