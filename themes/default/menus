@@ -59,7 +59,7 @@ AddToMenu   MenuFvwmWebPages
 + "FVWM Themes Web Pages" Title
 + "%menu/information.xpm%Home Page"    FuncFvwmOpenURL http://fvwm-themes.sourceforge.net/
 + "%menu/information.xpm%Project Page" FuncFvwmOpenURL https://sourceforge.net/projects/fvwm-themes/
-+ "%menu/information.xpm%Screenshots"  FuncFvwmOpenURL http://www.fvwm.org/screenshots/
++ "%menu/information.xpm%Screenshots"  FuncFvwmOpenURL http://fvwm-themes.sourceforge.net/screenshots/
 + "%menu/information.xpm%Download"     FuncFvwmOpenURL https://sourceforge.net/project/showfiles.php?group_id=1738
 + "%menu/information.xpm%FAQ"          FuncFvwmOpenURL http://fvwm-themes.sourceforge.net/doc/FAQ
 

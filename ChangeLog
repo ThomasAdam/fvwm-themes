@@ -32,6 +32,9 @@
 	* themes/default/menus:
 	changed screenshots url, should be created yet
 
+	* NEWS:
+	prepared for 0.4.0
+
 2000-11-11  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ConfigCenter:
