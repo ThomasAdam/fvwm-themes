@@ -43,13 +43,11 @@ AddToFunc   FuncFvwmDecorBackground
 # Menu Colorsets
 
 # inactive menu item fg+bg and menu face
-Colorset 5 fg black, bg rgb:e4/d2/c0, Plain, NoShape
-#fgsh rgb:f0/d0/a0
+Colorset 5 fg black, bg rgb:e4/d2/c0, fgsh rgb:f0/c8/a0, Plain, NoShape
 
 # active menu item fg+bg
-Colorset 6 fg black, bg rgb:ee/db/c8, \
+Colorset 6 fg black, bg rgb:ee/db/c8, fgsh rgb:f8/d6/a4, \
 	sh rgb:bf/99/74, hi rgb:ff/ff/ff, Plain, NoShape
-#fgsh rgb:f8/d6/a4
 
 # greyed menu item fg
 Colorset 7 fg gray, bg gray, Plain, NoShape
