@@ -21,6 +21,9 @@
 	make the whole theme be more closer to the original;
 	synchronize with the latest fvwm cvs
 
+	* themes/cde/menustyle:
+	make active menu item sunken
+
 2002-07-31  migo  <migo@homemail.com>
 
 	* images.tar.gz:
