@@ -1,3 +1,10 @@
+2001-03-31  migo  <migo@homemail.com>
+
+	* themes/default/settings/iconstyles/{wm-icons,native}:
+	use $.; now I remember why I didn't use it here and in */modules/main,
+	this is to enable user versions of sub-files in ~/.fvwm to be Read,
+	probably it is not a good idea to enable user versions of sub-files
+
 2001-03-30  migo  <migo@homemail.com>
 
 	* configure.in:
