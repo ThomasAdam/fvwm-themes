@@ -77,7 +77,7 @@ Colorset 14 fg rgb:f0/f0/f4, bg average, \
 	Pixmap modcolor/plast-blue.png, NoShape
 
 # default hilight2: (FvwmPager or to get more colors in a Buttons)
-Colorset 15 fg rgb:ff/ff/60, bg rgb:5d5d/1212/38, \
+Colorset 15 fg rgb:ff/ff/60, bg average, \
 	Pixmap modcolor/plast-inverted-green.png, NoShape
 
 # tips/balloons
@@ -87,22 +87,27 @@ Colorset 16 fg black, bg rgb:FF/FF/D0, Plain, NoShape
 # Window List Module Colorsets
 
 # standard item
-Colorset 17 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+Colorset 17 fg rgb:f0/f0/f4, bg average, \
+	Pixmap modcolor/plast-blue.png, NoShape
 
 # active item
-Colorset 18 fg #000030, bg #C0C0B4, Plain, NoShape
+Colorset 18 fg rgb:ff/ff/60, bg average, \
+	Pixmap modcolor/plast-inverted-green.png, NoShape
 
 # iconified item
-Colorset 19 fg #000030, bg #808078, Plain, NoShape
+Colorset 19 fg rgb:f0/f0/f4, bg average, \
+	Pixmap modcolor/plast-blue.png, Tint cyan 20, NoShape
 
 # pointed item
-Colorset 20 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+Colorset 20 fg rgb:f0/f0/f4, bg average, \
+	Pixmap modcolor/plast-blue.png, Tint violet 20, NoShape
 
 # ----------------------
 # Other Module Colorsets
 
 # FvwmIdent
-Colorset 21 fg black, bg rgb:FF/FF/D0, Plain, NoShape
+Colorset 21 fg rgb:f0/f0/f4, bg average, \
+	Pixmap modcolor/plast-blue.png, Tint yellow 20, NoShape
 
 # FvwmConsole
 Colorset 22 fg white, bg rgb:00/30/30, Plain, NoShape
