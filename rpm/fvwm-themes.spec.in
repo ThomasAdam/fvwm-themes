@@ -1,5 +1,5 @@
 #%define prefix %{_prefix}
-%define prefix /usr/local
+%define prefix /usr
 #%define bindir @bindir@
 #%define mandir @mandir@
 #%define FT_DATADIR @FT_DATADIR@
@@ -9,13 +9,15 @@
 %define c_p --disable-gnome-icons
 %define m_p CFLAGS="-O2"
 
+%define _sourcedir /tmp
+
 Summary:   FVWM Themes, configurational framework for FVWM
 Name:      fvwm-themes
 Version:   %{ver}
 Release:   %{rel}
 Copyright: GPL
 Group:     X11/Window Managers
-Source:    %{name}-%{PACKAGE_VERSION}.tar.gz
+Source:    %{name}-%{version}.tar.gz
 URL:       http://fvwm-themes.sourceforge.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 Packager:  FVWM Themes Developers <fvwm-themes-devel@lists.sourceforge.net>

@@ -1,3 +1,11 @@
+2000-11-08  migo  <migo@homemail.com>
+
+	* rpm/Makefile.am:
+	* rpm/fvwm-themes.spec.in:
+	Hopefully rpm's can now be built in all distributions (they all
+	use different dirs!). Olivier, please verify that it works.
+	And I can't rebuild src rpm, /tmp errors...
+
 2000-11-07  olicha  <olivier.chapuis@free.fr>
 
 	* themes/olicha/README:
