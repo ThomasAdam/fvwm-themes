@@ -14,6 +14,10 @@
 	the correct solution is not to define options button content at all,
 	so no need to remove it, but this require changes in all faces...
 
+	* themes/default/menus:
+	* themes/default/sound:
+	small fixes
+
 2001-05-26  migo  <migo@homemail.com>
 
 	* themes/migo/modules.cfg:
