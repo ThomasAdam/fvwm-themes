@@ -1,3 +1,14 @@
+2002-05-29  migo  <migo@homemail.com>
+
+	* themes/redmondxp/modules/FvwmButtons-Panel:
+	* themes/redmondxp/modules/FvwmThemesPanelManager:
+	* themes/redmondxp/modules/FvwmPager-Desker:
+	some work on the pager bar of the panel;
+	the configuration is now dynamical and persistent (dynamical menus)
+
+	* themes/redmondxp/modules/styles:
+	improve shading style options of pagers
+
 2002-05-28  migo  <migo@homemail.com>
 
 	* themes/default/bindings:
