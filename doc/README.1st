@@ -1,7 +1,7 @@
 Requirements
 ------------
 
-You need at least fvwm-2.3.20, but the latest version is preferable.
+You need at least fvwm-2.3.21, but the latest version is preferable.
 You need perl 5.002 or better.
 It is a good idea to have ImageMagick 4.0.x or better and mknod in
 your path.

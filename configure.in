@@ -4,6 +4,8 @@ AC_REVISION(0.2.3)
 AC_INIT(themes/default/README)
 AM_INIT_AUTOMAKE(fvwm-themes, 0.3.17)
 
+REQUIRED_FVWM_VERSION=2.3.21
+
 mg_ARG_WITH(fvwm-bindir, [  --with-fvwm-bindir DIR  specify fvwm bin directory, if not in PATH], FVWM_BINDIR, "")
 mg_ARG_WITH(ft-datadir,  [  --with-ft-datadir DIR   specify data dir, if different from fvwm], FT_DATADIR, "")
 
@@ -12,7 +14,7 @@ AC_SUBST(GNOME_ICONS)dnl
 
 AC_PATH_PROG(PERL, perl)
 if test -z "$PERL"; then
-	AC_MSG_WARN(Perl is not found; you will have serious problems using this package!)
+	AC_MSG_WARN(Perl is not found; you will have fatal problems using this package!)
 	PERL=/usr/bin/perl
 fi
 AC_SUBST(PERL)dnl
@@ -22,10 +24,10 @@ if test -z "$MKNOD"; then
 	AC_MSG_WARN(mknod is not found; you will have some problems with GUI!)
 fi
 
-# fvwm-themes-images need to know where the rgb.txt file is
+# fvwm-themes-images needs to know where the rgb.txt file is
 AC_PATH_XTRA
 if test -z "$X_LIBS"; then
-	AC_MSG_WARN(Xlib is not found; fvwm-themes-images will not work!)
+	AC_MSG_WARN(Xlib is not found; fvwm-themes-images will not fully work!)
 fi
 
 # FIXME: a better way to find GNOME_IMAGES_DIR?
@@ -39,8 +41,9 @@ AC_SUBST(GNOME_IMAGES_DIR)dnl
 
 AC_PATH_PROG(FVWM_CONFIG, fvwm-config --version, , "${PATH}:$FVWM_BINDIR")
 if test -z "$FVWM_CONFIG"; then
-	AC_MSG_ERROR(fvwm-config is not found; try --with-fvwm-bindir
-You need at least fvwm-2.3.20)
+	AC_MSG_ERROR([
+	fvwm-config is not found; try --with-fvwm-bindir
+	You need at least fvwm-$REQUIRED_FVWM_VERSION])
 fi
 AC_SUBST(FVWM_CONFIG)dnl
 
@@ -54,6 +57,12 @@ AC_SUBST(FVWM_DEFAULT_IMAGEPATH)dnl
 FVWM_VERSION=`$FVWM_CONFIG --version`
 if test "x$FVWM_VERSION" = "x"; then FVWM_VERSION=unknown; fi
 AC_SUBST(FVWM_VERSION)dnl
+
+if awk "BEGIN { exit($FVWM_VERSION >= $REQUIRED_FVWM_VERSION) }"; then
+	AC_MSG_ERROR([
+	You have fvwm-$FVWM_VERSION, which is not up to date
+	You need at least fvwm-$REQUIRED_FVWM_VERSION])
+fi
 
 if echo "${prefix}NONE" | awk '/^NONE/ { exit 1 }'; then
 	mg_DEFAULT_DIR_ARG(bindir,     "$prefix/bin")
@@ -85,7 +94,7 @@ AC_OUTPUT(
 	forms/Makefile
 	bin/fvwm-themes-config
 	bin/fvwm-themes-start
-	bin/fvwm-themes-xres
+	bin/fvwm-themes-xrdb
 	bin/fvwm-themes-menuapp
 	bin/fvwm-themes-com
 	bin/fvwm-themes-script

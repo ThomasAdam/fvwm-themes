@@ -4,6 +4,7 @@ FVWM Themes Frequently Asked Questions and Answers.
 Q. Why this FAQ does not contain my question about fvwm-themes?
 Q. What is theme, component, choice, option in the fvwm-themes terminology?
 Q. Why theme switching takes some time and it is even increased?!
+Q. How much configurable are fvwm-themes?
 Q. The themes are nice, but how can I define my personal contents?
 Q. How can I redefine the applications started by clicking on a button?
 Q. What are the default bindings?
@@ -12,11 +13,8 @@ Q. Can I use fvwm-themes with a session manager?
 Q. Can I use fvwm-themes with GNOME?
 Q. I am screwed. How can I get fvwm config in one file?
 Q. How can I submit my own theme?
-Q. I use the X Configuration Scripts (under the Fvwm Configuration menu 
-   entries), but the changes I mad are not saved for the next sessions!
-Q. Where I can found some documentations on fvwm-themes-config, 
-   fvwm-themes-start, fvwm-themes-menuapp, fvwm-themes-images and 
-   fvwm-themes-com? 
+Q. Why changes done using X Configuration Scripts are not persistent?
+Q. Where can I find a documentation on fvwm-themes shell scripts?
 ==============================================================================
 
 ------------------------------------------------------------------------------
@@ -29,24 +27,27 @@ A. Because there were no many questions up until now. It is a new project.
 Q. What is theme, component, choice, option in the fvwm-themes terminology?
 
 A. Component is a part of fvwm configurations, more or less separate unit,
-which can be loaded and unloaded accordingly to its dependances.
+which can be loaded and unloaded accordingly to its dependences.
 Theme is nothing more than a set of its components. A theme in fvwm-themes
 may be partial or full. Themes usually can be categorized as "look" theme,
 "feel" theme, "content" theme or any combination of these.
 
 One of the features of fvwm-themes is the ability to mix together components
-from different themes if their dependances enable this without conflicts.
-The theme author is responsible to define exact dependances for theme's
-component. Dependances are not used for now, but this will be changed soon.
+from different themes if their dependences enable this without conflicts.
+The theme author is responsible to define exact dependences for a theme's
+component. Dependences are not fully checked for now, but this will be
+changed in the future.
 
 The definition of theme components is given in theme.cfg file of the theme.
-If no such file is found, the default/theme.cfg is used for this theme.
+If no such file is found, the default/theme.cfg is used for this theme
+in an intelligent manner, i.e. a list of actual components is automatically
+built as a subset of all possible defined components.
 
 All currently used components (probably from different themes) compose
 the current theme, which is reflected in the Theme Management menu.
 
 Any component can come with several choices, options or sub components
-which allow a fine configuration. These can be used via the the Theme
+which allow a fine configurability. These can be used via the the Theme
 Management menu under "current" or using the "Opt/Cho/Sub" button of
 the Theme Center.
 ==============================================================================
@@ -54,17 +55,31 @@ the Theme Center.
 ------------------------------------------------------------------------------
 Q. Why theme switching takes some time and it even increases!
 
-A. This is because of two things. Currently entire configuration is reloaded
-on every single component switch (this will be fixed in the next versions).
-The second thing is the way fvwm currently stores its styles. Additional
-loading will increase memory usage, so the more you switch themes, the more
-memory is used and thus the slower is the switching mechanism.
+A. This is because of two things. Currently the entire configuration is
+reloaded on every single component switch (this will be fixed in the next
+versions). The second thing is the way fvwm currently stores its styles.
+Additional loading will increase memory usage, so the more you switch themes,
+the more memory is used and thus the slower is the switching mechanism.
 
 We are trying our best to unload everything, which can be unloaded in all
 themes to save user's memory. This will be improved.
 
-Please execute Restart command if you expirience some memory/speed problems,
+Please execute Restart command if you experience some memory/speed problems,
 when you switch themes.
+==============================================================================
+
+------------------------------------------------------------------------------
+Q. How much configurable are fvwm-themes?
+
+A. We, authors of fvwm-themes try to make it as configurable as fvwm
+itself while keeping inter-theme integrity. We understand that in the Free
+Unix world there will never be only one solution and a choice is a solution.
+fvwm-themes is very extensible, you may create new components freely.
+
+If you want to totally reconfigure fvwm-themes, it is  possible, but to
+keep an integrity with other themes, you should conform to some rules,
+which are easy for small configuration changes and need some knowledge
+of creating new/changing existing components for more complex changes.
 ==============================================================================
 
 ------------------------------------------------------------------------------
@@ -72,45 +87,52 @@ Q. The themes are nice, but how can I define my personal contents?
 
 A. You can either edit existing theme components (not recommended)
 or create your own theme 'personal' and put there the components
-that you like to overwrite or override. Create ~/.fvwm/themes/personal dir.
+that you like to overwrite or extend. Create ~/.fvwm/themes/personal dir.
 
 Example: you want completely different menus. Copy themes/current/menus
-(don't preserve symlinks) to themes/personal/menus and edit this component.
-If you only want to add (not overwrite) menus, create a file named
-themes/personal/menus-extra and use "AddToMenu MenuFvwmPersonal" to add
-menu entries under the "Personal" entries of the "Root Menu". You may need 
-to choose 'Refresh the current theme' item from the theme menu for your 
-new components to be reflected in the menu, then choose your component menus 
-or menus-extra from within the personal theme submenu. Use Ctrl-Alt-Mouse2 
-in case you didn't include MenuFvwmThemes menu in your root menu 
-(MenuFvwmRoot).
+from your ~/.fvwm to themes/personal/menus and edit this component.
+Generally it is recommended to leave the component 'menus' as is and
+only edit 'menus-user' if you need to customize your applications.
 
-Another useful example redefining customizable functions FuncFvwmMaximize,
-FuncFvwmViewManPage and others in personal/functions[-extra] component.
+If you only want to extend (not overwrite) menus, create a file named
+themes/personal/menus-extra and use "AddToMenu SomeMenu". For example, in
+this file you can define entries of menu "MenuFvwmPersonal", which are not
+normally defined anywhere, they will be shown under the "Personal" submenu
+of the "Root Menu". After creating a new personal component, you need to
+choose 'Refresh the current theme' item from the theme management menu for
+your new created components to be reflected in the menu, then choose your
+component 'menus', 'menus-user' or 'menus-extra' from within the personal
+theme submenu. Use Ctrl-Alt-Mouse2 in case you didn't include MenuFvwmThemes
+menu in your root menu (MenuFvwmRoot).
 
-In the future you will need to create some configuration file in your
-personal theme, describing your components. But by that time there will
-be more documentation and probably some tools to help you to create your
-personal theme.
+Another useful example is redefining customizable functions like
+FuncFvwmMaximize, FuncFvwmViewManPage and others in 'functions-appbind'
+component of your personal theme. To redefine only a few functions (not
+all), 'functions-extra' component can be used.
+
+All these components 'menus', 'menus-user', 'menus-extra', 'functions',
+'functions-appbind', 'functions-extra' are standard, so you don't need to
+define dependences for them. In case you create a non standard components
+you should also specify their dependences in theme.cfg of that theme.
 ==============================================================================
 
 ------------------------------------------------------------------------------
 Q. How can I redefine the applications started by clicking on a button?
 
-A. The applications started by clicking on a button is defined in the
-file themes/default/functions-appbind. You should edit this file or better
-copy this file in your personal theme directory and edit it. For example,
-if your preferred editor is myeditor, then replace emacs by myeditor in: 
+A. The applications started by clicking on a button is defined in the file
+themes/default/functions-appbind. You should copy this file into your
+personal theme directory and edit it (see also the previous question). Say,
+if your preferred editor is myeditor, then replace emacs with myeditor in:
 
 DestroyFunc FuncFvwmEditor
 AddToFunc   FuncFvwmEditor
 + I Exec exec emacs
 
 Then, a click with mouse button 1 on a button with the editor icon will
-start myeditor. The functions  FuncFvwm2Editor and FuncFvwm3Editor are
-used for mouse buttons 2 and 3 respectively. The others functions work
-similarly.
-Note that these functions are also used in the stroke bindings.
+start myeditor. The functions FuncFvwm2Editor and FuncFvwm3Editor are used
+for mouse buttons 2 and 3 respectively. Other functions work similarly.
+
+Note that these functions are also used in the stroke bindings and more.
 ==============================================================================
 
 ------------------------------------------------------------------------------
@@ -130,73 +152,82 @@ consistent and functional. Here is a list of some useful bindings:
   Shift-Alt-F2          - like Mouse2 on root (Window List menu)
   Shift-Alt-F3          - like Mouse3 on root (Window Ops menu)
 
-  Mouse1 on decorations - Resize
-  Mouse2 on decorations - Move
+  Shift-Alt-{F4-F10}    - mostly like mwm's Alt-{F4-F10}
+
+  Mouse1 on decorations - Resize, Raise, WindowShadow
+  Mouse2 on decorations - Move, RaiseLower
   Mouse3 on decorations - Window Ops short menu
 
   Alt-Mouse1 in window  - like Mouse1 on root (Root menu)
-  Alt-Mouse2 in window  - like Mouse2 on decorations (Move)
+  Alt-Mouse2 in window  - like Mouse2 on decorations (Move, RaiseLower)
   Alt-Mouse3 in window  - like Mouse3 on root (Window Ops menu)
 
 You can get the bindings description for every title button by holding
-Ctrl-Alt and pressing that button. This should work in all themes.
+Ctrl-Alt and pressing that button. This should work in all core themes.
 
-For guys, which has no mouse button 2, it is sometimes simulated by Ctrl
+For guys, which have no mouse button 2, it is sometimes simulated by Ctrl
 with the mouse button 1.
 
-See the previous question of how you can redefine your own bindings component.
+It is possible to switch bindings of mouse buttons 2 and 3 in most of cases
+by choosing the corresponding option in the default bindings component menu,
+but this is a bit less consistent (for example, Shift-Alt-F2 is like Mouse 3
+on the root, not Mouse 2) and a bit less functional (can't move a window
+with Mouse 3 and use PlacedByButton3 fvwm's style or use stroke inside it).
+
+See the previous questions if you want to redefine the bindings component.
+As usual, you can create 'bindings-extra' to only add/change some bindings.
 ==============================================================================
 
 ------------------------------------------------------------------------------
 Q. What is the "Stroke" option and what are the default stroke bindings?
 
-A. Stroke allows to bind mouse motion to an action. For example, with
-the default bindings if you draw a N with your mouse with button 3 pressed,
-then the function FuncFvwmWWW of themes/default/function-appbind will be 
-executed (which start netscape by default). You need libstroke installed 
-and fvwm compiled with stroke support. libstroke can be obtained via 
-anonymous ftp at http://www.etla.net/~willey/projects/libstroke/. You
-need also to enable fvwm-themes stroke option.
+A. Stroke allows to bind mouse motion to an action. For example, with the
+default bindings if you draw a N with your mouse with button 3 pressed, then
+the function FuncFvwmWWW of themes/default/function-appbind will be executed
+(which starts netscape by default). You need libstroke installed and fvwm
+compiled with stroke support. libstroke can be obtained via anonymous ftp at
+http://www.etla.net/~willey/projects/libstroke/. You need also to enable
+fvwm-themes stroke option.
 
-The default bindings are defined in the file options/stroke/enabled.
+The stroke bindings are defined in themes/default/settings/stroke/enabled.
 Mouse button 3 is used (this button must be pressed during the stroke),
 no modifier are needed when you start your mouse motion on the root
 window and you must use the Alt modifier if you start your mouse motion
-on a window (you cannot start your motion on a window title bar or frame).
+in a window (you cannot start your motion in a window title bar or frame).
 Now the mouses motion:
 
- - A | from the top to the bottom start FuncFvwmTerminal
- - A / from the top to the bottom start FuncFvwm2Terminal
- - A \ from the top to the bottom start FuncFvwm3Terminal
- - A | from the bottom to the top start FuncFvwmEditor
- - A / from the bottom to the top start FuncFvwmFileManager
- - A \ from the bottom to the top start FuncFvwmDocView
- - A N from the bottom left start FuncFvwmWWW
- - A - from the right to the left start FuncFvwm2WWW
- - A - from the left to the right start FuncFvwm3WWW
- - A C from the top start FuncFvwmCalculator
- - A C from the bottom start FuncFvwmProcess
- - A L from the top left start FuncFvwmHelp
- - A L from the bottom right start FuncFvwm2Help
- - A _| from the bottom left start FuncFvwmImageView
- - A |_| from the top left start FuncFvwm2ImageView
- - A _| from the top right start FuncFvwmImageEdit
- - A |_| from the top right start FuncFvwm2ImageEdit
- - A |-| (an arch) form the bottom left start FuncFvwmMail
- - A back and forth - starting from the left start FuncFvwmCdPlayer
- - A back and forth - starting from the right start FuncFvwmSound
- - A clockwise box from the top left start FvwmForm FormFvwmQuitVerify.
+  - A | from the top to the bottom executes FuncFvwmTerminal
+  - A / from the top to the bottom executes FuncFvwm2Terminal
+  - A \ from the top to the bottom executes FuncFvwm3Terminal
+  - A | from the bottom to the top executes FuncFvwmEditor
+  - A / from the bottom to the top executes FuncFvwmFileManager
+  - A \ from the bottom to the top executes FuncFvwmDocView
+  - A N from the bottom left       executes FuncFvwmWWW
+  - A - from the right to the left executes FuncFvwm2WWW
+  - A - from the left to the right executes FuncFvwm3WWW
+  - A C from the top               executes FuncFvwmCalculator
+  - A C from the bottom            executes FuncFvwmProcess
+  - A L from the top left          executes FuncFvwmHelp
+  - A L from the bottom right      executes FuncFvwm2Help
+  - A _| from the bottom left      executes FuncFvwmImageView
+  - A |_| from the top left        executes FuncFvwm2ImageView
+  - A _| from the top right        executes FuncFvwmImageEdit
+  - A |_| from the top right       executes FuncFvwm2ImageEdit
+  - A |~| from the bottom left     executes FuncFvwmMail
+  - forth and back from the left   executes FuncFvwmCdPlayer
+  - forth and back from the right  executes FuncFvwmSound
+  - A clockwise box from the top left executes FvwmFuncQuitVerify
 
-The mouse motion is draw and if the the mouse motion succeed (i.e., your
-motion is binded to an action) then the busy cursor is displayed during
-a fraction of second. See the Stroke and StrokeFunc entries of the fvwm2
-man page for more informations.
+The mouse motion is drawn for your convention and if the the mouse motion is
+succeed (i.e., this motion is bound to some action) then the busy cursor is
+displayed during a fraction of second. See the Stroke and StrokeFunc entries
+of the fvwm2 man page for more information.
 
 Q. Can I draw a penguin (using mouse strokes) to compile a kernel?
 A. Maybe. If you are a perfect painter. :) If not, stick to simple figures
-- line, 2 lines, triangle, square. Currently it is not easy to redefine
+- line, 2 lines, triangle, square. Currently it is not easy to add new
 stroke motions, although we are working on making everything configurable.
-But bound applications or fvwm commands are easy configurable.
+But redefining existing motion bindings is easy.
 ==============================================================================
 
 ------------------------------------------------------------------------------
@@ -209,64 +240,63 @@ the following lines at the end of your "start X" file:
 	exec the_sm_executable
 
 the --session option is optional, but this allows you to use a different
-Fvwm-Themes configuration when you use a given session manager or
+Fvwm-Themes configuration when you use a given session manager and
 when you use Fvwm-Themes under a normal FVWM session.
 
-At the present time there is a special support for GNOME and a generic 
-support (current->settings->Session Manager).If you want a special support 
+Then start a window manager inside a session manager by fvwm-themes-start or
+(more correct) by 'fvwm2 -f themes-rc'.
+
+At the present time there is a special support for GNOME and a generic
+support (current->settings->Session Manager). If you want a special support
 for a given session manager ask the fvwm-themes developers.
 ==============================================================================
 
 ------------------------------------------------------------------------------
 Q. Can I use fvwm-themes with GNOME?
 
-A. Yes. You must have fvwm2 compiled with GNOME enabled (this the default) 
-and it is preferable to run fvwm under gnome-session. Start a gnome-session 
-as explained in the above question (with say --session gnome) and use the 
-control center to add fvwm-themes in your list of GNOME window manager 
-(Name: Fvwm-Themes, Command: fvwm2 -f themes-rc, fvwm is a session managed 
-window manager). Then, you should select GNOME as Session Manager under 
-(current->settings of the theme management menu). This give to you the 
-GNOME "buttons" menus: Shift-Mouse 1/2/3 and a special quit menu. 
-The --session gnome option ensure you that this option will be set only 
-under a GNOME session. Moreover, this way, you can have a completely different
-configuration under a GNOME session (e.g., starting different modules to take 
-in account the GNOME panel, disabling the background if you want to use a 
-GNOME background ...etc.). Others Fvwm Themes components are specially designed
-for GNOME (current->settings->GNOME under the theme management menu).
+A. Yes. You should have fvwm2 compiled with GNOME enabled (this a default)
+and it is preferable to run fvwm under gnome-session. Start a gnome-session
+as explained in the question above (with, say, --session gnome) and use the
+control center to add fvwm-themes in your list of GNOME window manager
+(Name: Fvwm-Themes, Command: fvwm2 -f themes-rc, fvwm is a session managed
+window manager). Then, you should select GNOME as Session Manager under
+(current->settings of the theme management menu). This gives to you the
+GNOME "button" menus: Shift-Mouse 1/2/3 and a special quit menu.
+The "--session gnome" optional parameter ensures that this GNOME option will
+be used only under a fvwm-themes's gnome session. Moreover, this way, you
+can have a completely different configuration under a GNOME session (like
+starting different modules to take in account the GNOME panel, using GNOME
+background and thus disabling the theme backgrounds). In addition there are
+GNOME-specific fvwm settings (for menus, the panel) that you can use.
 
-If you want to use only the GNOME panel start Fvwm Themes as usual (may
-be using the fvwm-themes-start --session options and start the panel before
-fvwm-themes-start). If you want a stays put  panel (i.e., a panel which 
-can cover and be covered by normal windows) enabled the panel stays put 
-option of Fvwm Themes and disabled any GNOME configuration options 
-concerning such things (you may completely restart X so that this options 
-work fine).
+If you want a stays put  panel (i.e., a panel which can cover and be covered
+by normal windows) enable the panel stays put fvwm-themes option and
+disable any GNOME configuration options concerning such things (you may
+completely restart X for this panel setting to work fine).
 
-Also, do not forget that you can run GNOME applications without using the 
-GNOME panel neither a gnome-session. Again, Fvwm Themes has special
-components for this: you can get the system, user and "redhat" GNOME menu
-as well as Icon and MiniIcon Styles for GNOME applications. So that this
-work with GNOME icons you need to use the --enable-gnome-icons option
-to configure when you install fvwm-themes or you have to login under the
-same user that run "make install" and run "fvwm-themes-images --ft-install".
-See the fvwm-themes-images man pages for more details.
+Also, do not forget that you can run GNOME applications with using neither
+the GNOME panel nor gnome-session. Again, Fvwm Themes has special components
+for this: you can get the system, user and "redhat" GNOME menu as well as
+Icon and MiniIcon Styles for GNOME applications. For GNOME icons to work
+with fvwm, you need to use the --enable-gnome-icons option to configure when
+you install fvwm-themes or you have to login later under the same user that
+ran "make install" and run "fvwm-themes-images --ft-install".
 ==============================================================================
 
 ------------------------------------------------------------------------------
 Q. I am screwed. How can I get fvwm config in one file?
 
 A. We will release a documentation describing the format of every component.
-It is not very easy to sit and immideately create complete or partial theme,
+It is not very easy to sit and immediately create complete or partial theme,
 which is clean and works well with the rest of the framework. You should
 comply to some standard format and check that everything, which is allocated
-is destroyed. It is actually easy if you are familar well with fvwm syntax,
+is destroyed. It is actually easy if you are familar well with the fvwm,
 but it can take some time to acquire an experience with the framework.
 
 You can always get the fvwm configuration in one file (a-la .fvwm2rc) of
 the currently used configuration (so called "current" theme) by executing:
 
-$ fvwm-themes-config --expand-rc >current-fvwmrc
+	% fvwm-themes-config --expand-rc >current-fvwmrc
 
 You can skip the contents at the start responsible to manipulation of themes.
 ==============================================================================
@@ -286,20 +316,24 @@ or contact one of the main fvwm-themes developers.
 ==============================================================================
 
 ------------------------------------------------------------------------------
-Q. I use the X Configuration Scripts (under the Fvwm Configuration menu
-   entries), but the changes I mad are not saved for the next sessions!
+Q. Why changes done using X Configuration Scripts are not persistent?
 
-A. Just add the line
-	.xinitrc-fvwm
+A. If you want the changes done using X Configuration Scripts (under the
+Fvwm Configuration submenu) to have effect your next fvwm sessions, just add
+the line
+
+	$HOME/.xinitrc-fvwm
+
 in your .xinitrc or .xsession file before running fvwm-themes-start.
 ==============================================================================
 
 ------------------------------------------------------------------------------
-Q. Where I can found some documentations on fvwm-themes-config, 
-   fvwm-themes-start, fvwm-themes-menuapp, fvwm-themes-images and 
-   fvwm-themes-com?
+Q. Where I can found some documentations on fvwm-themes shell scripts?
 
-A. All this scripts (perl/shell) have a manual page.
+A. All fvwm-themes perl/shell scripts (fvwm-themes-config,
+fvwm-themes-start, fvwm-themes-menuapp, fvwm-themes-images, fvwm-themes-com)
+have manual pages. They are, together with fvwm manual pages are accessible
+from the Help menu.
 ==============================================================================
 
 ------------------------------------------------------------------------------
