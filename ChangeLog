@@ -3,6 +3,10 @@
 	* locale/ru/FvwmScript-ThemesCenter.html:
 	translated some more paragraphs...
 
+	* themes/migo/images/decor/title-[in]active.xpm:
+	removed empty 1 line; seems like Dominik changed the title image
+	code after 2.3.22, should other themes (blackbox) be corrected too?
+
 2000-12-28  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-FontSelector:

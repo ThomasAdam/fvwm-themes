@@ -1,7 +1,7 @@
 /* XPM */
 static char *rose_active[] = {
 /* width height num_colors chars_per_pixel */
-"    54    22       16            1",
+"    54    21       16            1",
 /* colors */
 "  c #C0C0B4",
 "# c #ffffff",
@@ -20,7 +20,6 @@ static char *rose_active[] = {
 "m c #ffb464",
 "n c #ffe7cf",
 /* pixels */
-"                                                      ",
 "                                                      ",
 "                               eee                    ",
 "                            eeeejheeee        cc      ",
