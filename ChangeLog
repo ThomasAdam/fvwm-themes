@@ -8,6 +8,12 @@
 	reimplemented without container, container has flickering problems
 	with transparent colorset
 
+	* themes/multichoice/buttons/images/warpluc.tar.gz:
+	* themes/multichoice/buttons.cfg:
+	Added a new button image set! It's not hard to add button image sets.
+	I had only inactive buttons (cut from a screenshot), symlinked and
+	recolored them to get active ones; there was no original stick image
+
 2001-05-02  migo  <migo@homemail.com>
 
 	* themes/multichoice/buttons.cfg:
