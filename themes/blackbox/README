@@ -23,6 +23,11 @@ distribution), the script also produces setups for several
 different toolbar widths, and some pixmaps that will mimic the
 neXt look (experimental).
 
+See also http://www.xs4all.nl/~josvanr/fvwm.html .
+
+[By Mikhael: originally the menu pixmap had a title, but it is not good
+for long menus, so it was replaced with a gradient.]
+
 Have fun,
 
 Jos.

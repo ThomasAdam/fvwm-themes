@@ -1,6 +1,7 @@
-Style "FvwmButtons-*Panel" NoTitle, TitleAtBottom, NoHandles, NoBorder, \
+Style "FvwmButtons-*Panel" NoTitle, TitleAtBottom, NoHandles, \
 	Sticky, WindowListSkip, CirculateSkip, StaysPut, \
 	NeverFocus, FixedSize, FixedPosition
+Style "FvwmButtons-Panel" !Borders
 Style "FvwmIconMan" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
 	NoHandles, TitleAtBottom
 Style "FvwmPager-Desker" NoTitle, NoHandles, BorderWidth 1, \
