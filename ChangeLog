@@ -1,3 +1,7 @@
+2001-03-19  migo  <migo@homemail.com>
+
+	* themes/default/menus: fixed menu item with '%'
+
 2001-03-19  olicha  <olivier.chapuis@free.fr>
 
 	* themes/redmond98/buttons:
