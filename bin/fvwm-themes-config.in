@@ -625,14 +625,16 @@ sub new ($$;$$) {
 	my $dir = getThemeDir($loadTheme);
 	my @components = ('_core', @{$self->{$componentKey}});
 
-	my $component;
+	my $subComponentParentTheme = {};  # to handle newly added subcomponents
 	my $cindex = -1;  # because of '_core'
+	my $component;
 	while ($component = shift(@components)) {
 		my $componentCfg = $componentCfgs->{$component};
 		my $realTheme = $loadTheme;
 		my $cc;
 		if ($fresh) {
-			$realTheme = $componentCfg->{$themeKey} || "*unknown*";
+			$realTheme = $componentCfg->{$themeKey}
+				|| $subComponentParentTheme->{$component} || "*unknown*";
 			my $origComponentCfg = loadThemeCfg($realTheme)->[1]->{$component};
 			unless ($origComponentCfg) {
 				errWarn("Theme '$realTheme' has no component '$component' anymore, auto-dropping");
@@ -659,8 +661,13 @@ sub new ($$;$$) {
 			$cc = clonePerlValue($componentCfg);
 		}
 		$cc->{$themeKey} = $realTheme unless $cc->{$themeKey};
-		push @components, map { "$component/$_" } @{$cc->{'contains'}}
-			if ref($cc->{'contains'}) eq 'ARRAY';
+		if (ref($cc->{'contains'}) eq 'ARRAY') {
+			push @components, map {
+				my $component0 = "$component/$_";
+				$subComponentParentTheme->{$component0} = $cc->{$themeKey};
+				$component0
+			} @{$cc->{'contains'}};
+		}
 		
 		my $readFile;
 		unless (exists $cc->{'read-file'}) {

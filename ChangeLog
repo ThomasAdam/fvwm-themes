@@ -1,3 +1,11 @@
+2000-12-09  migo  <migo@homemail.com>
+
+	* themes/cde/README: updated
+
+	* bin/fvwm-themes-config.in:
+	fix a situation on -fresh when a new subcomponent was added,
+	so now if kde2 (or, say, kde3) subcomponent is added, --fresh works
+
 2000-12-09  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-Help:
