@@ -755,9 +755,12 @@ Begin
     If $UpdateSettingsChoices == 1 Then
     Begin
 	Set $UpdateSettingsChoices = 0
-	Set $cmd = $SendMsgAndGet{"option-choices }$SettingsComponent{ default }$SettingsIndex{"}
-	Set $SettingsChoices = (GetOutput $cmd 1 -1)
-	ChangeTitle 27 $SettingsChoices
+	If $SettingsComponent <> {} Then
+	Begin
+	    Set $cmd = $SendMsgAndGet{"option-choices }$SettingsComponent{ default }$SettingsIndex{"}
+	    Set $SettingsChoices = (GetOutput $cmd 1 -1)
+	    ChangeTitle 27 $SettingsChoices
+	End
     End
 
 #----------------------------------------------------------------------------
@@ -1478,8 +1481,7 @@ SingleClic :
     If $break == 1 Then
     Begin
 	Set $cmd = $SendMsgAndGet{"restore }$SettingsComponent{"}
-	Set $dummy = (GetOutput $cmd 1 -1)
-	Set $UpdateSettingsChoices  = 0
+	Set $tmp = (GetOutput $cmd 1 -1)
 	Set $UpdateSettingsChoices = 1
 	Set $UpdateSettingsList = 1
 	ChangeFont 23 $ShadeFont
@@ -2111,10 +2113,16 @@ Case message of
  Begin
     If $ConfigTool == {SM} Then
     Begin
+	ChangeTitle 95 $l_ApplyNewSession
 	Set $break = 0
 	If $SelectedSession == {} Then
 	Begin
 	    ChangeTitle 95 $l_MustSelecteSession
+	    Set $break = 1
+	End
+	If $SMEditorState <> 0 Then
+	Begin
+	    ChangeTitle 95 $l_FinishEdit
 	    Set $break = 1
 	End
 	# need to fix that one day
@@ -2126,7 +2134,7 @@ Case message of
 	#End
 	If $break == 0 Then
 	Begin
-	    ChangeTitle 95 $l_ApplyNewSession
+	    #ChangeTitle 95 $l_ApplyNewSession
 	    Set $cmd = $SendMsgAndGet{"apply-sm }$SelectedSession{"}
 	    Set $tmp = (GetOutput $cmd 1 -1)
 	    Set $UpdateSMLists = 1
@@ -2182,8 +2190,6 @@ Main
 Case message of
  SingleClic :
  Begin
-    #If $ConfigTool == {TS} Then
-    #Begin
 	ChangeTitle 95 $l_Refresh
 	Set $cmd = $SendMsgAndGet{"update 1"}
 	Set $dummy = (GetOutput $cmd 1 -1)
@@ -2199,7 +2205,6 @@ Case message of
 	If $OptionEditorLast <> {} Then
 	    SendToScript $OptionEditorLast {update}
 	Set $NullMessage = 1
-    #End
  End
 End
 

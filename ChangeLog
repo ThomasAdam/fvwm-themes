@@ -1,3 +1,9 @@
+2000-09-31  olicha  <olivier.chapuis@free.fr>
+
+	* scripts/FvwmScript-ThemesCenter:
+	* bin/fvwm-themes-config.in:
+	Fixed some bugs (in particular for FVWM Themes Sessions)
+	
 2000-10-01  migo  <migo@homemail.com>
 
 	* themes/default/bindings:

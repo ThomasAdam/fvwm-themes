@@ -2194,7 +2194,7 @@ sub comLoop {
 					rename($orig, $dest);
 				}
 				# change the symlinks if needed
-				if ($currentSession eq $opt[0]) {
+				if ($currentSession eq $opt[0] && $dest ne $orig) {
 					chdir("$themesSubDir");
 					unlink("$currentThemeName") ||
 						sysDie("Can't unlink $userDir/$currentThemeSubDir");
@@ -2205,15 +2205,16 @@ sub comLoop {
 					symlink("$currentThemeSubDir-$opt[1]/themes-rc-2","themes-rc-2");
 				}
 				if ($dirConfig ne $orig) {
+					system("rm -rf themes/current-$opt[1]/images");
+					#unlink("themes/current-$opt[1]/theme.cfg");
+					#unlink("themes/current-$opt[1]/$rcFile2");
 					if ($dirConfig eq "") {
 						# need to use the default config
-						if ($currentSession eq $opt[0]) {
-							system("fvwm-themes-config --reset");
-							system("fvwm-themes-config --load \@personal 2>/dev/null");
-						}
+						system("cp -f $datadir/fvwm/$rcFile2 $dest/; " .
+							"cp -f $datadir/fvwm/themes/current/theme.cfg $dest/");
 					} else {
-						chdir("$dirConfig");	
-						system("cp -rdp * ../../" . $dest);
+						chdir("$dirConfig");
+						system("cp -af * ../../" . $dest);
 						chdir("$userDir");
 					}
 				}
@@ -2269,7 +2270,7 @@ sub comLoop {
 			if ($index == -1) {
 				$return = "$session\nErr3";
 			} else {
-				system("rm -rf $userDir/themes/current-$session");
+				system("rm -rf themes/current-$session");
 				($currentSession,$sessionList,$uptime) = sessionInfo();
 				if (! defined $$sessionList[$index]) {
 					$index--;
@@ -2288,10 +2289,10 @@ sub comLoop {
 				sysDie("Can't unlink $userDir/$currentThemeSubDir");
 			makePath("$userDir/$themesSubDir/current-$newSession") 
 				if ! -d "current-$newSession";
-			symlink("current-$newSession","current");
+			symlink("current-$newSession","$currentThemeName");
 			chdir("$userDir");
-			if (! -f "$currentThemeSubDir-$newSession/themes-rc-2") {
-				system("touch $currentThemeSubDir-$newSession/themes-rc-2");
+			if (! -f "$currentThemeSubDir-$newSession/$rcFile2") {
+				system("touch $currentThemeName-$newSession/$rcFile2");
 				$create = 1;
 			}
 			unlink("themes-rc-2");
