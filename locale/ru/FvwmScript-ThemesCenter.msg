@@ -64,7 +64,7 @@ AReallyRem	{?}
 # exact
 SessionName	{Название сессии:      }
 # exact
-ConfigOf	{Использoвать конфиг.: }
+ConfigOf	{Использовать конфиг.: }
 Ok		{Согласие}
 Cancel		{Отмена}
 Yes		{Да}
