@@ -1,3 +1,11 @@
+2002-11-24  migo  <migo@homemail.com>
+
+	* themes/default/bindings.restrict-modifiers.no:
+	* themes/default/bindings.restrict-modifiers.yes:
+	* themes/default/bindings.switch-mouse-2-3.no:
+	* themes/default/bindings.switch-mouse-2-3.yes:
+	renamed again, this time Solaris pkgmk does not like '=' in file names
+
 2002-10-30  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
