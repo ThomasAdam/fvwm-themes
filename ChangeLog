@@ -1,3 +1,8 @@
+2000-09-31  olicha  <olivier.chapuis@free.fr>
+
+	* scripts/FvwmScript-ThemesCenter:
+	Work on russian (need current fvwm cvs)
+	
 2000-09-31  migo  <migo@homemail.com>
 
 	* themes/default/modules/main:FvwmPager-Desker:

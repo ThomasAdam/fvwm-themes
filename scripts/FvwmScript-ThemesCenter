@@ -66,6 +66,7 @@ Begin
     Set $ShadeFont = {-adobe-helvetica-medium-r-*-*-12-*}
 
     #Set $Lang = {en}
+    Set $Lang = {ru}
     # Internationalization. Not a definitive solution: FVWM can have in
     # the future (version 2.5) a command Local(text) and LocalFile file.
     # The methode below is a ok for 3 or 4 languages ...
@@ -129,7 +130,7 @@ Begin
 	ChangeTitle 45 {Session SИlectionnИe:}
 	ChangeTitle 46 {* Pour charger une session, sИlectionnИ la et cliquer sur Appliquer            }
 	ChangeTitle 47 {* Pour recharger la session courante Cliquer sur "RafrИchire"                  }
-	ChangeTitle 48 {* Cliquer sur "Mise Ю Jour" pour reconstruire la liste des sessions             }
+	ChangeTitle 48 {* Cliquer sur "Mise Ю Jour" pour reconstruire la liste des sessions            }
 	ChangeTitle 58 {* Si vous Appliquer, les changements non sauvИs des autres outils seront perdus}
 	Set $l_AddSession = {Ajoue d'une session}
 	Set $l_NotRemoveMain = {Vous ne pouvez pas supprimer la session "main"}
@@ -165,8 +166,7 @@ Begin
     Begin
 	Set $tmp = 1
 	Set $SelFont = {-cronyx-times-bold-r-*-*-12-*-*-*-*-*-koi8-*}
-	Set $ShadeFont = {-cronyx-times-medium-r-*-*-12-*-*-*-*-*-koi8-*}
-
+	Set $ShadeFont = {-cronyx-times-medium-r-*-*-12-*-*-*-*-*-koi8-*}	
 	ChangeTitle 1 {Раздел Конфигурации:}
 	ChangeTitle 2 {       Выбор Тем              |       Общие Установки       |       Сессии FVWM Themes      }
 	ChangeTitle 5 {Список Тем:}
@@ -180,65 +180,65 @@ Begin
 	ChangeTitle 13 {Взять}
 	ChangeTitle 14 {Инфо}
 	ChangeTitle 15 {Снимок}
-#	Set $l_MustSelecteComp = {Сначала выберите компонент темы}
-#	Set $l_NoScreenShot = {Снимки пока не доступны}
-#	Set $l_NoHelp = {Help пока не доступен}
-#	ChangeTitle 16 {Используемые и установленные компоненты:}
-#	ChangeTitle 18 {Свойства}
-#	ChangeTitle 19 {Возврат}
-#	ChangeTitle 20 {Удалить}
-#	Set $l_NoProperties = {Этот Исп/Уст компонент не имеет опций, вариантов или под-компонент}
-#	Set $l_OptionsEditor = {Редактор опций для}
-#	Set $l_AlreadyActive = {уже активный}
-#	Set $l_OnlyThreeEditor = {Число редакторов опций ограничено тремя}
-#	Set $l_CompNotSet = {Этот Исп/Уст компонент не установлен!}
-#	Set $l_DropNotImp = {Пока не доступно}
-#	Set $l_NoDrop = {Этот компонент не может быть удален}
-#	# GS
-#	ChangeTitle 21 {Установки: Используемые и установленные компоненты:}
-#	ChangeTitle 23 {Возврат}
-#	ChangeTitle 24 {Инфо}
-#	ChangeTitle 25 {Убрать}
-#	ChangeTitle 26 {Выберите Компонент}
-#	Set $l_ChoicesFor = {Варианты для}
-#	ChangeTitle 28 {Установить}
-#	Set $l_MustSelectChoice = {Сначала выберите вариант}
+	Set $l_MustSelecteComp = {Сначала выберите компонент темы}
+	Set $l_NoScreenShot = {Снимки пока не доступны}
+	Set $l_NoHelp = {Help пока не доступен}
+	ChangeTitle 16 {Используемые и установленные компоненты:}
+	ChangeTitle 18 {Свойства}
+	ChangeTitle 19 {Возврат}
+	ChangeTitle 20 {Удалить}
+	Set $l_NoProperties = {Этот Исп/Уст компонент не имеет опций, вариантов или под-компонент}
+	Set $l_OptionsEditor = {Редактор опций для}
+	Set $l_AlreadyActive = {уже активный}
+	Set $l_OnlyThreeEditor = {Число редакторов опций ограничено тремя}
+	Set $l_CompNotSet = {Этот Исп/Уст компонент не установлен!}
+	Set $l_DropNotImp = {Пока не доступно}
+	Set $l_NoDrop = {Этот компонент не может быть удален}
+	# GS
+	ChangeTitle 21 {Установки: Используемые и установленные компоненты:}
+	ChangeTitle 23 {Возврат}
+	ChangeTitle 24 {Инфо}
+	ChangeTitle 25 {Убрать}
+	ChangeTitle 26 {Выберите Компонент}
+	Set $l_ChoicesFor = {Варианты для}
+	ChangeTitle 28 {Установить}
+	Set $l_MustSelectChoice = {Сначала выберите вариант}
 #	# SM
-#	Set $l_CurrentSession = {Текущая Сессия}
-#	Set $l_UpTime = {Время Работы}
-#	ChangeTitle 40 {Список Сессий FVWM Themes}
-#	Set $l_FinishEdit = {Вы не закончили редактировать сессию}
-#	Set $l_SelectedSession = {Выбранная сессия:}
-#	Set $l_MustSelecteSession = {Сначала выберите сессию}
-#	Set $l_B_Edit = {Редактор сессии }
-#	Set $l_A_Edit = {}
-#	ChangeTitle 42 {Изменить}
-#	ChangeTitle 43 {Добавить}
-#	ChangeTitle 44 {Удалить}
-#	ChangeTitle 45 {Выбранная сессия:}
+	Set $l_CurrentSession = {Текущая Сессия}
+	Set $l_UpTime = {Время Работы}
+	ChangeTitle 40 {Список Сессий FVWM Themes}
+	Set $l_FinishEdit = {Вы не закончили редактировать сессию}
+	Set $l_SelectedSession = {Выбранная сессия:}
+	Set $l_MustSelecteSession = {Сначала выберите сессию}
+	Set $l_B_Edit = {Редактор сессии }
+	Set $l_A_Edit = {}
+	ChangeTitle 42 {Изменить}
+	ChangeTitle 43 {Добавить}
+	ChangeTitle 44 {Удалить}
+	ChangeTitle 45 {Выбранная сессия:}
 #	# See widget 46, 47, 48, 58
-#	Set $l_AddSession = {Добавить новую сессию}
-#	Set $l_NotRemoveMain = {Вы не можете удалить сессию main}
-#	Set $l_NotRemoveCur = {Вы не можете удалить текущую сессию!}
-#	Set $l_B_ReallyRemove = {Действительно удалить сессию }
-#	Set $l_A_ReallyRemove = {?}
-#	ChangeTitle 50 {Название сессии:}
-#	Set $l_Ok = {Согласие}
-#	Set $l_Cancel = {Отмена}
-#	Set $l_Yes = {Да}
-#	Set $l_No = {Нет}
-#	Set $l_NameNotValid = {Название сессии не может быть использованно}
-#	Set $l_NameAlreadyUse = {Название сессии уже используется!}
-#	Set $l_SysErr = {Неизвестная "системная" ошибка, Караул!}
-#	Set $l_ClickNewSession = {Выберите "Применить" для загрузки вашей новой сессии}
-#	ChangeTitle 53 $l_Ok
-#	ChangeTitle 54 $l_Cancel
-#	# End
-#	ChangeTitle 95 {Место для информационных и предупреждающих сообщений}
-#	Set $l_ApplyThemeConfig = {Применить новую конфигурацию тем}
-#	Set $l_ApplyNewSession = {Загрузка новой сессии}
-#	Set $l_Refresh = {Перегрузка текущей конфигурации}
-#	Set $l_Update = {Обновление текущей конфигурации}
+	Set $l_AddSession = {Добавить новую сессию}
+	Set $l_NotRemoveMain = {Вы не можете удалить сессию main}
+	Set $l_NotRemoveCur = {Вы не можете удалить текущую сессию!}
+	Set $l_B_ReallyRemove = {Действительно удалить сессию }
+	Set $l_A_ReallyRemove = {?}
+	ChangeTitle 50 {Название сессии:}
+	Set $l_Ok = {Согласие}
+	Set $l_Cancel = {Отмена}
+	Set $l_Yes = {Да}
+	Set $l_No = {Нет}
+	Set $l_NameNotValid = {Название сессии не может быть использованно}
+	Set $l_NameAlreadyUse = {Название сессии уже используется!}
+	Set $l_SysErr = {Неизвестная "системная" ошибка, Караул!}
+	Set $l_ClickNewSession = {Выберите "Применить" для загрузки вашей новой сессии}
+	ChangeTitle 53 $l_Ok
+	ChangeTitle 54 $l_Cancel
+	# End
+	ChangeTitle 95 {Место для информационных и предупреждающих сообщений}
+	Set $l_ApplyThemeConfig = {Применить новую конфигурацию тем}
+	Set $l_ApplyNewSession = {Загрузка новой сессии}
+	Set $l_Refresh = {Перегрузка текущей конфигурации}
+	Set $l_Update = {Обновление текущей конфигурации}
 	ChangeTitle 96 {Применить}
 	ChangeTitle 97 {Освежить}
 	ChangeTitle 94 {Обновить}
@@ -417,7 +417,49 @@ Begin
     ChangeFont 24 $ShadeFont
     ChangeFont 25 $ShadeFont
     ChangeFont 28 $ShadeFont
-
+    # change the fonts for non west-european language
+    If $Lang == {ru} Then
+    Begin
+	Set $FixedFont = {-cronyx-fixed-medium-r-semicondensed--0-0-75-75-c-0-koi8-r}
+	ChangeFont 1 $SelFont
+	ChangeFont 2 $SelFont
+	ChangeFont 6 $FixedFont
+	ChangeFont 5 $SelFont
+	ChangeFont 11 $SelFont
+	ChangeFont 12 $FixedFont
+	ChangeFont 16 $SelFont
+	ChangeFont 17 $FixedFont
+	ChangeFont 21 $SelFont
+	ChangeFont 22 $FixedFont
+	ChangeFont 26 $SelFont
+	ChangeFont 27 $FixedFont
+	ChangeFont 39 $SelFont
+	ChangeFont 40 $SelFont
+	ChangeFont 41 $FixedFont
+	ChangeFont 42 $SelFont
+	ChangeFont 43 $SelFont
+	ChangeFont 44 $SelFont
+	ChangeFont 45 $SelFont
+	ChangeFont 46 $FixedFont
+	ChangeFont 47 $FixedFont
+	ChangeFont 48 $FixedFont
+	ChangeFont 58 $FixedFont
+	ChangeFont 49 $SelFont
+	ChangeFont 50 $SelFont
+	ChangeFont 53 $SelFont
+	ChangeFont 54 $SelFont
+	ChangeFont 57 $SelFont
+	Set $tmp = 94
+	While $tmp <> 100 Do
+	Begin
+	    ChangeFont $tmp $SelFont
+	    Set $tmp = (Add $tmp 1)
+	End
+    End
+    #Set $tmp = 1
+    #While $tmp <> 10 Do
+    #Begin
+	
     # Hide the widgets
     HideWidget 21
     Set $tmp = 21
@@ -1151,7 +1193,7 @@ Property
     Position 30 265
     Size 445 20
     Type ItemDraw
-    Title {Used and Set Theme Components:}
+    Title {}
 Main
 Case message of
     SingleClic :
@@ -1569,7 +1611,7 @@ Property
     Position 20 45
     Size 560 20
     Type ItemDraw
-    Title {                                                       }
+    Title {}
 Main
 Case message of
     SingleClic :
