@@ -76,7 +76,7 @@ DestroyModuleConfig FvwmButton-CenterPanel: *
 *FvwmButton-CenterPanel: BoxSize fixed
 *FvwmButton-CenterPanel: (${cpPagerWidth}x$pageHeight+$toolbarWidth+$pageTopMargin, Frame 1, Swallow "FvwmPager-Single" "Module FvwmPager FvwmPager-Single * *")
 *FvwmButton-CenterPanel: (${toolbarWidth}x$cpToolHeight+0+0, Frame 0, Icon $icondir/panel-lock.xpm, Action FuncFvwmWmLock, Action (Mouse 2) FuncFvwm2WmLock, Action (Mouse 3) FuncFvwm3WmLock)
-*FvwmButton-CenterPanel: (${toolbarWidth}x$cpToolHeight+0-0, Frame 0)
+*FvwmButton-CenterPanel: (${toolbarWidth}x$cpToolHeight+0-0, Frame 0, Icon $icondir/panel-arrow.xpm, Action Module FvwmPager -transient FvwmPager-Desker 0 3)
 *FvwmButton-CenterPanel: (${toolbarWidth}x$cpToolHeight-0+0, Frame 0, Icon $icondir/panel-lite.xpm, Action FuncFvwmWmRestart, Action (Mouse 2) FuncFvwm2WmRestart, Action (Mouse 3) FuncFvwm3WmRestart)
 *FvwmButton-CenterPanel: (${toolbarWidth}x$cpToolHeight-0-0, Frame 0, Icon $icondir/panel-exit.xpm, Action 'Menu MenuFvwmQuit rectangle \$widthx\$height+\$left+\$top o+50 -100m')
 

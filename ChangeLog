@@ -19,6 +19,10 @@
 	I initially thought about .xml extentions, but there are different
 	problems with most of browsers, .html solves this
 
+	* themes/cde/modules/create-buttonbar-config:
+	* themes/cde/modules/buttonbar/{large,small}:
+	added a transient desker arrow
+
 2000-11-29  olicha  <olivier.chapuis@free.fr>
 
 	* locale/{en,fr}/FvwmScript-ConfigCenter.msg:
