@@ -11,13 +11,13 @@ All info about FVWM Themes and sources are available at the Home Page:
 
   http://fvwm-themes.sourceforge.net/
 
-FVWM Themes is a powerful configurational framework for the latest FVWM,
-designed to be easily extendible and configurable
+FVWM Themes is a powerful configuration framework for the modern FVWM,
+designed to be easily extensible and configurable
 
 fvwm-themes 0.6.2 requires stable fvwm 2.4.8 or unstable 2.5.1+ (say 2.5.5),
 so if needed, first upgrade your fvwm version.
 
-There are also rpm packages for both fvwm and fvwm-themes 0.6.2 at:
+The rpm packages for both fvwm and fvwm-themes 0.6.2 are at:
 
   http://fvwm-themes.sf.net/rpm/
 
