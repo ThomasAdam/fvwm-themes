@@ -106,7 +106,7 @@ Key KP_1	A	C	Direction SouthWest FuncFvwmSelectWindow
 Key KP_2	A	C	Direction South     FuncFvwmSelectWindow
 Key KP_3	A	C	Direction SouthEast FuncFvwmSelectWindow
 Key KP_4	A	C	Direction West      FuncFvwmSelectWindow
-Key KP_5	A	C	WindowList
+Key KP_5	A	C	Direction Center    FuncFvwmSelectWindow
 Key KP_6	A	C	Direction East      FuncFvwmSelectWindow
 Key KP_7	A	C	Direction NorthWest FuncFvwmSelectWindow
 Key KP_8	A	C	Direction North     FuncFvwmSelectWindow

@@ -3,6 +3,11 @@
 	* themes/*/modules/FvwmIconMan:
 	use 'A'ny modifier instead of 'N'one
 
+	* themes/default/bindings:
+	* themes/osx/buttons:
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	minor updates
+
 2003-03-15  sa  <sa@xmission.com>
 
 	* themes/sa/images/button/maxxed.png:

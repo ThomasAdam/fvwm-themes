@@ -65,6 +65,7 @@ Style "Fvwm*"                  Icon norm/utility.xpm,          MiniIcon mini/uti
 Style "ghostview"              Icon norm/ghostview.xpm,        MiniIcon mini/ghostview.xpm
 Style "ghostscript"            Icon norm/ghostview.xpm,        MiniIcon mini/ghostview.xpm
 Style "gifview"                Icon norm/image-viewer.xpm,     MiniIcon mini/image-viewer.xpm
+Style "gkrellm"                Icon norm/monitoring.xpm,       MiniIcon mini/monitoring.xpm
 Style "GNUplot"                Icon norm/science.xpm,          MiniIcon mini/science.xpm
 Style "GV"                     Icon norm/ghostview.xpm,        MiniIcon mini/ghostview.xpm
 Style "Help_popup"             Icon norm/help.xpm,             MiniIcon mini/help.xpm
@@ -78,6 +79,7 @@ Style "matlab"                 Icon norm/science.xpm,          MiniIcon mini/sci
 # too general
 Style "Midnight-Commander"     Icon norm/file-manager.xpm,     MiniIcon mini/file-manager.xpm
 Style "mgv*"                   Icon norm/ghostview.xpm,        MiniIcon mini/ghostview.xpm
+Style "mldonkey*"              Icon norm/network.xpm,          MiniIcon mini/network.xpm
 Style "moxfm*"                 Icon norm/file-manager.xpm,     MiniIcon mini/file-manager.xpm
 Style "mtools*"                Icon norm/disk.xpm,             MiniIcon mini/disk.xpm
 Style "mxaudio"                Icon norm/music.xpm,            MiniIcon mini/music.xpm
