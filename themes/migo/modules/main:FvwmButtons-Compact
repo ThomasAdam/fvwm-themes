@@ -4,15 +4,15 @@ AddToFunc FuncFvwmStopThemeModules I DestroyFunc FuncFvwmButtons-CompactApps
 DestroyModuleConfig FvwmButtons-Compact: *
 *FvwmButtons-Compact: Colorset 10
 *FvwmButtons-Compact: Geometry -0+0
-*FvwmButtons-Compact: Columns 2
+*FvwmButtons-Compact: Columns 4
+*FvwmButtons-Compact: Padding 1 1
 
 FuncFvwmButtons-CompactApps
 
-#*FvwmButtons-Compact: (2x2, Padding 0 0, Swallow "FvwmPager-Compact" 'FvwmPager FvwmPager-Compact * *')
-#*FvwmButtons-Compact: (2x2, Padding 0 0, Colorset 23, Swallow "xclock" `Exec exec xclock -bg $[bg.cs13] -fg $[fg.cs13] -hd $[shadow.cs13] -hl $[hilight.cs13] -padding 2 -geometry 86x86-0+0`)
-#*FvwmButtons-Compact: (2x1, Padding 0 0, Colorset 23, Swallow "xload" `Exec exec xload -nolabel -bg $[bg.cs13] -fg $[fg.cs13] -hl $[shadow.cs13] -update 3 -geometry 86x43-0+99`)
+#*FvwmButtons-Compact: (4x4, Padding 0 0, Swallow "FvwmPager-Compact" 'FvwmPager FvwmPager-Compact * *')
+#*FvwmButtons-Compact: (4x4, Padding 0 0, Colorset 23, Swallow "xclock" `Exec exec xclock -bg $[bg.cs13] -fg $[fg.cs13] -hd $[shadow.cs13] -hl $[hilight.cs13] -padding 2 -geometry 86x86-0+0`)
+#*FvwmButtons-Compact: (4x2, Padding 0 0, Colorset 23, Swallow "xload" `Exec exec xload -nolabel -bg $[bg.cs13] -fg $[fg.cs13] -hl $[shadow.cs13] -update 3 -geometry 86x43-0+99`)
 
-*FvwmButtons-Compact: (2x2, Padding 0 0, Container(Padding 1 1, Columns 4, Colorset 23))
 *FvwmButtons-Compact: (Icon bar/terminal.xpm, \
 	Action(Mouse 1) `FuncFvwmTerminal`, \
 	Action(Mouse 2) `FuncFvwm2Terminal`, \
@@ -90,4 +90,3 @@ FuncFvwmButtons-CompactApps
 	Action(Mouse 2) `FuncFvwm2WmRestart`, \
 	Action(Mouse 3) `FuncFvwm3WmRestart`, \
 )
-*FvwmButtons-Compact: (End)

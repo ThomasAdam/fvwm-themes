@@ -3,6 +3,11 @@
 	* bin/fvwm-themes-config.in:
 	small rc comment clean up
 
+	* themes/migo/modules/main:FvwmButtons-Compact:
+	* themes/migo/modules/buttonbar/compact*:
+	reimplemented without container, container has flickering problems
+	with transparent colorset
+
 2001-05-02  migo  <migo@homemail.com>
 
 	* themes/multichoice/buttons.cfg:
