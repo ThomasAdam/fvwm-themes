@@ -1,3 +1,8 @@
+2002-06-29  migo  <migo@homemail.com>
+
+	* themes/*/colors*:
+	don't use "*FvwmTheme: " prefix for colorsets, 2.4.8 supports this
+
 2002-06-19  migo  <migo@homemail.com>
 
 	* configure.in:

@@ -12,7 +12,7 @@
 # ----------------
 # Default colorset
 
-*FvwmTheme: Colorset 0 fg black, bg rgb:98/B0/C8, Plain, NoShape
+Colorset 0 fg black, bg rgb:98/B0/C8, Plain, NoShape
 
 # ------------------
 # Window decorations

@@ -12,18 +12,18 @@
 # ----------------
 # Default colorset
 
-*FvwmTheme: Colorset 0 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+Colorset 0 fg black, bg rgb:E4/D2/C0, Plain, NoShape
 
 # ------------------
 # Window decorations
 
 # window title, inactive and active
-*FvwmTheme: Colorset 1 fg #000030, bg #808078, Plain, NoShape
-*FvwmTheme: Colorset 2 fg #000030, bg #C0C0B4, Plain, NoShape
+Colorset 1 fg #000030, bg #808078, Plain, NoShape
+Colorset 2 fg #000030, bg #C0C0B4, Plain, NoShape
 
 # window borders, inactive and active
-*FvwmTheme: Colorset 3 fg #000030, bg #808078, Plain, NoShape
-*FvwmTheme: Colorset 4 fg #000030, bg #C0C0B4, Plain, NoShape
+Colorset 3 fg #000030, bg #808078, Plain, NoShape
+Colorset 4 fg #000030, bg #C0C0B4, Plain, NoShape
 
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground
@@ -43,16 +43,16 @@ AddToFunc   FuncFvwmDecorBackground
 # Menu Colorsets
 
 # inactive menu item fg+bg and menu face
-*FvwmTheme: Colorset 5 fg black, bg rgb:e4/d2/c0, Plain, NoShape
+Colorset 5 fg black, bg rgb:e4/d2/c0, Plain, NoShape
 #fgsh rgb:f0/d0/a0
 
 # active menu item fg+bg
-*FvwmTheme: Colorset 6 fg black, bg rgb:ee/db/c8, \
+Colorset 6 fg black, bg rgb:ee/db/c8, \
 	sh rgb:bf/99/74, hi rgb:ff/ff/ff, Plain, NoShape
 #fgsh rgb:f8/d6/a4
 
 # greyed menu item fg
-*FvwmTheme: Colorset 7 fg gray, bg gray, Plain, NoShape
+Colorset 7 fg gray, bg gray, Plain, NoShape
 
 # ----------------------------------------------------------------------------
 # II. Module Colorsets 
@@ -61,75 +61,75 @@ AddToFunc   FuncFvwmDecorBackground
 # Common Colorsets
 
 # default for modules
-*FvwmTheme: Colorset 10 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+Colorset 10 fg black, bg rgb:E4/D2/C0, Plain, NoShape
 
 # default hilight
-*FvwmTheme: Colorset 11 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+Colorset 11 fg black, bg rgb:E4/D2/C0, Plain, NoShape
 
 # special
-*FvwmTheme: Colorset 12 fg black, bg rgb:E4/D2/C0, \
+Colorset 12 fg black, bg rgb:E4/D2/C0, \
 	VGradient 30 grey50 rgb:E4/D2/C0, NoShape
 
 # swallowed window
-*FvwmTheme: Colorset 13 fg black, bg rgb:E4/D2/C0, hi black, sh rgb:F0/F0/80, \
+Colorset 13 fg black, bg rgb:E4/D2/C0, hi black, sh rgb:F0/F0/80, \
 	Plain, NoShape
 
 # default2 (FvwmPager or to get more colors in Buttons)
-*FvwmTheme: Colorset 14 fg black, bg rgb:C2/B1/A0, Plain, NoShape
+Colorset 14 fg black, bg rgb:C2/B1/A0, Plain, NoShape
 
 # default hilight2: (FvwmPager or to get more colors in a Buttons)
-*FvwmTheme: Colorset 15 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+Colorset 15 fg black, bg rgb:E4/D2/C0, Plain, NoShape
 
 # tips/balloons
-*FvwmTheme: Colorset 16 fg black, bg rgb:FF/FF/D0, Plain, NoShape
+Colorset 16 fg black, bg rgb:FF/FF/D0, Plain, NoShape
 
 # ----------------------------
 # Window List Module Colorsets
 
 # standard item
-*FvwmTheme: Colorset 17 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+Colorset 17 fg black, bg rgb:E4/D2/C0, Plain, NoShape
 
 # active item
-*FvwmTheme: Colorset 18 fg #000030, bg #C0C0B4, Plain, NoShape
+Colorset 18 fg #000030, bg #C0C0B4, Plain, NoShape
 
 # iconified item
-*FvwmTheme: Colorset 19 fg #000030, bg #808078, Plain, NoShape
+Colorset 19 fg #000030, bg #808078, Plain, NoShape
 
 # pointed item
-*FvwmTheme: Colorset 20 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+Colorset 20 fg black, bg rgb:E4/D2/C0, Plain, NoShape
 
 # ----------------------
 # Other Module Colorsets
 
 # FvwmIdent
-*FvwmTheme: Colorset 21 fg black, bg rgb:FF/FF/D0, Plain, NoShape
+Colorset 21 fg black, bg rgb:FF/FF/D0, Plain, NoShape
 
 # FvwmConsole
-*FvwmTheme: Colorset 22 fg white, bg rgb:00/30/30, Plain, NoShape
+Colorset 22 fg white, bg rgb:00/30/30, Plain, NoShape
 
 # ----------------------------------------------------------------------------
 # III. Application Colorsets
 
 # regular terminal
-*FvwmTheme: Colorset 30 fg white, bg rgb:00/00/30, Plain, NoShape
+Colorset 30 fg white, bg rgb:00/00/30, Plain, NoShape
 
 # admin terminal
-*FvwmTheme: Colorset 31 fg white, bg rgb:00/30/30, Plain, NoShape
+Colorset 31 fg white, bg rgb:00/30/30, Plain, NoShape
 
 # remote terminal
-*FvwmTheme: Colorset 32 fg white, bg rgb:30/00/00, Plain, NoShape
+Colorset 32 fg white, bg rgb:30/00/00, Plain, NoShape
 
 # viewer terminal
-*FvwmTheme: Colorset 33 fg white, bg rgb:00/30/00, Plain, NoShape
+Colorset 33 fg white, bg rgb:00/30/00, Plain, NoShape
 
 # application run in the terminal, text editor
-*FvwmTheme: Colorset 34 fg white, bg rgb:00/30/00, Plain, NoShape
+Colorset 34 fg white, bg rgb:00/30/00, Plain, NoShape
 
 # dialog main area
-*FvwmTheme: Colorset 35 fg black, bg rgb:a0/90/80, Plain, NoShape
+Colorset 35 fg black, bg rgb:a0/90/80, Plain, NoShape
 
 # dialog text area
-*FvwmTheme: Colorset 36 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+Colorset 36 fg black, bg rgb:E4/D2/C0, Plain, NoShape
 
 # ----------------------------------------------------------------------------
 # IV. Start/Stop Functions
