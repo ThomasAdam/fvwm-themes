@@ -5,7 +5,7 @@ EXTRA_THEMES = @EXTRA_THEMES@
 
 version = @VERSION@
 release = 0.`date +%Y%m%d`
-datum = `date "+%a, %d %b %Y %X %z"`
+datum = `date "+%a, %d %b %Y %T %z"`
 fullname = FVWM Themes Developers
 email = fvwm-themes-devel@lists.sourceforge.net
 arch ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
