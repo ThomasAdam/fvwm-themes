@@ -1,0 +1,15 @@
+Source: fvwm-themes-extra
+Section: x11
+Priority: optional
+Maintainer: Andrei Mitrofanow <smilebef@web.de>
+Build-Depends: debhelper (>> 4.0.0)
+Standards-Version: 3.5.8
+
+Package: fvwm-themes-extra
+Architecture: any
+Depends: ${shlibs:Depends} ${misc:Depends} ${perl:Depends}
+Description: Extra themes for fvwm-themes-base
+ FVWM Themes is a powerful configuration framework for FVWM,
+ designed to be easily extendible and configurable, includes
+ several pre-built themes, a pack of images and sounds.
+ This Package contained the extra themes for fvwm-themes-base.
