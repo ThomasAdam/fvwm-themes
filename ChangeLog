@@ -1,3 +1,8 @@
+2000-11-08  olicha  <olivier.chapuis@free.fr>
+
+	* ANNOUNCE:
+	new file for announcing new main version
+	
 2000-11-07  olicha  <olivier.chapuis@free.fr>
 
 	* rpm/Makefile.am:

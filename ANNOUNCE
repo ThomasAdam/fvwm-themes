@@ -1,0 +1,27 @@
+   _______________________________________________________________
+  (   _________________________   ________________________________)
+   ) (__  _  _  _    _  .      ) (  __ __  ____       .  ____* ___
+  (   __)( \/ )( \/\/ )/\/\ * (   )(  )  )(  __)* /\/\  (  __)/ __)
+   ) ( .  \  /* \    //    \ . ) (  ) _ ( *) _). /    \* ) _).\__ \
+  (___)  * \/  . \/\/(_/\/\_) (___)(__(__)(____)(_/\/\_)(____)(___/
+
+
+The FVWM Themes workers are pleased to announce FVWM Themes version 0.4
+Available at http://fvwm-themes.sourceforge.net/
+
+FVWM Themes is a powerful configurational framework for FVWM, designed 
+to be easily extendible and configurable, includes several pre-built 
+themes, a pack of images and sounds.
+
+Version 0.4 is a pre-public release and is designed to work with the
+current FVWM beta release: 2.3.22. The aim of this version ... feed back,
+... testing ...
+
+....
+
+Note: The main "bug" is that currently the entire configuration is
+reloaded on every single component switch. This will be fixed in the 
+next main version, aka the first public realese
+
+
+The FVWM Themes workers, xx November 2000
