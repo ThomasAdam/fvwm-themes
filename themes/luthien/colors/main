@@ -1,0 +1,223 @@
+# colors@luthien
+
+# more details and comments can be found in colors@default
+# I.   Fvwm Colorsets
+# II.  Modules Colorsets
+# III. Applications Colorsets
+# IV. Start/Stop Functions
+
+# load the CDE_COLOR* using M4
+esyscmd({{awk '{ print "define(CDE_COLOR" (NR <= 8? NR "_BG": (NR - 8) "_FG") ", {{" $1 "}})" }' $CDE_COLORS_PALETTE}})
+
+# ----------------------------------------------------------------------------
+# I. Fvwm Colorsets
+
+# ----------------
+# Default colorset
+
+*FvwmTheme: Colorset 0 fg CDE_COLOR2_FG, \
+	bg CDE_COLOR2_BG, Plain, NoShape
+
+DefaultColorset 0
+DestroyModuleConfig FvwmScroll: Colorset*
+*FvwmScroll: Colorset 0
+
+# ------------------
+# Window decorations
+
+# Text and sh/hi windows title bar colors, icons title and Pager mini-win.
+# inactive:
+*FvwmTheme: Colorset 1 fg CDE_COLOR2_FG, \
+	bg CDE_COLOR2_BG, Plain, NoShape
+Style "*"	Colorset 1
+# active:
+*FvwmTheme: Colorset 2 fg CDE_COLOR1_FG, \
+	bg CDE_COLOR1_BG, Plain, NoShape
+Style "*"	HilightColorset 2
+
+# borders of the windows inactive/active:
+*FvwmTheme: Colorset 3 fg CDE_COLOR2_FG, \
+	bg CDE_COLOR2_BG, Plain, NoShape
+Style "*"	BorderColorset 3
+*FvwmTheme: Colorset 4 fg CDE_COLOR1_FG, \
+	bg CDE_COLOR1_BG, Plain, NoShape
+Style "*"	HilightBorderColorset 4
+
+# title
+TitleStyle	ActiveUp   (Solid CDE_COLOR1_BG -- Raised)
+TitleStyle	ActiveDown (Solid CDE_COLOR1_BG -- Raised)
+TitleStyle	Inactive   (Solid CDE_COLOR2_BG -- Raised)
+
+# window button background
+ButtonStyle     All Pixmap mini/empty.xpm
+ButtonStyle	All -- UseTitleStyle
+
+# -----
+# Menus
+
+# inactive menu item fg+bg and menu face
+*FvwmTheme: Colorset 5 fg CDE_COLOR2_FG, \
+	bg CDE_COLOR2_BG, Plain, NoShape
+
+# active menu item fg+bg
+*FvwmTheme: Colorset 6 fg CDE_COLOR1_FG, \
+	bg CDE_COLOR1_BG, Plain, NoShape
+
+# greyed menu item fg
+*FvwmTheme: Colorset 7 fg CDE_COLOR4_BG, \
+	bg CDE_COLOR4_BG, Plain, NoShape
+
+MenuStyle * MenuFace
+MenuStyle * MenuColorset 5, ActiveColorset 6, GreyedColorset 7
+MenuStyle * ActiveFore, HilightBack
+
+# ----------------------------------------------------------------------------
+# II. Modules Colotsets 
+
+#-----------------
+# Common Colorsets
+
+# default for modules
+*FvwmTheme: Colorset 10 fg CDE_COLOR8_FG, \
+	bg CDE_COLOR8_BG, Plain, NoShape
+
+# default hilight
+*FvwmTheme: Colorset 11 fg CDE_COLOR1_FG, \
+	bg CDE_COLOR1_BG, Plain, NoShape
+
+# special
+*FvwmTheme: Colorset 12 fg CDE_COLOR1_FG, \
+	bg CDE_COLOR1_BG, \
+	VGradient 26 CDE_COLOR1_BG \
+	CDE_COLOR2_BG, NoShape
+
+# swallowed window
+*FvwmTheme: Colorset 13 fg CDE_COLOR6_FG, \
+	bg CDE_COLOR6_BG, \
+	hi CDE_COLOR1_FG, \
+	sh CDE_COLOR1_BG, Plain, NoShape
+
+# default2 (FvwmPager or to get more colors in Buttons)
+*FvwmTheme: Colorset 14 fg CDE_COLOR8_FG, \
+	bg CDE_COLOR8_BG, Plain, NoShape
+
+# default hilight2: (FvwmPager or to get more colors in a Buttons)
+*FvwmTheme: Colorset 15 fg CDE_COLOR1_FG, \
+	bg CDE_COLOR1_BG, Plain, NoShape
+
+# tips/balloons
+*FvwmTheme: Colorset 16 fg CDE_COLOR2_FG, \
+	bg CDE_COLOR2_BG, Plain, NoShape
+
+# ----------------------
+# Window Lists Colorsets
+
+# standard item
+*FvwmTheme: Colorset 17 fg CDE_COLOR7_FG, \
+	bg CDE_COLOR7_BG, Plain, NoShape
+
+# active item
+*FvwmTheme: Colorset 18 fg CDE_COLOR1_FG, \
+	bg CDE_COLOR1_BG, Plain, NoShape
+
+# iconified item
+*FvwmTheme: Colorset 19 fg CDE_COLOR2_FG, \
+	bg CDE_COLOR2_BG, Plain, NoShape
+
+# pointed item
+*FvwmTheme: Colorset 20 fg CDE_COLOR8_FG, \
+	bg CDE_COLOR8_BG, Plain, NoShape
+
+# ------------------------
+# Others Modules Colorsets
+
+# FvwmIdent
+*FvwmTheme: Colorset 21 fg CDE_COLOR6_FG, \
+	bg CDE_COLOR6_BG, Plain, NoShape
+
+DestroyModuleConfig FvwmIdent: *
+*FvwmIdent: Colorset 21
+
+# FvwmConsole
+*FvwmTheme: Colorset 22 fg CDE_COLOR6_FG, \
+	bg CDE_COLOR6_BG, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# III. Applications Colorsets
+
+# Terminals
+*FvwmTheme: Colorset 30 fg CDE_COLOR4_FG, \
+	bg CDE_COLOR4_BG, Plain, NoShape
+
+# Administrations
+*FvwmTheme: Colorset 31 fg CDE_COLOR6_FG, \
+	bg CDE_COLOR6_BG, Plain, NoShape
+
+# Remote Terminals
+*FvwmTheme: Colorset 32 fg CDE_COLOR7_FG, \
+	bg CDE_COLOR7_BG, Plain, NoShape
+
+# "Viewer" Colorset
+*FvwmTheme: Colorset 33 fg CDE_COLOR5_FG, \
+	bg CDE_COLOR5_BG, Plain, NoShape
+
+# Small Text Input file or Hilighting some Items
+*FvwmTheme: Colorset 34 fg CDE_COLOR4_FG, \
+	bg CDE_COLOR4_BG, Plain, NoShape
+
+DestroyModuleConfig FvwmFormDefault: ItemColorset*
+*FvwmFormDefault: ItemColorset 34
+
+# Application run in a terminal, text file of an editor for xres ...
+*FvwmTheme: Colorset 35 fg CDE_COLOR4_FG, \
+	bg CDE_COLOR4_BG, Plain, NoShape
+
+# Not in one of the above category (for Script and Form, ft-xres)
+*FvwmTheme: Colorset 36 fg CDE_COLOR6_FG, \
+	bg CDE_COLOR6_BG, Plain, NoShape
+
+DestroyModuleConfig FvwmScript: DefaultColorset*
+*FvwmScript: DefaultColorset 36
+DestroyModuleConfig FvwmFormDefault: Colorset*
+*FvwmFormDefault: Colorset 36
+
+# ----------------------------------------------------------------------------
+# IV. Start/Stop Functions
+
+DestroyFunc FuncFvwmStartColors
+AddToFunc   FuncFvwmStartColors
++ I AddToMenu MenuFvwmConfiguration
++ I + "Show Current Palette" FvwmButtons FvwmButtons-ColourTable
++ I Style FvwmButtons-ColourTable HandleWidth 2, Title, TitleAtTop
++ I Key F2 A SC Module FvwmButtons FvwmButtons-ColourTable
+
+DestroyFunc FuncFvwmStopColors
+AddToFunc   FuncFvwmStopColors
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-ColourTable
++ I DestroyModuleConfig FvwmButtons-ColourTable: *
++ I DestroyStyle FvwmButtons-ColourTable
++ I Key F2 A SC -
+
+*FvwmButtons-ColourTable: Frame       0
+#*FvwmButtons-ColourTable: Geometry    260x36+0+0
+*FvwmButtons-ColourTable: Geometry    324x44
+*FvwmButtons-ColourTable: Rows        1
+*FvwmButtons-ColourTable: Columns     8
+*FvwmButtons-ColourTable: BoxSize     fixed
+*FvwmButtons-ColourTable: Padding     0 0
+*FvwmButtons-ColourTable: (Title [1], Back CDE_COLOR1_BG, \
+	Fore CDE_COLOR1_FG)
+*FvwmButtons-ColourTable: (Title [2], Back CDE_COLOR2_BG, \
+	Fore CDE_COLOR2_FG)
+*FvwmButtons-ColourTable: (Title [3], Back CDE_COLOR3_BG, \
+	Fore CDE_COLOR3_FG)
+*FvwmButtons-ColourTable: (Title [4], Back CDE_COLOR4_BG, \
+	Fore CDE_COLOR4_FG)
+*FvwmButtons-ColourTable: (Title [5], Back CDE_COLOR5_BG, \
+	Fore CDE_COLOR5_FG)
+*FvwmButtons-ColourTable: (Title [6], Back CDE_COLOR6_BG, \
+	Fore CDE_COLOR6_FG)
+*FvwmButtons-ColourTable: (Title [7], Back CDE_COLOR7_BG, \
+	Fore CDE_COLOR7_FG)
+*FvwmButtons-ColourTable: (Title [8], Back CDE_COLOR8_BG, \
+	Fore CDE_COLOR8_FG)

@@ -5,6 +5,9 @@
 	* themes/luthien/menustyle:
 	* themes/luthien/windowlook:
 	* themes/luthien/README:
+	* themes/luthien/buttons:
+	* themes/luthien/colors/main:
+	* themes/luthien/colors/palettes/*.dp:
 	* AUTHORS:
 	Added initial components of the Dominik's theme.
 
@@ -12,9 +15,6 @@
 	added an error msg when loading [all] and all components are locked
 
 	* themes/migo/colors: replaced Colorset 36
-
-	* themes/luthien/buttons:
-	one more component
 
 	* *:
 	converted DestroyModuleConfig to a new non-conflicting syntax
