@@ -1,3 +1,9 @@
+2000-11-15  olicha  <olivier.chapuis@free.fr>
+
+        * locale/en/FvwmScript-ColorSelector.txt:
+	* locale/fr/FvwmScript-ColorSelector.txt:
+	I forget to add these ...
+
 2000-11-15  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-script.in:

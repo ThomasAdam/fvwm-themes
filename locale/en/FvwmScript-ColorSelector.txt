@@ -1,0 +1,35 @@
+<title>Color Selector Documentation       
+                                          
+To actually select a color, you should use the 4th color pallete. 
+The first three 
+palletes modify this forth one.
+
+          
+By
+choosing a color in the first pallete, 
+you
+populate this color in the forth one
+using black-color-white gradient.         
+
+                                          
+By choosing a 
+color in 
+the second 
+or third
+palletes,
+the 4th is changed to a gradient
+from this color to the selected color.    
+
+                                          
+Moreover, clicking to the selected color  has the same effect as choosing a color using the first pallete.                  
+
+                                          
+Finally, you can modify the Red Green and 
+Blue values of the selected color with the
+mini scroll bars.                         
+
+                                          
+Report Bugs to:
+<verb>                           
+  fvwm-themes-devel@lists.sourceforge.net 
+</verb>
