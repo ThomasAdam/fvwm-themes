@@ -1473,14 +1473,14 @@ sub getSortedComponentsToRead ($) {
 sub getReloadDependency () {
 
 	# Some comments on the dependency below:
-	# 1. Maybe I foget some or put some not needed one :o)
-	# 2. modules contains so much stuff that it is reloaded too often;
+	# 1. Maybe I forgot some or put some not needed one :o)
+	# 2. modules contain so much stuff that it is reloaded too often;
 	#    we need to implement partial reload to fix that.
 	# 3. As this is hard coded some particular components (as some
 	#    modules component) may need less dependency.
-	# 4. An unfortunate things is that we have to reload colors with
+	# 4. An unfortunate thing is that we have to reload colors with
 	#    windowlook/buttons (because the title/buttons colors are not
-	#    FvwmTheme award ...
+	#    FvwmTheme aware...
 	# 5. In theory, globalfeel need more reload because of ColorLimit
 	#    but since the only way to really reload the ColorLimit is to
 	#    restart I've not put all the needed dependency. 
@@ -1490,8 +1490,8 @@ sub getReloadDependency () {
 	#    entries, in the same way settings/autoraise (modules), 
 	#    settings/sound-player, settings/iconstyles are related to menus.
 	#    With this: changing the sound player restart modules, reload
-	#    the iconstyles, ... etc. this is inacceptable!!!!!!!!!!!
-	#    We must found a solution
+	#    the iconstyles, ... etc. this is inacceptable!!!
+	#    We must find a solution.
    # 7. In some case the dependency depends on the options ... 
 	#
 	# Conclusion: The next stuff is bad, but this is normal, until
@@ -1508,10 +1508,10 @@ sub getReloadDependency () {
 		'buttons' => [ 'buttons-extra', 'windowlook', 'colors', 'colors-decor' ],
 		'colors' => [ 'colors-extra', 'modules', 'windowlook', 'buttons' ],
 		'colors-decor' => [ 'colors-decor-extra', 'colors' ],
-		'cursor' => [ 'cursor-extra' ],
+		'cursors' => [ 'cursors-extra' ],
 		'fonts' => [ 'fonts-extra', 'colors', 'menustyle', 'modules',
-		 'windowlook' ], 
-   	'functions' => [ 'functions-extra' ],
+			'windowlook' ], 
+		'functions' => [ 'functions-extra' ],
 		'functions-appbind' => [ 'functions-appbind-extra' ],
 		'globalfeel' => [ 'globalfeel-extra', 'styles', 'modules' ],
 		'menus' => [ 'menus-extra', 'settings/autoraise', 'colors',
@@ -1536,9 +1536,9 @@ sub getReloadDependency () {
 		'buttons-extra' => [ 'buttons' ],
 		'colors-extra' => [ 'colors' ],
 		'colors-decor-extra' => [ 'colors-decor' ],
-		'cursor-extra' => [ 'cursor' ],
-		'fonts-estra' => [ 'fonts' ],
-   	'functions-extra' => [ 'functions'],
+		'cursors-extra' => [ 'cursor' ],
+		'fonts-extra' => [ 'fonts' ],
+		'functions-extra' => [ 'functions'],
 		'functions-appbind-extra' => [ 'functions-appbind' ],
 		'globalfeel-extra' => [ 'globalfeel' ],
 		'menus-extra' => [ 'menus' ],

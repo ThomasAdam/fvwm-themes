@@ -1,5 +1,8 @@
 2001-07-11  migo  <migo@homemail.com>
 
+	* bin/fvwm-themes-config.in:
+	fixed several typos from the previous commit
+
 	* themes/*/fonts[/*]:
 	renamed BigLabel to LargeLabel
 
