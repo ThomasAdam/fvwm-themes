@@ -1626,6 +1626,8 @@ sub comLoop {
 	my @currentComponents = sort @$tmp;
 	my $CC = $self->{cc};
 
+	my ($currentSession,$sessionList,$uptime) =  sessionInfo();
+
 	chdir($userDir) || die "No FvwmConfigHome $userDir";
 	unlink($lockFifo);
 	unlink($inFifo);
@@ -2087,15 +2089,188 @@ sub comLoop {
 				}
 			}
 		}
-		elsif ($command =~ /^update-ts\s+(\d+)$/) {
-			my $fresh;
+		elsif ($command =~ /^update\s+(\d+)$/) {
+			my $fresh = $1;
 			$cfgFileCache = {};
 			$self = Fvwm::ThemeCfg->new('current', 'current', $fresh);
 			$allThemes = getAllThemes();
 			$tmp = $self->{$componentKey};
 			@currentComponents = sort @$tmp;
 			$CC = $self->{cc};
+			($currentSession,$sessionList,$uptime) = sessionInfo();
 		}
+		#------------------------------------------
+		elsif ($command =~ /^session-info$/) {
+			$return = "$currentSession\n$uptime\n";
+			my $configList = "Default Configuration|";
+			foreach(@$sessionList) {
+				$return .= "$_";
+				$configList .= "$_ Configuration|";
+				$return .= " "x10 . "(Current)" if $_ eq $currentSession;
+				$return .= "|";
+			}
+			$return =~ s/\|$//;
+			$configList =~ s/\|$//;
+			$return .= "\n$configList";
+		}
+		# --------------------------------------
+		elsif ($command =~ /^session-uptime$/) {
+			my $current = "$userDir/themes/current";
+			$return = upTime($current,1);
+		}
+		# --------------------------------------
+		elsif ($command =~ /^session-name\s+(\d+)$/) {
+			my $index = $1-1;
+			$return = $$sessionList[$index] if defined $$sessionList[$index] &&
+				$index >= 0;
+		}
+		# --------------------------
+		elsif ($command =~ /^edit-session\s+(.+)$/) {
+			my $opt = $1;
+			my @opt = split(":",$opt); # orig_session:new_session_name:int
+												# int is the value of Widget 52
+			$return = "Err1" if $#opt != 2;
+			$return = "Err1" if $opt[0] eq "";
+			foreach (@$sessionList) {
+				next if $opt[1] eq $opt[0];
+				$return = "Err2" if $opt[1] eq $_;
+			}
+			if ($return eq "") {
+				# $themesSubDir = themes
+				# $currentThemeName = current
+				# $currentThemeSubDir = themes/current
+				my $orig = "$currentThemeSubDir-$opt[0]";
+				my $dest = "$currentThemeSubDir-$opt[1]";
+				my $i = 1;
+				my $dirConfig = "";
+				foreach (@$sessionList) {
+						$i++;
+						$dirConfig = "$currentThemeSubDir-$$sessionList[$i-2]" 
+							if $i == $opt[2];
+				}
+				if ($dest ne $orig) {
+					rename($orig, $dest);
+				}
+				# change the symlinks if needed
+				if ($currentSession eq $opt[0]) {
+					chdir("$themesSubDir");
+					unlink("$currentThemeName") ||
+						sysDie("Can't unlink $userDir/$currentThemeSubDir");
+					symlink("$currentThemeName-$opt[1]","$currentThemeName");
+					chdir("$userDir");
+					unlink("themes-rc-2") ||
+						sysDie("Can't unlink $userDir/themes-rc-2");
+					symlink("$currentThemeSubDir-$opt[1]/themes-rc-2","themes-rc-2");
+				}
+				if ($dirConfig ne $orig) {
+					if ($dirConfig eq "") {
+						# need to use the default config
+						if ($currentSession eq $opt[0]) {
+							system("fvwm-themes-config --reset");
+							system("fvwm-themes-config --load \@personal 2>/dev/null");
+						}
+					} else {
+						chdir("$dirConfig");	
+						system("cp -rdp * ../../" . $dest);
+						chdir("$userDir");
+					}
+				}
+				($currentSession,$sessionList,$uptime) = sessionInfo();
+				 $i = 0;
+				 foreach (@$sessionList) {
+				 	$i++;
+					$return = $i if $_ eq $opt[1];
+				 }
+			}
+		}
+		# --------------------------
+		elsif ($command =~ /^add-session\s+(.+)$/) {
+			my $opt = $1;
+			my @opt = split(":",$opt);
+			$return = "Err1" if $#opt != 1;
+			$return = "Err1" if $opt[0] eq "";
+			foreach (@$sessionList) {
+				$return = "Err2" if $opt[0] eq $_;
+			}
+			
+			if ($return eq "") {
+				my $dirConfig = "";
+				my $i = 1;
+				foreach (@$sessionList) {
+						$i++;
+						$dirConfig = "themes/current-$$sessionList[$i-2]" 
+							if $i == $opt[1];
+				}
+				makePath("$userDir/$currentThemeSubDir-$opt[0]");
+				if ($dirConfig ne "") {
+					chdir("$dirConfig");	
+					system("cp -rdp * ../../$currentThemeSubDir-$opt[0]");
+					chdir("$userDir");
+				}
+				($currentSession,$sessionList,$uptime) = sessionInfo();
+				$i = 0;	
+				foreach (@$sessionList) {
+					$i++;
+					$return = $i if $_ eq $opt[0];
+				}
+			}
+		}
+		# --------------------------
+		elsif ($command =~ /^remove-session\s+(.+)$/) {
+			my $session = $1;
+			my $i = 0;
+			my $index = -1;
+			foreach (@$sessionList) {
+				$index = $i if $session eq $_;
+				$i++;
+			}
+			if ($index == -1) {
+				$return = "$session\nErr3";
+			} else {
+				system("rm -rf $userDir/themes/current-$session");
+				($currentSession,$sessionList,$uptime) = sessionInfo();
+				if (! defined $$sessionList[$index]) {
+					$index--;
+				}
+				$return = "$$sessionList[$index]\n";
+				$index++;
+				$return .= $index;
+			}
+		}
+		# --------------------------
+		elsif ($command =~ /^apply-sm\s+(.+)$/) {
+			my $newSession = $1;
+			my $create = 0;
+			chdir("$userDir/$themesSubDir");
+			unlink("$currentThemeName") || 
+				sysDie("Can't unlink $userDir/$currentThemeSubDir");
+			makePath("$userDir/$themesSubDir/current-$newSession") 
+				if ! -d "current-$newSession";
+			symlink("current-$newSession","current");
+			chdir("$userDir");
+			if (! -f "$currentThemeSubDir-$newSession/themes-rc-2") {
+				system("touch $currentThemeSubDir-$newSession/themes-rc-2");
+				$create = 1;
+			}
+			unlink("themes-rc-2");
+			symlink("$currentThemeSubDir-$newSession/themes-rc-2","themes-rc-2");
+			if ($create) {
+				system("fvwm-themes-config --reset");
+				system("fvwm-themes-config --load \@personal 2>/dev/null");
+			}
+			($currentSession,$sessionList,$uptime) = sessionInfo();
+			$cfgFileCache = {};
+			$self = Fvwm::ThemeCfg->new('current', 'current', 1);
+			$allThemes = getAllThemes();
+			$tmp = $self->{$componentKey};
+			@currentComponents = sort @$tmp;
+			$CC = $self->{cc};
+			# discard the change in ts
+			%componentToLoad = ();
+			%optionToSet = ();
+			%choiceToSet = ();
+		}
+		# --------------------------
 		elsif ($command eq "exit") {
 			unlink($lockFifo);
 			exit(0);
@@ -2197,6 +2372,47 @@ sub getChoiceIndex {
 	return $index;
 }
 
+#--------------------------------------
+sub sessionInfo {
+	my @sessionList;
+	my $dir = "$userDir/themes";
+	my $current = "$userDir/themes/current";
+	my $currentSession = readlink($current);
+	my $uptime = upTime($current,1);
+	$currentSession =~ s/^current-//;
+	opendir(DIR,"$dir");
+	foreach (readdir(DIR)) {
+		if (/^current-(.+)/) { push @sessionList, $1; }
+	}
+	close(DIR);
+	@sessionList = sort @sessionList;
+	return ($currentSession, \@sessionList, $uptime);
+}
+
+sub upTime {
+	my $file = shift;
+	my $isSymbolic = shift || 0;
+	my @stat = $isSymbolic ? lstat($file) : stat($file);
+	my $uptime = time - $stat[9];
+	$uptime = secToUptime($uptime);
+	return $uptime;
+}
+
+# ----------------------
+sub secToUptime {
+	my $time = shift;
+	my $day = int($time/(60*60*24));
+	$time = $time%(60*60*24);
+	my $hours = int($time/(60*60));
+	$time = $time % (60*60);
+	my $min = int($time/60);
+	$min = "0$min" if length($min) == 1;
+	my $ret = "";
+	$ret .= "$day days " if $day > 1;
+	$ret .= "$day day " if $day == 1;
+	$ret .= "$hours h $min min";
+	return $ret;
+}
 #----------------------------------------------------------------------------
 # useful functions for the com loop
 

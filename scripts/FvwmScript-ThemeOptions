@@ -88,6 +88,9 @@ Begin
 
     Set $SendUpdateMsg = 0
     Set $Father = (GetScriptFather)
+    Set $Quit = 0
+    Set $CountQuit = 0
+    HideWidget 6
 End
 
 # ---------------------------------------------------------------------------
@@ -98,6 +101,22 @@ End
 
 PeriodicTasks
 Begin
+
+    If $Quit == 1 Then
+    Begin
+	If $CountQuit == 0 Then
+	Begin
+	    HideWidget 1
+	    HideWidget 2
+	    HideWidget 3
+	    #HideWidget 4
+	    HideWidget 5
+	    ShowWidget 6
+	End
+	Set $CountQuit = (Add $CountQuit 1)
+	If $CountQuit == 20 Then
+	    Quit
+    End
 
     Set $MSG = (ReceivFromScript $Father)
     If $MSG <> {No message} Then
@@ -122,7 +141,18 @@ Begin
 	Set $SendUpdateMsg = 0
 	SendToScript $Father {update}
     End
-
+    If $SendUpdateQuit == 1 Then
+    Begin
+	Set $SendUpdateQuit = 0
+	SendToScript $Father {updatequit}
+	Set $Quit = 1
+    End
+    If $SendQuit == 1 Then
+    Begin
+	Set $SendQuit = 0
+	SendToScript $Father {quit}
+	Set $Quit = 1
+    End
 End
 
 # ---------------------------------------------------------------------------
@@ -197,6 +227,20 @@ SingleClic :
  End
 End
 
+Widget 6
+Property
+    Flags NoReliefString
+    Position 20 35
+    Size 280 20 
+    Type ItemDraw
+    Title {Send Modification to the Themes Selector}
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
 Widget 97
 Property
     Flags NoReliefString
@@ -235,8 +279,9 @@ Main
 	Set $cmd = $SendMsgAndGet{"set-options }$MainComponent{ }$MainTheme{ }$CurrentOptionsIndex{ }$OptionIndex{"}
 	Set $dummy = (GetOutput $cmd 1 -1)
     End
-    SendToScript $Father {updatequit}
-    Quit
+    #SendToScript $Father {updatequit}
+    #Quit
+    Set $SendUpdateQuit = 1
   End
 End
 
@@ -250,7 +295,8 @@ Main
  Case message of
   SingleClic :
   Begin
-    SendToScript $Father {quit}
-    Quit
+    #SendToScript $Father {quit}
+    #Quit
+    Set $SendQuit = 1
   End
 End

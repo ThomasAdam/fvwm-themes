@@ -78,6 +78,26 @@ Begin
     Set $CurrentConfig = (GetOutput $cmd 1 -1)
     ChangeTitle 17 $CurrentConfig
 
+    # Get the session info
+    Set $cmd = $SendMsgAndGet{"session-info" --line=1}
+    Set $CurrentSession = (GetOutput $cmd 1 -1)
+    Set $cmd = $GetLine{2}
+    Set $SessionUpTime = (GetOutput $cmd 1 -1)
+    Set $tmp = {Current Session: }$CurrentSession{                 Up Time:  }$SessionUpTime
+    ChangeTitle 39 $tmp
+    Set $cmd = $GetLine{3}
+    Set $SessionList = (GetOutput $cmd 1 -1)
+    ChangeTitle 41 $SessionList
+    Set $cmd = $GetLine{4 --clear-buffer}
+    Set $ConfigurationList = (GetOutput $cmd 1 -1)
+    ChangeTitle 52 $ConfigurationList
+    
+    # Common Variables
+    Set $SpecialMessage = {}
+    Set $NullMessage = 0
+    # TS: Themes Selector; GS: General Setting; SM: FT Sessions Management
+    Set $ConfigTool = {TS}
+
     # TS main variables
     Set $ThemeName = {}
     Set $ThemeIndex = 0
@@ -95,11 +115,11 @@ Begin
     Set $OptionEditorTwoTandC = {}
     Set $OptionEditorLast = {}
     Set $OptionEditorLastTandC = {}
-    # SM main variables
-    Set $CurrentSessionIndex = 0
 
-    # TS: Themes Selector; GS: General Setting; SM: FT Sessions Management
-    Set $ConfigTool = "TS" 
+    # SM main variables
+    Set $SessionIndex = 0
+    Set $SelectedSession = {}
+    Set $SMEditorState = 0
 
     Set $SelFont = {-adobe-helvetica-bold-r-*-*-12-*}
     Set $ShadeFont = {-adobe-helvetica-medium-r-*-*-12-*}
@@ -116,8 +136,8 @@ Begin
 
     # Hide the widgets
     HideWidget 21
-    Set $tmp = 40
-    While $tmp <> 43 Do
+    Set $tmp = 39
+    While $tmp <> 58 Do
     Begin
 	HideWidget $tmp
 	Set $tmp = (Add $tmp 1)
@@ -135,7 +155,7 @@ End
 PeriodicTasks
 Begin
 
-#------------------------------------------------
+#----------------------------------------------------------------------------
 # config tool switching
 
     If $HideThemeChooser == {1} Then
@@ -169,8 +189,8 @@ Begin
     If $HideSession == {1} Then
     Begin
 	Set $HideSession = 0
-	Set $tmp = 40
-	While $tmp <> 43 Do
+	Set $tmp = 39
+	While $tmp <> 57 Do
 	Begin
 	    HideWidget $tmp
  	    Set $tmp = (Add $tmp 1)
@@ -180,7 +200,7 @@ Begin
     If $ShowThemeChooser == {1} Then
     Begin
 	Set $ShowThemeChooser = 0
-	Set $ConfigTool = "TS"
+	Set $ConfigTool = {TS}
 	Set $tmp = 5
 	While $tmp <> 10 Do
 	Begin
@@ -198,7 +218,7 @@ Begin
     If $ShowGeneralSetting == {1} Then
     Begin
 	Set $ShowGeneralSetting = 0
-	Set $ConfigTool = "GS"
+	Set $ConfigTool = {GS}
 	Set $tmp = 21
 	While $tmp <> 22 Do
 	Begin
@@ -210,14 +230,37 @@ Begin
     If $ShowSession == {1} Then
     Begin
 	Set $ShowSession = 0
-	Set $ConfigTool = "SM"
-	Set $tmp = 40
-	While $tmp <> 43 Do
+	Set $ConfigTool = {SM}
+	Set $tmp = 39
+	While $tmp <> 46 Do
 	Begin
 	    ShowWidget $tmp
  	    Set $tmp = (Add $tmp 1)
 	End
+	If $SMEditorState == 0 Then
+	Begin
+	    ShowWidget 46
+	    ShowWidget 47
+	    ShowWidget 48
+	End
+	Else
+	Begin
+	    Set $tmp = 49
+	    While $tmp <> 55 Do
+	    Begin
+		ShowWidget $tmp
+		Set $tmp = (Add $tmp 1)
+	    End
+	    If $SMEditorState == 1 Then
+		ShowWidget 55
+	    Else
+		ShowWidget 56
+	End
+	Set $UpdateSessionUpTime = 1
     End
+
+#-----------------------------------------------------------------------------
+# TS
 
 # -----------------------------------------------
 # Message to read
@@ -229,6 +272,7 @@ Begin
 	Begin
 	    If $MSG == {quit} Then
 	    Begin
+		#SendToScript $OptionEditorOne {exit}
 		Set $OptionEditorOne = {}
 		Set $OptionEditorOneTandC = {}
 	    End
@@ -359,11 +403,102 @@ Begin
 	    ChangeFont 20 $ShadeFont
     End
 	
+#----------------------------------------------------------------------------
+# SM
+
+    If $ConfigTool == {SM} Then
+    Begin
+	If (RemainderOfDiv (GetTime) 60)== 0 Then
+	    Set $UpdateSessionUpTime = 1
+    End
+
+    If $UpdateSessionUpTime == 1 Then
+    Begin
+	Set $UpdateSessionUpTime = 0
+	Set $cmd = $SendMsgAndGet{"session-uptime"}
+	Set $SessionUpTime = (GetOutput $cmd 1 -1)
+	Set $tmp = {Current Session: }$CurrentSession{                 Up Time:  }$SessionUpTime
+	ChangeTitle 39 $tmp
+    End
+
+    If $ShowSMEditor == 1 Then
+    Begin
+	Set $ShowSMEditor = 0
+	HideWidget 46
+	HideWidget 47
+	HideWidget 48
+	If $SMEditorState == 3 Then
+	Begin
+	    ShowWidget 57
+	    ShowWidget 54
+	    ShowWidget 53
+	    ChangeTitle 53 {Yes}
+	    ChangeTitle 54 {No}
+	End
+	Else
+	Begin
+	    Set $tmp = 49
+	    While $tmp <> 55 Do
+	    Begin
+		ShowWidget $tmp
+		Set $tmp = (Add $tmp 1)
+	    End  
+	    If $SMEditorState == 1 Then
+		ShowWidget 55
+	    Else
+		ShowWidget 56
+	    ChangeTitle 53 {Ok}
+	    ChangeTitle 54 {Cancel}
+	End
+    End
+
+    If $HideSMEditor == 1 Then
+    Begin
+	Set $HideSMEditor = 0 
+	Set $tmp = 49
+	While $tmp <> 58 Do
+	Begin
+	    HideWidget $tmp
+ 	    Set $tmp = (Add $tmp 1)
+	End
+	ShowWidget 46
+	ShowWidget 47
+	ShowWidget 48
+	Set $SMEditorState = 0
+    End
+
+    If $UpdateSMLists == 1 Then
+    Begin
+	Set $UpdateSMLists = 0
+        Set $cmd = $SendMsgAndGet{"session-info" --line=1}
+	Set $CurrentSession = (GetOutput $cmd 1 -1)
+	Set $cmd = $GetLine{2}
+	Set $SessionUpTime = (GetOutput $cmd 1 -1)
+	Set $tmp = {Current Session: }$CurrentSession{                 Up Time:  }$SessionUpTime
+	ChangeTitle 39 $tmp
+	Set $cmd = $GetLine{3}
+	Set $SessionList = (GetOutput $cmd 1 -1)
+	ChangeTitle 41 $SessionList
+	ChangeValue 41 $SessionIndex
+	Set $cmd = $GetLine{4 --clear-buffer}
+	Set $ConfigurationList = (GetOutput $cmd 1 -1)
+	ChangeTitle 52 $ConfigurationList
+    End
+
+#----------------------------------------------------------------------------
+# TS, GS and SM
+ 
     If $NullMessage == {1} Then
     Begin
 	Set $NullMessage = 0
 	Set $msg = {}
 	ChangeTitle 95 $msg
+    End
+
+    If $SpecialMessage <> {} Then
+    Begin
+	ChangeTitle 95 $SpecialMessage
+	Set $SpecialMessage = {}
     End
 
 End
@@ -398,7 +533,7 @@ Property
     Flags NoReliefString
     Position 270 5
     Type PopupMenu
-    Title {       Themes Selector        |       General Settings        |        FT Sessions          }
+    Title {       Themes Selector        |       General Settings        |        FVWM Themes Sessions     }
 
 Main
 Case message of
@@ -732,7 +867,6 @@ Property
     Flags NoReliefString
     Position 490 295
     Type PushButton
-#    Title {Opt/Cho/Sub}
     Title {  Properties  }
 Main
 Case message of
@@ -914,14 +1048,13 @@ End
 # FT Sessions
 #
 #-----------------------------------------------------------------------------
-
-Widget 40
+Widget 39
 Property
     Flags NoReliefString
     Position 20 45
     Size 560 20
-     Type ItemDraw
-    Title {List of FVWM Themes Sessions}
+    Type ItemDraw
+    Title {                                                       }
 Main
 Case message of
     SingleClic :
@@ -929,10 +1062,24 @@ Case message of
     End
 End
 
+Widget 40
+Property
+    Flags NoReliefString
+    Position 40 75
+    Size 255 20
+     Type ItemDraw
+    Title {List of FVWM Themes Sessions}
+Main
+Case message of
+SingleClic :
+ Begin
+ End
+End
+
 Widget 41
 Property
     Flags NoReliefString
-    Position 170 70
+    Position 40 100
     Size 255 150
     Font fixed
     Type List
@@ -941,15 +1088,408 @@ Main
 Case message of
 SingleClic :
  Begin
+    Set $break = 1
+    If $SMEditorState <> 0 Then
+    Begin
+	Set $msg = {Warn: You do not finish to edit (click on Cancel or Ok)}
+	ChangeTitle 95 $msg
+	Set $break = 0
+	ChangeValue 41 $SessionIndex
+    End
+    If $break == 1 Then
+    Begin
+	Set $SessionIndex = (GetValue 41)
+	Set $cmd = $SendMsgAndGet{"session-name }$SessionIndex{"}
+	Set $SelectedSession = (GetOutput $cmd 1 -1)
+	If $SelectedSession <> {} Then
+	    Set $tmp = {Selected Session: }$SelectedSession
+	Else
+	Begin
+	    Set $tmp = {Selected Session:}
+	    Set $SessionIndex = 0
+	End
+	ChangeTitle 45 $tmp
+	Set $NullMessage = 1
+    End
  End
 End
 
 Widget 42
 Property
- Flags NoReliefString
- Position 50 300
- Type ItemDraw
- Title {Work In Progress!!!!!!!!!!!!!!!}
+    Flags NoReliefString
+    Position 330 115
+    Type PushButton
+    Title {      Edit       }
+Main
+Case message of
+SingleClic :
+ Begin
+    Set $break = 1
+    If $SelectedSession == {} Then
+    Begin
+	Set $msg = {Warn: You must select a session}
+	ChangeTitle 95 $msg
+	Set $break = 0
+    End
+    Set $test = 0
+    If $SMEditorState <> 0 Then
+	Set $test = 1
+    Set $test = (Mult $break $test)
+    If $test == 1 Then
+    Begin
+	Set $msg = {Warn: You do not finish to edit (click on Cancel or Ok)}
+	ChangeTitle 95 $msg
+	Set $break = 0
+    End
+    
+    If $break == 1 Then
+    Begin
+	If $SelectedSession == {main} Then
+	Begin
+	    ChangeTitle 56 $SelectedSession
+	    Set $SMEditorState = 2
+	End
+	Else
+	Begin
+	    Set $SMEditorState = 1
+	    ChangeTitle 55 $SelectedSession
+	End
+	Set $tmp = {Edit }$SelectedSession{ session}
+	ChangeTitle 49 $tmp
+	Set $tmp = (Add $SessionIndex 1)
+	ChangeValue 52 $tmp
+	Set $SMEditorType = {Edit}
+	Set $ShowSMEditor = 1
+	Set $NullMessage = 1    
+    End
+ End
+End
+
+Widget 43
+Property
+    Flags NoReliefString
+    Position 330 160
+    Type PushButton
+    Title {      Add       }
+Main
+Case message of
+SingleClic :
+ Begin
+    Set $break = 1
+    If $SMEditorState <> 0 Then
+    Begin
+	Set $msg = {Warn: You do not finish to edit (click on Cancel or Ok)}
+	ChangeTitle 95 $msg
+	Set $break = 0
+    End
+    
+    If $break == 1 Then
+    Begin
+	Set $SMEditorState = 1
+	ChangeTitle 55 {}
+	ChangeValue 52 1
+	Set $tmp = {Add a new session}
+	ChangeTitle 49 $tmp
+	Set $SMEditorType = {Add}
+	Set $ShowSMEditor = 1
+	Set $NullMessage = 1
+    End
+ End
+End
+
+Widget 44
+Property
+    Flags NoReliefString
+    Position 330 205
+    Type PushButton
+    Title {   Remove   }
+Main
+Case message of
+SingleClic :
+ Begin
+    Set $break = 1
+    If $SelectedSession == {} Then
+    Begin
+	Set $msg = {Warn: You must select a session}
+	ChangeTitle 95 $msg
+	Set $break = 0
+    End
+    Set $test = 0
+    If $SMEditorState <> 0 Then
+	Set $test = 1
+    Set $test = (Mult $break $test)
+    If $test == 1 Then
+    Begin
+	Set $msg = {Warn: You do not finish to edit (click on Cancel or Ok)}
+	ChangeTitle 95 $msg
+	Set $break = 0
+    End
+    Set $test = 0
+    If $SelectedSession == {main} Then
+	Set $test = 1
+    Set $test = (Mult $break $test)
+    If $test == 1 Then
+    Begin
+	Set $msg = {Warn: You cannot remove the main session!}
+	ChangeTitle 95 $msg
+	Set $break = 0
+    End
+    Set $test = 0
+    If $SelectedSession == $CurrentSession Then
+	Set $test = 1
+    Set $test = (Mult $break $test)
+    If $test == 1 Then
+    Begin
+	Set $msg = {Warn: You cannot remove the Current session!}
+	ChangeTitle 95 $msg
+	Set $break = 0
+    End
+    If $break == 1 Then
+    Begin
+	Set $ShowSMEditor = 1
+	Set $SMEditorState = 3
+	Set $SMEditorType = {Remove}
+	Set $tmp = { Really Remove }$SelectedSession{ Session?}
+	ChangeTitle 57 $tmp
+	Set $NullMessage = 1
+    End
+ End
+End
+
+Widget 45
+Property
+    Flags NoReliefString
+    Position 50 260
+    Type ItemDraw
+    Title {Selected Session:                  }
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
+Widget 46
+Property
+    Flags NoReliefString
+    Position 70 315
+    Type ItemDraw
+    Font fixed
+    Title {* To load a session, select it and click on Apply}
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
+Widget 47
+Property
+    Flags NoReliefString
+    Position 70 335
+    Type ItemDraw
+    Font fixed
+    Title {* To Reload the current session, click on Refresh}
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
+Widget 48
+Property
+    Flags NoReliefString
+    Position 70 355
+    Type ItemDraw
+    Font fixed
+    Title {* A click on "Update" will rebuild the session list}
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
+Widget 49
+Property
+    Flags NoReliefString
+    Size 510 20
+    Position 45 290
+    Type ItemDraw
+    Title {       Edit main session      }
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
+Widget 50
+Property
+    Flags NoReliefString
+    Position 55 330
+    Type ItemDraw
+    Title {Session Name:}
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
+Widget 55
+Property
+    Flags NoReliefString
+    Position 160 325
+    Size 130 20
+    Type TextField
+    Title {}
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
+Widget 56
+Property
+    Flags NoReliefString
+    Position 160 330
+    Type ItemDraw
+    Title {                }
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
+Widget 51
+Property
+    Flags NoReliefString
+    Position 320 330
+    Type ItemDraw
+    Title {Use:}
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
+Widget 52
+Property
+    Flags NoReliefString
+    Position 360 325
+    Type PopupMenu
+    Title {   Default Configuration   }
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
+Widget 53
+Property
+    Flags NoReliefString
+    Position  185 365
+    Type PushButton
+    Title {    OK    }
+Main
+Case message of
+SingleClic :
+ Begin
+    Set $break = 1 
+    Set $session = {main}
+    If $SMEditorState == 1 Then
+	Set $session = (GetTitle 55)
+    Set $config = (GetValue 52)
+    If $SMEditorType == {Edit} Then
+	Set $cmd = $SendMsgAndGet{"edit-session }$SelectedSession{:}$session{:}$config{"}
+    If $SMEditorType == {Add} Then
+	Set $cmd = $SendMsgAndGet{"add-session }$session{:}$config{"}
+    If $SMEditorType == {Remove} Then
+    Begin
+	Set $cmd = $SendMsgAndGet{"remove-session }$SelectedSession{" --line=1}
+	Set $session = (GetOutput $cmd 1 -1)
+	Set $cmd = $GetLine{2 --clear-buffer}
+    End
+    Set $tmp = (GetOutput $cmd 1 -1)
+    If $tmp == {Err1} Then
+    Begin
+	Set $break = 0
+	Set $msg = {Err: The name of the session is not valid!}
+	ChangeTitle 95 $msg
+    End
+    If $tmp == {Err2} Then
+    Begin
+	Set $break = 0
+	Set $msg = {Err: The name of the session is already used!}
+	ChangeTitle 95 $msg
+    End
+    If $tmp == {Err3} Then
+    Begin
+	Set $break = 0
+	Set $msg = {Err: An Unknown "system" error happen, GASP!}
+	ChangeTitle 95 $msg
+    End
+    If $break == 1 Then
+    Begin
+	If $SMEditorType == {Add} Then
+	Begin
+	    Set $msg = {Msg: Adding }$session{ FVWM Themes Session}
+	    ChangeTitle 95 $msg
+	End
+	If $SMEditorType == {Edit} Then
+	Begin
+	    Set $msg = {Msg: Applying Changes To }$session{ FVWM Themes Session}
+	    ChangeTitle 95 $msg
+	End
+	If $SMEditorType == {Remove} Then
+	Begin
+	    Set $msg = {Msg: Removing }$SelectedSession{ FVWM Themes Session}
+	    ChangeTitle 95 $msg
+	End
+	ChangeValue 41 $tmp
+	Set $SessionIndex = $tmp
+	Set $SelectedSession = $session
+	Set $t = {Selected Session: }$SelectedSession
+	ChangeTitle 45 $t
+	If $SMEditorType <> {Remove} Then
+	    Set $SpecialMessage = {Msg: Click on Apply to load your "new" session}
+	Else
+	    Set $NullMessage = 1
+	Set $HideSMEditor = 1
+	# this update also the current session ...
+	Set $UpdateSMLists = 1
+    End
+ End
+End
+
+Widget 54
+Property
+    Flags NoReliefString
+    Position 345 365
+    Type PushButton
+    Title {  Cancel  }
+Main
+Case message of
+SingleClic :
+ Begin
+    Set $HideSMEditor = 1
+    Set $NullMessage = 1         
+ End
+End
+
+Widget 57
+Property
+    Flags NoReliefString
+    Size 510 20
+    Position 45 320
+    Type ItemDraw
+    Title {  Really Remove session Session?  }
 Main
 Case message of
     SingleClic :
@@ -987,33 +1527,69 @@ Main
 Case message of
  SingleClic :
  Begin
-    If $ConfigTool == "TS" Then
-	Set $cmd = $SendMsgAndGet{"apply-ts-cmd-opts"}
-    If $ConfigTool == "GS" Then
-	Set $cmd = $SendMsgAndGet{"apply-gs-cmd-opts"}
-    Set $CmdOptions = (GetOutput $cmd 1 -1)
-    If $CmdOptions <> {} Then
+    If $ConfigTool == {SM} Then
     Begin
-	#Do {Echo }$CmdOptions
-	Do {FuncFvwmThemesConfigAndUpdate "}$CmdOptions{"}
-	If $ConfigTool == "TS" Then
+	Set $break = 0
+	If $SelectedSession == {} Then
 	Begin
+	    Set $msg = {Warn: No session are selected}
+	    ChangeTitle 95 $msg
+	    Set $break = 1
+	End
+	#If $SelectedSession == $CurrentSession Then
+	#Begin
+	#   Set $msg = {Warn: You already use }$CurrentSession{ session}
+	#   ChangeTitle 95 $msg
+	#   Set $break = 1
+	#End
+	If $break == 0 Then
+	Begin
+	    Set $msg = {Msg: Switching to }$SelectedSession{ Session}
+	    ChangeTitle 95 $msg
+	    Set $cmd = $SendMsgAndGet{"apply-sm }$SelectedSession{"}
+	    Set $tmp = (GetOutput $cmd 1 -1)
+	    Set $UpdateSMLists = 1
 	    Set $UpdateTSLists = 1
 	    If $OptionEditorOne <> {} Then
-		SendToScript $OptionEditorOne {update}
+		SendToScript $OptionEditorOne {exit}
 	    If $OptionEditorTwo <> {} Then
-		SendToScript $OptionEditorTwo {update}
+		SendToScript $OptionEditorTwo {exit}
 	    If $OptionEditorLast <> {} Then
-		SendToScript $OptionEditorLast {update}
+		SendToScript $OptionEditorLast {exit}
+	    Set $NullMessage = 1
+	    Do {FuncFvwmThemesFresh}
 	End
-	If $ConfigTool == "GS" Then
-	    Set $UpdateGSLists = 1
-    	Set $NullMessage = 1
     End
-    Else
+
+    If $ConfigTool == {TS} Then
     Begin
-	Set $msg = {Warn: No new components are set}
+	Set $msg = {Msg: Applyin new theme configurations}
 	ChangeTitle 95 $msg
+	Set $cmd = $SendMsgAndGet{"apply-ts-cmd-opts"}
+	Set $CmdOptions = (GetOutput $cmd 1 -1)
+	If $CmdOptions <> {} Then
+	Begin
+	    #Do {Echo }$CmdOptions
+	    Do {FuncFvwmThemesConfigAndUpdate "}$CmdOptions{"}
+	    If $ConfigTool == {TS} Then
+	    Begin
+		Set $UpdateTSLists = 1
+		If $OptionEditorOne <> {} Then
+		    SendToScript $OptionEditorOne {update}
+		If $OptionEditorTwo <> {} Then
+		    SendToScript $OptionEditorTwo {update}
+		If $OptionEditorLast <> {} Then
+		    SendToScript $OptionEditorLast {update}
+	    End
+	    If $ConfigTool == "GS" Then
+		Set $UpdateGSLists = 1
+	    Set $NullMessage = 1
+	End
+	Else
+	Begin
+	    Set $msg = {Warn: No new components are set}
+	    ChangeTitle 95 $msg
+	End
     End
  End
 End
@@ -1028,11 +1604,14 @@ Main
 Case message of
  SingleClic :
  Begin
-    If $ConfigTool == "TS" Then
-    Begin
-	Set $cmd = $SendMsgAndGet{"update-ts 1"}
+    #If $ConfigTool == {TS} Then
+    #Begin
+	Set $msg = {Msg: Refresh current configuration}
+	ChangeTitle 95 $msg
+	Set $cmd = $SendMsgAndGet{"update 1"}
 	Set $dummy = (GetOutput $cmd 1 -1)
 	Do {FuncFvwmThemesFresh}
+	Set $UpdateSMLists = 1
 	Set $UpdateTSLists = 1
 	If $OptionEditorOne <> {} Then
 	    SendToScript $OptionEditorOne {update}
@@ -1041,7 +1620,7 @@ Case message of
 	If $OptionEditorLast <> {} Then
 	    SendToScript $OptionEditorLast {update}
 	Set $NullMessage = 1
-    End
+    #End
  End
 End
 
@@ -1055,11 +1634,14 @@ Main
 Case message of
  SingleClic :
  Begin
-    If $ConfigTool == "TS" Then
-    Begin
-	Set $cmd = $SendMsgAndGet{"update-ts 0"}
+    #If $ConfigTool == {TS} Then
+    #Begin
+	Set $msg = {Msg: Update current configuration}
+	ChangeTitle 95 $msg
+	Set $cmd = $SendMsgAndGet{"update 0"}
 	Set $dummy = (GetOutput $cmd 1 -1)
 	Set $UpdateTSLists = 1
+	Set $UpdateSMLists = 1
 	If $OptionEditorOne <> {} Then
 	    SendToScript $OptionEditorOne {update}
 	If $OptionEditorTwo <> {} Then
@@ -1067,7 +1649,7 @@ Case message of
 	If $OptionEditorLast <> {} Then
 	    SendToScript $OptionEditorLast {update}
 	Set $NullMessage = 1    
-    End
+    #End
  End
 End
 
@@ -1089,9 +1671,9 @@ End
 Widget 99
 Property
     Flags NoReliefString
- Position 505 450
- Type PushButton
- Title {Quit}
+    Position 505 450
+    Type PushButton
+    Title {Quit}
 Main
  Case message of
   SingleClic :

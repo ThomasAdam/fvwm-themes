@@ -1,3 +1,12 @@
+2000-09-26  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	* scripts/FvwmScript-ThemesCenter:
+	* scripts/FvwmScript-ThemeOptions:
+	* NEWS
+	Try to fix the ThemeOption "Set & Quit" core dump.
+	Implementation of the FVWM Themes session config tool
+	
 2000-09-25  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
