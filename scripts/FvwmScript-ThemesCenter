@@ -18,7 +18,7 @@
 #-----------------------------------------------------------------------------
 
 
-WindowTitle {Fvwm Themes Center}
+WindowTitle {FVWM Themes Center}
 WindowSize 600 480
 Font	-adobe-helvetica-bold-r-*-*-12-*
 
@@ -1221,7 +1221,7 @@ SingleClic :
     Begin
 	Set $break = 0
 	Set $tmp = $CSCompName{@}$CSThemeName
-	Set $arg={FvwmScript-ThemeOptions --text-colorset }$TextColorset{ --com-pid }$pid{ --component }$CSCompName{ --theme }$CSThemeName
+	Set $arg={FvwmScript-ComponentProperties --text-colorset }$TextColorset{ --com-pid }$pid{ --component }$CSCompName{ --theme }$CSThemeName
 	If $tmp == $PropertyEditorOneTandC Then
 	    Set $break = 1
 	If $tmp == $PropertyEditorTwoTandC Then

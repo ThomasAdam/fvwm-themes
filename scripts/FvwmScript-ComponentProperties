@@ -18,7 +18,7 @@
 #-----------------------------------------------------------------------------
 
 
-WindowTitle {Fvwm Themes Options}
+WindowTitle {FVWM Themes - Component Properties}
 WindowSize 320 300
 Font		-adobe-helvetica-bold-r-*-*-12-*
 
@@ -68,7 +68,7 @@ Begin
 
     Set $msg = {}
     Set $id = {}
-    Set $cmd = {fvwm-themes-script --get-msg }FvwmScript-ThemeOption{ --lang }$Lang
+    Set $cmd = {fvwm-themes-script --get-msg FvwmScript-ComponentProperties --lang }$Lang
     Set $MSG = (GetOutput $cmd 1 -1)
     Set $index = 0
     Set $notdone = 1
