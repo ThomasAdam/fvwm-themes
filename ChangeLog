@@ -1,5 +1,8 @@
 2000-07-30  olicha  <olivier.chapuis@free.fr>
 
+	* themes/default/settings.cfg:
+	KDE/GNOME menus "need" follows+=menus-user
+	
 	* bin/fvwm-themes-images.in (createPatternXpm):
 	Fix --pattern-xpm
 
