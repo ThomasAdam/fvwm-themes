@@ -1,3 +1,8 @@
+2003-10-18  migo  <migo@homemail.com>
+
+	* debian/Makefile.am:
+	small changes
+
 2003-10-16  migo  <migo@homemail.com>
 
 	* AUTHORS:

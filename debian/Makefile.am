@@ -9,7 +9,6 @@ datum = `date "+%a, %d %b %Y %X %z"`
 fullname = FVWM Themes Developers
 email = fvwm-themes-devel@lists.sourceforge.net
 arch ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
-sdir ?= $(shell pwd | sed 's,.*/,,')
 
 deb:
 	make clean
@@ -18,11 +17,10 @@ deb:
 	echo "  * new upstream release" >> debian/changelog
 	echo "" >> debian/changelog
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
-	echo "" >> debian/changelog
 	./configure --prefix=/usr --disable-run-updatemenu
 	cp -f debian/full-control debian/control
-	fakeroot dh_clean fvwm-themes-extra fvwm-themes-full fvwm-themes
-	(cd .. && dpkg-source -b $(sdir))
+	fakeroot dh_clean fvwm-themes fvwm-themes-extra fvwm-themes-full
+	(cd .. && dpkg-source -b fvwm-themes-full)
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE)
@@ -46,7 +44,7 @@ deb:
 	fakeroot dh_builddeb
 	-@dpkg-genchanges > ../fvwm-themes-full_$(version)-$(release)_$(arch).changes
 	-@debsign ../fvwm-themes-full_$(version)-$(release)_$(arch).changes
-	fakeroot dh_clean fvwm-themes-extra fvwm-themes-full fvwm-themes
+	fakeroot dh_clean fvwm-themes fvwm-themes-extra fvwm-themes-full
 	rm -f debian/control debian/full-control
 
 
@@ -57,12 +55,10 @@ deb-base:
 	echo "  * new upstream release" >> debian/changelog
 	echo "" >> debian/changelog
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
-	echo "" >> debian/changelog
 	./configure --prefix=/usr --disable-run-updatemenu
 	cp -f debian/base-control debian/control
-	fakeroot dh_clean fvwm-themes-extra fvwm-themes-full fvwm-themes
-	echo $(sdir)
-	(cd .. && dpkg-source -b $(sdir))
+	fakeroot dh_clean fvwm-themes fvwm-themes-extra fvwm-themes-full
+	(cd .. && dpkg-source -b fvwm-themes)
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE)
@@ -97,7 +93,7 @@ deb-base:
 	fakeroot dh_builddeb
 	-@dpkg-genchanges > ../fvwm-themes_$(version)-$(release)_$(arch).changes
 	-@debsign ../fvwm-themes_$(version)-$(release)_$(arch).changes
-	fakeroot dh_clean fvwm-themes-extra fvwm-themes-full fvwm-themes
+	fakeroot dh_clean fvwm-themes fvwm-themes-extra fvwm-themes-full
 	rm -f debian/control debian/base-control
 
 
@@ -108,11 +104,10 @@ deb-extra:
 	echo "  * new upstream release" >> debian/changelog
 	echo "" >> debian/changelog
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
-	echo "" >> debian/changelog
 	./configure --prefix=/usr --disable-run-updatemenu
 	cp -f debian/extra-control debian/control
-	fakeroot dh_clean fvwm-themes-extra fvwm-themes-full fvwm-themes
-	(cd .. && dpkg-source -b $(sdir))
+	fakeroot dh_clean fvwm-themes fvwm-themes-extra fvwm-themes-full
+	(cd .. && dpkg-source -b fvwm-themes-extra)
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE)
@@ -148,6 +143,6 @@ deb-extra:
 	fakeroot dh_builddeb 
 	-@dpkg-genchanges > ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes
 	-@debsign  ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes
-	fakeroot dh_clean fvwm-themes-full fvwm-themes-extra fvwm-themes
+	fakeroot dh_clean fvwm-themes fvwm-themes-extra fvwm-themes-full
 	rm -f debian/control debian/extra-control
 
