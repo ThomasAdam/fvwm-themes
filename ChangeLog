@@ -49,6 +49,9 @@
 	a new arrangement for create distribution packages, now it is
 	fvwm-themes-full and fvwm-themes + fvwm-themes-extra
 
+	* acinclude.m4:
+	documented that developers need autoconf-2.13 currently
+
 2002-12-05  olicha  <olivier.chapuis@free.fr>
 
 	* themes/minimal/modules/main:

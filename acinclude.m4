@@ -6,6 +6,13 @@ AC_DEFUN(mg_ARG_WITH, [
 	ac_help="$ac_help
 	[$2]"
 	AC_DIVERT_POP()dnl
+
+dnl	# This is for autoconf-2.50+, but it is not finished,
+dnl	# so currently developers need autoconf-2.13 for 2 options to work!
+dnl	AC_DIVERT_PUSH(HELP_WITH)dnl
+dnl	[$2]
+dnl	AC_DIVERT_POP()dnl
+
 	[#] Check whether --with-[$1] or --without-[$1] was given.
 	withvar="[${with_]patsubst([$1], -, _)-no}"
 	if test "$withvar" != no; then
