@@ -17,6 +17,11 @@
 	* themes/default/functions:
 	if xmessage is not found invoke other dialog tools using FvwmPerl
 
+	* NEWS:
+	* configure.in:
+	* doc/README.1st:
+	prepared for 0.7.0
+
 2003-10-27  migo  <migo@homemail.com>
 
 	* themes/osx/**:

@@ -242,7 +242,7 @@ AC_SUBST(SETTINGS_FILE)dnl
 # 3 lists: all themes, base and extra
 ALL_THEMES=`ls -d ./themes/* | grep -v /CVS | grep -v /Makefile | cut -d/ -f3`
 ALL_THEMES=`echo $ALL_THEMES`
-BASE_THEMES="afterstep cde default luthien migo multichoice olicha redmond98"
+BASE_THEMES="afterstep cde default luthien migo multichoice olicha redmond98 redmondxp"
 mg_LIST_MINUS(ALL_THEMES, BASE_THEMES, EXTRA_THEMES)
 AC_SUBST(ALL_THEMES)AC_SUBST(BASE_THEMES)AC_SUBST(EXTRA_THEMES)dnl
 
