@@ -1,4 +1,4 @@
-esyscmd({{awk '{ print "define(CDE_COLOR" NR ", {{" $1 "}})" }' $CDE_BACK_SCHEME}})
+esyscmd({{awk '{ print "define(CDE_COLOR" NR ", {{" $1 "}})" }' }}CDE_COLORS_SCHEME)
 
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground

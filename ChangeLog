@@ -8,6 +8,17 @@
 	* themes/*/windowlook:
 	added FirmBorder; in @cde used DepressableBorder
 
+	* bin/fvwm-themes-config.in:
+	* themes/cde/background.cfg:
+	* themes/cde/background/main:
+	* themes/cde/colors.cfg:
+	* themes/cde/colors/main:
+	* themes/luthien/colors.cfg:
+	* themes/luthien/colors/main:
+	implemented %o1c, %o2f in component's read-command value;
+	converted cde-like color scheme configs from SetEnv to a new format;
+	expend all macros on line; added support for 4 colors in colors@cde
+
 2000-10-23  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/menus:

@@ -1332,11 +1332,11 @@ sub getMenusAndHooksAndReadsRc ($) {
 		my $readFile = $cc->{'read-file'};
 		my $optionReadAfterward = $cc->{'option-read-afterward'};
 		my $options = $cc->{'option'};
+		my $optionExports = [];
 		my $o;
 		my ($readRc1, $readRc2) = ("", "");
 		for ($o = 0; ref($options) eq 'ARRAY' && $o < @$options; $o++) {
 			my $optionEntry = $options->[$o];
-			my $command = $optionEntry->{'read-command'} || $defaultReadCommand;
 			my $optionFile = $optionEntry->{'file'};
 
 			$optionFile = ((ref($cc->{'variant'}) eq 'ARRAY'
@@ -1344,11 +1344,18 @@ sub getMenusAndHooksAndReadsRc ($) {
 				|| $readFile =~ /^(.*\/)$mainDirFile$/)?
 				$1: "${readFile}:") . $optionFile;
 
-			my $index = $optionEntry->{'current'} - 1;
+			my $current = $optionEntry->{'current'};
+			my $index = $current - 1;
 			my $valueFile = $optionEntry->{'value'}->[$index]->{'file'};
 			$valueFile = $optionFile . (-d $optionFile? "/": "=")
 				. $valueFile;
 			$valueFile =~ s/^$ROOT_PREFIX//;
+
+			push @$optionExports, { 'f' => $valueFile, 'c' => $current };
+			my $command = $optionEntry->{'read-command'};
+			next if defined $command && $command eq "";
+
+			$command ||= $defaultReadCommand;
 			$command =~ s/%f/$valueFile/sg;
 			$command =~ s/%d/getThemeDir($self->{$idKey})/seg;
 			my $readAfterward = $optionEntry->{'read-afterward'};
@@ -1363,6 +1370,7 @@ sub getMenusAndHooksAndReadsRc ($) {
 		$readFile =~ s/^$ROOT_PREFIX//;
 		$command =~ s/%f/$readFile/sg;
 		$command =~ s/%d/getThemeDir($self->{$idKey})/seg;
+		$command =~ s/%o([\d]+)(\w)/$optionExports->[$1-1]->{$2} || ""/seg;
 		$rc .= "$readRc1$command\n$readRc2";
 	}
 	return $rc;
