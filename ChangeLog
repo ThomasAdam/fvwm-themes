@@ -4,6 +4,8 @@
 
 	* themes/*/colors*: fixed Toggled button definition
 
+	* themes/default/menu: added Layer +1/-1 menu item
+
 2000-10-12  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

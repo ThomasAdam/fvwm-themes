@@ -347,10 +347,13 @@ AddToFunc   FuncFvwmDesktopCreateScreenshot
 
 DestroyMenu MenuFvwmWindowUtility
 AddToMenu   MenuFvwmWindowUtility "Window Utility" Title
-+ "%menu/utility.xpm%&Print"              Pick FuncFvwmWindowPrint
-+ "%menu/utility.xpm%Print &Reverse"      Pick FuncFvwmWindowPrintReverse
++ "%menu/utility.xpm%&Print"              Pick (CirculateHit) FuncFvwmWindowPrint
++ "%menu/utility.xpm%Print &Reverse"      Pick (CirculateHit) FuncFvwmWindowPrintReverse
 + "" Nop
 + "%menu/window.xpm%Create &Screenshot"   Pick (CirculateHit) FuncFvwmWindowCreateScreenshot
 + "%menu/desktop.xpm%&Desktop Screenshot" Pick (CirculateHit) FuncFvwmDesktopCreateScreenshot
++ "" Nop
++ "%menu/window-raise.xpm%Layer +1"       Pick (CirculateHit) Layer +1
++ "%menu/window-lower.xpm%Layer -1"       Pick (CirculateHit) Layer -1
 + "" Nop
 + "%menu/window-resize.xpm%Scroll&Bar"    Pick Module FvwmScroll 2 2
