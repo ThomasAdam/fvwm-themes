@@ -476,7 +476,6 @@ sub checkExecInPath {
 #----------------------------------------------------------------------------
 
 sub configCenterComLoop {
-
 	my $outFifo = ".tmp-com-out-" . $comName;
 	my $inFifo = ".tmp-com-in-"  . $comName;
 	my $lockFifo = ".tmp-com-lock-" . $comName;
@@ -510,7 +509,6 @@ sub configCenterComLoop {
 	# get "themes" config
 	getThemesConfig($personalThemes,$themesConfig,$currentConfig,
 		$optConfig,$hardRead);
-	
 	my $tmp;
 	foreach $tmp (@components) {
 		foreach (@$personalThemes) {
@@ -523,7 +521,6 @@ sub configCenterComLoop {
 
 	# X info:
 	my	($redMask,$greenMask,$blueMask) = getXdpyInfo();
-
 	# persistante fvwm Config:
 	my $internalConfig = { };
 
@@ -555,7 +552,6 @@ sub configCenterComLoop {
 		if ($@ =~ /^Script/) {
 			next;
 		}
-
 		# read the command.
 		eval {
 			local $SIG{ALRM} = sub { die "Timeout" };
@@ -575,6 +571,7 @@ sub configCenterComLoop {
 			print STDERR "$comName: com give an unvalide unlock!\n";
 			next;
 		}
+		print STDERR "msg com 2\n";
 		#------------------------------------------------------------------------
 		# build the answer
 		chomp($command);
@@ -769,7 +766,6 @@ sub configCenterComLoop {
 			print STDERR "$comName: unknown command $command\n";
 			$return = "0";
 		}
-
 		#------------------------------------------------------------------------
 		# answer
 		myMakeFifo($inFifo);
@@ -792,7 +788,6 @@ sub configCenterComLoop {
 		if ($@ =~ /Timeout/) {
 			print STDERR "$comName: com do not read my answer!\n";
 		}
-
 	}
 }
 
@@ -1325,9 +1320,14 @@ sub  build_globalfeel_Config {
 	else { $err->{'Hints'} .= "$impossible|" }
 	#
 	$index++;
+	# Need to be "fixed" in other places ... 
 	$tmp = substr($configFromScript,$index,1);
-	if ($tmp == 0) { $fvwmConfig->{'Hints'} .= ", Recapture off" }
-	elsif ($tmp == 1) { $fvwmConfig->{'Hints'} .= ", Recapture on" }
+	if ($tmp == 0) { 
+		#$fvwmConfig->{'Hints'} .= ", Recapture off" 
+	}
+	elsif ($tmp == 1) { 
+		#$fvwmConfig->{'Hints'} .= ", Recapture on"
+	}
 	else { $err->{'Hints'} .= "$impossible|" }
 	#
 	$index++;

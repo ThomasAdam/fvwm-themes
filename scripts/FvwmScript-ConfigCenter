@@ -24,6 +24,7 @@ Font	-adobe-helvetica-bold-r-*-*-12-*
 
 Init
 Begin
+    #Do {Echo CC started}
     Do {FvwmScript FvwmScript-NoteMessage "Loading Configuration"}
 
     Set $Lang = {}
@@ -92,57 +93,32 @@ Begin
     # component at start
     Set $Component = $GF_FileName
 
-    # --------------------------------- get the "themes configurations"
-    ### personal themes
-    Set $cmd = $SendMsgAndGet{"get-perso-themes"}
-    Set $PersonalThemes = (GetOutput $cmd 1 -1)
-    ChangeTitle 959 $PersonalThemes
+    ### personal themes; widget 1 signal 1
+    Set $PersonalThemes = {}
 
-    ### GF save, current and themes
-    Set $cmd = $SendMsgAndGet{"get-themes-info }$GF_FileName{" --line=1}
-    # where we save: the theme
-    Set $tmp = (GetOutput $cmd 1 -1)
-    ChangeTitle 957 $tmp
-    # current theme
-    Set $cmd = $GetLine{2}
-    Set $GF_CurrentTheme = (GetOutput $cmd 1 -1)
-    # themes with a globalfeel component
-    Set $cmd = $GetLine{3 --clear-buffer}
-    Set $GF_ThemesWith = (GetOutput $cmd 1 -1)
-    ChangeTitle 953 $GF_ThemesWith
+    ### ------------------- Loading GF config
+    # GF save, current and themes
+    # the next two: widget 1 signal 2 
+    Set $GF_CurrentTheme = {}
+    Set $GF_ThemesWith = {}
     # Loading GF configuration:
+    #Do {Echo CC: going to load GF config}
     Set $cmd = $SendMsgAndGet{"get-config current globalfeel All" --line=1}
     Set $GF_error = (GetOutput $cmd 1 -1)
     Set $cmd = $GetLine{2 --clear-buffer}
     Set $GF_Config = (GetOutput $cmd 1 -1)
-
+    #Do {Echo CC: GF config loaded}
     ### ------------------- Loading BD config
-
+    # loaded in widget 1 signal 3
     ## Themes config
-    Set $cmd = $SendMsgAndGet{"get-themes-info bindings" --line=1}
-    # where we save: the theme
-    Set $BD_SaveBindings = (GetOutput $cmd 1 -1)
-    # current theme
-    Set $cmd = $GetLine{2}
-    Set $BD_bindingsCurrentTheme = (GetOutput $cmd 1 -1)
-    # themes with a globalfeel component
-    Set $cmd = $GetLine{3}
-    # options
-    Set $cmd = $GetLine{4}
-    Set $BD_Switch23Button = (GetOutput $cmd 1 -1)
-    Set $cmd = $GetLine{5 --clear-buffer}
-    Set $BD_KeyModifiers = (GetOutput $cmd 1 -1)
+    Set $BD_SaveBindings = {}
+    Set $BD_bindingsCurrentTheme = {}
+    Set $BD_Switch23Button = {}
+    Set $BD_KeyModifiers = {}
+    Set $BD_BindingsThemesWith = {}
+    Set $BD_KeyConfig = {}
+    Set $BD_MouseConfig = {}
 
-    ## Configuration:
-    Set $BD_BindingsThemesWith = (GetOutput $cmd 1 -1)
-    Set $cmd = $SendMsgAndGet{"get-config current bindings All" --line=1}
-    Set $error = (GetOutput $cmd 1 -1)
-    Set $cmd = $GetLine{2}
-    Set $BD_KeyConfig = (GetOutput $cmd 1 -1)
-    Set $cmd = $GetLine{3 --clear-buffer}
-    Set $BD_MouseConfig = (GetOutput $cmd 1 -1)
-
-    ### other init 
     # Min Value in the List:
     Set $BD_KeyboradMinValue = 1
     Set $BD_MouseMinValue = 1
@@ -470,15 +446,12 @@ Begin
     End
 
     ChangeTitle 59 $l_StartColorSel
-    Set $tmp = $l_BPrefLoaded $Component $l_MPrefLoaded $GF_CurrentTheme $l_APrefLoaded
-    ChangeTitle 951 $tmp
-
 
     ChangeFont 991 $ShadeFont
     Set $SaveFont = {Sel}
     ChangeFont 992 $ShadeFont
     Set $TryFont = {Shade}
-
+    #Do {Echo ConfigCenter: GF inter loaded}
 #------------------------------------------------------------------------------
 # Main variables, i.e. "Global one" (see also the com loop init !)
 
@@ -1579,6 +1552,7 @@ Property
     Title {                           }
 Main
 Case message of
+
  SingleClic :
  Begin
     Set $tmp = (GetValue 1)
@@ -1589,6 +1563,62 @@ Case message of
 	SendSignal 995 1
     ChangeTitle 990 $l_OnlyGlobal	
  End
+
+ 1 :
+ Begin
+    ### personal themes
+    Set $cmd = $SendMsgAndGet{"get-perso-themes"}
+    Set $PersonalThemes = (GetOutput $cmd 1 -1)
+    ChangeTitle 959 $PersonalThemes
+ End
+
+ # --- GF themes config
+ 2 :
+ Begin
+    ### GF save, current and themes
+    Set $cmd = $SendMsgAndGet{"get-themes-info }$GF_FileName{" --line=1}
+    # where we save: the theme
+    Set $tmp = (GetOutput $cmd 1 -1)
+    ChangeTitle 957 $tmp
+    # current theme
+    Set $cmd = $GetLine{2}
+    Set $GF_CurrentTheme = (GetOutput $cmd 1 -1)
+    # themes with a globalfeel component
+    Set $cmd = $GetLine{3 --clear-buffer}
+    Set $GF_ThemesWith = (GetOutput $cmd 1 -1)
+    ChangeTitle 953 $GF_ThemesWith
+    Set $tmp = $l_BPrefLoaded $Component $l_MPrefLoaded $GF_CurrentTheme $l_APrefLoaded
+    ChangeTitle 951 $tmp
+ End
+
+ # --- BD themes and config
+ 3 :
+ Begin
+    ## Themes config
+    Set $cmd = $SendMsgAndGet{"get-themes-info bindings" --line=1}
+    # where we save: the theme
+    Set $BD_SaveBindings = (GetOutput $cmd 1 -1)
+    # current theme
+    Set $cmd = $GetLine{2}
+    Set $BD_bindingsCurrentTheme = (GetOutput $cmd 1 -1)
+    # themes with a globalfeel component
+    Set $cmd = $GetLine{3}
+    # options
+    Set $cmd = $GetLine{4}
+    Set $BD_Switch23Button = (GetOutput $cmd 1 -1)
+    Set $cmd = $GetLine{5 --clear-buffer}
+    Set $BD_KeyModifiers = (GetOutput $cmd 1 -1)
+
+    ## Configuration:
+    Set $BD_BindingsThemesWith = (GetOutput $cmd 1 -1)
+    Set $cmd = $SendMsgAndGet{"get-config current bindings All" --line=1}
+    Set $error = (GetOutput $cmd 1 -1)
+    Set $cmd = $GetLine{2}
+    Set $BD_KeyConfig = (GetOutput $cmd 1 -1)
+    Set $cmd = $GetLine{3 --clear-buffer}
+    Set $BD_MouseConfig = (GetOutput $cmd 1 -1)
+ End
+
 End
 
 Widget 2
@@ -1671,6 +1701,10 @@ Case message of
     End
     If $tmp == 6 Then
     Begin
+	If $GF_CurrentTheme == {} Then
+	    SendSignal 1 2
+	If $PersonalThemes == {} Then
+	    SendSignal 1 1
 	Set $GF_ShowPreference = 1
 	Set $GF_HidePreference = 0
 	If $TryFont <> {Shade} Then
@@ -1747,6 +1781,8 @@ Case message of
 	Set $SaveFont = {Shade}
 	Set $TryFont = {Shade}
 	Set $DefaulFont = {Shade}
+	If $BD_SaveBindings == {} Then
+	    SendSignal 1 3
     End
     If $tmp == 1 Then
     Begin
@@ -1795,6 +1831,7 @@ Case message of
 	Set $Component = {BD_Preference}
     End
   End
+
 End
 
 

@@ -38,7 +38,7 @@ SetAnimation  10  -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
 
 Style * MwmDecor, OLDecor, HintOverride, MwmFunctions, GNOMEUseHints
 BugOpts ModalityIsEvil on
-BusyCursor Read on, Recapture on, Wait on, ModuleSynchronous on
+BusyCursor Read on, Wait on, ModuleSynchronous on
 # Automatic detection of the color limit
 BugOpts MixedVisualWorkaround off
 BugOpts RaiseOverNativeWindows off

@@ -1,3 +1,17 @@
+2000-12-08  olicha  <olivier.chapuis@free.fr>
+
+	* themes/*/globalfeel:
+	* bin/fvwm-themes-script.in:
+	Remove Recapture BusyCursor options. the ConfigCenter will be
+	fixed later, when no more "globalfeel" options will may changes
+
+	* scripts/FvwmScript-ConfigCenter:
+	Speed up startup as it is possible (i.e., almost all the times
+	is spent in fvwm-themes-config).
+
+	* default/settings/kde/ kde2-system-menu/*
+	Added --utf8 option
+
 2000-12-08  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-script.in:
