@@ -175,10 +175,10 @@ GetOptions(
 	"kde2-hi"            => \$kde2Hi,
 	"postfix"            => \$postfix,
 	"trans-filter!"      => \$transFilter,
-	"48x48-size=s"       => \$size{"48x48"},
-	"56x56-size=s"       => \$size{"56x56"},
-	"32x32-size=s"       => \$size{"32x32"},
-	"16x16-size=s"       => \$size{"16x16"},
+	"size-48x48=s"       => \$size{"48x48"},
+	"size-56x56=s"       => \$size{"56x56"},
+	"size-32x32=s"       => \$size{"32x32"},
+	"size-16x16=s"       => \$size{"16x16"},
 	"tiles-size=s"       => \$size{"tiles"},
 	"build-16x16!"       => \$build{"16x16"},
 	"build-48x48!"       => \$build{"48x48"},
@@ -239,6 +239,11 @@ GetOptions(
 	"add-border-32x32=s" => \$addBorderOpt{"32x32"},
 	"add-border-tiles=s" => \$addBorderOpt{"tiles"},
 	"add-border=s"       => \$addBorder,
+	"48x48-size=s"       => \$size{"48x48"},
+	"56x56-size=s"       => \$size{"56x56"},
+	"32x32-size=s"       => \$size{"32x32"},
+	"16x16-size=s"       => \$size{"16x16"},
+	"tiles-size=s"       => \$size{"tiles"},
 ) || wrongUsage();
 
 # compute verbosity!
@@ -503,6 +508,19 @@ sub transform {
 		# bad hack:
 		if ($kde2) {
 			my @others = qw(filesystems actions devices  mimetypes);
+			if ($kde2Hi) {
+				push @others, ("../../locolor/$type/apps",
+									"../../locolor/$type/filesystems",
+									"../../locolor/$type/actions",
+									"../../locolor/$type/devices",
+									"../../locolor/$type/mimetypes");
+			} else {
+				push @others, ("../../hicolor/$type/apps",
+									"../../hicolor/$type/filesystems",
+									"../../hicolor/$type/actions",
+									"../../hicolor/$type/devices",
+									"../../hicolor/$type/mimetypes");
+			}
 			my $o;
 			foreach $o (@others) {
 				if (-d "$dir/../$o/") {

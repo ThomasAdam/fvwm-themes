@@ -1,3 +1,13 @@
+2001-03-19  olicha  <olivier.chapuis@free.fr>
+
+	* themes/redmond98/buttons:
+	* images.tar.gz:
+	Some buttons fixes: Use "Height 20" for 16x16 mini icons and resize
+	the win-* buttons to 16x15 
+
+	* bin/fvwm-themes-image.in:
+	Fixed size-* options and some works on --kde2 option
+	
 2001-03-18  migo  <migo@homemail.com>
 
 	* NEWS:
