@@ -1,0 +1,263 @@
+# ----------------------------------------------------------------------------
+# Icon related configuration
+
+Style "*"	IconBox 10 24 -130 700, IconGrid 64 64, IconFill left top
+Style "*"	SlipperyIcon, IconTitle
+
+# ----------------------------------------------------------------------------
+# start-stop functions
+
+DestroyFunc FuncFvwmStartThemeModules
+AddToFunc   FuncFvwmStartThemeModules
++ I FuncFvwmStartNormalIcons
++ I FuncFvwmStartChosenButtons
+
+DestroyFunc FuncFvwmReloadThemeModules
+AddToFunc   FuncFvwmReloadThemeModules
++ I Read $./main:styles
++ I FuncFvwmStartNormalIcons
+
+DestroyFunc FuncFvwmReloadColorsModules
+AddToFunc   FuncFvwmReloadColorsModules
++ I FuncFvwmStartChosenButtons
+
+DestroyFunc FuncFvwmStopThemeModules
+AddToFunc   FuncFvwmStopThemeModules
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Laptop
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Desktop
++ I DestroyModuleConfig FvwmButtons-Minimal: *
++ I DestroyModuleConfig FvwmPager-Single: *
++ I FuncFvwmDestroyModulesThemeStyle
++ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
+
+DestroyFunc FuncFvwmUnReloadColorsModules
+AddToFunc   FuncFvwmUnReloadColorsModules
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Laptop
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Desktop
+
+DestroyFunc FuncFvwmUnReloadThemeModules
+AddToFunc   FuncFvwmUnReloadThemeModules
+
+# ------------------------------------------------------------
+# Menu
+
+DestroyFunc FuncFvwmRestartChosenButtons
+AddToFunc   FuncFvwmRestartChosenButtons
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Laptop
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Desktop
++ I Module FvwmButtons $0
+
+DestroyMenu MenuFvwmStartThemeModules
+AddToMenu   MenuFvwmStartThemeModules "Minimal Modules" Title
++ "%menu/item.xpm%&Destop Buttons" FuncFvwmRestartChosenButtons \
+	FvwmButtons-Desktop
++ "%menu/item.xpm%&Laptop Buttons" FuncFvwmRestartChosenButtons \
+	FvwmButtons-Laptop
+
+DestroyMenu MenuFvwmStopThemeModules
+AddToMenu   MenuFvwmStopThemeModules "Minimal Modules" Title
++ "%menu/quit.xpm%Stop &Buttons" FuncFvwmUnReloadColorsModules
+
+# ------------------------------------------------------------
+# modules config
+
+Read themes/minimal/modules/main:styles
+
+DestroyFunc FuncFvwmStartNormalIcons
+AddToFunc   FuncFvwmStartNormalIcons
+
+# --------------- Laptop buttons
+DestroyModuleConfig FvwmButtons-Laptop: *
+
+*FvwmButtons-Laptop: Geometry 225x90+0-0
+*FvwmButtons-Laptop: Colorset 10
+*FvwmButtons-Laptop: Rows 16
+*FvwmButtons-Laptop: Columns 10
+*FvwmButtons-Laptop: (3x12, Size 64 64, Frame 1,\
+	Swallow (Kill) "FvwmApplet-DayClock" 'FvwmScript FvwmApplet-DayClock 10 13'))
+*FvwmButtons-Desktop: (1x5,Frame 1,\
+	Icon 16x16/www.xpm, \
+	Action(Mouse 1) 'FuncFvwmWWW', \
+	Action(Mouse 2) 'FuncFvwm2WWW', \
+	Action(Mouse 3) 'FuncFvwm3WWW')
+*FvwmButtons-Desktop: (1x5,Frame 1,\
+	Icon 16x16/terminal.xpm, \
+	Action(Mouse 1) 'FuncFvwmTerminal', \
+	Action(Mouse 2) 'FuncFvwm2Terminal', \
+	Action(Mouse 3) 'FuncFvwm3Terminal')
+*FvwmButtons-Desktop: (1x5,Frame 1, \
+	Icon 16x16/editor.xpm, \
+	Action(Mouse 1) 'FuncFvwmEditor', \
+	Action(Mouse 2) 'FuncFvwm2Editor', \
+	Action(Mouse 3) 'FuncFvwm3Editor')
+*FvwmButtons-Desktop: (1x5,Frame 1,\
+	Icon 16x16/monitoring.xpm, \
+	Action(Mouse 1) 'FuncFvwmProcess', \
+	Action(Mouse 2) 'FuncFvwm2Process', \
+	Action(Mouse 3) 'FuncFvwm3Process')
+*FvwmButtons-Desktop: (1x5,Frame 1,\
+	Icon 16x16/mail.xpm, \
+	Action(Mouse 1) 'FuncFvwmMail', \
+	Action(Mouse 2) 'FuncFvwm2Mail', \
+	Action(Mouse 3) 'FuncFvwm3Mail')
+*FvwmButtons-Desktop: (1x5,Frame 1,\
+	Icon 16x16/game.xpm, \
+	Action(Mouse 1) 'FuncFvwmGame', \
+	Action(Mouse 2) 'FuncFvwm2Game', \
+	Action(Mouse 3) 'FuncFvwm3Game')
+*FvwmButtons-Laptop: (1x16,Container(Frame 1,Columns 1, Rows 4),Frame 1)
+*FvwmButtons-Laptop: (1x1,Frame 1,Title "1", Action GotoDesk 0 0)
+*FvwmButtons-Laptop: (1x1,Frame 1,Title "2", Action GotoDesk 0 1)
+*FvwmButtons-Laptop: (1x1,Frame 1,Title "3", Action GotoDesk 0 2)
+*FvwmButtons-Laptop: (1x1,Frame 1,Title "4", Action GotoDesk 0 3)
+*FvwmButtons-Laptop: (End)
+*FvwmButtons-Laptop: (6x11, Frame 1, Swallow "FvwmPager-Single" \
+	'Module FvwmPager FvwmPager-Single * *')
+*FvwmButtons-Laptop: (3x4, Frame 1, Swallow (kill) "xapm" \
+	'Exec exec xapm -bg $$[bg.cs13] -fg $$[fg.cs13] -geometry 63x15 -p')
+
+# --------------- Desktop buttons
+DestroyModuleConfig FvwmButtons-Desktop: *
+
+*FvwmButtons-Desktop: Geometry 225x90+0-0
+*FvwmButtons-Desktop: Colorset 10
+*FvwmButtons-Desktop: Rows 16
+*FvwmButtons-Desktop: Columns 10
+*FvwmButtons-Desktop: (3x12, Size 64 64, Frame 1,\
+	Swallow (Kill) "FvwmApplet-DayClock" \
+	'FvwmScript FvwmApplet-DayClock 10 13'))
+*FvwmButtons-Desktop: (1x5,Frame 1,\
+	Icon 16x16/www.xpm, \
+	Action(Mouse 1) 'FuncFvwmWWW', \
+	Action(Mouse 2) 'FuncFvwm2WWW', \
+	Action(Mouse 3) 'FuncFvwm3WWW')
+*FvwmButtons-Desktop: (1x5,Frame 1,\
+	Icon 16x16/terminal.xpm, \
+	Action(Mouse 1) 'FuncFvwmTerminal', \
+	Action(Mouse 2) 'FuncFvwm2Terminal', \
+	Action(Mouse 3) 'FuncFvwm3Terminal')
+*FvwmButtons-Desktop: (1x5,Frame 1, \
+	Icon 16x16/editor.xpm, \
+	Action(Mouse 1) 'FuncFvwmEditor', \
+	Action(Mouse 2) 'FuncFvwm2Editor', \
+	Action(Mouse 3) 'FuncFvwm3Editor')
+*FvwmButtons-Desktop: (1x5,Frame 1,\
+	Icon 16x16/monitoring.xpm, \
+	Action(Mouse 1) 'FuncFvwmProcess', \
+	Action(Mouse 2) 'FuncFvwm2Process', \
+	Action(Mouse 3) 'FuncFvwm3Process')
+*FvwmButtons-Desktop: (1x5,Frame 1,\
+	Icon 16x16/mail.xpm, \
+	Action(Mouse 1) 'FuncFvwmMail', \
+	Action(Mouse 2) 'FuncFvwm2Mail', \
+	Action(Mouse 3) 'FuncFvwm3Mail')
+*FvwmButtons-Desktop: (1x5,Frame 1,\
+	Icon 16x16/game.xpm, \
+	Action(Mouse 1) 'FuncFvwmGame', \
+	Action(Mouse 2) 'FuncFvwm2Game', \
+	Action(Mouse 3) 'FuncFvwm3Game')
+*FvwmButtons-Desktop: (1x16,Container(Frame 1,Columns 1, Rows 4),Frame 1)
+*FvwmButtons-Desktop: (1x1,Frame 1,Title "1", Action GotoDesk 0 0)
+*FvwmButtons-Desktop: (1x1,Frame 1,Title "2", Action GotoDesk 0 1)
+*FvwmButtons-Desktop: (1x1,Frame 1,Title "3", Action GotoDesk 0 2)
+*FvwmButtons-Desktop: (1x1,Frame 1,Title "4", Action GotoDesk 0 3)
+*FvwmButtons-Desktop: (End)
+*FvwmButtons-Desktop: (6x11, Frame 1, Swallow "FvwmPager-Single" \
+	'Module FvwmPager FvwmPager-Single * *')
+*FvwmButtons-Desktop: (3x4, Frame 1, Swallow (kill) "xload" \
+	'Exec exec xload -bg $$[bg.cs13] -fg $$[fg.cs13] -geometry 63x15+0-0 \
+	-hl $$[shadow.cs13] -update 5 -nolabel')
+
+
+# ---------------------------------------------------------------------------
+# pager
+
+DesktopSize 3x2
+
+DestroyMenu  MenuFvwmWindowMove
+AddToMenu    MenuFvwmWindowMove "Move to ..." Title
++ "Page	1 1%menu/window-move.xpm%"	MoveToPage 0 0
++ "Page	2 1%menu/window-move.xpm%"	MoveToPage 1 0
++ "Page	3 1%menu/window-move.xpm%"	MoveToPage 2 0
++ "Page	1 2%menu/window-move.xpm%"	MoveToPage 0 1
++ "Page	2 2%menu/window-move.xpm%"	MoveToPage 1 1
++ "Page	3 2%menu/window-move.xpm%"	MoveToPage 2 1
+
+AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
++ "Page	1 1%menu/window-move.xpm%"	Pick All ($r) MoveToPage 0 0
++ "Page	2 1%menu/window-move.xpm%"	Pick All ($r) MoveToPage 1 0
++ "Page	3 1%menu/window-move.xpm%"	Pick All ($r) MoveToPage 2 0
++ "Page	1 2%menu/window-move.xpm%"	Pick All ($r) MoveToPage 0 1
++ "Page	2 2%menu/window-move.xpm%"	Pick All ($r) MoveToPage 1 1
++ "Page	3 2%menu/window-move.xpm%"	Pick All ($r) MoveToPage 2 1
+
+AddToMenu MenuFvwmWindowMove "" Nop
++ "Desk 1%menu/window-move.xpm%"	MoveToDesk 0 0
++ "Desk 2%menu/window-move.xpm%"	MoveToDesk 0 1
++ "Desk 3%menu/window-move.xpm%"	MoveToDesk 0 2
++ "Desk 4%menu/window-move.xpm%"	MoveToDesk 0 3
+
+AddToMenu MenuFvwmWindowGroupOps "" Nop
++ "Desk 1%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 0
++ "Desk 2%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 1
++ "Desk 3%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2
++ "Desk 4%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
+
+DestroyModuleConfig FvwmPager-Single: *
+*FvwmPager-Single: Geometry +5000+5000
+
+*FvwmPager-Single: Colorset * 14
+*FvwmPager-Single: HilightColorset * 15
+*FvwmPager-Single: BalloonColorset * 16
+*FvwmPager-Single: WindowColorsets 1 2
+
+*FvwmPager-Single: Font none
+*FvwmPager-Single: SolidSeparators
+*FvwmPager-Single: Balloons            All
+*FvwmPager-Single: BalloonYOffset      +2
+*FvwmPager-Single: BalloonBorderWidth  1
+
+*FvwmPager-Single: Window3dBorders
+
+*FvwmPager-Single: Label 0 One
+*FvwmPager-Single: Label 1 Two
+*FvwmPager-Single: Label 2 Three
+*FvwmPager-Single: Label 3 Four
+
+# we "need" to configure a desker for Shift-ctl Mouse 2 bindings
+DestroyModuleConfig FvwmPager-Desker: *
+
+*FvwmPager-Desker: Colorset * 14
+*FvwmPager-Desker: HilightColorset * 15
+*FvwmPager-Desker: BalloonColorset * 16
+*FvwmPager-Desker: WindowColorsets 1 2
+
+*FvwmPager-Desker: SolidSeparators
+*FvwmPager-Desker: Balloons            All
+*FvwmPager-Desker: BalloonYOffset      +2
+*FvwmPager-Desker: BalloonBorderWidth  1
+
+*FvwmPager-Desker: Window3dBorders
+
+*FvwmPager-Desker: Label 0 One
+*FvwmPager-Desker: Label 1 Two
+*FvwmPager-Desker: Label 2 Three
+*FvwmPager-Desker: Label 3 Four
+
+# -------------------------------
+# fonts
+FuncFvwmSetFont-ModuleTips "*FvwmPager-Single: BalloonFont" fixed
+
+FuncFvwmSetFont-ModuleSmall "*FvwmPager-Single: SmallFont" \
+	"-*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*"
+
+#FuncFvwmSetFont-ModuleSmallLabel "*FvwmPager-Single: Font" \
+#	"-*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*"
+
+FuncFvwmSetFont-ModuleTips "*FvwmPager-Desker: BalloonFont" fixed
+
+FuncFvwmSetFont-ModuleSmall "*FvwmPager-Desker: SmallFont" \
+	"-*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*"
+
+FuncFvwmSetFont-ModuleSmallLabel "*FvwmPager-Desker: Font" \
+	"-*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*"

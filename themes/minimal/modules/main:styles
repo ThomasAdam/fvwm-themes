@@ -1,0 +1,9 @@
+Style "FvwmButtons-Laptop" NoTitle, NoHandles, Sticky, WindowListSkip, \
+	CirculateSkip, TitleAtBottom, BorderWidth 5, HandleWidth 5
+Style "FvwmButtons-Desktop" NoTitle, NoHandles, Sticky, WindowListSkip, \
+	CirculateSkip, TitleAtBottom, BorderWidth 5, HandleWidth 5
+
+DestroyFunc FuncFvwmDestroyModulesThemeStyle
+AddToFunc   FuncFvwmDestroyModulesThemeStyle
++ I DestroyStyle "FvwmButtons-Desktop"
++ I DestroyStyle "FvwmButtons-Laptop"

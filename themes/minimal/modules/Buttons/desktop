@@ -1,0 +1,5 @@
+DestroyFunc FuncFvwmStartChosenButtons
+AddToFunc   FuncFvwmStartChosenButtons
++ I Module FvwmButtons FvwmButtons-Desktop
+
+
