@@ -60,7 +60,7 @@ ButtonStyle	All -- UseTitleStyle
 *FvwmTheme: Colorset 6 fg red2, bg grey77, hi grey88, sh grey65, Plain, NoShape
 
 # greyed menu item fg
-*FvwmTheme: Colorset 7 fg grey77, bg grey77, Plain, NoShape
+*FvwmTheme: Colorset 7 fg DarkSeaGreen, bg DarkSeaGreen, Plain, NoShape
 
 MenuStyle * MenuFace
 MenuStyle * MenuColorset 5, ActiveColorset 6, GreyedColorset 7
