@@ -1,3 +1,8 @@
+2002-12-03  migo  <migo@homemail.com>
+
+	* themes/default/settings/wheel/enabled:
+	added several experimental bindings
+
 2002-11-24  migo  <migo@homemail.com>
 
 	* themes/default/bindings.restrict-modifiers.no:

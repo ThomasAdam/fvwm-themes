@@ -1,8 +1,33 @@
 # Stroke bindings
 
 # Don't forget to destroy the bindings
+Mouse 4 TSF A WindowShade true
+Mouse 4 TSF S Raise
+Mouse 5 TSF A WindowShade false
+Mouse 5 TSF S Lower
+Mouse 4 R   A Nop
+Mouse 5 R   A Nop
+Mouse 4 A  CM GotoPage 0p -1p
+Mouse 5 A  CM GotoPage 0p +1p
+Mouse 4 A SCM GotoPage -1p 0p
+Mouse 5 A SCM GotoPage +1p 0p
+
+# if someone has 2 wheels, this may be added to wheel-extra@personal
+#Silent Mouse 6 A A ThisWindow RaiseLower
+#Silent Mouse 7 A A ThisWindow Raise
+
 DestroyFunc FuncFvwmStartWheel
 AddToFunc   FuncFvwmStartWheel
 
 DestroyFunc FuncFvwmStopWheel
 AddToFunc   FuncFvwmStopWheel
++ I Mouse 4 TSF A -
++ I Mouse 4 TSF S -
++ I Mouse 5 TSF A -
++ I Mouse 5 TSF S -
++ I Mouse 4 R   A -
++ I Mouse 5 R   A -
++ I Mouse 4 A  CM -
++ I Mouse 5 A  CM -
++ I Mouse 4 A SCM -
++ I Mouse 5 A SCM -
