@@ -4,6 +4,10 @@
 	extended --pattern-type altern to accept multiple row values;
 	some man page improvements
 
+	* themes/osx/colors:
+	* themes/osx/menustyle:
+	small menu improvements (?)
+
 2001-04-14  migo  <migo@homemail.com>
 
 	* themes/brushedmetal/colors:
