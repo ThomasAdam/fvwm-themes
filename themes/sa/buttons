@@ -3,15 +3,15 @@ FuncFvwmDecorBackground
 Style "*" Button 1, Button 2, Button 4
 Style "*" MWMButtons  # button relief follows the state
 
+AddTitleStyle TiledPixmap button/title_top.png    -- Flat Top
+AddTitleStyle TiledPixmap button/title_bottom.png -- Flat Bottom
+AddTitleStyle Pixmap      button/title_left.png   -- Flat Left
+AddTitleStyle Pixmap      button/title_right.png  -- Flat Right
 
-AddTitleStyle         TiledPixmap button/title_top.png    -- Flat Top
-AddTitleStyle         TiledPixmap button/title_bottom.png -- Flat Bottom
-AddTitleStyle         Pixmap      button/title_left.png   -- Flat Left
-AddTitleStyle         Pixmap      button/title_right.png  -- Flat Right
-ButtonStyle    All  simple -- Flat UseTitleStyle
-  AddButtonStyle 1  Pixmap    button/close.png
-  AddButtonStyle 2  Pixmap    button/maximize.png
-  AddButtonStyle 4  Pixmap    button/iconify.png
+ButtonStyle    All  Simple -- UseTitleStyle
+AddButtonStyle 1  Pixmap  button/close.png
+AddButtonStyle 2  Pixmap  button/maximize.png
+AddButtonStyle 4  Pixmap  button/iconify.png
 
 ButtonStyle 1 - Clear
 ButtonStyle 2 - Clear MWMDecorMax
@@ -43,20 +43,24 @@ AddToFunc   FuncFvwmUnReloadDecor
 DestroyFunc FuncFvwmReloadDecor
 AddToFunc   FuncFvwmReloadDecor
 + I FuncFvwmDecorBackground
-+ I ButtonStyle    All  simple -- Flat UseTitleStyle
-+ I   AddButtonStyle 1  Pixmap    button/close.png
-+ I   AddButtonStyle 2  Pixmap    button/maximize.png
-+ I   AddButtonStyle 4  Pixmap    button/iconify.png
-+ I AddTitleStyle         TiledPixmap button/title_top.png    -- Flat Top
-+ I AddTitleStyle         TiledPixmap button/title_bottom.png -- Flat Bottom
-+ I AddTitleStyle         Pixmap      button/title_left.png   -- Flat Left
-+ I AddTitleStyle         Pixmap      button/title_right.png  -- Flat Right
++ I AddTitleStyle TiledPixmap button/title_top.png    -- Flat Top
++ I AddTitleStyle TiledPixmap button/title_bottom.png -- Flat Bottom
++ I AddTitleStyle Pixmap      button/title_left.png   -- Flat Left
++ I AddTitleStyle Pixmap      button/title_right.png  -- Flat Right
++ I AddButtonStyle 1  Pixmap  button/close.png
++ I AddButtonStyle 2  Pixmap  button/maximize.png
++ I AddButtonStyle 4  Pixmap  button/iconify.png
 
 DestroyFunc FuncFvwmOverRideWindowLook
 AddToFunc   FuncFvwmOverRideWindowLook
++ I TitleStyle -- flat
++ I ButtonStyle All -- flat
 
 DestroyFunc FuncFvwmStartWindowButtons
 AddToFunc   FuncFvwmStartWindowButtons
+# This is usually not in this component, but these buttons can't be non-flat
++ I TitleStyle -- flat
++ I ButtonStyle All -- flat
 
 DestroyFunc FuncFvwmStopWindowButtons
 AddToFunc   FuncFvwmStopWindowButtons

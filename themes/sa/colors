@@ -59,17 +59,21 @@ Colorset 4  sh Black, hi grey75, bg grey50, Plain, NoShape
 #
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
-+ I TitleStyle ActiveUp Vgradient 255 3 grey85 15 grey40 50 grey55 20 grey30\
-         -- Flat
-+ I TitleStyle ActiveDown Vgradient 255 3 grey30 15 grey55 50 grey40 20 grey95\
-         -- Flat
-+ I TitleStyle InActive Vgradient 255 3 grey75 15 grey35 50 grey45 20 grey20\
-         -- Flat
-#+ I TitleStyle ToggledActiveUp   (Solid green -- Raised)
-#+ I TitleStyle ToggledActiveDown (Solid cyan -- Raised)
-#+ I TitleStyle ToggledInactive   (Solid yellow -- Raised)
-#+ I ButtonStyle All Pixmap 16x16/empty.xpm
-#+ I ButtonStyle All -- UseTitleStyle
++ I TitleStyle ActiveUp   \
+	Vgradient 255 3 grey85 15 grey40 50 grey55 20 grey30 -- Flat
++ I TitleStyle ActiveDown \
+	Vgradient 255 3 grey30 15 grey55 50 grey40 20 grey95 -- Flat
++ I TitleStyle Inactive   \
+	Vgradient 255 3 grey75 15 grey35 50 grey45 20 grey20 -- Flat
++ I TitleStyle ToggledActiveUp   \
+	Vgradient 255 3 grey85 15 grey40 50 grey55 20 grey30 -- Flat
++ I TitleStyle ToggledActiveDown \
+	Vgradient 255 3 grey30 15 grey55 50 grey40 20 grey95 -- Flat
++ I TitleStyle ToggledInactive   \
+	Vgradient 255 3 grey75 15 grey35 50 grey45 20 grey20 -- Flat
+
++ I ButtonStyle All Pixmap 16x16/empty.xpm
++ I ButtonStyle All -- UseTitleStyle
 
 # -------------------
 # I.3. Menu Colorsets
