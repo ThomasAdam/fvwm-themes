@@ -1,18 +1,25 @@
+# Experimental. This may be FVWM default.
+Style "*"		UsePPosition
+
 Style "Fvwm*"		Sticky, Title, Handles, WindowListHit, CirculateSkip
-Style "FvwmBanner"	NoTitle, StaysOnTop, WindowListSkip, NeverFocus 
+Style "FvwmBanner"	NoTitle, StaysOnTop, WindowListSkip, NeverFocus
 Style "FvwmPager"	NoTitle, NoHandles, WindowListSkip
 Style "FvwmButtons"	NoTitle, NoHandles, WindowListSkip
 Style "FvwmIdent"	NoTitle, NoHandles, WindowListSkip
 Style "FvwmTaskBar"	NoTitle, NoHandles, WindowListSkip
 Style "FvwmIconMan"	NoTitle, NoHandles, WindowListSkip
-Style "FvwmScript"	Slippery
-# Simulate transient
-Style "FvwmScript-Browser"	NoTitle, StaysOnTop, NoHandles
+Style "FvwmConsole"	CirculateHit
+Style "FvwmForm"	CirculateHit
+Style "FvwmScript"	Slippery, CirculateHit
+# Simulate transient; it is nicer with title.
+Style "FvwmScript-IconBrowser"	StaysOnTop, NoHandles
+Style "FvwmScript-Browser"	StaysOnTop, NoHandles
+# Applets are usually swallowed, so disable ActivePlacement if any.
+Style "FvwmApplet*"	RandomPlacement
+
 Style "XNoteMessage"    NoTitle, Sticky, StaysOnTop, UsePPosition, \
 	BorderWidth 0, NoHandles, WindowListSkip
 Style "xclock"		Sticky, WindowListSkip, NeverFocus
-# Applets are in general swallowed so:
-Style "FvwmApplet*" RandomPlacement
 # gnome panel and icons
 Style "panel"		NeverFocus, Sticky, NoTitle, WindowListSkip, \
 	CirculateSkip, UsePPosition
