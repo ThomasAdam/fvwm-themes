@@ -3,6 +3,7 @@ FVWM Themes Frequently Asked Questions and Answers.
 ------------------------------------------------------------------------------
 Q. Why this FAQ does not contain my question about fvwm-themes?
 Q. What is theme, component, variant, option in the fvwm-themes terminology?
+Q. Does fvwm-themes replace my .fvwm2rc? If no, how does it work?
 Q. Why theme switching takes some time and it is even increased?!
 Q. On my system switching themes crashes FVWM! Waht to do?
 Q. How much configurable is fvwm-themes?
@@ -51,6 +52,28 @@ Any component can come with several variants, with options or sub components
 all of which allow a good configurability. These can be used via the the
 Theme Management menu under "current" or using the "Property" button of
 the Themes Center.
+==============================================================================
+
+------------------------------------------------------------------------------
+Q. Does fvwm-themes replace my .fvwm2rc? If no, how does it work?
+
+A. No, it does not replace your .fvwm2rc. The only files and directories,
+which fvwm-themes manages are ~/.fvwm/themes* ones, more precisely:
+
+  $FVWM_USERDIR/themes/ - the user themes as opposed to the site themes
+  $FVWM_USERDIR/themes/current-main/ - the current theme in the main session
+  $FVWM_USERDIR/themes/current - symbolic link to the actual current theme
+  $FVWM_USERDIR/themes-rc - the .fvwm2rc equivalent
+  $FVWM_USERDIR/themes-rc-2 - additional rc used by themes-rc, symbolic link
+
+The rc files themes-rc and themes-rc-2 are created by fvwm-themes-config.
+FVWM Themes should be loaded by fvwm-themes-start shell script, which
+initializes all needed files/directories if needed and starts fvwm as:
+
+  fvwm2 -f themes-rc
+
+To return to your .fvwm2rc configuration, replace a call to fvwm-themes-start
+with a call to fvwm2 executable in .xinitrc or other initialization file.
 ==============================================================================
 
 ------------------------------------------------------------------------------
