@@ -3,7 +3,7 @@
 	* bin/fvwm-themes-config.in:
 	* themes/{brushedmetal,cde,nanogui,osx}/theme-name.cfg:
 	* themes/default/theme.cfg:
-	added support for theme-name which is by default is ucfirst(theme-id)
+	added support for theme-name which by default is ucfirst(theme-id)
 	this name is only displayed, and probably should not be used otherwise;
 	Having both lower-case id and mixed-case name may be confusing...
 
