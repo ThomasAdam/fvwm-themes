@@ -129,16 +129,11 @@ SetEnv IconManWidth 110  # fail safe to width 800
 PipeRead `printf "SetEnv IconManWidth "; expr $[vp.width] / 4 - 90`
 *FvwmButtons-Panel: ($[IconManWidth]x1, Swallow FvwmIconMan 'Module FvwmIconMan')
 
+*FvwmButtons-Panel: (1x1)
+
 # ---- clock/dock bar ----
 
-# TODO: Should use another colorset for clock
-
-#*FvwmButtons-Panel: (1x1, Icon module/panel-sep.xpm)
-*FvwmButtons-Panel: (1x1, Container(Columns 2))
-*FvwmButtons-Panel: (1x1, Colorset 10, Icon module/panel-sep1.png)
-*FvwmButtons-Panel: (1x1, Colorset 14, Icon module/panel-sep2.png)
-*FvwmButtons-Panel: (End)
-*FvwmButtons-Panel: (16x1, Container(Columns 1, Colorset 14, \
+*FvwmButtons-Panel: (16x1, Container(Columns 1, Colorset 24, \
 	Font "shadow=1:xft:Luxi Sans:Bold:pixelsize=9:minspace=true" \
 ))
 *FvwmButtons-Panel: (Id clock1, Title " ", \
@@ -152,7 +147,6 @@ PipeRead `printf "SetEnv IconManWidth "; expr $[vp.width] / 4 - 90`
 	Action(Mouse 3) `SendToModule $./FvwmThemesPanelManager circulate clockbar-field2-format`, \
 )
 *FvwmButtons-Panel: (End)
-#Swallow FvwmApplet-DigitalClock 'Module FvwmScript FvwmApplet-DigitalClock 23')
 
 # ----------------------------------------------------------------------------
 

@@ -1,3 +1,11 @@
+2003-10-25  migo  <migo@homemail.com>
+
+	* themes/redmondxp/README:
+	* themes/redmondxp/colors:
+	* themes/redmondxp/images/module/panel-*:
+	* themes/redmondxp/modules/*:
+	new themeable panel implementation
+
 2003-10-24  migo  <migo@homemail.com>
 
 	* Makefile.am:

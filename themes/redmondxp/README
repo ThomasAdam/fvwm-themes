@@ -1,9 +1,19 @@
 This theme mimics a look of Microsoft Windows XP.
-Created by Mikhael Goikhman.
+Created by Mikhael Goikhman, tweaked by Shawn Anderson.
 
-Several images are from Lunatic SawFish theme (by Stefan Zeiger).
+One of the central features is a configurable panel. It is managed
+using FvwmThemesPanelManager (an fvwm module written in Perl) that
+loads/stores the user preferences for numerous settings and maintains
+the clock. If you don't see the time and date in the panel, this means
+you have problems with this Perl-based module, see X error messages.
+
+The panel takes the currently used theme colors, this is done using
+png images with alpha blending. So modules@redmondxp component works
+fine with colors@ of any other theme.
+
+Several images are from Lunatic Sawfish theme (by Stefan Zeiger).
 Several other images are constructed from screenshots on the web.
-The background image is an original work, reuse it freely.
+The background image is taken from the early XPDE project.
 
-For a better emulation install fonts from corefonts.sf.net, they
-will be auto-detected and used.
+For a better emulation, install fonts from corefonts.sf.net, they
+should be auto-detected and used.

@@ -73,11 +73,13 @@ Colorset 13 fg black, bg rgb:98/B0/C8, hi black, sh blue, \
 	Plain, NoShape
 
 # default2 (FvwmPager or to get more colors in Buttons)
-Colorset 14 fg rgb:ff/ff/ff, bg average, fgsh rgb:22/48/7a, \
-	VGradient 300 5 rgb:0d/5b/ca 1 rgb:12/84/de 4 rgb:15/87/df 12 rgb:0d/82/e2 4 rgb:13/9a/ec 3 rgb:19/53/bf, NoShape
+Colorset 14 fg rgb:ff/ff/f0, bg average, fgsh rgb:22/48/7a, NoShape, \
+	VGradient 250 7 rgb:6e/ac/f5 1 rgb:34/5c/9a 3 rgb:11/62/cd 3 rgb:0e/60/cc 3 rgb:0f/62/ce 9 rgb:1e/70/d6 9 rgb:3a/89/e6 6 rgb:46/92/f0
 
 # default hilight2: (FvwmPager or to get more colors in a Buttons)
-Colorset 15 fg rgb:40/30/20, bg rgb:b0/f0/ff, Plain, NoShape
+Colorset 15 fg rgb:ff/ff/f0, bg average, fgsh rgb:22/48/7a, NoShape, \
+	Tint cyan 38, bgTint cyan 38, \
+	VGradient 250 7 rgb:6e/ac/f5 1 rgb:34/5c/9a 3 rgb:11/62/cd 3 rgb:0e/60/cc 3 rgb:0f/62/ce 9 rgb:1e/70/d6 9 rgb:3a/89/e6 6 rgb:46/92/f0
 
 # tips/balloons
 Colorset 16 fg rgb:ff/ff/b0, bg rgb:14/58/bc, Plain, NoShape
@@ -142,3 +144,7 @@ AddToFunc   FuncFvwmStartColors
 
 DestroyFunc FuncFvwmStopColors
 AddToFunc   FuncFvwmStopColors
+# temporarily until we have Colorset Clear
++ I Colorset  5 IconAlpha, IconTint
++ I Colorset  6 IconAlpha, IconTint
++ I Colorset 15 Tint, bgTint

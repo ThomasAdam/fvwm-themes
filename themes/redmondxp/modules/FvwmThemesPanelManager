@@ -58,8 +58,8 @@ my $config = {
 };
 my $newConfig = {};
 
-my $singlePagerSize = "91x83";
-my $deskerPagerSize = "91x335";
+my $singlePagerSize = "91x85";
+my $deskerPagerSize = "91x343";
 my $pagerPositions = [ "+0+0", "-0+0" ];
 my $iconboxPadding = 10;
 my $iconboxPagerSpace = 100;

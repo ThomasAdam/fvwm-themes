@@ -10,12 +10,11 @@ FuncFvwmSetFont-ModuleTips FvwmPager-Desker BalloonFont \
 	"xft:Adobe:size=11:minspace=true;-*-fixed-medium-r-semicondensed-*-13-*"
 
 FuncFvwmSetFont-ModuleSmall FvwmPager-Single SmallFont \
-	"xft:Adobe:Bold:size=8;-*-fixed-medium-r-normal-*-8-*"
+	"xft:Adobe:Bold:size=8:minspace=true;-*-fixed-medium-r-normal-*-8-*"
 FuncFvwmSetFont-ModuleSmall FvwmPager-Desker SmallFont \
-	"xft:Adobe:Bold:size=8;-*-fixed-medium-r-normal-*-8-*"
+	"xft:Adobe:Bold:size=8:minspace=true;-*-fixed-medium-r-normal-*-8-*"
 
 FuncFvwmSetFont-ModuleLabel FvwmPager-Single Font \
-	"xft:Luxi Mono:Bold:pixelsize=10;-adobe-helvetica-bold-r-*-*-10-*"
-
+	"xft:Luxi Sans:Bold:pixelsize=12:minspace=true;-adobe-helvetica-bold-r-*-*-12-*"
 FuncFvwmSetFont-ModuleLabel FvwmPager-Desker Font \
-	"xft:Luxi Mono:Bold:pixelsize=10;-adobe-helvetica-bold-r-*-*-10-*"
+	"xft:Luxi Sans:Bold:pixelsize=12:minspace=true;-adobe-helvetica-bold-r-*-*-12-*"
