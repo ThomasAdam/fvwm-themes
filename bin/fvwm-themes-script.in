@@ -1958,6 +1958,7 @@ sub parse_globalfeel_Config {
 	open(FILE,"$file") || return "Err: cannot open $file";
 	my $multiline = "";
 	my $line;
+	my $oldPlacement = 0;
 
 	while(<FILE>) {
 		chomp;		
@@ -2144,40 +2145,51 @@ sub parse_globalfeel_Config {
 				}
 				### old placement style (style supported)
 				elsif ($style =~ /^SmartPlacement$/i) {
+					$oldPlacement = 1;
 					$config->{'SmartPlacement'} = 1 
 				}
 				elsif ($style =~ /^DumbPlacement$/i) {
+					$oldPlacement = 1;
 					$config->{'SmartPlacement'} = 0
 				}
 				elsif ($style =~ /^CleverPlacementOff$/i) {
+					$oldPlacement = 1;
 					$config->{'CleverPlacementOff'} = 1 
 				}
 				elsif ($style =~ /^CleverPlacement$/i) {
+					$oldPlacement = 1;
 					$config->{'CleverPlacementOff'} = 0
 				}
 				elsif ($style =~ /^RandomPlacement$/i) {
+					$oldPlacement = 1;
 					$config->{'RandomPlacement'} = 1
 				}
 				elsif ($style =~ /^ActivePlacement$/i) {
+					$oldPlacement = 1;
 					$config->{'RandomPlacement'} = 0
 				}
 				### new placement style
 				elsif ($style =~ /^TileCascadePlacement$/i) {
+					$oldPlacement = 0;
 					$config->{'placement'} = 1
 				}
 				elsif ($style =~ /^TileManualPlacement$/i) {
+					$oldPlacement = 0;
 					$config->{'placement'} = 2
 				}
 				elsif ($style =~ /^MinOverlapPlacement$/i) {
+					$oldPlacement = 0;
 					$config->{'placement'} = 3
 				}
 				elsif ($style =~ /^MinOverlapPercentPlacement$/i) {
 					$config->{'placement'} = 4
 				}
 				elsif ($style =~ /^ManualPlacement$/i) {
+					$oldPlacement = 0;
 					$config->{'placement'} = 5
 				}
-				elsif ($style =~ /^cascadePlacement$/i) {
+				elsif ($style =~ /^CascadePlacement$/i) {
+					$oldPlacement = 0;
 					$config->{'placement'} = 6
 				}
 				# end of new placement style
@@ -2296,22 +2308,24 @@ sub parse_globalfeel_Config {
 		$config->{'clickraise'} = $config->{'MouseFocusClickRaisesOff'} ? 0:1
 	}
 	# compute placement
-	if ($config->{'SmartPlacement'}) {
-		if (!$config->{'RandomPlacement'}) {
-			$config->{'placement'} = 2
+	if ($oldPlacement) {
+		if ($config->{'SmartPlacement'}) {
+			if (!$config->{'RandomPlacement'}) {
+				$config->{'placement'} = 2
+			}
+			elsif ($config->{'CleverPlacementOff'}) {
+				$config->{'placement'} = 1
+			}				
+			else {
+				$config->{'placement'} = 3
+			}
 		}
-		elsif ($config->{'CleverPlacementOff'}) {
-			$config->{'placement'} = 1
-		}				
+		elsif ($config->{'RandomPlacement'}) {
+			$config->{'placement'} = 6
+		}
 		else {
-			$config->{'placement'} = 3
+			$config->{'placement'} = 5 
 		}
-	}
-	elsif ($config->{'RandomPlacement'}) {
-		$config->{'placement'} = 6
-	}
-	else {
-		$config->{'placement'} = 5 
 	}
 	# compute EdgeScroll
 	my $scroll_h = int($config->{'EdgeScroll_H'}/1000);
