@@ -89,15 +89,15 @@ Begin
 	ChangeFont 98 $SelFont
 	ChangeFont 99 $SelFont
 	Set $l_for ={для}
-	ChangeTitle 6 {Send Informations to the Themes Selector}
-	ChangeTitle 97 {Взять}
+	ChangeTitle 6 {Синхронизация изменений}
+	ChangeTitle 97 {Выбор}
 	ChangeTitle 98 {Согласие}
 	ChangeTitle 99 {Выход}
     End
     If $locateSet == 0 Then
     Begin
 	Set $l_for ={for}
-	ChangeTitle 6 {Send Informations to the Themes Selector}
+	ChangeTitle 6 {Send Modifications to the Themes Selector}
 	ChangeTitle 97 {Set}
 	ChangeTitle 98 {Set & Quit}
 	ChangeTitle 99 {Quit}

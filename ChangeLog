@@ -2,6 +2,8 @@
 
 	* themes/default/menus: another try to improve creating screenshots
 
+	* scripts/FvwmScript-{ThemeOptions,ThemesCenter}: translations
+
 2000-10-10 olicha  <olivier.chapuis@free.fr>
 
 	* themes/spurce/{colors,buttons}:

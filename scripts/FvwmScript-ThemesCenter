@@ -103,7 +103,6 @@ Begin
 	ChangeTitle 20 {Enlever}
 	Set $l_Lock = {Bloquer}
 	Set $l_Unlock = {DИbloquer}
-	ChangeTitle 100 $l_Lock
 	Set $l_NoProperties = {Cette composente n'a pas d'options ni de sous composantes}
 	Set $l_OnlyThreeEditor = {Vous pouvez utilisez seulement 3 Иditeurs de PropriИtИs}
 	Set $l_PropertyEditor = {L'Иditeur de PropriИtИs pour}
@@ -195,10 +194,8 @@ Begin
 	ChangeTitle 18 {Свойства}
 	ChangeTitle 19 {Возврат}
 	ChangeTitle 20 {Удалить}
-	# need translation!
-	Set $l_Lock = {Lock}
-	Set $l_Unlock = {Unlock}
-	ChangeTitle 100 $l_Lock
+	Set $l_Lock = {Запереть}
+	Set $l_Unlock = {Отпереть}
 	Set $l_NoProperties = {Этот компонент не имеет опций, вариантов или под-компонентов}
 	Set $l_PropertyEditor = {Редактор свойств для}
 	Set $l_AlreadyActive = {уже активный}
@@ -230,7 +227,7 @@ Begin
 	ChangeTitle 45 {Выбранная сессия:}
 	ChangeTitle 46 {* Для загрузки сессии, выберите её и нажмите на "Применить"                    }
 	ChangeTitle 47 {* Для перезагрузки текущей сессии, нажмите на "Освежить"                       }
-	ChangeTitle 48 {* Нажатие на "Обновить" перестоит список сессий                                }
+	ChangeTitle 48 {* Нажатие на "Обновить" перестоит текущую конфигурацию                         }
 	ChangeTitle 58 {* При выборе "Применить" потеряются неприменнённые изменения в других разделах }
 	Set $l_AddSession = {Добавить новую сессию}
 	Set $l_NotRemoveMain = {Вы не можете удалить сессию main}
@@ -283,9 +280,8 @@ Begin
 	ChangeTitle 18 {Properties}
 	ChangeTitle 19 {Restore}
 	ChangeTitle 20 {Drop}
-	Set $l_Lock = {Bloquer}
-	Set $l_Unlock = {DИbloquer}
-	ChangeTitle 100 $l_Lock
+	Set $l_Lock = {Lock}
+	Set $l_Unlock = {Unlock}
 	Set $l_NoProperties = {This used or set component has no options, variants or subcomponents}
 	Set $l_PropertyEditor = {Property editor for}
 	Set $l_AlreadyActive = {already active}
@@ -317,7 +313,7 @@ Begin
 	ChangeTitle 45 {Selected Session:}
 	ChangeTitle 46 {* To load a session, select it and click on Apply                              }
 	ChangeTitle 47 {* To Reload the current session, click on Refresh                              }
-	ChangeTitle 48 {* A click on "Update" will rebuild the session list                            }
+	ChangeTitle 48 {* A click on "Update" will rebuild the current configuration                   }
 	ChangeTitle 58 {* If you Apply, the not applied changes in the others config tools will be lost}
 	Set $l_AddSession = {Add a new session}
 	Set $l_NotRemoveMain = {You cannot remove the main session}
@@ -339,8 +335,8 @@ Begin
 	ChangeTitle 95 {Warning and infomation messages are displayed here}
 	Set $l_ApplyThemeConfig = {Applying new theme configurations}
 	Set $l_ApplyNewSession = {Loading the new session}
-	Set $l_Refresh = {Refreshing current configuration}
-	Set $l_Update = {Updating current configuration}
+	Set $l_Refresh = {Refreshing the current configuration}
+	Set $l_Update = {Updating the current configuration}
 	ChangeTitle 96 {Apply}
 	ChangeTitle 97 {Refresh}
 	ChangeTitle 94 {Update}
@@ -348,6 +344,8 @@ Begin
 	ChangeTitle 99 {Quit}
     End
     
+    ChangeTitle 100 $l_Lock
+
     # found the FvwmScript pid
     Set $cmd = {perl -e '$t=getppid; print $t . "\n"'}
     Set $pid = (GetOutput $cmd 1 -1)
