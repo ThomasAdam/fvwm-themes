@@ -3,6 +3,9 @@
 	* themes/blackbox/buttons:
 	replaced maximize & close buttons, this is how it is on screenshots
 
+	* themes/multichoice/buttons.cfg:
+	improved button set ("order") option values
+
 2001-04-27  migo  <migo@homemail.com>
 
 	* themes/awol/colors: change fg of disabled menu item to visible
