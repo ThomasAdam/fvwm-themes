@@ -3,6 +3,7 @@
 
 EXTRA_THEMES = @EXTRA_THEMES@
 EXTRA_DIST = docs dirs postinst postrm
+
 version = @VERSION@
 release = 0.`date +%Y%m%d`
 cparams = --disable-run-updatemenu --disable-build-menus --with-fvwm-bindir=/usr/bin
@@ -11,27 +12,41 @@ datum = `date "+%a, %d %b %Y %T %z"`
 fullname = FVWM Themes Developers
 email = fvwm-themes-devel@lists.sourceforge.net
 arch ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+distdir = $(PACKAGE)-$(version)
+tarball = $(distdir).tar.gz
 DESTDIR = $(CURDIR)/debian/tmp
 
-this:
-	tar -xzf `cd $(top_srcdir) && pwd`/fvwm-themes-$(version).tar.gz
-	(cd fvwm-themes-$(version) && ./configure) || exit 1
-	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-inplace) || exit 1
-	-rm -rf fvwm-themes-$(version)
+this0:
+	@if [ ! -d debian ]; then echo "Wrong working dir `pwd`"; exit -1; fi
+	@if [ ! -f $(tarball) ]; then echo "No $(tarball)"; exit -1; fi
+	$(AMTAR) -zxf $(tarball)
+	@cd $(distdir); \
+	if [ ! -d debian ]; then \
+		cp -r $(top_srcdir)/debian ./; \
+		echo "deb-inplace:" >>Makefile.in; \
+		echo '  $$==(MAKE) -f debian/Makefile $$==(AM_MAKEFLAGS) inplace' | tr -d = >>Makefile.in; \
+		ls `cat debian/docs` >debian/docs-tmp 2>/dev/null && \
+		rm -f debian/docs-tmp || mv debian/docs-tmp debian/docs; \
+	fi; \
+	echo ""; \
+	echo "==== Creating deb from $(tarball), release $(release) ===="; \
+	echo ""; \
+	sleep 3; \
+	./configure $(cparams); \
+	$(MAKE) $(AM_MAKEFLAGS) $(deb_target)
+	-rm -rf $(distdir)
 
-this-base:
-	tar -xzf `cd $(top_srcdir) && pwd`/fvwm-themes-$(version).tar.gz
-	(cd fvwm-themes-$(version) && ./configure) || exit 1
-	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-inplace-base) || exit 1
-	-rm -rf fvwm-themes-$(version)
+this: deb_target = deb-inplace
+this: this0
 
-this-extra:
-	tar -xzf `cd $(top_srcdir) && pwd`/fvwm-themes-$(version).tar.gz
-	(cd fvwm-themes-$(version) && ./configure) || exit 1
-	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-inplace-extra) || exit 1
-	-rm -rf fvwm-themes-$(version)
+this-base: deb_target = deb-inplace-base
+this-base: this0
+
+this-extra: deb_target=deb-inplace-extra
+this-extra: this0
 
 inplace:
+	@if [ ! -d debian ]; then echo "Wrong working dir `pwd`"; exit -1; fi
 	$(MAKE) clean
 	echo "fvwm-themes-full ($(version)-$(release)) unstable; urgency=low" > debian/changelog
 	echo "" >> debian/changelog
@@ -143,7 +158,7 @@ inplace-extra:
 	fakeroot dh_md5sums
 	-rm $(DESTDIR)/DEBIAN/postinst
 	-rm $(DESTDIR)/DEBIAN/postrm
-	fakeroot dh_builddeb 
+	fakeroot dh_builddeb
 	-dpkg-genchanges > ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes
 	-debsign  ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes
 	fakeroot dh_clean

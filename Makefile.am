@@ -214,19 +214,19 @@ deb-dist: dist deb-this
 deb-dist3: dist deb-this-base deb-this-extra
 
 deb-this: deb-regenerate
-	(cd debian && $(MAKE) $(AM_MAKEFLAGS) this) || exit 1
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) this
 
 deb-this-base: deb-regenerate
-	(cd debian && $(MAKE) $(AM_MAKEFLAGS) this-base) || exit 1
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) this-base
 
 deb-this-extra: deb-regenerate
-	(cd debian && $(MAKE) $(AM_MAKEFLAGS) this-extra) || exit 1
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) this-extra
 
 deb-inplace: deb-regenerate
-	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) inplace || exit 1
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) inplace
 
 deb-inplace-base: deb-regenerate
-	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) inplace-base || exit 1
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) inplace-base
 
 deb-inplace-extra: deb-regenerate
-	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) inplace-extra || exit 1
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) inplace-extra
