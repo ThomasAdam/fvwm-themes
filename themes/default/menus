@@ -132,7 +132,8 @@ AddToMenu   MenuFvwmStartRegularModules "Regular Modules" Title
 + "&Console%menu/terminal-special.xpm%"		FuncFvwmConsole
 + "&Identify%menu/window-identify.xpm%"		Module FvwmIdent
 + "&ScrollBar (1/2 app)%menu/window-resize.xpm%"  Module FvwmScroll 2 2
-+ "&ScrollBar (75%% scr)%menu/window-resize.xpm%" Module FvwmScroll 75p 75p
+# FVWM has problems with '%' escaping...
++ "%menu/window-resize.xpm%&ScrollBar (75%% scr)" Module FvwmScroll 75p 75p
 + "Auto Raise (1/2 sec)%menu/window-raise.xpm%"  \
 	FuncFvwmRestartModule 'FvwmAuto 500 "Silent Raise" Nop'
 + "Auto Raise (2 sec)%menu/window-raise.xpm%"    \
