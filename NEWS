@@ -1,8 +1,11 @@
 fvwm-themes-0.4.3 - not released yet
 
-* new themes: brushedmetal and nanogui
-* new titlebar button order selector, currently only in @nanogui
-* component menus-user renamed to menus-programs, you should "Reset all"
+* Theme names are now shown in mixed case (Default, CDE).
+* New themes: BrushedMetal, nanoGUI, Mech.
+* New titlebar button order selector, see buttons@multichoice and @nanogui.
+* Component menus-user@ renamed to menus-programs@, you should "Reset all".
+* New component colors-decor@, may be used to define only a part of colors@.
+* New component fonts@, may be used to control fonts using filter functions.
 
 fvwm-themes-0.4.2 - 20010329
 
