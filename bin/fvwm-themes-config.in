@@ -623,7 +623,7 @@ sub saveCfgCacheFile ($$) {
 		$Data::Dumper::Indent = 0;
 		$Data::Dumper::Quotekeys = 0;
 		my $str = "";
-		my $var = "\$cfgFileCache->{$theme}";
+		my $var = "\$cfgFileCache->{'$theme'}";
 		$str = Data::Dumper->Dump([$cfg],["$var"]);
 		print CACHE_FILE $str . "\n";
 	}
@@ -1346,9 +1346,9 @@ sub getOwnThemeSubMenusRc ($) {
 
 	# check if the menustyle implies no mini icon:
 	my $noIconsInMenus = 0;
-	my $hints = $self->getComponentNamedValue("menustyle",'hints');
+	my $hints = $self->getComponentNamedValue("menustyle", 'hints');
 	if (defined $hints) {
-		foreach(@$hints) {
+		foreach (@$hints) {
 			$noIconsInMenus = 1 if $_ eq "no_icons_in_menus";
 		}
 	}
@@ -1392,7 +1392,8 @@ sub getOwnThemeSubMenusRc ($) {
 					my $name = escapeMenuName($optionEntry->{'name'});
 					my $optionFile = $optionEntry->{'file'};
 					my $values = $optionEntry->{'value'};
-
+					errDie("option.value missing, incorrect cfg for some $_ option")
+						if ref($values) ne 'ARRAY';
 					$optionEntry->{'current'} ||= ($optionEntry->{'default'} || 1);
 					my $index = $optionEntry->{'current'} - 1;
 					if ($index < 0 || $index >= @$values) {

@@ -8,8 +8,8 @@ release = 0.`date +%Y%m%d`
 datum = `date "+%a, %d %b %Y %X %z"`
 fullname = FVWM Themes Developers
 email = fvwm-themes-devel@lists.sourceforge.net
-arch    ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
-sdir ?= $(shell pwd | sed 's,.*/,,')
+arch = `dpkg-architecture -qDEB_BUILD_ARCH`
+sdir = `pwd | sed 's,.*/,,'`
 
 deb:
 	make clean;
@@ -149,7 +149,7 @@ deb-extra:
 	fakeroot dh_builddeb 
 	-@dpkg-genchanges > ../fvwm-themes-extra-$(version)_$(release)_$(arch).changes
 	-@debsign ../fvwm-themes-extra-$(version)_$(release).dsc
-	-@debsign  ../fvwm-themes-extra-$(version)_$(release)_$(arch).changes
+	-@debsign ../fvwm-themes-extra-$(version)_$(release)_$(arch).changes
 	fakeroot dh_clean fvwm-themes-full-$(version) fvwm-themes-extra-$(version) fvwm-themes-$(version) fvwm-themes
 	rm -f debian/control debian/extra-control
 
