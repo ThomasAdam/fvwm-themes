@@ -3,6 +3,17 @@ FuncFvwmDecorBackground
 Style "*" Button 1, Button 2, Button 3, Button 4, Button 5, Button 6
 Style "*" MwmButtons  # button follows the state
 
+TitleStyle \
+	ActiveUp   (TiledPixmap $./images/decor/title-active.xpm) \
+	ActiveDown (TiledPixmap $./images/decor/title-active.xpm) \
+	Inactive   (TiledPixmap $./images/decor/title-inactive.xpm) \
+	ToggledActiveUp   (TiledPixmap $./images/decor/title-active.xpm) \
+	ToggledActiveDown (TiledPixmap $./images/decor/title-active.xpm) \
+	ToggledInactive   (TiledPixmap $./images/decor/title-inactive.xpm)
+# window title, inactive and active
+*FvwmTheme: Colorset 1 fg #aaaaaa, bg $[bg.cs1], Plain, NoShape
+*FvwmTheme: Colorset 2 fg #000000, bg $[bg.cs2], Plain, NoShape
+
 ButtonStyle 1 \
 	ActiveUp   (Pixmap button/close-activeup.xpm) \
 	ActiveDown (Pixmap button/close-activedown.xpm) \
@@ -63,6 +74,15 @@ AddToFunc   FuncFvwmUnReloadDecor
 DestroyFunc FuncFvwmReloadDecor
 AddToFunc   FuncFvwmReloadDecor
 + I FuncFvwmDecorBackground
++ I TitleStyle \
+	ActiveUp   (TiledPixmap $./images/decor/title-active.xpm) \
+	ActiveDown (TiledPixmap $./images/decor/title-active.xpm) \
+	Inactive   (TiledPixmap $./images/decor/title-inactive.xpm) \
+	ToggledActiveUp   (TiledPixmap $./images/decor/title-active.xpm) \
+	ToggledActiveDown (TiledPixmap $./images/decor/title-active.xpm) \
+	ToggledInactive   (TiledPixmap $./images/decor/title-inactive.xpm)
++ I *FvwmTheme: Colorset 1 fg #aaaaaa, bg $[bg.cs1], Plain, NoShape
+. I *FvwmTheme: Colorset 2 fg #000000, bg $[bg.cs2], Plain, NoShape
 + I ButtonStyle 1 \
 	ActiveUp   (Pixmap button/close-activeup.xpm) \
 	ActiveDown (Pixmap button/close-activedown.xpm) \

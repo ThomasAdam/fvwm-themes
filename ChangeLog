@@ -1,5 +1,25 @@
 2001-10-22  olicha  <olivier.chapuis@free.fr>
 
+	* themes/nanogui/buttons:
+	* themes/mech/buttons:
+	buttons override the title colors
+
+	* bin/fvwm-themes-config.in:
+	Fixed to big name for nanogui@buttons options for FvwmScript-
+	ComponentProperties
+
+	* bin/fvwm-themes-config.in:
+	* scripts/FvwmScript-ThemesCenter
+	Implemented drop in the themes selector and remove the drop
+	button for the general settings. FvwmScript-ThemesCenter is
+	1.0 ready
+
+	* TODO:
+	* NEWS
+	Some update
+	
+2001-10-22  olicha  <olivier.chapuis@free.fr>
+
 	* bin/fvwm-themes-config.in (getMenusAndHooksAndReadsRc,getReadsRc):
 	Move the part of getMenusAndHooksAndReadsRc which build the read
 	part of the rc's into a separated sub getReadsRc.

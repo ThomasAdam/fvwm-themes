@@ -154,7 +154,7 @@ Begin
 	If $id == {Drop        } Then
 	Begin
 	    ChangeTitle 20 $msg
-	    ChangeTitle 25 $msg
+	    #ChangeTitle 25 $msg
 	End
 	If $id == {Lock        } Then
 	    Set $l_Lock = $msg
@@ -381,7 +381,7 @@ Begin
     End
     ChangeFont 23 $ShadeFont
     ChangeFont 24 $ShadeFont
-    ChangeFont 25 $ShadeFont
+    #ChangeFont 25 $ShadeFont
     ChangeFont 28 $ShadeFont
     ChangeFont 100 $ShadeFont
     # change the fonts for non west-european language
@@ -430,6 +430,12 @@ Begin
     # Hide the widgets
     HideWidget 21
     Set $tmp = 21
+    While $tmp <> 25 Do
+    Begin
+	HideWidget $tmp
+	Set $tmp = (Add $tmp 1)
+    End
+    Set $tmp = 26
     While $tmp <> 29 Do
     Begin
 	HideWidget $tmp
@@ -479,6 +485,12 @@ Begin
     Begin
 	Set $HideGeneralSettings = 0
 	Set $tmp = 21
+	While $tmp <> 25 Do
+	Begin
+	    HideWidget $tmp
+	    Set $tmp = (Add $tmp 1)
+	End
+	Set $tmp = 26
 	While $tmp <> 29 Do
 	Begin
 	    HideWidget $tmp
@@ -521,11 +533,12 @@ Begin
 	Set $ShowGeneralSettings = 0
 	Set $ConfigTool = {GS}
 	Set $tmp = 21
-	While $tmp <> 27 Do
+	While $tmp <> 25 Do
 	Begin
 	    ShowWidget $tmp
  	    Set $tmp = (Add $tmp 1)
 	End
+	ShowWidget 26
 	If $SettingsIndex <> 0 Then
 	Begin
 	    ShowWidget 27
@@ -1520,7 +1533,11 @@ SingleClic :
     End
     If $break == 1 Then
     Begin
-	ChangeTitle 95 $l_DropNotImp
+	#ChangeTitle 95 $l_DropNotImp
+	Set $cmd = $SendMsgAndGet{"drop }$CSCompName{"}
+	Set $dummy = (GetOutput $cmd 1 -1)
+	Set $UpdateAllTSLists = 1
+	Set $NullMessage = 1
     End
  End
 End
@@ -1594,7 +1611,7 @@ Case message of
 	    ShowWidget 27
 	    ShowWidget 28
 	    # info and drop not yet supported ...
-	    #ChangeFont 24 $SelFont
+	    ChangeFont 24 $SelFont
 	    #ChangeFont 25 $SelFont
 	End
 	Set $SettingsIndex = $value
@@ -1631,7 +1648,7 @@ End
 Widget 23
 Property
     Flags NoReliefString
-    Position 50 194
+    Position 130 194
     Size 80 20
     Type PushButton
     Title {Restore}
@@ -1669,7 +1686,7 @@ End
 Widget 24
 Property
     Flags NoReliefString
-    Position 250 194
+    Position 380 194
     Size 80 20
     Type PushButton
     Title {}
@@ -1683,30 +1700,9 @@ SingleClic :
     End
     Else
     Begin
-	ChangeTitle 95 $l_NoHelp
-    End
- End
-End
-
-# Drop
-Widget 25
-Property
-    Flags NoReliefString
-    Position 475 194
-    Size 80 20
-    Type PushButton
-    Title {}
-Main
-Case message of
-SingleClic :
- Begin
-    If $SettingsComponent == {} Then
-    Begin
-	ChangeTitle 95 $l_MustSelectCurrentComp
-    End
-    Else
-    Begin
-	ChangeTitle 95 $l_DropNotImp
+	Do {Echo }$SettingsComponent{@default}
+	Do {FuncFvwmShowComponentInfo }$SettingsComponent{@default}
+	#ChangeTitle 95 $l_NoHelp
     End
  End
 End

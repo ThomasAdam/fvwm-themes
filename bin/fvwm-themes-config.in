@@ -2840,8 +2840,8 @@ sub comLoop {
 			my $comp = $1;
 			my $theme = "";
 			my $cc;
-			delete($componentToLock{$comp}) 
-					if (defined $componentToLock{$comp});
+			delete($componentToLock{$comp}) if (defined $componentToLock{$comp});
+			delete($componentToDrop{$comp}) if (defined $componentToDrop{$comp});
 			if (defined $componentToLoad{$comp}) {
 				$theme=$componentToLoad{$comp};
 				delete($componentToLoad{$comp});
@@ -2906,6 +2906,32 @@ sub comLoop {
 			}
 		}
 		#----------------------------------------
+		elsif ($command =~ /^drop\s+(.+)$/) {
+			my $comp = $1;
+			my $cc;
+			if (defined $self->{'cc'}->{$comp}) { 
+				my $cc = $self->getComponentCfg($comp);
+		 		if (! defined $componentToDrop{$comp}) {
+					if (defined $componentToDrop{$comp}) {
+						delete $componentToDrop{$comp};
+					} else {
+						$componentToDrop{$comp}= ($cc->{'locked'}) ? 0:1;
+					}
+				} else {
+					if (defined $componentToDrop{$comp}) {
+						delete $componentToDrop{$comp};
+					} else {
+						$componentToDrop{$comp}= 1;
+					}
+				}
+			} elsif (defined $componentToDrop{$comp} && 
+				defined $componentToDrop{$comp}) {
+				delete $componentToDrop{$comp};
+			} elsif (defined $componentToDrop{$comp}) { 
+				$componentToDrop{$comp} = 1;
+			}
+		}
+		#----------------------------------------
 		elsif ($command =~ /^load-all\s+(.+)$/) {
 			my ($components, $groups) = getThemeComponentsAndGroups($1);
 			foreach (@$components) {
@@ -2966,8 +2992,8 @@ sub comLoop {
 				push @compLoad, "$_\@$componentToLoad{$_}";
 			}
 			foreach (keys %componentToDrop) {
-				$return .= "--drop $_\@$componentToDrop{$_} ";
-				push @compDrop, "$_\@$componentToDrop{$_}";
+				$return .= "--drop $_ ";
+				push @compDrop, "$_";
 			}
 			$self->useNewComponents(\@compLoad, \@compDrop);
 			foreach (keys %componentToLock) {
@@ -3029,6 +3055,8 @@ sub comLoop {
 				}
 			}
 			$settingsConfig = $self->getAllSubComponents("default", "settings");
+			$tmp = $self->{$componentKey};
+			@currentComponents = sort @$tmp;
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^options-variants\s+(.+)\s+(.+)\s+(\d+)$/) {
@@ -3791,6 +3819,10 @@ sub getScriptCurrentCompName($$$$$$$$) {
 			}
 			if (defined $componentToLock->{$_}) {
 				$lock = $componentToLock->{$_};
+				$set = 1;
+			}
+			if (defined $componentToDrop->{$_}) {
+				$set = 1;
 			}
 		}
 		$i++;
@@ -3827,8 +3859,7 @@ sub getScriptCurrentCompName($$$$$$$$) {
 			$set = 1 if defined $variantToSet->{"$theme/$comp/$c"};
 		}
 	}
-	### fixe me: How to know if the component is drop-able??
-	$drop = 1;
+	$drop = ($comp =~ !/^(settings|colors$|menus)/ || $comp =~ /-extra$/)? 1 : 0;
 	$r1 = $comp;
 	$r2 = $theme;
 	$r3 = $hasProperties . $set . $drop . $lock;
@@ -3946,19 +3977,25 @@ sub variantsOptionsScriptList {
 		my $name = $variants->[$i]->{'name'};
 		$name =~ s/\t/ /g;
 		#FIXME
-		if ($theme eq 'multichoice' && $comp eq 'buttons' && $name =~ /\[/) {
+		if ($comp eq 'buttons' && $name =~ /\[/ && 
+			 ($theme eq 'multichoice' || $theme eq "nanogui")) {
 			$name =~ s/Options/O/;
 			$name =~ s/Maximize/M/;
 			$name =~ s/Iconify/I/;
-			$name =~ s/Shade/Sh/;
+			$name =~ s/Shade/Sh/g;
 			$name =~ s/Stick/St/;
 			$name =~ s/Close/C/;
-			my $cst1 = 10;
-			my $cst2 = 7;
+			$name =~ s/Up/U/;
+			$name =~ s/Down/D/;
+			$name =~ s/\s+/ /g;
+			$name =~ s/-//g;
+			my $cst1 = ($theme eq 'multichoice')? 10 : 15;
+			my $cst2 = ($theme eq 'multichoice')? 7 : 2;
 			my $tmp = $name;
 			my @t = split(/\[|\]/,$name);
 			$name = $t[0] . " " x ($cst1 - length($t[0]))."[" . 
 			  $t[1] . "]" ." " x ($cst2 - length($t[1])).$t[2];
+			$name =~ s/\[ \]/\//g;
 			$max = 34;
 			#$usedS = "U";
 			#$setS = "S";

@@ -5,20 +5,20 @@
   [In progress]
 
 * Optimizing reload commands needed for changes in components.
-  [started]
+  [Needs only clean up now]
 
 * Fix a bug, when an option is removed, it is still here (due to 'current').
   The same if the option is added.
 
 * To verify: seems like GUI loads @personal theme when not asked.
+  [olicha: never see this recently]
 
 * Check fvwm-themes and fvwm with kde2.
-  [In progress; need to (re?)add a FAQ entries for KDE]
-
-* Add FuncFvwmConfirm to functions@default, which gets 2 parameters,
-  a confirm string and a command to do on "Ok" as opposite to "Cancel".
+  [finished but the documentation]
 
 * Split swallow colorset to 2 colorsets. There are shading problems.
+
+* Write a full documentation à la HOWTO
 
 Optional items to do:
 --------------------
@@ -101,7 +101,8 @@ Problems without obvious soluton:
 * Rereading iconstyles/style-icon-miniicon file dynamically is not enough
   if someone (me) have icon style extentions. Should be solved using
   dependances somehow (using 'extends').
-
+  [olicha: I think this is fixed with the iconstyles-extra component?]
+ 
 Closed items (will be deleted after 0.5.0):
 ------------------------------------------
 * Internationalization using locale/LANG/ directories.
@@ -129,3 +130,5 @@ Closed items (will be deleted after 0.5.0):
   and button sets from default/redmond98/osx and more (variants or 1 option).
   Button set may contain iconify/maximize/close/shade/stick/options names.
   And one more option "Use in Options": "Window mini icon", "Static icon".
+
+* FvwmScript-Confirm

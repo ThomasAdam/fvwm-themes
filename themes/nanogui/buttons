@@ -7,6 +7,17 @@
 
 FuncFvwmDecorBackground
 
+# override the colors titlestyle
+# warning $. expand to FVWM_USERDIR with FvwmM4, so you a path to the
+# decor images which should work ...
+TitleStyle \
+	ActiveUp   (TiledPixmap ../themes/nanogui/images/decor/title-activeup.xpm) \
+	ActiveDown (TiledPixmap ../themes/nanogui/images/decor/title-activedown.xpm) \
+	Inactive   (TiledPixmap ../themes/nanogui/images/decor/title-inactive.xpm) \
+	ToggledActiveUp   (TiledPixmap ../themes/nanogui/images/decor/title-activeup.xpm) \
+	ToggledActiveDown (TiledPixmap ../themes/nanogui/images/decor/title-activedown.xpm) \
+	ToggledInactive   (TiledPixmap ../themes/nanogui/images/decor/title-inactive.xpm)
+
 # m4 misinterpreters '#', so use 'Nop'
 define({{BcC}}, ifdef({{BcN}}, {{}}, {{Nop}}))
 define({{BmC}}, ifdef({{BmN}}, {{}}, {{Nop}}))
@@ -112,6 +123,14 @@ AddToFunc   FuncFvwmUnReloadDecor
 DestroyFunc FuncFvwmReloadDecor
 AddToFunc   FuncFvwmReloadDecor
 + I FuncFvwmDecorBackground
+# override the colors titlestyle
++ I TitleStyle \
+	ActiveUp   (TiledPixmap ../themes/nanogui/images/decor/title-activeup.xpm) \
+	ActiveDown (TiledPixmap ../themes/nanogui/images/decor/title-activedown.xpm) \
+	Inactive   (TiledPixmap ../themes/nanogui/images/decor/title-inactive.xpm) \
+	ToggledActiveUp   (TiledPixmap ../themes/nanogui/images/decor/title-activeup.xpm) \
+	ToggledActiveDown (TiledPixmap ../themes/nanogui/images/decor/title-activedown.xpm) \
+	ToggledInactive   (TiledPixmap ../themes/nanogui/images/decor/title-inactive.xpm)
 + I BoC ButtonStyle BoN \
 BoC	ActiveUp (Pixmap button/options-activeup.xpm) \
 BoC	ActiveDown (Pixmap button/options-activedown.xpm) \
