@@ -4,7 +4,7 @@ fvwm-themes-0.7.0 - not yet released
 
 fvwm-themes-0.6.1 - not yet released
 
-* Installable on Cygwin.
+* Now installable in Cygwin.
 * The Themes Center GUI is much faster.
 * Fixed installation when fvwm-config is not in $PATH.
 * Added background@ and window border tile to Metal theme.

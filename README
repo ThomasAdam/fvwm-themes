@@ -1,4 +1,4 @@
-This is a release of fvwm-themes based on the stable fvwm 2.4.4 version.
+This is a release of fvwm-themes based on the stable fvwm 2.4.8 version.
 
 FVWM Themes is an attempt to create easy, configurable and modular framework
 for the FVWM configuration. You can visit the project's home page at:
@@ -31,9 +31,9 @@ You must not untar fvwm-themes-extra pack. To install it, execute:
 How to Start
 ------------
 
-Make sure you use one of the latest versions of fvwm >= 2.4.3.
+Make sure you use one of the latest versions of fvwm >= 2.4.8.
 Replace the last line of your ~/.Xclients (or ~/.xinitrc or ~/.xsession):
-	fvwm2
+	fvwm  (or fvwm2)
 with:
 	fvwm-themes-start
 and rerun X. See the fvwm-themes-start manual page for more details.

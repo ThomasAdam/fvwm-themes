@@ -3,16 +3,16 @@
 # the fvwm themes Debian menu system stuff
 
 DO="$1"
-MY_PWD=/usr/share/fvwm/menu-system
+MY_CWD=/usr/share/fvwm/menu-system
 MM_CONF_DIR=/etc/menu-methods
-WM_SESION_DIR=/etc/X11/wmsession.d
+WM_SESSION_DIR=/etc/X11/wmsession.d
 FILES="fvwm_themes.h fvwm_themes fvwm_themes_data.h"
 
-if test ! -d $MY_PWD; then
+if test ! -d $MY_CWD; then
     exit 0
 fi
 
-cd $MY_PWD
+cd $MY_CWD
 
 if test ! -d /etc/menu-methods -o ! -x /usr/bin/update-menus; then
 	DO=""
@@ -36,7 +36,7 @@ elif test "x$DO" = "xUninstall"; then
 fi
 
 # take the occasion to handle the wmsession.d directory
-if test ! -d $WM_SESION_DIR; then
+if test ! -d $WM_SESSION_DIR; then
 	exit 0
 fi
 
@@ -48,10 +48,10 @@ SCRIPT:
 if test -x $HOME/.xinitrc-fvwm; then
 	. $HOME/.xinitrc-fvwm
 fi
-exec fvwm-themes-start"> $WM_SESION_DIR/fvwm-themes
+exec fvwm-themes-start"> $WM_SESSION_DIR/fvwm-themes
 	[ -x /usr/sbin/fndSession ] && /usr/sbin/fndSession || true
 elif test "x$DO" = "xUninstall"; then
-	rm -f $WM_SESION_DIR/fvwm-themes
+	rm -f $WM_SESSION_DIR/fvwm-themes
 	[ -x /usr/sbin/fndSession ] && /usr/sbin/fndSession || true
 fi
 

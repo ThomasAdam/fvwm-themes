@@ -15,15 +15,14 @@ or .xsession file.
 \fB--session\fR name \- name of the FVWM Themes session. By default it
 is "main". This allows to have and run different FVWM Themes configuration.
 
-\fB--no-start\fR - cause to do not start fvwm2, just do preparation
-for starting it. This is usefull to start FVWM Themes with a session
-manager.
+\fB--no-start\fR - do not start fvwm, just do preparation for starting it.
+This is useful to start FVWM Themes with a session manager, see FAQ.
 
-\fB--fvwm-exe\fR - changes the default executable, which is \fIfvwm2\fR
+\fB--fvwm-exe\fR - changes the default executable, which is \fIfvwm\fR
 or whatever \fIfvwm-config --fvwm-exe\fR returns.
 
 \fB--\fR everything after \fB--\fR is passed to FVWM.
-See the \fBfvwm2\fR(1) man page for the fvwm2 options.
+See the \fBfvwm\fR(1) man page for the fvwm options.
 
 .SH "EXAMPLES"
 Most users just should put:
@@ -68,7 +67,7 @@ gdm ...):
 .sp
 .fi
 Note that with most session managers (e.g., GNOME or XSM) it is
-preferable to give "fvwm2 -f themes-rc" as the starting window manager
+preferable to give "fvwm -f themes-rc" as the starting window manager
 command in the session manager.
 
 .SH "COPYING"

@@ -72,7 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %doc AUTHORS COPYING INSTALL NEWS README TODO
 %doc doc/FAQ doc/README.1st doc/colorsets doc/creating-themes
-%doc doc/fvwm-themes.lsm
+%doc doc/fvwm-themes.lsm doc/menus-extra
 %{prefix}/bin/*
 %{prefix}/man/*/*
 %{prefix}/share/*/*

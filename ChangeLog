@@ -1,3 +1,15 @@
+2002-06-19  migo  <migo@homemail.com>
+
+	* ANNOUNCE:
+	* NEWS:
+	* README:
+	* configure.in:
+	* bin/fvwm-themes-start.1:
+	* rpm/fvwm-themes-base.spec.in:
+	* rpm/fvwm-themes.spec.in:
+	* rpm/install-menu-system.sh:
+	updates for 0.6.1
+
 2002-06-18  migo  <migo@homemail.com>
 
 	* images.tar.gz:
