@@ -4,47 +4,47 @@
 #
 
 # Needs to be read after menus!
-# On the other side iconstyles/style-icon-miniicon should be read before menus.
-# Also, MenuFvwmIconSets is not Destroyed when you quit this component...
+# On the other hand iconstyles/style-icon-miniicon should be read before menus.
+# Also, MenuFvwmIconSets is not destroyed after leaving this component...
 
 AddToFunc FuncFvwmStartAllHooks
-+ I AddToMenu MenuFvwmConfiguration "%menu/display.xpm%wm-icons Icons" Popup MenuFvwmIconSets
++ I AddToMenu MenuFvwmConfiguration "%menu/themes.xpm%wm-icons Icons" Popup MenuFvwmIconSets
 
 DestroyMenu MenuFvwmIconSets
 AddToMenu MenuFvwmIconSets "Change Icon Set" Title
-+ "%menu/display.xpm%menu	14x14-general"   Exec wm-icons-config -q -p -f menu 14x14-general
-+ "%menu/display.xpm%menu	16x16-general"   Exec wm-icons-config -q -p -f menu 16x16-general
-+ "%menu/display.xpm%menu	16x16-gnome"     Exec wm-icons-config -q -p -f menu 16x16-gnome
-+ "%menu/display.xpm%menu	16x16-kde"       Exec wm-icons-config -q -p -f menu 16x16-kde
-+ "%menu/display.xpm%menu	17x14-3dpixmaps" Exec wm-icons-config -q -p -f menu 17x14-3dpixmaps
-+ "%menu/display.xpm%menu	20x20-martys"    Exec wm-icons-config -q -p -f menu 20x20-martys
-+ "%menu/display.xpm%menu	20x20-martys2"   Exec wm-icons-config -q -p -f menu 20x20-martys2
-+ "%menu/display.xpm%menu	21x18-3dpixmaps" Exec wm-icons-config -q -p -f menu 21x18-3dpixmaps
++ "%menu/item.xpm%menu	14x14-general"   Exec wm-icons-config -q -p -f menu 14x14-general
++ "%menu/item.xpm%menu	16x16-general"   Exec wm-icons-config -q -p -f menu 16x16-general
++ "%menu/item.xpm%menu	16x16-gnome"     Exec wm-icons-config -q -p -f menu 16x16-gnome
++ "%menu/item.xpm%menu	16x16-kde"       Exec wm-icons-config -q -p -f menu 16x16-kde
++ "%menu/item.xpm%menu	17x14-3dpixmaps" Exec wm-icons-config -q -p -f menu 17x14-3dpixmaps
++ "%menu/item.xpm%menu	20x20-martys"    Exec wm-icons-config -q -p -f menu 20x20-martys
++ "%menu/item.xpm%menu	20x20-martys2"   Exec wm-icons-config -q -p -f menu 20x20-martys2
++ "%menu/item.xpm%menu	21x18-3dpixmaps" Exec wm-icons-config -q -p -f menu 21x18-3dpixmaps
 + "" Nop
-+ "%menu/display.xpm%mini	14x14-general"   Exec wm-icons-config -q -p -f mini 14x14-general
-+ "%menu/display.xpm%mini	16x16-general"   Exec wm-icons-config -q -p -f mini 16x16-general
-+ "%menu/display.xpm%mini	16x16-gnome"     Exec wm-icons-config -q -p -f mini 16x16-gnome
-+ "%menu/display.xpm%mini	16x16-kde"       Exec wm-icons-config -q -p -f mini 16x16-kde
-+ "%menu/display.xpm%mini	17x14-3dpixmaps" Exec wm-icons-config -q -p -f mini 17x14-3dpixmaps
-+ "%menu/display.xpm%mini	20x20-martys"    Exec wm-icons-config -q -p -f mini 20x20-martys
-+ "%menu/display.xpm%mini	20x20-martys2"   Exec wm-icons-config -q -p -f mini 20x20-martys2
-+ "%menu/display.xpm%mini	21x18-3dpixmaps" Exec wm-icons-config -q -p -f mini 21x18-3dpixmaps
++ "%menu/item.xpm%mini	14x14-general"   Exec wm-icons-config -q -p -f mini 14x14-general
++ "%menu/item.xpm%mini	16x16-general"   Exec wm-icons-config -q -p -f mini 16x16-general
++ "%menu/item.xpm%mini	16x16-gnome"     Exec wm-icons-config -q -p -f mini 16x16-gnome
++ "%menu/item.xpm%mini	16x16-kde"       Exec wm-icons-config -q -p -f mini 16x16-kde
++ "%menu/item.xpm%mini	17x14-3dpixmaps" Exec wm-icons-config -q -p -f mini 17x14-3dpixmaps
++ "%menu/item.xpm%mini	20x20-martys"    Exec wm-icons-config -q -p -f mini 20x20-martys
++ "%menu/item.xpm%mini	20x20-martys2"   Exec wm-icons-config -q -p -f mini 20x20-martys2
++ "%menu/item.xpm%mini	21x18-3dpixmaps" Exec wm-icons-config -q -p -f mini 21x18-3dpixmaps
 + "" Nop
-+ "%menu/display.xpm%norm	32x32-kde"       Exec wm-icons-config -q -p -f norm 32x32-kde
-+ "%menu/display.xpm%norm	32x32-kde2"      Exec wm-icons-config -q -p -f norm 32x32-kde2
-+ "%menu/display.xpm%norm	44x52-penguins"  Exec wm-icons-config -q -p -f norm 44x52-penguins
-+ "%menu/display.xpm%norm	48x48-general"   Exec wm-icons-config -q -p -f norm 48x48-general
-+ "%menu/display.xpm%norm	48x48-gnome"     Exec wm-icons-config -q -p -f norm 48x48-gnome
-+ "%menu/display.xpm%norm	48x48-kde2"      Exec wm-icons-config -q -p -f norm 48x48-kde2
-+ "%menu/display.xpm%norm	56x46-3dpixmaps" Exec wm-icons-config -q -p -f norm 56x46-3dpixmaps
-+ "%menu/display.xpm%norm	56x56-martys"    Exec wm-icons-config -q -p -f norm 56x56-martys
-+ "%menu/display.xpm%norm	56x56-martys2"   Exec wm-icons-config -q -p -f norm 56x56-martys2
++ "%menu/item.xpm%norm	32x32-kde"       Exec wm-icons-config -q -p -f norm 32x32-kde
++ "%menu/item.xpm%norm	32x32-kde2"      Exec wm-icons-config -q -p -f norm 32x32-kde2
++ "%menu/item.xpm%norm	44x52-penguins"  Exec wm-icons-config -q -p -f norm 44x52-penguins
++ "%menu/item.xpm%norm	48x48-general"   Exec wm-icons-config -q -p -f norm 48x48-general
++ "%menu/item.xpm%norm	48x48-gnome"     Exec wm-icons-config -q -p -f norm 48x48-gnome
++ "%menu/item.xpm%norm	48x48-kde2"      Exec wm-icons-config -q -p -f norm 48x48-kde2
++ "%menu/item.xpm%norm	56x46-3dpixmaps" Exec wm-icons-config -q -p -f norm 56x46-3dpixmaps
++ "%menu/item.xpm%norm	56x56-martys"    Exec wm-icons-config -q -p -f norm 56x56-martys
++ "%menu/item.xpm%norm	56x56-martys2"   Exec wm-icons-config -q -p -f norm 56x56-martys2
 + "" Nop
-+ "%menu/display.xpm%norm	16x16-general"   Exec wm-icons-config -q -p -f 16x16 16x16-general
-+ "%menu/display.xpm%norm	16x16-gnome"     Exec wm-icons-config -q -p -f 16x16 16x16-gnome
-+ "%menu/display.xpm%norm	16x16-kde"       Exec wm-icons-config -q -p -f 16x16 16x16-kde
++ "%menu/item.xpm%16x16	16x16-general"   Exec wm-icons-config -q -p -f 16x16 16x16-general
++ "%menu/item.xpm%16x16	16x16-gnome"     Exec wm-icons-config -q -p -f 16x16 16x16-gnome
++ "%menu/item.xpm%16x16	16x16-kde"       Exec wm-icons-config -q -p -f 16x16 16x16-kde
 + "" Nop
-+ "%menu/restart.xpm%Restart	to activate"     Restart
++ "%menu/restart.xpm%Restart	to activate" Restart
 
 # You can comment the following out or in.
 Mouse 3 R CM Menu MenuIconSets Nop

@@ -1,3 +1,13 @@
+2001-03-18  migo  <migo@homemail.com>
+
+	* themes/{cde,luthien}/colors/main:
+	* themes/migo/modules/main:
+	* themes/migo/modules/main:FvwmButtons-Compact:
+	* themes/default/settings/iconstyles/wm-icons:menu:
+	* themes/default/menus:
+	* themes/default/menus-user:
+	some corrections related to a new wm-icons list
+
 2001-03-17  olicha <olivier.chapuis@free.fr>
 
 	* images.tar.gz:

@@ -90,7 +90,8 @@ AddToFunc   FuncFvwmStartMyPager
 
 # Just because settings/iconstyles/wm-icons uses FuncFvwmStartAllHooks...
 AddToFunc FuncFvwmStartAllHooks
-+ I AddToMenu MenuFvwmConfiguration "wm-icons Bar Icons" Popup MenuFvwmBarIconSet
++ I AddToMenu MenuFvwmConfiguration
++ I + "wm-icons Bar Icons%menu/themes.xpm%" Popup MenuFvwmBarIconSet
 
 DestroyFunc FuncFvwmSwitchBarIconSet
 AddToFunc   FuncFvwmSwitchBarIconSet
@@ -99,21 +100,21 @@ AddToFunc   FuncFvwmSwitchBarIconSet
 
 DestroyMenu MenuFvwmBarIconSet
 AddToMenu   MenuFvwmBarIconSet "Change Icon Set" Title
-+ "%menu/display.xpm%bar	14x14-general"   FuncFvwmSwitchBarIconSet 14x14-general
-+ "%menu/display.xpm%bar	16x16-general"   FuncFvwmSwitchBarIconSet 16x16-general
-+ "%menu/display.xpm%bar	16x16-kde"       FuncFvwmSwitchBarIconSet 16x16-kde
-+ "%menu/display.xpm%bar	17x14-3dpixmaps" FuncFvwmSwitchBarIconSet 17x14-3dpixmaps
-+ "%menu/display.xpm%bar	20x20-martys"    FuncFvwmSwitchBarIconSet 20x20-martys
-+ "%menu/display.xpm%bar	20x20-martys2"   FuncFvwmSwitchBarIconSet 20x20-martys2
-+ "%menu/display.xpm%bar	21x18-3dpixmaps" FuncFvwmSwitchBarIconSet 21x18-3dpixmaps
-+ "%menu/display.xpm%bar	32x32-kde"       FuncFvwmSwitchBarIconSet 32x32-kde
-+ "%menu/display.xpm%bar	32x32-kde2"      FuncFvwmSwitchBarIconSet 32x32-kde2
-+ "%menu/display.xpm%bar	44x52-penguins"  FuncFvwmSwitchBarIconSet 44x52-penguins
-+ "%menu/display.xpm%bar	48x48-general"   FuncFvwmSwitchBarIconSet 48x48-general
-+ "%menu/display.xpm%bar	48x48-kde2"      FuncFvwmSwitchBarIconSet 48x48-kde2
-+ "%menu/display.xpm%bar	56x46-3dpixmaps" FuncFvwmSwitchBarIconSet 56x46-3dpixmaps
-+ "%menu/display.xpm%bar	56x56-martys"    FuncFvwmSwitchBarIconSet 56x56-martys
-+ "%menu/display.xpm%bar	56x56-martys2"   FuncFvwmSwitchBarIconSet 56x56-martys2
++ "%menu/item.xpm%bar	14x14-general"   FuncFvwmSwitchBarIconSet 14x14-general
++ "%menu/item.xpm%bar	16x16-general"   FuncFvwmSwitchBarIconSet 16x16-general
++ "%menu/item.xpm%bar	16x16-kde"       FuncFvwmSwitchBarIconSet 16x16-kde
++ "%menu/item.xpm%bar	17x14-3dpixmaps" FuncFvwmSwitchBarIconSet 17x14-3dpixmaps
++ "%menu/item.xpm%bar	20x20-martys"    FuncFvwmSwitchBarIconSet 20x20-martys
++ "%menu/item.xpm%bar	20x20-martys2"   FuncFvwmSwitchBarIconSet 20x20-martys2
++ "%menu/item.xpm%bar	21x18-3dpixmaps" FuncFvwmSwitchBarIconSet 21x18-3dpixmaps
++ "%menu/item.xpm%bar	32x32-kde"       FuncFvwmSwitchBarIconSet 32x32-kde
++ "%menu/item.xpm%bar	32x32-kde2"      FuncFvwmSwitchBarIconSet 32x32-kde2
++ "%menu/item.xpm%bar	44x52-penguins"  FuncFvwmSwitchBarIconSet 44x52-penguins
++ "%menu/item.xpm%bar	48x48-general"   FuncFvwmSwitchBarIconSet 48x48-general
++ "%menu/item.xpm%bar	48x48-kde2"      FuncFvwmSwitchBarIconSet 48x48-kde2
++ "%menu/item.xpm%bar	56x46-3dpixmaps" FuncFvwmSwitchBarIconSet 56x46-3dpixmaps
++ "%menu/item.xpm%bar	56x56-martys"    FuncFvwmSwitchBarIconSet 56x56-martys
++ "%menu/item.xpm%bar	56x56-martys2"   FuncFvwmSwitchBarIconSet 56x56-martys2
 
 Mouse 3 R SCM Menu MenuFvwmBarIconSet Nop
 

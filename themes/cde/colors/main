@@ -176,7 +176,7 @@ DestroyModuleConfig FvwmFormDefault: Colorset*
 DestroyFunc FuncFvwmStartColors
 AddToFunc   FuncFvwmStartColors
 + I AddToMenu MenuFvwmConfiguration
-+ I + "Show Current Palette  Shift-Ctrl-F9%menu/display.xpm%" FvwmButtons FvwmButtons-ColourTable
++ I + "Show Current Palette  Shift-Ctrl-F9%menu/colors.xpm%" FvwmButtons FvwmButtons-ColourTable
 + I Style FvwmButtons-ColourTable HandleWidth 2, Title, TitleAtTop
 + I Key F9 A SC Module FvwmButtons FvwmButtons-ColourTable
 

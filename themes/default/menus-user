@@ -88,7 +88,7 @@ AddToMenu   MenuFvwmScreenSaver "Screen Saver" Title
 
 PipeRead 'fvwm-menu-xlock --name MenuFvwmScreenSaverModes --title "Screen Saver Modes" --icon-item menu/display.xpm --special-first -- -nice 19 -nolock'
 
-PipeRead 'fvwm-menu-xlock --name MenuFvwmScreenLockModes  --title "Screen Lock Modes"  --icon-item menu/wm-lock.xpm --special-first -- -nice 19'
+PipeRead 'fvwm-menu-xlock --name MenuFvwmScreenLockModes  --title "Screen Lock Modes"  --icon-item menu/lock.xpm --special-first -- -nice 19'
 
 # ----------------------------------------------------------------------------
 # ---------- WindowManager
