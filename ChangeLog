@@ -1,3 +1,8 @@
+2002-06-14  migo  <migo@homemail.com>
+
+	* themes/redmondxp/images/module/panel-right-bg.xpm:
+	added forgotten image
+
 2002-06-12  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-script.in (getDirListing):
