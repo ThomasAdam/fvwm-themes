@@ -20,6 +20,9 @@
 	* themes/default/menus-user:
 	more Games submenus from my personal menus (I don't have all of them)
 
+	* themes/redmond98/background/*:
+	s/win-fvwm.xpm/fvwm-flying.xpm/
+
 2000-08-24  migo  <migo@homemail.com>
 
 	* configure.in:
