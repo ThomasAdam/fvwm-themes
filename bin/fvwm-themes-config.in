@@ -124,7 +124,8 @@ sub errDie ($) {
 	my $msg = shift;
 	$msg .= "\n" unless $msg =~ /\n$/s;
 	if ($pipe) {
-		$msg =~ s/\n$//s;
+		$msg =~ s/\n+$//s;
+		$msg =~ s/\n/ /sg;
 		$msg =~ s/'/`/g;
 		print qq(Exec exec xmessage -g 400x100 -xrm "*form*background:rgb:c0/50/50" -xrm "*form*okay*background:rgb:90/40/40" -xrm "*textSink*font:lucidasans-14" -xrm "*form*message*background:rgb:f0/60/60" -title '$scriptName error' -center '$msg'\n);
 		exit -1;
@@ -2018,7 +2019,7 @@ sub getReadsRc($) {
 			my $current = $optionEntry->{'current'};
 			my $index = $current - 1;
 			my $valueFile0 = $optionEntry->{'value'}->[$index]->{'file'};
-			my $valueFile = $optionFile . (-d $optionFile? "/": "=")
+			my $valueFile = $optionFile . (-d $optionFile? "/": ".")
 				. $valueFile0;
 			$optionFile =~ s/^$ROOT_PREFIX//;
 			$valueFile =~ s/^$ROOT_PREFIX//;

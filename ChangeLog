@@ -10,6 +10,9 @@
 	* TODO:
 	updated
 
+	* bin/fvwm-themes-config.in:
+	fixed multiline error reporting, use '.' not '=' in file names
+
 2002-10-30  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
