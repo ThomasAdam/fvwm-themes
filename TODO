@@ -36,6 +36,8 @@ Optional items to do:
 * Providing some ready to use functions for background@ components.
   Like functions dealing with image types and formats (tiles, gradients).
 
+* A form/script/gtk for FvwmRearrange.
+
 * It would be nice if someone enhance 'multichoice' theme.
   I.e. add some color schemes, backgrounds and cursors (bitmap cursors?).
   If noone does this, this theme can probably be removed.

@@ -1637,7 +1637,7 @@ sub comLoop {
 		elsif ($command =~ /^theme-components\s+(\d+)$/) {
 			my $index = $1 - 1;
 			my $theme = $$allThemes[$index];
-		   my ($components, $groups) = getThemeComponentsAndGroups($theme);
+			my ($components, $groups) = getThemeComponentsAndGroups($theme);
 			foreach (@$components) {
 				next if $_ eq "settings";
 				my $useFlag = "";
@@ -1753,7 +1753,7 @@ sub comLoop {
 			$return = "$comp\n$theme\n$OptOrContains$set$drop";
 		}
 		# -------------------------------------------------
-		elsif ($command =~ /^restor\s+(.+)$/) {
+		elsif ($command =~ /^restore\s+(.+)$/) {
 			my $comp = $1;
 			if (defined $componentToLoad{$comp}) {
 				delete($componentToLoad{$comp});
@@ -1940,7 +1940,7 @@ sub comLoop {
 				}
 			}
 		}
-		elsif ($command eq "update-ts\s+(\d+)") {
+		elsif ($command =~ /^update-ts\s+(\d+)$/) {
 			my $fresh;
 			$cfgFileCache = {};
 			$self = Fvwm::ThemeCfg->new('current', 'current', $fresh);

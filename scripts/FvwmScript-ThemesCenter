@@ -798,7 +798,7 @@ SingleClic :
     End
     If $break == 1 Then
     Begin
-	Set $cmd = $SendMsgAndGet{"restor }$CSCompName{"}
+	Set $cmd = $SendMsgAndGet{"restore }$CSCompName{"}
 	Set $dummy = (GetOutput $cmd 1 -1)
 	Set $UpdateTSLists = 1
 	Set $NullMessage = 1
