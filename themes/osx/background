@@ -1,6 +1,6 @@
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground
-+ I exec xsetroot -solid blue4
++ I Exec exec fvwm-themes-images --sky --sky-colors black,rgb:62/85/b7,rgb:70/95/c2,rgb:48/6c/aa,rgb:21/44/91 --setroot --pattern-type altern:1,5,4
 
 DestroyFunc FuncFvwmStopThemeBackground
 AddToFunc   FuncFvwmStopThemeBackground
