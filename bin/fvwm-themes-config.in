@@ -994,6 +994,7 @@ sub getOwnThemeSubMenusRc ($) {
 	my $listRc = qq(+ "$id"\tPopup "$selfMenuName"\n);
 	my @menuRc = ("", "", "");  # 3 parts of the component menu
 	my $menusRc = "";
+	my $dropExtraArgs = "";
 
 	$menuRc[0] .= qq(DestroyMenu "$selfMenuName"\n);
 	$menuRc[0] .= qq(AddToMenu   "$selfMenuName" "$name Theme" Title\n);
@@ -1002,6 +1003,8 @@ sub getOwnThemeSubMenusRc ($) {
 		my $cc = $self->getComponentCfg($_);
 		#olicha 1
 		next unless $cc->{'used'};
+		$dropExtraArgs .= " --drop $_" if /-extra$/;
+
 		my $name = escapeMenuName($cc->{'name'} || $_);
 		my $currMenu = "$selfMenuName/$_";
 		$menusRc .= qq(DestroyMenu "$currMenu"\n);
@@ -1100,6 +1103,9 @@ sub getOwnThemeSubMenusRc ($) {
 		my $lockIcon = $cc->{'locked'}? "wm-lock": "empty";
 		# use $name instead of $_?
 		$menuRc[$m] .= qq(+ "%menu/$lockIcon.xpm%$_"\tPopup "$selfMenuName/$_"\n) unless m:/:;
+	}
+	if ($dropExtraArgs) {
+		push @menuRc, qq(+ "%menu/choice-no.xpm%&Drop all extra"\tFuncFvwmThemesConfigAndUpdate "$dropExtraArgs"\n);
 	}
 	my $menuRc = join(qq(+ "" Nop\n), @menuRc) . "\n$menusRc";
 	$menuRc =~ s/(\+ "" Nop\n){2,}/$1/sg;
