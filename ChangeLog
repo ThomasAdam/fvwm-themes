@@ -3,6 +3,9 @@
 	* themes/migo/modules/pager/none:
 	changed an IconBox, this core dumps now when refreshing...
 
+	* themes/default/menus:
+	added MenuFvwmApplets
+
 2000-10-20  olicha  <olivier.chapuis@free.fr>
 
 	* themes/awol/modules/main:{FvwmIconMan,FvwmButton*}

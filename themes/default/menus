@@ -115,6 +115,7 @@ AddToMenu   MenuFvwmStartRegularModules "Regular Modules" Title
 + "Auto Raise (2 sec)"    FuncFvwmRestartModule 'FvwmAuto 2000 "Silent Raise" Nop'
 + "" Nop
 + "&Forms"                Popup  MenuFvwmForms
++ "&Applets"              Popup  MenuFvwmApplets
 + "" Nop
 
 DestroyMenu MenuFvwmStopRegularModules
@@ -136,6 +137,14 @@ AddToMenu   MenuFvwmForms "Fvwm Forms" Title
 + "&Rlogin"            Module FvwmForm FormFvwmRlogin.
 + "&Talk"              Module FvwmForm FormFvwmTalk.
 + "&QuitVerify"        Module FvwmForm FormFvwmQuitVerify.
+
+DestroyMenu MenuFvwmApplets
+AddToMenu   MenuFvwmApplets "Fvwm Applets" Title
++ "Day"                Module FvwmScript FvwmApplet-Day
++ "DayClock"           Module FvwmScript FvwmApplet-DayClock
++ "DigitalClock"       Module FvwmScript FvwmApplet-DigitalClock
++ "Mixer"              Module FvwmScript FvwmApplet-Mixer
+
 
 # -----------------------------------------------------------------------------
 # ---------- Configuration Menus
