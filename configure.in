@@ -268,6 +268,9 @@ AC_OUTPUT(
 	bin/fvwm-themes-images
 	bin/fvwm-themes-root
 	debian/Makefile
+	debian/full-control
+	debian/extra-control
+	debian/base-control
 	doc/fvwm-themes.lsm
 	rpm/fvwm-themes.spec
 	rpm/fvwm-themes-base.spec
