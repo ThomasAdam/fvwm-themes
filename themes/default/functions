@@ -23,14 +23,6 @@ AddToFunc   FuncFvwmDeiconifyFocusAndRaise
 
 DestroyFunc FuncFvwmIconifyOrFocusAndRaise
 AddToFunc   FuncFvwmIconifyOrFocusAndRaise
-#+ I DestroyFunc RealIconifyOrFocusAndRaise
-#+ I AddToFunc   RealIconifyOrFocusAndRaise
-#+ I ThisWindow ( Iconic)         + I Iconify off
-#+ I ThisWindow ( Iconic)         + I Focus
-#+ I ThisWindow (!Iconic  Raised) + I Iconify on
-#+ I ThisWindow (!Iconic !Raised) + I Focus
-#+ I ThisWindow (!Iconic !Raised) + I Raise
-#+ I RealIconifyOrFocusAndRaise
 + I ThisWindow (Iconic) Iconify off
 + I TestRc (NoMatch) ThisWindow (Raised) Iconify on
 + I ThisWindow (!Iconic) Focus
@@ -118,10 +110,13 @@ AddToFunc   FuncFvwmConsole
 
 DestroyFunc FuncFvwmShowMessage
 AddToFunc   FuncFvwmShowMessage
-+ I Exec echo "$1" | perl -pe 's/\^n/\n/g; s/\^t/\t/g; s/\^d/\$/g; s/\^\^/^/g' - | \
++ I Test (x xmessage) Exec echo "$1" | \
+	perl -pe 's/\^n/\n/g; s/\^t/\t/g; s/\^d/\$/g; s/\^\^/^/g' - | \
 	xmessage -g 480x124 -nearmouse -title "$0" -file - \
 	-xrm "*form*foreground:$[fg.cs35]" -xrm "*form*background:$[bg.cs35]" \
 	-xrm "*form*message*foreground:$[fg.cs36]" -xrm "*form*message*background:$[bg.cs36]"
++ I TestRc (!Match) FvwmPerl -e \
+	'$_ = qq{$1}; s/\^n/\n/g; s/\^t/\t/g; s/\^d/\044/g; s/\^\^/^/g; showMessage($_, $0, 1)'
 
 DestroyFunc FuncFvwmShowButtonInfo
 AddToFunc   FuncFvwmShowButtonInfo

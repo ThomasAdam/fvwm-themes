@@ -14,6 +14,9 @@
 	* themes/olicha/modules/FvwmTaskBar:
 	better position for window operation menu
 
+	* themes/default/functions:
+	if xmessage is not found invoke other dialog tools using FvwmPerl
+
 2003-10-27  migo  <migo@homemail.com>
 
 	* themes/osx/**:
