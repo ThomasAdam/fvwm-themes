@@ -12,7 +12,7 @@ Contents:
             2. General Settings
             3. FVWM Themes Sessions
             4. Miscenallous
-            5. Bugs
+            5. Bugs & Questions
 </verb>
 
 <sec>1. Themes Selector
@@ -108,7 +108,8 @@ the LANG is set to the environment variable $LANG or "en". The currently
 supported lang values are en, fr and ru.
 
 
-<sec>5. Bugs
+<sec>5. Bugs & Questions
 
 Report any bugs to: fvwm-themes-devel@lists.sourceforge.net
 
+For questions used: fvwm-themes-users@lists.sourceforge.net

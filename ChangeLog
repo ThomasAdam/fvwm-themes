@@ -1,5 +1,18 @@
 2000-11-27  olicha  <olivier.chapuis@free.fr>
 
+	* bin/fvwm-themes-menuapp.in:
+	* bin/fvwm-themes-config.in:
+	* bin/fvwm-themes-script.in:
+	"amelioration" of the com loop (but no fix for Solaris)
+
+	* locale/fr/FvwmScript-ThemeCenter.txt:
+	French doc
+
+	* locale/en/FvwmScript-ThemeCenter.txt:
+	Replace Bugs section by a "Bugs & Questions" section
+
+2000-11-27  olicha  <olivier.chapuis@free.fr>
+
 	* locale/{fr,en,ru}/FvwmScript-ThemeOption.msg:
 	* script/FvwmScript-ThemesOption:
 	Use the new locale methode for ThemesOption

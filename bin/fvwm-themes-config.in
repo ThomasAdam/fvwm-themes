@@ -1766,12 +1766,12 @@ sub comLoop {
 		if ($@ =~ /^cannot/) {
 			print STDERR "$comName: cannot write fifo $lockFifo\n";
 			unlink("$lockFifo");
-			exit(0);
+			exit(1);
 		}
 		if ($@ =~ /^NoScript/) {
 			print STDERR "$comName: No more FvwmScript-ThemesCenter: exit!\n";
 			unlink("$lockFifo");
-			exit(0);
+			exit(1);
 		}
 		if ($@ =~ /^Script/) {
 			next;
@@ -1789,7 +1789,8 @@ sub comLoop {
 		};
 		if ($@ =~ /^cannot/) {
 			print STDERR "$comName: cannot read fifo $lockFifo\n";
-			exit(0);
+			unlink("$lockFifo");
+			exit(1);
 		}
 		if ($@ =~ /^Timeout/) {
 			print STDERR "$comName: com give an unvalide unlock!\n";
@@ -2535,7 +2536,9 @@ sub comLoop {
 		};
 		if ($@ =~ /cannot/) {
 			print STDERR "$comName: cannot write on fifo $inFifo\n";
-			exit(0);
+			unlink($lockFifo);
+			unlink($inFifo);
+			exit(1);
 		}
 		if ($@ =~ /Timeout/) {
 			print STDERR "$comName: com do not read my answer!\n";
