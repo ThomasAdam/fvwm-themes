@@ -1,3 +1,12 @@
+2001-07-23  olicha  <olivier.chapuis@free.fr>
+
+	* scripts/Makefile.am:
+	* scripts/FvwmScript-Confirm:
+	A new script for asking a question and execute a command accordingly
+
+	* bin/fvwm-themes-config.in:
+	Use the above scripts for "Reset all to default"
+	
 2001-07-22  migo  <migo@homemail.com>
 
 	* themes/migo/modules/main:FvwmPager-Single:

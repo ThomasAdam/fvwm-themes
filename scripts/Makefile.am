@@ -8,6 +8,7 @@ config_DATA = \
 	FvwmScript-NoteMessage FvwmScript-Browser FvwmScript-Help \
 	FvwmScript-ThemesCenter FvwmScript-ComponentProperties \
 	FvwmScript-ColorSelector FvwmScript-ConfigCenter \
-	FvwmScript-FontSelector FvwmScript-ImageBrowser
+	FvwmScript-FontSelector FvwmScript-ImageBrowser \
+	FvwmScript-Confirm
 
 EXTRA_DIST = $(config_DATA)

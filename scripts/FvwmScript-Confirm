@@ -1,0 +1,179 @@
+WindowTitle {Question}
+WindowSize 400 150
+Font	-adobe-helvetica-bold-r-*-*-12-*
+
+Init
+Begin
+    Set $Lang = {}
+    Set $Color = {}
+    Set $Launched = 0
+    Set $return = {}
+    Set $Command = {}
+    Set $CancelCommand = {}
+    Set $OkTitle = {OK}
+    Set $CancelTitle = {Cancel}
+    Set $Line1 = {}
+    Set $Line2 = {}
+    Set $Line3 = {}
+    # Arguments
+    Set $i = 1
+    Set $arg = (GetScriptArgument $i)
+    While $arg <> {} Do
+    Begin
+	Set $j = (Add $i 1)
+	If $arg == {--launched} Then
+	    Set $Launched = (GetScriptArgument $j)
+	If $arg == {--command} Then
+	    Set $Command = (GetScriptArgument $j)
+	If $arg == {--cancel-command} Then
+	    Set $CancelCommand = (GetScriptArgument $j)
+ 	If $arg == {--lang} Then
+	    Set $Lang = (GetScriptArgument $j)
+	If $arg == {--color} Then
+	    Set $Color = (GetScriptArgument $j)
+	If $arg == {--line1} Then
+	    Set $Line1 = (GetScriptArgument $j)
+	If $arg == {--line2} Then
+	    Set $Line2 = (GetScriptArgument $j)
+	If $arg == {--line3} Then
+	    Set $Line3 = (GetScriptArgument $j)
+	If $arg == {--lines-by-local} Then
+	    Set $LinesByLocal = (GetScriptArgument $j)
+	If $arg == {--ok} Then
+	    Set $OkTitle = (GetScriptArgument $j)
+	If $arg == {--cancel} Then
+	    Set $CancelTitle = (GetScriptArgument $j)
+	Set $i = (Add $i 2)
+	Set $arg = (GetScriptArgument $i)
+    End
+
+    If $Line1 <> {} Then
+	ChangeTitle 10 $Line1
+
+    If $Line2 <> {} Then
+	ChangeTitle 20 $Line2
+
+    If $Line3 <> {} Then
+	ChangeTitle 30 $Line3
+
+    ChangeTitle 992 $OkTitle
+    ChangeTitle 994 $CancelTitle
+
+End
+
+
+
+
+# ----------------------------------------------------------------------------
+
+# main rectangle
+Widget 2
+Property
+    Flags NoReliefString
+    Position 5 5
+    Size 390 100
+    Type Rectangle
+    Title {}
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+
+# line1
+Widget 10
+Property
+    Flags NoReliefString
+    Position 10 15
+    Size 380 20
+    Type ItemDraw
+    Title {}
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+
+# Line2
+Widget 20
+Property
+    Flags NoReliefString
+    Position 10 40
+    Size 380 20
+    Type ItemDraw
+    Title {}
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+# line3
+Widget 30
+Property
+    Flags NoReliefString
+    Position 10 65
+    Size 380 20
+    Type ItemDraw
+    Title {}
+Main
+Case message of
+ SingleClic :
+ Begin
+ End
+End
+
+#--------------
+
+#----------------------------------------------------------------------------
+
+# Ok
+Widget 992
+Property
+    Flags NoReliefString
+    Position 50 115
+    Size 80 20
+    #Font fixed
+    Type PushButton
+    Title {OK}
+Main
+Case message of
+ SingleClic :
+ Begin
+    If $Launched == {yes} Then
+    Begin
+	Set $ret = {OK}
+	SendToScript (GetScriptFather) $ret
+    End
+    If $Command <> {} Then
+	Do $Command
+    Quit
+ End
+End
+
+
+# Cancel
+Widget 994
+Property
+    Flags NoReliefString
+    Position 270 115
+    Size 80 20
+    #Font fixed
+    Type PushButton
+    Title {}
+Main
+Case message of
+ SingleClic :
+ Begin
+    If $Launched == {yes} Then
+	SendToScript (GetScriptFather) {Cancel}
+    If $CancelCommand <> {} Then
+	Do $CancelCommand
+    Quit
+ End
+End
