@@ -33,11 +33,12 @@ DestroyModuleConfig FvwmGtk-Themes: *
 #*FvwmGtk-Themes: Menu sound-player2
 *FvwmGtk-Themes: Item "Disabled" 1 on
 *FvwmGtk-Themes: Item "play (sox)" 2
-*FvwmGtk-Themes: Item "esdplay" 3
+*FvwmGtk-Themes: Item "esdplay (esd not needed)" 3
 *FvwmGtk-Themes: Item "audioplay" 4
 *FvwmGtk-Themes: Item "auplay" 5
 *FvwmGtk-Themes: Item "rplay" 6
-*FvwmGtk-Themes: Item "rplayD" 7
+*FvwmGtk-Themes: Item "rplayD (needs rplayd)" 7
+*FvwmGtk-Themes: Item "artsplay (kde2, needs artsd)" 7
 *FvwmGtk-Themes: EndOptionMenu
 #*FvwmGtk-Themes: Label "          "
 *FvwmGtk-Themes: EndBox

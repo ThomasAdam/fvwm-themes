@@ -21,17 +21,18 @@ DestroyModuleConfig FvwmForm-ThemeSettings: *
 *FvwmForm-ThemeSettings: Line center
 *FvwmForm-ThemeSettings: Text ""
 *FvwmForm-ThemeSettings: Line left
-*FvwmForm-ThemeSettings: Text "     Sounds"
+*FvwmForm-ThemeSettings: Text "     Sound "
 *FvwmForm-ThemeSettings: Selection Opt2 single
 *FvwmForm-ThemeSettings: Choice SDIS 1 $SDIS=on  "Disabled  "
 *FvwmForm-ThemeSettings: Choice SOXP 2 $SOXP=off "play (sox)"
 *FvwmForm-ThemeSettings: Choice SESD 3 $SESD=off "esdplay   "
-*FvwmForm-ThemeSettings: Line left
-*FvwmForm-ThemeSettings: Text "           "
 *FvwmForm-ThemeSettings: Choice SAUD 4 $SAUD=off "audioplay "
+*FvwmForm-ThemeSettings: Line left
+*FvwmForm-ThemeSettings: Text "     Player"
 *FvwmForm-ThemeSettings: Choice SAUP 5 $SAUP=off "auplay    "
 *FvwmForm-ThemeSettings: Choice SRPL 6 $SRPL=off "rplay     "
 *FvwmForm-ThemeSettings: Choice SRPD 7 $SRPD=off "rplayD    "
+*FvwmForm-ThemeSettings: Choice SAUD 8 $SAUD=off "artsplay  "
 *FvwmForm-ThemeSettings: Line center
 *FvwmForm-ThemeSettings: Text ""
 *FvwmForm-ThemeSettings: Line left
