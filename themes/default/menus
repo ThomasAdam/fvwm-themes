@@ -18,22 +18,23 @@ AddToMenu   MenuFvwmRoot "Root Menu" Title
 # ----------------------------------------------------------------------------
 # ---------- Shells
 
-# This menu is in the separated component menus-user
+# This menu is in the separated component menus-programs
 
 # ----------------------------------------------------------------------------
 # ---------- Programs
 
-# This menu is in the separated component menus-user
+# This menu is in the separated component menus-programs
 
 # ----------------------------------------------------------------------------
 # ---------- System
 
-# This menu is in the separated component menus-user
+# This menu is in the separated component menus-programs
 
 # ----------------------------------------------------------------------------
 # ---------- Personal
 
-# Define this menus in your personal theme: ~/.fvwm/themes/personal/menus-extra
+# Define this menu in your personal theme: ~/.fvwm/themes/personal/menus-extra
+# or using Menu Editor GUI.
 AddToMenu   MenuFvwmPersonal
 
 # ----------------------------------------------------------------------------

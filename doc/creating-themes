@@ -23,7 +23,7 @@ requires something which 'bindings' provides, 'menus-auto' follows 'menus'.
 Standard components are:
 
   background, bindings, buttons, colors, cursors, functions,
-  functions-appbind, globalfeel, menus, menus-user, menustyle,
+  functions-appbind, globalfeel, menus, menus-programs, menustyle,
   modules, settings, sound, startup, styles, windowlook.
 
 The default theme contains all standard components.

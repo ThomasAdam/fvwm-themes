@@ -268,4 +268,4 @@ AddToFunc   FuncFvwmStopColors
 # ============================================================================
 
 # Application colorsets are used in bindings@default, functions@default,
-# functions-appbind@default, menus@default and menus-users@default.
+# functions-appbind@default, menus@default and menus-programs@default.

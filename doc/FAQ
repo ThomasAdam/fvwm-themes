@@ -155,7 +155,7 @@ You should then load once startup component of personal theme using a menu.
 Example: you want completely different menus. Copy themes/default/menus
 from your instalation to themes/personal/menus and edit this component.
 Generally it is recommended to leave the component 'menus' as is and
-only edit 'menus-user' if you need to customize your applications.
+only edit 'menus-programs' if you need to customize your applications.
 
 If you only want to extend (not overwrite) menus, create a file named
 themes/personal/menus-extra and use "AddToMenu SomeMenu". For example, in
@@ -164,16 +164,16 @@ normally defined anywhere, they will be shown under the "Personal" submenu
 of the "Root Menu". After creating a new personal component, you need to
 choose 'Refresh with no cache' item from the theme management menu for
 your new created components to be reflected in the menu, then choose your
-component 'menus', 'menus-user' or 'menus-extra' from within the personal
-theme submenu. Use Ctrl-Alt-Mouse2 in case you didn't include MenuFvwmThemes
-menu in your root menu (MenuFvwmRoot).
+component 'menus', 'menus-programs', 'menus-extra' or 'menus-programs-extra'
+from within the personal theme submenu. Use Ctrl-Alt-Mouse2 in case you
+didn't include MenuFvwmThemes menu in your root menu (MenuFvwmRoot).
 
 Another useful example is redefining customizable functions like
 FuncFvwmMaximize, FuncFvwmViewManPage and others in 'functions-appbind'
 component of your personal theme. To redefine only a few functions (not
 all), 'functions-extra' component can be used.
 
-All these components 'startup', 'menus', 'menus-user', 'menus-extra',
+All these components 'startup', 'menus', 'menus-programs', 'menus-extra',
 'functions', 'functions-appbind', 'functions-extra' are standard, you don't
 need to define their dependences. In case you create non standard components
 you should also specify their dependences in theme.cfg of that theme.

@@ -10,8 +10,8 @@ AddToMenu   MenuFvwmShells "Shells" Title
 + "&Eterm	default%menu/terminal.xpm%" Exec exec Eterm
 + "X&iterm	default%menu/terminal.xpm%" Exec exec xiterm -fg $[fg.cs30] -bg $[bg.cs30]
 + "&Aterm	default%menu/terminal.xpm%" Exec exec aterm -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Gnome Term	default%menu/terminal.xpm%" Exec exec gnome-terminal --foreground=$[fg.cs30] --background=$[bg.cs30]
-+ "&Kvt	default%menu/terminal.xpm%"         Exec exec kvt -vt_fg $[fg.cs30] -vt_bg $[bg.cs30]
++ "&GNOME Term	default%menu/terminal.xpm%" Exec exec gnome-terminal --foreground=$[fg.cs30] --background=$[bg.cs30]
++ "&Kvt 	default%menu/terminal.xpm%" Exec exec kvt -vt_fg $[fg.cs30] -vt_bg $[bg.cs30]
 + "&Konsole	default%menu/terminal.xpm%" Exec exec konsole
 + "&Dtterm	default%menu/terminal.xpm%" Exec exec /usr/dt/bin/dtterm -fg $[fg.cs30] -bg $[bg.cs30]
 + "" Nop
@@ -22,8 +22,8 @@ AddToMenu   MenuFvwmShells "Shells" Title
 + "&Eterm	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec Eterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 --login-shell --font 7x14 --bold-font 7x14bold
 + "X&iterm 	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec xiterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
 + "&Aterm	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec aterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Gnome Term	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec gnome-terminal --title=$USER@$HOST --geometry=80x40 --login --font=7x14 --foreground=$[fg.cs30] --background=$[bg.cs30]
-+ "&Kvt	80x40 (7x14 font)%menu/terminal.xpm%"         Exec exec kvt    -n $USER@$HOST -T $USER@$HOST -vt_geometry 80x40 -sl 4096 -ls -vt_font 7x14 -vt_fg $[fg.cs30] -vt_bg $[bg.cs30]
++ "&GNOME Term	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec gnome-terminal --title=$USER@$HOST --geometry=80x40 --login --font=7x14 --foreground=$[fg.cs30] --background=$[bg.cs30]
++ "&Kvt 	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec kvt    -n $USER@$HOST -T $USER@$HOST -vt_geometry 80x40 -sl 4096 -ls -vt_font 7x14 -vt_fg $[fg.cs30] -vt_bg $[bg.cs30]
 + "&Konsole	80x40%menu/terminal.xpm%"             Exec exec konsole -nowelcome -sl 4096 -ls -vt_sz 80x40
 + "&Dtterm	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec /usr/dt/bin/dtterm -n $USER@$HOST -T $USER@$HOST -sl 4096 -ls -g 80x40 -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
 + "" Nop
@@ -192,8 +192,8 @@ AddToMenu   MenuFvwmUtilities "Utilities" Title
 
 DestroyMenu MenuFvwmApplications
 AddToMenu   MenuFvwmApplications "Applications" Title
-+ "Gnome &Panel%menu/gnome.xpm%"	Exec exec panel
-+ "Xfce &Panel%menu/gnome.xpm%"		Exec exec xfce
++ "GNOME &Panel%menu/gnome.xpm%"	Exec exec panel
++ "XFCE &Panel%menu/gnome.xpm%"		Exec exec xfce
 + "&GhostView%menu/ghostview.xpm%" 	Exec exec ghostview
 + "X&pdf%menu/viewer.xpm%"		Exec exec xpdf
 + "&Acroread%menu/viewer.xpm%"		Exec exec acroread
@@ -208,7 +208,7 @@ AddToMenu   MenuFvwmApplications "Applications" Title
 DestroyMenu MenuFvwmScience
 AddToMenu   MenuFvwmScience "Science" Title
 + "Thx-1138%menu/calculator.xpm%"	Exec exec thx-1138
-+ "GNUplot%menu/science.xpm%"	FuncFvwmRunInXterm "GNUplot" "gnuplot"	
++ "GNUplot%menu/science.xpm%"		FuncFvwmRunInXterm "GNUplot" "gnuplot"	
 + "Scilab%menu/science.xpm%"		Exec exec scilab
 + "Mathematica%menu/science.xpm%"	Exec exec mathematica
 + "Mapel%menu/science.xpm%"		Exec exec xmaple
@@ -446,10 +446,10 @@ AddToMenu   MenuFvwmAmusements "Amusements" Title
 + "Start O.J.S. emulator%menu/amusement.xpm"	Exec exec xoj
 + "Stop O.J.S. emulator%menu/window-delete.xpm"	Exec exec killall xoj
 + "" Nop
-+ "Mesa Demo%menu/amusement.xpm%" 	Popup MenuFvwmMesaDemos
-+ "Xeyes%menu/amusement.xpm%" 		Exec exec xeyes
++ "Mesa Demo%menu/amusement.xpm%"	Popup MenuFvwmMesaDemos
++ "Xeyes%menu/amusement.xpm%"		Exec exec xeyes
 + "&X logo%menu/amusement.xpm%"		Exec exec xlogo
-+ "X&roach%menu/amusement.xpm%%"	Exec exec xroach
++ "X&roach%menu/amusement.xpm%"		Exec exec xroach
 
 DestroyMenu MenuFvwmMesaDemos
 AddToMenu   MenuFvwmMesaDemos "Mesa Demos" Title

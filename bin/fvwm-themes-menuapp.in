@@ -44,7 +44,7 @@ my $userDir = $ENV{'FVWM_USERDIR'} || "$userHome/.fvwm";
 my $persThemeDir = "$userDir/themes/personal";
 # site
 my $ftDir = "@FT_DATADIR@";
-my $siteMenusUser="$ftDir/themes/default/menus-user";
+my $siteMenusUser="$ftDir/themes/default/menus-programs";
 #my $siteDataDir = "$ftDir/data";
 #my @siteDataFiles = ("$siteDataDir/applications.db");
 # general
@@ -436,11 +436,11 @@ sub buildFilesLists {
 			@menuFilesListIn = ("$siteMenusUser");
 			return;
 		}
-		@menuFilesList = ("$persThemeDir/menus-user");
-		if (! -f "$persThemeDir/menus-user") {
+		@menuFilesList = ("$persThemeDir/menus-programs");
+		if (! -f "$persThemeDir/menus-programs") {
 			@menuFilesListIn = ("$siteMenusUser");
 		} else {
-			@menuFilesListIn = ("$persThemeDir/menus-user");
+			@menuFilesListIn = ("$persThemeDir/menus-programs");
 		}
 		push @menuFilesList, "$persThemeDir/menus-extra";
 		push @menuFilesListIn,"$persThemeDir/menus-extra";
@@ -1805,15 +1805,16 @@ B<--build-menus> - Cause fvwm-themes-menuapp to build clean menus.
 
 B<--com-mode> Run fvwm-themes-menuapp under the "communication mode".
 
-B<--menu-files> [file1,file2,...] - files which are read and wrote by 
+B<--menu-files> [file1,file2,...] - files which are read and written by 
 fvwm-themes-menuapp. By default, fvwm-themes-menuapp will 
-read $FT_DATADIR/themes/default/menus-user with the --site option. Without
-the --site option fvwm-themes-menuapp will read menus-user and menus-extra 
-(if found) in the fvwm-themes personal dir: $FVWM_USERDIR/themes/personal. 
-If menus-user is not found in this directory the site menus-users file is
-used (the one under $FT_DATADIR). Moreover, if menus-extra is not found
-a virtual such file is created so that the "personal" menus can
-be created (MenuFvwmPersonal).
+read $FT_DATADIR/themes/default/menus-programs with the --site option.
+Without the --site option fvwm-themes-menuapp will read menus-programs
+and menus-extra  (if found) in the fvwm-themes personal dir:
+$FVWM_USERDIR/themes/personal. 
+If menus-programs is not found in this directory the site's menus-programs
+file is used (the one under $FT_DATADIR). Moreover, if menus-extra is not
+found, a virtual such file is created so that the "personal" menus can
+be created (MenuFvwmPersonal) in it.
 
 B<--site> - Change the default for the --menu-files option.
  
