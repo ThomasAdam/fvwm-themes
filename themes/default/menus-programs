@@ -49,6 +49,7 @@ AddToMenu   MenuFvwmSystem "System" Title
 + "xfm%menu/file-manager.xpm%"		Exec exec xfm
 + "xftree%menu/file-manager.xpm%"	Exec exec xftree
 + "gmc%menu/file-manager.xpm%"		Exec exec gmc
++ "Nautilus%menu/file-manager.xpm%"	Exec exec nautilus
 + "kfm%menu/file-manager.xpm%"		Exec exec kfmclient openURL $HOME
 + "Dtfile%menu/file-manager.xpm%"	Exec exec /usr/dt/bin/dtfile 
 + "Xfilemanager%menu/file-manager.xpm%"	Exec exec xfilemanager

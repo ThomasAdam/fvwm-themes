@@ -267,6 +267,7 @@ Style "logview"                Icon norm/viewer.xpm,           MiniIcon mini/vie
 Style "pan"                    Icon norm/news.xpm,             MiniIcon mini/news.xpm
 Style "vumeter"                Icon norm/sound.xpm,            MiniIcon mini/sound.xpm
 Style "X-Chat"                 Icon norm/chat.xpm,             MiniIcon mini/chat.xpm
+Style "nautilus"               Icon norm/file-manager.xpm,     MiniIcon mini/file-manager.xpm
 
 # XFCE Apps
 Style "xfclock"                Icon norm/clock.xpm,            MiniIcon mini/clock.xpm

@@ -1,3 +1,12 @@
+2002-06-05  olicha  <olivier.chapuis@free.fr>
+
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	* themes/default/menus-programs:
+	Added nautilus
+
+	* themes/default/settings.cfg:
+	Added some version hints for kde and gnome.
+
 2002-06-04  migo  <migo@homemail.com>
 
 	* themes/redmondxp/modules/*:
