@@ -27,6 +27,15 @@
 	DESTDIR now works, probably should be used instead ROOT_PREFIX;
 	"make distcheck" now finally works, but ALL_THEMES gives warning
 
+	* images.tar.gz:
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	* COPYING:
+	* README:
+	* devel/doc/sourceforge-developer:
+	* doc/README.1st:
+	* doc/fvwm-themes.lsm.in:
+	s/developement/development/
+
 2002-12-05  olicha  <olivier.chapuis@free.fr>
 
 	* themes/minimal/modules/main:

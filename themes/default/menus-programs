@@ -196,8 +196,8 @@ AddToMenu   MenuFvwmUtilities "Utilities" Title
 + "X&ColorSel%menu/colors.xpm%"		Exec exec xcolorsel
 + "&Color List%menu/colors.xpm%"	FuncFvwmViewFile /usr/X11R6/lib/X11/rgb.txt
 + "Xcolormap%menu/colors.xpm%"		Exec exec xcolormap
-+ "Xx&gdb%menu/developement.xpm%"	Exec exec xxgdb
-+ "&Ddd%menu/developement.xpm%"		Exec exec ddd
++ "Xx&gdb%menu/development.xpm%"	Exec exec xxgdb
++ "&Ddd%menu/development.xpm%"		Exec exec ddd
 + "x&apm%menu/monitoring.xpm%" 		Exec exec xapm
 + "&Xclipboard%menu/unknown.xpm%"	Exec exec xclipboard
 + "Xgrab%menu/display.xpm%"		Exec exec xgrab

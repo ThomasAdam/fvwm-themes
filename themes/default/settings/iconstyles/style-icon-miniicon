@@ -27,7 +27,7 @@ Style "XTerm"                  Icon norm/terminal.xpm,         MiniIcon mini/ter
 Style "rxterm"                 Icon norm/terminal-remote.xpm,  MiniIcon mini/terminal-remote.xpm
 
 # These are not all mine, most of globs must be removed.
-Style "DDD*"                   Icon norm/developement.xpm,     MiniIcon mini/developement.xpm
+Style "DDD*"                   Icon norm/development.xpm,      MiniIcon mini/development.xpm
 Style "GRASP*"                 Icon norm/file-manager.xpm,     MiniIcon mini/file-manager.xpm
 Style "HyTeX*"                 Icon norm/viewer.xpm,           MiniIcon mini/viewer.xpm
 Style "ImageMagic*"            Icon norm/image-processor.xpm,  MiniIcon mini/image-processor.xpm
@@ -162,8 +162,8 @@ Style "xv"                     Icon norm/xv.xpm,               MiniIcon mini/xv.
 Style "xvgr"                   Icon norm/image-viewer.xpm,     MiniIcon mini/image-viewer.xpm
 Style "xvmount"                Icon norm/disk.xpm,             MiniIcon mini/disk.xpm
 Style "xwp"                    Icon norm/word-processor.xpm,   MiniIcon mini/word-processor.xpm
-Style "xwpe"                   Icon norm/developement.xpm,     MiniIcon mini/developement.xpm
-Style "xxgdb"                  Icon norm/developement.xpm,     MiniIcon mini/developement.xpm
+Style "xwpe"                   Icon norm/development.xpm,      MiniIcon mini/development.xpm
+Style "xxgdb"                  Icon norm/development.xpm,      MiniIcon mini/development.xpm
 
 # Open File dialog
 Style "Browse * Select a File" Icon norm/folder.xpm,           MiniIcon mini/folder.xpm
@@ -214,7 +214,7 @@ Style "FvwmScript-PointerSetup" Icon norm/mouse.xpm,            MiniIcon mini/mo
 
 # GNOME/Gtk Apps
 Style "AbiWord*"               Icon norm/word-processor.xpm,   MiniIcon mini/word-processor.xpm
-Style "bug-buddy"              Icon norm/developement.xpm,     MiniIcon mini/developement.xpm
+Style "bug-buddy"              Icon norm/development.xpm,      MiniIcon mini/development.xpm
 Style "Dia"                    Icon norm/science.xpm,          MiniIcon mini/science.xpm
 Style "eog"                    Icon norm/image-viewer.xpm,     MiniIcon mini/image-viewer.xpm
 Style "Galeon-bin"             Icon norm/www.xpm,              MiniIcon mini/www.xpm
@@ -296,7 +296,7 @@ Style "kchart"                 Icon norm/information.xpm,      MiniIcon mini/inf
 Style "kcron"                  Icon norm/system.xpm,           MiniIcon mini/system.xpm
 Style "kdehelp"                Icon norm/help.xpm,             MiniIcon mini/help.xpm
 Style "kdepasswd"              Icon norm/terminal-special.xpm, MiniIcon mini/terminal-special.xpm
-Style "kdevelop"               Icon norm/developement.xpm,     MiniIcon mini/developement.xpm
+Style "kdevelop"               Icon norm/development.xpm,      MiniIcon mini/development.xpm
 Style "kdesu"                  Icon norm/terminal-special.xpm, MiniIcon mini/terminal-special.xpm
 Style "kdf"                    Icon norm/disk.xpm,             MiniIcon mini/disk.xpm
 Style "kdvi"                   Icon norm/viewer.xpm,           MiniIcon mini/viewer.xpm
