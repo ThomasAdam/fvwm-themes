@@ -1,3 +1,6 @@
+# Enable FVWM workaround for xsm DiscardCommand bug.
+SetEnv SESSION_MANAGER_NAME xsm
+
 # quit menu
 DestroyMenu MenuFvwmQuit
 AddToMenu   MenuFvwmQuit "Really Quit Session?" Title

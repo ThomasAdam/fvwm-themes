@@ -1,3 +1,8 @@
+2001-03-21  migo  <migo@homemail.com>
+
+	* themes/default/settings/session-manager/xsm: added a workaround
+	* scripts/FvwmScript-ColorSelector: restored the correct image name
+
 2001-03-21  olicha  <olivier.chapuis@free.fr>
 	
 	* themes/default/settings/{kde,gnome}/*menu*/*:
