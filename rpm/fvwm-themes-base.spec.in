@@ -94,14 +94,14 @@ echo ""
 %preun
 [ -f /usr/share/fvwm/menu-system/install-menu-system.sh ] && sh /usr/share/fvwm/menu-system/install-menu-system.sh Uninstall || true
 
-## TODO: how to specify the current date in .spec? Or how to run a `command`?
-#%changelog
+%define date%(echo `LC_ALL="C" date +"%d %b %Y"`)
+%changelog
 #
-#* Tue 23 Oct 2001 18:52:00 UTC  olicha  <olivier.chapuis@free.fr>
-#- added a way to handle the debian menu system on any system
-#
-#* Thu 07 Sep 2000 20:00:00 IDT  FVWM Themes Developers  <fvwm-themes-devel@lists.sourceforge.net>
-#- Auto building %{PACKAGE_VERSION}
-#
-#* Thu 07 Sep 2000 20:00:00 IDT  Mikhael Goikhman  <migo@homemail.com>
-#- First try at making the package
+* %{date}  FVWM Themes Developers  <fvwm-themes-devel@lists.sourceforge.net>
+- Auto building %{PACKAGE_VERSION}
+
+* 23 Oct 2001  olicha  <olivier.chapuis@free.fr>
+- added a way to handle the debian menu system on any system
+
+* 07 Sep 2000  Mikhael Goikhman  <migo@homemail.com>
+- First try at making the package

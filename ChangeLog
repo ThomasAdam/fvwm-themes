@@ -3,6 +3,12 @@
 	* themes/redmondxp/modules/FvwmThemesPanelManager:
 	moved to a new perllib API
 
+	* rpm/fvwm-themes-base.spec.in:
+	use `date`, hopefully should work
+
+	* themes/luthien/colors/palettes/Water.dp:
+	make it white fg for titles like in CDE
+
 2002-09-03  migo  <migo@homemail.com>
 
 	* themes/ice/buttons:
