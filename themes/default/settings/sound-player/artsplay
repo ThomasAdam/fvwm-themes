@@ -1,0 +1,12 @@
+*FvwmEvent-Sound: Cmd "Exec exec artsplay "
+
+DestroyFunc FuncFvwmStartFvwmEvent-Sound
+AddToFunc   FuncFvwmStartFvwmEvent-Sound
++ I Module FvwmEvent FvwmEvent-Sound
+
+DestroyFunc FuncFvwmStopFvwmEvent-Sound
+AddToFunc   FuncFvwmStopFvwmEvent-Sound
++ I KillModule FvwmEvent FvwmEvent-Sound
+
+AddToMenu   MenuFvwmStartRegularModules "Sound Effect (artsplay)" \
+	FuncFvwmRestartModuleByAlias FvwmEvent FvwmEvent-Sound

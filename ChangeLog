@@ -1,10 +1,16 @@
-2000-02-27  olicha  <olivier.chapuis@free.fr>
+2001-03-01  olicha  <olivier.chapuis@free.fr>
+	
+	* themes/default/settings.cfg:
+	* themes/default/settings/sound-player/artsplay:
+	Added KDE2 sound player (needs artsd deamon to work)
+	
+2001-02-27  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-menuapp.in:
 	* scripts/FvwmScript-Menus:
 	Some FvwmScript-Menus fixes
 	
-2000-02-27  migo  <migo@homemail.com>
+2001-02-27  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-menuapp.in:
 	reimplemented getNextQuotedToken(), this should fix all problems
@@ -17,11 +23,11 @@
 	Added exec in the get parent pid command so that this work with
 	any shell
 	
-2000-02-25  migo  <migo@homemail.com>
+2001-02-25  migo  <migo@homemail.com>
 
 	* TODO, NEWS: updated
 
-2000-02-23  migo  <migo@homemail.com>
+2001-02-23  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
 	implemented --info; some pod fixes
@@ -31,7 +37,7 @@
 	* bin/fvwm-themes-script.in:
 	fixed new placement style parsing
 
-2000-02-22  migo  <migo@homemail.com>
+2001-02-22  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
 	* bin/fvwm-themes-menuapp.in:
@@ -101,7 +107,7 @@
 	* AUTHORS:
 	Added Andre
 	
-2000-02-17  migo  <migo@homemail.com>
+2001-02-17  migo  <migo@homemail.com>
 
 	* images.tar.gz:
 	* themes/redmond98/buttons:
@@ -112,7 +118,7 @@
 	Several datadir related fixes. This also fixes the problem of
 	empty messages when fvwm-themes is installed in non-default place.
 
-2000-02-03  migo  <migo@homemail.com>
+2001-02-03  migo  <migo@homemail.com>
 
 	* themes/migo/modules/main:FvwmPager-Single:
 	more MoveToPage menu items
@@ -127,12 +133,12 @@
 	* bin/fvwm-themes-config.in:
 	s/rm-config-cache/no-config-cache/
 	
-2000-01-06  migo  <migo@homemail.com>
+2001-01-06  migo  <migo@homemail.com>
 
 	* themes/default/menus:
 	improved window printing, so this now should work on more systems
 
-2000-01-05  migo  <migo@homemail.com>
+2001-01-05  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
 	* themes/*/*.cfg:
@@ -175,7 +181,7 @@
 	and rebuild or not the config cache file in the theme management
 	menu.
 
-2000-01-03  migo  <migo@homemail.com>
+2001-01-03  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
 	implemented a new 'complements=component' rule mainly for extra;
@@ -192,7 +198,7 @@
 	* themes/default/styles:
 	Trying to continue UsePPosition experiment... Netscape is broken.
 
-2000-01-02  migo  <migo@homemail.com>
+2001-01-02  migo  <migo@homemail.com>
 
 	* locale/ru/FvwmScript-ThemesCenter.html:
 	translated some more paragraphs...
