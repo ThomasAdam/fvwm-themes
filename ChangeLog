@@ -30,6 +30,10 @@
 	* themes/multichoice/theme.cfg:
 	minor improvements
 
+	* themes/default/globalfeel:
+	* themes/migo/globalfeel:
+	use OpaqueMoveSize unlimited
+
 2003-10-01  migo  <migo@homemail.com>
 
 	* NEWS:

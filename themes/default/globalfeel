@@ -11,7 +11,7 @@ Style * TileCascadePlacement, GrabFocusOff, NoPPosition
 # ---------------------------- Move and Resize ----------------------------
 
 Style * ResizeOutLine
-OpaqueMoveSize 10
+OpaqueMoveSize unlimited
 Emulate FVWM
 HideGeometryWindow Never
 BugOpts FlickeringMoveWorkaround Off

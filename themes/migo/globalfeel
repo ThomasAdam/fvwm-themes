@@ -10,7 +10,7 @@ Style * TileCascadePlacement, GrabFocusOff, NoPPosition
 # ---------------------------- Move and Resize ----------------------------
 
 Style * ResizeOpaque
-OpaqueMoveSize 95
+OpaqueMoveSize unlimited
 Emulate MWM
 HideGeometryWindow Never
 BugOpts FlickeringMoveWorkaround Off
