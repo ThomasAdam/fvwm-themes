@@ -1,3 +1,11 @@
+2003-12-11  migo  <migo@homemail.com>
+
+	* NEWS:
+	* themes/transparent/README:
+	* themes/transparent/colors:
+	* themes/transparent/windowlook:
+	added new transparent theme
+
 2003-12-09  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-root.in:

@@ -1,0 +1,163 @@
+# colors@migo
+
+# more details and comments can be found in colors@default
+# I.   FVWM Colorsets
+# II.  Module Colorsets
+# III. Application Colorsets
+# IV.  Start/Stop Functions
+
+# ----------------------------------------------------------------------------
+# I. FVWM Colorsets
+
+# ----------------
+# Default colorset
+
+Colorset 0 fg rgb:f8/f8/f3, bg rgb:50/50/78, Plain, NoShape
+
+# ------------------
+# Window decorations
+
+# window title, inactive and active
+Colorset 1 RootTransparent buffer, fg white, bg average, \
+	Tint cyan 15, bgTint cyan 15, IconAlpha 60
+Colorset 2 RootTransparent buffer, fg white, bg average, \
+	Tint violet 15, bgTint violet 15
+
+# window borders, inactive and active
+Colorset 3 fg $[fg.cs1], bg $[bg.cs1], Plain, NoShape
+Colorset 4 fg $[fg.cs2], bg $[bg.cs2], Plain, NoShape
+
+# background for window title, buttons and border
+DestroyFunc FuncFvwmDecorBackground
+AddToFunc   FuncFvwmDecorBackground
++ I BorderStyle Inactive    Colorset 1
++ I BorderStyle Active      Colorset 2
++ I TitleStyle  AllInactive Colorset 1
++ I TitleStyle  AllActive   Colorset 2
++ I ButtonStyle All Simple -- UseTitleStyle
+
+# --------------
+# Menu Colorsets
+
+# inactive menu item fg+bg and menu face
+Colorset 5 RootTransparent buffer, fg white, bg average, \
+	Tint black 17, bgTint black 17
+
+# active menu item fg+bg
+Colorset 6 RootTransparent, fg white, bg average, \
+	bgTint black 5
+
+# greyed menu item fg
+Colorset 7 fg gray, bg gray, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# II. Module Colorsets
+
+# ----------------
+# Common Colorsets
+
+# default for modules
+Colorset 10 RootTransparent, fg white, bg average, \
+	Tint gray 12, bgTint gray 12
+
+# default hilight
+Colorset 11 RootTransparent, fg white, bg average, \
+	Tint red 15, bgTint red 15
+
+# special
+Colorset 12 RootTransparent, fg white, bg average, \
+	Tint red 15, bgTint red 15
+
+# swallowed window
+Colorset 13 fg white, bg $[bg.cs10], Plain, NoShape
+
+# default2 (FvwmPager or to get more colors in Buttons)
+Colorset 14 RootTransparent, fg white, bg average, \
+	Tint gray 12, bgTint gray 12
+
+# default hilight2: (FvwmPager or to get more colors in a Buttons)
+Colorset 15 RootTransparent, fg white, bg average, \
+	Tint red 15, bgTint red 15
+
+# tips/balloons
+Colorset 16 fg black, bg rgb:FF/FF/D0, Plain, NoShape
+
+# ----------------------------
+# Window List Module Colorsets
+
+# standard item
+Colorset 17 RootTransparent, fg white, bg average, \
+	Tint gray 12, bgTint gray 12
+
+# active item
+Colorset 18 RootTransparent, fg white, bg average, \
+	Tint violet 15, bgTint violet 15
+
+# iconified item
+Colorset 19 RootTransparent, fg white, bg average, \
+	Tint black 15, bgTint black 15, IconAlpha 60
+
+# pointed item
+Colorset 20 RootTransparent, fg white, bg average, \
+	Tint white 15, bgTint white 15
+
+# ----------------------
+# Other Module Colorsets
+
+# FvwmIdent
+Colorset 21 RootTransparent, fg white, bg average, \
+	Tint black 15, bgTint black 15
+
+# FvwmConsole
+Colorset 22 fg white, bg rgb:00/30/30, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# III. Application Colorsets
+
+# regular terminal
+Colorset 30 fg white, bg rgb:00/00/30, Plain, NoShape
+
+# admin terminal
+Colorset 31 fg white, bg rgb:00/30/30, Plain, NoShape
+
+# remote terminal
+Colorset 32 fg white, bg rgb:30/00/00, Plain, NoShape
+
+# viewer terminal
+Colorset 33 fg white, bg rgb:00/30/00, Plain, NoShape
+
+# application run in the terminal, text editor
+Colorset 34 fg white, bg rgb:00/30/00, Plain, NoShape
+
+# dialog main area
+Colorset 35 fg black, bg rgb:a0/90/80, Plain, NoShape
+
+# dialog text area
+Colorset 36 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# IV. Start/Stop Functions
+
+DestroyFunc FuncFvwmStartColors
+AddToFunc   FuncFvwmStartColors
++ I Colorset  1 fgTint $[bg.cs1] 33
++ I Colorset 19 fgTint $[bg.cs1] 33
+
+DestroyFunc FuncFvwmStopColors
+AddToFunc   FuncFvwmStopColors
+# temporarily until we have Colorset Clear
++ I Colorset  1 Tint, bgTint, fgTint, IconAlpha
++ I Colorset  2 Tint, bgTint
++ I Colorset  5 Tint, bgTint
++ I Colorset  6 bgTint
++ I Colorset 10 Tint, bgTint
++ I Colorset 11 Tint, bgTint
++ I Colorset 12 Tint, bgTint
++ I Colorset 13 Tint, bgTint
++ I Colorset 14 Tint, bgTint
++ I Colorset 15 Tint, bgTint
++ I Colorset 17 Tint, bgTint
++ I Colorset 18 Tint, bgTint
++ I Colorset 19 Tint, bgTint, fgTint, IconAlpha
++ I Colorset 20 Tint, bgTint
++ I Colorset 21 Tint, bgTint

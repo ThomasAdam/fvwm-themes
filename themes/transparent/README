@@ -1,0 +1,16 @@
+This theme tries to make everything more or less transparent. :)
+
+Important note!  Your background should be loaded using "fvwm-root -r",
+"Esetroot", "wmsetbg" or similar utilities.  Or just "fvwm-themes-root".
+
+If you only use PNG or XPM background images then you don't need to install
+anything for this theme to work (most of backgrounds included in fvwm-themes
+are loaded using "fvwm-themes-root" utility, it automatically uses
+"fvwm-root -r" when possible).
+
+If you use JPG, TIF or GIF background images, then you should install
+either "wmsetbg" or "Esetroot".  Then use "fvwm-themes-root" to load
+your background as usual, it will autodetect the actual image loader.
+
+Theme author: Mikhael Goikhman.
+

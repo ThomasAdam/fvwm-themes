@@ -1,0 +1,20 @@
+FuncFvwmSetFont-WindowTitle * "xft:Luxi Serif:Bold:pixelsize=14:minspace=true;-*-helvetica-bold-r-normal-*-12-*"
+FuncFvwmSetFont-IconTitle   * "xft:Luxi Serif:Medium:pixelsize=12:minspace=true;-*-fixed-medium-r-semicondensed-*-13-*
+
+Style "*"	BorderWidth 5, HandleWidth 5
+Style "*"	FvwmBorder, FirmBorder
+
+BorderStyle	-- flat
+
+TitleStyle	Centered
+TitleStyle	-- flat
+
+ButtonStyle	All -- flat
+
+AddToFunc   FuncFvwmReloadDecor
++ I FuncFvwmSetFont-WindowTitle * "xft:Luxi Serif:Bold:pixelsize=14:minspace=true;-*-helvetica-bold-r-normal-*-12-*"
++ I FuncFvwmSetFont-IconTitle   * "xft:Luxi Serif:Medium:pixelsize=12:minspace=true;-*-fixed-medium-r-semicondensed-*-13-*
++ I BorderStyle -- flat
++ I TitleStyle	-- flat
++ I ButtonStyle	All -- flat
++ I FuncFvwmOverRideWindowLook
