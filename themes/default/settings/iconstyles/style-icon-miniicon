@@ -59,6 +59,7 @@ Style "Explorer"               Icon norm/file-manager.xpm,     MiniIcon mini/fil
 Style "Fractine"               Icon norm/science.xpm,          MiniIcon mini/science.xpm
 Style "fr"                     Icon norm/file-manager.xpm,     MiniIcon mini/file-manager.xpm
 Style "freeamp"                Icon norm/music.xpm,            MiniIcon mini/music.xpm
+Style "FreeAmp*"               Icon norm/music.xpm,            MiniIcon mini/music.xpm
 Style "File Viewer*"           Icon norm/viewer.xpm,           MiniIcon mini/viewer.xpm
 Style "Fvwm*"                  Icon norm/utility.xpm,          MiniIcon mini/utility.xpm
 Style "ghostview"              Icon norm/ghostview.xpm,        MiniIcon mini/ghostview.xpm
