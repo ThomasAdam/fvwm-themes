@@ -1,3 +1,30 @@
+2000-09-24  migo  <migo@homemail.com>
+
+	* themes/default/functions:
+	* themes/afterstep/buttons:
+	moved theme specific function FuncFvwmFocusAndWrap[ToButton1]
+
+	* themes/default/bindings:
+	* themes/default/functions:
+	added Ctrl-KP[1-9] directional commands using FuncFvwmSelectWindow;
+	rearranged arrow commands, small key binding changes
+
+	* themes/{cde,luthien}/colors/main:
+	changed a key for ColourTable
+
+	* bin/fvwm-themes-config.in:
+	implemented getComponentNamedValue function, now used in
+	getExternalImagePath & getAllHooksRc
+
+	* themes/default/settings.cfg:
+	added two 'follows+=settings/gnome/system-menu' lines
+
+	* themes/default/settings.cfg:
+	* themes/default/settings/iconstyles/wm-icons[:imagepath]:
+	* themes/migo/modules.cfg:
+	* themes/migo/modules/main:
+	used wm-icons default external-path, probably should be autoconfigured
+
 2000-09-20  migo  <migo@homemail.com>
 
 	* themes/{cde,luthien}/colors/main:

@@ -10,7 +10,7 @@ ButtonStyle All - Clear
 TitleStyle	Height 19
 
 #     button	context	modifie	function
-Mouse 0 	1	A	Next (!Iconic) FuncFvwmFocusAndWrap
+Mouse 0 	1	A	Next (!Iconic) FuncFvwmFocusAndWrapToButton1
 Mouse 1 	2	A	FuncFvwmDeleteOrDestroy
 Mouse 3 	2	A	WindowShade
 Mouse 1 	3	A	FuncFvwmWindowOpsOrAction Delete
@@ -41,3 +41,9 @@ AddToFunc   FuncFvwmRemoveButtonsBindings
 + I Mouse 0 	2	CM	-
 + I Mouse 0 	4	CM	-
 + I Mouse 0 	6	CM	-
++ I DestroyFunc FuncFvwmFocusAndWrapToButton1
+
+DestroyFunc FuncFvwmFocusAndWrapToButton1
+AddToFunc   FuncFvwmFocusAndWrapToButton1
++ I Focus
++ I WarpToWindow 10p 10p

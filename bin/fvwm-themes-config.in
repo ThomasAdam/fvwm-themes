@@ -1186,51 +1186,61 @@ sub getSortedComponentsToRead ($) {
 	return \@sortedComponents;
 }
 
-# olicha3: implemented choice.external-imagepath. I do not think that
-# we need the "config" key. Do we need to implement
-# option.value.external-imagepath+=
-# migo: with choice.config:anykey and option.value.config:anykey this is
-# more structured, but this is only a technical issue.
-# What we need is a method, which gets key and returns the value accourding
-# to the component value, the current option and choice values (if any).
-# If array, all values are added.
+# returns component key value, which can be overridden by choice/optionValue
+# key values. If it is array, all found values are joined together.
+sub getComponentNamedValue ($$$) {
+	my $self = shift;
+	my $component = shift;
+	my $name = shift;
+
+	my $cc = $self->getComponentCfg($component);
+	return undef unless $cc->{'used'};
+	my $value = $cc->{$name};
+
+	if (ref($choices) eq 'ARRAY') {
+		my $index = defined $cc->{'current'}?
+			$cc->{'current'}: $cc->{'default'};
+		$index = $index - 1;
+		$index = 0 if ($index < 0 || $index >= @$choices);
+		my $choice = $choices->[$index];
+		my $newValue = $choice->{$name};
+		next unless defined $newValue;
+		errDie("Mixed '$name' types (" . (ref($value) || "scalar") . " and "
+			. (ref($newValue) || "scalar") . ") for component $component")
+			if defined $value && ref($value) ne ref($newValue);
+		if (ref($value) eq 'ARRAY') {
+			push @$value, @$newValue;
+		} else {
+			$value = $newValue;
+		}
+	}
+	### should probably handle the named value of all current options here
+
+	return $value;
+}
 
 sub getExternalImagePath ($) {
 	my $self = shift;
 	my $currentComponents = [keys %{$self->{cc}}];
-	my $imagePath = "";
-	my $tmp = [];
+	my $imagePathDirs = [];
 
 	foreach (@$currentComponents) {
-		my $cc = $self->getComponentCfg($_);
-		next unless $cc->{'used'};
-		my @array = ();
-		my $choices = $cc->{'choice'};
-		if (ref($choices) eq 'ARRAY') {
-			my $index = defined $cc->{'current'} ?
-				$cc->{'current'}: $cc->{'default'};
-			$index = $index - 1;
-			$index = 0 if ($index < 0 || $index >= @$choices);
-			my $choice = $choices->[$index];
-			@array = @{$choice->{'external-imagepath'}}
-				if ref($choice->{'external-imagepath'}) eq 'ARRAY';
-		}
-		push @array, @{$cc->{'external-imagepath'}}
-			if ref($cc->{'external-imagepath'}) eq 'ARRAY';
-		foreach (@array) {
-			next if isArrayElement($tmp, $_);
-			$imagePath .= ":$_"; push @$tmp, $_;
+		my $dirs = $self->getComponentNamedValue($_, 'external-imagepath');
+		next unless defined $dirs;
+		errDie("external-imagepath ($dirs) in component '$_' is not ARRAY")
+			unless ref($dirs) eq 'ARRAY';
+		foreach (@$dirs) {
+			next if isArrayElement($imagePathDirs, $_);
+			push @$imagePathDirs, $_;
 		}
 	}
-	return $imagePath;
+	return join(':', @$imagePathDirs);
 }
 
-# olicha3: implemented choice.start-stop. I do not think that
-# we need to implement option.value.start-stop+=
 sub getAllHooksRc ($) {
 	my $self = shift;
 	my $currentComponents = [keys %{$self->{cc}}];
-	my $tmp = [];
+	my $startStopItems = [];
 
 	my $startHooksRc =
 		"DestroyFunc FuncFvwmStartAllHooks\n" .
@@ -1239,24 +1249,13 @@ sub getAllHooksRc ($) {
 		"DestroyFunc FuncFvwmStopAllHooks\n" .
 		"AddToFunc   FuncFvwmStopAllHooks\n";
 	foreach (@$currentComponents) {
-		my $cc = $self->getComponentCfg($_);
-		next unless $cc->{'used'};
-		my @array = ();
-		my $choices = $cc->{'choice'};
-		if (ref($choices) eq 'ARRAY') {
-			my $index = defined $cc->{'current'} ?
-				$cc->{'current'}: $cc->{'default'};
-			$index = $index - 1;
-			$index = 0 if ($index < 0 || $index >= @$choices);
-			my $choice = $choices->[$index];
-			@array = @{$choice->{'start-stop'}}
-				if ref($choice->{'start-stop'}) eq 'ARRAY';
-		}
-		push @array, @{$cc->{'start-stop'}}
-			if ref($cc->{'start-stop'}) eq 'ARRAY';
-		foreach (@array) {
-			next if isArrayElement($tmp, $_);
-			push @$tmp, $_;
+		my $items = $self->getComponentNamedValue($_, 'start-stop');
+		next unless defined $items;
+		errDie("start-stop ($items) in component '$_' is not ARRAY")
+			unless ref($items) eq 'ARRAY';
+		foreach (@$items) {
+			next if isArrayElement($startStopItems, $_);
+			push @$startStopItems, $_;
 			$startHooksRc .= "+ I FuncFvwmStart$_\n";
 			$stopHooksRc  .= "+ I FuncFvwmStop$_\n";
 		}

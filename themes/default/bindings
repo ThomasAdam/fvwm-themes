@@ -64,31 +64,42 @@ AddToFunc   FuncFvwmWindowOpsOrAction
 # ---------------------------------------------------------------------------
 #     key	context	modifie	function
 
-# press Shift-Ctrl-Alt arrow anywhere, and scroll by 1 page
-Key Left	A	SCM	Scroll -100   +0
-Key Right	A	SCM	Scroll +100   +0
-Key Up  	A	SCM	Scroll   +0 -100
-Key Down	A	SCM	Scroll   +0 +100
+# press Ctrl-Alt arrow anywhere, and scroll by one page
+Key Left	A	CM	GotoPage -1p +0p
+Key Right	A	CM	GotoPage +1p +0p
+Key Up  	A	CM	GotoPage +0p -1p
+Key Down	A	CM	GotoPage +0p +1p
 
-# press Ctrl-Alt arrow anywhere, and scroll by 1/10 of a page
-Key Left	A	CM	Scroll -10  +0
-Key Right	A	CM	Scroll +10  +0
-Key Up  	A	CM	Scroll  +0 -10
-Key Down	A	CM	Scroll  +0 +10
+# press Shift-Ctrl-Alt arrow anywhere, and scroll by 10% of a page
+Key Left	A	SCM	Scroll -10  +0
+Key Right	A	SCM	Scroll +10  +0
+Key Up  	A	SCM	Scroll  +0 -10
+Key Down	A	SCM	Scroll  +0 +10
 
-# press Shift-Ctrl arrow anywhere, and move the pointer by 1% of a page
-Key Left	A	SC	CursorMove -1 +0
-Key Right	A	SC	CursorMove +1 +0
-Key Up  	A	SC	CursorMove +0 -1
-Key Down	A	SC	CursorMove +0 +1
+# press Shift-Ctrl arrow anywhere, reserved
+Key Left	A	SC	Nop
+Key Right	A	SC	Nop
+Key Up  	A	SC	Nop
+Key Down	A	SC	Nop
 
-# press Shift+Alt arrow anywhere, and move the pointer by 1/10 of a page
-Key Left	A	SM	CursorMove -10  +0
-Key Right	A	SM	CursorMove +10  +0
-Key Up  	A	SM	CursorMove  +0 -10
-Key Down	A	SM	CursorMove  +0 +10
+# press Shift+Alt arrow anywhere, and move the pointer by 1% of a page
+Key Left	A	SM	CursorMove -1 +0
+Key Right	A	SM	CursorMove +1 +0
+Key Up  	A	SM	CursorMove +0 -1
+Key Down	A	SM	CursorMove +0 +1
 
-# Keyboard accelerators
+# direction commands
+Key KP_1	A	C	Direction SouthWest FuncFvwmSelectWindow
+Key KP_2	A	C	Direction South     FuncFvwmSelectWindow
+Key KP_3	A	C	Direction SouthEast FuncFvwmSelectWindow
+Key KP_4	A	C	Direction West      FuncFvwmSelectWindow
+Key KP_5	A	C	WindowList
+Key KP_6	A	C	Direction East      FuncFvwmSelectWindow
+Key KP_7	A	C	Direction NorthWest FuncFvwmSelectWindow
+Key KP_8	A	C	Direction North     FuncFvwmSelectWindow
+Key KP_9	A	C	Direction NorthEast FuncFvwmSelectWindow
+
+# keyboard accelerators
 # Shift is needed to let some apps to handle keys
 Key F1  	A	SM	Menu MenuFvwmRoot
 Key F2  	A	SM	WindowList
@@ -103,9 +114,12 @@ Key F10  	A	SM	Maximize
 Key F11 	A	SM	Module FvwmIdent
 Key F12 	A	SM	Module FvwmConsole -fg $[fg.cs33] -bg $[bg.cs33]
 
+Key Tab 	A	M	WindowList Root c c NoDeskSort, SelectOnRelease Meta_L
 Key Tab 	A	SM	WindowList Root c c OnlyListSkip, NoDeskSort, SelectOnRelease
-Key Tab 	A	CM	Prev Focus
-Key Tab 	A	SCM	Next Focus
+Key Tab 	A	CM	Prev FuncFvwmSelectWindow
+Key Tab 	A	SCM	Next FuncFvwmSelectWindow
+Key Prior	A	M	Prev FuncFvwmSelectWindow
+Key Next	A	M	Next FuncFvwmSelectWindow
 Key F11 	A	SC	Pick FuncFvwmMaximizeFullScreen
 Key F12 	A	SC	Pick FuncFvwmUnmaximizeFullScreen
 
@@ -151,14 +165,14 @@ MouseXX 3 2	WI	M	Menu MenuFvwmWindowOps
 
 DestroyFunc FuncFvwmRemoveBindings
 AddToFunc   FuncFvwmRemoveBindings
-+ I Key Left	A	SCM	-
-+ I Key Right	A	SCM	-
-+ I Key Up  	A	SCM	-
-+ I Key Down	A	SCM	-
 + I Key Left	A	CM	-
 + I Key Right	A	CM	-
 + I Key Up  	A	CM	-
 + I Key Down	A	CM	-
++ I Key Left	A	SCM	-
++ I Key Right	A	SCM	-
++ I Key Up  	A	SCM	-
++ I Key Down	A	SCM	-
 + I Key Left	A	SC	-
 + I Key Right	A	SC	-
 + I Key Up  	A	SC	-
@@ -167,6 +181,15 @@ AddToFunc   FuncFvwmRemoveBindings
 + I Key Right	A	SM	-
 + I Key Up  	A	SM	-
 + I Key Down	A	SM	-
++ I Key KP_1	A	C	-
++ I Key KP_2	A	C	-
++ I Key KP_3	A	C	-
++ I Key KP_4	A	C	-
++ I Key KP_5	A	C	-
++ I Key KP_6	A	C	-
++ I Key KP_7	A	C	-
++ I Key KP_8	A	C	-
++ I Key KP_9	A	C	-
 + I Key F1  	A	SM	-
 + I Key F2  	A	SM	-
 + I Key F3  	A	SM	-
@@ -179,9 +202,12 @@ AddToFunc   FuncFvwmRemoveBindings
 + I Key F10 	A	SM	-
 + I Key F11 	A	SM	-
 + I Key F12 	A	SM	-
++ I Key Tab 	A	M	-
 + I Key Tab 	A	SM	-
 + I Key Tab 	A	CM	-
 + I Key Tab 	A	SCM	-
++ I Key Prior	A	M	-
++ I Key Next	A	M	-
 + I Mouse 1 	R	A	-
 + I MouseXX 2 3	R	A	-
 + I MouseXX 3 2	R	A	-

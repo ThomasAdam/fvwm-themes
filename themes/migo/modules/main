@@ -9,9 +9,6 @@
 Style * IconBox 130 5 -130 700, IconGrid 64 64, IconFill left top
 Style * SlipperyIcon, IconTitle
 
-# Change this to the real path of wm-icons (this is a default).
-ImagePath $HOME/.wm-icons:/usr/local/share/icons/wm-icons:+
-
 # Create alias 'bar' if it does not exist yet (actually needed only once).
 Exec test \! -d $HOME/.wm-icons || wm-icons-config -q -p -w bar || wm-icons-config -q -p -f bar 14x14-general
 
@@ -85,12 +82,13 @@ AddToFunc   FuncFvwmStartMyPager
 + I FuncFvwmStopMyPager
 + I $0
 
-AddToMenu   MenuFvwmConfiguration
-+ "wm-icons &Bar Icons" Popup MenuFvwmBarIconSet
-
 ###
 #  Change bar icon set submenu
 ###
+
+# Just because settings/iconstyles/wm-icons uses FuncFvwmStartAllHooks...
+AddToFunc FuncFvwmStartAllHooks
++ I AddToMenu MenuFvwmConfiguration "wm-icons Bar Icons" Popup MenuFvwmBarIconSet
 
 DestroyFunc FuncFvwmSwitchBarIconSet
 AddToFunc   FuncFvwmSwitchBarIconSet

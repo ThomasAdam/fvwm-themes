@@ -5,14 +5,15 @@ AddToFunc   WindowListFunc
 + I WindowId $0 Iconify false
 + I WindowId $0 FlipFocus
 + I WindowId $0 Raise
-+ I WindowId $0 WarpToWindow 8p 8p
++ I WindowId $0 WarpToWindow 10p 10p
+
+DestroyFunc FuncFvwmSelectWindow
+AddToFunc   FuncFvwmSelectWindow
++ I Focus
+#+ I Raise
+#+ I WindowId $0 WarpToWindow 50 50
 
 # ----------------------------------------------------------------------------
-
-DestroyFunc FuncFvwmFocusAndWrap
-AddToFunc   FuncFvwmFocusAndWrap
-+ I Focus
-+ I WarpToWindow 8p 8p
 
 DestroyFunc FuncFvwmDeiconifyFocusAndRaise
 AddToFunc   FuncFvwmDeiconifyFocusAndRaise
@@ -24,7 +25,7 @@ DestroyFunc FuncFvwmDeiconifyFocusAndWarp
 AddToFunc   FuncFvwmDeiconifyFocusAndWarp
 + I Iconify off
 + I Focus
-+ I WarpToWindow 8p 8p
++ I WarpToWindow 10p 10p
 
 DestroyFunc FuncFvwmRestore
 AddToFunc   FuncFvwmRestore
@@ -83,4 +84,3 @@ AddToFunc   FuncFvwmShowMessage
 DestroyFunc FuncFvwmShowButtonInfo
 AddToFunc   FuncFvwmShowButtonInfo
 + I FuncFvwmShowMessage "Button Info" "$0"
-

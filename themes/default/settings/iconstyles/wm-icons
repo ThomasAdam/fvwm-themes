@@ -1,7 +1,5 @@
 # migo: I hope to implement this before 2.4. :-)
-#Read $./wm-icons:imagepath
 #Read $./style-icon-miniicon
 #Read $./wm-icons:menu
-Read themes/default/settings/iconstyles/wm-icons:imagepath
 Read themes/default/settings/iconstyles/style-icon-miniicon
 Read themes/default/settings/iconstyles/wm-icons:menu
