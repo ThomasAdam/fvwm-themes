@@ -1,4 +1,16 @@
-2000-08-16  olicha <olivier.chapuis@free.fr>
+2000-08-17  olicha  <olivier.chapuis@free.fr>
+
+	* themes/default/settings/session-manager/*:
+	* themes/default/settings.cfg:
+	* themes/default/styles:
+	* themes/default/themes.cfg:
+	* themes/default/bindings:
+	* NEWS:
+	* TODO:
+	Replace the "settings/session" choices by the 
+	"settings/session-manager" choices. Some small things.
+	
+2000-08-16  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-start.in:
 	* bin/fvwm-themes-start.1:
@@ -22,7 +34,7 @@
 	Renamed default session to 'main'. Some small changes.
 	I will do some changes later. (mkdir -p and some others - not portable)
 
-2000-08-15  olicha <olivier.chapuis@free.fr>
+2000-08-15  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-start.in:
 	* bin/fvwm-themes-start.1:
@@ -30,7 +42,7 @@
 	* themes/default/menus:
 	Added fvwm themes sessions
 	
-2000-08-15  olicha <olivier.chapuis@free.fr>
+2000-08-15  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in: move the Themes Center menu entries
 	* scripts/FvwmScript-ThemeOptions: 
@@ -42,7 +54,7 @@
 	* scripts/FvwmScript-ThemeOptions: syntax error fixes, not much helpful
 	* scripts/FvwmScript-ThemesCenter: s/restor/restore/
 
-2000-08-13  olicha <olivier.chapuis@free.fr>
+2000-08-13  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ThemesCenter:
 	* scripts/FvwmScript-ThemeOptions:

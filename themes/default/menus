@@ -187,8 +187,6 @@ AddToMenu   MenuFvwmQuit "Really Quit Fvwm?" Title
 + "Re&capture Screen%menu/wm-refresh.xpm%" Recapture
 + "" Nop
 + "&Yes, Really Quit%menu/choice-yes.xpm%" Quit
-#+ "&Yes, Really Quit%menu/choice-yes.xpm%" FuncFvwmFvwmOrSessionOrGnome 'Quit' 'QuitSession' 'QuitSession'
-#FuncFvwmFvwmOrSessionOrGnome 'Nop' '+ \\\\"Yes, Quit and Save Session%menu/choice-yes.xpm%\\\\"  SaveQuitSession' '+ \\\\"Yes, Quit and Save Session%menu/choice-yes.xpm%\\\\"  Exec exec save-session --kill'
 + "&No, Don't Quit%menu/choice-no.xpm%"    Nop
 
 #------------------------------------------------------------------------------

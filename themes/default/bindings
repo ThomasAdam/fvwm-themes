@@ -120,11 +120,6 @@ MouseXX 3 2	R	A	Menu MenuFvwmWindowOps
 MouseXX 2 3	R	C	Module FvwmPager -transient FvwmPager-Single * *
 MouseXX 2 3	R	SC	Module FvwmPager -transient FvwmPager-Desker 0 3
 
-# Under session bind Shift Mouse * to gnomebutton
-#FuncFvwmFvwmOrSessionOrGnome 'Nop' 'Nop' 'Mouse 1 R S GnomeButton'
-#FuncFvwmFvwmOrSessionOrGnome 'Nop' 'Nop' 'Mouse 2 R S GnomeButton'
-#FuncFvwmFvwmOrSessionOrGnome 'Nop' 'Nop' 'Mouse 3 R S GnomeButton'
-
 # pointer in Window Buttons
 # now in 'buttons' component
 
@@ -194,9 +189,6 @@ AddToFunc   FuncFvwmRemoveBindings
 + I MouseXX 3 2	R	A	-
 + I MouseXX 2 3	R	C	-
 + I MouseXX 2 3	R	SC	-
-#+ I FuncFvwmFvwmOrSessionOrGnome 'Nop' 'Nop' 'Mouse 1 R S -'
-#+ I FuncFvwmFvwmOrSessionOrGnome 'Nop' 'Nop' 'Mouse 2 R S -'
-#+ I FuncFvwmFvwmOrSessionOrGnome 'Nop' 'Nop' 'Mouse 3 R S -'
 + I Mouse 1 	T	A	-
 + I Mouse 1 	SF	A	-
 + I Mouse 1 	TSF	C	-
