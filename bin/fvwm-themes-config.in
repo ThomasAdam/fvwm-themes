@@ -63,6 +63,7 @@ sub showHelp {
 	print "\t--show-components  show components in all themes\n";
 	print "\t--show-dir         show all theme directory full paths\n";
 	print "\t--theme theme      limit --show-* only to this/these theme(s)\n";
+	print "\t--show-info        shows info for component given in --component\n";
 	print "\t--show-value key   shows value for component given in --component\n";
 	print "\t--component comp   defines a working component\n";
 	print "\t--only-site        limit --show-* only to the site directory\n";
@@ -651,8 +652,8 @@ sub showThemeDirs ($) {
 	exit(0);
 }
 
-sub showThemeComponentValues ($$) {
-	my ($component, $keys) = @_;
+sub getComponentCfgByName ($) {
+	my $component = shift;
 	my $theme;
 	($theme, $component) = parseComponentName($component);
 	errDie("No component name in '$component' given") unless $component;
@@ -660,6 +661,40 @@ sub showThemeComponentValues ($$) {
 
 	my $cc = loadThemeCfg($theme)->[1]->{$component};
 	errDie("Can't find component '$component' in theme '$theme'") unless $cc;
+	return ($cc, $theme, $component);
+}
+
+sub showThemeComponentInfo ($) {
+	my $component = shift;
+	my ($cc, $theme);
+	($cc, $theme, $component) = getComponentCfgByName($component);
+
+	$theme = $cc->{'theme'} if $cc->{'theme'};
+	my $numComponents = @{getThemeComponents($theme)};
+	my ($str, @propStrs) = ("");
+	my $lockedStr = $cc->{'locked'}? " (locked)": "";
+	my $readFile = $cc->{'read-file'};
+
+	push @propStrs, @{$cc->{'contains'}} . " subcomponents" if $cc->{'contains'};
+	push @propStrs, @{$cc->{'variant'}} . " variants" if $cc->{'variant'};
+	push @propStrs, @{$cc->{'option'}} . " options"	if $cc->{'option'};
+
+	$str .= "Theme:      $theme ($numComponents components)\n";
+	$str .= "Component:  $component$lockedStr\n";
+	$str .= "Properties: " . (@propStrs? join(", ", @propStrs): "none") . "\n";
+	$str .= "Read File:  $readFile\n" if $readFile;
+
+	$str = q(FuncFvwmShowMessage "Component Info" ') .
+		join('^n', split(/\n/, $str)) . q(') if $pipe;
+	print $str;
+	exit(0);
+}
+
+sub showThemeComponentValues ($$) {
+	my ($component, $keys) = @_;
+	my ($cc, $theme);
+	($cc, $theme, $component) = getComponentCfgByName($component);
+
 	my $key;
 	foreach $key (@$keys) {
 		my $value = $cc->{$key};
@@ -1245,7 +1280,7 @@ sub getOwnThemeSubMenusRc ($) {
 		my $lockLabel = $cc->{'locked'}? "Unlock": "Lock";
 		my $nonLocked = 1 - $cc->{'locked'};
 		my $lockCommand = qq(FuncFvwmThemesSetLocked "$_=$nonLocked");
-		my $infoCommand = 'Exec exec xmessage "Help is not available yet"';
+		my $infoCommand = qq(FuncFvwmShowComponentInfo "$_");
 		$menusRc .= qq(+ "%menu/choice-no.xpm%&Drop this component"\t$dropCommand\n);
 		$menusRc .= qq(+ "%menu/lock.xpm%&$lockLabel this component"\t$lockCommand\n);
 		$menusRc .= qq(+ "%menu/information.xpm%&Info for $_\@$cc->{'theme'}"\t$infoCommand\n);
@@ -1791,6 +1826,10 @@ DestroyFunc FuncFvwmShowVersionInfo
 AddToFunc   FuncFvwmShowVersionInfo
 + I FuncFvwmShowMessage "FVWM Version" "$v^n@$versionInfo@"
 
+DestroyFunc FuncFvwmShowComponentInfo
+AddToFunc   FuncFvwmShowComponentInfo
++ I PipeRead `@$scriptFile@ --pipe --show-info --component $0`
+
 FuncFvwmResetInitFunctions
 #FuncFvwmRestartFvwmTheme
 
@@ -1964,6 +2003,7 @@ my $showComponents = 0;
 my $showDir = 0;
 my $themes = [];
 my $showValues = [];
+my $showInfo = 0;
 my $component = undef;
 my $expandFile = undef;
 my $fresh = 0;
@@ -1994,6 +2034,7 @@ GetOptions(
 	"show-components!" => \$showComponents,
 	"show-dir!"        => \$showDir,
 	"component=s"      => \$component,
+	"show-info"        => \$showInfo,
 	"show-value=s@"    => $showValues,
 	"expand-rc:s" => \$expandFile,
 	"fresh|f"     => \$fresh,
@@ -2056,6 +2097,7 @@ if (($reset || $noCfgCache) && -f "$userDir/$cfgCacheFileName") {
 showThemeComponents($themes, $showComponents, $component, $fvwmscript,
 	$onlySite, $onlyUser) if $showThemes || $showComponents;
 showThemeDirs($themes) if $showDir;
+showThemeComponentInfo($component) if $component && $showInfo;
 showThemeComponentValues($component, $showValues) if $component && @$showValues;
 
 wrongUsage() unless
@@ -3261,6 +3303,7 @@ B<fvwm-themes-config>
 [ B<--show-components> ]
 [ B<--show-dir> ]
 [ B<--theme>|B<-t> I<theme> ]
+[ B<--show-info> ]
 [ B<--show-value> I<key> ]
 [ B<--component> I<component> ]
 [ B<--only-site> ]
@@ -3313,7 +3356,10 @@ B<--theme> I<theme> - only theme(s) given by this parameter are queried,
 if given. Several instances of B<--theme> may be given.
 By default all themes are queried.
 
-B<--show-value> I<key> - shows a value by the key for a component given in
+B<--show-info> - shows an info for the component given in C<--component>
+parameter.
+
+B<--show-value> I<key> - shows a value by the key for the component given in
 C<--component> parameter. Several instances of B<--show-value> may be given.
 
 B<--component> I<component> - a working component for other parameters,
