@@ -22,7 +22,7 @@ Style "*"	DontStackTransientParent
 OpaqueMoveSize	95
 Style "*"	ResizeOpaque
 HideGeometryWindow	Never
-SnapAttraction	-1
+SnapAttraction -1	
 Emulate mwm
 
 
@@ -34,4 +34,6 @@ Style "*"	NoPPosition
 
 Style "*"	SloppyFocus
 Style "*"	MouseFocusClickRaisesOff
-Style "*"	ClickToFocusRaisesOff
+# olicha: commenting this line fix a core dump in my machine, but this
+# must be fixed in fvwm.
+#Style "*"	ClickToFocusRaisesOff
