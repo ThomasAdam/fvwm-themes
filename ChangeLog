@@ -10,6 +10,9 @@
 	* themes/default/functions-appbind (FvwmFuncOpenURL):
 	fixed netscape call when no window is active
 
+	* themes/luthien/README:
+	updated description
+
 2000-10-04  migo  <migo@homemail.com>
 
 	* configure.in:

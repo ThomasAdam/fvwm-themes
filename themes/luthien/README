@@ -1,3 +1,10 @@
 This is the configuration used by the main FVWM developer Dominik Vogt.
+Adapted for fvwm-themes by Mikhael Goikhman.
 
-There are several gradient color palettes for your choice.
+The full original configuration can be found at:
+  ftp://fvwm-themes.sourceforge.net/pub/fvwm-themes/samples/domivogt/
+
+There are several gradient color palettes for your choice in this theme.
+The modules use a transparent colorset, this enables IconMan, Pager,
+xload, xclock and xosview, all to be drawn on FvwmButtons transparently.
+
