@@ -3,6 +3,10 @@
 	* themes/*/colors*:
 	all colors components revisited: clean up in decors and small fixes
 
+	* themes/underground/menustyle:
+	* themes/underground/README:
+	added menu look that I like (for large resolutions)
+
 	* themes/sa/modules/main:
 	make IconBox work better for 64x64 icons
 
