@@ -1,3 +1,7 @@
+2001-04-25  migo  <migo@homemail.com>
+
+	* themes/migo/modules/main: add missing gnome icon sets to menu
+
 2001-04-22  migo  <migo@homemail.com>
 
 	* themes/osx/menustyle: fixed font
