@@ -13,6 +13,10 @@
 	* themes/luthien/windowlook:
 	fixed font name
 
+	* bin/fvwm-themes-config.in:
+	removed debug prints (for minimal reload); reload kde and gnome
+	menu settings together with menustyle@ on minimal reload
+
 2001-03-28  migo  <migo@homemail.com>
 
 	* migo/images/decor/title-{in,}active.xpm: restored 1 empty line

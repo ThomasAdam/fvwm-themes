@@ -1459,7 +1459,10 @@ sub getReloadDependency () {
 			'settings/kde/system-menu', 'settings/kde/user-menu',
 			'settings/gnome/system-menu', 'settings/gnome/anotherlevel-menu',
 			'settings/gnome/user-menu' ],
-		'menustyle' => [ 'menustyle-extra' ],
+		'menustyle' => [ 'menustyle-extra',
+			'settings/kde/kde2-system-menu', 'settings/kde/system-menu',
+			'settings/kde/user-menu', 'settings/gnome/system-menu',
+			'settings/gnome/anotherlevel-menu', 'settings/gnome/user-menu' ],
 		'modules' => [ 'modules-extra', 'settings/autoraise',
 			'settings/iconstyles', 'menus' ],
 		'sound' => [ 'sound-extra', 'settings/sound-player' ],
@@ -1525,7 +1528,7 @@ sub setComponentsToReload ($) {
 	}
 
 	# next block for debuging
-	if ($self->isMinimalReload()) {
+	if (0 && $self->isMinimalReload()) {
 		print STDERR "NEW: ";
 		foreach (@currentComponents) {
 			print STDERR "$_ " if $needReload->{$_};
@@ -1554,16 +1557,16 @@ sub setComponentsToReload ($) {
 		$done = 1 if $i > 100 || $new eq $old; 
 	}
 
-	print STDERR "CCDS ($i): ";
+#	print STDERR "CCDS ($i): ";
 	foreach (@currentComponents) { 
 		if ($needReload->{$_}) {
 			my $cc = $self->getComponentCfg($_);
 			$cc->{'used'} = 2;
 			$self->setComponentCfg($_, $cc);
-			print STDERR "$_ ";
+#			print STDERR "$_ ";
 		}
 	}
-	print STDERR "\n";
+#	print STDERR "\n";
 }
 									
 # returns component key value, which can be overridden by the current variant
