@@ -385,7 +385,8 @@ $module->addHandler(M_STRING, sub {
 		applyNewConfig();
 	}
 	elsif ($action eq 'init-current-page') {
-		my ($pagex, $pagey) = getTokens($string, 2);
+		my ($desk, $pagex, $pagey) = getTokens($string, 3);
+		$currDeskNum = $desk;
 		$currPageNum = $pagey * 2 + $pagex;
 		$currPageNum = -1 if $currPageNum < 0 || $currPageNum >= 4;
 		updatePageLabel(0);
@@ -395,8 +396,10 @@ $module->addHandler(M_STRING, sub {
 	}
 });
 
-$module->send("Deschedule 34543");
-$module->send("SendToModule $fullName init-current-page \$[page.nx] \$[page.ny]");
+$module->send(qq{
+	Deschedule 34543
+	SendToModule $fullName init-current-page \$d \$[page.nx] \$[page.ny]
+});
 
 showClockNowAndRegularly() unless $clockStarted;
 
