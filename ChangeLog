@@ -1,4 +1,10 @@
-2000-12-08  olicha  <olivier.chapuis@free.fr>
+2000-12-09  olicha  <olivier.chapuis@free.fr>
+
+	* scripts/FvwmScript-Help:
+	a very minor fix
+
+	* scripts/FvwmScript-ConfigCenter:
+	fixed non default font (so, ru work now)
 
 	* themes/*/globalfeel:
 	* bin/fvwm-themes-script.in:

@@ -138,8 +138,7 @@ Begin
     Set $nonDefaultFont = 0
 
     #Set $Lang = {en}
-    #Set $Lang = {ru}
-    Set $locateSet = 1
+    Set $Lang = {ru}
     If $Lang == {} Then
     Begin
 	Set $cmd = {echo "$LANG" | cut -c1-2}
@@ -442,15 +441,169 @@ Begin
 	If $id == {Help        } Then
 	    ChangeTitle 994 $msg
 	If $id == {Quit        } Then
-	    ChangeTitle 995 $msg	
+	    ChangeTitle 995 $msg
+
+	### Fonts
+	If $id == {ChangeFont  } Then
+	    Set $nonDefaultFont = $msg
+	If $id == {SelFont     } Then
+	    Set $SelFont = $msg
+	If $id == {ShadeFont   } Then
+	    Set $ShadeFont = $msg
+	If $id == {FixedFont   } Then
+	    Set $FixedFont = $msg    
     End
 
     ChangeTitle 59 $l_StartColorSel
+    If $nonDefaultFont == 1 Then
+    Begin
+	ChangeFont 2 $SelFont
+	ChangeFont 10 $SelFont
+	ChangeFont 11 $FixedFont
+	ChangeFont 12 $FixedFont
+	ChangeFont 13 $FixedFont
+	ChangeFont 14 $SelFont
+	ChangeFont 15 $FixedFont
+	ChangeFont 16 $FixedFont
+	ChangeFont 17 $FixedFont
+	ChangeFont 18 $SelFont
+	ChangeFont 19 $FixedFont
+	ChangeFont 20 $FixedFont
+	ChangeFont 21 $FixedFont
+	ChangeFont 22 $FixedFont
+	ChangeFont 23 $FixedFont
+	ChangeFont 24 $SelFont
+	ChangeFont 25 $FixedFont
+	ChangeFont 26 $FixedFont
+	ChangeFont 30 $SelFont
+	ChangeFont 31 $FixedFont
+	ChangeFont 32 $FixedFont
+	ChangeFont 33 $FixedFont
+	ChangeFont 34 $FixedFont
+	ChangeFont 35 $FixedFont
+	ChangeFont 36 $FixedFont
+	ChangeFont 37 $FixedFont
+	ChangeFont 38 $FixedFont
+	ChangeFont 39 $FixedFont
+	ChangeFont 40 $FixedFont
+	ChangeFont 41 $FixedFont
+	ChangeFont 42 $FixedFont
+	ChangeFont 43 $FixedFont
+	ChangeFont 44 $SelFont
+	ChangeFont 45 $FixedFont
+	ChangeFont 46 $FixedFont
+	ChangeFont 47 $FixedFont
+	ChangeFont 48 $FixedFont
+	ChangeFont 49 $FixedFont
+	ChangeFont 50 $FixedFont
+	ChangeFont 51 $FixedFont
+	ChangeFont 52 $FixedFont
+	ChangeFont 53 $FixedFont
+	ChangeFont 54 $SelFont
+	ChangeFont 55 $FixedFont
+	ChangeFont 56 $FixedFont
+	ChangeFont 57 $FixedFont
+	ChangeFont 58 $FixedFont
+	ChangeFont 59 $FixedFont
+	ChangeFont 60 $SelFont
+	ChangeFont 61 $FixedFont
+	ChangeFont 62 $FixedFont
+	ChangeFont 63 $FixedFont
+	ChangeFont 64 $FixedFont
+	ChangeFont 65 $FixedFont
+	ChangeFont 66 $FixedFont
+	ChangeFont 67 $FixedFont
+	ChangeFont 68 $FixedFont
+	ChangeFont 69 $FixedFont
+	ChangeFont 70 $FixedFont
+	ChangeFont 71 $FixedFont
+	ChangeFont 72 $FixedFont
+	ChangeFont 73 $FixedFont
+	ChangeFont 74 $FixedFont
+	ChangeFont 75 $FixedFont
+	ChangeFont 76 $SelFont
+	ChangeFont 77 $FixedFont
+	ChangeFont 78 $FixedFont
+	ChangeFont 79 $FixedFont
+	ChangeFont 80 $FixedFont
+	ChangeFont 81 $FixedFont
+	ChangeFont 82 $FixedFont
+	ChangeFont 90 $SelFont
+	ChangeFont 91 $FixedFont
+	ChangeFont 92 $FixedFont
+	ChangeFont 93 $FixedFont
+	ChangeFont 94 $FixedFont
+	ChangeFont 95 $FixedFont
+	ChangeFont 96 $SelFont
+	ChangeFont 97 $FixedFont
+	ChangeFont 98 $FixedFont
+	ChangeFont 99 $FixedFont
+	ChangeFont 100 $FixedFont
+	ChangeFont 101 $FixedFont
+	ChangeFont 102 $FixedFont
+	ChangeFont 103 $FixedFont
+	ChangeFont 104 $FixedFont
+	ChangeFont 105 $FixedFont
+	ChangeFont 106 $FixedFont
+	ChangeFont 110 $SelFont
+	ChangeFont 111 $FixedFont
+	ChangeFont 112 $FixedFont
+	ChangeFont 113 $FixedFont
+	ChangeFont 114 $FixedFont
+	ChangeFont 115 $FixedFont
+	ChangeFont 116 $FixedFont
+	ChangeFont 117 $SelFont
+	ChangeFont 118 $FixedFont
+	ChangeFont 119 $FixedFont
+	ChangeFont 120 $FixedFont
+	ChangeFont 121 $FixedFont
+	ChangeFont 122 $SelFont
+	ChangeFont 123 $FixedFont
+	ChangeFont 124 $FixedFont
+	ChangeFont 125 $FixedFont
+	ChangeFont 126 $FixedFont
+	ChangeFont 127 $FixedFont
+	ChangeFont 128 $FixedFont
+	ChangeFont 129 $FixedFont
+	ChangeFont 130 $FixedFont
+
+	ChangeFont 200 $SelFont
+
+	ChangeFont 950 $SelFont
+	ChangeFont 951 $FixedFont
+	ChangeFont 952 $FixedFont
+	ChangeFont 953 $SelFont
+	ChangeFont 954 $SelFont
+	ChangeFont 955 $SelFont
+	ChangeFont 956 $FixedFont
+	ChangeFont 957 $FixedFont
+	ChangeFont 958 $FixedFont
+	ChangeFont 959 $SelFont
+	ChangeFont 960 $SelFont
+	ChangeFont 961 $SelFont
+	ChangeFont 956 $FixedFont
+	ChangeFont 957 $FixedFont
+	ChangeFont 958 $FixedFont
+	
+	ChangeFont 990 $SelFont
+	ChangeFont 991 $SelFont
+	ChangeFont 992 $SelFont
+	ChangeFont 993 $SelFont
+	ChangeFont 994 $SelFont
+	ChangeFont 995 $SelFont
+    End
 
     ChangeFont 991 $ShadeFont
     Set $SaveFont = {Sel}
     ChangeFont 992 $ShadeFont
     Set $TryFont = {Shade}
+
+    # not yet implemented
+    ChangeFont 1 $ShadeFont
+    ChangeFont 3 $ShadeFont
+    ChangeFont 4 $ShadeFont
+    ChangeFont 5 $ShadeFont
+
     #Do {Echo ConfigCenter: GF inter loaded}
 #------------------------------------------------------------------------------
 # Main variables, i.e. "Global one" (see also the com loop init !)
@@ -481,12 +634,6 @@ Begin
 
     # type of command for Apply and save
     Set $CmdType = {}
-
-    # not yet implemented
-    ChangeFont 1 $ShadeFont
-    ChangeFont 3 $ShadeFont
-    ChangeFont 4 $ShadeFont
-    ChangeFont 5 $ShadeFont
 
     Do {All (FvwmScript-NoteMessage) Delete}
 End

@@ -133,6 +133,7 @@ Widget 3
 Property
     Position 400 465
     Type PushButton
+    Flags NoReliefString
     Title {Quit}
 Main
  Case message of
