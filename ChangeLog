@@ -1,3 +1,16 @@
+2002-05-22  migo  <migo@homemail.com>
+
+	* themes/redmondxp/README:
+	* themes/redmondxp/background:
+	* themes/redmondxp/buttons:
+	* themes/redmondxp/colors:
+	* themes/redmondxp/menustyle:
+	* themes/redmondxp/images/background/lightsky.png:
+	* themes/redmondxp/images/decor/title-active.xpm:
+	* themes/redmondxp/images/decor/title-inactive.xpm:
+	added background and menustyle, completed colors (except for modules),
+	it is too blue-ish, but pretty good
+
 2002-05-20  migo  <migo@homemail.com>
 
 	* doc/creating-themes:

@@ -19,7 +19,7 @@
 
 # window title, inactive and active
 Colorset 1 fg rgb:e8/f5/f5, bg rgb:3d/60/90, fgsh rgb:22/48/7a, Plain, NoShape
-Colorset 2 fg rgb:df/ff/ff, bg rgb:03/56/cc, fgsh rgb:3a/2b/bf, Plain, NoShape
+Colorset 2 fg rgb:df/ff/ff, bg rgb:03/56/cc, fgsh rgb:22/48/7a, Plain, NoShape
 
 # window borders, inactive and active
 Colorset 3 bg rgb:45/61/9e, sh rgb:4a/5e/7d, hi rgb:4c/6f/af, Plain, NoShape
@@ -28,24 +28,25 @@ Colorset 4 bg rgb:07/49/de, sh rgb:25/56/a3, hi rgb:06/5b/f6, Plain, NoShape
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
-+ I TitleStyle ActiveUp   TiledPixmap decor/title-active.png
-+ I TitleStyle ActiveDown TiledPixmap decor/title-active.png
-+ I TitleStyle Inactive   TiledPixmap decor/title-inactive.png
-
++ I TitleStyle ActiveUp   TiledPixmap decor/title-active.xpm
++ I TitleStyle ActiveDown TiledPixmap decor/title-active.xpm
++ I TitleStyle Inactive   TiledPixmap decor/title-inactive.xpm
++ I TitleStyle ToggledActiveUp   TiledPixmap decor/title-active.xpm
++ I TitleStyle ToggledActiveDown TiledPixmap decor/title-active.xpm
++ I TitleStyle ToggledInactive   TiledPixmap decor/title-inactive.xpm
+#
 + I ButtonStyle All Pixmap 16x16-general/empty.xpm
-+ I ButtonStyle All ToggledActiveUp   Pixmap decor/title-active.png
-+ I ButtonStyle All ToggledActiveDown Pixmap decor/title-active.png
-+ I ButtonStyle All ToggledInactive   Pixmap decor/title-inactive.png
 + I ButtonStyle All -- UseTitleStyle
 
 # --------------
 # Menu Colorsets
 
 # inactive menu item fg+bg and menu face
-Colorset 5 fg $[fg.cs1], bg $[bg.cs1], fgsh $[fgsh.cs1], Plain, NoShape
+Colorset 5 fg rgb:d0/f8/ff, bg rgb:14/58/bc, fgsh rgb:40/30/a8, NoShape, \
+	BGradient 300 3 rgb:14/58/bc 1 rgb:10/60/d0 6 rgb:20/50/a8 1 rgb:14/58/bc
 
 # active menu item fg+bg
-Colorset 6 fg $[fg.cs2], bg $[bg.cs2], fgsh $[fgsh.cs2], Plain, NoShape
+Colorset 6 fg rgb:e8/f5/f5, bg rgb:34/88/de, fgsh rgb:10/28/40, Plain, NoShape
 
 # greyed menu item fg
 Colorset 7 fg grey, bg grey, Plain, NoShape
@@ -63,8 +64,9 @@ Colorset 10 fg black, bg rgb:98/B0/C8, Plain, NoShape
 Colorset 11 fg black, bg white, Plain, NoShape
 
 # special
-Colorset 12 fg black, bg rgb:98/B0/C8, \
-	TiledPixmap decor/title-inactive.png, NoShape
+#Colorset 12 CopyAll 5
+Colorset 12 fg rgb:d0/f8/ff, bg rgb:14/58/bc, fgsh rgb:40/30/a8, NoShape, \
+	DGradient 300 3 rgb:14/58/bc 1 rgb:10/60/d0 6 rgb:20/50/a8 1 rgb:14/58/bc
 
 # swallowed window
 Colorset 13 fg black, bg rgb:98/B0/C8, hi black, sh blue, \
@@ -84,15 +86,15 @@ Colorset 16 fg white, bg DarkBlue, Plain, NoShape
 
 # standard item
 Colorset 17 fg black, bg rgb:98/B0/C8, \
-	TiledPixmap decor/title-inactive.png, NoShape
+	TiledPixmap decor/title-inactive.xpm, NoShape
 
 # active item
 Colorset 18 fg black, bg white, \
-	TiledPixmap decor/title-active.png, NoShape
+	TiledPixmap decor/title-active.xpm, NoShape
 
 # iconified item
 Colorset 19 fg white, bg rgb:98/B0/C8, \
-	TiledPixmap decor/title-inactive.png, NoShape
+	TiledPixmap decor/title-inactive.xpm, NoShape
 
 # pointed item
 Colorset 20 fg black, bg rgb:98/B0/C8, Plain, NoShape
@@ -104,31 +106,31 @@ Colorset 20 fg black, bg rgb:98/B0/C8, Plain, NoShape
 Colorset 21 fg white, bg DarkBlue, Plain, NoShape
 
 # FvwmConsole
-Colorset 22 fg black, bg lightblue, Plain, NoShape
+Colorset 22 fg white, bg rgb:10/60/90, Plain, NoShape
 
 # ----------------------------------------------------------------------------
 # III. Application Colorsets
 
 # regular terminal
-Colorset 30 fg black, bg lightgoldenrod, Plain, NoShape
+Colorset 30 fg white, bg rgb:30/70/d0, Plain, NoShape
 
 # admin terminal
-Colorset 31 fg black, bg lightcyan3, Plain, NoShape
+Colorset 31 fg white, bg rgb:30/80/a0, Plain, NoShape
 
 # remote terminal
-Colorset 32 fg black, bg lightgreen, Plain, NoShape
+Colorset 32 fg white, bg rgb:60/8a/a0, Plain, NoShape
 
 # viewer terminal
-Colorset 33 fg black, bg lightblue, Plain, NoShape
+Colorset 33 fg white, bg rgb:10/48/70, Plain, NoShape
 
 # application run in the terminal, text editor
-Colorset 34 fg black, bg grey70, Plain, NoShape
+Colorset 34 fg black, bg rgb:30/8a/f0, Plain, NoShape
 
 # dialog main area
-Colorset 35 fg white, bg DarkBlue, Plain, NoShape
+Colorset 35 fg white, bg rgb:28/7a/da, Plain, NoShape
 
 # dialog text area
-Colorset 36 fg black, bg lightgoldenrod, Plain, NoShape
+Colorset 36 fg white, bg rgb:20/50/c0, Plain, NoShape
 
 # ----------------------------------------------------------------------------
 # IV. Start/Stop Functions
