@@ -1,3 +1,15 @@
+2001-12-19  olicha  <olivier.chapuis@free.fr>
+
+	* NEWS:
+	* doc/README.1st:
+	* README:
+	* configure.in (REQUIRED_FVWM_VERSION):
+	* scripts/FvwmScript-ComponentProperties: 
+	* scripts/FvwmScript-ThemesCenter:
+	* bin/fvwm-themes-config.in:
+	Updated the  Themes Center GUI to the new FvwmScript communication
+	protocol (in the place of fvwm-themes-com)
+
 2001-12-17  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/styles:

@@ -26,6 +26,7 @@ Init
 Begin
 
     # --------------------------------------- Arguments
+    Set $ID = 0
     Set $i = 1
     Set $arg = (GetScriptArgument $i)
     While $arg <> {} Do
@@ -47,6 +48,8 @@ Begin
 	    Set $MainTheme = (GetScriptArgument $j)
 	If $arg == {--lang} Then
 	    Set $Lang = (GetScriptArgument $j)
+	If $arg == {--id} Then
+	    Set $ID = (GetScriptArgument $j)
 	Set $i = (Add $i 2)
 	Set $arg = (GetScriptArgument $i)
     End
@@ -125,34 +128,21 @@ Begin
     End
 
     # ------------------------------------- com and init
-    # to send fvwm-themes-com command
-    Set $SendMsgAndGet = {fvwm-themes-com --name config-}$pid{ --lock-and-get --message=}
-    Set $SendMsgAndGetBuff = {fvwm-themes-com --name config-}$pid{ --lock-and-get --buffer-name config-bis-}$pid{ --message=}
-    Set $SendMsg = {fvwm-themes-com --name config-}$pid{ --message=}
-    Set $GetLine = {fvwm-themes-com --name config-}$pid{ --buffer-name config-bis-}$pid{ --get-buffer --line=}	
-     
+    Set $ComName =  {config-}$pid
     # Get all the options and the first list
-    Set $cmd = $SendMsgAndGetBuff{"options }$MainComponent{ }$MainTheme{ 0"}
-    Set $MSG = (GetOutput $cmd 1 -1)
-    Set $i = 1
-    Set $j = (StrCopy $MSG 1 4)
-    Set $NbrOfOptions= (StrCopy $MSG 5 $j)
-    Set $i = (Add $j 1)
-    Set $j = (StrCopy $MSG $i (Add $i 3))
-    Set $Type = (StrCopy $MSG (Add $i 4) $j)
+    Set $cmd = {options }$MainComponent{ }$MainTheme{ 0|}
+    Set $MSG = (SendMsgAndGet $ComName $cmd 1)
+    Set $NbrOfOptions= (Parse $MSG 1)
+    Set $Type = (Parse $MSG 2)
     Set $tmp = $Type{ }$l_for{ }$MainComponent{@}$MainTheme
     ChangeTitle 1 $tmp
-    Set $i = (Add $j 1)
-    Set $j = (StrCopy $MSG $i (Add $i 3))
-    Set $Options = (StrCopy $MSG (Add $i 4) $j)
-    Set $i = (Add $j 1)
-    Set $j = (StrCopy $MSG $i (Add $i 3))
-    Set $CurrentVariants = (StrCopy $MSG (Add $i 4) $j)
+    Set $Options = (Parse $MSG 3)
+    Set $CurrentVariants = (Parse $MSG 4)
     ChangeTitle 5 $CurrentVariants
 
     If $NbrOfOptions == 1 Then
     Begin
-	HideWidget 3
+	HideWidget3
 	ChangeTitle 2 $Options
     End
     Else
@@ -169,72 +159,11 @@ Begin
     Set $OptionIndex = 0
 
     Set $SendUpdateMsg = 0
-    Set $Father = (GetScriptFather)
-    Set $Quit = 0
-    Set $CountQuit = 0
     HideWidget 6
-End
-
-# ---------------------------------------------------------------------------
-#
-# Periodic Task
-#
-# ---------------------------------------------------------------------------
-
-PeriodicTasks
-Begin
-
-    If $Quit == 1 Then
-    Begin
-	If $CountQuit == 0 Then
-	Begin
-	    HideWidget 1
-	    HideWidget 2
-	    HideWidget 3
-	    #HideWidget 4
-	    HideWidget 5
-	    ShowWidget 6
-	End
-	Set $CountQuit = (Add $CountQuit 1)
-	If $CountQuit == 20 Then
-	    Quit
-    End
-
-    Set $MSG = (ReceivFromScript $Father)
-    If $MSG <> {No message} Then
-    Begin
-	If $MSG == {exit} Then
-	    Quit
-	If $MSG == {update} Then
-	    Set $UpdateList = 1
-    End
-
-    If $UpdateList == 1 Then
-    Begin
-	Set $UpdateList = 0
-	Set $cmd = $SendMsgAndGet{"options-variants }$MainComponent{ }$MainTheme{ }$CurrentOptionsIndex{"}
-	Set $CurrentVariants = (GetOutput $cmd 1 -1)
-	ChangeTitle 5 $CurrentVariants
-    End
-
-    # better to send here
-    If $SendUpdateMsg == 1 Then
-    Begin
-	Set $SendUpdateMsg = 0
-	SendToScript $Father {update}
-    End
-    If $SendUpdateQuit == 1 Then
-    Begin
-	Set $SendUpdateQuit = 0
-	SendToScript $Father {updatequit}
-	Set $Quit = 1
-    End
-    If $SendQuit == 1 Then
-    Begin
-	Set $SendQuit = 0
-	SendToScript $Father {quit}
-	Set $Quit = 1
-    End
+    # send our pid
+    Set $myPid = (GetPid)
+    Set $cmd = {add-to-pid-list }$ID{ }$myPid{|}
+    Set $dummy = (SendMsgAndGet $ComName $cmd 0)
 End
 
 # ---------------------------------------------------------------------------
@@ -252,9 +181,79 @@ Property
     Title {}
 Main
 Case message of
-    SingleClic :
+
+SingleClic :
+ Begin
+ End
+
+# message from FvwmScript-ThemesCenter
+1 :
+ Begin
+    Set $str = (LastString)
+    Do {Echo MSG: }$str
+    If $str == {exit} Then
     Begin
+	Quit
     End
+    If $str == {update} Then
+    Begin
+	#Set $UpdateList = 1
+	SendSignal 1 2
+    End
+    Set $str = {}
+ End
+
+# Update the list
+2 :
+ Begin
+    Set $cmd = {options-variants }$MainComponent{ }$MainTheme{ }$CurrentOptionsIndex{|}
+    Do {Echo UL:}$MainComponent{:}$MainTheme{:}$CurrentOptionsIndex
+    Set $tmp = {}
+    Set $count = 0
+    While $tmp == {} Do
+    Begin
+	Set $tmp = (SendMsgAndGet $ComName $cmd 1)
+	Set $count = (Add $count 1)
+	If $count == 10 Then
+	Begin
+	    If $tmp == {} Then
+		Set $tmp = {0}
+	End
+	Do {Echo GCM}$ID{: }$tmp
+    End
+    Set $CurrentVariants = $tmp
+    ChangeTitle 5 $CurrentVariants
+ End
+
+# send msg
+3 :
+ Begin
+    If $SendUpdateMsg == 1 Then
+    Begin
+	Set $SendUpdateMsg = 0
+	Set $str = $ID{update}
+	Do {SendToModule FvwmScript-ThemesCenter SendString 1 1 }$str
+    End
+    If $SendUpdateQuit == 1 Then
+    Begin
+	Set $SendUpdateQuit = 0
+	Set $str = $ID{updatequit}
+	Do {SendToModule FvwmScript-ThemesCenter SendString 1 1 }$str
+	Set $cmd = {remove-to-pid-list }$ID{ }$myPid{|}
+	Set $dummy = (SendMsgAndGet $ComName $cmd 0)
+	Quit
+    End
+    If $SendQuit == 1 Then
+    Begin
+	Set $SendQuit = 0
+	Set $str = $ID{quit}
+	Do {SendToModule FvwmScript-ThemesCenter SendString 1 1 }$str
+	Set $cmd = {remove-to-pid-list }$ID{ }$myPid{|}
+	Set $dummy = (SendMsgAndGet $ComName $cmd 0)
+	Quit
+    End
+    Set $str = {}
+ End
 End
 
 Widget 2
@@ -286,9 +285,10 @@ SingleClic :
     If $value <> $CurrentOptionsIndex Then
     Begin
 	Set $CurrentOptionsIndex = $value
-	Set $UpdateList = 1
+	#Set $UpdateList = 1
 	Set $OptionIndex = 0
 	ChangeValue 5 0
+	SendSignal 1 2
     End
  End
 End
@@ -337,10 +337,12 @@ Case message of
     Set $OptionIndex = (GetValue 5)
     If $OptionIndex <> 0 Then 
     Begin
-	Set $cmd = $SendMsgAndGet{"set-options }$MainComponent{ }$MainTheme{ }$CurrentOptionsIndex{ }$OptionIndex{"}
-	Set $dummy = (GetOutput $cmd 1 -1)
-	Set $UpdateList = 1
+	Set $cmd = {set-options }$MainComponent{ }$MainTheme{ }$CurrentOptionsIndex{ }$OptionIndex{|}
+	Set $dummy = (SendMsgAndGet $ComName $cmd 1)
+	#Set $UpdateList = 1
+	SendSignal 1 2
 	Set $SendUpdateMsg = 1
+	SendSignal 1 3
     End
     
  End
@@ -360,12 +362,11 @@ Main
     Set $OptionIndex = (GetValue 5)
     If $OptionIndex <> 0 Then 
     Begin
-	Set $cmd = $SendMsgAndGet{"set-options }$MainComponent{ }$MainTheme{ }$CurrentOptionsIndex{ }$OptionIndex{"}
-	Set $dummy = (GetOutput $cmd 1 -1)
+	Set $cmd = {set-options }$MainComponent{ }$MainTheme{ }$CurrentOptionsIndex{ }$OptionIndex{|}
+	Set $dummy = (SendMsgAndGet $ComName $cmd 1)
     End
-    #SendToScript $Father {updatequit}
-    #Quit
     Set $SendUpdateQuit = 1
+    SendSignal 1 3
   End
 End
 
@@ -380,8 +381,7 @@ Main
  Case message of
   SingleClic :
   Begin
-    #SendToScript $Father {quit}
-    #Quit
     Set $SendQuit = 1
+    SendSignal 1 3
   End
 End

@@ -2341,7 +2341,7 @@ my $variants = {};
 my $setLockeds = {};
 my $comMode = 0;
 my $comName = "config";
-my $comPid = 0;
+my @comPid = qw(0 0 0 0);
 my $install = 0;
 my $createPack = undef;
 my $packPrefix = "ft";
@@ -2541,9 +2541,9 @@ wrongUsage() unless
 
 my $cfg = Fvwm::ThemeCfg->new('current', $reset? 'default': 'current', $fresh);
 if ($comMode) {
-	$comPid = $comName;
-	$comPid =~ s/config-//;
-	$comPid = 0 if ($comPid !~ /^\d+$/);
+	$comPid[0] = $comName;
+	$comPid[0] =~ s/config-//;
+	$comPid[0] = 0 if ($comPid[0] !~ /^\d+$/);
 	#$pipe = 1;
 	$cfg->comLoop($comName);
 	# we never return here
@@ -2634,7 +2634,6 @@ sub comLoop {
 	my $self = shift;
 	my $outFifo = ".tmp-com-out-" . $comName;
 	my $inFifo = ".tmp-com-in-"  . $comName;
-	my $lockFifo = ".tmp-com-lock-" . $comName;
 	my $command = "";
 	my $return = "";
 
@@ -2656,56 +2655,78 @@ sub comLoop {
 	my ($currentSession,$sessionList,$uptime) =  sessionInfo();
 
 	chdir($userDir) || die "No FvwmConfigHome $userDir";
-	unlink($lockFifo) if -p "$lockFifo";
+	unlink($outFifo) if -p "$outFifo";
 	unlink($inFifo) if -p "$inFifo";
-	myMakeFifo($lockFifo);
 
 	while(1) {
 
+		# read the command.
+		myMakeFifo($inFifo) if ! -p "$inFifo";
 		eval {
 			local $SIG{ALRM} = \&checkScript;
 			alarm(10);
-			# block until com want to communicate
-			open(LOCK,">$lockFifo") || die "cannot write on fifo $lockFifo";
+			# block unless FvwmScript write on $inFifo
+			#open(IN,"<$inFifo") || die "cannot open $inFifo";
+			sysopen(IN,"$inFifo", 0) || die "cannot open $inFifo";
 			alarm(0);
-			close(LOCK);
+			($command)=(<IN>);
+			print STDERR "cmd1:". $command . "\n";
+			close(IN);
 		};
 		if ($@ =~ /^cannot/) {
-			print STDERR "$comName: cannot write on fifo $lockFifo\n";
-			unlink("$lockFifo") if -p "$lockFifo";
+			print STDERR "$comName: cannot read in fifo $inFifo\n";
+			unlink("$inFifo");
 			exit(1);
 		}
 		if ($@ =~ /^NoScript/) {
-			print STDERR "$comName: No more FvwmScript-ThemesCenter: exit!\n";
-			unlink("$lockFifo") if -p "$lockFifo";
+			print STDERR "$comName: No more FvwmScript: exit!\n";
+			unlink("$inFifo") if -p "$inFifo";
+			my $i;
+			for($i = 1; $i < 4; $i++) {
+				kill(9, $comPid[$i]) if $comPid[$i];
+			}
 			exit(0);
 		}
 		if ($@ =~ /^Script/) {
 			next;
 		}
 
-		# read the command.
-		eval {
-			local $SIG{ALRM} = sub { die "Timeout" };
-			alarm(10);
-			# block unless com is ready to write on $outFifo
-			open(IN,"$outFifo") || die "cannot open $outFifo";
-			alarm(0);
-			($command)=(<IN>);
-			close(IN);
-		};
-		if ($@ =~ /^cannot/) {
-			print STDERR "$comName: cannot read out fifo $outFifo\n";
-			unlink("$lockFifo");
-			exit(1);
-		}
-		if ($@ =~ /^Timeout/) {
-			print STDERR "$comName: com give an unvalide unlock!\n";
-			next;
-		}
+		unlink($inFifo);
 
 		# build the answer
 		chomp($command);
+		my @tt = split(/\|/,$command);
+
+		# flush the message that does not need an answer
+		my $s;
+		for ($s = 0; $s < @tt; $s++) {
+		  if ($tt[$s] =~ /^remove-to-pid-list\s+(\d+)\s+(\d+)$/) {
+			  my $id = $1;
+			  $comPid[$id] = 0;
+			  print STDERR "pid: @comPid\n";
+			  $tt[$s] = "";
+		  }
+		  elsif ($tt[$s] =~ /^add-to-pid-list\s+(\d+)\s+(\d+)$/) {
+			  my $id = $1;
+			  my $p = $2;
+			  $comPid[$id] = $p;
+			  $tt[$s] = "";
+			  print STDERR "pid: @comPid\n";
+		  }
+		  elsif ($tt[$s] eq "exit") {
+			  exit(0);
+		  }
+	   }
+
+		# now answer the first message which needs one
+		$command = "";
+		for ($s = @tt-1; $s >= 0; $s--) {
+			$command = $tt[$s] if $tt[$s] ne "";
+		}
+		print STDERR "cmd2:" . $command . "\n";
+		
+		next if ($command eq "");
+
 		my $return = "";
 		if ($command =~ /^all-startup-stuff$/)
 		{
@@ -2744,8 +2765,8 @@ sub comLoop {
 			$scL =~ s/\|$//;
 
 			#------- build the answer:
-			$return = 
-				mergeScriptAnswer("$tlR\n$ccR\n$scR\n$currentSession\n$uptime\n$sL\n$scL",4);
+			$return = mergeScriptAnswerForParse(
+				"$tlR\n$ccR\n$scR\n$currentSession\n$uptime\n$sL\n$scL");
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^theme-components\s+(\d+)$/) {
@@ -2757,7 +2778,7 @@ sub comLoop {
 					\%componentToLoad,
 					$maxLength
 				);
-			$return = mergeScriptAnswer("$r1\n$r2\n$r3",4);
+			$return = mergeScriptAnswerForParse("$r1\n$r2\n$r3");
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^current-config\s+(\d+)$/) {
@@ -2784,8 +2805,8 @@ sub comLoop {
 				);
 
 			#------- build the answer:
-			$return = mergeScriptAnswer(
-				"$ccReturn\n$ccnReturn1\n$ccnReturn2\n$ccnReturn3", 4
+			$return = mergeScriptAnswerForParse(
+				"$ccReturn\n$ccnReturn1\n$ccnReturn2\n$ccnReturn3"
 			);
 		}
 		# -----------------------------------------
@@ -2800,8 +2821,8 @@ sub comLoop {
 					\%optionToSet,
 					\%variantToSet
 				);
-			$return = mergeScriptAnswer(
-				"$ccnReturn1\n$ccnReturn2\n$ccnReturn3", 4
+			$return = mergeScriptAnswerForParse(
+				"$ccnReturn1\n$ccnReturn2\n$ccnReturn3"
 			);
 		}
 		
@@ -2851,10 +2872,9 @@ sub comLoop {
 					\%variantToSet
 				);
 			#------- build the answer:
-			$return = 
-				mergeScriptAnswer(
-					"$tlReturn\n$tcReturn1\n$ccReturn\n$ccnReturn1\n$ccnReturn2\n$ccnReturn3", 4
-				);
+			$return =
+			  mergeScriptAnswerForParse(
+				   "$tlReturn\n$tcReturn1\n$ccReturn\n$ccnReturn1\n$ccnReturn2\n$ccnReturn3");
 		}
 
 		# -------------------------------------------------
@@ -3143,7 +3163,7 @@ sub comLoop {
 				\%variantToSet,
 				$maxLengthOpt
 			);
-			$return = mergeScriptAnswer("$i\n$type\n$list\n$ol",4);
+			$return = mergeScriptAnswerForParse("$i\n$type\n$list\n$ol");
 			#print STDERR $return ."\n";
 		}
 		# --------------------------------------------
@@ -3210,7 +3230,7 @@ sub comLoop {
 				\%variantToSet,
 				$maxLengthOpt
 			);
-			$return = mergeScriptAnswer("$r1\n$r2", 4);
+			$return = mergeScriptAnswerForParse("$r1\n$r2");
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^settings-config$/) {
@@ -3227,7 +3247,7 @@ sub comLoop {
 			my $r4 = $self->getScriptOptionsVariants(
 				'default', $r2, $1, \%optionToSet,
 				 \%variantToSet, $maxLengthOpt);
-			$return = mergeScriptAnswer("$r1\n$r2\n$r3\n$r4",4);
+			$return = mergeScriptAnswerForParse("$r1\n$r2\n$r3\n$r4");
 		}
 		#-----------------------------------------------------------------------
 		# SM
@@ -3242,7 +3262,9 @@ sub comLoop {
 			}
 			$tmp =~ s/\|$//;
 			$configList =~ s/\|$//;
-			$return = mergeScriptAnswer("$currentSession\n$uptime\n$tmp\n$configList",4);
+			$return = mergeScriptAnswerForParse(
+				"$currentSession\n$uptime\n$tmp\n$configList"
+			);
 		}
 		# --------------------------------------
 		elsif ($command =~ /^session-uptime$/) {
@@ -3425,35 +3447,32 @@ sub comLoop {
 			%variantToSet = ();
 		}
 		# --------------------------
-		elsif ($command eq "exit") {
-			unlink($lockFifo);
-			exit(0);
-		}
 		else {
 			print STDERR "$comName: unknown command $command\n";
 			$return = "0";
 		}
 		
 		# answer
-		myMakeFifo($inFifo);
+		$return = "1" if $return eq "";
+		myMakeFifo($outFifo);
 		eval {
 			local $SIG{ALRM} = sub { die "Timeout" };
 			alarm(10);
 			# this line block until com take the answer
-			open(OUT,">$inFifo") || die "$comName: cannot write fifo $inFifo";
+			open(OUT,">$outFifo") || die "$comName: cannot write fifo $outFifo";
 			alarm(0);
-			print OUT "ok\n" . $return;
+			print OUT $return;
 			close(OUT);
-			unlink($inFifo);
+			unlink($outFifo);
 		};
 		if ($@ =~ /cannot/) {
-			print STDERR "$comName: cannot write on fifo $inFifo\n";
-			unlink($lockFifo);
+			print STDERR "$comName: cannot write on fifo $outFifo\n";
+			unlink($outFifo);
 			unlink($inFifo);
 			exit(1);
 		}
 		if ($@ =~ /Timeout/) {
-			print STDERR "$comName: com do not read my answer!\n";
+			print STDERR "$comName: com do not read my answer on $outFifo!\n";
 		}
 
 	}
@@ -3616,16 +3635,15 @@ sub secToUptime {
 # useful functions for the com loop
 
 #---------------------------------------
-# merging
-sub mergeScriptAnswer($$) {
+# merging lines in one line for the Parse FvwmScript instruction
+sub mergeScriptAnswerForParse($) {
 	my $in = shift;
-	my $num = shift;
 	my $out = "";
-	my $l = 0;
+	my $l;
 
 	foreach (split(/\n/,$in)) {
-		$l = $l + length($_) + $num;
-		$out .= "0" x ($num-length($l)) . "$l" . $_;
+		$l = length($_);
+		$out .= "0" x (4-length($l)) . "$l" . $_;
 	}
 
 	return $out;
@@ -4074,15 +4092,15 @@ sub updateCurrentComponents {
 # An alarm handler (called from eval block):
 sub checkScript {
 
-	die "Script" unless ($comPid);
+	die "Script" unless ($comPid[0]);
 
 	my $test = 0;
-	my $lockFifo = ".tmp-com-lock-" . $comName;
+	my $inFifo = ".tmp-com-in-" . $comName;
 
-	$test = 1 if kill 0 => $comPid;
+	$test = 1 if kill 0 => $comPid[0];
 
 	if ($test) { die "Script"; }
-	else { unlink($lockFifo) if -p "$lockFifo"; die "NoScript"; }
+	else { unlink($inFifo) if -p "$inFifo"; die "NoScript"; }
 }
 
 #-----------------------------------------------------------------------------
@@ -4098,7 +4116,7 @@ sub myMakeFifo {
 END {
 	if ($comMode) {
 		if ($?) {
-			my $lockFifo = ".tmp-com-lock-" . $comName;
+			my $outFifo = ".tmp-com-out-" . $comName;
 			my $inFifo = ".tmp-com-in-" . $comName;
 			my $message = "fvwm-themes-config: internal error $?\n";
 			# actually $@ is never defined in END
@@ -4107,17 +4125,20 @@ END {
 			# actually the following is never executed on unix
 			$message .= "\tOS error 2: $^E\n" if $^E && !($! && $^E eq $!);
 
-			unlink($lockFifo) if -p "$lockFifo";
+			unlink($outFifo) if -p "$outFifo";
 			unlink($inFifo) if -p "$inFifo";
-			if ($comPid) {
-				kill(9, $comPid);
+		  	if ($comPid[0]) {
+				kill(9, $comPid[0]);
 				$message .= "\tkilling FvwmScript-ThemesCenter";
+			}
+			my $i;
+			for($i = 1; $i < 4; $i++) {
+				kill(9, $comPid[$i]) if $comPid[$i];
 			}
 			print STDERR "$message\n";
 		}
 	}
 }
-
 
 __END__
 
