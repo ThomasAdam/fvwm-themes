@@ -82,11 +82,14 @@ AddToMenu   MenuFvwmManPages "FVWM Man Pages" Title
 + "%menu/help.xpm%FvwmEvent"           FuncFvwmViewManPage FvwmEvent
 + "%menu/help.xpm%FvwmForm"            FuncFvwmViewManPage FvwmForm
 + "%menu/help.xpm%FvwmGtk"             FuncFvwmViewManPage FvwmGtk
++ "%menu/help.xpm%FvwmGtkDebug"        FuncFvwmViewManPage FvwmGtkDebug
 + "%menu/help.xpm%FvwmIconBox"         FuncFvwmViewManPage FvwmIconBox
 + "%menu/help.xpm%FvwmIconMan"         FuncFvwmViewManPage FvwmIconMan
 + "%menu/help.xpm%FvwmIdent"           FuncFvwmViewManPage FvwmIdent
 + "%menu/help.xpm%FvwmM4"              FuncFvwmViewManPage FvwmM4
 + "%menu/help.xpm%FvwmPager"           FuncFvwmViewManPage FvwmPager
++ "%menu/help.xpm%FvwmPerl"            FuncFvwmViewManPage FvwmPerl
++ "%menu/help.xpm%FvwmProxy"           FuncFvwmViewManPage FvwmProxy
 + "%menu/help.xpm%FvwmRearrange"       FuncFvwmViewManPage FvwmRearrange
 + "%menu/help.xpm%FvwmSave"            FuncFvwmViewManPage FvwmSave
 + "%menu/help.xpm%FvwmSaveDesk"        FuncFvwmViewManPage FvwmSaveDesk
@@ -96,8 +99,10 @@ AddToMenu   MenuFvwmManPages "FVWM Man Pages" Title
 + "%menu/help.xpm%FvwmTheme"           FuncFvwmViewManPage FvwmTheme
 + "%menu/help.xpm%FvwmWharf"           FuncFvwmViewManPage FvwmWharf
 + "%menu/help.xpm%FvwmWinList"         FuncFvwmViewManPage FvwmWinList
++ "%menu/help.xpm%FvwmWindowLister"    FuncFvwmViewManPage FvwmWindowLister
 + "" Nop
 + "%menu/help.xpm%fvwm-config"         FuncFvwmViewManPage fvwm-config
++ "%menu/help.xpm%fvwm-perllib"        FuncFvwmViewManPage fvwm-perllib
 + "%menu/help.xpm%fvwm-root"           FuncFvwmViewManPage fvwm-root
 #+ "%menu/help.xpm%fvwm-bug"            FuncFvwmViewManPage fvwm-bug
 #+ "%menu/help.xpm%fvwm-convert-2.2"    FuncFvwmViewManPage fvwm-convert-2.2
