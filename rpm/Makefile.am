@@ -82,7 +82,6 @@ rpm-extra: @PACKAGE@-extra.spec
 	rm tmp-@PACKAGE@.spec
 
 rpm-themes: @PACKAGE@-themes.spec
-
 	@\
 	version=$(version); \
 	release=$(release); \
