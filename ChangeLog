@@ -9,6 +9,10 @@
 	* bin/fvwm-themes-start.in:
 	fixed syntax
 
+	* bin/fvwm-themes-config.in:
+	detect endless 'include' loops and break them with warning;
+	support %oNv in read-command of component.cfg
+
 2001-04-05  migo  <migo@homemail.com>
 
 	* AUTHORS: added Kristian Peters

@@ -422,9 +422,15 @@ sub loadThemeCfg ($) {
 	my $cfg = [{}, {}];
 
 	my $strRef = loadFile($cfgFile);
+	my %visitedFiles = ();
 	while ($$strRef =~ s/^!include(-quiet)?\s+(.*)\s*$/
 		my $subCfgFile = searchThemeCfgIncludeFile($2, $theme);
 		errDir("No include $2 in $cfgFile") unless $1 || defined $subCfgFile;
+		if (defined $subCfgFile) {
+			if ($visitedFiles{$subCfgFile}) { errWarn(
+				"Endless loop $cfgFile - $subCfgFile"); $subCfgFile = undef }
+			else { $visitedFiles{$subCfgFile} = 1; }
+		}
 		defined $subCfgFile? ${loadFile($subCfgFile)}: ""
 	/meg) {}
 
@@ -1712,13 +1718,16 @@ sub getMenusAndHooksAndReadsRc ($) {
 				. $valueFile0;
 			$valueFile =~ s/^$ROOT_PREFIX//;
 
-			push @$optionExports, { 'f' => $valueFile, 'c' => $current };
+			push @$optionExports, {
+				'f' => $valueFile, 'c' => $current, 'v' => $valueFile0
+			};
 			my $command = $optionEntry->{'read-command'};
 			next if defined $command && $command eq "";
 
 			$command ||= $defaultReadCommand;
 			$command =~ s/%f/$valueFile/sg;
-			$command =~ s/%F/$valueFile0/sg;
+			$command =~ s/%F/$valueFile0/sg;  # to be obsolete?
+			$command =~ s/%v/$valueFile0/sg;
 			$command =~ s/%d/getThemeDir($self->{$idKey})/seg;
 			my $readAfterward = $optionEntry->{'read-afterward'};
 			$readAfterward = $optionReadAfterward unless defined $readAfterward;
