@@ -1,24 +1,24 @@
-FuncFvwmSetFont-ModuleWindowList "*FvwmWinList: Font" \
+FuncFvwmSetFont-ModuleWindowList FvwmWinList Font \
 	"-adobe-helvetica-bold-r-*-*-12-*"
 
-FuncFvwmSetFont-ModuleTips "*FvwmPager-Single: BalloonFont" \
+FuncFvwmSetFont-ModuleTips FvwmPager-Single BalloonFont \
 	-adobe-helvetica-medium-r-*-*-10-*
-FuncFvwmSetFont-ModuleTips "*FvwmPager-Desker: BalloonFont" \
+FuncFvwmSetFont-ModuleTips FvwmPager-Desker BalloonFont \
 	-adobe-helvetica-medium-r-*-*-10-*
 
-FuncFvwmSetFont-ModuleSmall "*FvwmPager-Single: SmallFont" \
+FuncFvwmSetFont-ModuleSmall FvwmPager-Single SmallFont \
 	"-*-fixed-medium-r-normal-*-8-*"
-FuncFvwmSetFont-ModuleSmall "*FvwmPager-Desker: SmallFont" \
+FuncFvwmSetFont-ModuleSmall FvwmPager-Desker SmallFont \
 	"-*-fixed-medium-r-normal-*-8-*"
 
-FuncFvwmSetFont-ModuleLabel "*FvwmPager-Single: Font" \
+FuncFvwmSetFont-ModuleLabel FvwmPager-Single Font \
 	"-adobe-helvetica-bold-r-*-*-10-*"
 
-FuncFvwmSetFont-ModuleLabel "*FvwmPager-Desker: Font" \
+FuncFvwmSetFont-ModuleLabel FvwmPager-Desker Font \
 	"-adobe-helvetica-bold-r-*-*-10-*"
 
-FuncFvwmSetFont-ModuleLabel "*FvwmButtons-MenuBar: Font" \
+FuncFvwmSetFont-ModuleLabel FvwmButtons-MenuBar Font \
 	 "-adobe-helvetica-bold-r-*-*-12-*"
 
-FuncFvwmSetFont-ModuleLabel "*FvwmButtons-OsxCentral: Font" \
+FuncFvwmSetFont-ModuleLabel FvwmButtons-OsxCentral Font \
 	 "-adobe-helvetica-bold-r-*-*-10-*"

@@ -247,18 +247,18 @@ DestroyModuleConfig FvwmPager-Desker: *
 
 # -------------------------------
 # fonts
-FuncFvwmSetFont-ModuleTips "*FvwmPager-Single: BalloonFont" fixed
+FuncFvwmSetFont-ModuleTips FvwmPager-Single BalloonFont fixed
 
-FuncFvwmSetFont-ModuleSmall "*FvwmPager-Single: SmallFont" \
+FuncFvwmSetFont-ModuleSmall FvwmPager-Single SmallFont \
 	"-*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*"
 
-#FuncFvwmSetFont-ModuleSmallLabel "*FvwmPager-Single: Font" \
+#FuncFvwmSetFont-ModuleSmallLabel FvwmPager-Single Font \
 #	"-*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*"
 
-FuncFvwmSetFont-ModuleTips "*FvwmPager-Desker: BalloonFont" fixed
+FuncFvwmSetFont-ModuleTips FvwmPager-Desker BalloonFont fixed
 
-FuncFvwmSetFont-ModuleSmall "*FvwmPager-Desker: SmallFont" \
+FuncFvwmSetFont-ModuleSmall FvwmPager-Desker SmallFont \
 	"-*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*"
 
-FuncFvwmSetFont-ModuleSmallLabel "*FvwmPager-Desker: Font" \
+FuncFvwmSetFont-ModuleSmallLabel FvwmPager-Desker Font \
 	"-*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*"

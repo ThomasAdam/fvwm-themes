@@ -25,39 +25,39 @@ AddToFunc   FuncFvwmSetFont-FvwmIdent
 # default font for IconBox, IconMan, TaskBar and WinList
 DestroyFunc FuncFvwmSetFont-ModuleWindowList
 AddToFunc   FuncFvwmSetFont-ModuleWindowList
-+ I $0 -*-*-medium-r-*--16-*-*-*-*-*-gb2312*-*
++ I *$0: $1 "-*-*-medium-r-*--16-*-*-*-*-*-gb2312*-*"
 
 # selected font (TaskBar)
 DestroyFunc FuncFvwmSetFont-ModuleSelectedWindowList
 AddToFunc   FuncFvwmSetFont-ModuleSelectedWindowList
-+ I $0 -*-*-medium-r-*--16-*-*-*-*-*-gb2312*-*
++ I *$0: $1 "-*-*-medium-r-*--16-*-*-*-*-*-gb2312*-*"
 
 # if one want small font for a Window List module (e.g., luthien IconMan)
 DestroyFunc FuncFvwmSetFont-ModuleSmallWindowList
 AddToFunc   FuncFvwmSetFont-ModuleSmallWindowList
-+ I $0 *-*-medium-r-*--16-*-*-*-*-*-gb2312*-*
++ I *$0: $1 "*-*-medium-r-*--16-*-*-*-*-*-gb2312*-*"
 
 # small font (Pager mini window font)
 DestroyFunc FuncFvwmSetFont-ModuleSmall
 AddToFunc   FuncFvwmSetFont-ModuleSmall
-+ I $0 *-*-medium-r-*--16-*-*-*-*-*-gb2312*-*
++ I *$0: $1 "*-*-medium-r-*--16-*-*-*-*-*-gb2312*-*"
 
 # tips font (for TaskBar, Pager)
 DestroyFunc FuncFvwmSetFont-ModuleTips
 AddToFunc   FuncFvwmSetFont-ModuleTips
-+ I $0 *-*-medium-r-*--16-*-*-*-*-*-gb2312*-*
++ I *$0: $1 "*-*-medium-r-*--16-*-*-*-*-*-gb2312*-*"
 
 # normal "Label" font for Pager and Buttons
 DestroyFunc FuncFvwmSetFont-ModuleLabel
 AddToFunc   FuncFvwmSetFont-ModuleLabel
-+ I $0 $1 $2
++ I *$0: $1 "$2"
 
 # small "Label" for Buttons
 DestroyFunc FuncFvwmSetFont-ModuleSmallLabel
 AddToFunc   FuncFvwmSetFont-ModuleSmallLabel
-+ I $0 $1 $2
++ I *$0: $1 "$2"
 
 # large "Label" font for Buttons
 DestroyFunc FuncFvwmSetFont-ModuleLargeLabel
 AddToFunc   FuncFvwmSetFont-ModuleLargeLabel
-+ I $0 $1 $2
++ I *$0: $1 "$2"

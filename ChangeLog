@@ -1,5 +1,9 @@
 2002-06-05  migo  <migo@homemail.com>
 
+	* themes/*/fonts*:
+	* themes/*/modules/fonts:
+	convert module font functions to a new 3 parameter format
+
 	* themes/redmondxp/modules/FvwmButtons-Panel:
 	correct size and make it independent from a screen resolution
 

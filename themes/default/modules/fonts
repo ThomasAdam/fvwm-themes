@@ -1,34 +1,34 @@
-FuncFvwmSetFont-ModuleWindowList "*FvwmTaskBar: Font" \
+FuncFvwmSetFont-ModuleWindowList FvwmTaskBar Font \
 	"-adobe-helvetica-medium-r-*-*-12-*"
 
-FuncFvwmSetFont-ModuleSelectedWindowList "*FvwmTaskBar: SelFont" \
+FuncFvwmSetFont-ModuleSelectedWindowList FvwmTaskBar SelFont \
 	"-adobe-helvetica-bold-r-*-*-12-*"
 
-FuncFvwmSetFont-ModuleWindowList "*FvwmWinList: Font" \
+FuncFvwmSetFont-ModuleWindowList FvwmWinList Font \
 	"-adobe-helvetica-bold-r-*-*-12-*"
 
-FuncFvwmSetFont-ModuleWindowList "*FvwmIconBox: Font" \
+FuncFvwmSetFont-ModuleWindowList FvwmIconBox Font \
 	" -adobe-helvetica-medium-r-*-*-12-*"
 
-FuncFvwmSetFont-ModuleWindowList "*FvwmIconMan: *font" \
+FuncFvwmSetFont-ModuleWindowList FvwmIconMan *font \
 	"-*-fixed-bold-r-normal-*-13-*"
 
-FuncFvwmSetFont-ModuleTips "*FvwmTaskBar: StatusFont" \
+FuncFvwmSetFont-ModuleTips FvwmTaskBar StatusFont \
 	"-*-fixed-medium-r-semicondensed-*-13-*"
 
-FuncFvwmSetFont-ModuleTips "*FvwmPager-Single: BalloonFont" \
+FuncFvwmSetFont-ModuleTips FvwmPager-Single BalloonFont \
 	-*-lucidatypewriter-medium-r-normal-sans-12-*
-FuncFvwmSetFont-ModuleTips "*FvwmPager-Desker: BalloonFont" \
+FuncFvwmSetFont-ModuleTips FvwmPager-Desker BalloonFont \
 	-*-lucidatypewriter-medium-r-normal-sans-14-*
 
-FuncFvwmSetFont-ModuleSmall "*FvwmPager-Single: SmallFont" \
+FuncFvwmSetFont-ModuleSmall FvwmPager-Single SmallFont \
 	"-*-fixed-medium-r-normal-*-8-*"
-FuncFvwmSetFont-ModuleSmall "*FvwmPager-Desker: SmallFont" \
+FuncFvwmSetFont-ModuleSmall FvwmPager-Desker SmallFont \
 	"-*-fixed-medium-r-normal-*-8-*"
 
-FuncFvwmSetFont-ModuleLabel "*FvwmPager-Single: Font" \
+FuncFvwmSetFont-ModuleLabel FvwmPager-Single Font \
 	"-adobe-helvetica-bold-r-*-*-10-*"
 
-FuncFvwmSetFont-ModuleLabel "*FvwmPager-Desker: Font" \
+FuncFvwmSetFont-ModuleLabel FvwmPager-Desker Font \
 	"-adobe-helvetica-bold-r-*-*-10-*"
 

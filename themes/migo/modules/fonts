@@ -1,42 +1,41 @@
-FuncFvwmSetFont-ModuleWindowList "*FvwmTaskBar: Font" \
+FuncFvwmSetFont-ModuleWindowList FvwmTaskBar Font \
 	"-b&h-lucida-bold-r-*-*-10-*"
 
-FuncFvwmSetFont-ModuleSelectedWindowList "*FvwmTaskBar: SelFont" \
+FuncFvwmSetFont-ModuleSelectedWindowList FvwmTaskBar SelFont \
 	"-b&h-lucida-bold-r-*-*-10-*"
 
-FuncFvwmSetFont-ModuleWindowList "*FvwmWinList: Font" \
+FuncFvwmSetFont-ModuleWindowList FvwmWinList Font \
 	"-adobe-helvetica-bold-r-*-*-12-*"
 
-FuncFvwmSetFont-ModuleWindowList "*FvwmIconBox: Font" \
+FuncFvwmSetFont-ModuleWindowList FvwmIconBox Font \
 	"-adobe-helvetica-bold-r-*-*-10-*"
 
-FuncFvwmSetFont-ModuleWindowList "*FvwmIconMan: *font" \
+FuncFvwmSetFont-ModuleWindowList FvwmIconMan: Font \
 	"-adobe-helvetica-bold-r-*-*-10-*"
 
-FuncFvwmSetFont-ModuleTips "*FvwmTaskBar: StatusFont" "fixed"
+FuncFvwmSetFont-ModuleTips FvwmTaskBar StatusFont "fixed"
 
-FuncFvwmSetFont-ModuleTips "*FvwmPager-Single: BalloonFont" \
+FuncFvwmSetFont-ModuleTips FvwmPager-Single BalloonFont \
 	-*-fixed-medium-r-semicondensed-*-13-*
-FuncFvwmSetFont-ModuleTips "*FvwmPager-Desker: BalloonFont" \
+FuncFvwmSetFont-ModuleTips FvwmPager-Desker BalloonFont \
 	-*-fixed-medium-r-semicondensed-*-13-*
-FuncFvwmSetFont-ModuleTips "*FvwmPager-Desker: BalloonFont" \
+FuncFvwmSetFont-ModuleTips FvwmPager-Desker BalloonFont \
 	-*-fixed-medium-r-semicondensed-*-13-*
 
-FuncFvwmSetFont-ModuleSmall "*FvwmPager-Single: SmallFont" \
+FuncFvwmSetFont-ModuleSmall FvwmPager-Single SmallFont \
 	"-*-fixed-medium-r-normal-*-8-*"
-FuncFvwmSetFont-ModuleSmall "*FvwmPager-Desker: SmallFont" \
+FuncFvwmSetFont-ModuleSmall FvwmPager-Desker SmallFont \
 	"-*-fixed-medium-r-normal-*-8-*"
-FuncFvwmSetFont-ModuleSmall "*FvwmPager-Desker: SmallFont" \
+FuncFvwmSetFont-ModuleSmall FvwmPager-Desker SmallFont \
 	"-*-fixed-medium-r-normal-*-8-*"
 
-FuncFvwmSetFont-ModuleLabel "*FvwmPager-Single: Font" \
+FuncFvwmSetFont-ModuleLabel FvwmPager-Single Font \
 	"-*-helvetica-bold-r-*-*-10-*"
-FuncFvwmSetFont-ModuleLabel "*FvwmPager-Desker: Font" \
+FuncFvwmSetFont-ModuleLabel FvwmPager-Desker Font \
 	"-*-helvetica-bold-r-*-*-10-*"
-FuncFvwmSetFont-ModuleLabel "*FvwmPager-Desker: Font" \
+FuncFvwmSetFont-ModuleLabel FvwmPager-Desker Font \
 	"-*-helvetica-bold-r-*-*-10-*"
 
-FuncFvwmSetFont-ModuleSmallLabel "*FvwmButtons-Pager: Font" \
+FuncFvwmSetFont-ModuleSmallLabel FvwmButtons-Pager Font \
 	"-*-fixed-medium-r-normal-*-7-*"
-
 
