@@ -23,7 +23,7 @@ fvwmArgs=""
 whoseArgs="my"
 start=yes
 ### to be autoconfigured
-fvwmExe="fvwm2"
+fvwmExe="fvwm"
 session="main"
 
 while [ "x$1" != "x" ]; do
@@ -80,8 +80,11 @@ fi
 rm -f $rcName2
 ln -s $destRcFile2 $rcName2
 
-# check whether this is a first run
-test -f $rcFile -a "`head -1 $rcFile 2>/dev/null | cut -d' ' -f3`" = "@VERSION@"
+HEADERS_LINE=""
+test -f $rcFile && HEADERS_LINE="`head -1 $rcFile 2>/dev/null`"
+
+# check whether this is the first run
+test "`echo $HEADERS_LINE | cut -d' ' -f3`" = "@VERSION@"
 isNewVersion="$?"
 if [ "$isNewVersion" = 1 -o "$isNewSession" = 1 ]; then
 	if [ "$isNewVersion" = 1 ]; then
@@ -92,6 +95,13 @@ if [ "$isNewVersion" = 1 -o "$isNewSession" = 1 ]; then
 	fi
 	@bindir@/fvwm-themes-config --reset
 	@bindir@/fvwm-themes-config --load @personal 2>/dev/null
+else
+	# different build id may mean that themes or prefix were changed,
+	# be safe and refresh in this case
+	if [ "`echo $HEADERS_LINE | cut -d' ' -f4-`" = "@FT_BUILD_ID@" ]; then
+		echo "[FVWM-Themes]: A new @VERSION@ build detected; refreshing configuration"
+		@bindir@/fvwm-themes-config --fresh
+	fi
 fi
 
 # check that @FVWM_BINDIR@ is in $PATH and first for fvwm-config

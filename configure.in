@@ -231,6 +231,8 @@ AC_SUBST(FT_LOCALE_DIR)dnl
 # migo: to match the one in FVWM...
 FT_VERSION_INFO="FVWM Themes version $VERSION from `date +'%b %d %Y at %T'`"
 AC_SUBST(FT_VERSION_INFO)dnl
+FT_BUILD_ID=`date '+build %d-%b-%Y %T'`
+AC_SUBST(FT_BUILD_ID)dnl
 
 SETTINGS_FILE='${FT_DATADIR}/themes/default/settings.cfg'
 AC_SUBST(SETTINGS_FILE)dnl

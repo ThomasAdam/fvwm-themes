@@ -3,6 +3,11 @@
 	* themes/default/settings.cfg:
 	make the default for EWMH - disabled, needed for 2.5.x
 
+	* configure.in:
+	* bin/fvwm-themes-config.in:
+	* bin/fvwm-themes-start.in:
+	refresh config if there is a new build
+
 2002-06-14  migo  <migo@homemail.com>
 
 	* themes/redmondxp/images/module/panel-right-bg.xpm:
