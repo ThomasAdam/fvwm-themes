@@ -1,3 +1,12 @@
+2000-10-29  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	accept spaces before and after numeric value (workaround for FvwmForm)
+
+	* forms/FvwmForm-ThemeSettings:
+	* forms/FvwmGtk-Themes:
+	updates from Alex Wallis
+
 2000-10-26  migo  <migo@homemail.com>
 
 	* themes/default/functions-appbind:
@@ -19,7 +28,7 @@
 	some workarounds
 
 	* NEWS:
-	prepared to a release sometimes tomorrow
+	prepared to a release
 
 2000-10-25  olicha  <olivier.chapuis@free.fr>
 

@@ -572,7 +572,7 @@ sub getHashIdArrayIndex ($$) {
 			$index = $i + 1; last;
 		}
 	}
-	$index = $id if $index < 0 && $id =~ /^\d+$/;
+	$index = $1 if $index < 0 && $id =~ /^\s*(\d+)\s*$/;
 	return $index;
 }
 

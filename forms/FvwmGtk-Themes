@@ -10,60 +10,141 @@
 DestroyModuleConfig FvwmGtk-Themes: *
 
 *FvwmGtk-Themes: Destroy SettingsDialog
-*FvwmGtk-Themes: Dialog SettingsDialog "FVWM Theme Settings"
-*FvwmGtk-Themes: Box vertical 10 12
-*FvwmGtk-Themes: Label "FVWM Theme Settings" -- 10 expand fill
+*FvwmGtk-Themes: Dialog SettingsDialog "FVWM Theme Settings" center
+*FvwmGtk-Themes: Box vertical spacing 22 10 
+*FvwmGtk-Themes: Label "FVWM Theme Settings" -- padding 15
 
-*FvwmGtk-Themes: Frame Switches
-*FvwmGtk-Themes: Box
-*FvwmGtk-Themes: CheckButton animation Animation enabled disabled on
-*FvwmGtk-Themes: CheckButton background Background theme disabled on
-*FvwmGtk-Themes: CheckButton banner Banner enabled disabled on
-*FvwmGtk-Themes: CheckButton stroke Stroke enabled disabled
+# First we divide window into 2 boxes
+*FvwmGtk-Themes: Box -- spacing 0 0
+*FvwmGtk-Themes: Box vertical spacing 2 2
+
+*FvwmGtk-Themes: Frame Switches 5
+*FvwmGtk-Themes: Box homogeneous spacing 5 6
+*FvwmGtk-Themes: CheckButton animation Animation 2 1 on
+*FvwmGtk-Themes: CheckButton background Background 2 1 on
+*FvwmGtk-Themes: CheckButton banner Banner 2 1 on
+*FvwmGtk-Themes: CheckButton stroke Stroke 2 1 
 *FvwmGtk-Themes: EndBox
 *FvwmGtk-Themes: EndFrame
 
-### I don't know why this gives Gtk-CRITICAL, probably FvwmGtk bug.
-*FvwmGtk-Themes: Frame "Sound Player"
-# the following box is optional, just not to expand all frame
-*FvwmGtk-Themes: Box
+*FvwmGtk-Themes: Frame "Sound Player" 5
+*FvwmGtk-Themes: Box homogeneous spacing 5 6
+*FvwmGtk-Themes: Label "Choose Sound Player      "
 *FvwmGtk-Themes: OptionMenu sound-player
 #*FvwmGtk-Themes: Destroy sound-player2
 #*FvwmGtk-Themes: Menu sound-player2
-*FvwmGtk-Themes: Item "Disabled" disabled on
-*FvwmGtk-Themes: Item "play (sox)" play
-*FvwmGtk-Themes: Item "esdplay" esdplay
-*FvwmGtk-Themes: Item "audioplay" audioplay
-*FvwmGtk-Themes: Item "auplay" auplay
-*FvwmGtk-Themes: Item "rplay" rplay
-*FvwmGtk-Themes: Item "rplayD" rplayD
+*FvwmGtk-Themes: Item "Disabled" 1 on
+*FvwmGtk-Themes: Item "play (sox)" 2
+*FvwmGtk-Themes: Item "esdplay" 3
+*FvwmGtk-Themes: Item "audioplay" 4
+*FvwmGtk-Themes: Item "auplay" 5
+*FvwmGtk-Themes: Item "rplay" 6
+*FvwmGtk-Themes: Item "rplayD" 7
 *FvwmGtk-Themes: EndOptionMenu
 *FvwmGtk-Themes: EndBox
 *FvwmGtk-Themes: EndFrame
 
-*FvwmGtk-Themes: Frame "Auto Raise"
-*FvwmGtk-Themes: Box
-*FvwmGtk-Themes: RadioGroup autoraise
-*FvwmGtk-Themes: RadioButton "Disabled" disabled on
-*FvwmGtk-Themes: RadioButton "Auto Raise (1/2 sec)" autoraise-500
-*FvwmGtk-Themes: RadioButton "Auto Raise (2 sec)" autoraise-2000
-*FvwmGtk-Themes: RadioButton "Auto Raise Modules" modules
+*FvwmGtk-Themes: Frame "Auto Raise" 5
+*FvwmGtk-Themes: Box homogeneous spacing 5 6
+*FvwmGtk-Themes: Label "Choose Auto Raise Option "
+*FvwmGtk-Themes: OptionMenu autoraise
+*FvwmGtk-Themes: Item "Disabled" 1 on
+*FvwmGtk-Themes: Item "Auto Raise (1/2 sec)" 2
+*FvwmGtk-Themes: Item "Auto Raise (2 sec)" 3
+*FvwmGtk-Themes: Item "Auto Raise Modules" 4
+*FvwmGtk-Themes: EndOptionMenu
+*FvwmGtk-Themes: EndBox
+*FvwmGtk-Themes: EndFrame
+
+*FvwmGtk-Themes: Frame "Icon Styles" 5
+*FvwmGtk-Themes: Box homogeneous spacing 5 6
+*FvwmGtk-Themes: Label "Choose Icon Styles       "
+*FvwmGtk-Themes: OptionMenu iconstyles
+*FvwmGtk-Themes: Item "Disabled" disabled
+*FvwmGtk-Themes: Item "Native" native on
+*FvwmGtk-Themes: Item "wm-icons" wm-icons
+*FvwmGtk-Themes: EndOptionMenu
+*FvwmGtk-Themes: EndBox
+*FvwmGtk-Themes: EndFrame
+
+*FvwmGtk-Themes: Frame "Session Managert" 5
+*FvwmGtk-Themes: Box homogeneous spacing 5 6
+*FvwmGtk-Themes: RadioGroup session-manager
+*FvwmGtk-Themes: RadioButton None 1 on
+*FvwmGtk-Themes: RadioButton "Gnome" 2
+*FvwmGtk-Themes: RadioButton "Generic" 3
 *FvwmGtk-Themes: EndRadioGroup
 *FvwmGtk-Themes: EndBox
 *FvwmGtk-Themes: EndFrame
 
-*FvwmGtk-Themes: Frame "Icon Styles"
-*FvwmGtk-Themes: Box
-*FvwmGtk-Themes: RadioGroup iconstyles
-*FvwmGtk-Themes: RadioButton "Disabled" disabled
-*FvwmGtk-Themes: RadioButton "Native" native on
-*FvwmGtk-Themes: RadioButton "wm-icons" wm-icons
+*FvwmGtk-Themes: EndBox
+# Now the other side
+*FvwmGtk-Themes: Box vertical spacing 2 2
+
+*FvwmGtk-Themes: Frame "KDE Options" 5
+*FvwmGtk-Themes: Box vertical spacing 5 6
+*FvwmGtk-Themes: CheckButton kde/kfm-icons "kfm icons workaround" 2 1
+*FvwmGtk-Themes: Box -- spacing 5 6
+*FvwmGtk-Themes: Label "System Menus       "
+*FvwmGtk-Themes: OptionMenu "kde/system-menu"
+*FvwmGtk-Themes: Item "Disabled" 1
+*FvwmGtk-Themes: Item "Menu \& Styles (48x48 icons)" 2 on
+*FvwmGtk-Themes: Item "Menu \& Styles (32x32 icons)" 3
+*FvwmGtk-Themes: Item "Menus Only" 4
+*FvwmGtk-Themes: EndOptionMenu
+*FvwmGtk-Themes: EndBox
+*FvwmGtk-Themes: Box -- spacing 5 6
+*FvwmGtk-Themes: Label "User Menus         "
+*FvwmGtk-Themes: OptionMenu "kde/user-menu"
+*FvwmGtk-Themes: Item "Disabled" 1
+*FvwmGtk-Themes: Item "Menu \& Styles" 2 on
+*FvwmGtk-Themes: Item "Menus Only" 3
+*FvwmGtk-Themes: EndOptionMenu
+*FvwmGtk-Themes: EndBox
 *FvwmGtk-Themes: EndBox
 *FvwmGtk-Themes: EndFrame
 
-*FvwmGtk-Themes: Box homogeneous
+*FvwmGtk-Themes: Frame "GNOME Options" 5
+*FvwmGtk-Themes: Box vertical spacing 5 6
+*FvwmGtk-Themes: CheckButton gnome/panel-staysput "Panel stays put" 2 1
+*FvwmGtk-Themes: Box -- spacing 5 6
+*FvwmGtk-Themes: Label "System Menus       "
+*FvwmGtk-Themes: OptionMenu "gnome/system-menu"
+*FvwmGtk-Themes: Item "Disabled" 1
+*FvwmGtk-Themes: Item "GTK Menu" 2
+*FvwmGtk-Themes: Item "GTK Menu \& Styles" 3
+*FvwmGtk-Themes: Item "Fvwm Menu (wm icons)" 4
+*FvwmGtk-Themes: Item "Fvwm Menu (gnome icons)" 5
+*FvwmGtk-Themes: Item "Fvwm Menus \& Styles" 6 on
+*FvwmGtk-Themes: EndOptionMenu
+*FvwmGtk-Themes: EndBox
+*FvwmGtk-Themes: Box -- spacing 5 6
+*FvwmGtk-Themes: Label "User Menus         "
+*FvwmGtk-Themes: OptionMenu "gnome/user-menu"
+*FvwmGtk-Themes: Item "Disabled" 1 on
+*FvwmGtk-Themes: Item "GTK Menu" 2 
+*FvwmGtk-Themes: Item "Fvwm Menu" 3 
+*FvwmGtk-Themes: EndOptionMenu
+*FvwmGtk-Themes: EndBox
+*FvwmGtk-Themes: Box -- spacing 5 6
+*FvwmGtk-Themes: Label "AnotherLevel Menus "
+*FvwmGtk-Themes: OptionMenu "gnome/anotherlevel-menu"
+*FvwmGtk-Themes: Item "Disabled" 1 on
+*FvwmGtk-Themes: Item "GTK Menu" 2 
+*FvwmGtk-Themes: Item "Fvwm Menu" 3
+*FvwmGtk-Themes: EndOptionMenu
+*FvwmGtk-Themes: EndBox
+*FvwmGtk-Themes: EndBox
+*FvwmGtk-Themes: EndFrame
+
+# Close both boxes
+*FvwmGtk-Themes: EndBox
+*FvwmGtk-Themes: EndBox
+
+# Box for buttons
+*FvwmGtk-Themes: Box homogeneous spacing 0 20 expand fill
 # Maybe to add "close" before "--"?
-*FvwmGtk-Themes: Button "Apply" "FuncFvwmThemesConfigAndUpdate ' \
+*FvwmGtk-Themes: Button " Apply " "FuncFvwmThemesConfigAndUpdate ' \
 	--variant settings/animation=$(animation) \
 	--variant settings/background=$(background) \
 	--variant settings/banner=$(banner) \
@@ -71,18 +152,17 @@ DestroyModuleConfig FvwmGtk-Themes: *
 	--variant settings/sound-player=$(sound-player) \
 	--variant settings/autoraise=$(autoraise) \
 	--variant settings/iconstyles=$(iconstyles) \
+	--variant settings/kde/kfm-icons=$(kde/kfm-icons) \
+	--variant settings/kde/system-menu=$(kde/system-menu) \
+	--variant settings/kde/user-menu=$(kde/user-menu) \
+	--variant settings/gnome/panel-staysput=$(gnome/panel-staysput) \
+	--variant settings/gnome/system-menu=$(gnome/system-menu) \
+	--variant settings/gnome/user-menu=$(gnome/user-menu) \
+	--variant settings/gnome/anotherlevel-menu=$(gnome/anotherlevel-menu) \
+	--variant settings/session-manager=$(session-manager) \
 	'" -- default can-default
 
-#	--variant settings/kde/kfm-icons=$(kde/kfm-icons) \
-#	--variant settings/kde/system-menu=$(kde/system-menu) \
-#	--variant settings/kde/user-menu=$(kde/user-menu) \
-#	--variant settings/session=$(session) \
-#	--variant settings/gnome/panel-staysput=$(gnome/panel-staysput) \
-#	--variant settings/gnome/system-menu=$(gnome/system-menu) \
-#	--variant settings/gnome/user-menu=$(gnome/user-menu) \
-#	--variant settings/gnome/anotherlevel-menu=$(gnome/anotherlevel-menu) \
-
-*FvwmGtk-Themes: Button "Close" close
+*FvwmGtk-Themes: Button " Close " close
 *FvwmGtk-Themes: EndBox
 
 *FvwmGtk-Themes: EndBox

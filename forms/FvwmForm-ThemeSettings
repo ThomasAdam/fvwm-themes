@@ -7,93 +7,114 @@ DestroyModuleConfig FvwmForm-ThemeSettings: *
 *FvwmForm-ThemeSettings: PadVText 0
 *FvwmForm-ThemeSettings: Font 10x20
 *FvwmForm-ThemeSettings: Line center
-*FvwmForm-ThemeSettings: Text "Fvwm Theme Settings"
+*FvwmForm-ThemeSettings: Text "FVWM Theme Settings"
 *FvwmForm-ThemeSettings: Line center
 *FvwmForm-ThemeSettings: Text ""
 *FvwmForm-ThemeSettings: Font 7x14
 *FvwmForm-ThemeSettings: Line center
 #*FvwmForm-ThemeSettings: Text "           "
 *FvwmForm-ThemeSettings: Selection Opt1 multiple
-*FvwmForm-ThemeSettings: Choice ANIM ANIM $ANIM=on "Animation "
-*FvwmForm-ThemeSettings: Choice BACK BACK $BACK=on "Background"
-*FvwmForm-ThemeSettings: Choice BANN BANN $BANN=on "Banner    "
+*FvwmForm-ThemeSettings: Choice ANIM ANIM $ANIM=on  "Animation "
+*FvwmForm-ThemeSettings: Choice BACK BACK $BACK=on  "Background"
+*FvwmForm-ThemeSettings: Choice BANN BANN $BANN=on  "Banner    "
 *FvwmForm-ThemeSettings: Choice STRK STRK $STRK=off "Stroke"
 *FvwmForm-ThemeSettings: Line center
 *FvwmForm-ThemeSettings: Text ""
 *FvwmForm-ThemeSettings: Line left
 *FvwmForm-ThemeSettings: Text "     Sounds"
 *FvwmForm-ThemeSettings: Selection Opt2 single
-*FvwmForm-ThemeSettings: Choice SDIS SDIS $SDIS=on "Disabled  "
-*FvwmForm-ThemeSettings: Choice SOXP SOXP $SOXP=off "play (sox)"
-*FvwmForm-ThemeSettings: Choice SESD SESD $SESD=off "esdplay   "
+*FvwmForm-ThemeSettings: Choice SDIS 1 $SDIS=on  "Disabled  "
+*FvwmForm-ThemeSettings: Choice SOXP 2 $SOXP=off "play (sox)"
+*FvwmForm-ThemeSettings: Choice SESD 3 $SESD=off "esdplay   "
 *FvwmForm-ThemeSettings: Line left
 *FvwmForm-ThemeSettings: Text "           "
-*FvwmForm-ThemeSettings: Choice SAUD SAUD $SAUD=off "audioplay "
-*FvwmForm-ThemeSettings: Choice SAUP SAUP $SAUP=off "auplay    "
-*FvwmForm-ThemeSettings: Choice SRPL SRPL $SRPL=off "rplay     "
-*FvwmForm-ThemeSettings: Choice SRPD SRPD $SRPD=off "rplayD    "
+*FvwmForm-ThemeSettings: Choice SAUD 4 $SAUD=off "audioplay "
+*FvwmForm-ThemeSettings: Choice SAUP 5 $SAUP=off "auplay    "
+*FvwmForm-ThemeSettings: Choice SRPL 6 $SRPL=off "rplay     "
+*FvwmForm-ThemeSettings: Choice SRPD 7 $SRPD=off "rplayD    "
 *FvwmForm-ThemeSettings: Line center
 *FvwmForm-ThemeSettings: Text ""
 *FvwmForm-ThemeSettings: Line left
 *FvwmForm-ThemeSettings: Text " Auto-Raise"
 *FvwmForm-ThemeSettings: Selection Opt3 single
-*FvwmForm-ThemeSettings: Choice AUTD AUTD $AUTD=on "Disabled  "
-*FvwmForm-ThemeSettings: Choice AUT1 AUT1 $AUT1=off "1/2 sec   "
-*FvwmForm-ThemeSettings: Choice AUT2 AUT2 $AUT2=off "2 secs    "
-*FvwmForm-ThemeSettings: Choice AUTM AUTM $AUTM=off "Modules   "
+*FvwmForm-ThemeSettings: Choice AUTD 1 $AUTD=on  "Disabled  "
+*FvwmForm-ThemeSettings: Choice AUT1 2 $AUT1=off "1/2 sec   "
+*FvwmForm-ThemeSettings: Choice AUT2 3 $AUT2=off "2 secs    "
+*FvwmForm-ThemeSettings: Choice AUTM 4 $AUTM=off "Modules   "
 *FvwmForm-ThemeSettings: Line center
 *FvwmForm-ThemeSettings: Text ""
 *FvwmForm-ThemeSettings: Line left
 *FvwmForm-ThemeSettings: Text "Icon Styles"
 *FvwmForm-ThemeSettings: Selection Opt4 single
-*FvwmForm-ThemeSettings: Choice ICSD ICSD $ICSD=off "Disabled  "
-*FvwmForm-ThemeSettings: Choice ICSN ICSN $ICSN=on "Native    "
-*FvwmForm-ThemeSettings: Choice ICSW ICSW $ICSW=off "wm-icons  "
+*FvwmForm-ThemeSettings: Choice ICSD 1 $ICSD=off "Disabled  "
+*FvwmForm-ThemeSettings: Choice ICSN 2 $ICSN=on  "Native    "
+*FvwmForm-ThemeSettings: Choice ICSW 3 $ICSW=off "wm-icons  "
 *FvwmForm-ThemeSettings: Line center
 *FvwmForm-ThemeSettings: Text ""
 *FvwmForm-ThemeSettings: Line left
-*FvwmForm-ThemeSettings: Text "KDE               "
+*FvwmForm-ThemeSettings: Font 10x20
+*FvwmForm-ThemeSettings: Text "KDE          "
+*FvwmForm-ThemeSettings: Font 7x14
 *FvwmForm-ThemeSettings: Selection Opt5 multiple
 *FvwmForm-ThemeSettings: Choice KFM KFM $KFM=off "kfm icons workaround"
 *FvwmForm-ThemeSettings: Line center
-*FvwmForm-ThemeSettings: Text "      System Menu"
+*FvwmForm-ThemeSettings: Text "    System Menu"
 *FvwmForm-ThemeSettings: Selection Opt6 single
-*FvwmForm-ThemeSettings: Choice KSDIS KSDIS $KSDIS=on "Disabled  "
-*FvwmForm-ThemeSettings: Choice KSMEN KSMEN $KSMEN=off "Menus Only"
-*FvwmForm-ThemeSettings: Choice KSMST KSMST $KSMST=off "Menus and Styles"
+*FvwmForm-ThemeSettings: Choice KSDIS  1 $KSDIS=on   "Disabled  "
+*FvwmForm-ThemeSettings: Choice KSMSTL 2 $KSMSTL=off "Menus and Styles(48x48 icons)"
 *FvwmForm-ThemeSettings: Line center
-*FvwmForm-ThemeSettings: Text "        User Menu"
+*FvwmForm-ThemeSettings: Text "               "
+*FvwmForm-ThemeSettings: Choice KSMEN  4 $KSMEN=off  "Menus Only"
+*FvwmForm-ThemeSettings: Choice KSMSTS 3 $KSMSTS=off "Menus and Styles(32x32 icons)"
+*FvwmForm-ThemeSettings: Line center
+*FvwmForm-ThemeSettings: Text "       User Menu"
 *FvwmForm-ThemeSettings: Selection Opt7 single
-*FvwmForm-ThemeSettings: Choice KUDIS KUDIS $KUDIS=on "Disabled  "
-*FvwmForm-ThemeSettings: Choice KUMEN KUMEN $KUMEN=off "Menus Only"
-*FvwmForm-ThemeSettings: Choice KUMST KUMST $KUMST=off "Menus and Styles"
+*FvwmForm-ThemeSettings: Choice KUDIS  1 $KUDIS=on  "Disabled  "
+*FvwmForm-ThemeSettings: Choice KUMEN  2 $KUMEN=off "Menus Only"
+*FvwmForm-ThemeSettings: Choice KUMST  3 $KUMST=off "Menus and Styles"
 *FvwmForm-ThemeSettings: Line center
 *FvwmForm-ThemeSettings: Text ""
 *FvwmForm-ThemeSettings: Line left
-*FvwmForm-ThemeSettings: Text "GNOME             "
+*FvwmForm-ThemeSettings: Font 10x20
+*FvwmForm-ThemeSettings: Text "GNOME        "
+*FvwmForm-ThemeSettings: Font 7x14
 *FvwmForm-ThemeSettings: Selection Opt8 multiple
-*FvwmForm-ThemeSettings: Choice GSES GSES $GSES=off "Gnome Session            "
 *FvwmForm-ThemeSettings: Choice GPSP GPSP $GPSP=off "Panel Stays Put"
-*FvwmForm-ThemeSettings: Line center
-*FvwmForm-ThemeSettings: Text "      System Menu"
+*FvwmForm-ThemeSettings: Line left
+*FvwmForm-ThemeSettings: Text "       System Menu"
 *FvwmForm-ThemeSettings: Selection Opt9 single
-*FvwmForm-ThemeSettings: Choice GSDIS GSDIS $GSDIS=on "Disabled  "
-*FvwmForm-ThemeSettings: Choice GSGTK GSGTK $GSGTK=off "Gtk Menu  "
-*FvwmForm-ThemeSettings: Choice GSFVW GSFVW $GSFVW=off "Fvwm Menu       "
+*FvwmForm-ThemeSettings: Choice GSDIS  1 $GSDIS=on   "Disabled            "
+*FvwmForm-ThemeSettings: Choice GSFVMS 6 $GSFVMS=off "Fvwm Menu & Styles    "
+*FvwmForm-ThemeSettings: Line center
+*FvwmForm-ThemeSettings: Text "                  "
+*FvwmForm-ThemeSettings: Choice GSFVWM 4 $GSFVWM=off "Fvwm Menu(wm icons) "
+*FvwmForm-ThemeSettings: Choice GSFVGN 5 $GSFVGN=off "Fvwm Menu(gnome icons)"
+*FvwmForm-ThemeSettings: Line center
+*FvwmForm-ThemeSettings: Text "                  "
+*FvwmForm-ThemeSettings: Choice GSGTKM 2 $GSGTKM=off "Gtk Menu            "
+*FvwmForm-ThemeSettings: Choice GSGTKS 3 $GSGTKS=off "Gtk Menu & Styles     "
 *FvwmForm-ThemeSettings: Line center
 *FvwmForm-ThemeSettings: Text "        User Menu"
 *FvwmForm-ThemeSettings: Selection Opt10 single
-*FvwmForm-ThemeSettings: Choice GUDIS GUDIS $GUDIS=on "Disabled  "
-*FvwmForm-ThemeSettings: Choice GUGTK GUGTK $GUGTK=off "Gtk Menu  "
-*FvwmForm-ThemeSettings: Choice GUFVW GUFVW $GUFVW=off "Fvwm Menu       "
+*FvwmForm-ThemeSettings: Choice GUDIS 1 $GUDIS=on  "Disabled  "
+*FvwmForm-ThemeSettings: Choice GUGTK 2 $GUGTK=off "Gtk Menu  "
+*FvwmForm-ThemeSettings: Choice GUFVW 3 $GUFVW=off "Fvwm Menu       "
 *FvwmForm-ThemeSettings: Line center
 *FvwmForm-ThemeSettings: Text "AnotherLevel Menu"
 *FvwmForm-ThemeSettings: Selection Opt11 single
-*FvwmForm-ThemeSettings: Choice ALDIS ALDIS $ALDIS=on "Disabled  "
-*FvwmForm-ThemeSettings: Choice ALGTK ALGTK $ALGTK=off "Gtk Menu  "
-*FvwmForm-ThemeSettings: Choice ALFVW ALFVW $ALFVW=off "Fvwm Menu       "
+*FvwmForm-ThemeSettings: Choice ALDIS 1 $ALDIS=on  "Disabled  "
+*FvwmForm-ThemeSettings: Choice ALGTK 2 $ALGTK=off "Gtk Menu  "
+*FvwmForm-ThemeSettings: Choice ALFVW 3 $ALFVW=off "Fvwm Menu       "
 *FvwmForm-ThemeSettings: Line center
 *FvwmForm-ThemeSettings: Text ""
+*FvwmForm-ThemeSettings: Line left
+*FvwmForm-ThemeSettings: Font 10x20
+*FvwmForm-ThemeSettings: Text "Session Manager"
+*FvwmForm-ThemeSettings: Font 7x14
+*FvwmForm-ThemeSettings: Selection Opt12 single
+*FvwmForm-ThemeSettings: Choice NOSN 1 $NOSN=on  "None   "
+*FvwmForm-ThemeSettings: Choice GNSN 2 $GNSN=off "GNOME  "
+*FvwmForm-ThemeSettings: Choice GESN 3 $GESN=off "Generic"
 *FvwmForm-ThemeSettings: Line center
 *FvwmForm-ThemeSettings: Text ""
 *FvwmForm-ThemeSettings: Line expand
@@ -103,17 +124,17 @@ DestroyModuleConfig FvwmForm-ThemeSettings: *
 --variant settings/background=$(BACK!1)$(BACK?2) \
 --variant settings/banner=$(BANN!1)$(BANN?2) \
 --variant settings/stroke=$(STRK!1)$(STRK?2) \
---variant settings/sound-player=$(SDIS?1)$(SOXP?2)$(SESD?3)$(SAUD?4)$(SAUP?5)$(SRPL?6)$(SRPD?7) \
---variant settings/autoraise=$(AUTD?1)$(AUT1?2)$(AUT2?3)$(AUTM?4) \
---variant settings/iconstyles=$(ICSD?1)$(ICSN?2)$(ICSW?3) \
+--variant settings/sound-player="$(Opt2)" \
+--variant settings/autoraise="$(Opt3)" \
+--variant settings/iconstyles="$(Opt4)" \
 --variant settings/kde/kfm-icons=$(KFM!1)$(KFM?2) \
---variant settings/kde/system-menu=$(KSDIS?1)$(KSMEN?3)$(KSMST?2) \
---variant settings/kde/user-menu=$(KUDIS?1)$(KUMEN?3)$(KUMST?2) \
---variant settings/session=$(GSES!1)$(GSES?2) \
+--variant settings/kde/system-menu="$(Opt6)" \
+--variant settings/kde/user-menu="$(Opt7)" \
 --variant settings/gnome/panel-staysput=$(GPSP!1)$(GPSP?2) \
---variant settings/gnome/system-menu=$(GSDIS?1)$(GSGTK?2)$(GSFVW?3) \
---variant settings/gnome/user-menu=$(GUDIS?1)$(GUGTK?2)$(GUFVW?3) \
---variant settings/gnome/anotherlevel-menu=$(ALDIS?1)$(ALGTK?2)$(ALFVW?3)'
+--variant settings/gnome/system-menu="$(Opt9)" \
+--variant settings/gnome/user-menu="$(Opt10)" \
+--variant settings/gnome/anotherlevel-menu="$(Opt11)" \
+--variant settings/session-manager="$(Opt12)" '
 
 *FvwmForm-ThemeSettings: Command !/bin/echo "# File Created by FvwmForm-ThemeSettings\n\
 *SavedThemeSettings: ANIM $(ANIM?on)\n\
@@ -138,26 +159,31 @@ DestroyModuleConfig FvwmForm-ThemeSettings: *
 *SavedThemeSettings: KFM $(KFM?on)\n\
 *SavedThemeSettings: KSDIS $(KSDIS?on)\n\
 *SavedThemeSettings: KSMEN $(KSMEN?on)\n\
-*SavedThemeSettings: KSMST $(KSMST?on)\n\
+*SavedThemeSettings: KSMSTL $(KSMSTL?on)\n\
+*SavedThemeSettings: KSMSTS $(KSMSTS?on)\n\
 *SavedThemeSettings: KUDIS $(KUDIS?on)\n\
 *SavedThemeSettings: KUMEN $(KUMEN?on)\n\
 *SavedThemeSettings: KUMST $(KUMST?on)\n" >> $FVWM_USERDIR/.FvwmForm-ThemeSettings
 
-*FvwmForm-ThemeSettings: Command !/bin/echo "*SavedThemeSettings: GSES $(GSES?on)\n\
-*SavedThemeSettings: GPSP $(GPSP?on)\n\
+*FvwmForm-ThemeSettings: Command !/bin/echo "*SavedThemeSettings: GPSP $(GPSP?on)\n\
 *SavedThemeSettings: GSDIS $(GSDIS?on)\n\
-*SavedThemeSettings: GSGTK $(GSGTK?on)\n\
-*SavedThemeSettings: GSFVW $(GSFVW?on)\n\
+*SavedThemeSettings: GSGTKM $(GSGTKM?on)\n\
+*SavedThemeSettings: GSGTKS $(GSGTKS?on)\n\
+*SavedThemeSettings: GSFVWM $(GSFVWM?on)\n\
+*SavedThemeSettings: GSFVGN $(GSFVGN?on)\n\
+*SavedThemeSettings: GSFVMS $(GSFVMS?on)\n\
 *SavedThemeSettings: GUDIS $(GUDIS?on)\n\
 *SavedThemeSettings: GUGTK $(GUGTK?on)\n\
 *SavedThemeSettings: GUFVW $(GUFVW?on)\n\
 *SavedThemeSettings: ALDIS $(ALDIS?on)\n\
 *SavedThemeSettings: ALGTK $(ALGTK?on)\n\
-*SavedThemeSettings: ALFVW $(ALFVW?on)\n" >> $FVWM_USERDIR/.FvwmForm-ThemeSettings
+*SavedThemeSettings: ALFVW $(ALFVW?on)\n\
+*SavedThemeSettings: NOSN $(NOSN?on)\n\
+*SavedThemeSettings: GNSN $(GNSN?on)\n\
+*SavedThemeSettings: GESN $(GESN?on)\n" >> $FVWM_USERDIR/.FvwmForm-ThemeSettings
 
 *FvwmForm-ThemeSettings: Button restart "Reset"
 *FvwmForm-ThemeSettings: Command Nop
 *FvwmForm-ThemeSettings: Button quit "Dismiss"
 *FvwmForm-ThemeSettings: Command Nop
 *FvwmForm-ThemeSettings: UseData .FvwmForm-ThemeSettings *SavedThemeSettings
-
