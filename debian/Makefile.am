@@ -154,6 +154,8 @@ deb-extra:
 	fakeroot dh_shlibdeps
 	fakeroot dh_gencontrol
 	fakeroot dh_md5sums
+	rm debian/fvwm-themes-extra-$(version)/DEBIAN/postinst
+	rm debian/fvwm-themes-extra-$(version)/DEBIAN/postrm
 	fakeroot dh_builddeb 
 	-@debsign ../fvwm-themes-extra-$(version)_$(release).dsc
 	fakeroot dh_clean fvwm-themes-full-$(version) fvwm-themes-extra-$(version) fvwm-themes-$(version)
