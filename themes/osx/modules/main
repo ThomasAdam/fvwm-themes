@@ -6,7 +6,7 @@
 # ----------------------------------------------------------------------------
 # Icon related configuration
 
-Style "*" IconBox screen w +10 +35 -10 -120 p, IconGrid 64 5, IconFill top right
+Style "*" IconBox screen w +10 +35 -10 -120 p, IconGrid 74 5, IconFill top right
 Style "*" SlipperyIcon, IconTitle
 
 # ----------------------------------------------------------------------------
@@ -14,11 +14,12 @@ Style "*" SlipperyIcon, IconTitle
 
 DestroyFunc FuncFvwmStartThemeModules
 AddToFunc   FuncFvwmStartThemeModules
++ I EWMHBaseStruts 0 0 27 0
 + I FuncFvwmStartChosenMenuBar
-+ I FuncFvwmStartChosenOsxButtons
++ I FuncFvwmStartChosenMainBar
 + I FuncFvwmStartChosenAppsButtons
-+ I FuncFvwmStartChosenAppsMan
 + I FuncFvwmStartChosenApplets
++ I FuncFvwmStartChosenAppsMan
 + I FuncFvwmStartNormalIcons
 
 DestroyFunc FuncFvwmReloadThemeModules
@@ -33,15 +34,16 @@ AddToFunc   FuncFvwmReloadColorsModules
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-MenuBar
-+ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxCentral
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-MainBar
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxApps
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxStartApplets
 + I KillModule FvwmWinList
 + I DestroyModuleConfig FvwmButtons-MenuBar: *
-+ I DestroyModuleConfig FvwmButtons-OsxCentral: *
++ I DestroyModuleConfig FvwmButtons-MainBar: *
 + I DestroyModuleConfig FvwmButtons-OsxApps: *
 + I DestroyModuleConfig FvwmButtons-OsxStartApplets: *
 + I DestroyModuleConfig FvwmButtons-OsxApplets: *
++ I DestroyModuleConfig FvwmWinList: *
 + I DestroyModuleConfig FvwmPager-Single: *
 + I DestroyModuleConfig FvwmPager-Desker: *
 + I DestroyFunc FuncFvwmOsxNext
@@ -49,14 +51,15 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmStartChosenMenuBar
 + I DestroyFunc FuncFvwmStartChosenOsxButtons
 + I DestroyFunc FuncFvwmStartChosenAppsButtons
-+ I DestroyFunc FuncFvwmStartChosenAppsMan
 + I DestroyFunc FuncFvwmStartChosenApplets
++ I DestroyFunc FuncFvwmStartChosenAppsMan
 + I FuncFvwmModulesDestroyStyle
 + I DestroyFunc FuncFvwmModulesDestroyStyle
++ I EWMHBaseStruts 0 0 0 0
 
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules
-+ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxCentral
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-MainBar
 
 DestroyFunc FuncFvwmUnReloadThemeModules
 AddToFunc   FuncFvwmUnReloadThemeModules
@@ -66,11 +69,11 @@ AddToFunc   FuncFvwmUnReloadThemeModules
 
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "Osx Modules" Title
-+ "%menu/item.xpm%&Menu Bar"        FuncFvwmRestartModuleByAlias \
++ "%menu/item.xpm%Top &Menu Bar"    FuncFvwmRestartModuleByAlias \
 	FvwmButtons FvwmButtons-MenuBar
-+ "%menu/item.xpm%&Central Buttons" FuncFvwmRestartModuleByAlias \
-	FvwmButtons FvwmButtons-OsxCentral
-+ "%menu/item.xpm%&Apps Bar"        FuncFvwmRestartModuleByAlias \
++ "%menu/item.xpm%Bottom Ma&in Bar" FuncFvwmRestartModuleByAlias \
+	FvwmButtons FvwmButtons-MainBar
++ "%menu/item.xpm%Bottom &Apps Bar" FuncFvwmRestartModuleByAlias \
 	FvwmButtons FvwmButtons-OsxApps
 + "%menu/item.xpm%App&lets Panel"   FuncFvwmRestartModuleByAlias \
 	FvwmButtons FvwmButtons-OsxStartApplets
@@ -78,11 +81,11 @@ AddToMenu   MenuFvwmStartThemeModules "Osx Modules" Title
 
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "Osx Modules" Title
-+ "%menu/quit.xpm%Stop &Menu Bar" \
++ "%menu/quit.xpm%Stop Top &Menu Bar" \
 	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-MenuBar
-+ "%menu/quit.xpm%Stop &Central Buttons" \
-	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxCentral
-+ "%menu/quit.xpm%Stop &Apps Bar" \
++ "%menu/quit.xpm%Stop Bottom Ma&in Bar" \
+	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-MainBar
++ "%menu/quit.xpm%Stop Bottom &Apps Bar" \
 	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxApps
 + "%menu/quit.xpm%Stop App&lets Panel" \
 	FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxStartApplets
@@ -101,8 +104,8 @@ DesktopName 3 Games
 
 Read $./styles
 Read $./FvwmButtons-MenuBar
+Read $./FvwmButtons-MainBar
 Read $./FvwmButtons-OsxApps
-Read $./FvwmButtons-OsxCentral
 Read $./FvwmButtons-OsxStartApplets
 Read $./FvwmPager-Single
 Read $./FvwmPager-Desker

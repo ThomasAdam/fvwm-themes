@@ -1,0 +1,33 @@
+DestroyModuleConfig FvwmButtons-MainBar: *
+*FvwmButtons-MainBar: Geometry 263x112+0-0
+*FvwmButtons-MainBar: Colorset 10
+*FvwmButtons-MainBar: Frame 1
+*FvwmButtons-MainBar: Rows 11
+*FvwmButtons-MainBar: (2x10, Swallow  "FvwmPager-Single" "FvwmPager FvwmPager-Single * *")
+*FvwmButtons-MainBar: (1x5, Swallow "xbiff" `Exec exec xbiff \
+	-g +5000+5000 -bg $$[bg.cs13] -fg $$[fg.cs13]`)
+*FvwmButtons-MainBar: (1x5, Padding 0 0, Container(Rows 3))
+*FvwmButtons-MainBar: (2x1, Title Desker, Panel(right, position module bottom mlr mtb) \
+	"FvwmPager-Desker" 'Module FvwmPager FvwmPager-Desker 0 3')
+*FvwmButtons-MainBar: (1x1, Title <-, Action 'Desk -1 0 3')
+*FvwmButtons-MainBar: (1x1, Title ->, Action 'Desk 1 0 3')
+*FvwmButtons-MainBar: (1x1, Title <-, Action 'FuncFvwmButtons-MainBarPrev')
+*FvwmButtons-MainBar: (1x1, Title ->, Action 'FuncFvwmButtons-MainBarNext')
+*FvwmButtons-MainBar: (End)
+*FvwmButtons-MainBar: (2x5, Swallow(UseOld,NoHints) "xload" \
+	`Exec exec xload -g +5000+5000 -bg $$[bg.cs13] -fg $$[fg.cs13] \
+	-hl $$[shadow.cs13] -update 5 -nolabel`)
+*FvwmButtons-MainBar: (4x1, Colorset 11)
+
+DestroyFunc FuncFvwmButtons-MainBarPrev
+AddToFunc   FuncFvwmButtons-MainBarPrev
+#+ I Prev (CirculateHit, AcceptsFocus) Focus
++ I Prev (AcceptsFocus) Focus
++ I Current Raise
++ I All (FvwmButtons-MainBar) Raise
+
+DestroyFunc FuncFvwmButtons-MainBarNext
+AddToFunc   FuncFvwmButtons-MainBarNext
++ I Next (AcceptsFocus) Focus
++ I Current Raise
++ I All (FvwmButtons-MainBar) Raise

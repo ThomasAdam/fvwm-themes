@@ -4,34 +4,80 @@ PipeRead 'if [ -n "$FT_XINERAMA_PWIDTH" ]; then echo "*FvwmButtons-MenuBar: Geom
 *FvwmButtons-MenuBar: Colorset 5
 *FvwmButtons-MenuBar: Rows 1
 *FvwmButtons-MenuBar: Frame 0
-*FvwmButtons-MenuBar: (2x1, Left, Icon 16x16/linux.xpm, \
+*FvwmButtons-MenuBar: (2x1, Left, Icon 16x16/linux.xpm, ActionOnPress, \
 	Action(Mouse 1) 'WindowList \
 		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
 	Action(Mouse 2) 'WindowList \
-		$rectangle widthx$height+$left+$top@g +0 +100+1p', \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
 	Action(Mouse 3) 'WindowList (CurrentDesk) \
-		rectangle $widthx$height+$left+$top@g +0 +100+1p')
-*FvwmButtons-MenuBar: (3x1, Title (Left) Shells, Action(Mouse 1) \
-	'Menu MenuFvwmShells rectangle $widthx$height+$left+$top@g +0 +100+1p')
-*FvwmButtons-MenuBar: (3x1, Title (Left) Programs, Action(Mouse 1) \
-	'Menu MenuFvwmPrograms rectangle $widthx$height+$left+$top@g +0 +100+1p')
-*FvwmButtons-MenuBar: (3x1, Title (Left) Help, Action(Mouse 1) \
-	'Menu MenuFvwmHelp rectangle $widthx$height+$left+$top@g +0 +100+1p')
-*FvwmButtons-MenuBar: (3x1, Title (Left) System, Action(Mouse 1) \
-	'Menu MenuFvwmSystem rectangle $widthx$height+$left+$top@g +0 +100+1p')
-*FvwmButtons-MenuBar: (3x1, Title (Left) Personal, Action(Mouse 1) \
-	'Menu MenuFvwmPersonal rectangle $widthx$height+$left+$top@g +0 +100+1p')
-*FvwmButtons-MenuBar: (3x1, Title (Left) Themes, Action(Mouse 1) \
-	'Menu MenuFvwmThemes rectangle $widthx$height+$left+$top@g +0 +100+1p')
-*FvwmButtons-MenuBar: (3x1, Title (Left) Modules, Action(Mouse 1) \
-	'Menu MenuFvwmModules rectangle $widthx$height+$left+$top@g +0 +100+1p')
-*FvwmButtons-MenuBar: (3x1, Title (Left) Config, Action(Mouse 1) \
-	'Menu MenuFvwmConfiguration rectangle $widthx$height+$left+$top@g +0 +100+1p')
-*FvwmButtons-MenuBar: (3x1, Title (Left) WinOps, Action(Mouse 1) \
-	'Menu MenuFvwmWindowOps  rectangle $widthx$height+$left+$top@g +0 +100+1p')
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+)
+*FvwmButtons-MenuBar: (3x1, Title (Left) Shells, ActionOnPress, \
+	Action 'Menu MenuFvwmShells \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+	Action(Mouse 3) 'Popup MenuFvwmShells \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+)
+*FvwmButtons-MenuBar: (3x1, Title (Left) Programs, ActionOnPress, \
+	Action 'Menu MenuFvwmPrograms \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+	Action(Mouse 3) 'Popup MenuFvwmPrograms \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+)
+*FvwmButtons-MenuBar: (3x1, Title (Left) Help, ActionOnPress, \
+	Action 'Menu MenuFvwmHelp \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+	Action(Mouse 3) 'Popup MenuFvwmHelp \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+)
+*FvwmButtons-MenuBar: (3x1, Title (Left) System, ActionOnPress, \
+	Action 'Menu MenuFvwmSystem \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+	Action(Mouse 3) 'Popup MenuFvwmSystem \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+)
+*FvwmButtons-MenuBar: (3x1, Title (Left) Personal, ActionOnPress, \
+	Action 'Menu MenuFvwmPersonal \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+	Action(Mouse 3) 'Popup MenuFvwmPersonal \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+)
+*FvwmButtons-MenuBar: (3x1, Title (Left) Themes, ActionOnPress, \
+	Action 'Menu MenuFvwmThemes \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+	Action(Mouse 3) 'Popup MenuFvwmThemes \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+)
+*FvwmButtons-MenuBar: (3x1, Title (Left) Modules, ActionOnPress, \
+	Action 'Menu MenuFvwmModules \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+	Action(Mouse 3) 'Popup MenuFvwmModules \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+)
+*FvwmButtons-MenuBar: (3x1, Title (Left) Config, ActionOnPress, \
+	Action 'Menu MenuFvwmConfiguration \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+	Action(Mouse 3) 'Popup MenuFvwmConfiguration \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+)
+*FvwmButtons-MenuBar: (3x1, Title (Left) WinOps, ActionOnPress, \
+	Action 'Menu MenuFvwmWindowOps \
+		 rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+	Action(Mouse 3) 'Popup MenuFvwmWindowOps \
+		 rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+)
 *FvwmButtons-MenuBar: (2x1, Swallow "FvwmApplet-DigitalClock" \
-	'FvwmScript FvwmApplet-DigitalClock 5')
-*FvwmButtons-MenuBar: (1x1, Right, Icon 16x16/display.xpm, Action(Mouse 1) \
-	'Menu MenuFvwmScreenSaver rectangle $widthx$height+$left+$top@g +0 +100+1p')
-*FvwmButtons-MenuBar: (1x1, Right, Icon 16x16/quit.xpm, Action(Mouse 1) \
-	'Menu MenuFvwmQuit rectangle $widthx$height+$left+$top@g +0 +100+1p')
+	'FvwmScript FvwmApplet-DigitalClock 5', \
+)
+*FvwmButtons-MenuBar: (1x1, Right, Icon 16x16/display.xpm, ActionOnPress, \
+	Action 'Menu MenuFvwmScreenSaver \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+	Action(Mouse 3) 'Popup MenuFvwmScreenSaver \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+)
+*FvwmButtons-MenuBar: (1x1, Right, Icon 16x16/quit.xpm, ActionOnPress, \
+	Action 'Menu MenuFvwmQuit \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+	Action(Mouse 3) 'Popup MenuFvwmQuit \
+		rectangle $widthx$height+$left+$top@g +0 +100+1p', \
+)

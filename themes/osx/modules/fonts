@@ -20,5 +20,5 @@ FuncFvwmSetFont-ModuleLabel FvwmPager-Desker Font \
 FuncFvwmSetFont-ModuleLabel FvwmButtons-MenuBar Font \
 	 "-adobe-helvetica-bold-r-*-*-12-*"
 
-FuncFvwmSetFont-ModuleLabel FvwmButtons-OsxCentral Font \
+FuncFvwmSetFont-ModuleLabel FvwmButtons-MainBar Font \
 	 "-adobe-helvetica-bold-r-*-*-10-*"

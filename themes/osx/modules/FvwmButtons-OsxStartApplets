@@ -11,7 +11,7 @@ DestroyModuleConfig FvwmButtons-OsxStartApplets: *
 DestroyModuleConfig FvwmButtons-OsxApplets: *
 *FvwmButtons-OsxApplets: Rows 1
 *FvwmButtons-OsxApplets: Frame 1
-*FvwmButtons-OsxApplets: Colorset 13
+*FvwmButtons-OsxApplets: Colorset 10
 *FvwmButtons-OsxApplets: (Size 64 64, \
 	Swallow (Kill) "FvwmApplet-Day" 'FvwmScript FvwmApplet-Day 10 13')
 *FvwmButtons-OsxApplets: (Size 64 64, \

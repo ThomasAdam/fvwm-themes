@@ -79,16 +79,15 @@ Colorset 16 fg white, bg DarkBlue, Plain, NoShape
 # Window List Module Colorsets
 
 # standard item
-Colorset 17 fg black, bg rgb:98/B0/C8, \
-	TiledPixmap decor/title-inactive.xpm, NoShape
+Colorset 17 fg black, bg average, TiledPixmap modcolor/face.xpm, NoShape, \
+	Tint rgb:00/48/a0 25, bgTint rgb:00/48/a0 25,
 
 # active item
-Colorset 18 fg black, bg white, \
-	TiledPixmap decor/title-active.xpm, NoShape
+Colorset 18 fg black, bg average, TiledPixmap modcolor/face.xpm, NoShape
 
 # iconified item
-Colorset 19 fg white, bg rgb:98/B0/C8, \
-	TiledPixmap decor/title-inactive.xpm, NoShape
+Colorset 19 fg navy, bg average, TiledPixmap modcolor/face.xpm, NoShape, \
+	Tint rgb:00/48/a0 25, bgTint rgb:00/48/a0 25,
 
 # pointed item
 Colorset 20 fg black, bg rgb:98/B0/C8, Plain, NoShape
@@ -106,7 +105,7 @@ Colorset 22 fg black, bg lightblue, Plain, NoShape
 # III. Application Colorsets
 
 # regular terminal
-Colorset 30 fg white, bg rgb:30/70/d0, Plain, NoShape
+Colorset 30 fg grey80, bg black, Plain, NoShape
 
 # admin terminal
 Colorset 31 fg white, bg rgb:30/80/a0, Plain, NoShape
@@ -134,3 +133,6 @@ AddToFunc   FuncFvwmStartColors
 
 DestroyFunc FuncFvwmStopColors
 AddToFunc   FuncFvwmStopColors
+# temporarily until we have Colorset Clear
++ I Colorset 17 Tint, bgTint
++ I Colorset 19 Tint, bgTint

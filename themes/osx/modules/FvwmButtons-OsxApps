@@ -1,32 +1,31 @@
 DestroyModuleConfig FvwmButtons-OsxApps: *
 
-*FvwmButtons-OsxApps: Geometry 271x63+0-0
-*FvwmButtons-OsxApps: Colorset 10
-*FvwmButtons-OsxApps: Frame 1
-*FvwmButtons-OsxApps: Rows 6
-*FvwmButtons-OsxApps: (1x5, Icon 32x32/terminal.xpm, \
+#*FvwmButtons-OsxApps: Geometry 272x47+373-0
+Piperead "echo '*'FvwmButtons-OsxApps: Geometry 272x47+$(( $[vp.width]/2 - 272/2 ))-0"
+*FvwmButtons-OsxApps: Colorset 5
+*FvwmButtons-OsxApps: Frame 0
+*FvwmButtons-OsxApps: Rows 1
+*FvwmButtons-OsxApps: (1x1, Icon 32x32/terminal.xpm, \
 	Action(Mouse 1) 'FuncFvwmTerminal', \
 	Action(Mouse 2) 'FuncFvwm2Terminal', \
 	Action(Mouse 3) 'FuncFvwm3Terminal')
-*FvwmButtons-OsxApps: (1x5, Icon 32x32/editor.xpm, \
+*FvwmButtons-OsxApps: (1x1, Icon 32x32/editor.xpm, \
 	Action(Mouse 1) 'FuncFvwmEditor', \
 	Action(Mouse 2) 'FuncFvwm2Editor', \
 	Action(Mouse 3) 'FuncFvwm3Editor')
-*FvwmButtons-OsxApps: (1x5, Icon 32x32/netscape.xpm, \
+*FvwmButtons-OsxApps: (1x1, Icon 32x32/netscape.xpm, \
 	Action(Mouse 1) 'FuncFvwmWWW', \
 	Action(Mouse 2) 'FuncFvwm2WWW', \
 	Action(Mouse 3) 'FuncFvwm3WWW')
-*FvwmButtons-OsxApps: (1x5, Icon 32x32/xv.xpm, \
+*FvwmButtons-OsxApps: (1x1, Icon 32x32/xv.xpm, \
 	Action(Mouse 1) 'FuncFvwmImageView', \
 	Action(Mouse 2) 'FuncFvwm2ImageView', \
 	Action(Mouse 3) 'FuncFvwm3ImageView')
-*FvwmButtons-OsxApps: (1x5, Icon 32x32/image-viewer.xpm, \
+*FvwmButtons-OsxApps: (1x1, Icon 32x32/image-viewer.xpm, \
 	Action(Mouse 1) 'FuncFvwmImageEdit', \
 	Action(Mouse 2) 'FuncFvwm2ImageEdit', \
 	Action(Mouse 3) 'FuncFvwm3ImageEdit')
-*FvwmButtons-OsxApps: (1x5, Icon 32x32/ghostview.xpm, \
+*FvwmButtons-OsxApps: (1x1, Icon 32x32/ghostview.xpm, \
 	Action(Mouse 1) 'FuncFvwmDocView', \
 	Action(Mouse 2) 'FuncFvwm2DocView', \
 	Action(Mouse 3) 'FuncFvwm3DocView')
-*FvwmButtons-OsxApps: (6x1,Colorset 11)
-

@@ -1,2 +1,2 @@
-DestroyFunc FuncFvwmStartChosenOsxButtons
-AddToFunc   FuncFvwmStartChosenOsxButtons
+DestroyFunc FuncFvwmStartChosenMainBar
+AddToFunc   FuncFvwmStartChosenMainBar

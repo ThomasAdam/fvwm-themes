@@ -1,5 +1,8 @@
 2003-10-27  migo  <migo@homemail.com>
 
+	* themes/osx/**:
+	numerous improvements in modules@ and colors@
+
 	* themes/redmondxp/modules/FvwmThemesPanelManager:
 	work around FvwmAnimate deadlock freeze
 
