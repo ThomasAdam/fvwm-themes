@@ -1717,7 +1717,7 @@ Property
     Size 280 15
     Position 15 45
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {Load Configuration ...}
 Main
 Case message of
@@ -1750,7 +1750,7 @@ Property
     Position 15 95
     Type CheckBox
     Font fixed
-    Flags NoReliefString Hidden   
+    Flags NoReliefString Hidden
     Title {                                           }
 Main
 Case message of
@@ -1787,7 +1787,7 @@ Property
     Size 275 15
     Position 310 45
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -1849,7 +1849,7 @@ Property
     Size 580 15
     Position 15 155
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -1976,7 +1976,7 @@ Property
     Size 580 15
     Position 15 335
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -2027,7 +2027,7 @@ Property
     Size 580 15
     Position 15 50
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -2042,7 +2042,7 @@ Property
     Position 20 75
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden   
+    Flags NoReliefString Hidden NoFocus
     Title {                        }
 Main
  Case message of
@@ -2093,7 +2093,7 @@ Property
     Position 20 105
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden   
+    Flags NoReliefString Hidden NoFocus
     Title {                                                           }
 Main
  Case message of
@@ -2124,7 +2124,7 @@ Property
     Position 425 105
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden   
+    Flags NoReliefString Hidden  NoFocus
     Title {                    }
 Main
  Case message of
@@ -2139,7 +2139,7 @@ Property
     Position 20 135
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden   
+    Flags NoReliefString Hidden NoFocus
     Title {                                          }
 Main
  Case message of
@@ -2188,7 +2188,7 @@ Property
     Position 20 165
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden   
+    Flags NoReliefString Hidden NoFocus
     Title {                                          }
 Main
  Case message of
@@ -2255,7 +2255,7 @@ Property
     Size 580 15
     Position 15 225
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -2270,7 +2270,7 @@ Property
     Position 65 255
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {               }
 Main
 Case message of
@@ -2301,7 +2301,7 @@ Property
     Position 260 255
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {              }
 Main
 Case message of
@@ -2331,7 +2331,7 @@ Property
     Position 65 295
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {                          }
 Main
 Case message of
@@ -2346,7 +2346,7 @@ Property
     Position 230 295
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {X:}
 Main
 Case message of
@@ -2375,7 +2375,7 @@ Property
     Position 330 295
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {Y:}
 Main
 Case message of
@@ -2405,7 +2405,7 @@ Property
     Size 580 15
     Position 15 330
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -2470,7 +2470,7 @@ Property
     Position 70 390
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {                           }
 Main
 Case message of
@@ -2535,7 +2535,7 @@ Property
     Size 580 15
     Position 15 50
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -2550,7 +2550,7 @@ Property
     Position 20 85
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden   
+    Flags NoReliefString Hidden  NoFocus
     Title {                              }
 Main
  Case message of
@@ -2565,7 +2565,7 @@ Property
     Position 205 80
     Type PopupMenu
     Font fixed
-    Flags NoReliefString Hidden   
+    Flags NoReliefString Hidden
     Title {                }
 Main
  Case message of
@@ -2595,7 +2595,7 @@ Property
     Position 20 125
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden   
+    Flags NoReliefString Hidden NoFocus   
     Title {                              }
 Main
  Case message of
@@ -2610,7 +2610,7 @@ Property
     Position 205 120
     Type PopupMenu
     Font fixed
-    Flags NoReliefString Hidden   
+    Flags NoReliefString Hidden
     Title {                }
 Main
  Case message of
@@ -2640,7 +2640,7 @@ Property
     Position 20 165
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {                                                   }
 Main
  Case message of
@@ -2672,7 +2672,7 @@ Property
     Position 400 165
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {    }
 Main
  Case message of
@@ -2687,7 +2687,7 @@ Property
     Position 20 200
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {                                                   }
 Main
  Case message of
@@ -2719,7 +2719,7 @@ Property
     Position 400 200
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {        }
 Main
  Case message of
@@ -2734,7 +2734,7 @@ Property
     Position 20 235
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {                                                      }
 Main
  Case message of
@@ -2765,7 +2765,7 @@ Property
     Position 400 235
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {        }
 Main
  Case message of
@@ -2783,7 +2783,7 @@ Property
     Size 580 15
     Position 15 285
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -2798,7 +2798,7 @@ Property
     Position 20 325
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {                                                        }
 Main
  Case message of
@@ -2830,7 +2830,7 @@ Property
     Position 380 325
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {    }
 Main
  Case message of
@@ -2845,7 +2845,7 @@ Property
     Position 20 360
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {                                                        }
 Main
  Case message of
@@ -2877,7 +2877,7 @@ Property
     Position 380 360
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {        }
 Main
  Case message of
@@ -2898,7 +2898,7 @@ Property
     Size 580 15
     Position 15 50
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -2989,7 +2989,7 @@ Property
     Size 580 15
     Position 15 220
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -3004,7 +3004,7 @@ Property
     Position 30 255
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {                                      }
 Main
 Case message of
@@ -3050,7 +3050,7 @@ Property
     Position 30 320
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {                               }
 Main
 Case message of
@@ -3065,7 +3065,7 @@ Property
     Position 250 320
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {                       }
 Main
 Case message of
@@ -3095,7 +3095,7 @@ Property
     Position 50 352
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {                                 }
 Main
 Case message of
@@ -3126,7 +3126,7 @@ Property
     Position 50 382
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {               }
 Main
 Case message of
@@ -3162,7 +3162,7 @@ Property
     Size 580 15
     Position 15 50
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -3192,7 +3192,7 @@ Property
     Position 35 105
     Type CheckBox
     Font fixed
-    Flags NoReliefString Hidden   
+    Flags NoReliefString Hidden NoFocus
     Title {                                      }
 Main
  Case message of
@@ -3268,7 +3268,7 @@ Property
     Size 580 15
     Position 15 170
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -3298,7 +3298,7 @@ Property
     Position 170 200
     Type CheckBox
     Font fixed
-    Flags NoReliefString Hidden   
+    Flags NoReliefString Hidden
     Title {Recapture}
 Main
  Case message of
@@ -3344,7 +3344,7 @@ Property
     Size 580 15
     Position 15 240
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -3359,7 +3359,7 @@ Property
     Position 35 275
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {                                               }
 Main
 Case message of
@@ -3450,7 +3450,7 @@ Property
     Position 35 380
     Type ItemDraw
     Font fixed
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {                                                            }
 Main
 Case message of
@@ -3486,7 +3486,7 @@ Property
     Size 580 15
     Position 15 50
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -3500,7 +3500,7 @@ Widget 951
 Property
     Position 15 80
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Font fixed
     Title {                                                                                             }
 Main
@@ -3515,7 +3515,7 @@ Widget 952
 Property
     Position 35 115
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Font fixed
     Title {                                    }
 Main
@@ -3545,7 +3545,7 @@ Property
     Position 608 110
     Size 1 1
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -3567,7 +3567,7 @@ Case message of
  SingleClic :
  Begin
     Set $ThemeToLoad = (GetValue 953)
-    Set $GF_UpdateConfig = 1
+    Set $GF_UpdateConfig = 1 
     Set $LoadFromPreference = 1
     Set $CmdType = {}
  End
@@ -3578,7 +3578,7 @@ Widget 956
 Property
     Position 35 155
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Font fixed
     Title {                         }
 Main
@@ -3593,7 +3593,7 @@ Widget 957
 Property
     Position 150 155
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Font fixed
     Title {                        }
 Main
@@ -3608,7 +3608,7 @@ Widget 958
 Property
     Position 50 185
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Font fixed
     Title {                                }
 Main
@@ -3657,7 +3657,7 @@ Property
     Size 580 15
     Position 15 235
     Type ItemDraw
-    Flags NoReliefString Hidden
+    Flags NoReliefString Hidden NoFocus
     Title {}
 Main
 Case message of
@@ -3728,7 +3728,7 @@ End
 # Message
 Widget 990
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 20 417
     Size 560 20
     Type ItemDraw

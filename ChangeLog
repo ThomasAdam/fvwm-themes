@@ -1,3 +1,17 @@
+2001-12-20  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in (comLoop): 
+
+	* scripts/FvwmScript-GlobalFeel: 
+	* scripts/FvwmScript-ThemesCenter:
+	* scripts/FvwmScript-ComponentProperties: 
+	Added some NoFocus flags
+
+	* bin/fvwm-themes-config.in (comLoop): 
+	* scripts/FvwmScript-ThemesCenter:
+	* scripts/FvwmScript-ComponentProperties:
+	Removed some debugging code
+	
 2001-12-19  olicha  <olivier.chapuis@free.fr>
 
 	* NEWS:

@@ -932,7 +932,7 @@ End
 
 Widget 1
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 90 10
     Size 175 20
     Type ItemDraw
@@ -947,9 +947,7 @@ Case message of
  1 :
  Begin
     Set $ls = (LastString)
-    Do {Echo msg: }$ls
     Set $id = (StrCopy $ls 1 1)
-    #Set $ls = (StrCopy $ls 2 100)
 
     If $id == {1} Then
     Begin
@@ -1069,7 +1067,7 @@ End
 
 Widget 5
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 20 45
     Size 270 20
     Type ItemDraw
@@ -1209,7 +1207,7 @@ End
 
 Widget 11
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 310 45
     Size 270 20
     Type ItemDraw
@@ -1320,7 +1318,7 @@ End
 
 Widget 16
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 30 265
     Size 445 20
     Type ItemDraw
@@ -1556,7 +1554,7 @@ End
 
 Widget 21
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 15 50
     Size 570 20
     Type ItemDraw
@@ -1680,7 +1678,7 @@ End
 # component
 Widget 26
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 30 235
     Size 540 20
     Type ItemDraw
@@ -1750,7 +1748,7 @@ End
 #-----------------------------------------------------------------------------
 Widget 39
 Property
-    Flags NoReliefString
+    Flags NoReliefString  NoFocus
     Position 20 45
     Size 560 20
     Type ItemDraw
@@ -1765,7 +1763,7 @@ End
 # list title
 Widget 40
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 40 75
     Size 255 20
     Type ItemDraw
@@ -1959,7 +1957,7 @@ End
 # Selected Session
 Widget 45
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 40 260
     Size 255 20
     Type ItemDraw
@@ -1973,7 +1971,7 @@ End
 
 Widget 46
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 70 315
     Type ItemDraw
     Font fixed
@@ -1987,7 +1985,7 @@ End
 
 Widget 47
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 70 335
     Type ItemDraw
     Font fixed
@@ -2001,7 +1999,7 @@ End
 
 Widget 48
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 70 355
     Type ItemDraw
     Font fixed
@@ -2015,7 +2013,7 @@ End
 
 Widget 58
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 70 375
     Type ItemDraw
     Font fixed
@@ -2031,7 +2029,7 @@ End
 # "editor" title
 Widget 49
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Size 510 20
     Position 45 290
     Type ItemDraw
@@ -2046,7 +2044,7 @@ End
 # Session name
 Widget 50
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 20 331
     Font fixed
     Type ItemDraw
@@ -2074,7 +2072,7 @@ End
 
 Widget 56
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 160 330
     Type ItemDraw
     Title {main}
@@ -2088,7 +2086,7 @@ End
 # Configurtaion of ...
 Widget 51
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 310 331
     Type ItemDraw
     Font fixed
@@ -2215,7 +2213,7 @@ End
 # Really Remove ?
 Widget 57
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Size 510 20
     Position 45 320
     Type ItemDraw
@@ -2236,7 +2234,7 @@ End
 # Message
 Widget 95
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 20 417
     Size 560 20
     Type ItemDraw

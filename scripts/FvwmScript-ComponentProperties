@@ -174,7 +174,7 @@ End
 
 Widget 1
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 20 5
     Size 280 20 
     Type ItemDraw
@@ -190,7 +190,6 @@ SingleClic :
 1 :
  Begin
     Set $str = (LastString)
-    Do {Echo MSG: }$str
     If $str == {exit} Then
     Begin
 	Quit
@@ -207,7 +206,6 @@ SingleClic :
 2 :
  Begin
     Set $cmd = {options-variants }$MainComponent{ }$MainTheme{ }$CurrentOptionsIndex{|}
-    Do {Echo UL:}$MainComponent{:}$MainTheme{:}$CurrentOptionsIndex
     Set $tmp = {}
     Set $count = 0
     While $tmp == {} Do
@@ -219,7 +217,6 @@ SingleClic :
 	    If $tmp == {} Then
 		Set $tmp = {0}
 	End
-	Do {Echo GCM}$ID{: }$tmp
     End
     Set $CurrentVariants = $tmp
     ChangeTitle 5 $CurrentVariants
@@ -258,7 +255,7 @@ End
 
 Widget 2
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 20 35
     Size 280 20 
     Type ItemDraw
@@ -311,7 +308,7 @@ End
 
 Widget 6
 Property
-    Flags NoReliefString
+    Flags NoReliefString NoFocus
     Position 1 35
     Size 318 20 
     Type ItemDraw
@@ -372,7 +369,7 @@ End
 
 Widget 99
 Property
-    Flags NoReliefString
+ Flags NoReliefString
  Position 220 270
  Size 90 20
  Type PushButton

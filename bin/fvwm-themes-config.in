@@ -2670,7 +2670,6 @@ sub comLoop {
 			sysopen(IN,"$inFifo", 0) || die "cannot open $inFifo";
 			alarm(0);
 			($command)=(<IN>);
-			print STDERR "cmd1:". $command . "\n";
 			close(IN);
 		};
 		if ($@ =~ /^cannot/) {
@@ -2703,7 +2702,6 @@ sub comLoop {
 		  if ($tt[$s] =~ /^remove-to-pid-list\s+(\d+)\s+(\d+)$/) {
 			  my $id = $1;
 			  $comPid[$id] = 0;
-			  print STDERR "pid: @comPid\n";
 			  $tt[$s] = "";
 		  }
 		  elsif ($tt[$s] =~ /^add-to-pid-list\s+(\d+)\s+(\d+)$/) {
@@ -2711,7 +2709,6 @@ sub comLoop {
 			  my $p = $2;
 			  $comPid[$id] = $p;
 			  $tt[$s] = "";
-			  print STDERR "pid: @comPid\n";
 		  }
 		  elsif ($tt[$s] eq "exit") {
 			  exit(0);
@@ -2723,7 +2720,6 @@ sub comLoop {
 		for ($s = @tt-1; $s >= 0; $s--) {
 			$command = $tt[$s] if $tt[$s] ne "";
 		}
-		print STDERR "cmd2:" . $command . "\n";
 		
 		next if ($command eq "");
 
