@@ -23,7 +23,13 @@
 	* themes/multichoice/theme.cfg:
 	changed background default to fvwm-tiger (olicha also has many colors)
 
-2000-09-15 olicha  <olivier.chapuis@free.fr>
+	* bin/fvwm-themes-start.in:
+	fixed loading personal@ on first start
+
+	* NEWS:
+	prepare to a new release
+
+2000-09-15  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in (comLoop): 
 	ThemesCenter support component with choices and options

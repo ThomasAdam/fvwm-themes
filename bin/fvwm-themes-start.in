@@ -78,7 +78,7 @@ if [ ! -f $rcFile -o "$build" = "yes" -o "`head -1 $rcFile | cut -d' ' -f3`" != 
 		echo "[fvwm-themes]: initial $session FVWM Themes session"
 	fi
 	@bindir@/fvwm-themes-config --reset
-	@bindir@/fvwm-themes-config --load personal 2>/dev/null
+	@bindir@/fvwm-themes-config --load @personal 2>/dev/null
 fi
 
 # check that @FVWM_BINDIR@ is in $PATH

@@ -1,4 +1,8 @@
-fvwm-themes-0.3.19 - not released yet
+fvwm-themes-0.3.19 - 20000917
+
+* added an initial theme luthien from Dominik Vogt
+* components now can be locked (i.e. not affected by load [all])
+* nicer welcome message and some more small enhancements
 
 fvwm-themes-0.3.18 - 20000907
 
