@@ -22,6 +22,7 @@
 # Filter this script to pod2man to get a man page:
 #   pod2man -c "Fvwm Utility" fvwm-themes-images | nroff -man | less -e
 
+#use strict;
 use Getopt::Long;
 
 my $version = '@VERSION@';
@@ -53,34 +54,15 @@ my $convert = 0;
 my $gnome = 0;
 my $postfix = "";
 my $transFilter = 1;
-my %size;
-$size{'48x48'} = "48x48";
-$size{'56x56'} = "56x56";
-$size{'32x32'} = "32x32";
-$size{'16x16'} = "17x17";
-$size{'tile'} = "";
-
 my @types = ();
-my %build;
-
-$build{"48x48"} = 1;
-$build{"16x16"} = 1;
-$build{"56x56"} = 0;
-$build{"32x32"} = 0;
-$build{"tiles"} = 0;
 my $preserve = 0;
+my %build = ('48x48' => 1,'16x16' => 1,'56x56' => 0,'32x32' => 0,'tiles' => 0);
+my %tileOpt = ('48x48'=>"",'16x16'=>"",'56x56'=>"",'32x32'=>"",'tiles'=>"");
+my %addBorderOpt = ('48x48'=>"",'16x16'=>"",'56x56'=>"",'32x32'=>"",
+	'tiles'=>"");
+my %size = ('48x48' => "48x48",'56x56' => "56x56",'32x32' => "32x32",
+	'16x16' => "17x17", 'tile' => "");
 
-$tileOpt{"48x48"} = "";
-$tileOpt{"16x16"} = "";
-$tileOpt{"56x56"} = "";
-$tileOpt{"32x32"} = "";
-$tileOpt{"tiles"} = "";
-
-$addBorderOpt{"48x48"} = "";
-$addBorderOpt{"16x16"} = "";
-$addBorderOpt{"56x56"} = "";
-$addBorderOpt{"32x32"} = "";
-$addBorderOpt{"tiles"} = "";
 # tile options
 my $tile = "";
 
@@ -91,7 +73,7 @@ my $addBorder = "";
 my $magickColors = 256;
 my $colorspace = "Transparent";
 # depends if ImageMagick is compiled with 16bits per pixels enabled!
-# if yes percentage is taken with 65535 if yes 255 is used
+# if yes percentage is taken with 65535 if no 255 is used
 my $threshold = 70;
 my $magickPath = "";
 my $magickBpp = 0;
@@ -115,24 +97,33 @@ my $setBackFile = "/tmp/$userName-ft-back.xpm";
 my $rotate = 0;
 
 # colorize
-my $colorize = 0; 
+my $colorize = 0;
 my $rizeColorsOpt = "gray40:gray60";
 my $transColor = "";
 my $rizeComp = "l";
 my $rizeRule = "max";
 
 # Info
-$xcolorsInfo = 0;
-$xcolorsetsInfo = 0;
-$colorToShow = undef;
+my $xcolorsInfo = 0;
+my $xcolorsetsInfo = 0;
+my $colorToShow = undef;
 
 # others
-$verbose = 1;
-$verboseOpt = -1;
-$site = 0;
-$createSymLink = "";
-$install = 0;
-$update = 0;
+my $verbose = 1;
+my $verboseOpt = -1;
+my $site = 0;
+my $createSymLink = "";
+my $install = 0;
+my $update = 0;
+my $debug = "";
+my $beFast = 0;
+
+# constant (these constant are in main:: because this speed the code)
+my @Hex=(0 .. 9, "a" .. "f");
+my $singleIdList =
+	q( .XoO+@#$%&*=-;:>,<1234567890qwertyuipasdfghjk) .
+	q(lzxcvbnmMNBVCZASDFGHJKLPIUYTREWQ!~^/()_`'][{}|);
+# ` <- stupid fix for my stupid Xemacs! olicha
 
 GetOptions(
 	"help"               => \&showHelp,
@@ -190,15 +181,15 @@ GetOptions(
 	"set-back-prog=s"    => \$setBackProg,
 	"rotate=s"           => \$rotate,
 	"show-xcolors"       => \$xcolorsInfo,
-	"show-xcolorsets"    => \$xcolorsetsInfo,
+	"show-xcolorset"     => \$xcolorsetsInfo,
 	"show-color-info=s"  => \$colorToShow,
 	"verbose=i"          => \$verboseOpt,
 	"site"               => \$site,
 	"create-symlink=s"   => \$createSymLink,
 	"update"             => \$update,
 	"ft-install"         => \$install,
+	"be-fast"            => \$beFast,
 ) || wrongUsage();
-
 
 # compute verbosity!
 if ($setBackground) {
@@ -216,11 +207,11 @@ if ($install) {
 	$createSymLink = "48x48:16x16";
 }
 
-die "--convert and --set-background are incompatible\n" 
+die "--convert and --set-background are incompatible\n"
 	if $setBackground && $convert;
 
 if ($xcolorsInfo || $xcolorsetsInfo) {
-	showXcolorsInfo($xcolorsetsInfo);
+	showXcolorsInfo($xcolorsetsInfo);	
 	exit;
 }
 
@@ -233,7 +224,7 @@ if ($cdeSky) {
 	cdeSky();
 	exit;
 }
-	
+
 # see if we have to check magic:
 if ($convert || $tile =~ /expand/) {
 	($magickPath,$magickBpp) = checkMagick();
@@ -245,7 +236,7 @@ if ($convert) {
 	foreach (keys %build) {
 		push @types, $_ if $build{$_};
 	}
-	if ($preserve) { @types = ("preserve"); }
+	@types = ("preserve") if $preserve;
 	transform();
 	exit;
 }
@@ -275,7 +266,6 @@ sub transform {
 	my $sizeOpt;
 
 	if ($gnome) {
-		die "gnome option is valid only with convert!" unless $convert;
 		my $testExecFile = 'gnome-session';
 		my $defaultGnomeInstallDir = '/usr';
 
@@ -286,7 +276,6 @@ sub transform {
 		$gnomeInstallDir = $defaultGnomeInstallDir 
 			if $gnomeInstallDir eq 'not found';
 		$inDir = "$gnomeInstallDir/share/pixmaps";
-
 		$postfix = "gnome";
 		$inFile = "";
 		$outFile = "";
@@ -309,18 +298,17 @@ sub transform {
 			}
 			$inFile = substr($inFile,$index+1);
 		}
-		die "No such file: $inDir/$inFile\n" unless -f "$inDir/$inFile";
+		die "No such file: $inDir/$inFile !" unless -f "$inDir/$inFile";
 	}
 	$inDir =~ s/\/$//;
-	
+
 	my $transformOutDir = $userTransformOutDir;
 	$transformOutDir = $siteTransformOutDir if $site;
 	$outDir = "$transformOutDir/$outDir" if ($outDir eq "");
 
 	if ($inFile ne "" && $outFile eq "" && !$convert) {
-		if ($setBackground) {
-			$outFile = "$setBackFile";
-		} else {
+		if ($setBackground) { $outFile = "$setBackFile"; } 
+		else {
 			die "If you specify an in-file you must specify an out-file\n" .
 				"(but for --set-background and convert)\n";
 		}
@@ -335,17 +323,12 @@ sub transform {
 	if ($outFile ne "") {
 		if ($outFile =~ /\//) {
 			my $index = rindex($outFile,"/");
-			if ($outFile =~ /^\//) {
-				$outDir = substr($outFile,0,$index);
-			} else {
-				$outDir = "$outDir" . substr($outFile,0,$index);
-			}
+			if ($outFile =~ /^\//) { $outDir = substr($outFile,0,$index); } 
+			else { $outDir = "$outDir" . substr($outFile,0,$index);}
 			$outFile = substr($outFile,$index+1);
 		}
 	}
 	$outDir =~ s/\/$//;
-
-	myPrint(4,"ID:$inDir, IF:$inFile, OD:$outDir, OF:$outFile\n");
 
 	-d $outDir || mkdir("$outDir", 0775) || 
 		die "impossible to create $outDir \n\t (we do not create more than one".
@@ -360,7 +343,7 @@ sub transform {
 	}
 
 	# compute the postfix
-	$postfix = "-".$postfix if ($postfix ne "");
+	$postfix = "-".$postfix if $postfix ne "";
 
 	for $type (@types) {
 
@@ -383,7 +366,7 @@ sub transform {
 
 		# tile ?
 		my $haveToTile = 0;
-		my $tileXpm;
+		my $tileXpm; my $tileType;
 		my ($xTile,$yTile) = qw(0 0);
 		if ($convert && $tileOpt{$type} ne "") {
 			($tileXpm,$tileType,$xTile,$yTile) = getTile("$tileOpt{$type}");
@@ -425,6 +408,7 @@ sub transform {
 			myPrint (2,"\n");
 		}
 
+		my @fileList;
 		if ($inFile eq "") { @fileList = scanDir($dir);}
 		else { @fileList = ("$inFile"); }
 
@@ -437,7 +421,7 @@ sub transform {
 
 			if ($convert) {
 				$xpmFile = changeIconFilename($file);
-				next if ($update && -f "$outDir$dirtype/$xpmFile");
+				next if $update && -f "$outDir$dirtype/$xpmFile";
 			}
 			if ($convert) {
 				myPrint (1,"transform $file ...");
@@ -462,7 +446,7 @@ sub transform {
 					"$dir/$file $outDir$dirtype/.mask.xpm");
 				$unlinkmask = 1;
 		 		$mainXpm = loadXpm("$outDir$dirtype/$xpmFile");
-				$maskXpm = loadXpm("$outDir$dirtype/.mask.xpm");
+				my $maskXpm = loadXpm("$outDir$dirtype/.mask.xpm");
 				applyTrans($mainXpm, $maskXpm,"None");
 				myPrint(2,"done");
 			}
@@ -576,15 +560,12 @@ sub getTile($) {
 
 #-------------------------------------
 # FROM fvwm2gnome
-# gnome uses mostly png files for icons, and since fvwm can't read them,
-# we should to tell it to load an xpm of the same name (which we'll create
-# at some point) instead.
 sub changeIconFilename {
 	my ($iconName) = @_;
 	my $xpmString = "xpm";
 
-	$choppedIconName = substr($iconName, 0, -3); # cut off the file extension
-	$iconName = "$choppedIconName$xpmString";    # slap the new extension on
+	my $choppedIconName = substr($iconName, 0, -3);
+	$iconName = "$choppedIconName$xpmString";
 	return $iconName;
 }
 
@@ -593,15 +574,15 @@ sub scanDir {
 	my  @dirList = ();
 	opendir(DIR, "$scanPath") || die "cannot open dir $scanPath\n";
 	foreach (readdir(DIR)) {
-		# must be fixed one day: found all the formats supported
-		# by ImageMagick ...
-		push @dirList, $_
-			if (/.png$/ || /.xpm$/ || /.jpg$/ || /.gif$/);
+	# must be fixed one day: found all the formats supported
+	# by ImageMagick ...
+	push @dirList, $_
+		if (/.png$/ || /.xpm$/ || /.jpg$/ || /.gif$/);
 	}
 	closedir(DIR);
 	return(@dirList);
 }
-
+  
 #-------------------------------------
 # 
 
@@ -611,11 +592,9 @@ sub getExecFileDir($) {
 	my $return = 'not found';
 	foreach (@pathDirs) {
 		my $test = "$_/$execFile";
-		if (-x  $test) {
-			return $_;
-	  	}
+		return $_ if -x  $test;
 	}
-	return $return;			
+	return $return;
 }
 
 #-------------------------------------
@@ -628,7 +607,7 @@ sub createSymLink {
 	@dest = map { "$outDir/$_$postfix" } @dest;
 	die "No directory to link!\n"
 		unless -d $dest[0] && -d $dest[1];
-	myPrint(1,"Create symboloic link\n");
+	myPrint(1,"Create symbolic link\n");
 	foreach $type ("norm", "mini") {
 		unlink("$ftImagesDir/$type$postfix");
 		symlink("$dest[$i]","$ftImagesDir/$type$postfix") || 
@@ -687,48 +666,40 @@ sub checkMagick {
 #------------------------------------------------------------------------------
 
 sub cdeSky() {
-
 	my @pattern=();
 	my $coef;
-	if ($patternType ne "") {
-		@pattern = createPattern();
-	} elsif ($patternXpm ne "") {
-		@pattern = createPatternXpm();
-	} else {
-		die "pattern file $patternFile not found\n"
-			unless -f $patternFile;
+	if ($patternType ne "") { @pattern = createPattern() } 
+	elsif ($patternXpm ne "") { @pattern = createPatternXpm() } 
+	else {
+		die "pattern file $patternFile not found\n" unless -f $patternFile;
 		open(INFILE,$patternFile);
 		@pattern = <INFILE>;
 		close(INFILE);
 	}
 	
 	if ($patternY !~ /^\d+$/) {
-		my ($ScreenX, $ScreenY) = `xdpyinfo | grep dimensions:` =~ / (\d+)x(\d+)/;
-		if ($rotate =~ /90/) { $patternY = $ScreenX; }
-		else { $patternY = $ScreenY; }
+		my ($ScreenX, $ScreenY) = `xdpyinfo|grep dimensions:` =~ / (\d+)x(\d+)/;
+		$patternY = $rotate =~ /90/ ? $ScreenX:$ScreenY;
 	}
-	
-	my $Y=0;
+
 	my @consPar = ();
-	my $p;
-	my $W=0;
-	my $test = -1;
-	$patternGap = 1 if ($patternGap == 0 || $patternGap !~ /^\d+$/);
+	my $p; my $W=0; my $test = -1; my $Y=0;
+	$patternGap = 1 if ($patternGap <= 0 || $patternGap !~ /^\d+$/);
 	foreach $p (@pattern) {
 		$test++;
 		next if ($test/$patternGap != int($test/$patternGap));
 		chomp($p);
-		push @consPar, split("|",$p);
-		if ($Y==0) { $W=length($p); }
-		$Y=$Y+1; 
+		push @consPar, split("",$p);
+		$Y=$Y+1;
 	}
+	$W=length($pattern[0]);
 
 	my $nbrColors = 0;
 	my $gradColors = [];
 	my @tmp = split(':', $gradColorsOpt);
+	my $c;
 	foreach $c (@tmp) {
-		my @tmp2=bppTo3intArray(encode16bpp($c));
-		$gradColors->[$nbrColors] = \@tmp2;
+		$gradColors->[$nbrColors] = bppTo3intArray(encode16bpp($c));
 		$nbrColors++;
 	}
 
@@ -736,52 +707,37 @@ sub cdeSky() {
 	my $dx = $NY;
 
 	my $xpm = createMonoXpm($W,1,"None");
+	my $def = $xpm->{'def'};
+	my $pixels = $xpm->{'pixels'};
+	my ($i,$k) = qw(0 0);
+	my $id; my $nextId;
 
-	# to Olivier: the following is equivalent to: $id = '""';
-	my ($i,$j,$k,$I,$id,$nextId) = qw(0 0 0 0 0 0 0 "" "");
-
-	while ($i <= $NY) {
+	while ($i < $NY) {
+		my $t; my $j = 0; my $done = 0; my $l = 0;
 		if ($i == 0) {
-			$I=$i/$dx;
-			@tmp=interpolateColors($gradColors,$nbrColors,$I,$gradComp,$i);
-			$id = addColor($xpm,encode16bpp("[$tmp[0],$tmp[1],$tmp[2]"));
+			$t=interpolateColors($gradColors,$nbrColors,$i/$dx,$gradComp,$i);
+			$id = addColor($xpm,encode16bpp($t));
 		} else { $id = $nextId; }
-		if ($i < $NY) {
-			$I= ($i+1)/$dx;
-			@tmp=interpolateColors($gradColors,$nbrColors,$I,$gradComp,$i+1);
-			$nextId=addColor($xpm,encode16bpp("[$tmp[0],$tmp[1],$tmp[2]"));
-			my $done = 0;
-			my $l = 0;
-			$j=0;
-			$id .= " " if (length($id) < length($nextId));
-			while (defined $consPar[$l] && !$done) {
-				if ("$consPar[$l]" eq "+") {
-					$xpm->{'pixels'}->[$k]->[$j] = $id;
-				} else {
-					$xpm->{'pixels'}->[$k]->[$j] = $nextId;
-				}
-				$j++;
-				$l++;
-				if ($j == $W) {
-					$k++;
-					$j=0;
-					if ($k == $patternY) { $done = 1; $i=$NY-1;}
-				}
+		$t=interpolateColors($gradColors,$nbrColors,($i+1)/$dx,$gradComp,$i+1);
+		$nextId=addColor($xpm,encode16bpp($t));
+		$id .= " " if length($id) < length($nextId);
+		while (defined $consPar[$l] && !$done) {
+			$pixels->[$k]->[$j] = $consPar[$l] eq "+" ? $id:$nextId;
+			$j++; $l++;
+			if ($j == $W) {
+				$k++; $j=0; $def->[1] = $k;
+				if ($k == $patternY) { $done = 1; $i=$NY;}
 			}
-			$xpm->{'def'}->[1] = $k;
 		}
 		$i++;
 	}
+	
+	rotateXpm($xpm,$rotate) if $rotate ne "0";
 
-	rotateXpm($xpm,$rotate) if ($rotate ne "0");
-
-	$outFile = "$setBackFile" if ($outFile eq "");
+	$outFile = "$setBackFile" if $outFile eq "";
 	writeXpm($xpm,$outFile);
 
-	if ($setBackground) {
-		setBack("$outFile");
-	}
-
+	setBack("$outFile") if $setBackground;
 }
 
 #-------------------------------------
@@ -799,69 +755,48 @@ sub createPattern {
 	if ($patternType =~ /^random:(\d+):*(\d*)$/) {
 		$type = "rand";
 		$coef = $1;
-		if ($2 ne "") { $coef2 = $2; }
-		else { $coef2 = 8; }
+		$coef2 = $2 ne "" ? $2 : 8;
 	} elsif ($patternType =~ /^uniform:(\d+):*(\d*)$/) {
 		$type = "uniform";
 		$coef = $1;
-		if ($2 ne "") { $coef2 = $2; }
-		else { $coef2 = 8; }
+		$coef2 = $2 ne "" ? $2 : 8;
 	} elsif ($patternType =~ /^square:(\d+):*(\d*)$/) {
 		$type = "square";
 		$coef = $1;
-		if ($2 ne "") { $coef2 = $2; }
-		else { $coef2 = $coef; }
+		$coef2 = $2 ne "" ? $2 : $coef;
 	} elsif ($patternType =~ /^altern:(\d+):*(\d*)$/) {
 		$type = "altern";
 		$coef = $1;
-		if ($2 ne "") { $coef2 = $2; }
-		else { $coef2 = 8; }
+		$coef2 = $2 ne "" ? $2 : 8;
 	} elsif ($patternType =~ /^(\d+):*(\d*)$/) {
 		$coef = $1;
-		if ($2 ne "") { $coef2 = $2; }
-		else { $coef2 = 8; }
+		$coef2 = $2 ne "" ? $2 : 8;
 		$type = "uniform";
 	} else {
 		die "bad pattern-type option";
 	}
 
 	if ($type eq "uniform") {	
-		my $p = "+" x $coef2 . "\n";
-		for ($i = 0; $i < $coef; $i++) {
-			push @pattern, $p;
-		}
+		my $p = "+" x $coef2 ."\n";
+		for ($i=0; $i < $coef; $i++) { push @pattern, $p }
 	}
-
-	if ($type eq "altern") {
-		my $p = "+" x $coef2 . "\n";
-		for ($i=0; $i < $coef; $i++) {
-			push @pattern, $p;
-		}
+	elsif ($type eq "altern") {
+		my $p = "+" x $coef2 ."\n";
+		for ($i=0; $i < $coef; $i++) { push @pattern, $p }
 		$p = "-" x $coef2 ."\n";
-		for ($i=0; $i < $coef; $i++) {
-			push @pattern, $p;
-		}
+		for ($i=0; $i < $coef; $i++) { push @pattern, $p }
 	}
-
-	if ($type eq "square") {	
-		my $p = "+" x $coef2 . "-" x $coef2 . "\n";
-		for ($i=0; $i < $coef; $i++) {
-			push @pattern, $p;
-		}
+	elsif ($type eq "square") {	
+		my $p = "+" x $coef2 . "-"x$coef2 ."\n";
+		for ($i=0; $i < $coef; $i++) { push @pattern, $p }
 	}
-
-	if ($type eq "rand") {
-		for ($i=0; $i < $coef; $i++) {
-			my $p = "";
-			for ($j=0; $j < $coef2; $j++) {
-				$r = rand 1;
-				if ($r >= 0.5) { $p .= "+"; }
-				else { $p .= "-"; }
-			}
+	elsif ($type eq "rand") {
+		for ($i=0;$i<$coef;$i++) {
+			my $p = ""; my $j; my $r;
+			for ($j=0; $j<$coef2; $j++) { $r= rand 1; $p = $r > 0.5 ? "+" : "-" }
 			push @pattern, "$p\n";
 		}
 	}
-
 	return @pattern;
 }
 
@@ -869,33 +804,28 @@ sub createPattern {
 # create pattern from an xpm
 
 sub createPatternXpm($) {
-
 	my $xpm = loadXpm($patternXpm);
-	my $c = $xpm->{'def'}->[0];
-	my $r = $xpm->{'def'}->[1];
-	my $nc = $xpm->{'def'}->[2];
+	my ($c,$r,$nc) = ($xpm->{'def'}->[0],$xpm->{'def'}->[1],$xpm->{'def'}->[2]);
+	my $colors = $xpm->{colors};
+	my $pixels = $xpm->{pixels};
+	my $ids = $xpm->{ids};
 	my $id = "";
 	my @pattern = ();
-
+	
 	# found the transparent id
-	my $i = 0; my $done = 0;
-	while ($i < $nc && !$done) {
-		if ($xpm->{'colors'}->[$i]->{'color'} eq "None") {
-			$id = $xpm->{'colors'}->[$i]->{'id'};
+	my $i = 0; my $done =0;
+	while($i < $nc && !$done) {
+		if ($colors->[$i] eq "None") {
+			$id = $ids->[$i];
 			$done = 1;
 		}
 		$i++;
 	}
-
-	for ($i = 0; $i < $r; $i++) {
-		my $pm = "";
-		for ($j = 0; $j < $c; $j++) {
-			if ($xpm->{'pixels'}->[$i]->[$j] eq $id) {$pm .= "+";}
-			else {$pm .= "-";}
-		}
+	for ($i=0; $i<$r; $i++) {
+		my $pm = ""; my $j;
+		for ($j=0;$j<$c;$j++) { $pm = $pixels->[$i]->[$j] eq $id ? "+" :"-"; }
 		push @pattern, "$pm\n";
 	}
-
 	return @pattern;
 }
 
@@ -919,22 +849,22 @@ sub formatColorInfoLine ($$$) {
 	my $base = shift;
 
 	my ($r, $g, $b) = ($colorRgb =~ /^#(..)..(..)..(..)..$/);
-	my @trio = bppTo3intArray($colorRgb);
+	my $trio = bppTo3intArray($colorRgb);
 	return sprintf("%-${base}s  %7s    %3d %3d %3d",
-		"$colorName:", "#$r$g$b", @trio);
+		"$colorName:", "#$r$g$b", @{$trio});
 }
 
 sub formatColorInfoHeadLine ($) {
 	my $base = shift;
 	return sprintf("%-${base}s  %8s   %s",
-		"Color name", "8bpp RGB", "Decimal RGB");
+	"Color name", "8bpp RGB", "Decimal RGB");
 }
 
 sub showXcolorsInfo ($) {
 	my $set = shift;
 	my $base = $set ? 25 : 17;
-	my ($nbr); #, $newnbr, $r, $g, $b, $add);
-	my @a;
+	my $nbr;
+	my $key;
 
 	loadRGB();
 	print formatColorInfoHeadLine($base), "\n\n";
@@ -943,31 +873,33 @@ sub showXcolorsInfo ($) {
 		$nbr = $rgb{"$key"};
 		print formatColorInfoLine($key, $nbr, $base), "\n";
 		if ($set) {
+			my $prefix;
 			foreach $prefix ("shadow","hilight","random","top255","top50") {
-				print formatColorInfoLine("$prefix $key", "$prefix$nbr", $base), "\n";
+				print formatColorInfoLine("$prefix $key", "$prefix$nbr", $base),
+					"\n";
 			}
 			print "\n";
 		}
 	}
 }
 
-sub showColorInfo ($) {
+sub showColorInfo {
 	my $color = shift;
 	my $base = 25;
-
-#	print "\n";  # Why? :)
 	loadRGB();
 	my $nbr = encode16bpp("$color");
-	my @a = bppTo3intArray($nbr);
+	my $a = bppTo3intArray($nbr);
 	
 	print "Information on $color:\n\n";
+
 	my $best = 256;
 	my $t;
 	my @x =();
-
+	my $key;
 	foreach $key (sort keys %rgb) {
-		my @b = bppTo3intArray($rgb{"$key"});
-		$t = sqrt(($a[0]-$b[0])**2+($a[1]-$b[1])**2+($a[2]-$b[2])**2)/sqrt(3);
+		my $b = bppTo3intArray($rgb{"$key"});
+		$t = 
+		  sqrt(($$a[0]-$$b[0])**2+($$a[1]-$$b[1])**2+($$a[2]-$$b[2])**2)/sqrt(3);
 		push @x, $key if $t == $best;
 		if ($t < $best) { $best = $t; @x = ("$key"); }
 	}
@@ -975,14 +907,17 @@ sub showColorInfo ($) {
 	if ($best == 0) {
 		print "\tX color name(s): @x\n";
 	} else {
-		print "\tClosest X color name(s): ", join(', ', @x), " (".int($best).")\n";
+		print "\tClosest X color name(s): ", join(', ',@x), " (".int($best).")\n";
 	}
 	print "\n";
 	print "\t", formatColorInfoHeadLine($base), "\n\n";
 	print "\t", formatColorInfoLine("$color", "$nbr", $base), "\n";
+
+	my $prefix;
 	foreach $prefix ("shadow", "hilight", "random", "top255", "top200", 
 		"top150", "top100", "top50") {
-		print "\t", formatColorInfoLine("$prefix $color", "$prefix$nbr", $base), "\n";
+		print "\t", formatColorInfoLine("$prefix $color", "$prefix$nbr", $base), 
+			"\n";
 	}
 	print "\n";
 
@@ -999,14 +934,14 @@ sub loadXpm($) {
 
 	open(XPM, $file) || die "Impossible to load $file";
 	my $count = -1;
-	my $colors = 0;
-	my $pixels = 0;
-	my $nbrColors = -1;
-	my $charPerPix = -1;
-	my $pixCount = 0;
-	my $tmp = "";
-	my $len = 0;
-	my $inComment = 0;
+	my ($isColors,$isPixels) = qw(0 0);
+	my ($pixCount, $inComment)= qw(0 0);
+	my ($nc,$cpp);
+	my ($i,$re);
+	my $def = [];
+	my $pixels = [];
+	my $colors = [];
+	my $ids = [];
 
 	while(<XPM>) {
 		# "in comment" need amelioration ...
@@ -1019,67 +954,55 @@ sub loadXpm($) {
 		next if $_ !~ /^\"/;
 		chomp;
 		s/^\"//;
-		s/;$//;
-		s/\}$//;
-		s/,$//;
-		s/\"$//;
-		$line = $_;
-		if ($pixels) {
-			@l = split ("|",$line);
-			my $i = 0;
-			my $j = 0;
-			my $k = 0;
-			die "bad number of columns in xpm file $file"
-				if (! defined $l[$len-1] || defined $l[$len]);
-			for($i=0;$i<$len;$i=$i+$charPerPix) {
-				$xpm->{'pixels'}->[$pixCount]->[$k] = "";
-		   	for ($j=0; $j<$charPerPix; $j++) {
-					$xpm->{'pixels'}->[$pixCount]->[$k] .= $l[$i+$j]; 
-				}
-		   	$k++;
-			}
+		s/\"*,*\}*;*$//;
+		my $line = $_;
+		if ($isPixels) {
+			# can we do this faster ?
+			$pixels->[$pixCount] = [ $line =~ /$re/ ];
+			#die "bad number of columns in xpm file $file\n"
+			#	if ($#{@{$pixels->[$pixCount]}} != $def->[0]);
 			$pixCount++;
-			die "bad number of rows in xpm file $file (to many)\n" 
-				if ($xpm->{'def'}->[1] < $pixCount);
 		}
-		if ($colors) {
-			$xpm->{'colors'}->[$count]->{'id'}=substr($line,0,$charPerPix);
-			$tmp = substr($line,$charPerPix+1);
-			$tmp =~ s/^\s*//;
-			# suppress these stupids "s None"
-			$tmp =~ s/s\s+none$//i;
-			$tmp =~ s/^\s*c\s+//;
-			$tmp =~ s/\s*$//;
-			# encode in 16 bits per pixels ...
-			die "bad color definition in $file" if ($tmp eq "");
-			$xpm->{'colors'}->[$count]->{'color'}=encode16bpp($tmp);
-			die "bad number of color in $file" 
-				if ($nbrColors <= $count);
-		}
-		if ($count == -1) {
-			$colors = 1;
-			$line =~ s/\s+/ /g;
+		elsif ($isColors) {
+			$ids->[$count] = substr($line,0,$cpp);
+			$line = substr($line,$cpp+1);
 			$line =~ s/^\s*//;
-			@{$xpm->{'def'}} = split(/\s+/, $line);
+			# suppress these stupids "s None"
+			$line =~ s/s\s+none$//i;
+			$line =~ s/^\s*c\s+//;
+			$line =~ s/\s*$//;
+			# encode in 16 bits per pixels ...
+			die "bad color definition in $file" if ($line eq "");
+			$colors->[$count]=encode16bpp($line);
+			$count++;
+			if ($count == $nc) {
+				$isColors = 0;
+				$isPixels = 1;
+			}
+		}
+		else {
+			$isColors = 1;
+			$def = [ $line =~ /\s*(\d+)\s+(\d+)\s+(\d+)\s+(\d+)/ ];
 			for ($i=0;$i<4;$i++) {
 				die "it does not seem that $file is an xpm (definition)"
-					if ($xpm->{'def'}->[$i] !~ /^\d+$/ || $xpm->{'def'}->[$i]<0); 
+					unless (defined($def->[$i]));
 			}
-			$nbrColors = $xpm->{'def'}->[2];
-			$charPerPix = $xpm->{'def'}->[3];
-			$len = $charPerPix * $xpm->{'def'}->[0];
-		}
-		$count++;
-		if ($count == $nbrColors) {
-			$colors = 0;
-			$pixels = 1;
+			$nc = $def->[2];
+			$cpp = $def->[3];
+			$re = "(" . "." x $cpp . ")";
+			$re = "$re" x $def->[0];
+			$count++;
 		}
 	}
 	close(XPM);
 	# check if the format is ok:
-	die "it does not seem that $file is an xpm ($count, $pixels)\n"
-		if ($count < 2 || !$pixels || (0 && $xpm->{'def'}->[0] != $pixCount));
+	die "it does not seem that $file is an xpm\n"
+		if ($count < 1 || !$isPixels || ($def->[1] != $pixCount));
 
+	$xpm->{'def'} = $def;
+	$xpm->{'colors'} = $colors;
+	$xpm->{'ids'} = $ids;
+  	$xpm->{'pixels'} = $pixels;
 	return $xpm;
 }
 
@@ -1088,33 +1011,27 @@ sub loadXpm($) {
 
 sub writeXpm ($;$) {
 	my $xpm = shift;
-	my $file = shift;
-
-	my $out = "";
+	my $file = shift || "";
+	my $out ="";
+	my $def = $xpm->{'def'};
+	my $pixels = $xpm->{'pixels'};
+	my $i;
 
 	$out .= qq(/* XPM */\nstatic char *ft_xpm[] = {\n);
 	$out .= qq(/* columns rows colors chars-per-pixel */\n);
-	$out .= qq("@{$xpm->{'def'}}",\n);
+	$out .= qq("@{$def}",\n);
 
-	my $c = $xpm->{'colors'};
-
-	for($i=0;defined $c->[$i];$i++) {
-		$out .= qq("$c->[$i]->{'id'} c $c->[$i]->{'color'}",\n);
+	for($i = 0; $i < $def->[2]; $i++) {
+		$out .= qq("$xpm->{'ids'}->[$i] c $xpm->{'colors'}->[$i]",\n);
 	}
 	$out .= "/* pixels */\n";
 
-	my $rows = $xpm->{'def'}->[1];
-	my $columns = $xpm->{'def'}->[0];
-	my $p = $xpm->{'pixels'};
-	for ($i=0; $i<$rows; $i++) {
-		$out .= "\"";
-		for ($j=0; $j<$columns; $j++) {
-			$out .= $p->[$i]->[$j];
-		}
+	for ($i=0; $i < $def->[1]; $i++) {
+		$out .= qq(");
+		$out .= join ("", @{$pixels->[$i]}[0 .. $def->[0]-1]);
 		$out .= qq(",\n);
 	}
 	chomp($out);
-	$out =~ s/,$//s;  # IMHO it looks nicer _with_ comma
 	$out .= "\n};\n";
 
 	if (defined($file)) {
@@ -1134,22 +1051,14 @@ sub createMonoXpm($$$) {
 	my $columns = shift || 1;
 	my $rows =  shift || 1;
 	my $color = shift || "None";
-	my $xpm;
-	my $i;
-	my $j;
+	my $xpm; my $i; my $j;
 
-	$xpm->{'def'}->[0] = $columns;
-	$xpm->{'def'}->[1] = $rows;
-	$xpm->{'def'}->[2] = 1;
-	$xpm->{'def'}->[3] = 1;
-
-	$xpm->{'colors'}->[0]->{'color'} = encode16bpp($color);
-	$xpm->{'colors'}->[0]->{'id'} = " ";
+	$xpm->{'def'} = [$columns, $rows, 1, 1];
+	$xpm->{'colors'}->[0] = encode16bpp($color);
+	$xpm->{'ids'}->[0] = " ";
 
 	for ($i = 0; $i<$rows; $i++) {
-		for ($j = 0; $j<$columns; $j++) {
-			$xpm->{'pixels'}->[$i]->[$j] = " ";
-		}
+		for ($j = 0; $j<$columns; $j++) { $xpm->{'pixels'}->[$i]->[$j] = " "; }
 	}
 	return $xpm;
 }
@@ -1158,35 +1067,19 @@ sub createMonoXpm($$$) {
 # get the color id from its nbr.
 # we need the reverse function ...
 
-sub getColorId {
+sub getColorId($$) {
 	my $nbr = shift;
 	my $cpp = shift;
 	my $id = "";
-	my $singleIdList =
-		q( .XoO+@#$%&*=-;:>,<1234567890qwertyuipasdfghjk) .
-		q(lzxcvbnmMNBVCZASDFGHJKLPIUYTREWQ!~^/()_`'][{}|);
-#	my @singleIdList =
-#		" ",".","X","o","O","+","@","#","\$","%",
-#		"&","*","=","-",";",":",">",",","<","1",
-#		"2","3","4","5","6","7","8","9","0","q",
-#		"w","e","r","t","y","u","i","p","a","s",
-#		"d","f","g","h","j","k","l","z","x","c",
-#		"v","b","n","m","M","N","B","V","C","Z",
-#		"A","S","D","F","G","H","J","K","L","P",
-#		"I","U","Y","T","R","E","W","Q","!","~",
-#		"^","/","(",")","_","\`","\'","]","[","{",
-#		"}","|"
-#	);
-	my $singleIdNbr = length($singleIdList);
+	my $k;
 
-	my $max = $singleIdNbr**$cpp;
+	my $max = 92**$cpp;
 	return undef if ($max <= $nbr);
 
-	$b = $nbr;
 	for ($k = $cpp-1; $k >= 0; $k--) {
-		$a = int($b / ($singleIdNbr ** $k));
-		$id = substr($singleIdList, $a + 1, 1) . $id;
-		$b -= $a * ($singleIdNbr ** $k);
+		$a = int($nbr / (92 ** $k));
+		$id = substr($singleIdList, $a, 1) . $id;
+		$nbr -= $a*(92 ** $k);
 	}
 
 	return $id;
@@ -1195,28 +1088,32 @@ sub getColorId {
 #-------------------------------------
 # add a new colors
 
-sub addColor {
+sub addColor($$) {
 	my $xpm = shift;
 	my $color = shift;
+	my $def = $xpm->{'def'};
+	my $ids = $xpm->{'ids'};
+	my $colors = $xpm->{'colors'};
 
 	# does the color is already there?
-	$nc = $xpm->{'def'}->[2];
-	for($i = 0; $i < $nc; $i++) {
-		return $xpm->{'colors'}->[$i]->{'id'} 
-			if ($xpm->{'colors'}->[$i]->{'color'} eq "$color");
+	if (!$beFast) {
+		my $i;
+		for($i = 0; $i < $def->[2]; $i++) { 
+			return $ids->[$i] if $colors->[$i] eq "$color";
+		}
 	}
 
 	# get the id for the new colors
-	$id = getColorId($xpm->{'def'}->[2], $xpm->{'def'}->[3]);
+	my $id = getColorId($def->[2], $def->[3]);
 
 	if (defined($id)) {
-		$xpm->{'def'}->[2]++;
+		$def->[2]++;
 	} else {
 		$id = addACharPerPix($xpm); # and a dummy color
-	}
+   }
 
-	$xpm->{'colors'}->[$xpm->{'def'}->[2]-1]->{'id'} = $id;
-	$xpm->{'colors'}->[$xpm->{'def'}->[2]-1]->{'color'} = $color;
+	$ids->[$def->[2]-1] = $id;
+	$colors->[$def->[2]-1] = $color;
 	return $id;
 }
 
@@ -1225,32 +1122,24 @@ sub addColor {
 
 sub addACharPerPix {
 	my $xpm = shift;
-	my ($i, $j);
-	$xpm->{'def'}->[3]++;
-	
-	$nbrColors = $xpm->{'def'}->[2];
-	for ($i=0; $i<$nbrColors; $i++) {
-		$xpm->{'colors'}->[$i]->{'id'} .= " ";
-	}
+	my $def = $xpm->{'def'};
+	my $colors = $xpm->{'colors'};
+	my $ids = $xpm->{'ids'};
+	my $pixels = $xpm->{'pixels'};
+	my $nc = $def->[2];
+	my $i;
+
+	$def->[3]++;
+	@{$ids} = map { "$_ " } @{$ids};
 	# add a dumy colors
-	$xpm->{'colors'}->[$nbrColors]->{'id'} = "";
-	for ($i=0;$i<$xpm->{'def'}->[3]-1;$i++) {
-		$xpm->{'colors'}->[$nbrColors]->{'id'} .= " ";
-	}
-	$xpm->{'colors'}->[$nbrColors]->{'id'} .= ".";
-	$xpm->{'colors'}->[$nbrColors]->{'colors'} = 
-		$xpm->{'colors'}->[$nbrColors-1]->{'colors'};
-	$xpm->{'def'}->[2]++;
+	$ids->[$nc] = " " x ($def->[3]-1) . ".";
+	$colors->[$nc] = $colors->[$nc-1];
+	$def->[2]++;
 
-	$columns = $xpm->{'def'}->[0];
-	$rows = $xpm->{'def'}->[1];
-
-	for ($i=0; $i<$rows; $i++) {
-		for ($j=0; $j<$columns; $j++) {
-			$xpm->{'pixels'}->[$i]->[$j] .= " ";
-		}
+	for ($i = 0; $i < $def->[1]; $i++) {
+		@{$pixels->[$i]} = map { "$_ " } @{$pixels->[$i]};
 	}
-	return $xpm->{'colors'}->[$nbrColors]->{'id'};
+	return $ids->[$def->[2]-1];
 }
 
 #-------------------------------------
@@ -1262,33 +1151,32 @@ sub applyTrans {
 	my $xpm = shift;
 	my $mask = shift;
 	my $color = shift;
-
-	my $nc = $mask->{'def'}->[2];
-	my $done = 0;
-	my ($i,$j) = ("0","0");
+	my ($mcolors,$mids,$mpixels,$nc) = ($mask->{'colors'}, $mask->{'ids'},
+		$mask->{'pixels'},$mask->{'def'}->[2]);
+	my ($xpixels,$def) = ($xpm->{'pixels'},$xpm->{'def'});
+	my ($done,$i) = qw(0 0);
+	my $j;
 	my $t = "";
 
 	# found the transparent id
-	while($i<$nc && !$done) {
-		my $tmp = $mask->{'colors'}->[$i]->{'color'};
-		if ($tmp =~ /^#0*$/ || $tmp =~ /^gray0$/i || $tmp =~ /^black$/i) {
-			$t = $mask->{'colors'}->[$i]->{'id'};
+	while($i < $nc && !$done) {
+		my $tmp = $mask->{'colors'}->[$i];
+		if ($mcolors->[$i] =~ /^#0*$/ || 
+			$mcolors->[$i] =~ /^gray0$/i || 
+			$mcolors->[$i] =~ /^black$/i) {
+			$t = $mids->[$i];
 			$done = 1;
 		}
 		$i++;
 	}
-				
+
 	return if $t eq "";
 
 	my $id = addColor($xpm,$color);
 
-	$columns = $xpm->{'def'}->[0];
-	$rows = $xpm->{'def'}->[1];
-
-	for ($i=0; $i<$rows; $i++) {
-		for ($j=0; $j<$columns; $j++) {
-			$xpm->{'pixels'}->[$i]->[$j] = $id
-				if $mask->{'pixels'}->[$i]->[$j] eq "$t";
+	for ($i=0; $i<$def->[1]; $i++) {
+		for ($j=0; $j<$def->[0]; $j++) {
+			$xpixels->[$i]->[$j] = $id if $mpixels->[$i]->[$j] eq "$t";
 		}
 	}
 
@@ -1299,41 +1187,28 @@ sub applyTrans {
 
 sub addBorder($$$$$$) {
 	my ($xpm,$x1,$x2,$y1,$y2,$color) = @_;
-
 	my $id = addColor($xpm,encode16bpp($color));
-
 	my $columns = $xpm->{'def'}->[0];
 	my $rows = $xpm->{'def'}->[1];
-	my $cpp = $xpm->{'def'}->[3];
-
+	my $pixels = $xpm->{'pixels'};
 	my @addLeft = ();
 	my @addRight = ();
-	my ($i,$j);
+	my $i;
 
-	for ($i=0;$i<$x1;$i++) { $addLeft[$i] = $id; }
-	for ($i=0;$i<$x2;$i++) { $addRight[$i] = $id; }
+	for ($i = 0; $i < $x1; $i++) { $addLeft[$i] = $id; }
+	for ($i = 0; $i < $x2; $i++) { $addRight[$i] = $id; }
 	my @new_row = ();
 	for ($i=0; $i < $columns + $x1 + $x2; $i++) { $new_row[$i] = $id; }
 	# shift the rows and add left and right border:
 	for ($i = $rows + $y1 - 1; $i >= $y1; $i--) {
-		my @tmpArray = @addLeft;
-		# warning: if you use @{$xpm->{'pixels'}->[$i-$y1]} you also have
-		# to free unused pixels in rotate (for example).
-		for ($j=0;$j<$columns;$j++) {
-			push  @tmpArray, $xpm->{'pixels'}->[$i-$y1]->[$j];
-		}
-		push @tmpArray, (@addRight);
-		$xpm->{'pixels'}->[$i] = \@tmpArray;
+		@{$pixels->[$i]}= (@addLeft,
+			@{$pixels->[$i-$y1]}[0..$columns-1],@addRight);
 	}
 	# add top border
-	for ($i = 0; $i < $y1; $i++) {
-		my @tmpArray = @new_row;
-		$xpm->{'pixels'}->[$i] = \@tmpArray;
-	}
+	for ($i = 0; $i < $y1; $i++) { @{$pixels->[$i]} = @new_row; }
 	# add bottom border
-	for ($i = $rows + $y1 ; $i < $rows+$y1+$y2; $i++) {
-		my @tmpArray = @new_row;
-		$xpm->{'pixels'}->[$i] = \@tmpArray;
+	for ($i = $rows + $y1 ; $i < $rows + $y1 + $y2; $i++) {
+		@{$pixels->[$i]} = @new_row;
 	}
 	$xpm->{'def'}->[0] += $x1 + $x2;
 	$xpm->{'def'}->[1] += $y1 + $y2;
@@ -1349,11 +1224,9 @@ sub applyTile {
 	my $x = shift || 0;
 	my $y = shift || 0;
 
-	my $done = 0;
-	my ($i,$j,$k,$l) = ("0","0","0","0");
+	my ($done,$i,$k) = qw(0 0 0);
 	my $t = "";
 	my %idConv = ();
-	my $len = 0;
 
 	if ($type ne "center" && ($x != 0 || $y != 0)) {
 		addBorder($xpm,$x,$x,$y,$y,"None");
@@ -1362,7 +1235,7 @@ sub applyTile {
 	my $columns = $xpm->{'def'}->[0];
 	my $rows = $xpm->{'def'}->[1];
 
-	if ($type eq "expand") {		
+	if ($type eq "expand") {
 		system("$magickPath/convert -geomerty $columns" . 
 			"x$rows" ."! $tile /tmp/ft-tmp-images.xpm");
 		$tile = loadXpm("/tmp/ft-tmp-images.xpm");
@@ -1372,38 +1245,37 @@ sub applyTile {
 
 	# add border to $xpm
 	if ($type eq "center") {
-		my ($x1,$x2,$x3,$x4) = qw(0 0 0 0);
+		my ($x1,$x2,$x3,$x4,$y1,$y2);
 		my $tilecol = $tile->{'def'}->[0];
 		my $tilerows = $tile->{'def'}->[1];
 		my $x = $tilecol > $columns ? $tilecol-$columns : 0;
 		my $y = $tilerows > $rows ? $tilerows-$rows : 0;
-				
-		if ($x/2 == int($x/2)) { $x1=$x2=$x/2; }
+
+		if ($x/2 == int($x/2)) { $x1= $x2 = $x/2; }
 		else { $x1 = int($x/2) + 1; $x2 = int($x/2); }
-		if ($y/2 == int($y/2)) { $y1=$y2=$y/2; }
+		if ($x/2 == int($y/2)) { $y1 =$y2 =$y/2; }
 		else { $y1 = int($y/2) + 1; $y2 = int($y/2); }
 
 		addBorder($xpm,$x1,$x2,$y1,$y2,"None");
 		$columns = $xpm->{'def'}->[0];
-		$rows = $xpm->{'def'}->[1];
+  		$rows = $xpm->{'def'}->[1];
 	}
 
 	# add the $tile colors in $xpm
 	my $tilenc = $tile->{'def'}->[2];
-	for($i=0;$i<$tilenc;$i++) {
-		my $tmp = $tile->{'colors'}->[$i]->{'color'};
-		$idConv{$tile->{'colors'}->[$i]->{'id'}} = addColor($xpm,$tmp);
+	my $tilecolors = $tile->{'colors'};
+	my $tileids = $tile->{'ids'};
+	for($i = 0; $i < $tilenc; $i++) {
+		$idConv{"$tileids->[$i]"} = addColor($xpm,"$tilecolors->[$i]");
 	}
 
 	# found the transparent id
 	my $xpmnc = $xpm->{'def'}->[2];
-	$i = 0; $done = 0;
-	while($i<$xpmnc && !$done) {
-		my $tmp = $xpm->{'colors'}->[$i]->{'color'};
-		if ($tmp =~ /^none$/i) {
-			$t = $xpm->{'colors'}->[$i]->{'id'};
-			$done = 1;
-		}
+	my $colors = $xpm->{'colors'};
+	my $ids = $xpm->{'ids'};
+	$i = 0;
+	while($i < $xpmnc && !$done) {
+		if ($colors->[$i] =~ /^none$/i) { $t = $ids->[$i]; $done = 1; }
 		$i++;
 	}
 
@@ -1411,27 +1283,23 @@ sub applyTile {
 
 	# add some space if need in the id hash 
 	my $xpmcpp = $xpm->{'def'}->[3];
-	foreach $key (keys %idConv) {
-		$len = length($idConv{"$key"});
-		for ($i=0;$i<($xpmcpp-$len);$i++)	{ $idConv{"$key"} .= " "; }
+	foreach $i (keys %idConv) {
+		my $len = length($idConv{"$i"});
+		$idConv{"$i"} .= " "x($xpmcpp-$len);
 	}
 	
 	# apply the tile:
-	$k = 0;
-	for ($i=0; $i<$rows; $i++) {
-		$l=0;
-		for ($j=0; $j<$columns; $j++) {
-					
-			if ($xpm->{'pixels'}->[$i]->[$j] eq "$t") {
-				$xpm->{'pixels'}->[$i]->[$j] = 
-					$idConv{$tile->{'pixels'}->[$k]->[$l]};
+	my $pixels = $xpm->{'pixels'};
+	my $tpixels = $tile->{'pixels'};
+	for ($i = 0; $i < $rows; $i++) {
+		my($j,$l)=qw(0 0);
+		for ($j = 0; $j < $columns; $j++) {
+			if ($pixels->[$i]->[$j] eq "$t") {
+				$pixels->[$i]->[$j] = $idConv{"$tpixels->[$k]->[$l]"};
 			}
-			
-			if (defined $tile->{'pixels'}->[$k]->[$l+1]) { $l++; }
-			else { $l = 0; }
+			$l = defined $tpixels->[$k]->[$l+1] ? $l+1:0;
 		}
-		if (ref($tile->{'pixels'}->[$k+1]) eq "ARRAY") { $k++; }
-		else { $k = 0; }
+		$k = defined $tpixels->[$k+1]->[0] ? $k+1:0;
 	}
 }
 
@@ -1441,31 +1309,27 @@ sub applyTile {
 sub colorizeXpm() {
 
 	my $xpm = shift;
-	my $min=255; 
-	my $max=0;
+	my ($min,$max)= qw(255 0); 
 	my @tmp;
+	my $colors = $xpm->{'colors'};
 
-	die "colorize computation do not support polynomial interpolation\n"
+	die "colorize computation does not support polynomial interpolation\n"
 		if $rizeComp =~ /^p/;
 
 	my $nc = $xpm->{'def'}->[2];
-	
 	my @GREY = ();
+	my $i;
 	for ($i=0;$i<$nc;$i++) {
-		next if $xpm->{'colors'}->[$i]->{'color'} =~ /^None$/i;
-		@tmp = bppTo3intArray($xpm->{'colors'}->[$i]->{'color'});
-		my $g = greyval($tmp[0],$tmp[1],$tmp[2]);
-		$GREY[$i] = $g;
-		if ($g<$min) {$min=$g};
-		if ($g>$max) {$max=$g};
+		next if $colors->[$i] =~ /^None$/i;
+		my $t = bppTo3intArray($colors->[$i]);
+		$GREY[$i] = greyval($t);
+		if ($GREY[$i]<$min) {$min=$GREY[$i]};
+		if ($GREY[$i]>$max) {$max=$GREY[$i]};
 	}
-	
-	my $dx = 255;
-	my $x1; 
-	my $x2;
+
+	my $dx = 255; my $x1; my $x2;
 	if ($rizeRule eq "min") {
-		$x1=0;
-		$x2=1;
+		$x1=0;$x2=1;
 	} else {
 		# ??:  olicha: there is a problem if $dx < $min or $max ??
 		#$dx = $max-$min;
@@ -1477,9 +1341,9 @@ sub colorizeXpm() {
 		$x2 = $max/$dx;
 	}
 
-	my $nbrColors = 0;
+  	my $nbrColors = 0;
 	my $rizeColors = [];
-	@tmp = split(':', $rizeColorsOpt);
+	@tmp = split(':',$rizeColorsOpt);
 
 	if ($tmp[0] =~ /^\s*top\s*[[#A-Za-z]/) {
 		$min = int($min);
@@ -1490,26 +1354,24 @@ sub colorizeXpm() {
 		$tmp[-1] =~ s/^\s*top\s*/top$max/;
 	}
 
+	my $c;
 	foreach $c (@tmp) {
-		my @tmp2=bppTo3intArray(encode16bpp($c));
-		$rizeColors->[$nbrColors] = \@tmp2;
+		$rizeColors->[$nbrColors] = bppTo3intArray(encode16bpp($c));
 		$nbrColors++;
 	}
 
-	for ($i=0;$i<$nc;$i++) {
-		if ($xpm->{'colors'}->[$i]->{'color'} =~ /^None$/i) {
-			if ($transColor ne "") {
-				$xpm->{'colors'}->[$i]->{'color'} = encode16bpp("$transColor");
-			}
+	$transColor = encode16bpp("$transColor") if $transColor ne "";
+	for ($i = 0; $i < $nc; $i++) {
+		if ($colors->[$i] =~ /^None$/i) {
+			$colors->[$i] = $transColor if $transColor ne "";
 			next;
 		}
-		$G=$GREY[$i]/$dx;
+		my $G=$GREY[$i]/$dx;
 		# need a better fix
 		$G = 1 if $G > 1;
-		@tmp=interpolateColors($rizeColors,$nbrColors,$G,$rizeComp,$i,$x1,$x2);
-		$xpm->{'colors'}->[$i]->{'color'}=encode16bpp("[$tmp[0],$tmp[1],$tmp[2]");
+		my $t=interpolateColors($rizeColors,$nbrColors,$G,$rizeComp,$i,$x1,$x2);
+		$colors->[$i]=encode16bpp($t);
 	}
-
 }
 
 #-------------------------------------
@@ -1518,92 +1380,60 @@ sub colorizeXpm() {
 sub rotateXpm($$) {
 	my $xpm = shift;
 	my $angle = shift || $rotate;
-	my $newpix =();
-	my $c = $xpm->{'def'}->[0];
-	my $r = $xpm->{'def'}->[1];
-	my ($i,$j);		
+	my ($c,$r,$pixels)=($xpm->{'def'}->[0],$xpm->{'def'}->[1],$xpm->{'pixels'});
+	my ($i,$j);
+	my $np =[];
+
 	if ($angle eq "0m" || $angle eq "-0m") {
-		for ($i=0;$i<$r;$i++) {
-			for ($j=0;$j<$c;$j++) {
-				$newxpm->{'pixels'}->[$i]->[$j]=$xpm->{'pixels'}->[$i]->[$c-$j-1];
-			}
-		}
-		$xpm->{'pixels'} = $newxpm->{'pixels'};
-
-		return;
+		for ($i=0;$i<$r;$i++) { @{$pixels->[$i]}= reverse @{$pixels->[$i]} }
 	}
-	if ($angle eq "90") {
+	elsif ($angle eq "90") {
 		for ($i=0;$i<$r;$i++) {
-			for ($j=0;$j<$c;$j++) {
-				$newxpm->{'pixels'}->[$j]->[$i] = $xpm->{'pixels'}->[$i]->[$c-$j-1];
-			}
+			for ($j=0;$j<$c;$j++) { $np->[$j]->[$i] = $pixels->[$i]->[$c-$j-1] }
 		}
-		$xpm->{'pixels'} = $newxpm->{'pixels'};
-
-		$xpm->{'def'}->[0] = $r;
-		$xpm->{'def'}->[1] = $c;
-		return;
+		@{$pixels} = @{$np};
+		$xpm->{'def'}->[0] = $r; $xpm->{'def'}->[1] = $c;
 	}
-	if ($angle eq "90m") {
+	elsif ($angle eq "90m") {
 		for ($i=0;$i<$r;$i++) {
-			for ($j=0;$j<=$c;$j++) {
-				$newxpm->{'pixels'}->[$j]->[$i] = $xpm->{'pixels'}->[$i]->[$j];
-			}
+			for ($j=0;$j<=$c;$j++) { $np->[$j]->[$i]= $pixels->[$i]->[$j] }
 		}
-		$xpm->{'pixels'} = $newxpm->{'pixels'};
-
-		$xpm->{'def'}->[0] = $r;
-		$xpm->{'def'}->[1] = $c;
-		return;
+		$pixels = $np;$xpm->{'def'}->[0] = $r; $xpm->{'def'}->[1] = $c;
 	}
-	if ($angle eq "-90") {
+	elsif ($angle eq "-90") {
+		for ($i=0;$i<$r;$i++) {
+			for ($j=0;$j<=$c;$j++) { $np->[$j]->[$i] = $pixels->[$r-$i-1]->[$j] }
+		}
+		@{$pixels} = @{$np};
+		$xpm->{'def'}->[0] = $r; $xpm->{'def'}->[1] = $c;
+	}
+	elsif ($angle eq "-90m") {
 		for ($i=0;$i<$r;$i++) {
 			for ($j=0;$j<=$c;$j++) {
-				$newxpm->{'pixels'}->[$j]->[$i] = $xpm->{'pixels'}->[$r-$i-1]->[$j];
+				$np->[$j]->[$i] = $pixels->[$r-$i-1]->[$c-$j-1]
 			}
 		}
-		$xpm->{'pixels'} = $newxpm->{'pixels'};
-
-		$xpm->{'def'}->[0] = $r;
-		$xpm->{'def'}->[1] = $c;
-		return;
+		@{$pixels} = @{$np};
+		$xpm->{'def'}->[0] = $r; $xpm->{'def'}->[1] = $c;
 	}
-	if ($angle eq "-90m") {
+	elsif ($angle eq "-180m") {
+		for ($i=0;$i<$r;$i++) {
+			for ($j=0;$j<=$c;$j++) { $np->[$i]->[$j] = $pixels->[$r-$i-1]->[$j] }
+		}
+		@{$pixels} = @{$np};
+	}
+	elsif ($angle eq "-180") {
 		for ($i=0;$i<$r;$i++) {
 			for ($j=0;$j<=$c;$j++) {
-				$newxpm->{'pixels'}->[$j]->[$i] 
-					= $xpm->{'pixels'}->[$r-$i-1]->[$c-$j-1];
+				$np->[$i]->[$j] = $pixels->[$r-$i-1]->[$c-$j-1]
 			}
 		}
-		$xpm->{'pixels'} = $newxpm->{'pixels'};
-
-		$xpm->{'def'}->[0] = $r;
-		$xpm->{'def'}->[1] = $c;
-		return;
+		@{$pixels} = @{$np};
 	}
-	if ($angle eq "-180m") {
-		for ($i=0;$i<$r;$i++) {
-			for ($j=0;$j<=$c;$j++) {
-				$newxpm->{'pixels'}->[$i]->[$j] 
-					= $xpm->{'pixels'}->[$r-$i-1]->[$j];
-			}
-		}
-		$xpm->{'pixels'} = $newxpm->{'pixels'};
-		return;
+	elsif ($angle ne "0" && $angle ne "-0") {
+		die "rotate argument must be either 0[m], 90[m], -90[m], 180[m]".
+			 " or -180[m]\n";
 	}
-	if ($angle eq "-180") {
-		for ($i=0;$i<$r;$i++) {
-			for ($j=0;$j<=$c;$j++) {
-				$newxpm->{'pixels'}->[$i]->[$j] 
-					= $xpm->{'pixels'}->[$r-$i-1]->[$c-$j-1];
-			}
-		}
-		$xpm->{'pixels'} = $newxpm->{'pixels'};
-		return;
-	}
-	if ($angle eq "0" || $angle eq "-0") { return; }
-	die "rotate argument must be either 0[m], 90[m], -90[m], 180[m]".
-		 " or -180[m]\n";
 }
 
 #-----------------------------------------------------------------------------
@@ -1629,15 +1459,15 @@ sub loadRGB() {
 	}
 
 	die "X window rgb.txt file not found under @xlibPath" if $rgbFile eq "";
-	
+
 	open(RGB,"$rgbFile") || die "impossible to read $rgbFile";
 	while(<RGB>) {
 		if ( /^\s*(\d+)\s+(\d+)\s+(\d+)\s+(.+)\s*$/ ) {
 			my $name = lc($4);
-			my $a = padBefore(int2hex($1),"0",2);
-			my $b = padBefore(int2hex($2),"0",2);
-			my $c = padBefore(int2hex($3),"0",2);
-			$rgb{"$name"} = "#" . "$a$a$b$b$c$c";
+			my $a = int2hex($1);
+			my $b = int2hex($2);
+			my $c = int2hex($3);
+			$rgb{"$name"} = "#$a$a$b$b$c$c";
 		}
 	}
 	close(RGB);
@@ -1649,49 +1479,51 @@ sub loadRGB() {
 # so I suggest we use 16 bpp and a 12 digit hex number as
 # default encoding for colors. Then, if a function need to
 # compute on the colors it will transform to the colors format it
-# want and convert back to 16bpp in hex. 
+# want and convert back to 16bpp in hex.
 
 sub encode16bpp($) {
 	my $color = shift;
-	my ($a,$b,$c) = qw("" "" "");
 
+	if (ref($color) eq "ARRAY") {
+		# here we must be as fast as possible
+		int2hexRef($color);
+		return 
+			"#$color->[0]$color->[0]$color->[1]$color->[1]$color->[2]$color->[2]";
+	}
 	$color =~ s/^\s*//;
 	$color =~ s/\s*$//;
-	return "None" if $color =~ /none/i;
-	return $color if $color =~/^#[0-9a-fA-F]{12}$/;
-	if ($color =~ /^\s*#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/) {
-		return "#$1$1$2$2$3$3";
-	} elsif ($color =~ /\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*/) {
-		$a = padBefore(int2hex($1),"0",2);
-		$b = padBefore(int2hex($2),"0",2);
-		$c = padBefore(int2hex($3),"0",2);
+	if ($color =~ /\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*/) {
+		my ($a,$b,$c);
+		$a = int2hex($1);
+		$b = int2hex($2);
+		$c = int2hex($3);
 		return "#$a$a$b$b$c$c";
-	} elsif ($color =~ 
-			/^rgb:\/([0-9a-fA-F]+)\/([0-9a-fA-F]+)\/([0-9a-fA-F]+)$/) {
-		if (length($1) <= 2) {
-			$a = padBefore($1,"0",2);
-			$a = "$a"x2;
-		} else { $a = padBefore($1,"0",4); }
-		if (length($2) <= 2) {
-			$b = padBefore($1,"0",2);
-			$b = "$b"x2;
-		} else { $b = padBefore($2,"0",4); }
-		if (length($3) <= 2) {
-			$c = padBefore($3,"0",2);
-			$c = "$c"x2;
-		} else { $c = padBefore($3,"0",4); }
-		return "#" . "$a$b$c";
-	} elsif ($color =~ /^random\s*(.*)$/i) {
+	}
+	elsif ($color =~ /^\s*#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/) {
+		return "#$1$1$2$2$3$3";
+	}
+	elsif ($color =~/^#[0-9a-fA-F]{12}$/) {
+		return $color;
+	}
+	elsif ($color =~ /none/i) {
+		return "None";
+	}
+	elsif ($color =~ /^random\s*(.*)$/i) {
 		return randomColor($1);
-	} elsif ($color =~ /^top(\d*)\s*(.+)$/i) {
+	} 
+	elsif ($color =~ /^top(\d*)\s*(.+)$/i) {
+		my $a;
 		$a = $1;
 		$a = 255 if $a eq "";
 		return topColor($2,$a);
-	} elsif ($color =~ /^hilight\s*(.+)$/i) {
+	} 
+	elsif ($color =~ /^hilight\s*(.+)$/i) {
 		return hilightColor($1);
-	} elsif ($color =~ /^shadow\s*(.+)$/i) {
+	} 
+	elsif ($color =~ /^shadow\s*(.+)$/i) {
 		return shadowColor($1);
-	} else {
+	}
+	else {
 		loadRGB();
 		$color = lc("$color");
 		return $rgb{"$color"} if (defined $rgb{"$color"});
@@ -1702,25 +1534,21 @@ sub encode16bpp($) {
 }
 
 #-------------------------------------
-# 16bpp to an array (0-255,0-255,0-255)
+# 16bpp to a ref array (0-255,0-255,0-255)
 
 sub bppTo3intArray($) {
+	# can we be more fast?
 	my $color = shift;
-	my @a = ();
-
-	$a[0] = hex(substr($color,1,2));
-	$a[1] = hex(substr($color,5,2));
-	$a[2] = hex(substr($color,9,2));
-	return @a;
-
+	my @a = $color =~ /#(..)..(..)..(..)/;
+	@a=(hex($a[0]),hex($a[1]),hex($a[2]));
+	return \@a;
 }
 
 #-------------------------------------
-# array (0-255,0-255,0-255) to 16bpp
+# ref array (0-255,0-255,0-255) to 16bpp
 
 sub intArrayTo16bpp($) {
-	my @color = shift;
-	return encode16bpp("[$color[0],$color[1],$color[2]]");
+	encode16bpp($_);
 }
 
 #-------------------------------------
@@ -1728,23 +1556,22 @@ sub intArrayTo16bpp($) {
 
 sub randomColor {
 	my $color = shift;
-	my @a = ();
+	my $a;
 
-	$a[0] = int(rand 256);
-	$a[1] = int(rand 256);
-	$a[2] = int(rand 256);
+	$a->[0] = int(rand 256);
+	$a->[1] = int(rand 256);
+	$a->[2] = int(rand 256);
 
-	return encode16bpp("[$a[0],$a[1],$a[2]]") if ($color eq "");
+	return encode16bpp($a) if ($color eq "");
 
 	# not terrible ... a better idea?
 	$color = encode16bpp($color);
-	my @b = bppTo3intArray($color);
-
-	for ($i = 0; $i < 3; $i++) {
-		$b[$i] = int(($a[$i] + 2 * $b[$i]) / 3);
+	my $b = bppTo3intArray($color);
+	my $i;
+	for ($i=0;$i<3;$i++) {
+		$$b[$i] = int(($$a[$i] + 2*$$b[$i]) / 3);
 	}
-	return  encode16bpp("[$b[0],$b[1],$b[2]]");
-
+	return  encode16bpp($b);
 }
 
 #-------------------------------------
@@ -1753,66 +1580,65 @@ sub randomColor {
 sub topColor {
 	my $color = shift;
 	my $max = shift;
-	
+
 	$color = encode16bpp($color);
-	my @a = bppTo3intArray($color);
-	my $CenterG=greyval(@a);
+	my $a = bppTo3intArray($color);
+	my $CenterG=greyval($a);
 	$CenterG = 1 if $CenterG == 0;
 	my $HI = $max/$CenterG;
+	my $i;
 	for ($i = 0; $i < 3; $i++) {
-		$a[$i] = int($a[$i] * $HI);
-		$a[$i] = $a[$i] > 255 ? 255 : $a[$i];
+		$$a[$i] = int($$a[$i] * $HI);
+		$$a[$i] = $$a[$i] > 255 ? 255 : $$a[$i];
 	}
-	return  encode16bpp("[$a[0],$a[1],$a[2]]");
-
+	return  encode16bpp($a);
 }
 
 #-------------------------------------
 # from jos-colorset-cdegradient
-# an hilight white is white?
+# an hilight white is white ?
 # Yes for GTK style hilighting, no for motif.
 
 sub hilightColor {
 	my $color = shift;
-	
+
 	$color = encode16bpp($color);
-	my @a = bppTo3intArray($color);
-
-	for ($i = 0; $i < 3; $i++) {
-		$a[$i] = max(255/5, $a[$i]);
-		$a[$i] = min(255, ($a[$i] * 110) / 100);
-		$a[$i] = int($a[$i]);
+	my $a = bppTo3intArray($color);
+	my $i;
+	for ($i = 0; $i<3; $i++) {
+		$$a[$i] = max(255/5, $$a[$i]);
+  		$$a[$i] = min(255, ($$a[$i] * 110) / 100);
+  		$$a[$i] = int($$a[$i]);
 	}
-	return  encode16bpp("[$a[0],$a[1],$a[2]]");
-
+	return  encode16bpp($a);
 }
 
 #-------------------------------------
 # from jos-colorset-cdegradient
 # is this 0.9 official? What about 0.8
-# Moreover a shadow black is black?
+# Moreover a shadow black is black ?
 # Yes for GTK style hilighting, no for motif.
 
 sub shadowColor {
 	my $color = shift;
-	
+
 	$color = encode16bpp($color);
-	my @a = bppTo3intArray($color);
-
+	my $a = bppTo3intArray($color);
+	my $i;
 	for ($i = 0; $i < 3; $i++) {
-		$a[$i] *= 0.9;
-		$a[$i] = int($a[$i]);
+		$$a[$i] *= 0.9;
+		$$a[$i] = int($$a[$i]);
 	}
-	return  encode16bpp("[$a[0],$a[1],$a[2]]");
-
+	return  encode16bpp($a);
 }
 
 
 #--------------------------------------
-# grey value of a \d+,\d+,\d+ colors from jos-colorizexpm
+# grey value of a ref (\d+,\d+,\d+) colors from jos-colorizexpm
 
 sub greyval {
-	return sqrt($_[0]**2 + $_[1]**2 + $_[2]**2) / sqrt(3);
+  	my $c = shift;
+	return sqrt($$c[0]**2 + $$c[1]**2 + $$c[2]**2)/sqrt(3);
 }
 
 #-------------------------------------
@@ -1828,65 +1654,62 @@ sub interpolateColors {
 	my $x2 = shift || 1;
 	my @a = qw(0 0 0);
 	my $c = $nc-1;
-	my ($i,$j);
+	my $i; my $j;
 
 	if ($type =~ /^t/) {
-		for ($i = 0; $i < 3; $i++) {
-			$a[$i] = int(rand 256);
-		}
-		return @a;
+		for ($i = 0; $i < 3 ; $i++) { $a[$i] = int(rand 256) }
+		return \@a;
 	}
 
 	if ($type =~ /^c/) {
-		$j = $step%$nc;
-		return @{$colors->[$j]};
+		$i= $step%$nc;
+		@a = @{$colors->[$i]};
+		return \@a;
 	}
 
-	die "you need to specify at least two colors for --colorize-colors"
-		if $c == 0; 
+	die "you need to specify at least two colors in color list"
+		if $c == 0;
 
 	if ($type =~ /^p/) {
-		die "you need to specify at least two colors for poly gradient"
-			if $c == 0; 
-		for ($i = 0; $i < 3; $i++) { 
+		for ($i =0 ; $i < 3; $i++) {
 			for ($j = 0; $j < $nc; $j++) {
-				my $inter = 1;
+				my $inter = 1; my $k;
 				for ($k = 0; $k < $nc; $k++) {
 					next if $k == $j;
-					$inter *= ($x - $k/$c) * ($c/($j - $k));
+					$inter *= ($x - $k/$c) * ($c/($j-$k));
 				}
 				$a[$i] += $colors->[$j]->[$i] * $inter;
-				$a[$i] = int($a[$i]);
+				$a[$i] = int ($a[$i]);
 				$a[$i] = 255 if ($a[$i] > 255);
-				$a[$i] = 0 if ($a[$i] < 0);  
+				$a[$i] = 0 if ($a[$i] < 0);
 			}
 		}
-		return @a;
+		return \@a;
 	}
 
 	# more reasonable interpolation:
-	my $done = 0;
-	$j = -1;
+	# try to be as fast as possible !
 	$x *= $c;
-	while (!$done) {
-		$j++;
-		$done = 1 if $x <= ($j+1);
-	}
-
-	my $t1 = $j == 0 ? $x1*$c : $j;
-	my $t2 = $j == $c-1 ? $x2*$c : $j+1 ;
-	for ($i = 0; $i < 3; $i++) {
-		$a[$i] = 
-			$colors->[$j]->[$i]   * ($t2-$x) * 1/($t2-$t1) +
-			$colors->[$j+1]->[$i] * ($x-$t1) * 1/($t2-$t1);
-		if ($type =~ /^r/) {
+	$j=0;
+	while ($x > ($j+1)) { $j++ }
+	my $t1 = $j == 0 ? $x1 * $c : $j;
+	my $t2 = $j == $c-1 ? $x2 * $c : $j+1;
+	my $d = 1 / ($t2-$t1);
+	my $l = $j + 1;
+	# faster than a loop?
+	# in any case doing the int independently is faster. why?
+	$a[0] = ($colors->[$j]->[0]*($t2-$x) + $colors->[$l]->[0]*($x-$t1)) * $d;
+	$a[1] = ($colors->[$j]->[1]*($t2-$x) + $colors->[$l]->[1]*($x-$t1)) * $d;
+	$a[2] = ($colors->[$j]->[2]*($t2-$x) + $colors->[$l]->[2]*($x-$t1)) * $d;
+	if ($type =~ /^r/) {
+		for ($i=0;$i<3;$i++) {
 			$a[$i] = $a[$i] + (-(rand)+rand)*25;
+			$a[$i] = 255 if ($a[$i] > 255);
+			$a[$i] = 0 if ($a[$i] < 0);
 		}
-		$a[$i] = int($a[$i]);
-		$a[$i] = 255 if ($a[$i] > 255);
-		$a[$i] = 0 if ($a[$i] < 0);
 	}
-	return @a;
+	($a[0],$a[1],$a[2]) = (int($a[0]),int($a[1]),int($a[2]));
+	return \@a;
 }
 
 #-------------------------------------
@@ -1894,30 +1717,19 @@ sub interpolateColors {
 
 # $h = int2hex(255); -> "ff"
 sub int2hex { 
-	my $i = $_[0];
-	my @H = (0 .. 9, "a" .. "f");
-	my $h = ""; my $first = 0; my $n; my $j;
-	for ($j = 6; $j >= 0; $j--) {
-		$n = $H[$i / 16 ** $j];
-		if ($n) { $first = 1; }
-		if ($first) { $h = $h . $n; }
-		$i = $i % 16 ** $j;
-	}
-	return $h;
+	my $i= shift;
+ 	# modified for speed (olicha)
+	my $h = $Hex[$i/16] . $Hex[$i%16];
+  	return $h;
 }
 
-#-----------------------------------
-# to get number of good lenght (from jos-colorfun)
-# Hmm. For spaces and zeros there is sprintf("%06d %6s").
-
-# $str = padbefore("abc", "0", 5); -> "00abc"
-sub padBefore {
-	my ($s, $p, $n) = @_;
-	my $nn = $n - length($s);
-	if ($nn > 0) {
-		$s = "$p" x $nn . $s;
-	}
-	return $s;
+sub int2hexRef {
+	my $a= shift;
+	my $i;
+	# must be as fast as possible
+	$a->[0] = $Hex[$a->[0]/16] . $Hex[$a->[0]%16];
+	$a->[1] = $Hex[$a->[1]/16] . $Hex[$a->[1]%16];
+	$a->[2] = $Hex[$a->[2]/16] . $Hex[$a->[2]%16];
 }
 
 #-----------------------------------
@@ -1933,13 +1745,14 @@ sub max {
 	return ($a > $b) ? $a : $b;
 }
 
+
 #-----------------------------------------------------------------------------
 # my !xpm image lib :o)
 #-----------------------------------------------------------------------------
 
 sub hasMatte {
 	my $file = shift;
-	my $done = 0;
+	my $done= 0;
 	my $r = 0;
 
 	open(IDENT,"identify -verbose $file|");
@@ -1956,33 +1769,71 @@ sub hasMatte {
 
 sub showHelp {
 	print "The fvwm-themes images utility.\n";
-	print "Usage: $scriptName --convert [OPTIONS]\n";
-	print "Options:\n";
+	print "Usage: $scriptName [OPTIONS]\n";
+	print "General Options:\n";
 	print "\t--help              show this help and exit\n";
 	print "\t--version           show the version and exit\n";
 	print "\t--in-dir dir        The input directory\n";
 	print "\t--out-dir dir       The main directory for output the images\n";
-	print "\t--convert           convert the images to XPM images\n";
+	print "\t--gnome             short cut for converting GNOME icons\n";
+	print "\t--site              set the out dir to \$FT_DATADIR/tr-image\n";
+	print "\t--create-symlink v  Create symlink for use with fvwm-themes\n";
+	print "\t--update            only create images which are needed\n";
+	print "\t--ft-install        short cut used by fvwm-themes installation\n";
+	print "\t--verbose int       level of verbosity\n";
+	print "Convert\n";
+	print "\t--convert           convert images to XPM images\n";
 	print "\t--[no]trans-filter  Apply a transparent filter\n";
 	print "\t--threshold value   percentage of transparisation\n";
+	print "\t--postfix str       add -str after 16x16, 48x48... to out dirs\n";
 	print "\t--[no]build-48x48   build or not 48x48 XPM images\n";
 	print "\t--[no]build-16x16   build or not 16x16 XPM images\n";
 	print "\t--[no]build-56x56   build or not 56x56 XPM images\n";
 	print "\t--[no]build-32x32   build or not 32x32 XPM images\n";
 	print "\t--[no]build-tiles   build or not tiles XPM images\n";
 	print "\t--preserve          build XPM images without size modification\n";
-	print "\t--size-48x48 AxB    Set the size of the 48x48 XPM icons\n";
-	print "\t--size-16x16 AxB    Set the size of the 16x16 XPM icons\n";
-	print "\t--size-56x56 AxB    Set the size of the 56x56 XPM icons\n";
-	print "\t--size-32x32 AxB    Set the size of the 32x32 XPM icons\n";
+	print "\t--size-48x48 geo    Set the size of the 48x48 XPM icons\n";
+	print "\t--size-16x16 geo    Set the size of the 16x16 XPM icons\n";
+	print "\t--size-56x56 geo    Set the size of the 56x56 XPM icons\n";
+	print "\t--size-32x32 geo    Set the size of the 32x32 XPM icons\n";
+	print "\t--size-tiles geo    Set the size of the tiles XPM icons\n";
+	print "\t--add-border-48x48  add border to the 48x48 XPM icons\n";
+	print "\t--add-border-16x16  add border to the 16x16 XPM icons\n";
+	print "\t--add-border-56x56  add border to the 32x32 XPM icons\n";
+	print "\t--add-border-32x32  add border to the 56x56 XPM icons\n";
+	print "\t--add-border-tiles  add border to the tiles XPM icons\n";
+	print "ImageMagick\n";
 	print "\t--magick-bpp value  number of bit per pixel used by ImageMagick\n";
 	print "\t--magick-path path  Set the path of ImageMagick convert\n";
-	print "\t--magick-colors n   Number of colors used\n";
-	print "\t--magick-space val  see the convert man page\n";
+	print "\t--magick-colors n   Number of colors used by ImageMagick\n";
+	print "\t--magick-space val  see the ImageMagick convert man page\n";
+	print "Simple transformations\n";
+	print "\t--rotate value      rotate and/or mirorr an XPM\n"; 
+	print "\t--add-border opt    add border to an/all image(s)\n"; 
+	print "\t--tile value        tile an/all image(s)\n";
+	print "Colorize\n";
+	print "\t--colorize          colorize an/all image(s)\n";
+	print "\t--colorize-colors l list of colors for colorize\n";
+	print "\t--trans-color col   set the transparent pixels to col pixels\n";
+	print "\t--colorize-comp t   interpolation computation type for colorize\n";
+	print "\t--colorize-rule v   colorization procedure\n";
+	print "CDE sky\n";
+	print "\t--cde-sky           produce cde like gradient and a lot more\n";
+	print "\t--sky-colors l      list of colors for cde-sky\n";
+	print "\t--pattern-file f    use pattern in file f for cde-sky\n";
+	print "\t--pattern-type t    create some patterns\n";
+	print "\t--pattern-xpm f     create a pattern from an XPM\n";
+	print "\t--pattern-gap int   jump into the pattern\n";
+	print "\t--sky-comp t        interpolation computation type for cde-sky\n";
+	print "\t--be-fast           go fast but use more memory\n";
+	print "Background\n";
+	print "\t--set-background    set the root window with the XPM builded\n";
+	print "\t--set-back-prog ex  set the command to set the root window\n";
+	print "Colors\n";
 	print "\t--show-xcolors      show a list of all xcolors\n";
 	print "\t--show-xcolorsets   show a list of all xcolor sets\n";
 	print "\t--show-color-info c show a full info for the specified color\n";
-	print "NOT FINISHED!! see the man page!\n";
+	print "\t\tGood luck!\n";
 	exit 0;
 }
 
@@ -2005,7 +1856,17 @@ sub myPrint {
 	}
 
 }
-	
+
+sub myDebug {
+
+	my $flag = shift;
+	my $string = shift;
+	if ($debug =~ /$flag/ || $debug eq "main") {
+		print "(".times.")\t[$flag] $string";
+	}
+	# note: for time eval it is better to use perl -d:DProf with dprofpp
+
+}	
 __END__
 
 # ---------------------------------------------------------------------------
@@ -2018,8 +1879,8 @@ fvwm-themes-images - fvwm-themes images utility
 
 B<fvwm-themes-images> 
 B<--convert> or/and B<--rotate> value or/and B<--colorize> or/and 
-B<--tile> or/and B<--add-border> or/and B<--cde-sky> or B<--show-xcolors>
-or B<--show-xcolors-set> or B<--show-color-info> color or B<--help> 
+B<--tile> or/and B<--add-border> or B<--cde-sky> or B<--show-xcolors>
+or B<--show-xcolors-set> or B<--show-color-info> color or B<--help>
 or B<--version>
 [ B<--in-dir> dir ]
 [ B<--out-dir> dir ]
@@ -2030,9 +1891,10 @@ or B<--version>
 [ B<--create-symlink> value ]
 [ B<--update> ]
 [ B<--ft-install> ]
-[ B<--verbose> value ]
+[ B<--verbose> int ]
 [ B<--[no]trans-filter> ]
-[ B<--threshold> value ]
+[ B<--threshold> int ]
+[ B<--postfix> string ]
 [ B<--[no]build-48x48> ]
 [ B<--[no]build-16x16> ]
 [ B<--[no]build-56x56> ]
@@ -2049,12 +1911,10 @@ or B<--version>
 [ B<--add-border-56x56> +x+y:color ]
 [ B<--add-border-32x32> +x+y:color ]
 [ B<--add-border-tile> +x+y:color ]
-[ B<--size-48x48> value ]
-[ B<--size-16x16> value ]
-[ B<--size-56x56> value ]
-[ B<--size-32x32> value ]
-[ B<--size-tile> value ]
-[ B<--postfix> string ]
+[ B<--magick-bpp> 8/16 ]
+[ B<--magick-path> path ]
+[ B<--magick-colors> int ]
+[ B<--magick-space> value ]
 [ B<--add-border> +x+y:color ]
 [ B<--colorize-colors> color1:color2... ]
 [ B<--trans-color> color ]
@@ -2067,12 +1927,9 @@ or B<--version>
 [ B<--pattern-gap> value ]
 [ B<--pattern-y> value ]
 [ B<--sky-comp> value ]
+[ B<--be-fast> ]
 [ B<--set-background> ]
 [ B<--set-back-prog> exec ]
-[ B<--magick-bpp> value ]
-[ B<--magick-path> path ]
-[ B<--magick-colors> value ]
-[ B<--magick-space> value ]
 
 =head1 DESCRIPTION
 
@@ -2089,11 +1946,10 @@ better results). For example, if you run:
 
 then, if GNOME is not installed in an exotic way all icons
 in the GNOME images directory will be converted into 48x48 and 16x16
-XPM icons under $FT_DATADIR/tr-images where $FT_DATADIR is the 
-fvwm-themes installation directory (if GNOME is not found the
+XPM icons under ~/tr-images (if GNOME is not found the
 images in /usr/share/pixmaps will be converted). To control the
 result of the conversion you can use the --threshold
-and --colors option below. If the result is very very bad you must use 
+and --magick-colors option below. If the result is very very bad you must use 
 the --magick-bpp option.
 
 You can also convert an individual images by using the --in-file and
@@ -2111,11 +1967,12 @@ a-48x48-tile.xpm for 48x48 icons and tiled with a-16x16-tile.xpm for
 2 pixels for 16x16 icons just run fvwm-themes-images with the following
 options :o)
 
-	--gnome --convert --rotate 0m
-	--colorize --colorize-colors blue:red
-	--tile-48x48 path_to/a-48x48-tile.xpm 
-	--tile-16x16 path_to/a-16x16-tile.xpm
-	--add-border-48x48 +5+5:yellow --add-border-16x16 +2+2:yellow
+	--gnome --convert --rotate 0m \
+	--colorize --colorize-colors blue:red \
+	--tile-48x48 path_to/a-48x48-tile.xpm \
+	--tile-16x16 path_to/a-16x16-tile.xpm \
+	--add-border-48x48 +5+5:yellow \
+	--add-border-16x16 +2+2:yellow
 
 =head2 Colorize
 
@@ -2123,7 +1980,7 @@ fvwm-themes-images can colorize an XPM image (or a family of images
 in a directory). The main aim of "colorize" is to produce an infinite
 number of backgrounds with only one xpm. For examples:
 
-	fvwm-themes-images --colorize --colorize-colors black:red 
+	fvwm-themes-images --colorize --colorize-colors black:red \ 
 	--trans-color yellow --in-file My.xpm --set-background
 
 will tile your root window with an XPM build from My.xpm, such that
@@ -2149,12 +2006,12 @@ CDE has. CDE has an option to display a gradient on the background,
 which consists of a repeated pattern, but along the color
 gradient, the color of the pattern varies. Try:
 
-	fvwm-themes-images --cde-sky --colorize-colors turquoise:darkblue \
-	--set-background
+	fvwm-themes-images --cde-sky --sky-colors \
+	turquoise:darkblue --set-background
 
 in this case the default pattern file is used 
 ($FT_DATADIR/themes/cde/background/pattern). A pattern file must contain a 
-rectangular pattern consisting of +'s and -'s like this:
+rectangular pattern consisting of +es and -es like this:
 
 	+++++
 	+-+-+
@@ -2169,10 +2026,13 @@ option: --pattern-type uniform:1, try also the --pattern-type
 option with square:50 or altern:20 and random:50 for examples.
 If you want an horizontal gradient just rotate: --rotate 90.
 You can also control the gradient computation. Try: --pattern-type
-square:50 --colorize-comp c for a chess like background, --pattern-type
-altern:50 --colorize-comp c for a band background, --pattern-type 1
---colorize-comp r for an irregular gradient, and --pattern-type 1 
---colorize-comp t for an horrible background.
+square:50 --sky-comp c for a chess like background, --pattern-type
+altern:50 --sky-comp c for a band background, --pattern-type 1
+--sky-comp r for an irregular gradient, and --pattern-type 1 
+--sky-comp t for an horrible background.
+Note that if your sky contains a lot of coulours you can speed a
+lot the construction of you sky by using the --be-fast option
+(but this will build a bigger XPM).
 
 =head2 COLORS
 
@@ -2188,11 +2048,13 @@ of 3 integer just type:
 	fvwm-themes-images --show-xcolors | less
 
 if you use hexadecimal numbers you must put your colors between some ".
+Note that if you give colors by numbers, fvwm-themes-images will be
+faster, since if you give color by X name the X rgb.txt will be loaded. 
 
 fvwm-themes-images have some generic ways to create colors. You can
-give to fvwm-themes-images a color off the form:
+give to fvwm-themes-images a color of the form:
 
-			typecolor
+	typecolor
 
 where type is either top[integer], hilight, shadow, random and
 where color is a color encoded as explained above. If you give
@@ -2204,10 +2066,10 @@ all the colors which have name try:
 
 for any individual color type:
 
-	fvwm-themes-images --show-color-info color
+	fvwm-themes-images --show-color_info color
 
 You can enter random alone, this try to produce a random color. The only
-type which does not have clear meaning is "top". top may have an integer
+type which does not have a clear meaning is "top". top may have an integer
 between 0 and 255 after it (default is 255). top255 will purify your
 color as top0 will destroy it completely to black. Typically, top255blue
 will give blue, top255darkblue will give blue, top50blue will give a
@@ -2215,8 +2077,8 @@ very dark blue. The top type (without integer argument) is used in a
 special way with the --colorize-colors option: if you want to colorize
 an XPM with "color" as a "center color" try the following:
 
-	fvwm-themes-images --colorize --colorize-colors topcolor:topcolor 
-	--in-file My.xpm --set-background
+	fvwm-themes-images --colorize --colorize-colors \
+	topcolor:topcolor --in-file My.xpm --set-background
 
 then, fvwm-themes-images will try to find the good integer values
 to top to produce the two good colors.
@@ -2271,7 +2133,11 @@ and from $FT_DATADIR/images/mini-postfix to OUT/B-postfix. Where postfix
 is defined with the --postfix option and where OUT is the directory
 defined by --out-dir.
 
-=head2 convert
+B<--verbose> int - where int can be 0, 1 or 2. This integer represent
+the level of "verbosity". Default is 1, but with set-background, in this
+case the default is 0.
+
+=head2 Convert
 
 B<--convert> - Will cause fvwm-themes-images to convert all images
 in the directory specified by the --in-dir options into XPM icons
@@ -2282,12 +2148,12 @@ by the --out-dir option
 B<--[no]trans-filter> - Apply or not the internal "transparent filter".
 Default is --trans-filter and this filter can be controlled with the
 --threshold option below.
-When ImageMagick convert a PNG image into an XPM one, the result is not
+When ImageMagick convert a PNG image into an XPM one the result is not
 perfect (or I have not found the good procedure). The problems is that
 a PNG image has a "matte" channel which represent the degree of
-transparency/opacity of the images. On the other hands, an XPM image has
-a binary matte channel (a pixel is either opaque or transparent).
-The "transparent filter" extracts the matte channel (using ImageMagick),
+transparency/opacity of the images. On the other hands, an XPM image has 
+a binary matte channel (a pixel is either opaque or transparent). 
+The "transparent filter" extract the matte channel (using ImageMagick),
 then "threshold" it (using again ImageMagick) to get  the "good"
 transparency zone which is applied to the XPM image using an internal
 procedure (Maybe ImageMagick combine can do that but I never found
@@ -2302,6 +2168,9 @@ try value between 30 to 99 (a value of 100 will give a family of
 empty icons as a value of 0 will probably give to you icons with a
 black background). Default is 70.
 
+B<--postfix> str - add "-str" to the name of the output directories of the
+converted images: OUTDIR/48x48-str, OUTDIR/16x16-str ...etc.
+ 
 B<--[no]build-48x48> - build or not the 48x48 XPM icons. Default is
 --build-48x48.
 
@@ -2356,6 +2225,25 @@ B<--tile-32x32> rule:file - As above for the 32x32 XPM icons.
 
 B<--tile-tiles> rule:file - As above for the tiles XPM icons.
 
+=head2 ImageMagick Options
+
+B<--magick-colors> value - Number of colors used. Default is 256. If
+you use X under 16bpp (xdpyinfo) you can use for example 65536.
+
+B<--magick-space> value - Where value must be GRAY, OHTA, RGB, Transparent, 
+XYZ, YCbCr, YIQ, YPbPr, YUV, or CMYK. See the -colorspace option of
+ImageMagick (man convert). Default is Transparent.
+
+B<--magick-path> path - set the path of the convert ImageMagick executable.
+Useful if convert ImageMagick executable is not in your PATH or to test
+different versions.
+
+B<--magick-bpp> value - value must be 8 or 16. Set the number of bit per
+pixels used by ImageMagick. This is a compile time option of ImageMagick
+and fvwm-themes-images will detect it if you use a recent version of
+ImageMagick. If fvwm-themes-images does not found this value it is set
+to 16. This is very important for the --threshold option above.
+
 =head2 Other Simple Transformations
 
 B<--tile> [rule:][+x+y:]file_or_color - where rule can be "expand",
@@ -2403,13 +2291,13 @@ B<--trans-color> color - set the transparent pixels to color pixels.
 B<--colorize-comp> type - type of the computation for the interpolation.
 Type can be "l" for linear (this is the default), "r" for perturbed (as
 linear but the colors obtained is randomly perturbed), "c" for
-circular (the list of colors are used alternatively), "t" for totally
+circular (the colors in the list are used alternatively), "t" for totally
 random (then the list of colors are ignored and the pixels are colorized
 randomly ... this is funny). 
 
 B<--colorize-rule> value - value can be max or min, default is max. max
 does nothing. min change the way of the colorization: black is "mapped"
-to the first color in the list and white is  is "mapped" to the last color
+to the first color in the list and white  is "mapped" to the last color
 in the list. 
 
 =head2 CDE SKY
@@ -2454,9 +2342,13 @@ B<--sky-comp> type - type of the computation for computing the gradient.
 The type are the same as for --colorize-comp but you can use also "p"
 for a polynomial interpolation.
 
+B<--be-fast> - If your sky contains a lot of colors you can use this
+option so that the background appear more rapidly on your root window.
+On the other hands, the XPM file builded will be larger.
+
 =head2 Set the Background
 
-B<--set-background> - Set the background with the xpm file produced.
+B<--set-background> - Set the background with the XPM file produced.
 Of course, this work only for a "transformation" which produce
 only one file (I.e., with the --in-file without --convert or with
 --cde-sky).  
@@ -2464,23 +2356,13 @@ only one file (I.e., with the --in-file without --convert or with
 B<--set-back-prog> exec - to execute "exec out.xpm" to set the background.
 Default is xpmroot.
 
-=head2 ImageMagick Options
+=head2 Colors Informations
 
-B<--colors> value - Number of colors used. Default is 256.
+B<--show-xcolors> - show a list of all colors with an X name.
 
-B<--magick-space> value - Where value must be GRAY, OHTA, RGB, Transparent, 
-XYZ, YCbCr, YIQ, YPbPr, YUV, or CMYK. See the -colorspace option of
-ImageMagick (man convert). Default is Transparent.
+B<--show-xcolorsets> - show a list of all "xcolors sets"
 
-B<--magick-path> path - set the path of the convert ImageMagick executable.
-Useful if convert ImageMagick executable is not in your PATH or to test
-different versions.
-
-B<--magick-bpp> value - value must be 8 or 16. Set the number of bit per
-pixels used by ImageMagick. This is a compile time option of ImageMagick
-and fvwm-themes-images will detect it if you use a recent version of
-ImageMagick. If fvwm-themes-images does not found this value it is set
-to 16. This is very important for the --threshold option above.
+B<--show-color-info color> - show full informations for the specified color
 
 =head1 AUTHORS
 
@@ -2509,4 +2391,5 @@ Report bugs to fvwm-themes-devel@lists.sourceforge.net.
 
 =cut
 
-# ===========================================================================
+# ==========================================================================
+
