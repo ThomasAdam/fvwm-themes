@@ -1,5 +1,13 @@
 2003-10-20  migo  <migo@homemail.com>
 
+	* themes/sa/modules/main:
+	make IconBox work better for 64x64 icons
+
+	* bin/fvwm-themes-config.in:
+	s/ReLoad/Reload/
+
+2003-10-20  migo  <migo@homemail.com>
+
 	* themes/awol/colors:
 	new colors
 
