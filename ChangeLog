@@ -24,6 +24,12 @@
 	* themes/osx/images/menuback/face.xpm:
 	replaced images with a bit more clean ones taken from PineGUI
 
+	* themes/osx/images/button/*.xpm:
+	* themes/osx/buttons:
+	replaced images with ones from enlightenment (all edited by hand);
+	now there are 3 button states not 1; probably not perfect;
+	order changed as in original; will be changable in buttons@multichoice
+
 2001-04-14  migo  <migo@homemail.com>
 
 	* themes/brushedmetal/colors:
