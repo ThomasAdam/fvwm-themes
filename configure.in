@@ -13,7 +13,7 @@ mg_ARG_WITH(ft-datadir,  [  --with-ft-datadir DIR   specify data dir, if differe
 AC_ARG_ENABLE(gnome-icons, [  --enable-gnome-icons    convert gnome icons to xpm icons ],GNOME_ICONS="yes",GNOME_ICONS="no")
 AC_SUBST(GNOME_ICONS)dnl
 
-AC_ARG_ENABLE(kde2-icons, [  --enable-kde2-icons    convert kde2 icons to xpm icons ],KDE2_ICONS="yes",KDE2_ICONS="no")
+AC_ARG_ENABLE(kde2-icons, [  --enable-kde2-icons     convert kde2 icons to xpm icons ],KDE2_ICONS="yes",KDE2_ICONS="no")
 AC_SUBST(KDE2_ICONS)dnl
 
 AC_ARG_ENABLE(build-menus, 
@@ -73,9 +73,9 @@ FVWM_DEFAULT_USERDIR=`$FVWM_CONFIG --default-userdir`
 AC_SUBST(FVWM_DEFAULT_USERDIR)dnl
 FVWM_DEFAULT_IMAGEPATH=`$FVWM_CONFIG --default-imagepath`
 AC_SUBST(FVWM_DEFAULT_IMAGEPATH)dnl
-FVWM_MODULE_DIR=`$FVWM_CONFIG --fvwm-moduledir`
+FVWM_MODULEDIR=`$FVWM_CONFIG --fvwm-moduledir`
 
-AC_PATH_PROG(FVWM_M4, FvwmM4, ,"$FVWM_MODULE_DIR")
+AC_PATH_PROG(FVWM_M4, FvwmM4, ,"$FVWM_MODULEDIR")
 if test -z "$FVWM_M4"; then
 	AC_MSG_WARN(FvwmM4 is not found; you will have a few problems using this package!)
 fi
