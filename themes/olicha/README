@@ -68,7 +68,7 @@ Style "FvwmButtons-WMaker*Applets" NoTitle, NoHandles, BorderWidth 0, Sticky, \
 #AddToFunc   FuncFvwmStartThemeModules
 #+ I FvwmButtons FvwmButtons-WMakerApplets
 
-# Any way we always want it the modules menu
+# Any way we always want it in the modules menu
 AddToMenu   MenuFvwmStartThemeModules "&My WMaker Applets" \
 	FuncFvwmRestartMyWMApplets FvwmButtons-WMakerApplets
 AddToMenu   MenuFvwmStopThemeModules "Stop &My WMaker Applets"  \

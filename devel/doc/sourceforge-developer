@@ -12,6 +12,9 @@ Shell account
 If you are a fvwm-themes developer, you should have an account at
 shell1.sourceforge.net. Use ssh1 to connect. ssh2 on top of ssh1 is optional.
 You should be a member of fvwm-themes unix group on that and others machines.
+If you want to up load file into source forge you can use scp1, e.g., if you
+want to up load foo in /dir do:
+	scp1 foo login@shell1.sourceforge.net:/dir
 
 Home Page
 ---------

@@ -1,3 +1,12 @@
+2000-11-13  olicha  <olivier.chapuis@free.fr>
+
+	* themes/awol/{background,images/bacground/bckgnd1.xpm}:
+	* themes/awol/{sound,sounds/yesb.wav,menustyles,README}:
+	Applied patch by Alex (plus some minor changes).
+
+	* devel/doc/sourceforge-developer:
+	Howto up load
+	
 2000-11-12  migo  <migo@homemail.com>
 
 	* configure.in:

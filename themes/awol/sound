@@ -1,12 +1,12 @@
 DestroyModuleConfig FvwmEvent-Sound: *
 
 *FvwmEvent-Sound: Delay 0
-*FvwmEvent-Sound: StartDelay 0
+*FvwmEvent-Sound: StartDelay 5
 
 *FvwmEvent-Sound: startup        "$FT_DATADIR/themes/awol/sounds/NoTime.wav"
 *FvwmEvent-Sound: windowshade    "$FT_DATADIR/themes/awol/sounds/Wooeep.wav"
 *FvwmEvent-Sound: dewindowshade  "$FT_DATADIR/themes/awol/sounds/Eeeooop.wav"
-*FvwmEvent-Sound: shutdown       "$FT_DATADIR/themes/awol/sounds/NoTime.wav"
+*FvwmEvent-Sound: shutdown       "$FT_DATADIR/themes/awol/sounds/AnyKey.wav"
 *FvwmEvent-Sound: add_window     "$FT_DATADIR/themes/awol/sounds/thereson.wav"
 *FvwmEvent-Sound: destroy_window "$FT_DATADIR/themes/awol/sounds/Bubbles.wav"
 *FvwmEvent-Sound: unknown        "$FT_DATADIR/themes/awol/sounds/boingiggig.wav"
@@ -14,3 +14,4 @@ DestroyModuleConfig FvwmEvent-Sound: *
 *FvwmEvent-Sound: error          "$FT_DATADIR/themes/awol/sounds/cannotsave.au"
 *FvwmEvent-Sound: iconify        "$FT_DATADIR/themes/awol/sounds/rubberband.wav"
 *FvwmEvent-Sound: deiconify      "$FT_DATADIR/themes/awol/sounds/boingiggig.wav"
+FvwmEvent-Sound: new_desk       "$FT_DATADIR/themes/awol/sounds/yesb.wav"

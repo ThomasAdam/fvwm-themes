@@ -63,7 +63,7 @@ BUILD_MENUS = yes
 FT_DATADIR = ${ROOT_PREFIX}/usr/local/share/fvwm
 FT_FVWMFORM_DIR = ${FT_DATADIR}
 FT_FVWMSCRIPT_DIR = ${FT_DATADIR}
-FT_VERSION_INFO = FVWM Themes version 0.4.0 from nov 10 2000 at 19:55:38
+FT_VERSION_INFO = FVWM Themes version 0.4.1 from nov 13 2000 at 12:33:06
 FVWM_BINDIR = /usr/local/bin
 FVWM_CONFIG = /usr/local/bin/fvwm-config
 FVWM_DEFAULT_IMAGEPATH = /usr/include/X11/bitmaps:/usr/include/X11/pixmaps
@@ -79,7 +79,7 @@ PERL = /usr/bin/perl
 REQUIRED_FVWM_VERSION = 2.3.22
 ROOT_PREFIX = 
 SETTINGS_FILE = ${FT_DATADIR}/themes/default/settings.cfg
-VERSION = 0.4.0
+VERSION = 0.4.1
 
 EXTRA_DIST = FAQ README.1st colorsets
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs

@@ -1,13 +1,13 @@
 # migo: I have no -adobe-*chancery font, so replaced with -adobe-times
 
-MenuStyle * Hilight3DThickness 2
+MenuStyle * Hilight3DThickness 7
 MenuStyle * Font -adobe-times-*-*-*-*-18-*-*-*-*-*-*-*
-MenuStyle * PopupDelayed, PopupDelay 100, PopupOffset 0 67, TitleWarpOff
+MenuStyle * PopupDelayed, PopupDelay 100, PopupOffset 0 87, TitleWarpOff
 MenuStyle * TitleUnderlines2, SeparatorsLong, TrianglesRelief
 MenuStyle * Animation, AutomaticHotkeysOff, DoubleClickTime
-MenuStyle * BorderWidth 2, SidePic, SideColor
+MenuStyle * BorderWidth 5, SidePic, SideColor
 MenuStyle * PopupAsSubmenu, HoldSubmenus, SubmenusRight
 MenuStyle * ItemFormat "%.1s%|%1.4i%1.4l%1.4l%1.4r%1.4i%2.3>%|"
-MenuStyle * VerticalItemSpacing 1 2, VerticalTitleSpacing 1 2
+MenuStyle * VerticalItemSpacing 1 2, VerticalTitleSpacing 1 12
 
 BusyCursor DynamicMenu True
