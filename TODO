@@ -23,6 +23,8 @@
   Button set may contain iconify/maximize/close/shade/stick/options names.
   And one more option "Use in Options": "Window mini icon", "Static icon".
 
+* Split swallow colorset to 2 colorsets. There are shading problems.
+
 Optional items to do:
 --------------------
 
