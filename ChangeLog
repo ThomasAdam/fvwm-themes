@@ -3,6 +3,11 @@
 	* bin/fvwm-themes-config.in:
 	fixed several typos from the previous commit
 
+	* themes/multichoice/buttons/images/mac.tar.gz:
+	fixed several problems - one file with extention .n was included,
+	shade-activedown mistakenly was a duplicate of stick-activedown,
+	minor improvements
+
 	* themes/*/fonts[/*]:
 	renamed BigLabel to LargeLabel
 
