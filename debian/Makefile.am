@@ -9,6 +9,7 @@ datum = `date "+%a, %d %b %Y %T %z"`
 fullname = FVWM Themes Developers
 email = fvwm-themes-devel@lists.sourceforge.net
 arch ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+sdir ?= $(shell pwd | sed 's,.*/,,')
 
 deb:
 	make clean
@@ -20,7 +21,7 @@ deb:
 	./configure --prefix=/usr --disable-run-updatemenu
 	cp -f debian/full-control debian/control
 	fakeroot dh_clean fvwm-themes fvwm-themes-extra fvwm-themes-full
-	(cd .. && dpkg-source -b fvwm-themes-full)
+	(cd .. && dpkg-source -b $(sdir))
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE)
@@ -58,7 +59,7 @@ deb-base:
 	./configure --prefix=/usr --disable-run-updatemenu
 	cp -f debian/base-control debian/control
 	fakeroot dh_clean fvwm-themes fvwm-themes-extra fvwm-themes-full
-	(cd .. && dpkg-source -b fvwm-themes)
+	(cd .. && dpkg-source -b $(sdir))
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE)
@@ -107,7 +108,7 @@ deb-extra:
 	./configure --prefix=/usr --disable-run-updatemenu
 	cp -f debian/extra-control debian/control
 	fakeroot dh_clean fvwm-themes fvwm-themes-extra fvwm-themes-full
-	(cd .. && dpkg-source -b fvwm-themes-extra)
+	(cd .. && dpkg-source -b $(sdir))
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE)

@@ -1,8 +1,5 @@
 2003-10-18  migo  <migo@homemail.com>
 
-	* debian/Makefile.am:
-	small changes
-
 	* themes/redmondxp/modules/FvwmThemesPanelManager:
 	more clock formats
 
