@@ -1111,7 +1111,7 @@ sub getAllThemeSubMenusRc ($) {
 			my $groupAction = !@$groupComponents? "Nop":
 				'FuncFvwmThemesConfigAndUpdate "' . join(' ',
 					map { "--load $_\@$theme" } @$groupComponents) . '"';
-			$menuRc .= qq(+ "[ $name ]%menu/folder-open.xpm%"\t$groupAction\n);
+			$menuRc .= qq(+ "[ $name ]%menu/item.xpm%"\t$groupAction\n);
 		}
 		$menuRc .= qq(+ "" Nop\n);
 		$menuRc .= join('', map {
@@ -1250,9 +1250,9 @@ sub getOwnThemeSubMenusRc ($) {
 		$menusRc .= qq(+ "%menu/lock.xpm%&$lockLabel this component"\t$lockCommand\n);
 		$menusRc .= qq(+ "%menu/information.xpm%&Info for $_\@$cc->{'theme'}"\t$infoCommand\n);
 
-		my $lockIcon = $cc->{'locked'}? "menu/lock": "16x16-general/empty";
+		my $lockIcon = $cc->{'locked'}? "lock": "empty";
 		# use $name instead of $_?
-		$menuRc[$m] .= qq(+ "%$lockIcon.xpm%$_"\tPopup "$selfMenuName/$_"\n) unless m:/:;
+		$menuRc[$m] .= qq(+ "%menu/$lockIcon.xpm%$_"\tPopup "$selfMenuName/$_"\n) unless m:/:;
 	}
 	if ($dropExtraArgs) {
 		push @menuRc, qq(+ "%menu/choice-no.xpm%&Drop all extra"\tFuncFvwmThemesConfigAndUpdate "$dropExtraArgs"\n);

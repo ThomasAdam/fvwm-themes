@@ -309,7 +309,7 @@ AddToMenu   MenuFvwmGamesAction "Action" Title
 + "XEvil%menu/game-action.xpm%"			Exec exec xevil
 + "XBill%menu/game-action.xpm%"			Exec exec xbill
 + "Scavenger%menu/game-action.xpm%"		Exec exec scavenger
-+ "Ice Breaker%menu/penguin.xpm%"		Exec exec icebreaker
++ "Ice Breaker%menu/linux.xpm%"			Exec exec icebreaker
 # Pac-man like
 + "" Nop
 + "XChomp%menu/game-action.xpm%"		Exec exec xchomp
@@ -421,10 +421,10 @@ AddToMenu   MenuFvwmAmusements "Amusements" Title
 + "Start XSnow%menu/amusement.xpm%"		Exec exec xsnow >/dev/null
 + "Stop XSnow%menu/window-delete.xpm%"		Exec exec killall xsnow
 + "" Nop
-+ "Start XPenguins%menu/penguin.xpm%"		Exec exec xpenguins -q
++ "Start XPenguins%menu/linux.xpm%"		Exec exec xpenguins -q
 + "Stop XPenguins%menu/window-delete.xpm%"	Exec exec killall xpenguins
 + "" Nop
-+ "Start XTurtles%menu/penguin.xpm%"		Exec exec xturtles -q -rectwin
++ "Start XTurtles%menu/linux.xpm%"		Exec exec xturtles -q -rectwin
 + "Stop XTurtles%menu/window-delete.xpm%"	Exec exec killall xturtles
 + "" Nop
 + "Start XSheep%menu/amusement.xpm%"		Exec exec xsheep >/dev/null
