@@ -1,5 +1,8 @@
 2002-06-05  migo  <migo@homemail.com>
 
+	* themes/redmondxp/modules/FvwmButtons-Panel:
+	correct size and make it independent from a screen resolution
+
 	* themes/default/settings.cfg:
 	fixed
 

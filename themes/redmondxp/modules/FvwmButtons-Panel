@@ -7,10 +7,7 @@ AddToMenu   MenuFvwmPanelMovePart
 
 DestroyModuleConfig FvwmButtons-Panel: *
 *FvwmButtons-Panel: Colorset 10
-
-# TODO: evaluate resolution-dependent geometry for all parts
-
-*FvwmButtons-Panel: Geometry 1144x30+0-0
+*FvwmButtons-Panel: ButtonGeometry 4x30+0-0
 *FvwmButtons-Panel: Rows 1
 *FvwmButtons-Panel: Frame 0
 *FvwmButtons-Panel: Padding 0 0
@@ -103,7 +100,8 @@ PipeRead "echo '*FvwmButtons-Panel: (3x1, Icon module/panel-holder.png, \
 	ActionOnPress, \
 	Action `SendToModule $./FvwmThemesPanelManager popup taskbar-config rectangle $$widthx$$height+$$left+$$top 0 -100m`, \
 )'"
-*FvwmButtons-Panel: (200x1, Swallow FvwmIconMan 'Module FvwmIconMan')
+PipeRead `echo -n "SetEnv IconManWidth "; expr $[vp.width] / 4 - 88`
+*FvwmButtons-Panel: ($[IconManWidth]x1, Swallow FvwmIconMan 'Module FvwmIconMan')
 
 # ---- clock/dock bar ----
 
