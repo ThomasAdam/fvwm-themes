@@ -1,3 +1,11 @@
+2000-12-04  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-script.in:
+	converted getDirListing() from C function to Perl function;
+	handle a situation with bad ps (currently exit);
+	implemented a new html (or xhtml) parser, probably any html
+	can be used, but not everything will be shown well
+
 2000-11-29  olicha  <olivier.chapuis@free.fr>
 
 	* locale/{en,fr}/FvwmScript-ConfigCenter.msg:

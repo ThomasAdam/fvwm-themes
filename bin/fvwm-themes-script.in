@@ -35,13 +35,11 @@ my $personalDirName = 'personal';
 my $localeDir = "$datadir/fvwm/locale";
 
 my $scriptName = ($0 =~ m:([^/]+)$:, $1);
-my $dirs = "";
+my $path = "";
 my $command_ls  = 0;
 my $lsOptions = "";
 my $type = "";
 my $item = -1;
-my $fileOnly = 0;
-my $dirOnly = 0;
 my $checkExec = "";
 # config center com loop
 my $configCenter = 0;
@@ -54,11 +52,11 @@ my $getMsg = "";
 my $lang = "";
 
 GetOptions(
-	"help"               => \&showHelp,
-	"version"            => \&showVersion,
-	"dirs=s"             => \$dirs,
+#	"help"               => \&showHelp,
+#	"version"            => \&showVersion,
+	"dirs=s"             => \$path,
 	"ls"                 => \$command_ls,
-	"ls-opt:s"           => \$lsOptions,
+	"ls-opt=s"           => \$lsOptions,
 	"type:s"             => \$type,
 	"item=i"             => \$item,
 	"check-exec=s"       => \$checkExec,
@@ -68,7 +66,7 @@ GetOptions(
 	"line-length=i"      => \$lineLength,
 	"get-msg=s"          => \$getMsg,
 	"lang=s"             => \$lang,
-) || wrongUsage();
+); # || wrongUsage();
 
 
 if ($configCenter) {
@@ -79,10 +77,8 @@ if ($configCenter) {
 	# we never return here
 }
 elsif ($command_ls) {
-	if ("$type" eq "dir") { $dirOnly = 1;}
-	elsif ( "$type" eq "file" ) { $fileOnly =1; }
-	my $return = getLsList($item);
-	print "$return";
+	print
+		getDirListing($path, $lsOptions, $item, $type eq "dir", $type eq "file");
 }
 elsif ($checkExec ne "") {
 	my $r = checkExecInPath($checkExec);
@@ -93,6 +89,17 @@ elsif ($inLineDoc ne "") {
 }
 elsif ($getMsg ne "") {
 	buildMsg();
+}
+
+# ----------------------------------------------------------------------------
+
+sub loadFile ($) {
+ 	my $fileName = shift;
+
+	open(FILE, "<$fileName") || die("Can't open $fileName: [$!]\n");
+	my $fileContent = join("", <FILE>);
+	close(FILE) || die("Can't close $fileName: [$!]\n");
+	return \$fileContent;
 }
 
 #----------------------------------------------------------------------------
@@ -116,7 +123,7 @@ sub buildMsg {
 		$file = "$localeDir/en/$getMsg.$msgExt" if (! -f $file);
 	}
 	if (! -f $file) {
-		print "END0003end\n";
+		print "END         0003end\n";
 		exit 0;
 	}
 
@@ -146,7 +153,157 @@ sub buildMsg {
 #----------------------------------------------------------------------------
 # build the doc for FvwmScript-Help
 
+# very simple HTML text parser, could be library function
+# don't show this code to Mozilla, lynx or w3c developers
+sub parseHtml {
+	my $html = shift;
+	my $lineLen = shift;
+
+	return "" if $lineLen <= 0;
+
+	# constants
+	my $blockIndentLen = 2;  # probably 3 or 4 is better
+	my $ulPrefix = "* ";
+	my $olPrefix = "0. ";
+	my $headerData = [  # <h1> .. <h6>
+		# [ $isCentered, $dashChar ]
+		[ 1, "-" ],
+		[ 1, "=" ],
+		[ 0, "-" ],
+		[ 0, "=" ],
+		[ 0, "." ],
+		[ 0, undef ],
+	];
+
+	# we don't support tag parameters for now, skip them
+	$html =~ s/<(\w+)(\s+\w+(\s*=\s*([^>\s]*|"[^"]+?"))?)\s*>/<$1>/sg;
+
+	# convert all whitespaces (currently <pre> is not supported)
+	$html =~ s/\s+/ /sg;
+
+	# title may be supported later, so this function may return [title, body]
+	$html =~ s{
+		<(title|javascript|style)> .*? </(title|javascript|style)> \040*
+	}{
+		""
+	}sigxe;
+
+	$html =~ s{
+		# be sgml compliant about comments :-)
+		( < [^>]+? ) -- .+? -- ( [^>]+ > )
+	}{
+		"$1$2"
+	}sigxe;
+
+	# skip non-html tags
+	$html =~ s/<[!?].*?> *//sg;
+
+	# support emphasis; how about *bold* and _underline_?
+	$html =~ s{
+		<em> (.*?) </em>
+	}{
+		qq("$1")
+	}sigxe;
+
+	$html =~ s{
+		<blockquote> \040* (.*?) </blockquote> \040*
+	}{
+		my $txt = "\n" . parseHtml($1, $lineLen - $blockIndentLen);
+		$txt =~ s/\n/"\n" . (" " x $blockIndentLen)/sge;
+		"\n$txt\n";
+	}sigxe;
+
+	$html =~ s{
+		<h([1-6])> \040* (.*?) </h\d> \040*
+	}{
+		my ($isCentered, $dashChar) = @{$headerData->[$1 - 1]};
+		my $headLine = $2;
+		my $dashLine = "";
+		$dashLine = ($dashChar x length($headLine)) . "\n" if defined $dashChar;
+		if ($isCentered) {
+			my $identLen = int(($lineLen - length($headLine)) / 2);
+			$identLen = 0 if $identLen < 0;
+			$headLine = (" " x $identLen) . $headLine;
+			$dashLine = (" " x $identLen) . $dashLine if $dashLine ne "";
+		}
+		"\n\n$headLine\n$dashLine\n"
+	}sigxe;
+
+	# supporting a bad html is not guaranteed (<li> without <ul>)
+	my $listLevel = 0;
+	my $listItemPrefixes = [ ];
+
+	# handle tags
+	$html =~ s{
+		<(/?\w*)> \040*
+	}{
+		if ($1 eq "p") { "\n\n" }
+		elsif ($1 eq "br") { "\n" }
+		elsif ($1 eq "ul") { $listItemPrefixes->[$listLevel++] = $ulPrefix; "\n" }
+		elsif ($1 eq "/ul") { $listLevel-- if $listLevel > 0; "\n\n" }
+		elsif ($1 eq "ol") { $listItemPrefixes->[$listLevel++] = $olPrefix; "\n" }
+		elsif ($1 eq "/ul") { $listLevel-- if $listLevel > 0; "\n\n" }
+		elsif ($1 eq "li") {
+			my $ident = " " x ($listLevel * $blockIndentLen);
+			if ($listItemPrefixes->[$listLevel - 1] =~ /^(\d+)(.*)$/) {
+				$listItemPrefixes->[$listLevel - 1] = ($1 + 1) . $2;
+			}
+			my $prefix = $listItemPrefixes->[$listLevel - 1];
+			"\n$ident$prefix"
+		}
+		else { "" }
+	}sigxe;
+
+	# don't support more than 2 new-lines
+	$html =~ s/\n{3,}/\n\n/sg;
+	$html =~ s/^\n{2,}/\n/s;
+
+	# split long lines to shorter ones
+	$html =~ s{^(.*)$}{
+		my $line = $1;
+		my $formatted = "";
+		my $totalLen;
+		while (($totalLen = length($line)) > $lineLen) {
+			my $i = $lineLen;
+			while ($i >= 0 && substr($line, $i, 1) ne " ") { $i-- }
+			$i = $lineLen if $i < 0;  # give up, split a word
+			$formatted .= substr($line, 0, $i) . "\n";
+			$line = substr($line, $i, $totalLen);
+			$line =~ s/^\s+//;
+		}
+		"$formatted$line"
+	}mge;
+
+	return $html;
+}
+
 sub buildDoc {
+	$lang = $ENV{'LANG'} if $lang eq "";
+	$lang = substr($lang, 0, 2);
+	my $fileExt = "html";
+
+	my $file;
+	if ($inLineDoc =~ /^\//) {
+		$file = $inLineDoc;
+	} else {
+		$file = "$localeDir/$lang/$inLineDoc.$fileExt";
+		$file = "$localeDir/en/$inLineDoc.$fileExt" unless -f $file;
+	}
+
+	if (! -f $file) {
+		print "Documentation is not found...\n";
+		exit(0);
+	}
+
+	my $contentRef = loadFile($file);
+	my $parsedText = parseHtml($$contentRef, $lineLength);
+
+	print join("|", split("\n", $parsedText)) . "\n";
+	exit(0);
+}
+
+# this function should be removed later
+sub old_buildDoc {
 
 	$lang = $ENV{'LANG'} if $lang eq "";
 	my $txtExt = "txt";
@@ -260,72 +417,32 @@ sub buildDoc {
 }
 
 #----------------------------------------------------------------------------
-# Proably one can write this with 10 lines ...
 
-sub getLsList {
-	my ($item) = @_;
-	my ($jd,$jf,$j,$i)=("0", "0", "0", "0");
-	my @d=();
-	my @f=();
-	my @a=();
-	my @dirList=();
-	my @tmpdirList=();
-	my $return = "";
-	my $isMultiDir = 0;
+sub getDirListing {
+	my ($path, $lsOptions, $index, $dirsOnly, $filesOnly) = @_;
 
-	if ($dirs eq "PATH") { $dirs=$ENV{PATH} }
-	$dirs =~ /^\:/;
-	$dirs =~ /\:$/;
-	if ($dirs =~ /\:/) {
-		$isMultiDir = 1;
-		@tmpdirList = split(':',$dirs);
-	} else {
-		@tmpdirList = ("$dirs");
-	}
-	
-	my $ok = 0;
-	my $tmp;
-	for($i=0; defined $tmpdirList[$i]; $i++) {
-		if (-d $tmpdirList[$i]) {
-			$ok = 1;
-			@dirList = (@dirList, $tmpdirList[$i]); 
-		}
-	}
+	if ($path eq "PATH") { $path = $ENV{'PATH'} || '/bin'; }
+	my @dirList = grep { $_ && -d $_ } split(':', $path);
+	return "No such directory ($path)\n" unless @dirList;
 
-	return "No such directory\n" unless $ok;			
-		
-  	for($i=0; defined $dirList[$i]; $i++) {
-		open(LSPROC,"ls $lsOptions -1 $dirList[$i] |");
-		while(<LSPROC>) {
+	my @dirs = ();
+	my @files = ();
+	my $dir;
+	foreach $dir (@dirList) {
+		open(LSPROC, "ls $lsOptions $dir |");  # pipe implies ls -1
+		while (<LSPROC>) {
 			chomp;
-			my $t = $_;
-			$t =~ s/.$// if $lsOptions =~ /F/;
-			if (-d "$dirList[$i]/$t") {$d[$jd] = $_; $jd++}
-			else {$f[$jf] = $_; $jf++}
+			s/[@*\/=|]$// if $lsOptions =~ /F|--classify/;
+			if (-d "$dir/$_") { push @dirs, $_; }
+			else { push @files, $_; }
 		}
 		close(LSPROC);
 	}
-	
-	$i=$j=0;
 
-	if ($isMultiDir) { @d = sort(@d); @f = sort(@f);}
+	if (@dirList) { @dirs = sort(@dirs); @files = sort(@files); }
+	my @items = ($dirsOnly? @dirs: $filesOnly? @files: (@dirs, @files));
 
-	if (!$fileOnly) {
-		while (defined $d[$i]) {$a[$i]=$d[$i]; $i++}
-		$j=$i-- if $i;
-		$i=0;
-	}
-	if (!$dirOnly) {
-		while (defined $f[$i]) {$a[$i+$j]=$f[$i];$i++}
-	}
-
-	if ($item >= 1) {
-		$return = $a[$item-1];
-	} else {
-		$return = $a[0] if (defined $a[0]);
-		for($i=1; defined $a[$i]; $i++) { $return .="|".$a[$i];}
-	}
-	return $return . "\n";
+	return ($index > 0? $items[$index - 1]: join("|", @items)) . "\n";
 }
 
 
@@ -674,6 +791,9 @@ sub checkScript {
 
 	my $test = 0;
 	my $lockFifo = ".tmp-com-lock-" . $comName;
+
+	die "OSes without BSD-compatible 'ps' are currently not supported, sorry\n"
+		if `ps h >/dev/null 2>&1; echo $?` ne "0\n";
 
 	open(PS,"ps ax|");
 	while (<PS>) {
@@ -2092,5 +2212,4 @@ sub getXdpyInfo {
 	close(XDPY);
 
 	return ($redMask,$greenMask,$blueMask)
-		
-	}
+}
