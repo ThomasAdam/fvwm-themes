@@ -130,7 +130,7 @@ DestroyModuleConfig FvwmIdent*
 *FvwmThemeColorset 32 fg green, bg grey20, Plain, NoShape
 
 # "Viewer" Colorset
-*FvwmThemeColorset 33 fg black, bg grey20, Plain, NoShape
+*FvwmThemeColorset 33 fg black, bg grey80, Plain, NoShape
 
 # Small Text Input file or Hilighting some Items
 *FvwmThemeColorset 34 fg black, bg white, Plain, NoShape

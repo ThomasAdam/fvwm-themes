@@ -22,5 +22,3 @@ AddToMenu   MenuFvwmQuit "Really Quit GNOME?" Title
 +  "" Nop
 + "&No, Don't Quit%menu/choice-no.xpm%"    Nop
 
-# number of desk (be dynamic):
-GnomeShowDesks 1

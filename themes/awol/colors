@@ -103,10 +103,12 @@ MenuStyle * ActiveFore, HilightBack
 *FvwmThemeColorset 18 fg red2, bg grey77, hi grey88, sh grey65, Plain, NoShape
 
 # iconified item
-*FvwmThemeColorset 19 fg yellow, bg red3, hi red1, sh red4, Plain, NoShape
+*FvwmThemeColorset 19 fg yellow, bg grey77, hi grey88, sh grey65, \
+	Plain, NoShape
 
 # pointed item
-*FvwmThemeColorset 20 fg yellow, bg navy, Plain, NoShape
+*FvwmThemeColorset 20 fg DarkGreen, bg grey77, hi grey88, sh grey65, \
+	Plain, NoShape
 
 # ------------------------
 # Others Modules Colorsets
