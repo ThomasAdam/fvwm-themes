@@ -252,32 +252,32 @@ AddToMenu   MenuFvwmWindowOps "Window Operations" Title
 # A trimmed down version of MenuFvwmWindowOps, good for binding to decorations
 DestroyMenu MenuFvwmWindowOps2
 AddToMenu   MenuFvwmWindowOps2
-+ "Restore	Shift-Alt-F6%menu/window-iconify.xpm%"   FuncFvwmRestore
-+ "&Move	Shift-Alt-F7%menu/window-move.xpm%"      Move
-+ "&Resize	Shift-Alt-F8%menu/window-resize.xpm%"    Resize
-+ "&Iconify	Shift-Alt-F9%menu/window-iconify.xpm%"   Iconify
-+ "Ma&ximize	Shift-Alt-F10%menu/window-maximize.xpm%" Maximize
-+ "R&aiseLower	Shift-Alt-F5%menu/window-raise.xpm%"     RaiseLower
++ "Restore	Alt-F6%menu/window-iconify.xpm%"   FuncFvwmRestore
++ "&Move	Alt-F7%menu/window-move.xpm%"      Move
++ "&Resize	Alt-F8%menu/window-resize.xpm%"    Resize
++ "&Iconify	Alt-F9%menu/window-iconify.xpm%"   Iconify
++ "Ma&ximize	Alt-F10%menu/window-maximize.xpm%" Maximize
++ "R&aiseLower	Alt-F5%menu/window-raise.xpm%"     RaiseLower
 + "" Nop
-+ "&Close	Shift-Alt-F4%menu/window-close.xpm%"     Close
++ "&Close	Alt-F4%menu/window-close.xpm%"     Close
 + "" Nop
-+ "Identify	Shift-Alt-F11%menu/window-identify.xpm%" Module FvwmIdent
-+ "More&...	Shift-Alt-F3%menu/window.xpm%"           Menu MenuFvwmWindowOps
++ "Identify	Alt-F11%menu/window-identify.xpm%" Module FvwmIdent
++ "More&...	Alt-F3%menu/window.xpm%"           Menu MenuFvwmWindowOps
 
 # migo: probably it is better without menu icons, like in mwm
 DestroyMenu MenuFvwmWindowOps2
 AddToMenu   MenuFvwmWindowOps2
-+ "Restore	Shift-Alt-F6"  FuncFvwmRestore
-+ "&Move	Shift-Alt-F7"  Move
-+ "&Resize	Shift-Alt-F8"  Resize
-+ "&Iconify	Shift-Alt-F9"  Iconify
-+ "Ma&ximize	Shift-Alt-F10" Maximize
-+ "R&aiseLower	Shift-Alt-F5"  RaiseLower
++ "Restore		Alt-F6"  FuncFvwmRestore
++ "&Move		Alt-F7"  Move
++ "&Resize		Alt-F8"  Resize
++ "&Iconify		Alt-F9"  Iconify
++ "Ma&ximize		Alt-F10" Maximize
++ "R&aiseLower		Alt-F5"  RaiseLower
 + "" Nop
-+ "&Close	Shift-Alt-F4"  Close
++ "&Close		Alt-F4"  Close
 + "" Nop
-+ "Identify	Shift-Alt-F11" Module FvwmIdent
-+ "More&...	Shift-Alt-F3"  Menu MenuFvwmWindowOps This 0 0
++ "Identify		Alt-F11" Module FvwmIdent
++ "More&...		Alt-F3"  Menu MenuFvwmWindowOps This 0 0
 
 # Resource window group operations for the root menu and buttons
 DestroyMenu  MenuFvwmWindowGroupOps

@@ -6,6 +6,11 @@
 	* bin/fvwm-themes-start.in:
 	fixed parameters after --, still problematical if contain a space
 
+	* themes/default/bindings:restrict-modifiers={no,yes}:
+	* themes/default/{bindings,menus,theme.cfg}:
+	By default don't use Shift in Alt-F1 - Alt-F12, like mwm and some
+	others do. Add an option to enable Shift (helps for many apps).
+
 2000-10-29  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
