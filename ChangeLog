@@ -3,6 +3,10 @@
 	* fvwm-themes-config.in:
 	renamed --show-user to --only-user, some clean up in code and doc
 
+	* themes/multichoice/images/decor/titlebar_fill_s.xpm:
+	* themes/multichoice/theme.cfg:
+	fixed colors/from-spruce and default multichoice background
+
 2000-10-17  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-script-config.in:
