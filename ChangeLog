@@ -7,6 +7,7 @@
 	* bin/fvwm-themes-config.in (getOwnThemeSubMenusRc):
 	* themes/blackbox/menustyle.cfg: (new file)
 	* themes/unsafe/menustyle.cfg:   (new file)
+	* themes/minimal/menustyle.cfg:   (new file)
 	Fixed Themes Management Menu choice-yes for menu without mini
 	icons. I used the ft cfg cmd: hints+=no_icons_in_menus
 	and add \t(c) at the end in the place of choice-yes.xpm
