@@ -13,6 +13,9 @@
 	* bin/fvwm-themes-config.in:
 	fixed multiline error reporting, use '.' not '=' in file names
 
+	* bin/fvwm-themes-images.in:
+	fixed warnings
+
 2002-10-30  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

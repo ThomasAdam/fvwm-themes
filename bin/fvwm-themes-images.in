@@ -619,7 +619,7 @@ sub transform {
 	}
 
 	if ($setRoot && $outFile ne "") {
-		setRoot("$outDir/$outFile");
+		&setRoot("$outDir/$outFile");
 	}
 
 	if ($createSymLink ne "") {
@@ -874,7 +874,7 @@ sub processSky() {
 	$outFile = $setRootTmpFile if $outFile eq "";
 	writeXpm($xpm,$outFile);
 
-	setRoot($outFile) if $setRoot;
+	&setRoot($outFile) if $setRoot;
 }
 
 #-------------------------------------
