@@ -12,7 +12,7 @@
 %define _sourcedir /tmp
 
 Summary:   FVWM Themes, configuration framework for FVWM
-Name:      fvwm-themes
+Name:      fvwm-themes-full
 Version:   %{ver}
 Release:   %{rel}
 Copyright: GPL
@@ -29,7 +29,8 @@ Requires:  fvwm >= @REQUIRED_FVWM_VERSION@
 Requires:  perl >= 5.004
 Requires:  m4
 
-Provides:  fvwm-themes
+Provides:  fvwm-themes = %{version}
+Provides:  fvwm-themes-full
 
 Docdir:    %{prefix}/share/doc
 
@@ -88,14 +89,11 @@ echo ""
 %preun
 [ -f /usr/share/fvwm/menu-system/install-menu-system.sh ] && sh /usr/share/fvwm/menu-system/install-menu-system.sh Uninstall || true
 
-## TODO: how to specify the current date in .spec? Or how to run a `command`?
-#%changelog
-#
-#* Tue 24 Oct 2001 31:25:00 UTC  olicha  <olivier.chapuis@free.fr>
-#- synchronize with fvwm-themes-base.spec
-#
-#* Thu 07 Sep 2000 20:00:00 IDT  FVWM Themes Developers  <fvwm-themes-devel@lists.sourceforge.net>
-#- Auto building %{PACKAGE_VERSION}
-#
-#* Thu 07 Sep 2000 20:00:00 IDT  Mikhael Goikhman  <migo@homemail.com>
-#- First try at making the package
+%define date%(echo `LC_ALL="C" date +"%a %b %d %Y"`)
+%changelog
+* %{date} FVWM Themes Developers <fvwm-themes-devel@lists.sourceforge.net>
+  - Auto building %{PACKAGE_VERSION}
+* Wed Oct 23 2001 olicha <olivier.chapuis@free.fr>
+  - added a way to handle the debian menu system on any system
+* Sat Sep 07 2000 Mikhael Goikhman <migo@homemail.com>
+  - First try at making the package

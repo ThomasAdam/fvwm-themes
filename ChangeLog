@@ -41,6 +41,14 @@
 	* scripts/FvwmScript-ColorSelector:
 	s/pallete/palette/
 
+	* Makefile.am:
+	* rpm/fvwm-themes-base.spec.in:
+	* rpm/fvwm-themes-extra.spec.in:
+	* rpm/fvwm-themes-themes.spec.in:
+	* rpm/fvwm-themes.spec.in:
+	a new arrangement for create distribution packages, now it is
+	fvwm-themes-full and fvwm-themes + fvwm-themes-extra
+
 2002-12-05  olicha  <olivier.chapuis@free.fr>
 
 	* themes/minimal/modules/main:

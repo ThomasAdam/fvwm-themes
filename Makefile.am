@@ -4,7 +4,6 @@
 AUTOMAKE_OPTIONS = foreign
 SUBDIRS = bin doc rpm scripts forms locale menu-system
 FT_DATA_SUBDIRS = themes images sounds
-FT_MODULE_SUBDIRS = 
 EXTRA_DIST = images.tar.gz sounds.tar.gz
 
 EXTRA_THEMES = @EXTRA_THEMES@
@@ -55,6 +54,7 @@ install-data-local:
 	@echo
 	@echo ------------------------------------------------------------------------------
 	@echo "fvwm-themes is successfully installed."
+	@test x"$(DESTDIR)" != x && echo "DESTDIR prefix is $(DESTDIR)" || true
 	@echo "	themes and data: in $(FT_DATADIR)"
 	@echo "	shell scripts:   in $(bindir)"
 	@echo "	manual pages:    in $(mandir)"
@@ -102,34 +102,43 @@ distcheck2: distcheck dist2
 
 distclean2: cleanup-cvs distclean
 
-#    make dist3 - creates -base and -extra tarballs (tar.gz)
-#    make dist4 - creates -base and -extra tarballs (tar.gz and tar.bz2)
+#    make dist3 - creates main and -extra tarballs (tar.gz)
+#    make dist4 - creates main and -extra tarballs (tar.gz and tar.bz2)
 #    make dist5 - creates also individual themes tarballs (tar.gz)
 #    make dist6 - creates also individual themes tarballs (tar.gz and tar.bz2)
 
 dist3: cleanup-cvs dist
 	@$(TAR) xzf $(distdir).tar.gz
+
+	@echo "creating $(PACKAGE)-full-$(VERSION).tar.gz"
+	@mv -f $(distdir) $(PACKAGE)-full-$(VERSION)
+	@$(TAR) czf $(PACKAGE)-full-$(VERSION).tar.gz $(PACKAGE)-full-$(VERSION)
+
 	@rm -rf $(PACKAGE)-extra-$(VERSION)
 	@mkdir $(PACKAGE)-extra-$(VERSION)
 	@for t in $(EXTRA_THEMES); do \
-		mv -f $(distdir)/themes/$$t $(PACKAGE)-extra-$(VERSION); \
+		mv -f $(PACKAGE)-full-$(VERSION)/themes/$$t $(PACKAGE)-extra-$(VERSION)/; \
 	done
+
+	@echo "creating $(PACKAGE)-$(VERSION).tar.gz"
+	@rm -rf $(PACKAGE)-$(VERSION)
+	@mv -f $(PACKAGE)-full-$(VERSION) $(PACKAGE)-$(VERSION)
+	@$(TAR) czf $(PACKAGE)-$(VERSION).tar.gz $(PACKAGE)-$(VERSION)
+	@rm -r $(PACKAGE)-$(VERSION)
+
 	@echo "creating $(PACKAGE)-extra-$(VERSION).tar.gz"
-	@$(TAR) czf $(PACKAGE)-extra-$(VERSION).tar.gz $(PACKAGE)-extra-$(VERSION);
-	@rm -r $(PACKAGE)-extra-$(VERSION);
-	@echo "creating $(PACKAGE)-base-$(VERSION).tar.gz";
-	@rm -rf $(PACKAGE)-base-$(VERSION);
-	@mv -f $(distdir) $(PACKAGE)-base-$(VERSION);
-	@$(TAR) czf $(PACKAGE)-base-$(VERSION).tar.gz $(PACKAGE)-base-$(VERSION);
-	@rm -r $(PACKAGE)-base-$(VERSION)
+	@$(TAR) czf $(PACKAGE)-extra-$(VERSION).tar.gz $(PACKAGE)-extra-$(VERSION)
+	@rm -r $(PACKAGE)-extra-$(VERSION)
 
 dist4: dist3
-	@echo "creating $(distdir).tar.bz2"
-	@gzip -dc $(distdir).tar.gz | bzip2 -9 >$(distdir).tar.bz2
+	@echo "creating $(PACKAGE)-full-$(VERSION).tar.bz2"
+	@gzip -dc $(PACKAGE)-full-$(VERSION).tar.gz | bzip2 -9 >$(PACKAGE)-full-$(VERSION).tar.bz2
+
+	@echo "creating $(PACKAGE)-$(VERSION).tar.bz2"
+	@gzip -dc $(PACKAGE)-$(VERSION).tar.gz | bzip2 -9 >$(PACKAGE)-$(VERSION).tar.bz2
+
 	@echo "creating $(PACKAGE)-extra-$(VERSION).tar.bz2"
 	@gzip -dc $(PACKAGE)-extra-$(VERSION).tar.gz | bzip2 -9 >$(PACKAGE)-extra-$(VERSION).tar.bz2
-	@echo "creating $(PACKAGE)-base-$(VERSION).tar.bz2"
-	@gzip -dc $(PACKAGE)-base-$(VERSION).tar.gz | bzip2 -9 >$(PACKAGE)-base-$(VERSION).tar.bz2
 
 dist5: dist3
 	@$(TAR) xzf $(PACKAGE)-extra-$(VERSION).tar.gz
@@ -159,7 +168,7 @@ dist6: dist5
 #    make version=2.3.22 release=2 rpm-this
 #    make rpm-dist cparams='--enable-gnome --quiet' mparams='CFLAGS="-O2 -g"'
 
-rpm-dist: dist rpm-this
+rpm-dist: dist3 rpm-this
 
 #    make rpm-dist3 - creates -base and -extra rpms
 #    make rpm-dist5 - creates individual themes rpms

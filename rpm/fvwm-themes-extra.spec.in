@@ -75,5 +75,7 @@ echo "    For new themes to appear in your fvwm-themes menus, choose"
 echo "    'Refresh with no cache' from the Theme Management menu."
 echo ""
 
-#* 21 May 2001 FVWM Themes Developers  <fvwm-themes-devel@lists.sourceforge.net>
-#- First try at making the extra package
+%define date%(echo `LC_ALL="C" date +"%a %b %d %Y"`)
+%changelog
+* %{date} FVWM Themes Developers <fvwm-themes-devel@lists.sourceforge.net>
+  - Auto building %{PACKAGE_VERSION}

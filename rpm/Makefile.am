@@ -16,7 +16,7 @@ rpm: @PACKAGE@.spec
 	release=$(release); \
 	cparams='$(cparams)'; \
 	mparams='$(mparams)'; \
-	tarball=@PACKAGE@-$$version.tar.gz; \
+	tarball=@PACKAGE@-full-$$version.tar.gz; \
 	tarball_full=`cd $(top_srcdir) && pwd`/$$tarball; \
 	rpm_wa=rpm-wa.tar.gz; \
 	rpm_wa_full=`cd $(top_srcdir) && pwd`/rpm/$$rpm_wa; \
@@ -36,7 +36,7 @@ rpm: @PACKAGE@.spec
 		-e "s/%define c_p /&$$cparams  %define old_c_p /" \
 		-e "s/%define m_p /&$$mparams  %define old_m_p /" \
 	; \
-	rpm -ba --clean --target noarch-fvwm-linux tmp-@PACKAGE@.spec; \
+	rpmbuild -ba --clean --target noarch-fvwm-linux tmp-@PACKAGE@.spec; \
 	rm /tmp/$$tarball; \
 	rm /tmp/$$rpm_wa; \
 	rm /tmp/$$ins_ms; \
@@ -48,7 +48,7 @@ rpm-base: @PACKAGE@-base.spec
 	release=$(release); \
 	cparams='$(cparams)'; \
 	mparams='$(mparams)'; \
-	tarball=@PACKAGE@-base-$$version.tar.gz; \
+	tarball=@PACKAGE@-$$version.tar.gz; \
 	tarball_full=`cd $(top_srcdir) && pwd`/$$tarball; \
 	rpm_wa=rpm-wa.tar.gz; \
 	rpm_wa_full=`cd $(top_srcdir) && pwd`/rpm/$$rpm_wa; \
@@ -68,7 +68,7 @@ rpm-base: @PACKAGE@-base.spec
 		-e "s/%define c_p /&$$cparams  %define old_c_p /" \
 		-e "s/%define m_p /&$$mparams  %define old_m_p /" \
 	; \
-	rpm -ba --clean --target noarch-fvwm-linux tmp-@PACKAGE@.spec; \
+	rpmbuild -ba --clean --target noarch-fvwm-linux tmp-@PACKAGE@.spec; \
 	rm /tmp/$$tarball; \
 	rm /tmp/$$rpm_wa; \
 	rm /tmp/$$ins_ms; \
@@ -94,7 +94,7 @@ rpm-extra: @PACKAGE@-extra.spec
 		-e "s/%define c_p /&$$cparams  %define old_c_p /" \
 		-e "s/%define m_p /&$$mparams  %define old_m_p /" \
 	; \
-	rpm -ba --clean --target noarch-fvwm-linux tmp-@PACKAGE@.spec; \
+	rpmbuild -ba --clean --target noarch-fvwm-linux tmp-@PACKAGE@.spec; \
 	rm /tmp/$$tarball; \
 	rm tmp-@PACKAGE@.spec
 
@@ -120,7 +120,7 @@ rpm-themes: @PACKAGE@-themes.spec
 		-e "s/%define m_p /&$$mparams  %define old_m_p /" \
 		-e "s/xxxThemesxxx/$$t/" \
 		; \
-		rpm -ba --clean --target noarch-fvwm-linux tmp-@PACKAGE@.spec; \
+		rpmbuild -ba --clean --target noarch-fvwm-linux tmp-@PACKAGE@.spec; \
 		rm /tmp/$$tarball; \
 		rm tmp-@PACKAGE@.spec; \
 	done

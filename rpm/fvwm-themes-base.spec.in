@@ -8,7 +8,7 @@
 %define _sourcedir /tmp
 
 Summary:   FVWM Themes, configuration framework for FVWM
-Name:      fvwm-themes-base
+Name:      fvwm-themes
 Version:   %{ver}
 Release:   %{rel}
 Copyright: GPL
@@ -25,8 +25,7 @@ Requires:  fvwm >= @REQUIRED_FVWM_VERSION@
 Requires:  perl >= 5.004
 Requires:  m4
 
-Provides:  fvwm-themes = %{version}
-Provides:  fvwm-themes-base
+Provides:  fvwm-themes
 
 Docdir:    %{prefix}/share/doc
 
@@ -94,14 +93,11 @@ echo ""
 %preun
 [ -f /usr/share/fvwm/menu-system/install-menu-system.sh ] && sh /usr/share/fvwm/menu-system/install-menu-system.sh Uninstall || true
 
-%define date%(echo `LC_ALL="C" date +"%d %b %Y"`)
+%define date%(echo `LC_ALL="C" date +"%a %b %d %Y"`)
 %changelog
-#
-* %{date}  FVWM Themes Developers  <fvwm-themes-devel@lists.sourceforge.net>
-- Auto building %{PACKAGE_VERSION}
-
-* 23 Oct 2001  olicha  <olivier.chapuis@free.fr>
-- added a way to handle the debian menu system on any system
-
-* 07 Sep 2000  Mikhael Goikhman  <migo@homemail.com>
-- First try at making the package
+* %{date} FVWM Themes Developers <fvwm-themes-devel@lists.sourceforge.net>
+  - Auto building %{PACKAGE_VERSION}
+* Wed Oct 23 2001 olicha <olivier.chapuis@free.fr>
+  - added a way to handle the debian menu system on any system
+* Sat Sep 07 2000 Mikhael Goikhman <migo@homemail.com>
+  - First try at making the package
