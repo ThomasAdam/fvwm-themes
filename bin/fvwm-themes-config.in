@@ -1738,6 +1738,7 @@ sub getMenusAndHooksAndReadsRc ($) {
 			my $valueFile0 = $optionEntry->{'value'}->[$index]->{'file'};
 			my $valueFile = $optionFile . (-d $optionFile? "/": "=")
 				. $valueFile0;
+			$optionFile =~ s/^$ROOT_PREFIX//;
 			$valueFile =~ s/^$ROOT_PREFIX//;
 
 			push @$optionExports, {
@@ -1750,7 +1751,7 @@ sub getMenusAndHooksAndReadsRc ($) {
 			$command =~ s/%f/$valueFile/sg;
 			$command =~ s/%F/$valueFile0/sg;  # to be obsolete?
 			$command =~ s/%v/$valueFile0/sg;
-			$command =~ s/%d/getThemeDir($self->{$idKey})/seg;
+			$command =~ s/%d/$optionFile/sg;
 			my $readAfterward = $optionEntry->{'read-afterward'};
 			$readAfterward = $optionReadAfterward unless defined $readAfterward;
 			($readAfterward? $readRc2: $readRc1) .= "$command\n";
@@ -1762,7 +1763,7 @@ sub getMenusAndHooksAndReadsRc ($) {
 		my $command = $cc->{'read-command'} || $defaultReadCommand;
 		$readFile =~ s/^$ROOT_PREFIX//;
 		$command =~ s/%f/$readFile/sg;
-		$command =~ s/%d/getThemeDir($self->{$idKey})/seg;
+		$command =~ s/%d/getThemeDir($cc->{$themeKey})/seg;
 		$command =~ s/%o([\d]+)(\w)/$optionExports->[$1-1]->{$2} || ""/seg;
 		$rc .= "$readRc1$command\n$readRc2";
 		#ccds 1

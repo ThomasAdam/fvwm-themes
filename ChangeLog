@@ -6,6 +6,8 @@
 
 	* themes/nanogui/buttons: added stick and shade hints for completeness
 
+	* bin/fvwm-themes-config.in: fixed expanding of %d in read-file
+
 2001-04-26  migo  <migo@homemail.com>
 
 	* themes/default/settings/iconstyles/style-icon-miniicon:
