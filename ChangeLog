@@ -1,3 +1,9 @@
+2000-10-22  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-start.in:
+	added a check for our bindir too just to be sure, general clean up,
+	new --fvwm option to be even more flexible
+
 2000-10-21  migo  <migo@homemail.com>
 
 	* themes/migo/modules/pager/none:

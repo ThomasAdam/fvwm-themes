@@ -16,21 +16,29 @@ themesDir=$FVWM_USERDIR/$themesName
 currentThemeName=current
 currentThemeDir=$themesDir/$currentThemeName
 startDir=`pwd`
-build="no"
-start=yes
+isNewSession=0
 
 # Arguments
 fvwmArgs=""
 whoseArgs="my"
+start=yes
+fvwm="fvwm2"
 session="main"
 
 while [ "x$1" != "x" ]; do
 	case "$1" in
-	--)	whoseArgs="fvwm" ;;
-	*)	if [ "$whoseArgs" = "fvwm" ]; then
+	--)
+		whoseArgs="fvwm" ;;
+	*)
+		if [ "$whoseArgs" = "fvwm" ]; then
 			fvwmArgs="$fvwmArgs '$1'"
 		else
 			case "$1" in
+			--no-start|-no-start|-n)
+				start=no ;;
+			--fvwm|-fvwm|-f)
+				shift
+				fvwm="$1" ;;
 			--session|-session|-s)
 				shift
  				if [ "$1" = "--" ]; then
@@ -38,8 +46,6 @@ while [ "x$1" != "x" ]; do
 				else
 					session="$1"
 				fi ;;
-			--no-start|-n|-no-start)
-				start=no ;;
 			esac
 		fi ;;
 	esac
@@ -57,37 +63,44 @@ destRcFile2="$themesName/$realCurrentThemeName/$rcName2"
 cd $themesDir
 if [ ! -d $realCurrentThemeName ]; then
 	mkdir -p $realCurrentThemeName
-	build="yes"
+	isNewSession=1
 fi
 rm -rf $currentThemeName
 ln -s $realCurrentThemeName $currentThemeName
 cd $FVWM_USERDIR
 if [ ! -f $destRcFile2 ]; then
 	touch $destRcFile2
-	build="yes"
+	isNewSession=1
 fi
 rm -f $rcName2
 ln -s $destRcFile2 $rcName2
 
 # check whether this is a first run
-if [ ! -f $rcFile -o "$build" = "yes" -o "`head -1 $rcFile 2>/dev/null | cut -d' ' -f3`" != "@VERSION@" ]; then
-	if [ ! -f $rcFile -o "`head -1 $rcFile 2>/dev/null | cut -d' ' -f3`" != "@VERSION@" ]; then
-		echo '[fvwm-themes]: Welcome to FVWM Themes @VERSION@!'
+test -f $rcFile -a "`head -1 $rcFile 2>/dev/null | cut -d' ' -f3`" = "@VERSION@"
+isNewVersion="$?"
+if [ "$isNewVersion" = 1 -o "$isNewSession" = 1 ]; then
+	if [ "$isNewVersion" = 1 ]; then
+		echo '[FVWM-Themes]: Welcome to FVWM Themes @VERSION@!'
 		xmessage -g 400x100 -xrm "*form*background:rgb:c0/c0/a0" -xrm "*form*okay*background:rgb:90/90/7a" -xrm "*textSink*font:lucidasans-18" -xrm "*form*message*background:rgb:f0/f0/c0" -center 'Welcome to FVWM Themes @VERSION@!' &
 	else
-		echo "[fvwm-themes]: initial $session FVWM Themes session"
+		echo "[FVWM-Themes]: Initial $session FVWM Themes session"
 	fi
 	@bindir@/fvwm-themes-config --reset
 	@bindir@/fvwm-themes-config --load @personal 2>/dev/null
 fi
 
-# check that @FVWM_BINDIR@ is in $PATH
+# check that @FVWM_BINDIR@ (fvwm2) is in $PATH
 if ! which fvwm2 >/dev/null; then
 	PATH="@FVWM_BINDIR@:$PATH"
 fi
 
+# check that @bindir@ (fvwm-themes-config) is in $PATH
+if ! which fvwm-themes-config >/dev/null; then
+	PATH="@bindir@:$PATH"
+fi
+
 cd $startDir
-echo "[fvwm-themes]: Starting FVWM under $session fvwm-themes session"
+echo "[FVWM-Themes]: Starting FVWM under the $session fvwm-themes session"
 if [ "$start" = "yes" ]; then
-    exec fvwm2 -f "$rcName" $fvwmArgs
+    exec $fvwm -f "$rcName" $fvwmArgs
 fi;
