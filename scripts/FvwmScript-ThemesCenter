@@ -302,7 +302,7 @@ Begin
 	    Set $CSCompName = (GetOutput $cmd 1 -1)
 	    Set $cmd = $GetLine{2}
 	    Set $CSThemeName = (GetOutput $cmd 1 -1)
-	    Set $cmd = $GetLine{3}
+	    Set $cmd = $GetLine{3 --clear-buffer}
 	    Set $tmp = (GetOutput $cmd 1 -1)
 	    Set $CSCompHasOpt = (StrCopy $tmp 1 1)
 	    Set $CSCompIsSet = (StrCopy $tmp 2 2)
@@ -452,7 +452,7 @@ Case message of
 	    Set $ThemeName=(GetOutput $cmd 1 -1)
 	    Set $t = $ThemeName{ Components}
 	    ChangeTitle 11 $t
-	    Set $cmd = $GetLine{3}
+	    Set $cmd = $GetLine{3 --clear-buffer}
 	    Set $ThemeDir=(GetOutput $cmd 1 -1)
 
 	    Set $NullMessage = 1

@@ -68,7 +68,7 @@ Begin
     Set $Type = (GetOutput $cmd 1 -1)
     Set $tmp = $Type{ for }$MainComponent{@}$MainTheme
     ChangeTitle 1 $tmp
-    Set $cmd = $GetLine{3}
+    Set $cmd = $GetLine{3  --clear-buffer}
     Set $Options = (GetOutput $cmd 1 -1)
     If $NbrOfOptions == 1 Then
     Begin
