@@ -9,6 +9,9 @@
 	ColourTable. We probably should allocate colorset 23 for transparent
 	module colorset and 29 for temporary (was 23).
 
+	* scripts/FvwmScript-ThemesCenter:
+	several changes in labels in english and russian
+
 2000-10-01  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ThemesCenter:

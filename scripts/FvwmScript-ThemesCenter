@@ -75,10 +75,10 @@ Begin
 	Set $cmd = {echo "$LANG"}
 	Set $Lang = (GetOutput $cmd 1 -1)
     End
-    Set $tmp = 0
+    Set $locateSet = 0
     If $Lang == {fr} Then
     Begin
-	Set $tmp = 1
+	Set $locateSet = 1
 	ChangeTitle 1 {Outils de Configurations:}
 	ChangeTitle 2 {       Selecteur de Themes        |       Configuration GИnИrale        |        Sessions FVWM Themes     }
 	ChangeTitle 5 {Liste des Themes}
@@ -92,7 +92,8 @@ Begin
 	ChangeTitle 13 {SИlectionner}
 	ChangeTitle 14 {Info}
 	ChangeTitle 15 {AperГu}
-	Set $l_MustSelecteComp = {Vous devez sИlectionner une composante !}
+	Set $l_MustSelectThemeComp = {Vous devez sИlectionner une composante !}
+	Set $l_MustSelectCurrentComp = {Vous devez sИlectionner une composante !}
 	Set $l_NoScreenShot = {Les AperГus ne sont pas encore implИmentИs}
 	Set $l_NoHelp = {L'aide n'est pas encore implИmentИs}
 	ChangeTitle 16 {Composantes des ThХmes UtilisИes et SИlectionnИes}
@@ -121,7 +122,7 @@ Begin
 	ChangeTitle 40 {Liste des Sessions de FVWM Themes}
 	Set $l_FinishEdit = {Vous n'avez pas fini d'Иditer la session}
 	Set $l_SelectedSession = {Session SИlectionnИe:}
-	Set $l_MustSelecteSession = {Vous devez sИlectionner une session}
+	Set $l_MustSelectSession = {Vous devez sИlectionner une session}
 	Set $l_B_Edit = {Edition de la session }
 	Set $l_A_Edit = {}
 	ChangeTitle 42 {Editer}
@@ -164,9 +165,9 @@ Begin
     End
     If $Lang == {ru} Then
     Begin
-	Set $tmp = 1
+	Set $locateSet = 1
 	Set $SelFont = {-cronyx-times-bold-r-*-*-12-*-*-*-*-*-koi8-*}
-	Set $ShadeFont = {-cronyx-times-medium-r-*-*-12-*-*-*-*-*-koi8-*}	
+	Set $ShadeFont = {-cronyx-times-medium-r-*-*-12-*-*-*-*-*-koi8-*}
 	ChangeTitle 1 {Раздел Конфигурации:}
 	ChangeTitle 2 {       Выбор Тем              |       Общие Установки       |       Сессии FVWM Themes      }
 	ChangeTitle 5 {Список Тем:}
@@ -180,18 +181,19 @@ Begin
 	ChangeTitle 13 {Взять}
 	ChangeTitle 14 {Инфо}
 	ChangeTitle 15 {Снимок}
-	Set $l_MustSelecteComp = {Сначала выберите компонент темы}
+	Set $l_MustSelectThemeComp = {Сначала выберите компонент темы}
+	Set $l_MustSelectCurrentComp = {Сначала выберите использ. или установ. компонент}
 	Set $l_NoScreenShot = {Снимки пока не доступны}
 	Set $l_NoHelp = {Help пока не доступен}
 	ChangeTitle 16 {Используемые и установленные компоненты:}
 	ChangeTitle 18 {Свойства}
 	ChangeTitle 19 {Возврат}
 	ChangeTitle 20 {Удалить}
-	Set $l_NoProperties = {Этот Исп/Уст компонент не имеет опций, вариантов или под-компонент}
+	Set $l_NoProperties = {Этот компонент не имеет опций, вариантов или под-компонентов}
 	Set $l_OptionsEditor = {Редактор опций для}
 	Set $l_AlreadyActive = {уже активный}
 	Set $l_OnlyThreeEditor = {Число редакторов опций ограничено тремя}
-	Set $l_CompNotSet = {Этот Исп/Уст компонент не установлен!}
+	Set $l_CompNotSet = {Этот компонент не пере-установлен}
 	Set $l_DropNotImp = {Пока не доступно}
 	Set $l_NoDrop = {Этот компонент не может быть удален}
 	# GS
@@ -203,20 +205,20 @@ Begin
 	Set $l_ChoicesFor = {Варианты для}
 	ChangeTitle 28 {Установить}
 	Set $l_MustSelectChoice = {Сначала выберите вариант}
-#	# SM
+	# SM
 	Set $l_CurrentSession = {Текущая Сессия}
 	Set $l_UpTime = {Время Работы}
 	ChangeTitle 40 {Список Сессий FVWM Themes}
 	Set $l_FinishEdit = {Вы не закончили редактировать сессию}
 	Set $l_SelectedSession = {Выбранная сессия:}
-	Set $l_MustSelecteSession = {Сначала выберите сессию}
+	Set $l_MustSelectSession = {Сначала выберите сессию}
 	Set $l_B_Edit = {Редактор сессии }
 	Set $l_A_Edit = {}
 	ChangeTitle 42 {Изменить}
 	ChangeTitle 43 {Добавить}
 	ChangeTitle 44 {Удалить}
 	ChangeTitle 45 {Выбранная сессия:}
-#	# See widget 46, 47, 48, 58
+	# See widget 46, 47, 48, 58
 	Set $l_AddSession = {Добавить новую сессию}
 	Set $l_NotRemoveMain = {Вы не можете удалить сессию main}
 	Set $l_NotRemoveCur = {Вы не можете удалить текущую сессию!}
@@ -227,7 +229,7 @@ Begin
 	Set $l_Cancel = {Отмена}
 	Set $l_Yes = {Да}
 	Set $l_No = {Нет}
-	Set $l_NameNotValid = {Название сессии не может быть использованно}
+	Set $l_NameNotValid = {Такое название сессии не может быть использованно}
 	Set $l_NameAlreadyUse = {Название сессии уже используется!}
 	Set $l_SysErr = {Неизвестная "системная" ошибка, Караул!}
 	Set $l_ClickNewSession = {Выберите "Применить" для загрузки вашей новой сессии}
@@ -245,7 +247,7 @@ Begin
 	ChangeTitle 98 {Помощь}
 	ChangeTitle 99 {Выход}
     End
-    If $tmp == 0 Then
+    If $locateSet == 0 Then
     Begin
 	ChangeTitle 1 {Configuration Tools:}
 	ChangeTitle 2 {       Themes Selector        |       General Settings        |       FVWM Themes Sessions      }
@@ -260,19 +262,20 @@ Begin
 	ChangeTitle 13 {Load}
 	ChangeTitle 14 {Info}
 	ChangeTitle 15 {View}
-	Set $l_MustSelecteComp = {You must select a theme component}
+	Set $l_MustSelectThemeComp = {You must select a theme component first}
+	Set $l_MustSelectCurrentComp = {You must select a used or set component first}
 	Set $l_NoScreenShot = {ScreenShots are not available yet}
 	Set $l_NoHelp = {Help is not available yet}
 	ChangeTitle 16 {Used and Set Theme Components:}
 	ChangeTitle 18 {Properties}
 	ChangeTitle 19 {Restore}
 	ChangeTitle 20 {Drop}
-	Set $l_NoProperties = {This Used/Set component has no options, choices neither subcomponents}
+	Set $l_NoProperties = {This used or set component has no options, choices or subcomponents}
 	Set $l_OptionsEditor = {Options editor for}
 	Set $l_AlreadyActive = {already active}
 	Set $l_OnlyThreeEditor = {Number of Options editors is limited to 3}
-	Set $l_CompNotSet = {This Used/Set component is not set!}
-	Set $l_DropNotImp = {Drop will be implemented one day!}
+	Set $l_CompNotSet = {This used component is not re-set}
+	Set $l_DropNotImp = {Dropping currently is not available}
 	Set $l_NoDrop = {This component cannot be dropped}
 	# GS
 	ChangeTitle 21 {Settings: Used and Set Components}
@@ -280,16 +283,16 @@ Begin
 	ChangeTitle 24 {Info}
 	ChangeTitle 25 {Drop}
 	ChangeTitle 26 {Select a Component}
-	Set $l_ChoicesFor = {Choices for}
+	Set $l_ChoicesFor = {Variants for}
 	ChangeTitle 28 {Set}
-	Set $l_MustSelectChoice = {You must select a Choice}
+	Set $l_MustSelectChoice = {You must select a variant}
 	# SM
 	Set $l_CurrentSession = {Current Session}
 	Set $l_UpTime = {Up Time}
 	ChangeTitle 40 {List of FVWM Themes Sessions}
 	Set $l_FinishEdit = {You didn't finish to edit the session}
 	Set $l_SelectedSession = {Selected Session:}
-	Set $l_MustSelecteSession = {You must select a session}
+	Set $l_MustSelectSession = {You must select a session}
 	Set $l_B_Edit = {Edit }
 	Set $l_A_Edit = { session}
 	ChangeTitle 42 {Edit}
@@ -299,7 +302,7 @@ Begin
 	# See widget 46, 47, 48, 58
 	Set $l_AddSession = {Add a new session}
 	Set $l_NotRemoveMain = {You cannot remove the main session}
-	Set $l_NotRemoveCur = {You cannot remove the Current session!}
+	Set $l_NotRemoveCur = {You cannot remove the currently used session!}
 	Set $l_B_ReallyRemove = {Really Remove }
 	Set $l_A_ReallyRemove = {?}
 	ChangeTitle 50 {Session Name:}
@@ -1136,7 +1139,7 @@ Case message of
  Begin
     If $ComponentName == {} Then
     Begin
-	ChangeTitle 95 $l_MustSelecteComp
+	ChangeTitle 95 $l_MustSelectThemeComp
     End
     Else
     Begin
@@ -1162,7 +1165,7 @@ Case message of
  Begin
     If $ComponentName == {} Then
     Begin
-    	ChangeTitle 95 $l_MustSelecteComp
+    	ChangeTitle 95 $l_MustSelectThemeComp
     End
     Else
     Begin
@@ -1243,7 +1246,7 @@ SingleClic :
     Set $test = 0
     If $CSCompIndex == 0 Then
     Begin
-	ChangeTitle 95 $l_MustSelecteComp
+	ChangeTitle 95 $l_MustSelectCurrentComp
 	Set $break = 0
     End
     If $CSCompHasOpt == 0 Then
@@ -1325,7 +1328,7 @@ SingleClic :
     Set $test = 0
     If $CSCompIndex == 0 Then
     Begin
-	ChangeTitle 95 $l_MustSelecteComp
+	ChangeTitle 95 $l_MustSelectCurrentComp
 	Set $break = 0
     End
     If $CSCompIsSet == 0 Then
@@ -1368,7 +1371,7 @@ SingleClic :
     Set $test = 0
     If $CSCompIndex == 0 Then
     Begin
-	ChangeTitle 95 $l_MustSelecteComp
+	ChangeTitle 95 $l_MustSelectCurrentComp
 	Set $break = 0
     End
     If $CSCompCanBeDropped == 0 Then
@@ -1467,7 +1470,7 @@ SingleClic :
     Set $test = 0
     If $SettingsIndex == 0 Then
     Begin
-	ChangeTitle 95 $l_MustSelecteComp
+	ChangeTitle 95 $l_MustSelectCurrentComp
 	Set $break = 0
     End
     If $SettingsComponentIsSet == 0 Then
@@ -1504,7 +1507,7 @@ SingleClic :
  Begin
     If $SettingsComponent == {} Then
     Begin
-	ChangeTitle 95 $l_MustSelecteComp
+	ChangeTitle 95 $l_MustSelectCurrentComp
     End
     Else
     Begin
@@ -1527,7 +1530,7 @@ SingleClic :
  Begin
     If $SettingsComponent == {} Then
     Begin
-	ChangeTitle 95 $l_MustSelecteComp
+	ChangeTitle 95 $l_MustSelectCurrentComp
     End
     Else
     Begin
@@ -1688,7 +1691,7 @@ SingleClic :
     Set $break = 1
     If $SelectedSession == {} Then
     Begin
-	ChangeTitle 95 $l_MustSelecteSession
+	ChangeTitle 95 $l_MustSelectSession
 	Set $break = 0
     End
     Set $test = 0
@@ -1771,7 +1774,7 @@ SingleClic :
     Set $break = 1
     If $SelectedSession == {} Then
     Begin
-	ChangeTitle 95 $l_MustSelecteSession
+	ChangeTitle 95 $l_MustSelectSession
 	Set $break = 0
     End
     Set $test = 0
@@ -2117,7 +2120,7 @@ Case message of
 	Set $break = 0
 	If $SelectedSession == {} Then
 	Begin
-	    ChangeTitle 95 $l_MustSelecteSession
+	    ChangeTitle 95 $l_MustSelectSession
 	    Set $break = 1
 	End
 	If $SMEditorState <> 0 Then
