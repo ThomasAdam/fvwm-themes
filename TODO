@@ -23,6 +23,9 @@
 * Check fvwm-themes and fvwm with kde2.
 [In progress; need to (re?)add a FAQ entries for KDE]
 
+* Add FuncFvwmConfirm to functions@default, which gets 2 parameters,
+  a confirm string and a command to do on "Ok" as opposite to "Cancel".
+
 Optional items to do:
 --------------------
 
@@ -33,6 +36,11 @@ Optional items to do:
 * Add twm theme (probably menustyle@, windowlook@, buttons@, colors@), like in
   ftp://fvwm-themes.sourceforge.net/pub/fvwm-themes/samples/nikke/
   We need a twm user here, maybe, nikke.
+
+* Add theme similar to http://uop.sourceforge.net/bridge.jpg or other
+  default enlightenment like. How to call it?
+  The problem. I want to add only window decorations, but I should add
+  entire colors@ (too big). Should colors@ be divided?
 
 * Improve fvwm-themes-images:
   + support the X standard rgb:rr/gg/bb better then #rrggbb
