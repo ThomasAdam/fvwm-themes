@@ -4,6 +4,9 @@
 	* doc/README.1st:
 	updated documentation
 
+	* locale/ru/FvwmScript-*.msg:
+	replaced -12- font (not supported any more?) with -14-
+
 2002-06-16  migo  <migo@homemail.com>
 
 	* themes/default/settings.cfg:
