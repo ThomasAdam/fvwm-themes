@@ -1,3 +1,12 @@
+2000-07-29  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-menuapp.in:
+	* Makefile.am:
+	Fix --remove-popup option and restablish it in Makefile
+
+	* bin/fvwm-themes-images.in:
+	Answer to ### migo :)
+	
 2000-07-30  migo  <migo@homemail.com>
 
 	* TODO: updated
