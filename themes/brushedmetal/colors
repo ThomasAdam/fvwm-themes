@@ -166,8 +166,6 @@ DestroyModuleConfig FvwmFormDefault: Colorset*
 
 DestroyFunc FuncFvwmStartColors
 AddToFunc   FuncFvwmStartColors
-# This should be in menustyle@, but I don't know what else should be in it.
-+ I MenuStyle * Font -*-lucida-medium-r-normal-*-*-100-*-*-p-*-iso8859-1
 
 DestroyFunc FuncFvwmStopColors
 AddToFunc   FuncFvwmStopColors

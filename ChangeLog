@@ -1,3 +1,9 @@
+2001-05-21  migo  <migo@homemail.com>
+
+	* themes/brushedmetal/fonts:
+	* themes/brushedmetal/colors:
+	remove font from colors, add it and other fonts to a new component
+
 2001-05-19  migo  <migo@homemail.com>
 
 	* themes/default/styles:
