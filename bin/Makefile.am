@@ -1,6 +1,6 @@
 ## Process this file with automake to create Makefile.in
 
-bin_SCRIPTS = fvwm-themes-config fvwm-themes-start fvwm-themes-xres \
+bin_SCRIPTS = fvwm-themes-config fvwm-themes-start fvwm-themes-xrdb \
 	fvwm-themes-menuapp fvwm-themes-com fvwm-themes-script \
 	fvwm-themes-images
 

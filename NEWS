@@ -1,10 +1,10 @@
-fvwm-themes-0.3.17 - ? (cvs)
+fvwm-themes-0.3.17 - not released yet (cvs)
 
 fvwm-themes-0.3.16 - 20000819 (cvs)
 
 * A GUI Theme Selector: FvwmScript-ThemesCenter.
 * FVWM Themes has now its own session concept (fvwm-themes-start).
-* Re-added a support for gnome-session and others session manager.
+* Re-added a support for gnome-session and other session managers.
 
 fvwm-themes-0.3.15 - 20000807 (cvs)
 

@@ -15,39 +15,39 @@ AddToMenu   MenuFvwmRoot "Root Menu" Title
 + "Screen Saver%menu/display.xpm%"		Popup MenuFvwmScreenSaver
 + "&Quit Fvwm%menu/wm-quit.xpm%"		Popup MenuFvwmQuit
 
-#-----------------------------------------------------------------------------
-#----------- Shells
+# ----------------------------------------------------------------------------
+# ---------- Shells
 
-# this menu is in the separated file menus-user
+# This menu is in the separated file menus-user
 
-#-----------------------------------------------------------------------------
-#----------- Programs
+# ----------------------------------------------------------------------------
+# ---------- Programs
 
-# this menu is in the separated file menus-user
+# This menu is in the separated file menus-user
 
-#-----------------------------------------------------------------------------
-#----------- System
+# ----------------------------------------------------------------------------
+# ---------- System
 
-# this menu is in the separated file menus-user
+# This menu is in the separated file menus-user
 
-#-----------------------------------------------------------------------------
-#----------- Personal
+# ----------------------------------------------------------------------------
+# ---------- Personal
 
 # Define this menus in your personal theme: themes/personal/menus-extra
 AddToMenu   MenuFvwmPersonal
 
-#-----------------------------------------------------------------------------
-#----------- Help
+# ----------------------------------------------------------------------------
+# ---------- Help
 
 DestroyMenu MenuFvwmHelp
 AddToMenu   MenuFvwmHelp "Help" Title
-+ "%menu/help.xpm%Fvwm manual pages"     Popup MenuFvwmManPages
++ "%menu/help.xpm%FVWM Manual Pages"     Popup MenuFvwmManPages
 + "%menu/help.xpm%Xman"                  Exec exec xman
-+ "%menu/information.xpm%Fvwm Home Page" FuncFvwmOpenURL http://www.fvwm.org/
-+ "%menu/information.xpm%Fvwm Themes HP" FuncFvwmOpenURL http://fvwm-themes.sourceforge.net/
++ "%menu/information.xpm%FVWM Home Page" FuncFvwmOpenURL http://www.fvwm.org/
++ "%menu/information.xpm%FVWM Themes HP" FuncFvwmOpenURL http://fvwm-themes.sourceforge.net/
 
 DestroyMenu MenuFvwmManPages
-AddToMenu   MenuFvwmManPages "Fvwm manual pages" Title
+AddToMenu   MenuFvwmManPages "FVWM Manual Pages" Title
 + "%menu/help.xpm%fvwm2"               FuncFvwmViewManPage fvwm2
 + "%menu/help.xpm%FvwmAnimate"         FuncFvwmViewManPage FvwmAnimate
 + "%menu/help.xpm%FvwmAuto"            FuncFvwmViewManPage FvwmAuto
@@ -85,13 +85,13 @@ AddToMenu   MenuFvwmManPages "Fvwm manual pages" Title
 + "%menu/help.xpm%fvwm-themes-com"     FuncFvwmViewManPage fvwm-themes-com
 + "%menu/help.xpm%fvwm-themes-images"  FuncFvwmViewManPage fvwm-themes-images
 + "%menu/help.xpm%fvwm-themes-menuapp" FuncFvwmViewManPage fvwm-themes-menuapp
-+ "%menu/help.xpm%fvwm-themes-start" FuncFvwmViewManPage fvwm-themes-start
++ "%menu/help.xpm%fvwm-themes-start"   FuncFvwmViewManPage fvwm-themes-start
 + "%menu/help.xpm%fvwmbug"             FuncFvwmViewManPage fvwmbug
 + "%menu/help.xpm%fvwmrc_convert"      FuncFvwmViewManPage fvwmrc_convert
 + "%menu/help.xpm%xpmroot"             FuncFvwmViewManPage xpmroot
 
-#-----------------------------------------------------------------------------
-#----------- Modules
+# ----------------------------------------------------------------------------
+# ---------- Modules
 
 DestroyMenu MenuFvwmModules
 AddToMenu   MenuFvwmModules "Fvwm Modules" Title
@@ -137,8 +137,8 @@ AddToMenu   MenuFvwmForms "Fvwm Forms" Title
 + "&Talk"              Module FvwmForm FormFvwmTalk.
 + "&QuitVerify"        Module FvwmForm FormFvwmQuitVerify.
 
-#------------------------------------------------------------------------------
-#--------- Configuration Menus
+# -----------------------------------------------------------------------------
+# ---------- Configuration Menus
 
 DestroyFunc FuncFvwmFormThemeSettings
 AddToFunc   FuncFvwmFormThemeSettings
@@ -162,8 +162,9 @@ AddToMenu   MenuFvwmConfiguration "Fvwm Configuration" Title
 #+ "Base Configuration"	FvwmScript ScriptFvwmBaseConfig
 + "Theme Settings (form)"	FuncFvwmFormThemeSettings
 + "Theme Settings (gtk)"	FuncFvwmGtkThemeSettings
-+ "Menu Editor"		FvwmScript FvwmScript-Menus --text-colorset 34 --icon-colorset 5 --viewer-colorset 33
-+ "R&oot Cursor"	Module FvwmForm FormFvwmRootCursor.
++ "&Menu Editor"	FvwmScript FvwmScript-Menus --text-colorset 34 --icon-colorset 5 --viewer-colorset 33
++ "&Root Cursor"	Module FvwmForm FormFvwmRootCursor.
++ "Restore All &Cursors"	Read themes/current/cursors
 + "Form &Defaults"	Module FvwmForm FormFvwmForm.
 + "Control &Animation"	Popup MenuFvwmAnimate
 + "&X Configuration"	Popup MenuFvwmXConfiguration
@@ -175,8 +176,8 @@ AddToMenu   MenuFvwmXConfiguration "X Configuration" Title
 + "Screen%menu/display.xpm%" FvwmScript ScriptFvwmScreenSetup
 + "Mouse%menu/mouse.xpm%" FvwmScript ScriptFvwmPointerSetup
 
-#------------------------------------------------------------------------------
-#--------- MenuFvwmQuit
+# -----------------------------------------------------------------------------
+# ---------- MenuFvwmQuit
 
 DestroyMenu MenuFvwmQuit
 AddToMenu   MenuFvwmQuit "Really Quit Fvwm?" Title
@@ -189,10 +190,10 @@ AddToMenu   MenuFvwmQuit "Really Quit Fvwm?" Title
 + "&Yes, Really Quit%menu/choice-yes.xpm%" Quit
 + "&No, Don't Quit%menu/choice-no.xpm%"    Nop
 
-#------------------------------------------------------------------------------
-#--------- MenuFvwmWindow*
+# -----------------------------------------------------------------------------
+# ---------- MenuFvwmWindow*
 
-# This defines the most common window operations.
+# This defines all window operations
 DestroyMenu MenuFvwmWindowOps
 AddToMenu   MenuFvwmWindowOps "Window Operations" Title
 + "&Move%menu/window-move.xpm%"                 Move
@@ -234,7 +235,7 @@ AddToMenu   MenuFvwmWindowOps2
 + "Identify	Shift-Alt-F11%menu/window-identify.xpm%" Module FvwmIdent
 + "More&...	Shift-Alt-F3%menu/window.xpm%"           Menu MenuFvwmWindowOps
 
-# migo: probably it is better without menu icons.
+# migo: probably it is better without menu icons, like in mwm
 DestroyMenu MenuFvwmWindowOps2
 AddToMenu   MenuFvwmWindowOps2
 + "Restore	Shift-Alt-F6"  FuncFvwmRestore
@@ -249,8 +250,7 @@ AddToMenu   MenuFvwmWindowOps2
 + "Identify	Shift-Alt-F11" Module FvwmIdent
 + "More&...	Shift-Alt-F3"  Menu MenuFvwmWindowOps This 0 0
 
-# migo: IMHO there are more reasons to use $r then $c.
-# Resource group action for the root menu and buttons
+# Resource window group operations for the root menu and buttons
 DestroyMenu  MenuFvwmWindowGroupOps
 AddToMenu    MenuFvwmWindowGroupOps "Resource Group Ops" Title
 + "&Iconify%menu/window-iconify.xpm%"   Pick All ($r) Iconify on
@@ -263,14 +263,8 @@ AddToMenu    MenuFvwmWindowGroupOps "Resource Group Ops" Title
 + "&Delete%menu/window-delete.xpm%"     Pick All ($r) Delete
 + "&Close%menu/window-close.xpm%"       Pick All ($r) Close
 + "Destroy%menu/window-destroy.xpm%"    Pick All ($r) Destroy
-#o: With DesktopSize
-#+ "Quick move to ..." Title
-#+ "&Right	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +1p +0p
-#+ "&Left	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage -1p +0p
-#+ "D&own	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p +1p
-#+ "&Up  	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p -1p
 
-# Need for style that is not automatically updated
+# Needed for the initial placement style options
 DestroyFunc FuncFvwmStyleAndRecapture
 AddToFunc   FuncFvwmStyleAndRecapture
 + I Style "$0" $1
@@ -308,9 +302,9 @@ AddToMenu   MenuFvwmWindowStyle "Window Style" Title
 
 DestroyMenu MenuFvwmWindowMaximize
 AddToMenu   MenuFvwmWindowMaximize "Maximize Window" Title
-+ "%menu/window-maximize.xpm%Maximize vertically"   Maximize 0 100
-+ "%menu/window-maximize.xpm%Maximize horizontally" Maximize 100 0
-+ "%menu/window-maximize.xpm%Maximize grow"         Maximize grow grow
++ "%menu/window-maximize.xpm%Maximize Vertically"   Maximize 0 100
++ "%menu/window-maximize.xpm%Maximize Horizontally" Maximize 100 0
++ "%menu/window-maximize.xpm%Maximize Grow"         Maximize grow grow
 + "" Nop
 + "%menu/window-maximize.xpm%Maximize Full Screen	Shift-Ctrl-F11" Pick FuncFvwmMaximizeFullScreen
 + "%menu/window-maximize.xpm%Unmaximize Full Screen	Shift-Ctrl-F12" Pick FuncFvwmUnmaximizeFullScreen

@@ -1,3 +1,31 @@
+2000-08-22  migo  <migo@homemail.com>
+
+	* doc/Makefile.am:
+	* doc/.cvsignore:
+	added autoconf stuff for doc/ directory, since previous releases
+	contain some CVS files
+
+	* Makefile.am:
+	* configure.in:
+	* themes/awol/modules/main:FvwmButtons-Default:
+	small fixes and spell checks
+
+	* themes/default/menus[-user]:
+	Clean ups, enhanced MenuFvwmAmusements, added "Restore All Cursors".
+
+	* bin/fvwm-themes-xrdb.in:
+	* bin/Makefile.am:
+	renamed from fvwm-themes-xres (like grdb, krdb)
+
+	* images/background/* (i.e. images.tar.gz):
+	* themes/default/background:
+	* themes/default/background.cfg:
+	* themes/olicha/background:
+	added stone-yellow.xpm, renamed fvwm-win.xpm to fvwm-flying.xpm;
+	added stone.xpm (gray scale), I am not sure whether we need two;
+	moved freon_mist.xpm to olicha theme (a background distribution is
+	not needed with theme components or could be in a separate package)
+
 2000-08-19  olicha  <olivier.chapuis@free.fr>
 
 	* NEWS:

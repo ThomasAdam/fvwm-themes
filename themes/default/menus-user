@@ -1,5 +1,5 @@
-#-----------------------------------------------------------------------------
-#----------- Shells
+# ----------------------------------------------------------------------------
+# ---------- Shells
 
 DestroyMenu MenuFvwmShells
 AddToMenu   MenuFvwmShells "Shells" Title
@@ -30,8 +30,8 @@ AddToMenu   MenuFvwmShells "Shells" Title
 + "Remote login...%menu/xterm.xpm%" FvwmForm FormFvwmRlogin.
 
 
-#-----------------------------------------------------------------------------
-#----------- System
+# ----------------------------------------------------------------------------
+# ---------- System
 
 DestroyMenu MenuFvwmSystem
 AddToMenu   MenuFvwmSystem "System" Title
@@ -69,8 +69,8 @@ AddToMenu   MenuFvwmBrowser DynamicPopupAction Piperead 'fvwm-menu-directory -r 
 DestroyMenu MenuFvwmBrowserCached
 AddToMenu   MenuFvwmBrowserCached DynamicPopupAction Piperead 'fvwm-menu-directory -all -r -na MenuFvwmBrowserCached -d $HOME -s --exec-file ^emacs --xte="xterm -e" --wm-icons --check-subdir'
 
-#------------------------------------------------------------------------------
-#--------- MenuFvwmScreenSaver
+# -----------------------------------------------------------------------------
+# ---------- ScreenSaver
 
 DestroyMenu MenuFvwmScreenSaver
 AddToMenu   MenuFvwmScreenSaver "Screen Saver" Title
@@ -91,8 +91,8 @@ PipeRead 'fvwm-menu-xlock --name MenuFvwmScreenSaverModes --title "Screen Saver 
 
 PipeRead 'fvwm-menu-xlock --name MenuFvwmScreenLockModes  --title "Screen Lock Modes"  --icon-item menu/wm-lock.xpm --special-first -- -nice 19'
 
-#-----------------------------------------------------------------------------
-#----------- WindowManager
+# ----------------------------------------------------------------------------
+# ---------- WindowManager
 
 DestroyModuleConfig FvwmForm-Restart*
 *FvwmForm-RestartWarpPointer
@@ -131,8 +131,8 @@ AddToMenu   MenuFvwmWindowManager "Window Managers" Title
 + "Just &xterm"         Restart xterm
 + "More&..."            FvwmForm FvwmForm-Restart
 
-#-----------------------------------------------------------------------------
-#----------- Programs
+# ----------------------------------------------------------------------------
+# ---------- Programs
 
 DestroyMenu MenuFvwmPrograms
 AddToMenu   MenuFvwmPrograms "   Programs   " Title
@@ -147,6 +147,24 @@ AddToMenu   MenuFvwmPrograms "   Programs   " Title
 + "&Multimedia%menu/sound.xpm%"		Popup MenuFvwmMultimedia
 + "&Games%menu/game-chess.xpm%"		Popup MenuFvwmGames
 + "&Amusements%menu/game.xpm%"		Popup MenuFvwmAmusements
+
+DestroyMenu MenuFvwmCDE
+AddToMenu   MenuFvwmCDE
++ "&Applications Manager%menu/unknown.xpm%" Exec exec /usr/dt/bin/dtaction Dtappmgr
++ "&Terminal%menu/xterm.xpm%"          Exec exec /usr/dt/bin/dtterm
++ "&File Manager%menu/folder.xpm%"     Exec exec /usr/dt/bin/dtfile
++ "&Trash Can%menu/folder.xpm%"        Exec exec /usr/dt/bin/dtaction Dttrash
++ "Text &Editor%menu/editor.xpm%"      Exec exec /usr/dt/bin/dtpad
++ "Desktop &Help%menu/help.xpm%"       Exec exec /usr/dt/bin/dthelpview -helpVolume browser
++ "Man Pages%menu/help.xpm%"           Exec exec /usr/dt/bin/dthelpview -man
++ "&Mailer%menu/mail.xpm%"             Exec exec /usr/dt/bin/dtmail
++ "&Calandar%menu/information.xpm"     Exec exec /usr/dt/bin/dtcm
++ "&Calculator%menu/calculator.xpm%"   Exec exec /usr/dt/bin/dtcalc
++ "&Icon Editor%menu/image-viewer.xpm%"  Exec exec /usr/dt/bin/dticon
++ "&Print Manager%menu/information.xpm%" Exec exec /usr/dt/bin/dtprintinfo
++ "&Styles Manager%menu/utility.xpm%"    Exec exec /usr/dt/bin/dtstyle
++ "" Nop
++ "&Exit CDE%menu/wm-quit.xpm%"        Exec exec /usr/dt/bin/dtaction ExitSession
 
 DestroyMenu MenuFvwmUtilities
 AddToMenu   MenuFvwmUtilities "Utilities" Title
@@ -278,16 +296,32 @@ AddToFunc   FuncFvwmKillEventAndRun
 
 DestroyMenu MenuFvwmAmusements
 AddToMenu   MenuFvwmAmusements "Amusements" Title
-+ "Xsnow%menu/game.xpm%" 		Popup MenuFvwmXsnow
++ "Start XSnow%menu/game.xpm%"		Exec exec xsnow
++ "Stop XSnow%menu/window-delete.xpm%"	Exec exec killall xsnow
++ "" Nop
++ "Start XEarth%menu/game.xpm%"		Exec exec xearth
++ "Stop XEarth%menu/window-delete.xpm%"	Exec exec killall xearth
++ "" Nop
++ "Start Decay Screen%menu/game.xpm%"	Exec exec /usr/X11R6/lib/xscreensaver/decayscreen -root
++ "Stop Decay Screen%menu/window-delete.xpm%"	Exec exec killall /usr/X11R6/lib/xscreensaver/decayscreen
++ "" Nop
++ "Start XEarth%menu/game.xpm%"		Exec exec xearth
++ "Stop XEarth%menu/window-delete.xpm%"	Exec exec killall xearth
++ "" Nop
+## it should be: nice -n 9 oneko
++ "Start Oneko (Neko)%mouse.xpm"	Exec oneko
++ "Start Oneko (Tora)%mouse.xpm"	Exec oneko -tora -fg black -bg yellow
++ "Start Oneko (Dog)%mouse.xpm"		Exec oneko -dog -fg black -bg white
++ "Stop Oneko%window-delete.xpm"	Exec killall oneko
++ "" Nop
+## it should be: exec nice -n 19 xoj
++ "Start O.J.S. emulator%game.xpm"	Exec exec xoj
++ "Stop O.J.S. emulator%window-delete.xpm"	Exec exec killall xoj
++ "" Nop
 + "Mesa Demo%menu/game.xpm%" 		Popup MenuFvwmMesaDemos
 + "Xeyes%menu/game.xpm%" 		Exec exec xeyes
 + "&X logo%menu/game.xpm%"		Exec exec xlogo
 + "X&roach%menu/game.xpm%%"		Exec exec xroach
-
-DestroyMenu MenuFvwmXsnow
-AddToMenu   MenuFvwmXsnow "Xsnow" Title
-+ "Start Xsnow%menu/game.xpm%"		Exec exec xsnow
-+ "Stop Xsnow%menu/game.xpm%"		Exec exec killall xsnow
 
 DestroyMenu MenuFvwmMesaDemos
 AddToMenu   MenuFvwmMesaDemos "Mesa Demos" Title
@@ -313,21 +347,3 @@ AddToMenu   MenuFvwmMesaDemos "Mesa Demos" Title
 + "Spectex%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.0/demos/spectex
 + "Stex3D%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.0/demos/stex3d
 + "Texcyl%menu/game.xpm%" 	Exec cd /usr/lib/Mesa-3.0/demos/ ; exec ./texcyl
-
-DestroyMenu MenuFvwmCDE
-AddToMenu   MenuFvwmCDE
-+ "&Applications Manager%menu/unknown.xpm%" Exec exec /usr/dt/bin/dtaction Dtappmgr
-+ "&Terminal%menu/xterm.xpm%"          Exec exec /usr/dt/bin/dtterm
-+ "&File Manager%menu/folder.xpm%"     Exec exec /usr/dt/bin/dtfile
-+ "&Trash Can%menu/folder.xpm%"        Exec exec /usr/dt/bin/dtaction Dttrash
-+ "Text &Editor%menu/editor.xpm%"      Exec exec /usr/dt/bin/dtpad
-+ "Desktop &Help%menu/help.xpm%"       Exec exec /usr/dt/bin/dthelpview -helpVolume browser
-+ "Man Pages%menu/help.xpm%"           Exec exec /usr/dt/bin/dthelpview -man
-+ "&Mailer%menu/mail.xpm%"             Exec exec /usr/dt/bin/dtmail
-+ "&Calandar%menu/information.xpm"     Exec exec /usr/dt/bin/dtcm
-+ "&Calculator%menu/calculator.xpm%"   Exec exec /usr/dt/bin/dtcalc
-+ "&Icon Editor%menu/image-viewer.xpm%"  Exec exec /usr/dt/bin/dticon
-+ "&Print Manager%menu/information.xpm%" Exec exec /usr/dt/bin/dtprintinfo
-+ "&Styles Manager%menu/utility.xpm%"    Exec exec /usr/dt/bin/dtstyle
-+ "" Nop
-+ "&Exit CDE%menu/wm-quit.xpm%"        Exec exec /usr/dt/bin/dtaction ExitSession

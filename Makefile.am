@@ -2,10 +2,10 @@
 ## Makefile.am for fvwm-themes.
 
 AUTOMAKE_OPTIONS = foreign
-SUBDIRS = bin scripts forms
+SUBDIRS = bin doc scripts forms
 FT_DATA_SUBDIRS = themes images sounds
 FT_MODULE_SUBDIRS = 
-EXTRA_DIST = doc images.tar.gz sounds.tar.gz
+EXTRA_DIST = images.tar.gz sounds.tar.gz
 
 install-data-local:
 	FT_DATADIR=@FT_DATADIR@
@@ -38,7 +38,7 @@ install-data-local:
 	@echo "fvwm-themes is successfully installed."
 	@echo "	themes and data: in $(FT_DATADIR)"
 	@echo "	shell scripts:   in $(bindir)"
-	@echo 'Put fvwm-themes-start in .Xclients/.xinitrc'
+	@echo 'Put fvwm-themes-start as the last command of .Xclients/.xinitrc/.xsession'
 	@echo ==============================================================================
 	@echo
 

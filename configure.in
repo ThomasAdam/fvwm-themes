@@ -28,8 +28,8 @@ if test -z "$X_LIBS"; then
 	AC_MSG_WARN(Xlib is not found; fvwm-themes-images will not work!)
 fi
 
-# fix me: a better way to found GNOME_IMAGES_DIR?
-# I've no gnome-config in my machine
+# FIXME: a better way to find GNOME_IMAGES_DIR?
+# I've no gnome-config on my machine.
 AC_PATH_PROG(GNOME_SESSION, gnome-session)
 if test -z "$GNOME_SESSION"; then
 	GNOME_SESSION=/usr/bin/gnome-session
@@ -80,6 +80,7 @@ AC_SUBST(SETTINGS_FILE)dnl
 AC_OUTPUT(
 	Makefile
 	bin/Makefile
+	doc/Makefile
 	scripts/Makefile
 	forms/Makefile
 	bin/fvwm-themes-config
