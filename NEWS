@@ -1,7 +1,8 @@
 fvwm-themes-0.4.1 - not released yet
 
-* Some KDE version 2 support
+* initial KDE version 2 support
 * background improvements in @default and @migo
+* added modular i18n; more languages may be easily added now
 
 fvwm-themes-0.4.0 - 20001111
 
