@@ -10,21 +10,12 @@
 * Test and port fvwm-themes to native BSD's and Solaris.
   There are problems for sure, mkdir without -p, no killall etc.
 
-* Convert all hardcoded $FT_DATADIR/... paths to relative $./ .
-
 * Fix a bug, when an option is removed, it is still here (due to 'current').
   The same if the option is added.
 
 * To verify: seems like GUI loads @personal theme when not asked.
 
 * Improve wm-icons icon sets, release 0.3.0.
-
-* Improve fvwm-themes-images:
-  + without args it should exit with "Try --help."
-  + option names are not intuitive, probably rename some
-  + support the X standard rgb:rr/gg/bb better, probably better then #rrggbb
-  + use "," color delimiter, not ":"; use "/" in dec rgb color instead of ","
-  + it would be nice to have --border[color] like in ImageMagick
 
 * Check fvwm-themes and fvwm with kde2.
 
@@ -38,6 +29,11 @@ Optional items to do:
 * Add twm theme (probably menustyle@, windowlook@, buttons@, colors@), like in
   ftp://fvwm-themes.sourceforge.net/pub/fvwm-themes/samples/nikke/
   We need a twm user here, maybe, nikke.
+
+* Improve fvwm-themes-images:
+  + support the X standard rgb:rr/gg/bb better then #rrggbb
+  + implement sky on the transparent image color
+  + enable specifying transparent border, and before applying --tile or --sky
 
 * Think where belong all functions sitting in different components.
 
@@ -61,7 +57,7 @@ and (mini)icons styles. These database may have the power to use
 the other database about menus in the machine (kde, gnome, wmconfig,
 debian sys menu, ...). Rename menu-user by menus-programs.
 
-* Wrok on the menu editor. By default only edit "MenuFvwmPersonal"
+* Work on the menu editor. By default only edit "MenuFvwmPersonal"
 because menus-programs have to be regenerated after (un)installation
 of applications on the machine.
 
@@ -95,3 +91,11 @@ Problems without obvious soluton:
 
 Closed items (will be deleted after 1.0.0):
 ------------------------------------------
+* Improve fvwm-themes-images:
+  + without args it should exit with "Try --help."
+  + option names are not intuitive, probably rename some
+  + support the X standard rgb:rr/gg/bb better, probably better then #rrggbb
+  + use "," color delimiter, not ":"; use "/" in dec rgb color instead of ","
+
+* Convert all hardcoded $FT_DATADIR/... paths to relative $./ .
+  (not fully)
