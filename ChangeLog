@@ -1,3 +1,19 @@
+2001-10-23  migo  <migo@homemail.com>
+
+	* images.tar.gz:
+	48x48-general/graphics had 49 lines
+
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	synchronize with wm-icons
+
+	* bin/fvwm-themes-config.in:
+	reident so that leading tabs and spaces are not mixed
+
+	* NEWS:
+	* TODO:
+	* themes/default/theme.cfg:
+	small changes
+
 2001-10-22  olicha  <olivier.chapuis@free.fr>
 
 	* themes/nanogui/buttons:

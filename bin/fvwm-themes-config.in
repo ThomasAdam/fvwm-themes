@@ -139,8 +139,8 @@ sub errWarn ($) {
 	$msg .= "\n" unless $msg =~ /\n$/s;
 	if ($pipe) {
 		$msg =~ s/\n$//s;
- 		$msg =~ s/'/`/g;
-	  	print qq(Exec exec xmessage -g 400x100 -xrm "*form*background:rgb:90/90/50" -xrm "*form*okay*background:rgb:70/70/40" -xrm "*textSink*font:lucidasans-14" -xrm "*form*message*background:rgb:b0/b0/60" -title '$scriptName warning' -center '$msg'\n);
+		$msg =~ s/'/`/g;
+		print qq(Exec exec xmessage -g 400x100 -xrm "*form*background:rgb:90/90/50" -xrm "*form*okay*background:rgb:70/70/40" -xrm "*textSink*font:lucidasans-14" -xrm "*form*message*background:rgb:b0/b0/60" -title '$scriptName warning' -center '$msg'\n);
 	} else {
 		warn $msg;
 	}
@@ -597,7 +597,7 @@ sub loadCfgCacheFile () {
 			};
 			if ($@) {
 				print STDERR "Warning: a problem arised when loading " .
-				  "$file:\n$@\n";
+					"$file:\n$@\n";
 				unlink "$file";
 			}
 		}
@@ -631,7 +631,7 @@ sub saveThemeCfg ($$) {
 	errDie("Parameter should be ARRAY") unless ref($cfg) eq 'ARRAY';
 	my ($themeCfg, $componentCfgs) = @$cfg;
 	errDie("Parameter should be [HASH, HASH]")
-	  unless ref($themeCfg) eq 'HASH' && ref($componentCfgs) eq 'HASH';
+		unless ref($themeCfg) eq 'HASH' && ref($componentCfgs) eq 'HASH';
 
 	my $str = "";
 	$str .= "[theme]\n" . encodeCfgEntry($themeCfg) . "\n";
@@ -1627,15 +1627,16 @@ sub setUsedFlags($) {
 			my @dependsComp = ();
 			my $comp;
 			push @symStrongComp, $cc->{'complements'}
-			   if (exists $cc->{'complements'});
+				if (exists $cc->{'complements'});
 			push @strongComp, @{$cc->{'stronglydepends'}} 
-			   if defined $cc->{'stronglydepends'} &&
-				  ref($cc->{'stronglydepends'}) eq 'ARRAY';
+				if defined $cc->{'stronglydepends'} &&
+					ref($cc->{'stronglydepends'}) eq 'ARRAY';
 			push @weakComp, @{$cc->{'weakdepends'}} 
-			   if defined $cc->{'weakdepends'} &&
-				  ref($cc->{'weakdepends'}) eq 'ARRAY';
+				if defined $cc->{'weakdepends'} &&
+					ref($cc->{'weakdepends'}) eq 'ARRAY';
 			push @dependsComp, @{$cc->{'depends'}}
-			   if defined $cc->{'depends'} && ref($cc->{'depends'}) eq 'ARRAY';
+				if defined $cc->{'depends'} &&
+					ref($cc->{'depends'}) eq 'ARRAY';
 		
 			foreach $comp (@symStrongComp) {
 				next if !defined $self->{'cc'}->{$comp};
@@ -1796,7 +1797,7 @@ sub getAllHooksRc ($) {
 	my $_c = $self->getComponentCfg("_core");
 	my $saveStop = ( $_c->{'stop'} ||= {} );
 	my $cs = {};
- 
+
 	my $startHooksRc =
 		"DestroyFunc FuncFvwmStartAllHooks\n" .
 		"AddToFunc   FuncFvwmStartAllHooks\n";
@@ -1817,15 +1818,18 @@ sub getAllHooksRc ($) {
 		my @savedUnReloadFunctions = ();
 		if (defined $saveStop->{$c} && ref($saveStop->{$c}) eq 'HASH') {
 			if (defined $saveStop->{$c}->{'start-stop'} &&
-				 ref($saveStop->{$c}->{'start-stop'}) eq 'ARRAY') {
+				ref($saveStop->{$c}->{'start-stop'}) eq 'ARRAY')
+			{
 				@savedStopFunctions = @{$saveStop->{$c}->{'start-stop'}};
 			}
 			if (defined $saveStop->{$c}->{'load-unload'} &&
-				 ref($saveStop->{$c}->{'load-unload'}) eq 'ARRAY') {
+				ref($saveStop->{$c}->{'load-unload'}) eq 'ARRAY')
+			{
 				@savedUnloadFunctions = @{$saveStop->{$c}->{'load-unload'}};
 			}
 			if (defined $saveStop->{$c}->{'reload-unreload'} &&
-				 ref($saveStop->{$c}->{'reload-unreload'}) eq 'ARRAY') {
+				ref($saveStop->{$c}->{'reload-unreload'}) eq 'ARRAY')
+			{
 				@savedUnReloadFunctions = @{$saveStop->{$c}->{'reload-unreload'}};
 			}
 			delete $saveStop->{$c};
@@ -1858,15 +1862,15 @@ sub getAllHooksRc ($) {
 		my $reloadUnreload = $self->getComponentNamedValue($c,'reload-unreload');
 
 		next unless defined $startStop || $loadUnload || $reloadUnreload ||
-		  @savedStopFunctions || (@savedUnloadFunctions && $cc->{'used'} >= 3) ||
-		  (@savedUnReloadFunctions &&  $cc->{'used'} < 3);
+			@savedStopFunctions || (@savedUnloadFunctions && $cc->{'used'} >= 3) ||
+				(@savedUnReloadFunctions &&  $cc->{'used'} < 3);
 
 		errDie("start-stop ($startStop) in component '$c' is not ARRAY")
-		  unless !defined $startStop || ref($startStop) eq 'ARRAY';
+			unless !defined $startStop || ref($startStop) eq 'ARRAY';
 		errDie("start-stop ($loadUnload) in component '$c' is not ARRAY")
-		  unless !defined $loadUnload || ref($loadUnload) eq 'ARRAY';
+			unless !defined $loadUnload || ref($loadUnload) eq 'ARRAY';
 		errDie("start-stop ($reloadUnreload) in component '$c' is not ARRAY")
-		  unless !defined $reloadUnreload || ref($reloadUnreload) eq 'ARRAY';
+			unless !defined $reloadUnreload || ref($reloadUnreload) eq 'ARRAY';
 
 		# prepare to save the "stop" functions
 		if (defined $startStop) {
@@ -1956,16 +1960,19 @@ sub getAllHooksRc ($) {
 		# from the strongest
 		if (ref($saveStop->{$c}) eq 'HASH') {
 			if (defined $saveStop->{$c}->{'load-unload'} &&
-				 ref($saveStop->{$c}->{'load-unload'}) eq 'ARRAY') {
+				ref($saveStop->{$c}->{'load-unload'}) eq 'ARRAY')
+			{
 				@stopFunctions = @{$saveStop->{$c}->{'load-unload'}};
 				$stopFunctionsType = "Unload";
 			}
 			elsif (defined $saveStop->{$c}->{'start-stop'} &&
-				 ref($saveStop->{$c}->{'start-stop'}) eq 'ARRAY') {
+				ref($saveStop->{$c}->{'start-stop'}) eq 'ARRAY')
+			{
 				@stopFunctions = @{$saveStop->{$c}->{'start-stop'}};
 			}
 			elsif (defined $saveStop->{$c}->{'reload-unreload'} &&
-					 ref($saveStop->{$c}->{'reload-unreload'}) eq 'ARRAY') {
+				ref($saveStop->{$c}->{'reload-unreload'}) eq 'ARRAY')
+			{
 				# should not happen ?
 				@stopFunctions = @{$saveStop->{$c}->{'reload-unreload'}};
 				$stopFunctionsType = "Unload";
@@ -1983,9 +1990,10 @@ sub getAllHooksRc ($) {
 	# save the stop functions
 	$_c->{'stop'} = $cs;
 
-	return ("$loadHooksRc\n",
-			  "$stopHooksRc" . "$hardCodedStopHooks\n" . "$startHooksRc" .
-			  "$hardCodedStartHooks\n");
+	return
+		("$loadHooksRc\n",
+		"$stopHooksRc" . "$hardCodedStopHooks\n" .
+		"$startHooksRc" . "$hardCodedStartHooks\n");
 }
 
 sub getReadsRc($) {
@@ -2067,7 +2075,7 @@ sub getReadsRc($) {
 			$reloadCommand =~ s/%o([\d]+)(\w)/$optionExports->[$1-1]->{$2}||""/seg;
 		}
 		$switchRc .= "$switchReadRc1$reloadCommand\n$switchReadRc2"
-		  if $cc->{'used'} >= 2;
+			if $cc->{'used'} >= 2;
 	}
 	return ($rc,$switchRc);
 }
@@ -2378,7 +2386,7 @@ GetOptions(
 	"variant=s%"  => $variants,
 	"set-locked=s%" => $setLockeds,
 	"pipe"        => \$pipe,
-   "print-rc3"   => \$printRc3,
+	"print-rc3"   => \$printRc3,
 	"install"       => \$install,
 	"force-install" => \$forceInstall,
 	"create-pack=s" => \$createPack,
@@ -2388,8 +2396,8 @@ GetOptions(
 	"com-mode"    => \$comMode,
 	"com-name=s"  => \$comName,
 	"fvwmscript"  => \$fvwmscript,
-	"only-site"	  => \$onlySite,
-	"only-user"	  => \$onlyUser,
+	"only-site"   => \$onlySite,
+	"only-user"   => \$onlyUser,
 	"config-center" => \$configCenter,
 	"set-minimal-reload=i" => \$setMinimalReload,
 	"no-cfg-cache" => \$noCfgCache,
@@ -2480,9 +2488,9 @@ if (defined $createPack) {
 	my $themesDir = "$workDir/$themesSubDir";
 	my $tarName = "$createPack-$version";
 	$tarName = $tarName . "_$packExtraVersion"
-	  if ("$packExtraVersion" ne "0" && $packExtraVersion !~ /^[.\d]$/);
+		if ("$packExtraVersion" ne "0" && $packExtraVersion !~ /^[.\d]$/);
 	$tarName = $packPrefix . "-" . $tarName
-	  if ("$packPrefix" ne "" && $packPrefix !~ /^[\w\d]$/);
+		if ("$packPrefix" ne "" && $packPrefix !~ /^[\w\d]$/);
 	my $tarDir = "$tmpDir/$tarName";
 	errDie("$tmpDir must exist for creating themes pack " .
 		"(see --tmp-dir option)") unless -d $tmpDir;
@@ -2517,9 +2525,9 @@ if (defined $expandFile) {
 
 if ($reset || $noCfgCache) {
 	unlink "$userDir/$cfgCacheFileName"
-	  if -f "$userDir/$cfgCacheFileName";
+		if -f "$userDir/$cfgCacheFileName";
 	unlink "$userDir/$currentThemeSubDir/$cfgCacheFileName"
-	  if -f "$userDir/$currentThemeSubDir/$cfgCacheFileName";
+		if -f "$userDir/$currentThemeSubDir/$cfgCacheFileName";
 }
 
 showThemeComponents($themes, $showComponents, $component, $fvwmscript,
@@ -2707,19 +2715,23 @@ sub comLoop {
 		if ($command =~ /^all-startup-stuff$/)
 		{
 			#--- themes-list
-			my $tlR = $self->getScriptThemeList($allThemes,
-															\@currentComponents,
-															\%componentToLoad,
-															$maxLength);
+			my $tlR = $self->getScriptThemeList(
+				$allThemes,
+				\@currentComponents,
+				\%componentToLoad,
+				$maxLength
+			);
 
 			#---- current-config
-			my $ccR = $self->getScriptCurrentConfig(\@currentComponents,
-																 \%componentToLoad,
-																 \%componentToLock,
-																 \%componentToDrop,
-																 \%optionToSet,
-																 \%variantToSet,
-																 $maxLength);
+			my $ccR = $self->getScriptCurrentConfig(
+				\@currentComponents,
+				\%componentToLoad,
+				\%componentToLock,
+				\%componentToDrop,
+				\%optionToSet,
+				\%variantToSet,
+				$maxLength
+			);
 
 			#---- settings-config
 			my $scR = getScriptSettingsConfig($settingsConfig,\%variantToSet);
@@ -2738,57 +2750,64 @@ sub comLoop {
 
 			#------- build the answer:
 			$return = 
-			  mergeScriptAnswer("$tlR\n$ccR\n$scR\n$currentSession\n$uptime\n$sL\n$scL",4);
+				mergeScriptAnswer("$tlR\n$ccR\n$scR\n$currentSession\n$uptime\n$sL\n$scL",4);
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^theme-components\s+(\d+)$/) {
 			my $index = $1 - 1;
 			my ($r1,$r2,$r3) =
-			  $self->getScriptComponentInfo($allThemes, $index,
-													  \@currentComponents,
-													  \%componentToLoad,
-													  $maxLength);
-
+				$self->getScriptComponentInfo(
+					$allThemes, $index,
+					\@currentComponents,
+					\%componentToLoad,
+					$maxLength
+				);
 			$return = mergeScriptAnswer("$r1\n$r2\n$r3",4);
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^current-config\s+(\d+)$/) {
 			my $index = $1;
 			my $l;
-			my $ccReturn = $self->getScriptCurrentConfig(\@currentComponents,
-																		\%componentToLoad,
-																		\%componentToLock,
-																		\%componentToDrop,
-																		\%optionToSet,
-																		\%variantToSet,
-																		$maxLength);
+			my $ccReturn = $self->getScriptCurrentConfig(
+				\@currentComponents,
+				\%componentToLoad,
+				\%componentToLock,
+				\%componentToDrop,
+				\%optionToSet,
+				\%variantToSet,
+				$maxLength
+			);
 			#----- current-comp-name
 			my ($ccnReturn1,$ccnReturn2,$ccnReturn3) =
-			  $self->getScriptCurrentCompName($index,\@currentComponents,
-														 \%componentToLoad,
-														 \%componentToLock,
-														 \%componentToDrop,
-														 \%optionToSet,
-														 \%variantToSet);
+				$self->getScriptCurrentCompName(
+					$index,\@currentComponents,
+					\%componentToLoad,
+					\%componentToLock,
+					\%componentToDrop,
+					\%optionToSet,
+					\%variantToSet
+				);
 
 			#------- build the answer:
-			$return = 
-			  mergeScriptAnswer("$ccReturn\n$ccnReturn1\n$ccnReturn2\n$ccnReturn3",
-									  4);
+			$return = mergeScriptAnswer(
+				"$ccReturn\n$ccnReturn1\n$ccnReturn2\n$ccnReturn3", 4
+			);
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^current-comp-name\s+(\d+)$/) {
 			my $index = $1;
 			my ($ccnReturn1,$ccnReturn2,$ccnReturn3) =
-			  $self->getScriptCurrentCompName($index,\@currentComponents,
-														 \%componentToLoad,
-														 \%componentToLock,
-														 \%componentToDrop,
-														 \%optionToSet,
-														 \%variantToSet);
-
-			$return = 
-			  mergeScriptAnswer("$ccnReturn1\n$ccnReturn2\n$ccnReturn3",4);
+				$self->getScriptCurrentCompName(
+					$index,\@currentComponents,
+					\%componentToLoad,
+					\%componentToLock,
+					\%componentToDrop,
+					\%optionToSet,
+					\%variantToSet
+				);
+			$return = mergeScriptAnswer(
+				"$ccnReturn1\n$ccnReturn2\n$ccnReturn3", 4
+			);
 		}
 		
 		#-------------------------------------------
@@ -2800,39 +2819,47 @@ sub comLoop {
 			my $theme;
 
 			#--- themes-list
-			my $tlReturn = $self->getScriptThemeList($allThemes,
-																  \@currentComponents,
-																  \%componentToLoad,
-																  $maxLength);
+			my $tlReturn = $self->getScriptThemeList(
+				$allThemes,
+				\@currentComponents,
+				\%componentToLoad,
+				$maxLength
+			);
 				
 			#---- theme-components
 			my ($tcReturn1,$tcReturn2,$tcReturn3) =
-			  $self->getScriptComponentInfo($allThemes, $tcIndex,
-													  \@currentComponents,
-													  \%componentToLoad,
-													  $maxLength);
+				$self->getScriptComponentInfo(
+					$allThemes, $tcIndex,
+					\@currentComponents,
+					\%componentToLoad,
+					$maxLength
+				);
 
 			#---- current-config
-			my $ccReturn = $self->getScriptCurrentConfig(\@currentComponents,
-																		\%componentToLoad,
-																		\%componentToLock,
-																		\%componentToDrop,
-																		\%optionToSet,
-																		\%variantToSet,
-																		$maxLength);
-
+			my $ccReturn = $self->getScriptCurrentConfig(
+				\@currentComponents,
+					\%componentToLoad,
+					\%componentToLock,
+					\%componentToDrop,
+					\%optionToSet,
+					\%variantToSet,
+					$maxLength
+				);
 			#----- current-comp-name
 			my ($ccnReturn1,$ccnReturn2,$ccnReturn3) =
-			  $self->getScriptCurrentCompName($ccnIndex,\@currentComponents,
-														 \%componentToLoad,
-														 \%componentToLock,
-														 \%componentToDrop,
-														 \%optionToSet,
-														 \%variantToSet);
-
+				$self->getScriptCurrentCompName(
+					$ccnIndex, \@currentComponents,
+					\%componentToLoad,
+					\%componentToLock,
+					\%componentToDrop,
+					\%optionToSet,
+					\%variantToSet
+				);
 			#------- build the answer:
 			$return = 
-			  mergeScriptAnswer("$tlReturn\n$tcReturn1\n$ccReturn\n$ccnReturn1\n$ccnReturn2\n$ccnReturn3",4);
+				mergeScriptAnswer(
+					"$tlReturn\n$tcReturn1\n$ccReturn\n$ccnReturn1\n$ccnReturn2\n$ccnReturn3", 4
+				);
 		}
 
 		# -------------------------------------------------
@@ -2848,7 +2875,7 @@ sub comLoop {
 				my $i = 0;
 				my @tmp = @currentComponents;
 				foreach (@tmp) {
-				 	splice @currentComponents, $i, 1
+					splice @currentComponents, $i, 1
 						if (! defined $self->{'cc'}->{$_} && $_ eq $comp);
 					$i++;
 				}
@@ -2885,7 +2912,7 @@ sub comLoop {
 			my $cc;
 			if (defined $self->{'cc'}->{$comp}) { 
 				my $cc = $self->getComponentCfg($comp);
-		 		if (! defined $componentToLoad{$comp}) {
+				if (! defined $componentToLoad{$comp}) {
 					if (defined $componentToLock{$comp}) {
 						delete $componentToLock{$comp};
 					} else {
@@ -2911,7 +2938,7 @@ sub comLoop {
 			my $cc;
 			if (defined $self->{'cc'}->{$comp}) { 
 				my $cc = $self->getComponentCfg($comp);
-		 		if (! defined $componentToDrop{$comp}) {
+				if (! defined $componentToDrop{$comp}) {
 					if (defined $componentToDrop{$comp}) {
 						delete $componentToDrop{$comp};
 					} else {
@@ -3109,11 +3136,12 @@ sub comLoop {
 			}
 			$list =~ s/\|$//;
 
-			my $ol = $self->getScriptOptionsVariants($theme,$comp,$o,
-																  \%optionToSet,
-																  \%variantToSet,
-																  $maxLengthOpt);
-
+			my $ol = $self->getScriptOptionsVariants(
+				$theme, $comp, $o,
+				\%optionToSet,
+				\%variantToSet,
+				$maxLengthOpt
+			);
 			$return = mergeScriptAnswer("$i\n$type\n$list\n$ol",4);
 			#print STDERR $return ."\n";
 		}
@@ -3156,7 +3184,7 @@ sub comLoop {
 			unlink "$userDir/$cfgCacheFileName"
 				if -f "$userDir/$cfgCacheFileName";
 			unlink "$userDir/$currentThemeSubDir/$cfgCacheFileName"
-			  if -f "$userDir/$currentThemeSubDir/$cfgCacheFileName";
+				if -f "$userDir/$currentThemeSubDir/$cfgCacheFileName";
 			$self = Fvwm::ThemeCfg->new('current', 'current', $fresh);
 			$allThemes = getAllThemes();
 			$tmp = $self->{$componentKey};
@@ -3175,9 +3203,13 @@ sub comLoop {
 			my $o = $3-1;
 			
 			my $r1 = getScriptSettingsConfig($settingsConfig,\%variantToSet);
-			my $r2 = $self->getScriptOptionsVariants($theme,$comp,$o,\%optionToSet,
-														 \%variantToSet, $maxLengthOpt);
-			$return = mergeScriptAnswer("$r1\n$r2",4);
+			my $r2 = $self->getScriptOptionsVariants(
+				$theme, $comp, $o,
+				\%optionToSet,
+				\%variantToSet,
+				$maxLengthOpt
+			);
+			$return = mergeScriptAnswer("$r1\n$r2", 4);
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^settings-config$/) {
@@ -3191,8 +3223,9 @@ sub comLoop {
 			$isSet = 1 
 				if defined $variantToSet{"default/$settingsConfig->[$1-1]->{comp}"};
 			my $r3 = $isSet;
-			my $r4 = $self->getScriptOptionsVariants('default',$r2,$1,\%optionToSet,
-														 \%variantToSet, $maxLengthOpt);
+			my $r4 = $self->getScriptOptionsVariants(
+				'default', $r2, $1, \%optionToSet,
+				 \%variantToSet, $maxLengthOpt);
 			$return = mergeScriptAnswer("$r1\n$r2\n$r3\n$r4",4);
 		}
 		#-----------------------------------------------------------------------
@@ -3274,11 +3307,11 @@ sub comLoop {
 					}
 				}
 				($currentSession,$sessionList,$uptime) = sessionInfo();
-				 $i = 0;
-				 foreach (@$sessionList) {
-				 	$i++;
+				$i = 0;
+				foreach (@$sessionList) {
+					$i++;
 					$return = $i if $_ eq $opt[1];
-				 }
+				}
 			}
 		}
 		# --------------------------
@@ -3376,7 +3409,7 @@ sub comLoop {
 			unlink "$userDir/$cfgCacheFileName"
 				if -f "$userDir/$cfgCacheFileName";
 			unlink "$userDir/$currentThemeSubDir/$cfgCacheFileName"
-			  if -f "$userDir/$currentThemeSubDir/$cfgCacheFileName";
+				if -f "$userDir/$currentThemeSubDir/$cfgCacheFileName";
 			$self = Fvwm::ThemeCfg->new('current', 'current', 1);
 			$allThemes = getAllThemes();
 			$tmp = $self->{$componentKey};
@@ -3443,10 +3476,11 @@ sub getOptionIndex {
 
 	my $values = $optionEntry->{'value'};
 	my $index = 
-	  $optionEntry->{'current'} || ($optionEntry->{'default'} || 1);
+		$optionEntry->{'current'} || ($optionEntry->{'default'} || 1);
 	# see if $comp@$theme is "current"
 	if (defined $CC->{$comp}->{'theme'} && 
-		 $CC->{$comp}->{'theme'} eq $theme) {
+		$CC->{$comp}->{'theme'} eq $theme)
+	{
 		my $OptE = $CC->{$comp}->{'option'}->[$o];
 		$index = $OptE->{'current'} || ($OptE->{'default'} || 1);
 		# if not see if we have a memeory
@@ -3454,8 +3488,9 @@ sub getOptionIndex {
 		my $cm = $_core->{'memory'}->{$theme}->{$comp};
 		my $mOptions = $cm->{'option'};
 		if (time() - $cm->{'time'} <= 6 * 30 * 24 * 60 * 60 &&
-			 ref($mOptions) eq 'ARRAY' && 
-			 defined $mOptions->[$o]->{'current'}) {
+			ref($mOptions) eq 'ARRAY' && 
+			defined $mOptions->[$o]->{'current'})
+		{
 			$index = $mOptions->[$o]->{'current'}
 		}
 	}
@@ -3479,13 +3514,15 @@ sub getVariantIndex {
 
 	my $index = $cc->{'current'} || $cc->{'default'};
 	if (defined $CC->{"$comp"}->{'theme'} && 
-		 $CC->{"$comp"}->{'theme'} eq $theme) {
+		$CC->{"$comp"}->{'theme'} eq $theme)
+	{
 		$index = $CC->{"$comp"}->{'current'} || $index;
 		# if not see if we have a memory
 	} elsif (defined $_core->{'memory'}->{"$theme"}->{"$comp"}) {
 		my $cm = $_core->{'memory'}->{$theme}->{"$comp"};
 		if (time() - $cm->{'time'} <= 6 * 30 * 24 * 60 * 60 &&
-			 $cm->{'current'}) {
+			$cm->{'current'})
+		{
 			$index = $cm->{'current'};
 		}
 	}
@@ -3613,8 +3650,8 @@ sub getScriptThemeList($$$$$) {
 		foreach (@$components) {
 			my $used0 = 0;
 			$used0 = 1 if isArrayElement($currentComponents, $_) &&
-			  defined $self->{'cc'}->{$_} &&
-				 ($self->getComponentCfg($_)->{$themeKey} || "") eq $theme;
+				defined $self->{'cc'}->{$_} &&
+					($self->getComponentCfg($_)->{$themeKey} || "") eq $theme;
 			$used ||= $used0;
 		}
 		my $key;
@@ -3659,10 +3696,10 @@ sub getScriptComponentInfo($$$$$) {
 		my $set = 0;
 		my $unset = 0;
 		my $used = isArrayElement($currentComponents, $_) &&
-		  defined $self->{'cc'}->{$_} &&
-			 ($self->getComponentCfg($_)->{$themeKey} || "") eq $theme;
+			defined $self->{'cc'}->{$_} &&
+				($self->getComponentCfg($_)->{$themeKey} || "") eq $theme;
 		$set = 1 if defined $componentToLoad->{$_} &&
-		  $componentToLoad->{$_} eq $theme;
+			$componentToLoad->{$_} eq $theme;
 		$unset = 1 if defined $componentToLoad->{$_} && !$set;
 		$l = $maxLength - length($_);
 		$l = 1 if $l < 1;
@@ -3717,7 +3754,7 @@ sub getScriptCurrentConfig($$$$$$$$) {
 			$set = 1;
 			$theme = $componentToLoad->{$_};
 			$setOrLock = "Lock: " 
-			  if (defined $componentToLock->{$_} && 
+				if (defined $componentToLock->{$_} &&
 					$componentToLock->{$_} == 1);
 		} elsif (defined $componentToDrop->{$_}) {
 			$set = -1;
@@ -3730,11 +3767,11 @@ sub getScriptCurrentConfig($$$$$$$$) {
 		$l = $maxLength - length($usedString);
 		$l = 1 if $l < 1;
 		$stateString = " " x $l . $setOrLock . "$componentToLoad->{$_}" 
-		  if $set == 1;
+			if $set == 1;
 		$stateString = " " x $l . "Drop it!" 
-		  if $set == -1;
+			if $set == -1;
 		$stateString = " " x $l . $setOrLock
-		  if $set == 2;
+			if $set == 2;
 		my $l1 = $maxLength - 3 - length($stateString) + $l;
 		$l1 = 1 if $l1 < 1;
 		if ($set == 1) {
@@ -3776,7 +3813,7 @@ sub getScriptCurrentConfig($$$$$$$$) {
 		$l = $maxLength - length($_);
 		$l = 1 if $l < 1;
 		$return .= "$_" . " " x $l . $usedString . $stateString .
-		  $propertiesStr . "|";
+			$propertiesStr . "|";
 	}
 	$return =~ s/\|$//;
 	return $return;
@@ -3804,7 +3841,7 @@ sub getScriptCurrentCompName($$$$$$$$) {
 	my $dd = [];
 	my $i = 1;
 	my ($comp,$theme,$hasProperties,$drop,$set,$lock) = 
-	  ("","","0","0","0","0");
+		("", "", "0", "0", "0", "0");
 	foreach (@$currentComponents) {
 		next if $_ eq "settings";
 		if ($i == $index) {
@@ -3878,7 +3915,7 @@ sub getScriptSettingsConfig($$) {
 		my $l = 26 - length($config->{'name'});
 		$l = 1 if $l <= 0;
 		$return .= $config->{'name'} . " "x$l . "U: " .
-		  $config->{'current'};
+			$config->{'current'};
 		if (defined $variantToSet->{"default/$config->{comp}"}) {
 			my $j = $variantToSet->{"default/$config->{comp}"};
 			my $themeCfg = new Fvwm::ThemeCfg('default');
@@ -3924,17 +3961,18 @@ sub getScriptOptionsVariants($$$$$$$) {
 		$isSet = $optionToSet->{"$theme/$comp:$optFile"} 
 		if defined $optionToSet->{"$theme/$comp:$optFile"};
 		my $values = $optionEntry->{'value'};
-		$return = 
-		  variantsOptionsScriptList($values,$i,$isSet,$maxLengthOpt,$theme,$comp);
+		$return = variantsOptionsScriptList(
+			$values, $i, $isSet, $maxLengthOpt, $theme, $comp
+		);
 	}
 	elsif (ref($variants) eq 'ARRAY') {
 		my $i = getVariantIndex($self,$theme,$comp,@$variants);
 		my $isSet = -1;
 		$isSet = $variantToSet->{"$theme/$comp"} 
 		if defined $variantToSet->{"$theme/$comp"};
-		$return = 
-		  variantsOptionsScriptList($variants,$i,$isSet,$maxLengthOpt,
-											 $theme,$comp);
+		$return = variantsOptionsScriptList(
+			$variants, $i, $isSet, $maxLengthOpt, $theme, $comp
+		);
 	}
 	elsif (ref($contains) eq 'ARRAY' && defined $contains->[$o]) {
 		my $c = $contains->[$o];
@@ -3945,9 +3983,9 @@ sub getScriptOptionsVariants($$$$$$$) {
 			my $isSet = -1;
 			$isSet = $variantToSet->{"$theme/$comp/$c"}
 			if defined $variantToSet->{"$theme/$comp/$c"};
-			$return = 
-			  variantsOptionsScriptList($sVariants,$i,$isSet,$maxLengthOpt,
-												$theme,$comp);
+			$return = variantsOptionsScriptList(
+				$sVariants, $i, $isSet, $maxLengthOpt, $theme, $comp
+			);
 		}
 		$return .= "Drop This component";
 	}
@@ -3978,7 +4016,8 @@ sub variantsOptionsScriptList {
 		$name =~ s/\t/ /g;
 		#FIXME
 		if ($comp eq 'buttons' && $name =~ /\[/ && 
-			 ($theme eq 'multichoice' || $theme eq "nanogui")) {
+			($theme eq 'multichoice' || $theme eq "nanogui"))
+		{
 			$name =~ s/Options/O/;
 			$name =~ s/Maximize/M/;
 			$name =~ s/Iconify/I/;
@@ -3994,7 +4033,7 @@ sub variantsOptionsScriptList {
 			my $tmp = $name;
 			my @t = split(/\[|\]/,$name);
 			$name = $t[0] . " " x ($cst1 - length($t[0]))."[" . 
-			  $t[1] . "]" ." " x ($cst2 - length($t[1])).$t[2];
+				$t[1] . "]" ." " x ($cst2 - length($t[1])).$t[2];
 			$name =~ s/\[ \]/\//g;
 			$max = 34;
 			#$usedS = "U";
@@ -4068,7 +4107,7 @@ END {
 
 			unlink($lockFifo) if -p "$lockFifo";
 			unlink($inFifo) if -p "$inFifo";
-		  	if ($comPid) {
+			if ($comPid) {
 				kill(9, $comPid);
 				$message .= "\tkilling FvwmScript-ThemesCenter";
 			}

@@ -38,8 +38,9 @@ Style "SystemInfo*"            Icon norm/information.xpm,      MiniIcon mini/inf
 Style "Tk man"                 Icon norm/help.xpm,             MiniIcon mini/help.xpm
 Style "Visual Tcl"             Icon norm/todo.xpm,             MiniIcon mini/todo.xpm
 
-Style "amaya*"                 Icon norm/www.xpm,              MiniIcon mini/www.xpm
 Style "AcroRead"               Icon norm/viewer.xpm,           MiniIcon mini/viewer.xpm
+Style "adsl-config"            Icon norm/network.xpm,          MiniIcon mini/network.xpm
+Style "amaya*"                 Icon norm/www.xpm,              MiniIcon mini/www.xpm
 Style "Appointment"            Icon norm/clock.xpm,            MiniIcon mini/clock.xpm
 Style "asWedit*"               Icon norm/editor.xpm,           MiniIcon mini/editor.xpm
 Style "bitmap*"                Icon norm/image-processor.xpm,  MiniIcon mini/image-processor.xpm
@@ -51,7 +52,6 @@ Style "Dayview"                Icon norm/clock.xpm,            MiniIcon mini/clo
 Style "Dialogue"               Icon norm/www.xpm,              MiniIcon mini/www.xpm
 Style "Display"                Icon norm/image-viewer.xpm,     MiniIcon mini/image-viewer.xpm
 Style "dosemu*"                Icon norm/todo.xpm,             MiniIcon mini/todo.xpm
-Style "Image Viewer*"          Icon norm/image-viewer.xpm,     MiniIcon mini/image-viewer.xpm
 Style "emacs"                  Icon norm/gnu.xpm,              MiniIcon mini/gnu.xpm
 Style "Explorer"               Icon norm/file-manager.xpm,     MiniIcon mini/file-manager.xpm
 Style "Fractine"               Icon norm/science.xpm,          MiniIcon mini/science.xpm
@@ -65,6 +65,8 @@ Style "gifview"                Icon norm/image-viewer.xpm,     MiniIcon mini/ima
 Style "GNUplot"                Icon norm/science.xpm,          MiniIcon mini/science.xpm
 Style "GV"                     Icon norm/ghostview.xpm,        MiniIcon mini/ghostview.xpm
 Style "Help_popup"             Icon norm/help.xpm,             MiniIcon mini/help.xpm
+Style "Image Viewer*"          Icon norm/image-viewer.xpm,     MiniIcon mini/image-viewer.xpm
+Style "isdn-config"            Icon norm/network.xpm,          MiniIcon mini/network.xpm
 Style "ixset"                  Icon norm/todo.xpm,             MiniIcon mini/todo.xpm
 Style "Lynx"                   Icon norm/www.xpm,              MiniIcon mini/www.xpm
 Style "Manual Page*"           Icon norm/help.xpm,             MiniIcon mini/help.xpm
@@ -189,7 +191,7 @@ Style "about"                  Icon norm/information.xpm,      MiniIcon mini/inf
 Style "Fvwm*"                  Icon norm/utility.xpm,          MiniIcon mini/utility.xpm
 Style "FvwmConsole"            Icon norm/terminal-special.xpm, MiniIcon mini/terminal-special.xpm
 Style "FVWM Themes*"           Icon norm/themes.xpm,           MiniIcon mini/themes.xpm
-Style "FVWM Themes Global Feel"    Icon norm/configuration.xpm,    MiniIcon mini/configuration.xpm
+Style "FVWM Themes Global Feel" Icon norm/configuration.xpm,    MiniIcon mini/configuration.xpm
 Style "FVWM Themes Doc*"       Icon norm/help.xpm,             MiniIcon mini/help.xpm
 Style "FVWM Themes Menu*"      Icon norm/editor.xpm,           MiniIcon mini/editor.xpm
 Style "Color Selector"         Icon norm/colors.xpm,           MiniIcon mini/colors.xpm
