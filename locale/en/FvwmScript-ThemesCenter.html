@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html lang="en">
+<title>FVWM Themes Center Documentation</title>
+
+<h1 align=center>FVWM Themes Center Documentation</h1>
+<div id="abstract">
+<p>The <em>Themes Center</em> is a FvwmScript sample, which allows you to
+manage your themes configuration, general settings and FVWM Themes sessions.
+You can start it from a menu <em>Theme Management / Themes Center GUI</em>.
+</div>
+
+<h3>Contents</h3>
+<ol>
+	<li>Themes Selector</li>
+	<li>General Settings</li>
+	<li>FVWM Themes Sessions</li>
+	<li>Miscellaneous</li>
+	<li>Bugs & Questions</li>
+</ol>
+
+<h3>1. Themes Selector</h3>
+
+<p>There is a list of all found themes at the top left. When you select one
+of these themes the list of the components of this theme are displayed at
+the top right. Then, you can either select all components of this theme
+using the left <em>Set</em> button, only the look components using the
+button <em>Look</em>, or you can select only one component by selecting a
+component in the top right list and using the right <em>Set</em> button. You
+can get information on the theme by using the <em>README</em> button (other
+buttons are not yet implemented).
+
+
+<p>Your currently used configuration and all changes you are doing using the
+Themes Selector are reflected in the bottom text list. The first column
+lists all components, the second column displays the theme, of which the
+component is used, and the third column (empty on the start) displays the
+new set theme for this component if different from the currently used one
+(setting a new component is done using the method explained in the paragraph
+above). Finally, the last column may contain <em>Var</em>, <em>Opt</em> or
+<em>V/O</em>, which indicates that the component of the theme (the used one
+or the set one) has variants or options.
+
+
+<p>If a component has variants or options you can modify them by selecting
+the component (in the bottom list) and clicking the <em>Properties</em>
+button. Moreover, you can restore the used theme of the component (unset
+your component theme change) using the <em>Restore</em> button, and you can
+lock the component (so that "load all" for a theme will ignore this
+component) using the <em>Lock</em> button. The <em>Drop</em> button is not
+yet implemented.
+
+
+<p>Now to apply your changes, you have to use the <em>Apply</em> button at
+the bottom. The <em>Refresh</em> button is similar to the <em>Apply</em> in
+that the entire current configuration is reloaded, but your changes are not
+applied. The <em>Update</em> button just rebuilds the lists used in the the
+Themes Selector configuration; this is useful if you made changes in
+components using other tools, like as the <em>Theme Management</em> menu or
+using <em>fvwm-themes-config</em> from a command line.
+
+
+<h3>2. General Settings</h3>
+
+<p>The <em>General Settings</em> tool enables to do the same job that with
+the <em>Theme Management -> current -> settings -></em> sub-menu or
+equivalent form-based and gtk-based ThemeSettings samples. The top field
+list represents your used and set configuration. To modify a setting, select
+one component and then a field list will appear below so that you can choose
+another variant for this component. All buttons at the bottom work like in
+the <em>Themes Selector</em> tool screen.
+
+
+<p>Important Note: Clicking on the <em>Apply</em> applies changes in both
+<em>Themes Selector</em> and <em>General Settings</em> tool screens.
+
+
+<h3>3. FVWM Themes Sessions</h3>
+
+<p>FVWM Themes has its own session concept. See the fvwm-themes-start manual
+page and the FAQ for details on this. This is useful to run different FVWM
+Themes configurations. The GUI seems really intuitive (there is already a
+mini doc in it), so we will not go further.
+
+
+<p>However, here are some tips showing how sessions can be useful. If you
+want to make a fast test without forgetting your current configuration, add
+a session named <em>test</em> (or reuse the existing <em>test</em> session),
+and define your current (usually <em>main</em>) session configuration for
+it. After defining <em>test</em> session as described, click on <em>Apply</em>.
+Now, you can use the <em>Themes Selector</em> and the <em>General
+Settings</em> tools freely without modifying your main configuration. You
+can always return to your <em>main</em> session, restoring the previous
+configuration, or, if you prefer, you can update your <em>main</em>
+configuration from the current <em>test</em> configuration using the same
+method as described above.
+
+
+<h3>4. Miscellaneous</h3>
+
+<p>The Script has a few options, it is run as follows from the <em>Themes
+Management</em> menu:
+
+<blockquote>
+  FvwmScript FvwmScript-ThemesCenter
+    --text-colorset 34 --viewer-colorset 33
+</blockquote>
+
+<p>I.e., colorset 34 is used for the field list or text area and colorset 33
+is used for a help line (and in addition any FvwmScript sample uses colorset
+36 for its main colors). The only other option is --lang xx, where xx is the
+first 2 letters of the unix LANG, like "ru_RU.koi8r". By default, the LANG
+is set to the environment variable $LANG or "en". The currently supported
+lang values are en, fr and ru.
+
+
+<h3>5. Bugs & Questions</h3>
+
+<p>Report any bugs to:
+<a href="mailto:fvwm-themes-devel@lists.sourceforge.net">
+fvwm-themes-devel@lists.sourceforge.net</a>.
+
+<p>Questions can be posted to:
+<a href="mailto:fvwm-themes-users@lists.sourceforge.net">
+fvwm-themes-users@lists.sourceforge.net</a>.

@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html lang="fr">
+<title>Documentation du Themes Center</title>
+
+<h1 align=center>Documentation du Themes Center</h1>
+<div id="abstract">
+<p>Le <em>Thèmes Center</em> est un FvwmScript qui vous permet de sélectionner
+vos thèmes, de modifier votre configuration générale et de gérer vos session
+FVWM Themes. Vous pouvez le lancer via le menu <em>Themes Management / Themes
+Center GUI</em>.</div>
+
+<h3>Table des Matières</h3>
+<ol>
+	<li>Sélecteur de Thèmes</li>
+	<li>Configuration Générale</li>
+	<li>Sessions FVWM Themes</li>
+	<li>Divers</li>
+	<li>Bugs & Support</li>
+</ol>
+
+<h3>1. Sélecteur de Thèmes</h3>
+
+<p>La liste de tous les thèmes se trouve en haut à gauche. Si vous
+sélectionner l'un d'entre eux la liste des composantes de ce thème est
+affichée en haut à droite. Alors, vous pouvez ou bien sélectionner toutes
+les composantes d'un thème en utilisant le bouton <em>Sélectionner</em> de
+gauche, ou bien sélectionner seulement les composantes de type Look en
+utilisant le bouton <em>Le Look</em>, ou bien vous pouvez sélectionner une
+seule composantes en sélectionnant la composant et en utilisant le bouton
+<em>Sélectionner</em> de droite. Vous pouvez avoir des informations sur un
+thème en utilisant le bouton <em>LisezMoi</em> (les autres boutons de cette
+ligne ne fonctionnent pas encore).
+
+
+<p>Votre configuration courante et tous les changements effectués sont
+reflétés dans la liste que l'on voit en bas. La première colonne donne la
+liste de toutes les composantes, la deuxième colonne vous indique quelle
+thème est utilisé pour la composante et la troisième colonne (vide lors du
+démarrage du Script) vous indique les changements que vous avez effectués et
+qui n'ont pas été encore appliqués. Finalement, la dernière colonne peut
+contenir <em>Var</em>, <em>Opt</em> ou <em>V/O</em> ce qui indique que la
+composante du thème (Courant ou celui que vous avez sélectionner) a des
+options ou des variantes.
+
+
+<p>Si une composante a des variantes ou des options vous pouvez les modifier
+en la sélectionnant (avec la liste du bas) et en utilisant le bouton
+<em>Propriétés</em> (à droite de la liste). De plus, vous pouvez annuler vos
+changements avec le bouton <em>Rétablir</em>, vous pouvez bloquer une
+composante en utilisant le bouton <em>bloquer</em> (ainsi si vous
+sélectionner toutes les composantes d'un thème les composantes bloquées ne
+sont pas affectées). Le bouton <em>Enlever</em> n'est pas encore implémenté.
+
+
+<p>Maintenant, pour appliquer vos changement utilisez le bouton
+<em>Appliquer</em>. Le bouton <em>Rafréchir</em> est similaire au bouton
+<em>Appliquer</em> dans le sens que la configuration est complètement
+rechargée, mais vos changements ne sont pas appliqués. Le bouton <em>Mise à
+Jour</em> reconstruit les listes du Theme Center; ceci est utile si vous
+avez appliqué des changements avec un autre moyen de configuration comme le
+menu <em>Theme Management</em> ou en utilisant <em>fvwm-themes-config</em>
+en ligne de commande.
+
+
+<h3>2. Configuration Générale</h3>
+
+Vous pouvez avec cet outil de configuration effectuer les mêmes changements
+qu'avec le <em>Theme Management -> current -> settings -></em> sous menu
+(vous pouvez aussi utiliser la <em>Form</em> et ou le <em>Gtk</em>
+ThemeSettings accessible via le menu <em>Fvwm Configuration</em>). La liste
+du haut vous indique votre configuration (actuelle et future). Pour modifier
+votre configuration sélectionnez une composante, et ainsi la liste des choix
+possibles pour cette composante vous sera proposée. Les autres boutons (en
+particuliers ceux du bas) fonctionnent exactement comme pour le
+<em>Sélecteur de Thème</em>.
+
+<p>Note Importante: Si vous utilisez <em>Appliquer</em> les changements
+serons appliqués pour les deux outils de configurations, le <em>Sélecteur de
+Thèmes</em> et la <em>Configuration Générale</em>.
+
+
+<h3>3. Sessions FVWM Themes</h3>
+
+<p>FVWM Themes a son propre concept de <em>Session</em>. Ceci est utile pour
+pouvoir utiliser différente configuration avec FVWM Themes. Pour en savoir
+plus consultez la page de manuel de fvwm-themes-start. Cet outil de
+configuration a déjà une mini aide intégrée et est très simple à utiliser.
+
+<p>Plutôt que des explications générales donnons un exemple d'utilisation.
+Si vous voulez tester une configuration sans modifier votre configuration
+courante, créez une session <em>test</em> (ou réutilisez la si vous l'avez
+déjà crée) et utilisez votre configuration courante (en général
+<em>main</em>). Après avoir crée <em>test</em> cliquez sur
+<em>Appliquer</em>. Alors, vous pouvez utiliser librement le Sélecteur de
+Thèmes et la Configuration Générale sans modifier votre configuration
+<em>main</em>. Vous pouvez ensuite toujours revenir à votre session
+<em>main</em> ou bien si la nouvelle configuration <em>test</em> vous plais
+vous pouvez éditer votre configuration <em>main</em> pour qu'elle devienne
+votre configuration par défaut.
+
+<h3>4. Divers</h3>
+
+<p>Le Script a quelques options. Il est lancé comme suit par le menu
+<em>Theme Management</em>:
+
+<blockquote>
+  FvwmScript FvwmScript-ThemesCenter
+    --text-colorset 34 --viewer-colorset 33
+</blockquote>
+
+<p>I.e., la colorset 34 est utilisée pour les "List" et les "TextField" 
+et la colorset 33 est utilisée pour cette aide (la colorset 36 est utilisé
+pour le reste comme pour tous les Scripts de FVWM Themes). La seule
+autre option est --lang xx où xx sont les deux premières lettres d'une 
+LANG UNIX, comme "ru_RU.koi8r". Par défaut la variable d'environnement
+LANG ou "en" est utilisée. Les langues actuellement supportées sont
+en, fr et ru.
+
+
+<h3>5. Bugs & Questions</h3>
+
+<p>Si vous pouvez, envoyez un rapport sur les bugs que vous trouvez à:
+<a href="mailto:fvwm-themes-devel@lists.sourceforge.net">
+fvwm-themes-devel@lists.sourceforge.net</a>.
+
+<p>En ce qui concerne les questions:
+<a href="mailto:fvwm-themes-users@lists.sourceforge.net">
+fvwm-themes-users@lists.sourceforge.net</a>.

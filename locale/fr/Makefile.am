@@ -3,8 +3,8 @@
 configdir = @FT_LOCALE_DIR@/fr
 
 config_DATA = \
-	FvwmScript-ColorSelector.txt FvwmScript-ColorSelector.msg \
-	FvwmScript-ThemesCenter.txt FvwmScript-ThemesCenter.msg \
+	FvwmScript-ColorSelector.html FvwmScript-ColorSelector.msg \
+	FvwmScript-ThemesCenter.html FvwmScript-ThemesCenter.msg \
 	FvwmScript-ComponentProperties.msg \
 	FvwmScript-ConfigCenter.msg
 

@@ -12,6 +12,13 @@
 	* scripts/FvwmScript-ThemesCenter:
 	fixed when called without --text-colorset
 
+	* locale/{en,fr}/FvwmScript-ColorSelector.html:
+	* locale/{en,fr}/FvwmScript-ThemesCenter.html:
+	* locale/{en,fr}/Makefile.am:
+	use a new documentation format;
+	I initially thought about .xml extentions, but there are different
+	problems with most of browsers, .html solves this
+
 2000-11-29  olicha  <olivier.chapuis@free.fr>
 
 	* locale/{en,fr}/FvwmScript-ConfigCenter.msg:
