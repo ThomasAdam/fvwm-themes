@@ -1,5 +1,5 @@
 Title		{Select a Color using the Palletes}
-SelColor	{Selcted Color:}
+SelColor	{Selected Color:}
 Help		{Help}
 Ok		{OK}
 Cancel		{Cancel}

@@ -7,6 +7,11 @@
 	* scripts/Makefile.am:
 	renamed from FvwmScript-ThemeOptions to FvwmScript-ComponentProperties
 
+	* locale/en/FvwmScript-ColorSelector.msg:
+	* locale/ru/FvwmScript-ColorSelector.msg:
+	* locale/ru/Makefile.am:
+	translated ColorSelector to 'ru', this does not work because of fonts
+
 2000-11-28  olicha  <olivier.chapuis@free.fr>
 
 	* locale/{en,fr}/Makefile.am:
