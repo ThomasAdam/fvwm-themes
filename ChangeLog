@@ -4,6 +4,9 @@
 	* doc/Makefile.am:
 	added an example personal component
 
+	* themes/default/functions:
+	use ThisWindow
+
 2002-06-02  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings.cfg: 

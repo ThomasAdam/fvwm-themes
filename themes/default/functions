@@ -29,9 +29,9 @@ AddToFunc   FuncFvwmDeiconifyFocusAndWarp
 
 DestroyFunc FuncFvwmRestore
 AddToFunc   FuncFvwmRestore
-+ I WindowId "$w" (!Iconic !Shaded Maximized) Maximize    false
-+ I WindowId "$w" (!Iconic  Shaded          ) WindowShade false
-+ I WindowId "$w" ( Iconic                  ) Iconify     false
++ I ThisWindow (!Iconic !Shaded Maximized) Maximize    false
++ I ThisWindow (!Iconic  Shaded          ) WindowShade false
++ I ThisWindow ( Iconic                  ) Iconify     false
 
 DestroyFunc FuncFvwmDelete
 AddToFunc   FuncFvwmDelete
