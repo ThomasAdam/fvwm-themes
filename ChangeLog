@@ -18,6 +18,11 @@
 	* locale/ru/FvwmScript-ThemesCenter.html:
 	translated one more paragraph
 
+	* themes/default/functions:
+	* themes/default/functions-appbind:
+	add FuncFvwmConfirm shortcut function with 2 mandatory arguments;
+	use it in FuncFvwmQuitVerify instead of annoying FvwmForm-QuitVerify
+
 2001-07-23  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/Makefile.am:

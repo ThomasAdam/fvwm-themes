@@ -116,3 +116,8 @@ DestroyFunc FuncFvwmWithGtk
 AddToFunc   FuncFvwmWithGtk
 + I PipeRead `fvwm-config --supports-gtk && echo '$*' || \
 	echo 'FuncFvwmShowMessage "FVWM Error" "There is no GTK support in your FVWM.^nThe requested command is not executed."'`
+
+DestroyFunc FuncFvwmConfirm
+AddToFunc   FuncFvwmConfirm
++ I FvwmScript FvwmScript-Confirm --line2 `$0` --command `$1` \
+	`$2` `$3` `$4` `$5` `$6` `$7` `$8` `$9`
