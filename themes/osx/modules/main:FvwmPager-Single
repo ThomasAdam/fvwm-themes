@@ -15,6 +15,7 @@ AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
 
 DestroyModuleConfig FvwmPager-Single: *
 *FvwmPager-Single: Columns 1
+*FvwmPager-Single: Geometry +5000+5000
 
 *FvwmPager-Single: Colorset * 14
 *FvwmPager-Single: HilightColorset * 15

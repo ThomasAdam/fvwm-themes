@@ -52,17 +52,20 @@ DestroyModuleConfig FvwmButtons-WMaker*Applets*
 # Cd
 *FvwmButtons-WMakerCdApplets: Rows 1
 *FvwmButtons-WMakerCdApplets: Colorset 12
-# some version do not have the -s option
+# some version need a "--" options before the options ...
 *FvwmButtons-WMakerCdApplets: (Frame 1, Size 64 64, Colorset 12, \
-	Swallow "wmmount" 'Exec exec wmmount -s')
+	Swallow "wmmount" 'Exec exec wmmount -s -position +5000+5000')
 # an other mounter:
 # Swallow "mount" 'Exec exec  mount.app -n'
 *FvwmButtons-WMakerCdApplets: (Frame 1, Size 64 64, Colorset 12, \
-	Swallow "wmmixer" 'Exec exec  wmmixer -s')
+	Swallow "wmmixer" 'Exec exec  wmmixer -s -position +5000+5000')
 # an other mixer:
-# Swallow "mixer_app" 'Exec exec /usr/local/GNUstep/Apps/Mixer.app/Mixer'
+# Swallow "mixer_app" 'Exec exec /usr/local/GNUstep/Apps/Mixer.app/Mixer')
 *FvwmButtons-WMakerCdApplets: (Frame 1, Size 64 64, Colorset 12, \
-	Swallow "wmcdplay" 'Exec exec  wmcdplay -s')
+	Swallow "wmcdplay" 'Exec exec  wmcdplay -s -position +5000+5000')
+# maybe wmxmms ?
+#*FvwmButtons-WMakerCdApplets: (Frame 1, Size 64 64, Colorset 12, \
+#	Swallow "wmxmms" 'Exec exec  wmxmms -g +5000+5000')
 
 #-----------------
 # More

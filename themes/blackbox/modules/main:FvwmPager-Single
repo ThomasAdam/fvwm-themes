@@ -16,6 +16,7 @@ DestroyModuleConfig FvwmPager-Single: *
 *FvwmPager-Single: BalloonColorset * 16
 *FvwmPager-Single: WindowColorsets 1 2
 
+*FvwmPager-Single: Geometry +5000+5000
 *FvwmPager-Single: Columns 1
 *FvwmPager-Single: Font none
 *FvwmPager-Single: SmallFont -*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*

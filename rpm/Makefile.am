@@ -19,6 +19,7 @@ rpm: @PACKAGE@.spec
 	rpm_ver=`rpm --version | cut -d' ' -f3`; \
 	rh_srcdir=`awk 'BEGIN { print ('$$rpm_ver' >= 4.0? \
 		ENVIRON["HOME"]: "/usr/src") "/redhat/SOURCES" }'`; \
+	if [ ! -d $$rh_srcdir ]; then $$rh_srcdir="/usr/src/RPM/SOURCES"; fi; \
 	if [ ! -f $$tarball_full ]; then echo "No $$tarball"; exit -1; fi; \
 	echo ""; \
 	echo "==== Creating rpm from $$tarball, release $$release ===="; \
@@ -31,5 +32,5 @@ rpm: @PACKAGE@.spec
 		-e "s/%define c_p /&$$cparams  %define old_c_p /" \
 		-e "s/%define m_p /&$$mparams  %define old_m_p /" \
 	;
-	rpm -bb tmp-@PACKAGE@.spec
+	rpm -ba tmp-@PACKAGE@.spec --clean --target noarch
 	rm tmp-@PACKAGE@.spec

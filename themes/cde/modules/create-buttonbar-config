@@ -107,7 +107,7 @@ print OUTFILE $str;
 
 addButtonEntry(-1, 1,
 	"", #"$icondir/clock.xpm",
-	"Swallow xclock `Exec xclock -padding 5 -bg \$[bg.cs10] -fg \$[fg.cs10] -hd \$[shadow.cs13] -hl \$[hilight.cs13]`",
+	"Swallow xclock `Exec xclock -padding 5 -geometry +5000+5000 -bg \$[bg.cs10] -fg \$[fg.cs10] -hd \$[shadow.cs13] -hl \$[hilight.cs13]`",
 	"");
 addButtonEntry(-1, 2,
 	"$icondir/date.xpm",

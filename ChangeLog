@@ -1,4 +1,13 @@
-2000-10-05  migo  <migo@homemail.com>
+2000-11-06  olicha  <olivier.chapuis@free.fr>
+
+	* rpm/Makefile.am:
+	now we build noarch package and clean the rpm building tree
+
+	* themes/{blackbox,cde,default,luthien,olicha,osx}/*
+	Fixed swallowed app vs interactive placement
+
+
+2000-11-05  migo  <migo@homemail.com>
 
 	* INSTALL:
 	* README:
@@ -24,19 +33,19 @@
 	don't search .cfg files in default theme accept for theme.cfg;
 	now, "include ../theme/xxx.cfg" should be used, not theme/xxx.cfg
 
-2000-10-04  migo  <migo@homemail.com>
+2000-11-04  migo  <migo@homemail.com>
 
 	* themes/default/{menus,menus-user}:
 	several changes/updates
 
 	* TODO: updated
 
-2000-10-04  olicha  <olivier.chapuis@free.fr>
+2000-11-04  olicha  <olivier.chapuis@free.fr>
 
 	*  bin/fvwm-themes-script.in:
 	comment "use strict"
 	
-2000-10-04  migo  <migo@homemail.com>
+2000-11-04  migo  <migo@homemail.com>
 
 	* configure.in:
 	* NEWS:

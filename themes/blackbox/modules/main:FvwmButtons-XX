@@ -28,7 +28,8 @@ DestroyModuleConfig FvwmButtons-XX: *
 #*FvwmButtons-XX: ( \
 #	6x14+1+2, Colorset 17,\
 #	Swallow(Kill) "xdaliclock" `Exec exec xdaliclock -24 \
-#	-fn lucidasans-bold-10  -fg $[fg.cs13] -noseconds -transparent` \
+#	-fn lucidasans-bold-10  -fg $[fg.cs13] -noseconds -transparent \
+#	-geometry +5000+5000` \
 #)
 *FvwmButtons-XX: ( \
 	2x16+7+1, \
