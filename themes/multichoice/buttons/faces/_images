@@ -1,37 +1,38 @@
-system({{mkdir -p $FVWM_USERDIR/themes/current/images/auto-button}})
-system({{gzip -dc $CompRoot/images/{{FaceName}}.tar.gz | tar -C $FVWM_USERDIR/themes/current/images/auto-button -xf -}})
+define({{AutoButtonDir}}, FVWM_USERDIR/themes/current/images/auto-button)
+syscmd(test -d AutoButtonDir || mkdir AutoButtonDir)
+syscmd(gzip -dc CompRoot/images/FaceName.tar.gz | tar -C AutoButtonDir -xf -)
 
 Style "*" FvwmButtons  # button relief does not follow the state
 
 BoC AddButtonStyle BoN \
-BoC	ActiveUp   (Pixmap auto-button/options-activeup.xpm) \
-BoC	ActiveDown (Pixmap auto-button/options-activedown.xpm) \
-BoC	Inactive   (Pixmap auto-button/options-inactive.xpm)
+BoC	ActiveUp   (Pixmap auto-button/options-activeup.xpm   -- flat) \
+BoC	ActiveDown (Pixmap auto-button/options-activedown.xpm -- flat) \
+BoC	Inactive   (Pixmap auto-button/options-inactive.xpm   -- flat)
 BcC AddButtonStyle BcN \
-BcC	ActiveUp   (Pixmap auto-button/close-activeup.xpm) \
-BcC	ActiveDown (Pixmap auto-button/close-activedown.xpm) \
-BcC	Inactive   (Pixmap auto-button/close-inactive.xpm)
+BcC	ActiveUp   (Pixmap auto-button/close-activeup.xpm   -- flat) \
+BcC	ActiveDown (Pixmap auto-button/close-activedown.xpm -- flat) \
+BcC	Inactive   (Pixmap auto-button/close-inactive.xpm   -- flat)
 BmC AddButtonStyle BmN \
-BmC	ActiveUp   (Pixmap auto-button/maximize-activeup.xpm) \
-BmC	ActiveDown (Pixmap auto-button/maximize-activedown.xpm) \
-BmC	Inactive   (Pixmap auto-button/maximize-inactive.xpm)
+BmC	ActiveUp   (Pixmap auto-button/maximize-activeup.xpm   -- flat) \
+BmC	ActiveDown (Pixmap auto-button/maximize-activedown.xpm -- flat) \
+BmC	Inactive   (Pixmap auto-button/maximize-inactive.xpm   -- flat)
 BiC AddButtonStyle BiN \
-BiC	ActiveUp   (Pixmap auto-button/iconify-activeup.xpm) \
-BiC	ActiveDown (Pixmap auto-button/iconify-activedown.xpm) \
-BiC	Inactive   (Pixmap auto-button/iconify-inactive.xpm)
+BiC	ActiveUp   (Pixmap auto-button/iconify-activeup.xpm   -- flat) \
+BiC	ActiveDown (Pixmap auto-button/iconify-activedown.xpm -- flat) \
+BiC	Inactive   (Pixmap auto-button/iconify-inactive.xpm   -- flat)
 BsC AddButtonStyle BsN \
-BsC	ActiveUp   (Pixmap auto-button/stick-activeup.xpm) \
-BsC	ActiveDown (Pixmap auto-button/stick-activedown.xpm) \
-BsC	Inactive   (Pixmap auto-button/stick-inactive.xpm)
+BsC	ActiveUp   (Pixmap auto-button/stick-activeup.xpm   -- flat) \
+BsC	ActiveDown (Pixmap auto-button/stick-activedown.xpm -- flat) \
+BsC	Inactive   (Pixmap auto-button/stick-inactive.xpm   -- flat)
 BhC AddButtonStyle BhN \
-BhC	ActiveUp   (Pixmap auto-button/shade-activeup.xpm) \
-BhC	ActiveDown (Pixmap auto-button/shade-activedown.xpm) \
-BhC	Inactive   (Pixmap auto-button/shade-inactive.xpm)
+BhC	ActiveUp   (Pixmap auto-button/shade-activeup.xpm   -- flat) \
+BhC	ActiveDown (Pixmap auto-button/shade-activedown.xpm -- flat) \
+BhC	Inactive   (Pixmap auto-button/shade-inactive.xpm   -- flat)
 BlC AddButtonStyle BlN \
-BlC	ActiveUp   (Pixmap auto-button/titleleft-activeup.xpm) \
-BlC	ActiveDown (Pixmap auto-button/titleleft-activedown.xpm) \
-BlC	Inactive   (Pixmap auto-button/titleleft-inactive.xpm)
+BlC	ActiveUp   (Pixmap auto-button/titleleft-activeup.xpm   -- flat) \
+BlC	ActiveDown (Pixmap auto-button/titleleft-activedown.xpm -- flat) \
+BlC	Inactive   (Pixmap auto-button/titleleft-inactive.xpm   -- flat)
 BrC AddButtonStyle BrN \
-BrC	ActiveUp   (Pixmap auto-button/titleright-activeup.xpm) \
-BrC	ActiveDown (Pixmap auto-button/titleright-activedown.xpm) \
-BrC	Inactive   (Pixmap auto-button/titleright-inactive.xpm)
+BrC	ActiveUp   (Pixmap auto-button/titleright-activeup.xpm   -- flat) \
+BrC	ActiveDown (Pixmap auto-button/titleright-activedown.xpm -- flat) \
+BrC	Inactive   (Pixmap auto-button/titleright-inactive.xpm   -- flat)

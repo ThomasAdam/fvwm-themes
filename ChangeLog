@@ -1,3 +1,12 @@
+2001-05-02  migo  <migo@homemail.com>
+
+	* themes/multichoice/buttons.cfg:
+	* themes/multichoice/buttons/faces/_images:
+	* themes/multichoice/buttons/images/osx.tar.gz:
+	* themes/multichoice/buttons/images/nanogui.tar.gz:
+	* themes/multichoice/buttons/images/brushedmetal.tar.gz:
+	fixed generic button face _images and added 3 actual image sets
+
 2001-05-01  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
