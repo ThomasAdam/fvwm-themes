@@ -119,7 +119,8 @@ DestroyModuleConfig FvwmForm-Restart: *
 DestroyMenu MenuFvwmWindowManager
 AddToMenu   MenuFvwmWindowManager "Window Managers" Title
 + "&fvwm-themes-start%menu/windows.xpm%"	Restart fvwm-themes-start
-+ "&fvwm1%menu/windows.xpm%"			Restart fvwm -s
++ "&fvwm%menu/windows.xpm%"			Restart fvwm -s
++ "&fvwm2%menu/windows.xpm%"			Restart fvwm2 -s
 + "&fvwm95%menu/windows.xpm%"			Restart fvwm95 -s
 + "&AnotherLevel%menu/windows.xpm%"		Restart AnotherLevel
 + "&AnotherLevelUp%menu/windows.xpm%"		Restart AnotherLevelUp
@@ -129,6 +130,7 @@ AddToMenu   MenuFvwmWindowManager "Window Managers" Title
 + "&enlightenment%menu/windows.xpm%"		Restart enlightenment
 + "&flwm%menu/windows.xpm%"			Restart flwm
 + "&icewm%menu/windows.xpm%"			Restart icewm
++ "&kwm%menu/windows.xpm%"			Restart kwm
 + "&mwm%menu/windows.xpm%"			Restart mwm
 + "&olvwm%menu/windows.xpm%"			Restart olvwm
 + "&sawfish%menu/windows.xpm%"			Restart sawfish

@@ -6,6 +6,9 @@
 	* themes/*/fonts[/*]:
 	renamed BigLabel to LargeLabel
 
+	* themes/default/menus-programs:
+	added 2 WMs
+
 2001-07-05  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
