@@ -1,0 +1,59 @@
+DestroyModuleConfig FvwmButtons-XtMix: *
+*FvwmButtons-XtMix: Colorset 10
+
+*FvwmButtons-XtMix: Geometry 792x90+0-0
+*FvwmButtons-XtMix: Rows 11
+*FvwmButtons-XtMix: Columns 20
+*FvwmButtons-XtMix: Padding 0 0
+*FvwmButtons-XtMix: BoxSize smart
+
+*FvwmButtons-XtMix: (20x11, Container (Rows 12, Columns 20), Frame 0)
+
+*FvwmButtons-XtMix: (20x3, Container (Rows 1, Columns 20), Frame 0)
+*FvwmButtons-XtMix: (1x1, Icon module/isn_prev.xpm, Action 'GotoDesk -1 0 7', Frame -1)
+*FvwmButtons-XtMix: (18x1, Swallow(UseOld,Respawn) "FvwmIconMan" 'Module FvwmIconMan', NoSize, Padding 0 0, Frame -1)
+*FvwmButtons-XtMix: (1x1, Icon module/isn_next.xpm, Action 'GotoDesk 1 0 7', Frame -1)
+*FvwmButtons-XtMix: (End)
+
+*FvwmButtons-XtMix: (20x9, Container (Rows 1, Columns 20), NoSize, Frame 0, Padding 0 0)
+*FvwmButtons-XtMix: (6x1, Action(mouse 1) 'Menu MenuFvwmRoot Mouse c -102m', Container (Rows 1, Columns 15), Frame 3, Padding 0 0)
+*FvwmButtons-XtMix: (3x1, Id Logo, Icon module/fvwm-themes.xpm, Action (Mouse 1) FuncMenuAwolLogo, Action (mouse3) 'Menu MenuThemeAwolButtonChangeLogo Mouse c -102m', Frame -1, Padding 0 0)
+*FvwmButtons-XtMix: (9x1, Icon module/fvwm3.xpm, Action(mouse 1) 'Menu MenuFvwmRoot Mouse c -102m', Action (mouse 3) 'Menu MenuFvwmModules Mouse c -102m', Frame -1, Padding 0 0)
+*FvwmButtons-XtMix: (3x1, Title "2.4.x", Icon module/Pinky.xpm, Action(mouse 1) 'Menu MenuFvwmThemes Mouse c -102m', Action(mouse 3) 'Menu MenuFvwmConfiguration Mouse c -102m', Frame -1)
+#*FvwmButtons-XtMix: (2x1, Title "Tools", Icon module/mini-tools.xpm, Action 'Menu MenuFvwmPrograms Mouse c -102m', Frame -1, Back grey75)
+*FvwmButtons-XtMix: (End)
+*FvwmButtons-XtMix: (1x1, Container (Rows 2, Columns 1))
+*FvwmButtons-XtMix: (1x1, Title "Start", Icon module/mini-start.xpm, Action 'Restart', Frame 2, Back grey55, Padding 0 0)
+
+*FvwmButtons-XtMix: (1x1, Title "Lock", Icon module/mini-grab.xpm, Frame 2, Action FuncFvwmWmLock)
+*FvwmButtons-XtMix: (End)
+
+*FvwmButtons-XtMix: (4x1, Swallow(UseOld) "FvwmPager-Single" 'Module FvwmPager FvwmPager-Single * *', Frame -1)
+
+*FvwmButtons-XtMix: (2x1, Title "LOAD", Swallow(UseOld,Respawn) "xload" 'Exec xload -hl $$[shadow.cs13] -nolabel -bg $$[bg.cs13] -fg $$[fg.cs13] -update 5 -geometry -1500-1500' \
+Action(mouse 1) 'Exec xterm +sb -font 7x14 -bg $$[bg.cs35] -fg $$[fg.cs35] -T Top -n Top -e top', \
+Action(mouse 3) 'Exec tkps', Frame -1)
+
+*FvwmButtons-XtMix: (7x1, Container (Rows 1, Columns 9), Padding 0 0)
+*FvwmButtons-XtMix: (3x1, Container (Rows 2, Columns 4), Frame 0)
+*FvwmButtons-XtMix: (1x1,Title "isp", Icon module/mini-isp.xpm, Action  FuncFvwm3WWW)
+*FvwmButtons-XtMix: (1x1,Title "www", Icon 16x16/netscape.xpm, Action  FuncFvwmWWW)
+*FvwmButtons-XtMix: (1x1,Title "edit", Icon 16x16/editor.xpm, Action  FuncFvwmEditor)
+*FvwmButtons-XtMix: (1x1,Title "term", Icon 16x16/terminal.xpm, Action FuncFvwmTerminal)
+*FvwmButtons-XtMix: (1x1, Title "move", Icon 16x16/window-move.xpm, Action Move, Frame -1, Padding 0 0)
+*FvwmButtons-XtMix: (1x1, Title "size", Icon 16x16/window-resize.xpm, Action Resize, Frame -1, Padding 0 0)
+*FvwmButtons-XtMix: (1x1, Title "stick", Icon 16x16/window-stick.xpm, Action Stick, Back grey75, Frame -1, Padding 0 0)
+*FvwmButtons-XtMix: (1x1, Title "close", Icon 16x16/window-close.xpm, Action Close, Back grey60, Frame -1, Padding 0 0)
+*FvwmButtons-XtMix: (End)
+
+*FvwmButtons-XtMix: (6x1, Container (Rows 1, Columns 30), Frame 0)
+*FvwmButtons-XtMix: (8x1, Center, Swallow(UseOld) "xbiff" "Exec xbiff -bg $$[bg.cs13] -fg $$[fg.cs13] -geometry +5000+5000", Frame -1)
+*FvwmButtons-XtMix: (11x1, Center, Swallow (Kill) "XtMix" 'Exec xtmix -launch -lbg $$[bg.cs13]', Frame -1)
+*FvwmButtons-XtMix: (11x1, Center, Swallow (Kill) "FvwmApplet-DayClock" \
+		'FvwmScript FvwmApplet-DayClock 10 13', Frame -1)
+*FvwmButtons-XtMix: (End)
+
+*FvwmButtons-XtMix: (End)
+
+*FvwmButtons-XtMix: (End)
+*FvwmButtons-XtMix: (End)

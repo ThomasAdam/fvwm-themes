@@ -1,7 +1,7 @@
 FuncFvwmSetFont-ModuleWindowList FvwmIconMan Font \
 	 "-adobe-times-*-*-*-*-20-*"
 
-FuncFvwmSetFont-ModuleTips FvwmPager-Single: BalloonFont \
+FuncFvwmSetFont-ModuleTips FvwmPager-Single BalloonFont \
 	-*-fixed-medium-r-semicondensed-*-13-*
 FuncFvwmSetFont-ModuleTips FvwmPager-Desker BalloonFont \
 	-*-fixed-medium-r-semicondensed-*-13-*
@@ -17,7 +17,7 @@ FuncFvwmSetFont-ModuleSmallLabel FvwmPager-Single Font \
 FuncFvwmSetFont-ModuleSmallLabel FvwmPager-Desker Font \
 	"-*-lucida-medium-r-normal-sans-8-*"
 
-FuncFvwmSetFont-ModuleSmallLabel FvwmButtons-DaLo Font \
+FuncFvwmSetFont-ModuleSmallLabel FvwmButtons-XtMix Font \
 	 "-*-lucida-medium-r-normal-sans-8-*"
 
 FuncFvwmSetFont-ModuleSmallLabel FvwmButtons-Default Font \

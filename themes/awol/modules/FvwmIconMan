@@ -7,7 +7,7 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: FocusColorset	18
 *FvwmIconMan: FocusAndSelectColorset 20
 
-*FvwmIconMan: Title "   awol's customised button bar for Fvwm2000 -:- to boldly GNU..."
+*FvwmIconMan: Title "   awol's customised button bar for Fvwm2003 -:- to boldly GNU..."
 *FvwmIconMan: Resolution desk
 #*FvwmIconMan: Font -adobe-*chancery-*-*-*-*-24-*-*-*-*-*-*-*
 *FvwmIconMan: Font -adobe-times-*-*-*-*-20-*-*-*-*-*-*-*

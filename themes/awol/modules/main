@@ -31,11 +31,11 @@ AddToFunc   FuncFvwmReloadColorsModules
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Default
-+ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-DaLo
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-XtMix
 + I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
 + I KillModule FvwmWinList
 + I DestroyModuleConfig FvwmButtons-Default: *
-+ I DestroyModuleConfig FvwmButtons-DaLo: *
++ I DestroyModuleConfig FvwmButtons-XtMix: *
 + I DestroyModuleConfig FvwmPager-Single: *
 + I DestroyModuleConfig FvwmPager-Desker: *
 + I DestroyModuleConfig FvwmIconMan*
@@ -51,7 +51,7 @@ AddToFunc   FuncFvwmStopThemeModules
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Default
-+ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-DaLo
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-XtMix
 
 DestroyFunc FuncFvwmUnReloadThemeModules
 AddToFunc   FuncFvwmUnReloadThemeModules
@@ -59,14 +59,18 @@ AddToFunc   FuncFvwmUnReloadThemeModules
 # ----------------------------------------------------------------------------
 # Theme module menus
 
-DestroyMenu MenuFvwmStartThemeModules
-AddToMenu   MenuFvwmStartThemeModules "Awol Modules" Title
-+ "%menu/item.xpm%Standard &Buttons"    FuncFvwmButtonsSwitch FvwmButtons-Default
-+ "%menu/item.xpm%&Dali \& kLo Buttons" FuncFvwmButtonsSwitch FvwmButtons-DaLo
-+ "%menu/item.xpm%&Desker" FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '-7 7'
-#+ "" Nop
-#+ "%menu/choice-no.xpm%No normal icons" Style * NoIcon
-#+ "%menu/choice-yes.xpm%Normal icons"   Read themes/default/settings/iconstyles/style-icon-miniicon
+DestroyFunc FuncMenuFvwmStartThemeModules
+AddToFunc FuncMenuFvwmStartThemeModules
++ I DestroyMenu MenuFvwmStartThemeModules
++ I AddToMenu   MenuFvwmStartThemeModules "Awol Modules" Title
++ I + "%module/mini-shadowman-round.xpm%Standard &Buttons"    FuncFvwmButtonsSwitch FvwmButtons-Default
++ I + "%module/mini-sound.xpm%&XtMix Buttons" FuncFvwmButtonsSwitch FvwmButtons-XtMix
++ I + "%menu/item.xpm%&Desker" FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '0 7'
++ I + "" Nop
++ I + "%menu/choice-no.xpm%No normal icons" Style * NoIcon
++ I + "%menu/choice-yes.xpm%Normal icons"   Read themes/default/settings/iconstyles/style-icon-miniicon
++ I + "" Nop
+FuncMenuFvwmStartThemeModules
 
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "Awol Modules" Title
@@ -79,35 +83,69 @@ AddToMenu   MenuFvwmStopThemeModules "Awol Modules" Title
 DestroyFunc FuncFvwmButtonsSwitch
 AddToFunc   FuncFvwmButtonsSwitch
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Default
-+ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-DaLo
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-XtMix
 + I FvwmButtons $0
+
+# Modules menus configuration *added by awol@prepaidonline.com.au
+DestroyMenu MenuThemeAwolButtonChangeLogo
+AddToMenu MenuThemeAwolButtonChangeLogo "Switch to menu?" Title
++ "%module/mini-fvwm-themes.xpm%FVWM Themes" FuncAwolChangeButtonLogo fvwm-themes
++ "%module/mini-gnome.xpm%GNOME" FuncAwolChangeButtonLogo gnome
++ "%module/mini-shadowman-round.xpm%Red Hat" FuncAwolChangeButtonLogo shadowman-round-48
++ "%module/mini-Daemon.xpm%The devil!" FuncAwolChangeButtonLogo Daemon
++ "%module/todo.xpm%README!" FuncFvwmViewFile $./../README
+
+# ----------------------------------------------------------------------------
+# Modules menu functions added by awol@prepaidonline.com.au
+DestroyFunc FuncAwolChangeButtonLogo
+AddToFunc FuncAwolChangeButtonLogo
++ I SendToModule FvwmButtons ChangeButton Logo Icon module/$0.xpm
++ I FuncMenuAwolLogo-$0
+DestroyFunc FuncMenuAwolLogo-fvwm-themes
+AddToFunc FuncMenuAwolLogo-fvwm-themes
++ I DestroyFunc FuncMenuAwolLogo
++ I AddToFunc FuncMenuAwolLogo
++ I + I Menu MenuFvwmTheme-current/settings $$$$*
+DestroyFunc FuncMenuAwolLogo-gnome
+AddToFunc FuncMenuAwolLogo-gnome
++ I DestroyFunc FuncMenuAwolLogo
++ I AddToFunc FuncMenuAwolLogo
++ I + I Menu gnome-sys $$$$*
+DestroyFunc FuncMenuAwolLogo-shadowman-round-48
+AddToFunc FuncMenuAwolLogo-shadowman-round-48
++ I DestroyFunc FuncMenuAwolLogo
++ I AddToFunc FuncMenuAwolLogo
++ I + I Menu MenuFvwmPrograms $$$$*
+DestroyFunc FuncMenuAwolLogo-Daemon
+AddToFunc FuncMenuAwolLogo-Daemon
++ I DestroyFunc FuncMenuAwolLogo
++ I AddToFunc FuncMenuAwolLogo
++ I + I Menu MenuFvwmShells $$$$*
 
 # ----------------------------------------------------------------------------
 # Desktop names
-
-DesktopName -7 One more
-DesktopName -6 Furthest!
-DesktopName -5 Furtherer
-DesktopName -4 Further  
-DesktopName -3 Heaps Far
-DesktopName -2 Too Far  
-DesktopName -1 Root     
-DesktopName 0 WorkDesk  
-DesktopName 1 Internet  
+ 
+#DesktopName -7 One more
+#DesktopName -6 Furthest!
+#DesktopName -5 Furtherer
+#DesktopName -4 Further
+#DesktopName -3 Heaps Far
+#DesktopName -2 Too Far
+#DesktopName -1 Root
+DesktopName 0 WorkDesk
+DesktopName 1 Internet
 DesktopName 2 Play
 DesktopName 3 Misc
 DesktopName 4 Junk
 DesktopName 5 Crap
 DesktopName 6 More Crap
-DesktopName 7 Whatever 
-
+DesktopName 7 Whatever
+ 
 # ----------------------------------------------------------------------------
-# Modules configuration
-
+# Now the module configuration files
 Read $./styles
 Read $./FvwmButtons-Default
-Read $./FvwmButtons-DaLo
+Read $./FvwmButtons-XtMix
 Read $./FvwmPager
 Read $./FvwmIconMan
 Read $./fonts
-

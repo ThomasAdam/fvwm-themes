@@ -23,6 +23,10 @@
 	* themes/awol/colors:
 	replaced lightgreen (rgb:90/ee/90) with more pleasing rgb:50/a0/50
 
+	* themes/awol/modules*:
+	* themes/awol/images/module/*:
+	multiple updates to modules
+
 	* bin/fvwm-themes-config.in:
 	* debian/Makefile.am:
 	* themes/migo/background.cfg:

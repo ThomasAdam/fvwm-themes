@@ -1,4 +1,4 @@
-Style "FvwmButtons-Dalo" NoTitle, NoIcon, NoHandles, Sticky, WindowListSkip, \
+Style "FvwmButtons-XtMix" NoTitle, NoIcon, NoHandles, Sticky, WindowListSkip, \
 	BorderWidth 4, CirculateSkip, MouseFocus, TitleAtBottom
 Style "FvwmButtons-Default" NoTitle, NoIcon, NoHandles, Sticky, \
 	WindowListSkip, BorderWidth 4, CirculateSkip, MouseFocus, TitleAtBottom
@@ -11,7 +11,7 @@ Style "FvwmPager-Desker" NoHandles, NoTitle, Sticky, WindowListSkip, \
 
 DestroyFunc FuncFvwmDestroyModulesThemeStyle
 AddToFunc   FuncFvwmDestroyModulesThemeStyle
-+ I DestroyStyle "FvwmButtons-Dalo"
++ I DestroyStyle "FvwmButtons-XtMix"
 + I DestroyStyle "FvwmButtons-Default"
 + I DestroyStyle "FvwmIconMan"
 + I DestroyStyle "FvwmPager-Single"
