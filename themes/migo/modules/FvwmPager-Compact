@@ -18,6 +18,6 @@ DestroyModuleConfig FvwmPager-Compact: *
 *FvwmPager-Compact: Window3dBorders
 
 *FvwmPager-Compact: Label 0 Main
-*FvwmPager-Compact: Label 1 Internet
-*FvwmPager-Compact: Label 2 Devel
-*FvwmPager-Compact: Label 3 Games
+*FvwmPager-Compact: Label 1 FVWM
+*FvwmPager-Compact: Label 2 Work
+*FvwmPager-Compact: Label 3 Fun

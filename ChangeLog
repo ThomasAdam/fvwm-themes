@@ -16,6 +16,9 @@
 	* bin/fvwm-themes-images.in:
 	fixed warnings
 
+	* themes/migo/modules/FvwmPager-*:
+	update desktop names
+
 2002-10-30  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

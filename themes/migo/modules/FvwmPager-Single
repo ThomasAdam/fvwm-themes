@@ -44,6 +44,6 @@ DestroyModuleConfig FvwmPager-Single: *
 *FvwmPager-Single: Window3dBorders
 
 *FvwmPager-Single: Label 0 Main
-*FvwmPager-Single: Label 1 Internet
-*FvwmPager-Single: Label 2 Devel
-*FvwmPager-Single: Label 3 Games
+*FvwmPager-Single: Label 1 FVWM
+*FvwmPager-Single: Label 2 Work
+*FvwmPager-Single: Label 3 Fun
