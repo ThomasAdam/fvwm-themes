@@ -1,3 +1,29 @@
+2001-01-04  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	* themes/default/bindings:
+	* themes/*/buttons:
+	* themes/default/settings/stroke/*
+	* themes/default/themes.cfg
+	* themes/default/settings.cfg
+	Starting minimal reload implementation. For simplification put
+	the RemoveBindings, RemoveButtonsBindings and RemoveAllButtons
+	functions into start-stop functions.
+	Note: 1 - The minimal reload is really maximal: see the remarks
+	in the fvwm-themes-config.in function "getReloadDependency".
+	We must do something ...
+	2 - The stop function is not well implemented and so drop do
+	not use "minimal reload" ((un)lock work pretty well).
+	3 - You can switch between global and "minimal" theme switching
+	with the theme management menu (global is still the default):
+	reload and refresh -> Use minimal/global switching. But first
+	you need to make install, refresh the current theme and restart.
+
+	* bin/fvwm-themes-config.in:
+	added a --rm-cfg-cache option. Now we can refresh the current theme
+	and rebuild or not the config cache file in the theme management
+	menu.
+
 2000-01-03  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

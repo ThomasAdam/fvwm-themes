@@ -1,1 +1,5 @@
-# Just a memory file
+DestroyFunc FuncFvwmStartStroke
+AddToFunc   FuncFvwmStartStroke
+
+DestroyFunc FuncFvwmStopStroke
+AddToFunc   FuncFvwmStopStroke

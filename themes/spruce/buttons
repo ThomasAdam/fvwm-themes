@@ -30,8 +30,12 @@ Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Delete on click^nDestroy on doub
 Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Maximize:^n^tpartially on click^n^tfully on double click^n^tvertically on hold"
 Mouse 0 	6	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^nMouse 3 - Iconify toggle resource group"
 
-DestroyFunc FuncFvwmRemoveButtonsBindings
-AddToFunc   FuncFvwmRemoveButtonsBindings
+DestroyFunc FuncFvwmStartWindowButtons
+AddToFunc   FuncFvwmStartWindowButtons
+
+DestroyFunc FuncFvwmStopWindowButtons
+AddToFunc   FuncFvwmStopWindowButtons
++ I FuncFvwmRemoveAllButtons
 + I Mouse 1 	1	A	-
 + I Mouse 2	1	A	-
 + I Mouse 3	1	A       -

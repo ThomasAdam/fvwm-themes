@@ -143,7 +143,11 @@ Stroke	N789632147	0	W	M	FuncFvwmQuitVerify
 
 # ----------------------------------------------------------------------------
 # Don't forget to destroy the bindings
-AddToFunc   FuncFvwmRemoveBindings
+DestroyFunc FuncFvwmStartStroke
+AddToFunc   FuncFvwmStartStroke
+
+DestroyFunc FuncFvwmStopStroke
+AddToFunc   FuncFvwmStopStroke
 #+ I Mouse	3	R	N	-
 #+ I Mouse	3 	W 	M 	-
 + I Stroke	0 		0	R	N 	-

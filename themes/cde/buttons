@@ -30,8 +30,12 @@ Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu, or Delete on do
 Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally"
 Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Close^nMouse 3 - Destroy"
 
-DestroyFunc FuncFvwmRemoveButtonsBindings
-AddToFunc   FuncFvwmRemoveButtonsBindings
+DestroyFunc FuncFvwmStartWindowButtons
+AddToFunc   FuncFvwmStartWindowButtons
+
+DestroyFunc FuncFvwmStopWindowButtons
+AddToFunc   FuncFvwmStopWindowButtons
++ I FuncFvwmRemoveAllButtons
 + I Mouse 1 	1	A	-
 + I Mouse 2	1	A	-
 + I Mouse 3	1	A       -

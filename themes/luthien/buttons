@@ -34,8 +34,12 @@ Mouse 0 	3	CM	FuncFvwmShowButtonInfo "Mouse 1 - Stick"
 Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Iconify"
 Mouse 0 	6	CM	FuncFvwmShowButtonInfo "WindowShade"
 
-DestroyFunc FuncFvwmRemoveButtonsBindings
-AddToFunc   FuncFvwmRemoveButtonsBindings
+DestroyFunc FuncFvwmStartWindowButtons
+AddToFunc   FuncFvwmStartWindowButtons
+
+DestroyFunc FuncFvwmStopWindowButtons
+AddToFunc   FuncFvwmStopWindowButtons
++ I FuncFvwmRemoveAllButtons
 + I Mouse 1 	1	A	-
 + I Mouse 2	1	A	-
 + I Mouse 3	1	A       -

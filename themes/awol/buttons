@@ -30,8 +30,12 @@ Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Close on click^nMouse 3 - WindowShade"
 Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Maximize:^n^tMouse 1 - fully^n^tMouse 2 - horizontally^n^tMouse 3 - vertically"
 Mouse 0 	6	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - WindowShade^nMouse 3 - Recapture"
 
-DestroyFunc FuncFvwmRemoveButtonsBindings
-AddToFunc   FuncFvwmRemoveButtonsBindings
+DestroyFunc FuncFvwmStartWindowButtons
+AddToFunc   FuncFvwmStartWindowButtons
+
+DestroyFunc FuncFvwmStopWindowButtons
+AddToFunc   FuncFvwmStopWindowButtons
++ I FuncFvwmRemoveAllButtons
 + I Mouse 0 	1	N	-
 + I Mouse 3 	1	N	-
 + I Mouse 0 	2	N	-

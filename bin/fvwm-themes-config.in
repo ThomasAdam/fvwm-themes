@@ -20,6 +20,8 @@ my $scriptName = ($0 =~ m:([^/]+)$:, $1);
 my $scriptFile = "@bindir@/$scriptName";
 my $rcFile = "themes-rc";
 my $rcFile2 = "$rcFile-2";
+#ccds: 1, maybe we may use .$rcFile-3
+my $rcFile3 = "$rcFile-3";
 my $userHome = $ENV{'HOME'} || "./.";
 my $userDir = $ENV{'FVWM_USERDIR'} || "$userHome/.fvwm";
 my @searchPath = ($userDir, "@FT_DATADIR@");
@@ -40,6 +42,8 @@ my $componentKey = 'component';
 my $componentGroupKey = 'group';
 my $pipe = 0;  # produce fvwm commands for fvwm's PipeRead if set
 my $useRestart = $ENV{'FT_USE_RESTART'}? 1: 0;
+#ccds 1 (here for easy Minimal/Global switching)
+my $setMinimalReload = "";
 
 # ----------------------------------------------------------------------------
 
@@ -64,8 +68,10 @@ sub showHelp {
 	print "\t--expand-rc file   expand fvwm configuration file to stdout\n";
 	print "\t--fresh            refresh (regenerate) current theme configs\n";
 	print "\t--reset            reset all components to default theme\n";
-	print "\t--load [c]\@t       load the given theme component(s)\n";
-	print "\t--drop c[\@t]       unload the current theme component\n";
+	print "\t--rm-config-cache  Remove the configuration cache file\n";
+	print "\tset-minimal-reload i switch between minimal and global switching\n";
+	print "\t--load [c]\@t      load the given theme component(s)\n";
+	print "\t--drop c[\@t]      unload the current theme component\n";
 	print "\t--option cmp:opt=v change the component option value.\n";
 	print "\t--variant cmp=v    change the component variant\n";
 	print "\t--set-locked cmp=v set or unset the component's lock\n";
@@ -97,13 +103,15 @@ sub errDie ($) {
 	}
 }
 
+#' <- a fix for my xemacs (olicha)
+
 sub errWarn ($) {
 	my $msg = shift;
 	$msg .= "\n" unless $msg =~ /\n$/s;
 	if ($pipe) {
 		$msg =~ s/\n$//s;
-		$msg =~ s/'/`/g;
-		print qq(Exec exec xmessage -g 400x100 -xrm "*form*background:rgb:90/90/50" -xrm "*form*okay*background:rgb:70/70/40" -xrm "*textSink*font:lucidasans-14" -xrm "*form*message*background:rgb:b0/b0/60" -title '$scriptName warning' -center '$msg'\n);
+ 		$msg =~ s/'/`/g;
+	  	print qq(Exec exec xmessage -g 400x100 -xrm "*form*background:rgb:90/90/50" -xrm "*form*okay*background:rgb:70/70/40" -xrm "*textSink*font:lucidasans-14" -xrm "*form*message*background:rgb:b0/b0/60" -title '$scriptName warning' -center '$msg'\n);
 	} else {
 		warn $msg;
 	}
@@ -193,7 +201,7 @@ sub clonePerlValue ($) {
 # ----------------------------------------------------------------------------
 
 sub loadFile ($) {
- 	my $fileName = shift;
+	my $fileName = shift;
 
 	open(FILE, "<$fileName") || sysDie("Can't open $fileName");
 	my $fileContent = join("", <FILE>);
@@ -250,6 +258,8 @@ sub getExpandedRc ($) {
 	}
 	return $output;
 }
+
+#"
 
 sub searchThemeCfgIncludeFile ($$) {
 	my ($file, $theme) = @_;
@@ -696,6 +706,9 @@ sub new ($$;$$) {
 				if exists $componentCfg->{'locked'};
 			$cc->{'current'} = $componentCfg->{'current'}
 				if exists $componentCfg->{'current'};
+			#ccds: 1
+			$cc->{'minimalReload'} = $componentCfg->{'minimalReload'}
+				if exists $componentCfg->{'minimalReload'};
 			if (ref($componentCfg->{'option'}) eq 'ARRAY') {
 				my $i;
 				for ($i = 0; $i < @{$componentCfg->{'option'}}; $i++) {
@@ -730,6 +743,8 @@ sub new ($$;$$) {
 		}
 		$cc->{'locked'} = 0 unless exists $cc->{'locked'};
 		$cc->{'used'} = 1 unless exists $cc->{'used'};
+		#ccds 1
+		$cc->{'used'} = 1 if $cc->{'used'} == 2;
 		errDie("Duplicated component '$component' for theme '$theme'")
 			if exists $self->{'cc'}->{$component} &&
 				$self->{'cc'}->{$component}->{'used'};
@@ -765,6 +780,24 @@ sub isModified ($) {
 sub setModified ($;$) {
 	my $self = shift;
 	$self->{'_isModified'} = @_? shift: 1;
+}
+
+#ccds: new function
+sub setMinimalReload ($;$) {
+	my $self = shift;
+	my $value = shift || 0;
+	my $mr = $self->{'cc'}->{'_core'}->{'minimalReload'} || 0;
+	if ($value != $mr) {
+		$self->{'cc'}->{'_core'}->{'minimalReload'} = $value;
+		$self->setModified();
+	}
+}
+
+#ccds: new function
+sub isMinimalReload ($) {
+	my $self = shift;
+	my $value = $self->{'cc'}->{'_core'}->{'minimalReload'} || 0;
+	return $value;
 }
 
 sub hasComponent ($$) {
@@ -933,7 +966,8 @@ sub useNewComponents ($$$;$) {
 
 		my $themeCfg = new Fvwm::ThemeCfg($theme);
 		my $cc = $themeCfg->getComponentCfg($component);
-		$cc->{'used'} = 1;
+		#ccds 1
+		$cc->{'used'} = 2;
 		$self->setComponentCfg($component, $cc);
 		$self->applyThemeComponentMemory($theme, $component);
 
@@ -973,6 +1007,9 @@ sub setNewComponentValues ($$$$) {
 		$index2 = ($optionEntry->{'default'} || 1) if $index2 == 0;
 		errDie("Unexisting option value '$index2' in option '$component:$option'")
 			if $index2 <= 0 || $index2 > @$values;
+		#ccds: 1
+		$cc->{'used'} = 2;
+		$self->setComponentCfg($component, $cc);
 		$optionEntry->{'current'} = $index2;
 	}
 
@@ -984,6 +1021,9 @@ sub setNewComponentValues ($$$$) {
 		$index = $cc->{'default'} if $index == 0;
 		errDie("Unexisting variant '$variant' in component '$component'")
 			if $index <= 0 || $index > @$variants;
+		#ccds: 1
+		$cc->{'used'} = 2;
+		$self->setComponentCfg($component, $cc);
 		$cc->{'current'} = $index;
 	}
 
@@ -1182,7 +1222,7 @@ sub getSortedComponentsToRead ($) {
 		my $cc = $self->getComponentCfg($component);
 		next if $component =~ /^_/;
 		#olicha 1
-		next unless $cc->{'used'};		
+		next unless $cc->{'used'};
 		next unless $cc->{'read-file'};
 		if (exists $cc->{'complements'}) {
 			my $mainComponent = $cc->{'complements'};
@@ -1279,6 +1319,162 @@ sub getSortedComponentsToRead ($) {
 	return \@currentComponents;
 }
 
+#ccds next function
+sub getReloadDependency () {
+
+	# Some comments on the dependency below:
+	# 1. Maybe I foget some or put some not needed one :o)
+	# 2. modules contains so much stuff that it is reloaded too often;
+	#    we need to implement partial reload to fix that.
+	# 3. As this is hard coded some particular components (as some
+	#    modules component) may need less dependency.
+	# 4. An unfortunate things is that we have to reload colors with
+	#    windowlook/buttons (because the title/buttons colors are not
+	#    FvwmTheme award ...
+	# 5. In theory, globalfeel need more reload because of ColorLimit
+	#    but since the only way to really reload the ColorLimit is to
+	#    restart I've not put all the needed dependency. 
+	#    So maybe we have to put ColorLimit in an special
+	#    file which enforce restart.
+	# 6. colors is related to menus because of the "show current palette" menus
+	#    entries, in the same way settings/autoraise (modules), 
+	#    settings/sound-player, settings/iconstyles are related to menus.
+	#    With this: changing the sound player restart modules, reload
+	#    the iconstyles, ... etc. this is inacceptable!!!!!!!!!!!
+	#    We must found a solution
+   # 7. In some case the dependency depends on the options ... 
+	#
+	# Conclusion: The next stuff is bad, but this is normal, until
+	# now FVWM Themes was not designed for minimal reload. I think
+	# we can do 2 things:
+	# a. It is clear that reload is not the same things that load
+	#    so we can/must be more precise with "reload dependencies".
+	# b. We may rework a bit certain components and do more segmentations.
+
+	my $reload = {
+		'background' => [ 'background-extra', 'settings/background' ],
+		'bindings' => [ 'bindings-extra', 'settings/stroke',
+			'settings/session-manager'  ],
+		'buttons' => [ 'buttons-extra', 'windowlook', 'colors' ],
+		'colors' => [ 'colors-extra', 'modules', 'windowlook', 'buttons' ],
+		'cursor' => [ 'cursor-extra' ],
+   	'functions' => [ 'functions-extra' ],
+		'functions-appbind' => [ 'functions-appbind-extra' ],
+		'globalfeel' => [ 'globalfeel-extra', 'styles', 'modules' ],
+		'menus' => [ 'menus-extra', 'settings/autoraise', 'colors',
+			'settings/sound-player', 'settings/iconstyles',
+			'settings/session-manager' ],
+		'menus-user' => [ 'menus-user-extra', 'settings/kde/kde2-system-menu',
+			'settings/kde/system-menu', 'settings/kde/user-menu',
+			'settings/gnome/system-menu', 'settings/gnome/anotherlevel-menu',
+			'settings/gnome/user-menu' ],
+		'menustyle' => [ 'menustyle-extra' ],
+		'modules' => [ 'modules-extra', 'settings/autoraise',
+			'settings/iconstyles', 'menus' ],
+		'sound' => [ 'sound-extra', 'settings/sound-player' ],
+		'startup' => [ 'startup-extra' ],
+		'styles' => [ 'styles-extra', 'modules' ],
+		'windowlook' => [ 'windowlook-extra', 'buttons', 'styles' ],
+		'background-extra' => [],
+		'bindings-extra' => [ 'bindings' ],
+		'buttons-extra' => [ 'buttons' ],
+		'colors-extra' => [ 'colors' ],
+		'cursor-extra' => [ 'cursor' ],
+   	'functions-extra' => [ 'functions'],
+		'functions-appbind-extra' => [ 'functions-appbind' ],
+		'globalfeel-extra' => [ 'globalfeel' ],
+		'menus-extra' => [ ],
+   	'menus-user-extra' => [ 'menus-user' ],
+		'menustyle-extra' => [ 'menustyle' ],
+		'modules-extra' => [ 'modules' ],
+		'sound-extra' => [ 'sound' ],
+		'startup-extra' => [ 'startup' ],
+		'styles-extra' => [ 'styles' ],
+		'windowlook-extra' => [ 'windowlook' ],
+		'settings/animation' => [ ],
+		'settings/banner' => [ ],
+		'settings/sound-player' => [ 'sound', 'menus' ],
+		'settings/autoraise' => [ 'menus' ],
+		'settings/background' => [ 'background' ],
+		'settings/iconstyles' => [ 'modules', 'menus' ],
+		'settings/stroke' => [ 'bindings' ],
+		'settings/kde/kde2-system-menu' => [ 'menus-user' ],
+		'settings/kde/system-menu' => [ 'menus-user', 'settings/iconstyles' ],
+		'settings/kde/user-menu' => [ 'menus-user', 'settings/iconstyles' ],
+		'settings/kde/kfm-icons' => [ ],
+		'settings/gnome/system-menu' => [ 'menus-user', 'settings/iconstyles' ],
+		'settings/gnome/anotherlevel-menu' => [ 'menus-user' ],
+		'settings/gnome/user-menu' => [ 'menus-user' ],
+		'settings/gnome/panel-staysput' => [ 'styles' ],
+		'settings/session-manager' => [ 'menus', 'bindings' ]
+	};
+
+	return $reload;
+}
+
+#ccds next function
+sub setComponentsToReload ($) {
+	my $self = shift;
+	my @currentComponents;
+
+	my $needReload = {};
+	my $component;
+
+	# prepare components
+	foreach $component (sort keys %{$self->{'cc'}}) {
+		my $cc = $self->getComponentCfg($component);
+		next if $component =~ /^_/;
+		next unless $cc->{'used'};
+		push @currentComponents, $component;
+		if ($cc->{'used'} == 2) {
+			$needReload->{$component} = 1;
+		} else {
+			$needReload->{$component} = 0;
+		}
+	}
+
+	# next block for debuging
+	if ($self->isMinimalReload()) {
+		print STDERR "NEW: ";
+		foreach (@currentComponents) {
+			print STDERR "$_ " if $needReload->{$_};
+		}
+		print STDERR "\n";
+	}
+
+	my $reload = getReloadDependency();
+
+	my $done = 0;
+	my $i = 0;
+	# a bit dangerous loop, warnings!!
+	while(!$done) {
+		my $old = "";
+		my $new = "";
+		my $c;
+		foreach $c (@currentComponents) {
+			$old .= $needReload->{$c};
+			next unless $needReload->{$c};
+			foreach (@currentComponents) {
+				$needReload->{$_} = 1 if isArrayElement($reload->{$c},$_);
+			}
+		}
+		foreach (@currentComponents) { $new .= $needReload->{$_}; }
+		$i++;
+		$done = 1 if $i > 100 || $new eq $old; 
+	}
+
+	print STDERR "CCDS ($i): ";
+	foreach (@currentComponents) { 
+		if ($needReload->{$_}) {
+			my $cc = $self->getComponentCfg($_);
+			$cc->{'used'} = 2;
+			$self->setComponentCfg($_, $cc);
+			print STDERR "$_ ";
+		}
+	}
+	print STDERR "\n";
+}
+									
 # returns component key value, which can be overridden by the current variant
 # or options key values. If it is array, all found values are joined together.
 sub getComponentNamedValue ($$$) {
@@ -1348,31 +1544,53 @@ sub getAllHooksRc ($) {
 	my $stopHooksRc =
 		"DestroyFunc FuncFvwmStopAllHooks\n" .
 		"AddToFunc   FuncFvwmStopAllHooks\n";
-	foreach (@$currentComponents) {
-		my $items = $self->getComponentNamedValue($_, 'start-stop');
+	#ccds: 3, the Stop Hooks must be computed before somewhere!
+	my $minimalStartHooksRc = $startHooksRc;
+	my $minimalStopHooksRc = "";
+	my $hardCodedStopHooks = "";
+	my $c;
+	foreach $c (@$currentComponents) {
+		my $items = $self->getComponentNamedValue($c, 'start-stop');
+		#ccds 4
+		my $cc = $self->getComponentCfg($c);
+		if ($c eq "colors" && $cc->{'used'} == 2) {
+			$hardCodedStopHooks = "FuncFvwmRestartFvwmTheme\n";
+		}
 		next unless defined $items;
-		errDie("start-stop ($items) in component '$_' is not ARRAY")
+		errDie("start-stop ($items) in component '$c' is not ARRAY")
 			unless ref($items) eq 'ARRAY';
 		foreach (@$items) {
 			next if isArrayElement($startStopItems, $_);
 			push @$startStopItems, $_;
 			$startHooksRc .= "+ I FuncFvwmStart$_\n";
 			$stopHooksRc  .= "+ I FuncFvwmStop$_\n";
+			#ccds next block
+			if ($cc->{'used'} == 2) {
+				$minimalStartHooksRc .= "+ I FuncFvwmStart$_\n";
+				$minimalStopHooksRc .= "FuncFvwmStop$_\n";
+			}
 		}
 	}
-	return "$startHooksRc\n$stopHooksRc\n";
+	#ccds: 2nd arg
+	return ("$startHooksRc\n$stopHooksRc\n",
+		"$minimalStartHooksRc\n$minimalStopHooksRc\n$hardCodedStopHooks\n");
 }
 
 sub getMenusAndHooksAndReadsRc ($) {
 	my $self = shift;
 	my $currentComponents = [keys %{$self->{cc}}];  # $self->{$componentKey};
 	my $rc = "";
+	#ccds 1
+	my $minimalRc = "";
 
 	my ($ownThemeListRc, $ownThemeMenuRc) = $self->getOwnThemeSubMenusRc();
 	my ($allThemeListRc, $allThemeMenuRc) = $self->getAllThemeSubMenusRc();
 
+	#ccds 1 (need to be done before the theme hook)
+	$self->setComponentsToReload() if $self->isMinimalReload();
 	# add current theme hooks
-	$rc .= $self->getAllHooksRc();
+	#ccds: 2nd arg
+	($rc,$minimalRc) = $self->getAllHooksRc();
 
 	# include components themselves (Read)
 	$rc .= "### We will decide later whether to use full paths here.\n";
@@ -1422,27 +1640,50 @@ sub getMenusAndHooksAndReadsRc ($) {
 		$command =~ s/%d/getThemeDir($self->{$idKey})/seg;
 		$command =~ s/%o([\d]+)(\w)/$optionExports->[$1-1]->{$2} || ""/seg;
 		$rc .= "$readRc1$command\n$readRc2";
+		#ccds 1
+		$minimalRc .= "$readRc1$command\n$readRc2" if $cc->{'used'} == 2;
 	}
 
 	# add main menu entries
-	$rc .= qq(\n\n);
-	$rc .= qq(DestroyMenu "MenuFvwmThemes"\n);
-	$rc .= qq(AddToMenu   "MenuFvwmThemes" "Theme Management" Title\n);
-	$rc .= $ownThemeListRc;
-	$rc .= qq(+ "" Nop\n);
-	$rc .= $allThemeListRc;
-	$rc .= qq(+ "" Nop\n);
-	$rc .= qq(+ "&Reset all to the default" FuncFvwmThemesReset\n);
-	$rc .= qq(+ "Re&fresh the current theme" FuncFvwmThemesFresh\n);
-	$rc .= "\n";
+	#ccds: some changes ...
+	my $menu = "";
+	my $minimalSwitch = "";
+	if ($self->isMinimalReload()) {
+		$minimalSwitch = 
+			qq(+ "&Use global switching" FuncFvwmThemesSetMinimalReload 0\n);
+		$ownThemeMenuRc =~ s/FuncFvwmThemes/FuncFvwmMinimalThemes/g;
+		$allThemeMenuRc=~ s/FuncFvwmThemes/FuncFvwmMinimalThemes/g;
+	} else {
+		$minimalSwitch = 
+			qq(+ "&Use minimal switching" FuncFvwmThemesSetMinimalReload 1\n);
+	}
+	$menu .= qq(\n\n);
+	$menu .= qq(DestroyMenu "MenuFvwmThemes"\n);
+	$menu .= qq(AddToMenu   "MenuFvwmThemes" "Theme Management" Title\n);
+	$menu .= $ownThemeListRc;
+	$menu .= qq(+ "" Nop\n);
+	$menu .= $allThemeListRc;
+	$menu .= qq(+ "" Nop\n);
+	$menu .= qq(+ "&Refresh and Reload" Popup MenuFvwmThemesRefreshReload\n);
+	$menu .= qq(DestroyMenu "MenuFvwmThemesRefreshReload"\n);
+	$menu .= qq(AddToMenu   "MenuFvwmThemesRefreshReload" "Refresh and Reload" Title\n);
+	$menu .= qq(+ "&Refresh the current theme" FuncFvwmThemesFresh\n);
+	$menu .= qq(+ "Refresh and update &Cfg" FuncFvwmThemesFreshAndRmCache\n);
+	$menu .= $minimalSwitch;
+	$menu .= qq(+ "" Nop\n);
+	$menu .= qq(+ "" Nop\n);
+	$menu .= qq(+ "Reset all to the &default!" FuncFvwmThemesReset\n);
+	$menu .= "\n";
 
 	# add own theme menus
-	$rc .= "$ownThemeMenuRc\n";
+	$menu .= "$ownThemeMenuRc\n";
 
 	# add all theme menus
-	$rc .= "$allThemeMenuRc\n";
+	$menu .= "$allThemeMenuRc\n";
 
-	return $rc;
+	$rc .= $menu;
+	$minimalRc .= $menu;
+	return ($rc,$minimalRc);
 }
 
 sub generateThemesRc ($) {
@@ -1505,9 +1746,10 @@ AddToFunc   FuncFvwmThemesConfigAndUpdate
 + I PipeRead `@$scriptFile@ $0 --pipe`
 + I FuncFvwmResetInitFunctions
 + I FuncFvwmStopAllHooks
-+ I FuncFvwmRemoveBindings
-+ I FuncFvwmRemoveButtonsBindings
-+ I FuncFvwmRemoveAllButtons
+# now the 3 next function are in StopAllHooks
+#+ I FuncFvwmRemoveBindings
+#+ I FuncFvwmRemoveButtonsBindings
+#+ I FuncFvwmRemoveAllButtons
 #+ I FuncFvwmRestartFvwmTheme
 #+ I DestroyModuleConfig FvwmTheme: *
 + I Read @$rcFile2@
@@ -1521,6 +1763,14 @@ AddToFunc   FuncFvwmThemesReset
 DestroyFunc FuncFvwmThemesFresh
 AddToFunc   FuncFvwmThemesFresh
 + I FuncFvwmThemesConfigAndUpdate --fresh
+
+DestroyFunc FuncFvwmThemesFreshAndRmCache
+AddToFunc   FuncFvwmThemesFreshAndRmCache
++ I FuncFvwmThemesConfigAndUpdate "--fresh --rm-cfg-cache"
+
+DestroyFunc FuncFvwmThemesSetMinimalReload
+AddToFunc   FuncFvwmThemesSetMinimalReload
++ I FuncFvwmMinimalThemesConfigAndUpdate "--set-minimal-reload=$0"
 
 DestroyFunc FuncFvwmThemesLoad
 AddToFunc   FuncFvwmThemesLoad
@@ -1542,6 +1792,36 @@ DestroyFunc FuncFvwmThemesSetLocked
 AddToFunc   FuncFvwmThemesSetLocked
 + I FuncFvwmThemesConfigAndUpdate "--set-locked=$0"
 
+#ccds: all Minimal service
+DestroyFunc FuncFvwmMinimalThemesConfigAndUpdate
+AddToFunc   FuncFvwmMinimalThemesConfigAndUpdate
++ I FvwmScript FvwmScript-NoteMessage "Minimal theme switching"
++ I Wait FvwmScript-NoteMessage
+# The stop function are *executed* in the begining of themes-rc-3
++ I PipeRead `@$scriptFile@ $0 --pipe`
++ I Read @$rcFile3@
++ I FuncFvwmStartAllHooks
++ I All (FvwmScript-NoteMessage) Delete
+
+DestroyFunc FuncFvwmMinimalThemesLoad
+AddToFunc   FuncFvwmMinimalThemesLoad
++ I FuncFvwmMinimalThemesConfigAndUpdate "--load=$0"
+
+DestroyFunc FuncFvwmMinimalThemesDrop
+AddToFunc   FuncFvwmMinimalThemesDrop
++ I FuncFvwmThemesConfigAndUpdate "--drop=$0"
+
+DestroyFunc FuncFvwmMinimalThemesOption
+AddToFunc   FuncFvwmMinimalThemesOption
++ I FuncFvwmMinimalThemesConfigAndUpdate "--option=$0"
+
+DestroyFunc FuncFvwmMinimalThemesVariant
+AddToFunc   FuncFvwmMinimalThemesVariant
++ I FuncFvwmMinimalThemesConfigAndUpdate "--variant=$0"
+
+DestroyFunc FuncFvwmMinimalThemesSetLocked
+AddToFunc   FuncFvwmMinimalThemesSetLocked
++ I FuncFvwmMinimalThemesConfigAndUpdate "--set-locked=$0"
 
 # ---------------------------------------------------
 # Some global functions, extending FVWM functionality
@@ -1588,7 +1868,8 @@ Read @$rcFile2@
 	$imagePath =~ s=(^|:)\Q$siteDir\E(/|:|$)=$1\$FT_DATADIR$2=g;
 	my $addImagePath = $self->getAdditionalImagePath();
 	$imagePath .= "\nImagePath $addImagePath" if $addImagePath =~ /\+/;
-	my $menusAndHooksRc = $self->getMenusAndHooksAndReadsRc();
+	my ($menusAndHooksRc,$minimalMenusAndHooksRc) = 
+			$self->getMenusAndHooksAndReadsRc();
 
 	$contents = "# fvwm/$rcFile2 $version$header";
 	$contents .= qq{
@@ -1601,6 +1882,21 @@ $menusAndHooksRc
 Mouse 2 A CM Menu MenuFvwmThemes
 };
 	saveFile("$workDir/$rcFile2", \$contents);
+
+	#ccds: next block
+	if ($self->isMinimalReload() || $setMinimalReload ne "") {
+		$contents = "# fvwm/$rcFile3 $version$header";
+		$contents .= qq{
+SetEnv FT_DATADIR '$siteDir'
+ImagePath $imagePath
+
+$minimalMenusAndHooksRc
+Mouse 2 A CM Menu MenuFvwmThemes
+};
+
+		saveFile("$workDir/$rcFile3", \$contents);
+	}
+
 }
 
 # ----------------------------------------------------------------------------
@@ -1630,6 +1926,7 @@ my $fvwmscript = 0;
 my $onlySite = 0;
 my $onlyUser = 0;
 my $configCenter = 0;
+my $rmCfgCache = 0;
 
 GetOptions(
 	"help|h"      => \&showHelp,
@@ -1657,6 +1954,8 @@ GetOptions(
 	"only-site"	  => \$onlySite,
 	"only-user"	  => \$onlyUser,
 	"config-center" => \$configCenter,
+	"set-minimal-reload=i" => \$setMinimalReload,
+	"rm-config-cache"    => \$rmCfgCache,
 ) || wrongUsage();
 
 shift @searchPath if $site;
@@ -1692,6 +1991,11 @@ if (defined $expandFile) {
 	exit(0);
 }
 
+#ccf: 3
+if (($reset || $rmCfgCache) && -f "$userDir/$cfgCacheFileName") {
+	unlink "$userDir/$cfgCacheFileName";
+}
+
 showThemeComponents($themes, $showComponents, $component, $fvwmscript,
 	$onlySite, $onlyUser) if $showThemes || $showComponents;
 showThemeDirs($themes) if $showDir;
@@ -1701,12 +2005,8 @@ wrongUsage() unless
 	$fresh || $reset ||
 	@$loadComponents || @$dropComponents ||
 	keys %$options || keys %$variants ||
-	keys %$setLockeds || $comMode || $configCenter;
-
-#ccf: 3
-if (($reset || $fresh) && -f "$userDir/$cfgCacheFileName") {
-	unlink "$userDir/$cfgCacheFileName";
-}
+	keys %$setLockeds || $comMode || $configCenter ||
+	$setMinimalReload ne "";
 
 my $cfg = Fvwm::ThemeCfg->new('current', $reset? 'default': 'current', $fresh);
 if ($comMode) {
@@ -1720,6 +2020,8 @@ if ($configCenter) {
 	$cfg->showInfoForConfigCenter();
 	# we never return here
 }
+#ccds 1
+$cfg->setMinimalReload($setMinimalReload) if $setMinimalReload ne "";
 $cfg->useNewComponents($loadComponents, $dropComponents);
 $cfg->setNewComponentValues($options, $variants, $setLockeds);
 $cfg->generateThemesRc();
@@ -2897,6 +3199,7 @@ B<fvwm-themes-config>
 [ B<--expand-rc>|B<-e> [file] ]
 [ B<--fresh>|B<-f> ]
 [ B<--reset>|B<-r> ]
+[ B<--rm-config-cache> ]
 [ B<--load>|B<-l> component@theme ]
 [ B<--drop>|B<-u> component@theme ]
 [ B<--option>|B<-o> component:option=value ]
@@ -2965,8 +3268,14 @@ load themes, this includes files in the user's directory:
 $FVWM_USERDIR/themes-rc, $FVWM_USERDIR/themes-rc-2 and
 $FVWM_USERDIR/themes/current/theme.cfg.
 
-B<--reset> - forget all the currently used components and use the ones from
-the default theme.
+B<--reset> - forget all the currently used components, remove the 
+configuration cache file and use the components from the default theme.
+
+B<--rm-config-cache> - Remove the configuration cache file so that it can be
+regenerated.
+
+B<--set-minimal-reload> I<value>- If value is 1, then minimal theme switching
+is used, if value is 0, then global themes switching is used.
 
 B<--load> I<component> - multiple C<--load> parameters may be given. If the
 parameter is of form component@theme, this specific theme component is used,
@@ -2997,16 +3306,16 @@ I<value> is 0) a locked state of the given component. When the component
 from the current theme is locked, C<--load @theme> will not replace it,
 it can only be replaced by explicit C<--load component@theme>.
 
-B<--install> I<theme.tar.{gz,bz2} ...> - install the specified tarballs
-into the site (if B<--site> is alo given) or into the user's I<themes>
-directory by verifying and unpacking the contents of the tarballs.
-
-Four last parameters may be combined together and multiple parameters are
+Five last parameters may be combined together and multiple parameters are
 possible. If B<--load> and B<--drop> parameters are given, first it will
 be unloaded all given components and then loaded all given components, not
 vice versus. After that B<--variant> and B<--option> parameters will take
 place, i.e. it is possible to load a component and immediately change its
 options.
+
+B<--install> I<theme.tar.{gz,bz2} ...> - install the specified tarballs
+into the site (if B<--site> is alo given) or into the user's I<themes>
+directory by verifying and unpacking the contents of the tarballs.
 
 B<--com-mode> Run fvwm-themes-config under the "communication mode". See,
 the fvwm-themes-com and fvwm-themes-menuapp manual pages for more information

@@ -199,8 +199,11 @@ MouseXX 3 2	WI	M	Menu MenuFvwmWindowOps
 # ---------------------------------------------------------------------------
 # We need to destroy the bindings to avoid current problems with fvwm.
 
-DestroyFunc FuncFvwmRemoveBindings
-AddToFunc   FuncFvwmRemoveBindings
+DestroyFunc FuncFvwmStartBindings
+AddToFunc   FuncFvwmStartBindings
+
+DestroyFunc FuncFvwmStopBindings
+AddToFunc   FuncFvwmStopBindings
 + I Key Left	A	CM	-
 + I Key Right	A	CM	-
 + I Key Up  	A	CM	-

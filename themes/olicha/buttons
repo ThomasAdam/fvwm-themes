@@ -25,8 +25,12 @@ Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Shade^nMouse 2 - Shade on class 
 Mouse 0 	3	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^nMouse 3 - Iconify toggle resource group"
 Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tpartially on click^n^tfully on double click^n^tvertically on hold^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally"
 
-DestroyFunc FuncFvwmRemoveButtonsBindings
-AddToFunc   FuncFvwmRemoveButtonsBindings
+DestroyFunc FuncFvwmStartWindowButtons
+AddToFunc   FuncFvwmStartWindowButtons
+
+DestroyFunc FuncFvwmStopWindowButtons
+AddToFunc   FuncFvwmStopWindowButtons
++ I FuncFvwmRemoveAllButtons
 + I Mouse 1 	1	A	-
 + I Mouse 2	1	A	-
 + I Mouse 3	1	A       -

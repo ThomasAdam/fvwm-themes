@@ -24,8 +24,12 @@ Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1:^n^tDelete on click^n^tDestroy on 
 Mouse 0 	3	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu or Delete on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
 Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^n 3 - Maximize:^n^tpartially on click^n^tfully on double click^n^tvertically on hold"
 
-DestroyFunc FuncFvwmRemoveButtonsBindings
-AddToFunc   FuncFvwmRemoveButtonsBindings
+DestroyFunc FuncFvwmStartWindowButtons
+AddToFunc   FuncFvwmStartWindowButtons
+
+DestroyFunc FuncFvwmStopWindowButtons
+AddToFunc   FuncFvwmStopWindowButtons
++ I FuncFvwmRemoveAllButtons
 + I Mouse 0 	1	A	-
 + I Mouse 1 	2	A	-
 + I Mouse 3 	2	A	-
