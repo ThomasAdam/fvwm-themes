@@ -18,7 +18,7 @@ esyscmd({{awk '{ print "define(CDE_COLOR" (NR <= 8? NR "_BG": (NR - 8) "_FG") ",
 *FvwmTheme: Colorset 0 fg CDE_COLOR2_FG, \
 	bg CDE_COLOR2_BG, Plain, NoShape
 
-DefaultColorset 0
+PDefaultColorset 0
 DestroyModuleConfig FvwmScroll: Colorset*
 *FvwmScroll: Colorset 0
 
@@ -45,13 +45,13 @@ Style "*"	HilightBorderColorset 4
 
 # title
 TitleStyle	Inactive   VGradient 20 CDE_COLOR6_BG \
-	CDE_COLOR2_BG
+	CDE_COLOR3_BG
 TitleStyle	ActiveUp   VGradient 20 CDE_COLOR1_BG \
 	CDE_COLOR5_BG
 TitleStyle	ActiveDown VGradient 20 CDE_COLOR1_BG \
 	CDE_COLOR5_BG
 TitleStyle	ToggledInactive   VGradient 20 CDE_COLOR6_BG \
-	CDE_COLOR2_BG
+	CDE_COLOR3_BG
 TitleStyle	ToggledActiveUp   VGradient 20 CDE_COLOR1_BG \
 	CDE_COLOR5_BG
 TitleStyle	ToggledActiveDown VGradient 20 CDE_COLOR1_BG \
