@@ -1,3 +1,11 @@
+2000-08-07  olicha  <olivier.chapuis@free.fr>
+
+	* themes/migo/desktop:
+	temporary fix for themes switching from @migo to @an_other_theme
+
+	* NEWS:
+	Updated for 0.3.14 release
+	
 2000-08-07  migo  <migo@homemail.com>
 
 	* themes/cde/colors/main:
