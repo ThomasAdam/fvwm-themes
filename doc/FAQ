@@ -70,7 +70,7 @@ which fvwm-themes manages are ~/.fvwm/themes* ones, more precisely:
 
   ~/.fvwm/themes/ - the user themes as opposed to the site themes
   ~/.fvwm/themes/current-main/ - the current theme in the main session
-  ~/.fvwm/themes/current - symbolic link to the actual current theme
+  ~/.fvwm/themes/current - symbolic link to the actual current session theme
   ~/.fvwm/themes-rc - the .fvwm2rc equivalent
   ~/.fvwm/themes-rc-2 - additional rc used by themes-rc, symbolic link
 
