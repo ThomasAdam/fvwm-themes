@@ -4,6 +4,9 @@
 	added a full component instead of colors-extra;
 	some marked colorsets remained from luthien, should be replaced
 
+	* themes/brushedmetal/background:
+	added, I am not sure whether it is a good background for this theme
+
 2001-04-13  migo  <migo@homemail.com>
 
 	* TODO: updated
