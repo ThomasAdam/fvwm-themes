@@ -5,4 +5,3 @@ set -e
 [ "$1" = "configure" ] && [ -x /usr/bin/fvwm-themes-menuapp ] && /usr/bin/fvwm-themes-menuapp --site --build-menus --remove-popup
 
 if [ -x /usr/bin/update-menus ] ; then update-menus ; fi
-

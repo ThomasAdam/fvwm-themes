@@ -1,8 +1,8 @@
 fvwm-themes for Debian
 ----------------------
 
-   * to activate fvwm-themes you must write command "fvwm-themes-start" into the ~/.xinitrc
-   * it is posible to get the debian_menu
-   * you must look in menu: Theme Management/Current/settings/Menu System
+  * to activate fvwm-themes, put command "fvwm-themes-start" into ~/.xinitrc
+  * it is posible to get the debian_menu, there are several options,
+    see in root menu: Theme Management/Current/settings/Menu System
 
  -- Andrei Mitrofanow <smilebef@web.de>, Mon, 14 Apr 2003 16:24:36 +0200

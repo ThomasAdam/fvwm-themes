@@ -1,14 +1,5 @@
-fvwm-themes-full (0.7.0+cvs.2003.08.27-0) unstable; urgency=low
- 
-  * new upstream release
-  * many many many
-  * Makefile.am
-  * changelog prepared for native package
-  * rules changed
- 
- -- Andrei Mirtofanow <smilebef@web.de>  Mo, 25 Aug 2003 01:47:37 +0200
- 
-fvwm-themes-full (0.7.0+cvs.2003.08.25-0) unstable; urgency=low
+fvwm-themes-full (0.7.0-0.20030825) unstable; urgency=low
 
-	* new upstream release
+  * Initial release.
 
+ -- Andrei Mirtofanow <smilebef@web.de>  Mon, 25 Aug 2003 01:47:37 +0200

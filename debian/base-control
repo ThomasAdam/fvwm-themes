@@ -12,4 +12,4 @@ Description: Nice look, feel and menusystem for FVWM (base themes)
  FVWM Themes is a powerful configuration framework for FVWM,
  designed to be easily extendible and configurable, includes
  several pre-built themes, a pack of images and sounds.
- This Packaeg contained only the base themes.
+ This package contains the framework and base themes.

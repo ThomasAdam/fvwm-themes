@@ -11,6 +11,8 @@ stamp-h.in
 config.log
 config.cache
 config.status
+config.sub
+config.guess
 stamp-h
 TAGS
 autom4te*.cache

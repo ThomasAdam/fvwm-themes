@@ -171,8 +171,8 @@ dist6: dist5
 
 rpm-dist: dist3 rpm-this
 
-#    make rpm-dist3 - creates -base and -extra rpms
-#    make rpm-dist5 - creates individual themes rpms
+#    make rpm-dist3  # creates -base and -extra rpms
+#    make rpm-dist5  # creates individual themes rpms
 
 rpm-dist3: dist3 rpm-base-this rpm-extra-this
 
@@ -191,31 +191,31 @@ rpm-themes-this:
 	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) rpm-themes) || exit 1
 
 ## ---------------------------------------------------------------------------
-## Produce an deb package 
+## Produce a deb package
 # you need fakeroot and dpkg
 #
 #  Usage:
-#    make deb-dist
-#    make deb-dist3
-#
-#    make deb-dist  - creates full(original) debs
-#    make deb-dist3 - creates -base and -extra debs
-
+#    make deb-dist   # creates -full deb
+#    make release=1 deb-dist
+#    make deb-this
+#  Does not work yet:
+#    make version=2.3.22 release=2 deb-this
+#    make deb-dist cparams='--enable-gnome --quiet' mparams='CFLAGS="-O2 -g"'
 
 deb-dist: deb-this
+
+#    make deb-dist3  # creates -base and -extra debs
 
 deb-dist3: deb-base-this deb-extra-this
 
 deb-this:
-	($(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) deb) || exit 1
+	(cd debian && $(MAKE) Makefile) && \
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) deb || exit 1
 
 deb-base-this:
-	($(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) deb-base) || exit 1
+	(cd debian && $(MAKE) Makefile) && \
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) deb-base || exit 1
 
 deb-extra-this:
-	($(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) deb-extra) || exit 1
-
-
-
-
-
+	(cd debian && $(MAKE) Makefile) && \
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) deb-extra || exit 1
