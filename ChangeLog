@@ -29,6 +29,9 @@
 	* themes/luthien/modules/main:FvwmIconMan:
 	fixed FvwmIconMan colorsets
 
+	* themes/default/menus:
+	changed screenshots url, should be created yet
+
 2000-11-11  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ConfigCenter:
