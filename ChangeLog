@@ -13,6 +13,9 @@
 	* themes/afterstep/colors:
 	replaced one black bg, still to much black...
 
+	* themes/default//functions:
+	support ^d for dollar in messages
+
 2002-06-10  migo  <migo@homemail.com>
 
 	* scripts/FvwmApplet-DayClock:

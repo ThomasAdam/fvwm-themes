@@ -103,7 +103,7 @@ AddToFunc   FuncFvwmConsole
 
 DestroyFunc FuncFvwmShowMessage
 AddToFunc   FuncFvwmShowMessage
-+ I Exec echo "$1" | perl -pe 's/\^n/\n/g; s/\^t/\t/g; s/\^\^/^/g' - | \
++ I Exec echo "$1" | perl -pe 's/\^n/\n/g; s/\^t/\t/g; s/\^d/\$/g; s/\^\^/^/g' - | \
 	xmessage -g 480x124 -nearmouse -title "$0" -file - \
 	-xrm "*form*foreground:$[fg.cs35]" -xrm "*form*background:$[bg.cs35]" \
 	-xrm "*form*message*foreground:$[fg.cs36]" -xrm "*form*message*background:$[bg.cs36]"
