@@ -1,5 +1,3 @@
-# Need documentation here ... 
-
 #-----------------------------------------------------------------------------
 # General fonts
 
@@ -15,13 +13,13 @@ DestroyFunc FuncFvwmSetFont-Menu
 AddToFunc   FuncFvwmSetFont-Menu
 + I MenuStyle "$0" Font "$[FVWM_USE_SHADOW]$1"
 
-# for FvwmIdent (called in colors ... maybe not a very good thing) 
+# for FvwmIdent (called in globallook)
 DestroyFunc FuncFvwmSetFont-FvwmIdent
 AddToFunc   FuncFvwmSetFont-FvwmIdent
 + I *FvwmIdent: Font  $[FVWM_USE_SHADOW]
 
 #-----------------------------------------------------------------------------
-# Modules Theme fonts
+# Fonts for modules
 
 # default font for IconBox, IconMan, TaskBar and WinList
 DestroyFunc FuncFvwmSetFont-ModuleWindowList
@@ -33,7 +31,7 @@ DestroyFunc FuncFvwmSetFont-ModuleSelectedWindowList
 AddToFunc   FuncFvwmSetFont-ModuleSelectedWindowList
 + I *$0: $1 "$[FVWM_USE_SHADOW]$2"
 
-# if one want small font for a Window List module (e.g., luthien IconMan)
+# if one wants a small font for a Window List module (e.g., luthien IconMan)
 DestroyFunc FuncFvwmSetFont-ModuleSmallWindowList
 AddToFunc   FuncFvwmSetFont-ModuleSmallWindowList
 + I *$0: $1 "$[FVWM_USE_SHADOW]$2"
@@ -53,7 +51,6 @@ DestroyFunc FuncFvwmSetFont-ModuleLabel
 AddToFunc   FuncFvwmSetFont-ModuleLabel
 + I *$0: $1 "$[FVWM_USE_SHADOW]$2"
 
-
 # small "Label" for Buttons and Pager (or Window List modules)
 DestroyFunc FuncFvwmSetFont-ModuleSmallLabel
 AddToFunc   FuncFvwmSetFont-ModuleSmallLabel
@@ -63,4 +60,3 @@ AddToFunc   FuncFvwmSetFont-ModuleSmallLabel
 DestroyFunc FuncFvwmSetFont-ModuleLargeLabel
 AddToFunc   FuncFvwmSetFont-ModuleLargeLabel
 + I *$0: $1 "$[FVWM_USE_SHADOW]$2"
-

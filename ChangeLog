@@ -1,3 +1,8 @@
+2002-12-31  migo  <migo@homemail.com>
+
+	* themes/sa/fonts/main:
+	clean up comments to match other fonts components
+
 2002-12-28  migo  <migo@homemail.com>
 
 	* devel/bin/gtk-colorize-background:
