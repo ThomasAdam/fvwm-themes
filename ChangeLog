@@ -3,6 +3,9 @@
 	* Makefile.am:
 	use $(TAR) not tar
 
+	* themes/default/theme.cfg:
+	move requires+=FvwmIdentFont from menus@ to colors@
+
 2001-07-18  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
