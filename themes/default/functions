@@ -139,8 +139,7 @@ AddToFunc   FuncFvwmConfirm
 
 DestroyFunc FuncFvwmShowColorset
 AddToFunc   FuncFvwmShowColorset
-+ I ModuleSynchronous FvwmPerl -e 'cmd("SetEnv COLORSET_DUMP `" . $module->track("Colorsets")->dump(2) . "`")'
-+ I FuncFvwmShowMessage "Colorset $0 Information" `$[COLORSET_DUMP]`
++ I FvwmPerl -e 'cmd("FuncFvwmShowMessage `Colorset $0 Information` `" . $module->track("Colorsets")->dump($0) . "`")'
 
 DestroyFunc FuncFvwmShowAllColorsets
 AddToFunc   FuncFvwmShowAllColorsets
