@@ -8,6 +8,9 @@
 	currently posibility to add/remove button (time/date) in container;
 	added "Show Normal Icons" option
 
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	added terminal-remote for artifical rxterm
+
 2002-06-05  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/theme.cfg:

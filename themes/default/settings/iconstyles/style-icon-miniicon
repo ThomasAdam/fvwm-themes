@@ -24,6 +24,7 @@ Style "NoResource"             Icon norm/unknown.xpm,          MiniIcon mini/unk
 Style "Eterm*"                 Icon norm/terminal.xpm,         MiniIcon mini/terminal.xpm
 Style "rxvt"                   Icon norm/terminal.xpm,         MiniIcon mini/terminal.xpm
 Style "XTerm"                  Icon norm/terminal.xpm,         MiniIcon mini/terminal.xpm
+Style "rxerm"                  Icon norm/terminal-remote.xpm,  MiniIcon mini/terminal-remote.xpm
 
 # These are not all mine, most of globs must be removed.
 Style "DDD*"                   Icon norm/developement.xpm,     MiniIcon mini/developement.xpm
