@@ -1,3 +1,9 @@
+2003-10-24  migo  <migo@homemail.com>
+
+	* Makefile.am:
+	* debian/Makefile.am:
+	improved deb procedure
+
 2003-10-20  migo  <migo@homemail.com>
 
 	* themes/*/colors*:
