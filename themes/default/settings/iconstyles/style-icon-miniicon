@@ -6,6 +6,7 @@
 
 #Style Eterm* IconOverride
 Style * IconOverride
+Style XTerm NoActiveIconOverride  # enable: xterm +at
 
 ###
 #  Known applications
