@@ -1,0 +1,92 @@
+# This file should be processed using FvwmM4 like:
+#   ModuleSynchronous FvwmM4 -lock -m4-squote {{ -m4-equote }} \
+#     -DBcN=1 -DBmN=2 -DBoN=3 -DBiN=4 -DBlN=5 -DBrN=6 \
+#     -DTitlHeig=16 -DFaceName=redmond98 -DFaceFile=_images \
+#     -DCompRoot=$[FVWM_DATADIR]/themes/multichoice/buttons main
+
+# Button roles used: Options (o), Close (c), Maximize (m), Iconify (i),
+# Stick (s), Shade (h); and pseudo buttons: TitleLeft, TitleRight
+
+# m4 misinterpreters '#', so use 'Nop'
+define({{BcC}}, ifdef({{BcN}}, {{}}, {{Nop}}))
+define({{BmC}}, ifdef({{BmN}}, {{}}, {{Nop}}))
+define({{BoC}}, ifdef({{BoN}}, {{}}, {{Nop}}))
+define({{BiC}}, ifdef({{BiN}}, {{}}, {{Nop}}))
+define({{BsC}}, ifdef({{BsN}}, {{}}, {{Nop}}))
+define({{BhC}}, ifdef({{BhN}}, {{}}, {{Nop}}))
+define({{BlC}}, ifdef({{BlN}}, {{}}, {{Nop}}))
+define({{BrC}}, ifdef({{BrN}}, {{}}, {{Nop}}))
+
+define({{BlC}}, {{Nop}})
+define({{BrC}}, {{Nop}})
+
+BcC Style "*" Button BcN
+BmC Style "*" Button BmN
+BoC Style "*" Button BoN
+BiC Style "*" Button BiN
+BsC Style "*" Button BsN
+BhC Style "*" Button BhN
+BlC Style "*" Button BlN
+BrC Style "*" Button BrN
+
+include(CompRoot/faces/FaceFile)
+
+ButtonStyle All - Clear
+BmC ButtonStyle BmN - MWMDecorMax
+BoC ButtonStyle BoN - MWMDecorMenu
+BiC ButtonStyle BiN - MWMDecorMin
+BhC ButtonStyle BhN - MWMDecorShade
+BsC ButtonStyle BsN - MWMDecorStick
+
+TitleStyle	Height TitlHeig
+
+#     button	context	modifie	function
+BcC Mouse 0 	BcN	A	FuncFvwmDeleteOrDestroy
+BmC Mouse 1 	BmN	A	FuncFvwmMaximize
+BmC Mouse 2 	BmN	A	FuncFvwmMaximizeVertically
+BmC Mouse 3 	BmN	A	FuncFvwmMaximizeHorizontally
+BoC Mouse 1 	BoN	A	FuncFvwmWindowOpsOrAction Delete
+BoC MouseXX 2 3	BoN	A	Menu MenuFvwmWindowMove
+BoC MouseXX 3 2	BoN	A	Menu MenuFvwmWindowGroupOps
+BiC Mouse 0 	BiN	A	FuncFvwmIconify
+BhC Mouse 1 	BhN	A	WindowShade toggle
+BhC Mouse 2 	BhN	A	WindowShade true
+BhC Mouse 3 	BhN	A	WindowShade false
+BsC Mouse 0 	BsN	A	Stick
+BcC Mouse 0 	BcN	CM	FuncFvwmShowButtonInfo "Delete on click^nDestroy on double click"
+BmC Mouse 0 	BmN	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tfully on click^n^tmenu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally"
+BoC Mouse 0 	BoN	CM	FuncFvwmShowButtonInfo "Mouse 1 - WindowOps menu^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
+BiC Mouse 0 	BiN	CM	FuncFvwmShowButtonInfo "Iconify"
+BhC Mouse 0 	BhN	CM	FuncFvwmShowButtonInfo "WindowShade:^n^tMouse 1 - toggle^n^tMouse 2 - true^n^tMouse 3 - false"
+BsC Mouse 0 	BsN	CM	FuncFvwmShowButtonInfo "Stick"
+# simulate title bindings on two edge buttons:
+BlC FuncFvwmSetTitleBindings BlN
+BrC FuncFvwmSetTitleBindings BrN
+
+DestroyFunc FuncFvwmStartWindowButtons
+AddToFunc   FuncFvwmStartWindowButtons
+
+DestroyFunc FuncFvwmStopWindowButtons
+AddToFunc   FuncFvwmStopWindowButtons
++ I FuncFvwmRemoveAllButtons
+BcC + I Mouse 0 	BcN	A	-
+BmC + I Mouse 1 	BmN	A	-
+BmC + I Mouse 2 	BmN	A	-
+BmC + I Mouse 3 	BmN	A	-
+BoC + I Mouse 1 	BoN	A	-
+BoC + I Mouse 2 	BoN	A	-
+BoC + I Mouse 3 	BoN	A	-
+BiC + I Mouse 0 	BiN	A	-
+BhC + I Mouse 1 	BhN	A	-
+BhC + I Mouse 2 	BhN	A	-
+BhC + I Mouse 3 	BhN	A	-
+BsC + I Mouse 0 	BsN	A	-
+BcC + I Mouse 0 	BcN	CM	-
+BmC + I Mouse 0 	BmN	CM	-
+BoC + I Mouse 0 	BoN	CM	-
+BiC + I Mouse 0 	BiN	CM	-
+BhC + I Mouse 0 	BhN	CM	-
+BsC + I Mouse 0 	BsN	CM	-
+#
+BlC + I FuncFvwmUnsetTitleBindings BlN
+BrC + I FuncFvwmUnsetTitleBindings BrN

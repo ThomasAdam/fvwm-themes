@@ -8,6 +8,10 @@
 
 	* bin/fvwm-themes-config.in: fixed expanding of %d in read-file
 
+	* themes/multichoice/buttons/*:
+	added initial buttons@multichoice, incomplete yes;
+	currently includes 2 options: face and order
+
 2001-04-26  migo  <migo@homemail.com>
 
 	* themes/default/settings/iconstyles/style-icon-miniicon:
