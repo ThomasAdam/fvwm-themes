@@ -38,6 +38,12 @@ if test -z "$MKFIFO"; then
 	AC_MSG_WARN(mkfifo is not found; you will have some problems with GUI!)
 fi
 
+# we check for FvwmM4 below
+AC_PATH_PROG(M4, m4)
+if test -z "$M4"; then
+	AC_MSG_WARN(m4 is not found; you will have a few problems using this package!)
+fi
+
 # fvwm-themes-images needs to know where the rgb.txt file is
 AC_PATH_XTRA
 if test -z "$X_LIBS"; then
@@ -67,6 +73,12 @@ FVWM_DEFAULT_USERDIR=`$FVWM_CONFIG --default-userdir`
 AC_SUBST(FVWM_DEFAULT_USERDIR)dnl
 FVWM_DEFAULT_IMAGEPATH=`$FVWM_CONFIG --default-imagepath`
 AC_SUBST(FVWM_DEFAULT_IMAGEPATH)dnl
+FVWM_MODULE_DIR=`$FVWM_CONFIG --fvwm-moduledir`
+
+AC_PATH_PROG(FVWM_M4, FvwmM4, ,"$FVWM_MODULE_DIR")
+if test -z "$FVWM_M4"; then
+	AC_MSG_WARN(FvwmM4 is not found; you will have a few problems using this package!)
+fi
 
 FVWM_VERSION=`$FVWM_CONFIG --version`
 if test "x$FVWM_VERSION" = "x"; then FVWM_VERSION=unknown; fi

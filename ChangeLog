@@ -1,3 +1,23 @@
+2000-12-13  olicha  <olivier.chapuis@free.fr>
+
+	* configure.in:
+	Check for m4 and FvwmM4
+
+	* themes/{luthien,cde}/{colors/main,colors.cfg}:
+	Try to be POSIX compliant
+
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	* scripts/FvwmScript-ConfigCenter:
+	a few s/Fvwm/FVWM/ and add style "FVWM Themes Doc*"
+
+	* bin/fvwm-themes-start.in:
+	add a position to xmessage (+0+0) (interaction with FvwmBanner is not
+	very pretty ...)
+
+	* NEWS:
+	* TODO:
+	Some update
+
 2000-12-12  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-script.in (checkScript):

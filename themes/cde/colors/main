@@ -8,7 +8,15 @@
 
 changecom  # expand macros even in comments; needed for #rrggbb colors
 # load the CDE_COLOR* using M4
+ifdef({{__gnu__}},{{
+# Use GNU m4
 esyscmd({{awk '{ print "define(CDE_COLOR" (NR <= 8? NR "_BG": (NR - 8) "_FG") ", {{" $1 "}})" }' }}CDE_COLORS_SCHEME)
+}},{{
+# Use non-GNU m4 (FVWM_USERDIR)
+syscmd({{awk '{ print "define(CDE_COLOR" (NR <= 8? NR "_BG": (NR - 8) "_FG") ", {{" $1 "}})" }' }}CDE_COLORS_SCHEME > FVWM_USERDIR/.tmp-tmp)
+include(FVWM_USERDIR/.tmp-tmp)
+syscmd(rm -f FVWM_USERDIR/.tmp-tmp)
+}})
 
 ifelse(CDE_COLORS_NUMBER, 1, {{  # use 4 colors
 define({{CDE_COLOR5_FG}}, CDE_COLOR2_FG)define({{CDE_COLOR5_BG}}, CDE_COLOR2_BG)

@@ -18,7 +18,7 @@
 #-----------------------------------------------------------------------------
 
 
-WindowTitle {Fvwm Themes Configuration Center}
+WindowTitle {FVWM Themes Configuration Center}
 WindowSize 610 480
 Font	-adobe-helvetica-bold-r-*-*-12-*
 

@@ -2,13 +2,16 @@
                       -------------------------
 
 * Internationalization using locale/LANG/ directories.
+[done in my opinion (olicha)]
 
 * Localization (actual translations).
+[In progress]
 
 * Optimizing reload commands needed for changes in components.
 
 * Test and port fvwm-themes to native BSD's and Solaris.
   There are problems for sure, mkdir without -p, no killall etc.
+[In progress]
 
 * Fix a bug, when an option is removed, it is still here (due to 'current').
   The same if the option is added.
@@ -18,6 +21,7 @@
 * Improve wm-icons icon sets, release 0.3.0.
 
 * Check fvwm-themes and fvwm with kde2.
+[In progress; need to (re?)add a FAQ entries for KDE]
 
 Optional items to do:
 --------------------
