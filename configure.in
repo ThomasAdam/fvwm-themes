@@ -89,7 +89,7 @@ AC_SUBST(FT_FVWMFORM_DIR)dnl
 
 #FT_VERSION_INFO="FVWM Themes version $VERSION from `date +'%d-%b-%Y %T'`"
 # migo: to match the one in FVWM...
-FT_VERSION_INFO="FVWM Themes version $VERSION from `date +'on %b %d %Y at %T'`"
+FT_VERSION_INFO="FVWM Themes version $VERSION from `date +'%b %d %Y at %T'`"
 AC_SUBST(FT_VERSION_INFO)dnl
 
 SETTINGS_FILE='${FT_DATADIR}/themes/default/settings.cfg'
