@@ -30,6 +30,8 @@ AddToFunc   FuncFvwmStartThemeModules
 + I Colorset 20 fg rgb:ff/ff/f0, bg average, TiledPixmap module/panel-bg.xpm, Tint white 30, NoShape
 + I FuncFvwmStartNormalIcons
 + I Style "*" IconBox screen w 10 10 -10 -40 p, IconGrid 64 10
+# Hmm, I don't like that the bottom pixels are cursored and blocked
+#+ I EdgeCommand bottom All (FvwmButtons-Panel, !Raised, CirculateHit) Raise
 + I *FvwmIconMan: resolution page
 + I FuncFvwmStartPanel
 
@@ -54,6 +56,7 @@ AddToFunc   FuncFvwmReloadColorsModules
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
 + I Deschedule 34543  # just to be sure
+#+ I EdgeCommand bottom
 + I FuncFvwmStopPanel
 + I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Single
 + I FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
