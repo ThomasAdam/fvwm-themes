@@ -58,7 +58,7 @@ AddToMenu   MenuFvwmStopThemeModules "Default Modules" Title
 # ----------------------------------------------------------------------------
 # Modules configuration
 
-Read themes/luthien/modules/FvwmButtons
-Read themes/luthien/modules/FvwmIconMan
-Read themes/luthien/modules/FvwmPager
-Read themes/luthien/modules/FvwmWinList
+Read themes/luthien/modules/main:FvwmButtons
+Read themes/luthien/modules/main:FvwmIconMan
+Read themes/luthien/modules/main:FvwmPager
+Read themes/luthien/modules/main:FvwmWinList
