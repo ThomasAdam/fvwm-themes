@@ -7,7 +7,7 @@
 #Style * EWMHDonateIcon, EWMHDonateMiniIcon
 #Style Eterm* IconOverride
 Style * IconOverride
-Style XTerm NoActiveIconOverride  # enable: xterm +at
+Style XTerm NoActiveIconOverride  # enable: xterm +ai
 
 ###
 #  Known applications
