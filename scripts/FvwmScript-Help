@@ -30,7 +30,7 @@ Begin
     Set $Title = {}
     Set $InLineDoc = {}
     Set $Lang = {}
-    Set $font = {fixed}
+    Set $font = {-*-fixed-medium-r-semicondensed-*-13-*}
 
     # Arguments
     Set $i = 1
@@ -82,7 +82,7 @@ Begin
 	    Set $index = (Add $index 1)
 	    If $index == 300 Then
 	    Begin
-		Set $font = "fixed"
+		Set $font = "-*-fixed-medium-r-semicondensed-*-13-*"
 		Set $done = 1
 	    End
 	End
@@ -118,7 +118,7 @@ Property
     Position 10 30
     Size 460 430
     Type List
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Title {}
     Flags NoReliefString
 Main

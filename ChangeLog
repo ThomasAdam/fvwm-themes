@@ -1,3 +1,19 @@
+2002-06-01  olicha  <olivier.chapuis@free.fr>
+
+	* scripts/FvwmScript-ThemesCenter: 
+	* bin/fvwm-themes-config.in (comLoop):
+	Fixed crash and the FT session manager which was totally broken
+
+	* bin/fvwm-themes-script.in (buildDoc):
+	* script/*:
+	Replaced fixed by -*-fixed-medium-r-semicondensed-*-13-*. fixed
+	as any font alias are very bad font name with I18N_MB. This should
+	be fixed in the themes too
+
+	* locale/fr/FvwmScript-ThemesCenter.msg:
+	* locale/en/FvwmScript-ThemesCenter.msg:
+	Removed unused font stuff
+
 2002-05-30  migo  <migo@homemail.com>
 
 	* Makefile.am:

@@ -211,7 +211,7 @@ Widget 5
 Property
  Position 75 25
  Size 295 0
- Font fixed
+ Font -*-fixed-medium-r-semicondensed-*-13-*
  Type TextField
  Flags NoReliefString
  Title {}
@@ -296,7 +296,7 @@ Property
  Position 30 105
  Size 330 165
  Type List
- Font fixed
+ Font -*-fixed-medium-r-semicondensed-*-13-*
  Flags NoReliefString
  Title {}
 Main

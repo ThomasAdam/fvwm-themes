@@ -221,7 +221,7 @@ Widget 5
 Property
  Position 65 25
  Size 205 20
- Font fixed
+ Font -*-fixed-medium-r-semicondensed-*-13-*
  Type TextField
  Flags NoReliefString
  Title {}
@@ -287,7 +287,7 @@ Widget 12
 Property
  Position 140 67
  Type CheckBox
- Font fixed
+ Font -*-fixed-medium-r-semicondensed-*-13-*
  Flags NoReliefString
  Title {Show hidden files}
 Main
@@ -307,7 +307,7 @@ Property
  Position 10 105
  Size 260 230
  Type List
- Font fixed
+ Font -*-fixed-medium-r-semicondensed-*-13-*
  Flags NoReliefString
  Title {}
 Main

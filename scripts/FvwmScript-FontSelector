@@ -1270,7 +1270,7 @@ End
 # The selected fonts not Lauched
 Widget 3
 Property
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Position 130 5
     Size 400 20 
@@ -1287,7 +1287,7 @@ End
 Widget 2
 Property
     Flags NoReliefString Hidden
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Position 130 9
     Size 420 20
     Type ItemDraw
@@ -1335,7 +1335,7 @@ End
 Widget 11
 Property
     Flags NoReliefString
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Position 15 60
     Size 200 150
     Type List
@@ -1430,7 +1430,7 @@ End
 # Popup for Weight
 Widget 31
 Property
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString
     Position 320 85
     Type PopupMenu
@@ -1471,7 +1471,7 @@ End
 # Popup for Spacing
 Widget 36
 Property
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString
     Position 515 85
     Type PopupMenu
@@ -1512,7 +1512,7 @@ End
 # Popup for Slant
 Widget 41
 Property
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString
     Position 515 55
     Type PopupMenu
@@ -1553,7 +1553,7 @@ End
 # Popup for Width
 Widget 51
 Property
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString
     Position 320 115
     Type PopupMenu
@@ -1594,7 +1594,7 @@ End
 # Popup for Charset
 Widget 61
 Property
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString
     Position 320 145
     Type PopupMenu
@@ -1682,7 +1682,7 @@ End
 # The filter
 Widget 101
 Property
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString
     Position 130 228
     Size 460 20
@@ -1795,7 +1795,6 @@ Property
     Flags NoReliefString Hidden
     Position 15 40
     Size 570 20
-    #Font fixed
     Type ItemDraw
     Title {Obtained font:}
 Main
@@ -1811,7 +1810,7 @@ Property
     Flags NoReliefString Hidden
     Position 15 60
     Size 570 250
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Type List
     Title {}
 Main
@@ -1827,7 +1826,6 @@ Property
     Flags NoReliefString Hidden
     Position 470 320
     Size 80 20
-    #Font fixed
     Type PushButton
     Title {OK}
 Main
@@ -1848,7 +1846,6 @@ Property
     Flags NoReliefString Hidden
     Position 15 40
     Size 570 20
-    #Font fixed
     Type ItemDraw
     Title {Set your font filter:}
 Main
@@ -2165,7 +2162,6 @@ Property
     Flags NoReliefString Hidden
     Position 470 320
     Size 80 20
-    #Font fixed
     Type PushButton
     Title {OK}
 Main
@@ -2195,7 +2191,6 @@ Property
     Flags NoReliefString
     Position 30 365
     Size 80 20
-    #Font fixed
     Type PushButton
     Title {OK}
 Main
@@ -2216,7 +2211,6 @@ Property
     Flags NoReliefString
     Position 184 365
     Size 80 20
-    #Font fixed
     Type PushButton
     Title {Reset}
 Main
@@ -2238,7 +2232,6 @@ Property
     Flags NoReliefString
     Position 336 365
     Size 80 20
-    #Font fixed
     Type PushButton
     Title {Help}
 Main
@@ -2254,7 +2247,6 @@ Property
     Flags NoReliefString
     Position 490 365
     Size 80 20
-    #Font fixed
     Type PushButton
     Title {Cancel}
 Main

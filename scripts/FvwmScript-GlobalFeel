@@ -1731,7 +1731,7 @@ Widget 11
 Property
     Position 15 70
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {                                           }
 Main
@@ -1749,7 +1749,7 @@ Widget 12
 Property
     Position 15 95
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {                                           }
 Main
@@ -1767,7 +1767,7 @@ Widget 13
 Property
     Position 15 120
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                           }
 Main
@@ -1801,7 +1801,7 @@ Widget 15
 Property
     Position 310 70
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                           }
 Main
@@ -1817,7 +1817,7 @@ Widget 16
 Property
     Position 310 95
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                           }
 Main
@@ -1832,7 +1832,7 @@ Widget 17
 Property
     Position 310 120
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                           }
 Main
@@ -1863,7 +1863,7 @@ Widget 19
 Property
     Position 30 180
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                                                               }
 Main
@@ -1881,7 +1881,7 @@ Widget 20
 Property
     Position 30 205
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                                                               }
 Main
@@ -1900,7 +1900,7 @@ Widget 21
 Property
     Position 30 230
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                                                               }
 Main
@@ -1919,7 +1919,7 @@ Widget 22
 Property
     Position 30 255
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                                                               }
 Main
@@ -1938,7 +1938,7 @@ Widget 23
 Property
     Position 30 280
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                                                               }
 Main
@@ -1956,7 +1956,7 @@ Widget 24
 Property
     Position 30 305
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                                                               }
 Main
@@ -1990,7 +1990,7 @@ Widget 26
 Property
     Position 30 360
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                                                               }
 Main
@@ -2005,7 +2005,7 @@ Widget 27
 Property
     Position 30 385
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                                                               }
 Main
@@ -2041,7 +2041,7 @@ Widget 31
 Property
     Position 20 75
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                        }
 Main
@@ -2056,7 +2056,7 @@ Widget 32
 Property
     Position 170 75
     Type RadioButton
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                    }
 Main
@@ -2074,7 +2074,7 @@ Widget 33
 Property
     Position 310 75
     Type RadioButton
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                    }
 Main
@@ -2092,7 +2092,7 @@ Widget 34
 Property
     Position 20 105
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                                                           }
 Main
@@ -2108,7 +2108,7 @@ Property
     Position 385 100
     Size 30 15
     Type TextField
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {}
 Main
@@ -2123,7 +2123,7 @@ Widget 36
 Property
     Position 425 105
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden  NoFocus
     Title {                    }
 Main
@@ -2138,7 +2138,7 @@ Widget 37
 Property
     Position 20 135
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                                          }
 Main
@@ -2152,7 +2152,7 @@ Widget 38
 Property
     Position 280 135
     Type RadioButton
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                       }
 Main
@@ -2169,7 +2169,7 @@ Widget 39
 Property
     Position 440 135
     Type RadioButton
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                       }
 Main
@@ -2187,7 +2187,7 @@ Widget 40
 Property
     Position 20 165
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                                          }
 Main
@@ -2202,7 +2202,7 @@ Widget 41
 Property
     Position 280 165
     Type RadioButton
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                       }
 Main
@@ -2220,7 +2220,7 @@ Widget 42
 Property
     Position 440 165
     Type RadioButton
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                       }
 Main
@@ -2238,7 +2238,7 @@ Widget 43
 Property
     Position 20 195
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                                                                       }
 Main
@@ -2269,7 +2269,7 @@ Widget 45
 Property
     Position 65 255
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {               }
 Main
@@ -2285,7 +2285,7 @@ Property
     Position 155 250
     Size 30 15
     Type TextField
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {}
 Main
@@ -2300,7 +2300,7 @@ Widget 47
 Property
     Position 260 255
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {              }
 Main
@@ -2315,7 +2315,7 @@ Widget 48
 Property
     Position 350 250
     Type PopupMenu
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {                           }
 Main
@@ -2330,7 +2330,7 @@ Widget 49
 Property
     Position 65 295
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                          }
 Main
@@ -2345,7 +2345,7 @@ Widget 50
 Property
     Position 230 295
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {X:}
 Main
@@ -2359,7 +2359,7 @@ Widget 51
 Property
     Position 250 290
     Type TextField
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {}
 Main
@@ -2374,7 +2374,7 @@ Widget 52
 Property
     Position 330 295
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {Y:}
 Main
@@ -2388,7 +2388,7 @@ Widget 53
 Property
     Position 350 290
     Type TextField
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {}
 Main
@@ -2419,7 +2419,7 @@ Widget 55
 Property
     Position 90 355
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {                               }
 Main
@@ -2444,7 +2444,7 @@ Widget 56
 Property
     Position 310 355
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {                                   }
 Main
@@ -2469,7 +2469,7 @@ Widget 57
 Property
     Position 70 390
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                           }
 Main
@@ -2485,7 +2485,7 @@ Property
     Position 210 385
     Size 90 20
     Type TextField
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {}
 Main
@@ -2501,7 +2501,7 @@ Property
     Position 340 385
     Size 90 20
     Type PushButton
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {}
 Main
@@ -2549,7 +2549,7 @@ Widget 61
 Property
     Position 20 85
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden  NoFocus
     Title {                              }
 Main
@@ -2564,7 +2564,7 @@ Widget 62
 Property
     Position 205 80
     Type PopupMenu
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {                }
 Main
@@ -2579,7 +2579,7 @@ Widget 63
 Property
     Position 385 85
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {                              }
 Main
@@ -2594,7 +2594,7 @@ Widget 64
 Property
     Position 20 125
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus   
     Title {                              }
 Main
@@ -2609,7 +2609,7 @@ Widget 65
 Property
     Position 205 120
     Type PopupMenu
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {                }
 Main
@@ -2624,7 +2624,7 @@ Widget 66
 Property
     Position 385 125
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {                              }
 Main
@@ -2639,7 +2639,7 @@ Widget 67
 Property
     Position 20 165
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                                                   }
 Main
@@ -2656,7 +2656,7 @@ Property
     Position 330 160
     Size 60 15
     Type TextField
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {}
 Main
@@ -2671,7 +2671,7 @@ Widget 69
 Property
     Position 400 165
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {    }
 Main
@@ -2686,7 +2686,7 @@ Widget 70
 Property
     Position 20 200
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                                                   }
 Main
@@ -2703,7 +2703,7 @@ Property
     Position 330 195
     Size 60 15
     Type TextField
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {}
 Main
@@ -2718,7 +2718,7 @@ Widget 72
 Property
     Position 400 200
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {        }
 Main
@@ -2733,7 +2733,7 @@ Widget 73
 Property
     Position 20 235
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                                                      }
 Main
@@ -2749,7 +2749,7 @@ Widget 74
 Property
     Position 350 230
     Type PopupMenu
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {1|2}
 Main
@@ -2764,7 +2764,7 @@ Widget 75
 Property
     Position 400 235
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {        }
 Main
@@ -2797,7 +2797,7 @@ Widget 77
 Property
     Position 20 325
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                                                        }
 Main
@@ -2814,7 +2814,7 @@ Property
     Position 335 320
     Size 30 15
     Type TextField
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {}
 Main
@@ -2829,7 +2829,7 @@ Widget 79
 Property
     Position 380 325
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {    }
 Main
@@ -2844,7 +2844,7 @@ Widget 80
 Property
     Position 20 360
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                                                        }
 Main
@@ -2861,7 +2861,7 @@ Property
     Position 335 355
     Size 30 15
     Type TextField
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {}
 Main
@@ -2876,7 +2876,7 @@ Widget 82
 Property
     Position 380 360
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {        }
 Main
@@ -2912,7 +2912,7 @@ Widget 91
 Property
     Position 30 80
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                                                               }
 Main
@@ -2927,7 +2927,7 @@ Widget 92
 Property
     Position 30 105
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                                                                         }
 Main
@@ -2942,7 +2942,7 @@ Widget 93
 Property
     Position 30 130
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                                                                         }
 Main
@@ -2957,7 +2957,7 @@ Widget 94
 Property
     Position 30 155
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                                                                       }
 Main
@@ -2972,7 +2972,7 @@ Widget 95
 Property
     Position 30 180
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                                                                       }
 Main
@@ -3003,7 +3003,7 @@ Widget 97
 Property
     Position 30 255
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                                      }
 Main
@@ -3019,7 +3019,7 @@ Property
     Position 260 250
     Size 40 15
     Type TextField
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {}
 Main
@@ -3034,7 +3034,7 @@ Widget 99
 Property
     Position 30 287
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {                                                                               }
 Main
@@ -3049,7 +3049,7 @@ Widget 100
 Property
     Position 30 320
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                               }
 Main
@@ -3064,7 +3064,7 @@ Widget 101
 Property
     Position 250 320
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                       }
 Main
@@ -3079,7 +3079,7 @@ Widget 102
 Property
     Position 395 315
     Type TextField
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {}
 Main
@@ -3094,7 +3094,7 @@ Widget 103
 Property
     Position 50 352
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                                 }
 Main
@@ -3110,7 +3110,7 @@ Property
     Position 255 347
     Size 335 15
     Type TextField
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {}
 Main
@@ -3125,7 +3125,7 @@ Widget 105
 Property
     Position 50 382
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {               }
 Main
@@ -3140,7 +3140,7 @@ Widget 106
 Property
     Position 255 379
     Type PopupMenu
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {                       }
 Main
@@ -3176,7 +3176,7 @@ Widget 111
 Property
     Position 35 80
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {                                      }
 Main
@@ -3191,7 +3191,7 @@ Widget 112
 Property
     Position 35 105
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                                      }
 Main
@@ -3206,7 +3206,7 @@ Widget 113
 Property
     Position 35 130
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                      }
 Main
@@ -3221,7 +3221,7 @@ Widget 114
 Property
     Position 310 80
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                      }
 Main
@@ -3236,7 +3236,7 @@ Widget 115
 Property
     Position 310 105
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                      }
 Main
@@ -3251,7 +3251,7 @@ Widget 116
 Property
     Position 310 130
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {                                      }
 Main
@@ -3282,7 +3282,7 @@ Widget 118
 Property
     Position 55 200
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {Read}
 Main
@@ -3297,7 +3297,7 @@ Widget 119
 Property
     Position 170 200
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {Recapture}
 Main
@@ -3312,7 +3312,7 @@ Widget 120
 Property
     Position 285 200
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {Wait}
 Main
@@ -3327,7 +3327,7 @@ Widget 121
 Property
     Position 400 200
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden   
     Title {ModuleSynchronous}
 Main
@@ -3358,7 +3358,7 @@ Widget 123
 Property
     Position 35 275
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                                               }
 Main
@@ -3373,7 +3373,7 @@ Widget 124
 Property
     Position 320 270
     Type PopupMenu
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {Default|2|9|19|29|39|49|61|No Limit}
 Main
@@ -3388,7 +3388,7 @@ Widget 125
 Property
     Position 35 310
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title { MixedVisualWorkaround}
 Main
@@ -3403,7 +3403,7 @@ Widget 126
 Property
     Position 35 345
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title { RaiseOverNativeWindows}
 Main
@@ -3418,7 +3418,7 @@ Widget 129
 Property
     Position 280 310
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title { SaveUnder}
 Main
@@ -3433,7 +3433,7 @@ Widget 130
 Property
     Position 280 345
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title { BackingStore}
 Main
@@ -3449,7 +3449,7 @@ Widget 127
 Property
     Position 35 380
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden NoFocus
     Title {                                                            }
 Main
@@ -3464,7 +3464,7 @@ Widget 128
 Property
     Position 400 375
     Type PopupMenu
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {2 sec|5 sec|7 sec|10 sec|15 sec |30 sec|45 sec|60 sec|120 sec}
 Main
@@ -3501,7 +3501,7 @@ Property
     Position 15 80
     Type ItemDraw
     Flags NoReliefString Hidden NoFocus
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Title {                                                                                             }
 Main
 Case message of
@@ -3516,7 +3516,7 @@ Property
     Position 35 115
     Type ItemDraw
     Flags NoReliefString Hidden NoFocus
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Title {                                    }
 Main
 Case message of
@@ -3579,7 +3579,7 @@ Property
     Position 35 155
     Type ItemDraw
     Flags NoReliefString Hidden NoFocus
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Title {                         }
 Main
 Case message of
@@ -3594,7 +3594,7 @@ Property
     Position 150 155
     Type ItemDraw
     Flags NoReliefString Hidden NoFocus
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Title {                        }
 Main
 Case message of
@@ -3609,7 +3609,7 @@ Property
     Position 50 185
     Type ItemDraw
     Flags NoReliefString Hidden NoFocus
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Title {                                }
 Main
 Case message of
@@ -3671,7 +3671,7 @@ Widget 962
 Property
     Position 30 270
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {                                                                                          }
 Main
@@ -3686,7 +3686,7 @@ Widget 963
 Property
     Position 30 305
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {                                                                                          }
 Main
@@ -3701,7 +3701,7 @@ Widget 964
 Property
     Position 30 340
     Type CheckBox
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Flags NoReliefString Hidden
     Title {                                                                                          }
 Main

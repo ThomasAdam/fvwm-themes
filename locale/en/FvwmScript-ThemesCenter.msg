@@ -1,9 +1,3 @@
-#[Font]
-#ChangeFont	{1}
-#SelFont	-adobe-helvetica-bold-r-*-*-12-*
-#ShadeFont	-adobe-helvetica-medium-r-*-*-12-*
-#FixedFont	fixed
-
 [Msg]
 CT		{Configuration Tools:}
 CTList		{       Themes Selector        |       General Settings        |       FVWM Themes Sessions      }

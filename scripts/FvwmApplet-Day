@@ -1,6 +1,6 @@
 WindowTitle {FvwmApplet-Day}
 WindowSize 64 64		# Taille
-Font		6x10
+Font -*-fixed-medium-r-normal--10-*
 # Better use the FvwmScript default colors.
 #BackColor {rgb:a0/90/80}
 #ForeColor {black}
@@ -62,7 +62,6 @@ Widget 2
 Property
  Position 9 12
  Size 46 12
- Font 6x10
  Type ItemDraw
  ForeColor	{black}
  BackColor	{white}
@@ -81,7 +80,7 @@ Widget 4
 Property
  Position 20 30
  Size 24 10
- Font 10x20
+ Font -*-fixed-medium-r-normal-*-20-*
  Type ItemDraw
  ForeColor	{black}
  BackColor	{white}

@@ -823,7 +823,7 @@ sub buildDoc {
 	# points to localized font, but this may be good to support any --lang.
 	# This info may be read from locale/LANG/fonts.cfg probably.
 	my %fixedFont = (
-		'en' => "fixed",
+		'en' => "-*-fixed-medium-r-semicondensed-*-13-*",
 		'ru' => "-cronyx-fixed-medium-r-semicondensed--*-*-*-*-*-*-koi8-*",
 	);
 	my $fontLang = exists $fixedFont{$lang}? $lang: 'en';

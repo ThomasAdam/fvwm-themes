@@ -296,7 +296,7 @@ Property
     Position 20 65
     Size 280 195 
     Type List
-    Font Fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Title {}
 Main
 Case message of

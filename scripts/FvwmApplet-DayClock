@@ -1,6 +1,6 @@
 WindowTitle {FvwmApplet-DayClock}
 WindowSize 64 64		# Taille
-Font		6x10
+Font -*-fixed-medium-r-normal-*-10-*
 # Better use the FvwmScript default colors.
 #BackColor {rgb:a0/90/80}
 #ForeColor {black}
@@ -106,7 +106,6 @@ Widget 1
 Property
  Position 6 6
  Size 53 12
- Font 6x10
  Type ItemDraw
  Flags NoReliefString
  ForeColor	{black}
@@ -125,7 +124,6 @@ Widget 2
 Property
  Position 6 28
  Size 52 10
- Font 6x10
  Type ItemDraw
  Flags NoReliefString
  ForeColor	{black}
@@ -144,7 +142,7 @@ Widget 4
 Property
  Position 22 40
  Size 20 10
- Font 9x15
+ Font -*-fixed-medium-r-normal--15-*
  Type ItemDraw
  Flags NoReliefString
  ForeColor	{black}

@@ -1,6 +1,6 @@
 WindowTitle {FvwmApplet-Mixer}
 WindowSize 64 64		# Taille
-Font		6x10
+Font -*-fixed-medium-r-normal-*-10-*
 
 Init
  Begin
@@ -135,7 +135,6 @@ Widget 2
 Property
  Position 34 29
  Size 20 10
- Font 6x10
  Type ItemDraw
  Flags NoReliefString
  Title {50}

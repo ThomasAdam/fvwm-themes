@@ -503,7 +503,7 @@ Property
  Position 70 185
  Type MiniScroll
  Flags NoReliefString
- Font fixed
+ Font -*-fixed-medium-r-semicondensed-*-13-*
  MinValue 0
  MaxValue 255
 Main
@@ -556,7 +556,7 @@ End
 
 Widget 33
 Property
- Font fixed   
+ Font -*-fixed-medium-r-semicondensed-*-13-*   
  Size 1 1
  Position 160 185
  Type MiniScroll
@@ -621,7 +621,7 @@ Property
  Position 250 185
  Type MiniScroll
  Flags NoReliefString
- Font fixed
+ Font -*-fixed-medium-r-semicondensed-*-13-*
  Value 184
  MinValue 0
  MaxValue 255
@@ -669,7 +669,6 @@ Property
     Flags NoReliefString
     Position 20 245
     Size 80 20
-    #Font fixed
     Type PushButton
     Title {OK}
 Main
@@ -691,7 +690,6 @@ Property
     Flags NoReliefString
     Position 120 245
     Size 80 20
-    #Font fixed
     Type PushButton
     Title {}
 Main
@@ -713,7 +711,6 @@ Property
     Flags NoReliefString
     Position 220 245
     Size 80 20
-    #Font fixed
     Type PushButton
     Title {}
 Main

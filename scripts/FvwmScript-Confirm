@@ -138,7 +138,6 @@ Property
     Flags NoReliefString
     Position 50 115
     Size 80 20
-    #Font fixed
     Type PushButton
     Title {OK}
 Main
@@ -163,7 +162,6 @@ Property
     Flags NoReliefString
     Position 270 115
     Size 80 20
-    #Font fixed
     Type PushButton
     Title {}
 Main

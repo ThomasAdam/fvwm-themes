@@ -65,7 +65,7 @@ Begin
 
     Set $SelFont = {-adobe-helvetica-bold-r-*-*-12-*}
     Set $ShadeFont = {-adobe-helvetica-medium-r-*-*-12-*}
-    Set $FixedFont = {fixed}
+    Set $FixedFont = {-*-fixed-medium-r-semicondensed-*-13-*}
     Set $nonDefaultFont = 0
 
     #Set $Lang = {en}
@@ -1084,7 +1084,7 @@ Property
     Flags NoReliefString
     Position 20 65
     Size 270 150
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Type List
     Title {}
 Main
@@ -1094,31 +1094,35 @@ SingleClic :
     Set $index = (GetValue 6)
     If $index <> $ThemeIndex Then
     Begin
-	Set $tmp = 7
-	While $tmp <> 10 Do
-	Begin
-	    ChangeFont $tmp $SelFont
-	    Set $tmp = (Add $tmp 1)
-	End
-	Set $ThemeIndex = $index
-	Set $CMD = {theme-components }$ThemeIndex{|}
+	Set $CMD = {theme-components }$index{|}
 	# execute the CMD
-	SendSignal 999 2  
-	Set $ThemeComponents = (Parse $RES 1)
-	Set $ThemeName = (Parse $RES 2)
-	Set $ThemeDir = (Parse $RES 3)
-	ChangeTitle 12 $ThemeComponents
-	Set $t = $l_B_Component $ThemeName $l_A_Component
-	ChangeTitle 11 $t
-
-	Set $NullMessage = 1
-	Set $ComponentName = {}
-	ChangeValue 12 0
-	Set $tmp = 13
-	While $tmp <> 16 Do
+	SendSignal 999 2
+	Set $safe = (Parse $RES 1)
+	If $safe <> {None} Then
 	Begin
-	    ChangeFont $tmp $ShadeFont
-	    Set $tmp = (Add $tmp 1)
+	    Set $tmp = 7
+	    While $tmp <> 10 Do
+	    Begin
+		ChangeFont $tmp $SelFont
+		Set $tmp = (Add $tmp 1)
+	    End
+	    Set $ThemeIndex = $index
+	    Set $ThemeComponents = $safe
+	    Set $ThemeName = (Parse $RES 2)
+	    Set $ThemeDir = (Parse $RES 3)
+	    ChangeTitle 12 $ThemeComponents
+	    Set $t = $l_B_Component $ThemeName $l_A_Component
+	    ChangeTitle 11 $t
+
+	    Set $NullMessage = 1
+	    Set $ComponentName = {}
+	    ChangeValue 12 0
+	    Set $tmp = 13
+	    While $tmp <> 16 Do
+	    Begin
+		ChangeFont $tmp $ShadeFont
+		Set $tmp = (Add $tmp 1)
+	    End
 	End
     End
  End
@@ -1224,24 +1228,36 @@ Property
     Flags NoReliefString
     Position 310 65
     Size 270 150
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Type List
     Title {}
 Main
 Case message of
  SingleClic :
  Begin
-    Set $ComponentIndex = (GetValue 12)
+    Set $index = (GetValue 12)
     If $ThemeName <> {} Then
     Begin
-	# 15 is not yet avaiable
-	ChangeFont 13 $SelFont
-	ChangeFont 14 $SelFont
-	Set $CMD = {component-name }$ThemeName{ }$ComponentIndex{|}
+	Set $CMD = {component-name }$ThemeName{ }$index{|}
 	# execute the CMD
 	SendSignal 999 2
-	Set $ComponentName = $RES
-	Set $NullMessage = 1
+	If $RES <> {1} Then
+	Begin
+	    Set $ComponentIndex = $index
+	    # 15 is not yet avaiable
+	    ChangeFont 13 $SelFont
+	    ChangeFont 14 $SelFont
+	    Set $ComponentName = $RES
+	    Set $NullMessage = 1
+	End
+	Else
+	Begin
+	    Set $ComponentName = {}
+	    # 15 is not yet avaiable
+	    ChangeFont 13 $ShadeFont
+	    ChangeFont 14 $ShadeFont
+	    Set $NullMessage = 1
+	End
     End
  End
 End
@@ -1335,7 +1351,7 @@ Property
     Flags NoReliefString
     Position 30 290
     Size 445 115
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Type List
     Title {}
 Main
@@ -1571,7 +1587,7 @@ Property
     Flags NoReliefString
     Position 15 75
     Size 570 114
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Type List
     Title {}
 Main
@@ -1695,7 +1711,7 @@ Property
     Flags NoReliefString
     Position  150 260
     Size 280 110
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Type List
     Title {}
 Main
@@ -1780,7 +1796,7 @@ Property
     Flags NoReliefString
     Position 40 100
     Size 255 150
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Type List
     Title {}
 Main
@@ -1801,12 +1817,13 @@ SingleClic :
 	# execute the CMD
 	SendSignal 999 2
 	Set $SelectedSession = $RES
-	If $SelectedSession <> {} Then
+	If $SelectedSession <> {1} Then
 	    Set $tmp = $l_SelectedSession{ }$SelectedSession
 	Else
 	Begin
 	    Set $tmp = $l_SelectedSession 
 	    Set $SessionIndex = 0
+	    Set $SelectedSession = {}
 	End
 	ChangeTitle 45 $tmp
 	Set $NullMessage = 1
@@ -1974,7 +1991,7 @@ Property
     Flags NoReliefString NoFocus
     Position 70 315
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Title {* To load a session, select it and click on Apply                              }
 Main
 Case message of
@@ -1988,7 +2005,7 @@ Property
     Flags NoReliefString NoFocus
     Position 70 335
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Title {* To Reload the current session, click on Refresh                              }
 Main
 Case message of
@@ -2002,7 +2019,7 @@ Property
     Flags NoReliefString NoFocus
     Position 70 355
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Title {* A click on "Update" will rebuild the session list                            }
 Main
 Case message of
@@ -2016,7 +2033,7 @@ Property
     Flags NoReliefString NoFocus
     Position 70 375
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Title {* If you Apply, the not applied changes in the others config tools will be lost}
 
 Main
@@ -2046,7 +2063,7 @@ Widget 50
 Property
     Flags NoReliefString NoFocus
     Position 20 331
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Type ItemDraw
     Title {                       }
 Main
@@ -2089,7 +2106,7 @@ Property
     Flags NoReliefString NoFocus
     Position 310 331
     Type ItemDraw
-    Font fixed
+    Font -*-fixed-medium-r-semicondensed-*-13-*
     Title {                      }
 Main
 Case message of
@@ -2130,31 +2147,29 @@ SingleClic :
     Set $config = (GetValue 52)
     If $SMEditorType == {Edit} Then
     Begin
-	Set $cmd = {edit-session }$SelectedSession{:}$session{:}$config
+	Set $CMD = {edit-session }$SelectedSession{:}$session{:}$config{|}
     End
     If $SMEditorType == {Add} Then
     Begin
-	Set $cmd = {add-session }$session{:}$config
+	Set $CMD = {add-session }$session{:}$config{|}
     End
     If $SMEditorType == {Remove} Then
     Begin
-	#FIXME:
-	Set $cmd = {remove-session }$SelectedSession
-	#Set $session = (GetOutput $cmd 1 -1)
-	#Set $cmd = $GetLine{2 --clear-buffer}
+	Set $CMD = {remove-session }$SelectedSession{|}
     End
-    Set $tmp = (GetOutput $cmd 1 -1)
-    If $tmp == {Err1} Then
+    # execute the CMD
+    SendSignal 999 2
+    If $RES == {Err1} Then
     Begin
 	Set $break = 0
 	ChangeTitle 95 $l_NameNotValid
     End
-    If $tmp == {Err2} Then
+    If $RES == {Err2} Then
     Begin
 	Set $break = 0
 	ChangeTitle 95 $l_NameAlreadyUse
     End
-    If $tmp == {Err3} Then
+    If $RES == {Err3} Then
     Begin
 	Set $break = 0
 	ChangeTitle 95 $l_SysErr
@@ -2176,9 +2191,11 @@ SingleClic :
 	Begin
 	    Set $msg = {Removing }$SelectedSession{ FVWM Themes Session}
 	    ChangeTitle 95 $msg
+	    Set $session = (Parse $RES 1)
+	    Set $RES = (Parse $RES 2)
 	End
-	ChangeValue 41 $tmp
-	Set $SessionIndex = $tmp
+	ChangeValue 41 $RES
+	Set $SessionIndex = $RES
 	Set $SelectedSession = $session
 	Set $t = {Selected Session: }$SelectedSession
 	ChangeTitle 45 $t

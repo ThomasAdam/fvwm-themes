@@ -2716,7 +2716,7 @@ sub comLoop {
 		  elsif ($tt[$s] eq "exit") {
 			  exit(0);
 		  }
-	   }
+		}
 
 		# now answer the first message which needs one
 		$command = "";
@@ -3010,7 +3010,7 @@ sub comLoop {
 		}
 		# -----------------------------------------------------
 		elsif ($command =~ /^component-name\s+(.+)\s+(\d+)$/) {
-			my ($components, $groups) = getThemeComponentsAndGroups($1);
+			my ($components, $groups) = getThemeComponents($1);
 			my $i = 1;
 			foreach (@$components) {
 				next if $_ eq "settings";
@@ -3279,8 +3279,9 @@ sub comLoop {
 		# --------------------------
 		elsif ($command =~ /^edit-session\s+(.+)$/) {
 			my $opt = $1;
-			my @opt = split(":",$opt); # orig_session:new_session_name:int
-												# int is the value of Widget 52
+			my @opt = split(":",$opt);
+			# orig_session:new_session_name:int
+			# int is the value of Widget 52
 			$return = "Err1" if $#opt != 2;
 			$return = "Err1" if $opt[0] eq "";
 			foreach (@$sessionList) {
@@ -3361,7 +3362,7 @@ sub comLoop {
 					chdir($userDir);
 				}
 				($currentSession,$sessionList,$uptime) = sessionInfo();
-				$i = 0;	
+				$i = 0;
 				foreach (@$sessionList) {
 					$i++;
 					$return = $i if $_ eq $opt[0];
@@ -3378,16 +3379,15 @@ sub comLoop {
 				$i++;
 			}
 			if ($index == -1) {
-				$return = "$session\nErr3";
+				$return = "Err3";
 			} else {
 				system("rm -rf themes/current-$session");
 				($currentSession,$sessionList,$uptime) = sessionInfo();
 				if (! defined $$sessionList[$index]) {
 					$index--;
 				}
-				$return = "$$sessionList[$index]\n";
-				$index++;
-				$return .= $index;
+				$i = $index+1;
+				$return = mergeScriptAnswerForParse("$$sessionList[$index]\n$i");
 			}
 		}
 		# --------------------------
