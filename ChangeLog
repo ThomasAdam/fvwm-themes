@@ -12,6 +12,13 @@
 	include the new default background, it is jpg, but fvwm-themes-root
 	should fall back to stone.xpm if no root setter found
 
+	* themes/default/settings/banner/enabled:
+	* themes/default/images/banner/fvwm-logo-clearglass.png:
+	use new nicer logo image, with it I may start to use FvwmBanner :)
+	* themes/default/images/banner/fvwm-logo-clearglass-alpha.png:
+	* themes/default/images/banner/fvwm-logo-clearglass.xpm:
+	temporarily include 2 more versions for testing
+
 2002-04-30 migo  <migo@homemail.com>
 
 	* themes/default/menus:

@@ -1,3 +1,4 @@
+*FvwmBanner: Pixmap $[FT_DATADIR]/themes/default/images/banner/fvwm-logo-clearglass.png
 AddToFunc StartFunction I Module FvwmBanner
 
 Style "FvwmBanner" StaysOnTop, Sticky
