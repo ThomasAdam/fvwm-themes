@@ -13,7 +13,7 @@ AddToMenu   MenuFvwmRoot "Root Menu" Title
 + "&Window Operations%menu/window.xpm%"		Popup MenuFvwmWindowOps
 + "" Nop
 + "Screen Saver%menu/display.xpm%"		Popup MenuFvwmScreenSaver
-+ "&Quit Fvwm%menu/wm-quit.xpm%"		Popup MenuFvwmQuit
++ "&Quit FVWM%menu/wm-quit.xpm%"		Popup MenuFvwmQuit
 
 # ----------------------------------------------------------------------------
 # ---------- Shells
@@ -94,18 +94,22 @@ AddToMenu   MenuFvwmManPages "FVWM Man Pages" Title
 + "%menu/help.xpm%FvwmTheme"           FuncFvwmViewManPage FvwmTheme
 + "%menu/help.xpm%FvwmWharf"           FuncFvwmViewManPage FvwmWharf
 + "%menu/help.xpm%FvwmWinList"         FuncFvwmViewManPage FvwmWinList
++ "" Nop
++ "%menu/help.xpm%fvwmbug"             FuncFvwmViewManPage fvwmbug
++ "%menu/help.xpm%fvwmrc_convert"      FuncFvwmViewManPage fvwmrc_convert
++ "%menu/help.xpm%fvwm24_convert"      FuncFvwmViewManPage fvwm24_convert
++ "%menu/help.xpm%xpmroot"             FuncFvwmViewManPage xpmroot
++ "" Nop
 + "%menu/help.xpm%fvwm-menu-desktop"   FuncFvwmViewManPage fvwm-menu-desktop
 + "%menu/help.xpm%fvwm-menu-directory" FuncFvwmViewManPage fvwm-menu-directory
 + "%menu/help.xpm%fvwm-menu-headlines" FuncFvwmViewManPage fvwm-menu-headlines
 + "%menu/help.xpm%fvwm-menu-xlock"     FuncFvwmViewManPage fvwm-menu-xlock
++ "" Nop
 + "%menu/help.xpm%fvwm-themes-config"  FuncFvwmViewManPage fvwm-themes-config
 + "%menu/help.xpm%fvwm-themes-com"     FuncFvwmViewManPage fvwm-themes-com
 + "%menu/help.xpm%fvwm-themes-images"  FuncFvwmViewManPage fvwm-themes-images
 + "%menu/help.xpm%fvwm-themes-menuapp" FuncFvwmViewManPage fvwm-themes-menuapp
 + "%menu/help.xpm%fvwm-themes-start"   FuncFvwmViewManPage fvwm-themes-start
-+ "%menu/help.xpm%fvwmbug"             FuncFvwmViewManPage fvwmbug
-+ "%menu/help.xpm%fvwmrc_convert"      FuncFvwmViewManPage fvwmrc_convert
-+ "%menu/help.xpm%xpmroot"             FuncFvwmViewManPage xpmroot
 
 # ----------------------------------------------------------------------------
 # ---------- Modules
@@ -137,16 +141,16 @@ AddToMenu   MenuFvwmStartRegularModules "Regular Modules" Title
 
 DestroyMenu MenuFvwmStopRegularModules
 AddToMenu   MenuFvwmStopRegularModules "Regular Modules" Title
-+ "Stop &Animate"       KillModule FvwmAnimate
-+ "Stop All &Buttons"   KillModule FvwmButtons
++ "Stop &Animation"     KillModule FvwmAnimate
 + "Stop Backe&r"       	KillModule FvwmBacker
 + "Stop Co&mmandS"      KillModule FvwmCommandS
 + "Stop &Console"      	KillModule FvwmConsole
-+ "Stop &Form"          KillModule FvwmForm
 + "Stop &Identify"     	KillModule FvwmIdent
 + "Stop &ScrollBar"    	KillModule FvwmScroll
-+ "Stop Sound Event"    KillModule FvwmEvent
 + "Stop Auto Rais&e"   	KillModule FvwmAuto
++ "Stop Sound Event"    KillModule FvwmEvent
++ "Stop All &Buttons"   KillModule FvwmButtons
++ "Stop All &Forms"     KillModule FvwmForm
 
 DestroyMenu MenuFvwmForms
 AddToMenu   MenuFvwmForms "Fvwm Forms" Title
@@ -209,7 +213,7 @@ AddToMenu   MenuFvwmXConfiguration "X Configuration" Title
 # ---------- MenuFvwmQuit
 
 DestroyMenu MenuFvwmQuit
-AddToMenu   MenuFvwmQuit "Really Quit Fvwm?" Title
+AddToMenu   MenuFvwmQuit "Really Quit FVWM?" Title
 + "&Restart%menu/wm-restart.xpm%"          Restart
 + "&Restart Other%menu/wm-restart.xpm%"    Popup MenuFvwmWindowManager
 + "" Nop

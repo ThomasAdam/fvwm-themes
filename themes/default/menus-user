@@ -107,7 +107,7 @@ DestroyModuleConfig FvwmForm-Restart: *
 
 DestroyMenu MenuFvwmWindowManager
 AddToMenu   MenuFvwmWindowManager "Window Managers" Title
-+ "&fvwm-themes"	Restart fvwm-themes-start
++ "&fvwm-themes-start"	Restart fvwm-themes-start
 + "&fvwm1"		Restart fvwm -s
 + "&fvwm95"		Restart fvwm95 -s
 + "&AnotherLevel"	Restart AnotherLevel
@@ -120,11 +120,14 @@ AddToMenu   MenuFvwmWindowManager "Window Managers" Title
 + "&icewm"		Restart icewm
 + "&mwm"		Restart mwm
 + "&olvwm"		Restart olvwm
++ "&sawfish"		Restart sawfish
++ "&sawmill"		Restart sawmill
 + "&twm"		Restart twm
 + "&uwm"		Restart uwm
 + "&wm2"		Restart wm2
 + "&wmaker"		Restart wmaker
-+ "&xwm"		Restart wmx
++ "&wmx"		Restart wmx
++ "&xfwm"		Restart xfwm
 + "" Nop
 + "Just &xterm"         Restart xterm
 + "More&..."            FvwmForm FvwmForm-Restart
@@ -189,6 +192,7 @@ AddToMenu   MenuFvwmUtilities "Utilities" Title
 DestroyMenu MenuFvwmApplications
 AddToMenu   MenuFvwmApplications "Applications" Title
 + "Gnome &Panel%menu/gnome.xpm%"	Exec exec panel
++ "Xfce &Panel%menu/gnome.xpm%"		Exec exec xfce
 + "&GhostView%menu/ghostview.xpm%" 	Exec exec ghostview
 + "X&pdf%menu/viewer.xpm%"		Exec exec xpdf
 + "&Acroread%menu/viewer.xpm%"		Exec exec acroread
@@ -283,10 +287,10 @@ AddToMenu   MenuFvwmGames "Games" Title
 + "Board%menu/game-chess.xpm%"		Popup MenuFvwmGamesBoard
 + "Cards%menu/game-cards.xpm%"		Popup MenuFvwmGamesCards
 + "Puzzle%menu/game.xpm%"		Popup MenuFvwmGamesPuzzle
-+ "Strategy%menu/game.xpm%"		Popup MenuFvwmGamesStrategy
+##+ "Strategy%menu/game.xpm%"		Popup MenuFvwmGamesStrategy
 + "Tetris%menu/game.xpm%"		Popup MenuFvwmGamesTetris
 + "Ace of Penguins%menu/penguin.xpm%"	Popup MenuFvwmGamesPenguins
-+ "Misc%menu/game.xpm%"			Popup MenuFvwmGamesOther
++ "Other%menu/game.xpm%"		Popup MenuFvwmGamesOther
 
 DestroyMenu MenuFvwmGamesAction
 AddToMenu   MenuFvwmGamesAction "Action" Title
@@ -361,8 +365,8 @@ AddToMenu   MenuFvwmGamesPuzzle "Puzzle" Title
 + "XSkewb%menu/game.xpm%"		Exec exec xskewb
 + "XTriangles%menu/game.xpm%"		Exec exec xtriangles
 
-DestroyMenu MenuFvwmGamesStrategy
-AddToMenu   MenuFvwmGamesStrategy "Strategy" Title
+##DestroyMenu MenuFvwmGamesStrategy
+##AddToMenu   MenuFvwmGamesStrategy "Strategy" Title
 
 DestroyMenu MenuFvwmGamesTetris
 AddToMenu   MenuFvwmGamesTetris "Tetris" Title
@@ -381,11 +385,11 @@ AddToMenu   MenuFvwmGamesPenguins "Ace of Penguins" Title
 + "penguins%menu/game-cards.xpm%"	Exec exec penguins
 + "solitaire%menu/game-cards.xpm%"	Exec exec solitaire
 + "thornq%menu/game-cards.xpm%"		Exec exec thornq
-+ "mastermind%menu/game.xpm%"		Exec exec mastermind  # puzzle
++ "mastermind%menu/game.xpm%"		Exec exec mastermind
 + "merlin%menu/game-chess.xpm%"		Exec exec merlin
-+ "minesweeper%menu/game.xpm%"		Exec exec minesweeper  # puzzle
++ "minesweeper%menu/game.xpm%"		Exec exec minesweeper
 + "pegged%menu/game.xpm%"		Exec exec pegged
-+ "taipei%menu/game.xpm%"		Exec exec taipei  # mahjongg-like
++ "taipei%menu/game.xpm%"		Exec exec taipei
 + "taipedit%menu/game.xpm%"		Exec exec taipedit
 
 DestroyMenu MenuFvwmGamesOther
