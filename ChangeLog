@@ -23,6 +23,10 @@
 	* themes/olicha/modules/main:
 	fixed module menu entries for normal icons
 
+	* Makefile.am:
+	DESTDIR now works, probably should be used instead ROOT_PREFIX;
+	"make distcheck" now finally works, but ALL_THEMES gives warning
+
 2002-12-05  olicha  <olivier.chapuis@free.fr>
 
 	* themes/minimal/modules/main:

@@ -22,33 +22,30 @@ install-data-local:
 	$(mkinstalldirs) $(FT_DATADIR)
 	for dir in $(FT_DATA_SUBDIRS); do \
 		chmod -R o-w,go+rX $$dir 2>/dev/null || true; \
-		rm -rf "$(FT_DATADIR)/$$dir"; \
-		(if test -f $$dir.tar.gz; then gzip -dc $$dir.tar.gz || exit 201; \
-		else $(TAR) cpf - $$dir || exit 202; fi) | \
-		(cd "$(FT_DATADIR)" && $(TAR) xfBp - || exit 203); \
-		find "$(FT_DATADIR)/$$dir" -name CVS -exec rm -r {} \; 2>/dev/null; \
+		rm -rf "$(DESTDIR)$(FT_DATADIR)/$$dir"; \
+		(if test -f $(top_srcdir)/$$dir.tar.gz; then gzip -dc $(top_srcdir)/$$dir.tar.gz || exit 201; \
+		else cd $(top_srcdir) && $(TAR) cpf - $$dir || exit 202; fi) | \
+		(cd "$(DESTDIR)$(FT_DATADIR)" && $(TAR) xfBp - || exit 203); \
+		find "$(DESTDIR)$(FT_DATADIR)/$$dir" -name CVS -exec rm -r {} \; 2>/dev/null; \
 	done
 
-	$(FVWM_BINDIR)/fvwm-config --version | grep 2.4. >/dev/null \
-		&& rm -rf "$(FT_DATADIR)/themes/redmondxp" || true
-
 	sed -e "s,xGNOME_IMAGES_DIRx,$(GNOME_IMAGES_DIR),g" \
-		$(SETTINGS_FILE) > $(SETTINGS_FILE).tmp && \
-	mv -f $(SETTINGS_FILE).tmp $(SETTINGS_FILE)
+		$(DESTDIR)$(SETTINGS_FILE) > $(DESTDIR)$(SETTINGS_FILE).tmp && \
+	mv -f $(DESTDIR)$(SETTINGS_FILE).tmp $(DESTDIR)$(SETTINGS_FILE)
 
-	PATH="$(bindir):$(FVWM_BINDIR):$$PATH"; \
-	$(bindir)/fvwm-themes-config --site --reset
+	PATH="$(DESTDIR)$(bindir):$(FVWM_BINDIR):$$PATH"; \
+	$(DESTDIR)$(bindir)/fvwm-themes-config --site --reset
 
 	if test "$(BUILD_MENUS)" = "yes"; then \
-		$(bindir)/fvwm-themes-menuapp --site --build-menus --remove-popup; \
+		$(DESTDIR)$(bindir)/fvwm-themes-menuapp --site --build-menus --remove-popup; \
 	fi
 
 	if test "$(GNOME_ICONS)" = "yes"; then \
-		$(bindir)/fvwm-themes-images --ft-install --gnome; \
+		$(DESTDIR)$(bindir)/fvwm-themes-images --ft-install --gnome; \
 	fi
 
 	if test "$(KDE2_ICONS)" = "yes"; then \
-		$(bindir)/fvwm-themes-images --ft-install --kde2; \
+		$(DESTDIR)$(bindir)/fvwm-themes-images --ft-install --kde2; \
 	fi
 
 	if test "$(RUN_UPDATEMENU)" = "yes"; then \
@@ -69,7 +66,7 @@ uninstall-local:
 	FT_DATADIR=@FT_DATADIR@
 
 	for dir in $(FT_DATA_SUBDIRS); do \
-		rm -rf $(FT_DATADIR)/$$dir; \
+		rm -rf $(DESTDIR)$(FT_DATADIR)/$$dir; \
 	done
 
 	@echo
@@ -80,7 +77,7 @@ uninstall-local:
 	@echo
 
 dist-hook:
-	cp -rpd $(srcdir)/themes $(distdir)
+	cp -rpd $(top_srcdir)/themes $(distdir)
 	find $(distdir)/themes -name CVS -exec rm -r {} \; 2>/dev/null || true
 
 
@@ -97,7 +94,7 @@ cleanup-cvs:
 dist2: cleanup-cvs dist
 	gzip -dc $(distdir).tar.gz | bzip2 -9 >$(distdir).tar.bz2
 
-distcheck2: dist2 distcheck
+distcheck2: distcheck dist2
 	@banner="$(distdir).tar.bz2 - ready for distribution"; \
 	dashes=`echo "$$banner" | sed s/./=/g`; \
 	echo "$$banner"; \
