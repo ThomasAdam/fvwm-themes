@@ -124,7 +124,7 @@ AddToFunc   FuncFvwmDecorBackground
 *FvwmTheme: Colorset 34 fg black, bg grey70, Plain, NoShape
 
 # dialog main area
-*FvwmTheme: Colorset 35 fg grey70, bg black, Plain, NoShape
+*FvwmTheme: Colorset 35 fg grey80, bg grey30, Plain, NoShape
 
 # dialog text area
 *FvwmTheme: Colorset 36 fg black, bg grey70, Plain, NoShape

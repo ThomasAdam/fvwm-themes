@@ -10,6 +10,9 @@
 	* scripts/FvwmScript-ImageBrowser:
 	don't change a wrong Style
 
+	* themes/afterstep/colors:
+	replaced one black bg, still to much black...
+
 2002-06-10  migo  <migo@homemail.com>
 
 	* scripts/FvwmApplet-DayClock:
