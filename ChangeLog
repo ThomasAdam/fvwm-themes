@@ -1,3 +1,8 @@
+2000-08-11  migo  <migo@homemail.com>
+
+	* themes/spruce/colors:
+	fixed a typo s/g/fg/
+
 2000-08-10  migo  <migo@homemail.com>
 
 	* devel/doc/sourceforge-developer:

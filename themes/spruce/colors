@@ -12,7 +12,7 @@
 # ----------------
 # Default colorset
 
-*FvwmThemeColorset 0 g black, bg rgb:9c/c2/9e, Plain, NoShape
+*FvwmThemeColorset 0 fg black, bg rgb:9c/c2/9e, Plain, NoShape
 
 DefaultColorset 0
 DestroyModuleConfig FvwmScrollColorset*
