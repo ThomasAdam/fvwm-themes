@@ -3,6 +3,7 @@
 	* bin/fvwm-themes-config.in:
 	* themes/default/settings.cfg:
 	* themes/multichoice/fonts.cfg:
+	* NEWS:
 	New .cfg option system-requires for components and variants (not
 	for options). Applies this new option to settings/* and fonts
 	variants of multichoice. Possible values are:
