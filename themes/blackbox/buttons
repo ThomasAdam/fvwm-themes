@@ -22,7 +22,7 @@ TitleStyle	Height 18
 
 #     button	context	modifie	function
 Mouse 1 	1	A	FuncFvwmIconify
-MouseXX 2 3	1	A       Menu MenuFvwmWindowMove
+MouseXX 2 3	1	A	Menu MenuFvwmWindowMove
 MouseXX 3 2	1	A	FuncFvwmIconifySameResource toggle
 Mouse 0 	2	A	FuncFvwmMaximize
 Mouse 0 	4	A	FuncFvwmDeleteOrDestroy
@@ -38,7 +38,7 @@ AddToFunc   FuncFvwmStopWindowButtons
 + I FuncFvwmRemoveAllButtons
 + I Mouse 1 	1	A	-
 + I Mouse 2	1	A	-
-+ I Mouse 3	1	A       -
++ I Mouse 3	1	A	-
 + I Mouse 0 	2	A	-
 + I Mouse 0 	4	A	-
 + I Mouse 0 	1	CM	-
