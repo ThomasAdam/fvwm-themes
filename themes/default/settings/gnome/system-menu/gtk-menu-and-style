@@ -1,15 +1,15 @@
-*FvwmGtk: Destroy gnome-sys
-*FvwmGtk: IconSize 18 18
-PipeRead 'fvwm-menu-desktop --desktop gnome-sys --type gtk --enable-mini-icons --enable-style --enable-tran-style --tran-mini-icons-path $FT_DATADIR/images/mini-gnome --tran-icons-path $FT_DATADIR/images/norm-gnome'
+*FvwmGtk-Menus: Destroy gnome-sys
+*FvwmGtk-Menus: IconSize 18 18
+PipeRead 'fvwm-menu-desktop --desktop gnome-sys --type gtk --fvwmgtk-alias FvwmGtk-Menus --enable-mini-icons --enable-style --enable-tran-style --tran-mini-icons-path $FT_DATADIR/images/mini-gnome --tran-icons-path $FT_DATADIR/images/norm-gnome'
 
 AddToMenu MenuFvwmPrograms
 + "" Nop
-+ "&Gnome menu%menu/gnome.xpm" SendToModule FvwmGtk gnome-sys
++ "&Gnome menu%menu/gnome.xpm" SendToModule FvwmGtk-Menus gnome-sys
 
 DestroyFunc FuncFvwmStartFvwmGtk
 AddToFunc   FuncFvwmStartFvwmGtk
-+ I Module FvwmGtk
++ I FuncFvwmRestartModuleByAlias FvwmGtk FvwmGtk-Menus
 
 DestroyFunc FuncFvwmStopFvwmGtk
 AddToFunc   FuncFvwmStopFvwmGtk
-+ I KillModule FvwmGtk
++ I FuncFvwmStopModuleByAlias FvwmGtk FvwmGtk-Menus

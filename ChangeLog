@@ -7,6 +7,9 @@
 	* themes/default/settings/session-manager/gnome:
 	enhanced quit menu, probably we need FuncFvwmConfirmAction for Quit
 
+	* themes/default/settings/gnome/*-menu/{gtk-menu*,disabled}:
+	converted from FvwmGtk to FvwmGtk-Menus alias
+
 2000-09-24  migo  <migo@homemail.com>
 
 	* themes/default/functions:

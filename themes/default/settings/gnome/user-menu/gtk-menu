@@ -1,14 +1,14 @@
-*FvwmGtk: Destroy gnome-user
-*FvwmGtk: IconSize 18 18
-PipeRead 'fvwm-menu-desktop --desktop gnome-user --type gtk --enable-mini-icons'
+*FvwmGtk-Menus: Destroy gnome-user
+*FvwmGtk-Menus: IconSize 18 18
+PipeRead 'fvwm-menu-desktop --desktop gnome-user --type gtk --fvwmgtk-alias FvwmGtk-Menus --enable-mini-icons'
 
 AddToMenu MenuFvwmPrograms
-+ "My Gnome menu%menu/gnome.xpm" SendToModule FvwmGtk gnome-user
++ "My Gnome menu%menu/gnome.xpm" SendToModule FvwmGtk-Menus gnome-user
 
 DestroyFunc FuncFvwmStartFvwmGtk
 AddToFunc   FuncFvwmStartFvwmGtk
-+ I Module FvwmGtk
++ I FuncFvwmRestartModuleByAlias FvwmGtk FvwmGtk-Menus
 
 DestroyFunc FuncFvwmStopFvwmGtk
 AddToFunc   FuncFvwmStopFvwmGtk
-+ I KillModule FvwmGtk
++ I FuncFvwmStopModuleByAlias FvwmGtk FvwmGtk-Menus
