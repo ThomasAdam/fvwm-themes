@@ -139,6 +139,7 @@ AddToMenu   MenuFvwmStartRegularModules "Regular Modules" Title
 + "Co&mmandS%menu/terminal-special.xpm%" FuncFvwmRestartModule FvwmCommandS
 + "&Console%menu/terminal-special.xpm%"		FuncFvwmConsole
 + "&GtkDebug%menu/development.xpm%"		Module FvwmGtkDebug
++ "&Debug Console%menu/development.xpm%"	Module FvwmDebug --xconsole
 + "&Identify%menu/window-identify.xpm%"		Module FvwmIdent
 + "&ScrollBar (1/2 app)%menu/window-resize.xpm%"  Module FvwmScroll 2 2
 # FVWM has problems with '%' escaping...
@@ -386,7 +387,7 @@ AddToMenu   MenuFvwmWindowMaximize "Maximize Window" Title
 + "%menu/window-maximize.xpm%Maximize Grow Horiz." Maximize On grow    0
 + "" Nop
 + "%menu/window-maximize.xpm%Maximize Full Screen	Shift-Ctrl-F11" Pick FuncFvwmMaximizeFullScreen
-+ "%menu/window-maximize.xpm%Unmaximize Full Screen	Shift-Ctrl-F12" Pick FuncFvwmMaximizeFullScreen
++ "%menu/window-maximize.xpm%Unmaximize Full Screen	Shift-Ctrl-F11" Pick FuncFvwmMaximizeFullScreen
 
 DestroyMenu MenuFvwmWindowRefresh
 AddToMenu   MenuFvwmWindowRefresh "Refresh Window" Title
@@ -416,25 +417,25 @@ AddToFunc   FuncFvwmRaiseAndExec
 
 DestroyFunc FuncFvwmWindowPrint
 AddToFunc   FuncFvwmWindowPrint
-+ I FuncFvwmRaiseAndExec which xdpr >/dev/null 2>&1 && (xdpr -id $w; true) || (import -window $w - | lpr)
++ I FuncFvwmRaiseAndExec which xdpr >/dev/null 2>&1 && (xdpr -id $[w.id]; true) || (import -window $[w.id] - | lpr)
 
 DestroyFunc FuncFvwmWindowPrintReverse
 AddToFunc   FuncFvwmWindowPrintReverse
-+ I FuncFvwmRaiseAndExec which xdpr >/dev/null 2>&1 && (xdpr 1/2 -h -rv -id $w; true) || (import -window $w -rotate 90 - | lpr)
++ I FuncFvwmRaiseAndExec which xdpr >/dev/null 2>&1 && (xdpr 1/2 -h -rv -id $[w.id]; true) || (import -window $[w.id] -rotate 90 - | lpr)
 
 DestroyFunc FuncFvwmWindowCreateScreenshot
 AddToFunc   FuncFvwmWindowCreateScreenshot
 # Can't use PipeRead here if we want to use this function from mini-icon button
-#+ I PipeRead `import -frame -window $w /tmp/$USER-shot-window-$w.gif`
-+ I FuncFvwmShowMessage "Screenshot Info for window $w" "You should have 'import' utility from ImageMagick.^nCheck the screenshot at /tmp/$USER-shot-window-$w.gif"
-+ I Wait "Screenshot Info for window $w"
-+ I FuncFvwmRaiseAndExec import -frame -window $w /tmp/$USER-shot-window-$w.gif
+#+ I PipeRead `import -frame -window $[w.id] /tmp/$USER-shot-window-$[w.id].png`
++ I FuncFvwmShowMessage "Screenshot Info for window $[w.id]" "You should have 'import' utility from ImageMagick.^nCheck the screenshot in /tmp/$USER-shot-window-$[w.id].png"
++ I Wait "Screenshot Info for window $[w.id]"
++ I FuncFvwmRaiseAndExec import -frame -window $[w.id] /tmp/$USER-shot-window-$[w.id].png
 
 DestroyFunc FuncFvwmDesktopCreateScreenshot
 AddToFunc   FuncFvwmDesktopCreateScreenshot
 + I Pick (CirculateHit) Nop
-+ I PipeRead `import -window root /tmp/$USER-shot-desktop.gif`
-+ I FuncFvwmShowMessage "Screenshot Info for the desktop" "You should have 'import' utility from ImageMagick.^nCheck the screenshot at /tmp/$USER-shot-desktop.gif"
++ I PipeRead `import -window root /tmp/$USER-shot-desktop.png`
++ I FuncFvwmShowMessage "Screenshot Info for the desktop" "You should have 'import' utility from ImageMagick.^nCheck the screenshot in /tmp/$USER-shot-desktop.png"
 
 DestroyMenu MenuFvwmWindowUtility
 AddToMenu   MenuFvwmWindowUtility "Window Utility" Title

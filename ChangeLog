@@ -18,6 +18,9 @@
 	* themes/default/bindings:
 	replaced Shift-Ctrl-F12 binding
 
+	* themes/default/menus:
+	added FvwmDebug, replaced $w with $[w.id], s/gif/png/
+
 2003-10-12  migo  <migo@homemail.com>
 
 	* themes/awol/modules/main:
