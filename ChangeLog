@@ -4,6 +4,10 @@
 	* Makefile.am:
 	fixed "make dist3" and similar
 
+	* themes/multichoice/fonts.cfg:
+	* themes/multichoice/fonts/iso8859-8:
+	added hebrew charset; hmm, should we add all iso8859-*?
+
 2001-06-16  migo  <migo@homemail.com>
 
 	* themes/unsafe/background:
