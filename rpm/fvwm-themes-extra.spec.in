@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-root
 Packager:  FVWM Themes Developers <fvwm-themes-devel@lists.sourceforge.net>
 Autoreq:   1
 
-Requires:  fvwm-themes = @VERSION@
+Requires:  fvwm-themes = %{version}
 
 Provides:  fvwm-themes-extra
 
@@ -71,7 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 echo ""
-echo "    For new themes to appear in your fvwm-themes menus, choose
+echo "    For new themes to appear in your fvwm-themes menus, choose"
 echo "    'Refresh with no cache' from the Theme Management menu."
 echo ""
 

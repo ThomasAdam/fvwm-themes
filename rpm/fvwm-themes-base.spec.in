@@ -22,7 +22,8 @@ Requires:  fvwm >= @REQUIRED_FVWM_VERSION@
 Requires:  perl >= 5.004
 Requires:  m4
 
-Provides:  fvwm-themes
+Provides:  fvwm-themes = %{version}
+Provides:  fvwm-themes-base
 
 Docdir:    %{prefix}/share/doc
 

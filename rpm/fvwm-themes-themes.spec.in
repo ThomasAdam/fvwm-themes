@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-root
 Packager:  FVWM Themes Developers <fvwm-themes-devel@lists.sourceforge.net>
 Autoreq:   1
 
-Requires:  fvwm-themes = @VERSION@
+Requires:  fvwm-themes = %{version}
 
 Docdir:    %{prefix}/share/doc
 

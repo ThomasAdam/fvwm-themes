@@ -21,6 +21,9 @@
 	* INSTALL:
 	updated instructions of instaling fvwm-themes-base & fvwm-themes-extra
 
+	* rpm/*.spec.in:
+	some fixes
+
 2001-08-09  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
