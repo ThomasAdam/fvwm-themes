@@ -28,9 +28,6 @@ Style "desktop_icon"	CirculateSkip, Sticky, NoTitle, WindowListSkip, \
 	NeverFocus, UsePPosition
 Style "gmc-desktop-icon" CirculateSkip, Sticky, NoTitle, WindowListSkip, \
 	NeverFocus, UsePPosition
-# Animation is broken in gnome panel 1.4 with GNOMEUseHints.
-# GNOMEIgnoreHints also disables panel moving itself from layer to layer.
-Style "panel"		GNOMEIgnoreHints
 Style "XSm"		Sticky
 Style "xsm"		NeverFocus, NoTitle, WindowListSkip, CirculateSkip
 Style "xmessage"        UsePPosition
