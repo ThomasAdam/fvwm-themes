@@ -11,7 +11,7 @@ my $prefix = $ENV{'prefix'} || '@prefix@';
 my $ROOT_PREFIX = $ENV{'ROOT_PREFIX'} || '@ROOT_PREFIX@';
 my $bindir = "@bindir@";
 my $datadir = "@datadir@";
-my $ftFataDir = "@FT_DATADIR@";
+my $ftDataDir = "@FT_DATADIR@";
 
 my $version = '@VERSION@';
 my $fvwmVersion = '@FVWM_VERSION@';
@@ -26,7 +26,7 @@ my $rcFile2 = "$rcFile-2";
 my $rcFile3 = "$rcFile-3";
 my $userHome = $ENV{'HOME'} || "./.";
 my $userDir = $ENV{'FVWM_USERDIR'} || "$userHome/.fvwm";
-my @searchPath = ($userDir, $ftFataDir);
+my @searchPath = ($userDir, $ftDataDir);
 my ($workDir, $siteDir);
 my $themesSubDir = 'themes';
 my $currentThemeName = 'current';
@@ -64,6 +64,7 @@ sub showHelp {
 	print "\t--show-dir         show all theme directory full paths\n";
 	print "\t--theme theme      limit --show-* only to this/these theme(s)\n";
 	print "\t--show-info        shows info for component given in --component\n";
+	print "\t--show-cfg         shows cfg for component given in --component\n";
 	print "\t--show-value key   shows value for component given in --component\n";
 	print "\t--component comp   defines a working component\n";
 	print "\t--only-site        limit --show-* only to the site directory\n";
@@ -101,7 +102,7 @@ sub showInfo {
 	print "\tmandir: @mandir@\n";
 	print "\n";
 	print "Built-in paths:\n";
-	print "\tData directory: $ftFataDir\n";
+	print "\tData directory: $ftDataDir\n";
 	print "\tDefault UserDir: $userDir\n";
 	print "\tDefault ImagePath: $fvwmDefaultImagePath\n";
 	exit 0;
@@ -251,6 +252,12 @@ sub makePath ($;$) {
 	my $parentDir = $dirName; $parentDir =~ s:(^|/)[^/]+/?$::;
 	&makePath($parentDir, $perm) unless -d $parentDir;
 	mkdir($dirName, $perm) || sysDie("Can't mkdir $dirName");
+}
+
+# should be internationalized?
+sub quantifyString ($$) {
+	my ($num, $str) = @_;
+	return "$num $str" . ($num != 1? "s": "");
 }
 
 # ----------------------------------------------------------------------------
@@ -681,9 +688,15 @@ sub showThemeComponentInfo ($) {
 	my $lockedStr = $cc->{'locked'}? " (locked)": "";
 	my $readFile = $cc->{'read-file'};
 
-	push @propStrs, @{$cc->{'contains'}} . " subcomponents" if $cc->{'contains'};
-	push @propStrs, @{$cc->{'variant'}} . " variants" if $cc->{'variant'};
-	push @propStrs, @{$cc->{'option'}} . " options"	if $cc->{'option'};
+	push @propStrs, quantifyString(0 + @{$cc->{'contains'}}, "subcomponent")
+		if $cc->{'contains'};
+	push @propStrs, quantifyString(0 + @{$cc->{'variant'}}, "variant")
+		if $cc->{'variant'};
+	if ($cc->{'option'}) {
+		my $num = @{$cc->{'option'}};
+		my $valuesStr = join(' * ', map { 0 + @{$_->{'value'}} } @{$cc->{'option'}});
+		push @propStrs, quantifyString($num, "option") . " ($valuesStr choices)";
+	}
 
 	$str .= "Theme:      $theme ($numComponents components)\n";
 	$str .= "Component:  $component$lockedStr\n";
@@ -693,6 +706,15 @@ sub showThemeComponentInfo ($) {
 	$str = q(FuncFvwmShowMessage "Component Info" ') .
 		join('^n', split(/\n/, $str)) . q(') if $pipe;
 	print $str;
+	exit(0);
+}
+
+sub showThemeComponentCfg ($) {
+	my $component = shift;
+	my ($cc, $theme);
+	($cc, $theme, $component) = getComponentCfgByName($component);
+
+	print dumpPerlValue($cc);
 	exit(0);
 }
 
@@ -2014,6 +2036,7 @@ my $showThemes = 0;
 my $showComponents = 0;
 my $showDir = 0;
 my $themes = [];
+my $showCfg = 0;
 my $showValues = [];
 my $showInfo = 0;
 my $component = undef;
@@ -2047,6 +2070,7 @@ GetOptions(
 	"show-dir!"        => \$showDir,
 	"component=s"      => \$component,
 	"show-info"        => \$showInfo,
+	"show-cfg"         => \$showCfg,
 	"show-value=s@"    => $showValues,
 	"expand-rc:s" => \$expandFile,
 	"fresh|f"     => \$fresh,
@@ -2110,6 +2134,7 @@ showThemeComponents($themes, $showComponents, $component, $fvwmscript,
 	$onlySite, $onlyUser) if $showThemes || $showComponents;
 showThemeDirs($themes) if $showDir;
 showThemeComponentInfo($component) if $component && $showInfo;
+showThemeComponentCfg($component) if $component && $showCfg;
 showThemeComponentValues($component, $showValues) if $component && @$showValues;
 
 wrongUsage() unless
@@ -3316,6 +3341,7 @@ B<fvwm-themes-config>
 [ B<--show-dir> ]
 [ B<--theme>|B<-t> I<theme> ]
 [ B<--show-info> ]
+[ B<--show-cfg> ]
 [ B<--show-value> I<key> ]
 [ B<--component> I<component> ]
 [ B<--only-site> ]
@@ -3371,11 +3397,18 @@ By default all themes are queried.
 B<--show-info> - shows an info for the component given in C<--component>
 parameter.
 
+B<--show-cfg> - shows an entire configuration hash for the component given
+in C<--component> parameter. To show only one or several specified named
+values, B<--show-value> may be used.
+
 B<--show-value> I<key> - shows a value by the key for the component given in
 C<--component> parameter. Several instances of B<--show-value> may be given.
 
 B<--component> I<component> - a working component for other parameters,
 may be of form component@theme.
+
+Example:
+  fvwm-themes-config --component colors --show-value theme --show-value read-file
 
 B<--only-site> - when specified together with B<--show-themes>
 or B<--show-components> causes to take into account only the site directory.
@@ -3385,9 +3418,6 @@ or B<--show-components> causes to take into account only the user directory.
 
 B<--fvwmscript> - when specified together with B<--show-themes>
 or B<--show-components> causes the output to be formatted for FvwmScript.
-
-Example: fvwm-themes-config --component colors --show-value theme --show-value
-read-file
 
 B<--expand-rc> I<[file]> - gets an FVWM configuration file and expands all
 includes in one very long file, printed to standard output. If the file is

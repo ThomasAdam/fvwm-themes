@@ -1,3 +1,12 @@
+2001-04-07  migo  <migo@homemail.com>
+
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	added: Style XTerm NoActiveIconOverride
+
+	* bin/fvwm-themes-config.in:
+	report number of option choices in --show-info;
+	implemented --show-cfg
+
 2001-04-06  migo  <migo@homemail.com>
 
 	* themes/default/bindings:
