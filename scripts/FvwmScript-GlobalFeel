@@ -1960,7 +1960,7 @@ Case message of
 SingleClic :
  Begin
     ChangeValue $GF_Placement 0
-    ChangeValue 23 1
+    ChangeValue 24 1
     Set $GF_Placement = 24
  End
 End

@@ -2522,7 +2522,7 @@ sub showInfoForConfigCenter {
 	my $site = "";
 	my $cc = $self->{'cc'};
 
-	my @components = ("globalfeel","bindings");
+	my @components = ("globalfeel");
 	my $allThemes = getAllThemes();
 	my $userThemes = getAllThemes(0, 1);
 
@@ -2625,12 +2625,12 @@ sub comLoop {
 			local $SIG{ALRM} = \&checkScript;
 			alarm(10);
 			# block until com want to communicate
-			open(LOCK,">$lockFifo") || die "cannot write fifo $lockFifo";
+			open(LOCK,">$lockFifo") || die "cannot write on fifo $lockFifo";
 			alarm(0);
 			close(LOCK);
 		};
 		if ($@ =~ /^cannot/) {
-			print STDERR "$comName: cannot write fifo $lockFifo\n";
+			print STDERR "$comName: cannot write on fifo $lockFifo\n";
 			unlink("$lockFifo") if -p "$lockFifo";
 			exit(1);
 		}
@@ -2654,7 +2654,7 @@ sub comLoop {
 			close(IN);
 		};
 		if ($@ =~ /^cannot/) {
-			print STDERR "$comName: cannot read fifo $lockFifo\n";
+			print STDERR "$comName: cannot read out fifo $outFifo\n";
 			unlink("$lockFifo");
 			exit(1);
 		}
@@ -3279,7 +3279,22 @@ sub comLoop {
 		elsif ($command =~ /^apply-sm\s+(.+)$/) {
 			my $newSession = $1;
 			my $create = 0;
+			my $rcRef = "";
+			my $rcNew = "";
+			# all that follows need a lot of optimisation
+
 			chdir("$userDir/$themesSubDir");
+			# we should create a themes-rc-3 to execute the stop func of the
+			# current theme!
+			system("fvwm-themes-config --fresh");
+			$rcRef = loadFile("$userDir/$rcFile3");
+			while (1) {
+				last unless $$rcRef =~ /(\w+)(.*?)(|\n.*)$/s;
+				$$rcRef = $3;
+				my $t = $1;
+				$rcNew = $rcNew . $t . "\n" if ($t =~ /FuncFvwm/);
+			}
+			saveFile("$userDir/$rcFile3",\$rcNew,0);
 			unlink("$currentThemeName") || 
 				sysDie("Can't unlink $userDir/$currentThemeSubDir");
 			makePath("$userDir/$themesSubDir/current-$newSession") 
@@ -3294,7 +3309,7 @@ sub comLoop {
 			symlink("$currentThemeSubDir-$newSession/themes-rc-2","themes-rc-2");
 			if ($create) {
 				system("fvwm-themes-config --reset");
-				system("fvwm-themes-config --load \@personal 2>/dev/null");
+				#system("fvwm-themes-config --load \@personal 2>/dev/null");
 			}
 			($currentSession,$sessionList,$uptime) = sessionInfo();
 			$cfgFileCache = {};

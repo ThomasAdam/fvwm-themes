@@ -2,6 +2,7 @@ fvwm-themes-0.5.1 - not released yet
 
 * The Themes Center GUI is much faster now.
 * Added ewmh and ksmserver support.
+* Added Xinerama support (see the faq)
 * Added Debian menu system support.
 * New themes: Metal, Minimal (in extra).
 

@@ -1,3 +1,11 @@
 DestroyFunc FuncFvwmButtons-CompactClock
 AddToFunc   FuncFvwmButtons-CompactClock
-+ I *FvwmButtons-Compact: (4x4, Padding 0 0, Colorset 23, Swallow "astime" `Exec exec astime -bg $$[bg.cs10] -fg $$[fg.cs10] -sec $$[fg.cs13] -min $$[shadow.cs13] -hour $$[shadow.cs13] -day $$[shadow.cs13] -date $$[shadow.cs13] -ampm $$[shadow.cs13] -ns -fs -fh -standout -geometry 86x86-0+0`)
++ I *FvwmButtons-Compact: (4x4, Padding 0 0, Colorset 23, Swallow "astime" `FuncFvwmButtons-StartASTime`)
+
+# not in the previous func because of a variable expansion problem
+DestroyFunc FuncFvwmButtons-StartASTime
+AddToFunc   FuncFvwmButtons-StartASTime
++ I Exec exec astime -bg $[bg.cs10] -fg $[fg.cs10] -sec $[fg.cs13] -min $[shadow.cs13] -hour $[shadow.cs13] -day $[shadow.cs13] -date $[shadow.cs13] -ampm $[shadow.cs13] -ns -fs -fh -standout -geometry 86x86-0+0
+
+AddToFunc   FuncFvwmStopThemeModules
++ I DestroyFunc FuncFvwmButtons-StartASTime

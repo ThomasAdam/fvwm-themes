@@ -1,3 +1,24 @@
+2001-10-19  olicha  <olivier.chapuis@free.fr>
+
+	* themes/migo/modules/buttonbar/{xclock,xload,astime,xloadtime}:
+	Fixed colors expansion
+
+	* bin/fvwm-themes-script.in (getThemesConfig):
+	Fixed parsing of personal components
+
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	Fixed Global Feel GUI (mini)icon.
+
+	* themes/default/settings.cfg
+	Some menustyle partial reload fix
+
+	* bin/fvwm-themes-config.in (comLoop):
+	Fixed FT session switching (the switching is slow, but this
+	is not critical)
+
+	* NEWS:
+	Some progress :o)
+	
 2001-10-17  migo  <migo@homemail.com>
 
 	* themes/brushedmetal/buttons:

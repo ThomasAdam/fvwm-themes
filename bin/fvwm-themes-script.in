@@ -1055,9 +1055,10 @@ sub globalFeelComLoop {
 	my $tmp;
 	foreach $tmp (@components) {
 		foreach (@$personalThemes) {
+			print "hop:".$_ . "\n";
 			if (defined $currentConfig->{$tmp} && $currentConfig->{$tmp} eq $_) {
 				$saveState->{$tmp}->{'file'} = "$userDir/$themesSubDir/$_/$tmp";
-				$saveState->{$tmp}->{'theme'} = "$_"; 
+				$saveState->{$tmp}->{'theme'} = "$_";
 			}
 		}
 	}
@@ -1106,7 +1107,7 @@ sub globalFeelComLoop {
 			close(IN);
 		};
 		if ($@ =~ /^cannot/) {
-			print STDERR "$comName: cannot read fifo $lockFifo\n";
+			print STDERR "$comName: cannot read fifo $outFifo\n";
 			unlink($lockFifo);
 			exit(1);
 		}
@@ -1433,8 +1434,11 @@ sub getThemesConfig {
 			next;
 		}
 		if ($comp eq "") {
-			$personalThemes->[$k] = $input[$i] if $input[$i] ne "personal";
-			$i++; $k++;
+			if ($input[$i] ne "personal") {
+				$personalThemes->[$k] = $input[$i];
+				$k++;
+			}
+			$i++;
 			next
 		}
 		if ($j == 0) {

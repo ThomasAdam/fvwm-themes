@@ -2324,6 +2324,7 @@ Case message of
 	    If $PropertyEditorLast <> {} Then
 		SendToScript $PropertyEditorLast {exit}
 	    Set $NullMessage = 1
+	    Do {Read themes-rc-3}
 	    Do {FuncFvwmThemesFresh}
 	End
     End

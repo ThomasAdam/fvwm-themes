@@ -189,7 +189,7 @@ Style "about"                  Icon norm/information.xpm,      MiniIcon mini/inf
 Style "Fvwm*"                  Icon norm/utility.xpm,          MiniIcon mini/utility.xpm
 Style "FvwmConsole"            Icon norm/terminal-special.xpm, MiniIcon mini/terminal-special.xpm
 Style "FVWM Themes*"           Icon norm/themes.xpm,           MiniIcon mini/themes.xpm
-Style "FVWM Themes Config*"    Icon norm/configuration.xpm,    MiniIcon mini/configuration.xpm
+Style "FVWM Themes Global Feel"    Icon norm/configuration.xpm,    MiniIcon mini/configuration.xpm
 Style "FVWM Themes Doc*"       Icon norm/help.xpm,             MiniIcon mini/help.xpm
 Style "FVWM Themes Menu*"      Icon norm/editor.xpm,           MiniIcon mini/editor.xpm
 Style "Color Selector"         Icon norm/colors.xpm,           MiniIcon mini/colors.xpm
