@@ -2904,12 +2904,12 @@ sub comLoop {
 					#unlink("themes/current-$opt[1]/$rcFile2");
 					if ($dirConfig eq "") {
 						# need to use the default config
-						system("cp -f $siteDir/$rcFile2 $dest/; " .
-							"cp -f $siteDir/themes/current/theme.cfg $dest/");
+						system("cp -f $siteDir/$rcFile2 '$dest/'; " .
+							"cp -f $siteDir/themes/current/theme.cfg '$dest/'");
 					} else {
-						chdir("$dirConfig");
-						system("cp -af * ../../" . $dest);
-						chdir("$userDir");
+						chdir($dirConfig) || sysDie("Can't chdir '$dirConfig'");
+						system("cp -af * '../../$dest'");
+						chdir($userDir);
 					}
 				}
 				($currentSession,$sessionList,$uptime) = sessionInfo();
@@ -2940,9 +2940,9 @@ sub comLoop {
 				}
 				makePath("$userDir/$currentThemeSubDir-$opt[0]");
 				if ($dirConfig ne "") {
-					chdir("$dirConfig");	
-					system("cp -rdp * ../../$currentThemeSubDir-$opt[0]");
-					chdir("$userDir");
+					chdir($dirConfig);	
+					system("cp -rdp * '../../$currentThemeSubDir-$opt[0]'");
+					chdir($userDir);
 				}
 				($currentSession,$sessionList,$uptime) = sessionInfo();
 				$i = 0;	
