@@ -1606,6 +1606,7 @@ exit(0);
 # communication loop
 #
 #-----------------------------------------------------------------------------
+# All that follows need a clean up.
 
 sub comLoop {
 	my $self = shift;
@@ -1625,6 +1626,8 @@ sub comLoop {
 	my $tmp = $self->{$componentKey};
 	my @currentComponents = sort @$tmp;
 	my $CC = $self->{cc};
+
+	my $settingsConfig = getAllSubComponents($self,"default","settings",0,0);
 
 	my ($currentSession,$sessionList,$uptime) =  sessionInfo();
 
@@ -1745,7 +1748,6 @@ sub comLoop {
 				my $usedString;
 				my $set = 0;
 				my $theme;
-				next if $_ eq "settings";
 				if (defined $self->{'cc'}->{$_}) { 
 					my $cc = $self->getComponentCfg($_);
 					$theme = $cc->{'theme'};
@@ -1913,7 +1915,7 @@ sub comLoop {
 			my ($components, $groups) = getThemeComponentsAndGroups($1);
 			my $g;
 			foreach $g (@$groups) {
-				my $name = escapeMenuName($g->{'name'});
+				my $name = $g->{'name'};
 				if ($name eq "main look") {
 					my $groupComponents = $g->{$componentKey};
 					foreach (@$groupComponents) {
@@ -1975,6 +1977,7 @@ sub comLoop {
 			@currentComponents = sort @$tmp;
 			foreach (@deleteOpt) { delete $optionToSet{$_} }
 			foreach (@deleteChoice) { delete $choiceToSet{$_} }
+			$settingsConfig = getAllSubComponents($self,"default","settings",0,0);
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^option-choices\s+(.+)\s+(.+)\s+(\d+)$/) {
@@ -2054,7 +2057,7 @@ sub comLoop {
 				foreach $c (@$contains) {
 					$i++;
 					my $name = $themeCfg->getComponentCfg("$comp/$c")->{'name'};
-					$name = escapeMenuName($name || $c);
+					$name = $name || $c;
 					$return .= "$name|";
 				}
 			}
@@ -2097,9 +2100,44 @@ sub comLoop {
 			$tmp = $self->{$componentKey};
 			@currentComponents = sort @$tmp;
 			$CC = $self->{cc};
+			$settingsConfig = getAllSubComponents($self,"default","settings",0,0);
 			($currentSession,$sessionList,$uptime) = sessionInfo();
 		}
-		#------------------------------------------
+		#-----------------------------------------------------------------------
+		# GS
+		# -----------------------------------------
+		elsif ($command =~ /^settings-config$/) {
+			foreach $config (@$settingsConfig) {
+				my $l = 26 - length($config->{'name'});
+				$l = 1 if $l <= 0;
+				$return .= $config->{'name'} . " "x$l . "U: " .
+					$config->{'current'};
+				if (defined $choiceToSet{"default/$config->{comp}"}) {
+					my $j = $choiceToSet{"default/$config->{comp}"};
+					my $themeCfg = new Fvwm::ThemeCfg('default');
+					my $dd = $themeCfg->getComponentCfg("$config->{comp}");
+					my $choices = $dd->{'choice'};
+					my $set = $choices->[$j-1]->{'name'};
+					$l = 28 - length($config->{'current'});
+					$l = 1 if $l <= 0;
+					$return .= " "x$l . "S: $set";
+				}
+				$return .=	"|";
+			}
+			$return =~ s/\|$//;
+		}
+		# -----------------------------------------
+		elsif ($command =~ /^settings-comp\s+(\d+)$/) {
+			$return = "$settingsConfig->[$1-1]->{'name'}\n";
+			$return .= "$settingsConfig->[$1-1]->{'comp'}\n";
+			my $isSet = 0;
+			$isSet = 1 
+				if defined $choiceToSet{"default/$settingsConfig->[$1-1]->{comp}"};
+			$return .= $isSet;
+			
+		}
+		#-----------------------------------------------------------------------
+		# SM
 		elsif ($command =~ /^session-info$/) {
 			$return = "$currentSession\n$uptime\n";
 			my $configList = "Default Configuration|";
@@ -2265,6 +2303,7 @@ sub comLoop {
 			$tmp = $self->{$componentKey};
 			@currentComponents = sort @$tmp;
 			$CC = $self->{cc};
+			$settingsConfig = getAllSubComponents($self,"default","settings",0,0);
 			# discard the change in ts
 			%componentToLoad = ();
 			%optionToSet = ();
@@ -2373,6 +2412,41 @@ sub getChoiceIndex {
 }
 
 #--------------------------------------
+sub getAllSubComponents {
+	my $self = shift;
+	my $theme = shift;
+	my $component = shift;
+	my $themeCfg = shift || new Fvwm::ThemeCfg($theme);
+	my $name = shift;
+	my $config = [];
+	my $tmp = $themeCfg->getComponentCfg($component);
+	my $contains = $tmp->{'contains'};
+
+	return -1 if (ref($contains) ne 'ARRAY');
+	foreach $c (@$contains) {
+		my $dd = $themeCfg->getComponentCfg("$component/$c");
+		my $subConfig = getAllSubComponents($self,$theme,"$component/$c",
+			$themeCfg,$dd->{'name'});
+		if (ref($subConfig) eq 'ARRAY') {
+			push @$config, @$subConfig;
+		} else {
+			my $i = $#$config + 1;
+			my $dd = $themeCfg->getComponentCfg("$component/$c");
+			$config->[$i]->{'name'} = $name . " " if $name ne "0";
+			$config->[$i]->{'name'} .= $dd->{'name'};
+			$config->[$i]->{'comp'} = "$component/$c";
+			my $choices = $dd->{'choice'};
+			if (ref($choices) eq 'ARRAY') {
+				my $j = getChoiceIndex($self,$theme,"$component/$c",@$choices);
+				#print STDERR "!!!!!! $j\n";
+				$config->[$i]->{'index'} = $j;
+				$config->[$i]->{'current'} = 	$choices->[$j]->{'name'};
+			}
+		}
+	}
+	return $config;
+}
+#--------------------------------------
 sub sessionInfo {
 	my @sessionList;
 	my $dir = "$userDir/themes";
@@ -2389,6 +2463,7 @@ sub sessionInfo {
 	return ($currentSession, \@sessionList, $uptime);
 }
 
+# ----------------------
 sub upTime {
 	my $file = shift;
 	my $isSymbolic = shift || 0;
@@ -2428,8 +2503,7 @@ sub choicesOptionsScriptList {
 		my $isCurrent = $i eq $index;
 		my $set = 0;
 		my $used = "";
-		my $name = 
-		  escapeMenuName($choices->[$i]->{'name'}, !$isCurrent);
+		my $name = $choices->[$i]->{'name'};
 		$set = 1 if $isSet == $i+1;
 		my $l = $max - length($name);
 		$l = 1 if $l < 1;

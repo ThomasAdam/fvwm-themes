@@ -1,3 +1,12 @@
+2000-09-29  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	* scripts/FvwmScript-ThemesCenter:
+	* themes/default/settings:
+	* NEWS:
+	FvwmScript-ThemesCenter can manage "settings" and can speak
+	french
+	
 2000-09-26  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:

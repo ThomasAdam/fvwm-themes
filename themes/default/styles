@@ -9,12 +9,18 @@ Style "FvwmScript"	Slippery
 # Simulate transient
 Style "FvwmScript-IconBrowser"	NoTitle, StaysOnTop, NoHandles
 Style "FvwmScript-Browser"	NoTitle, StaysOnTop, NoHandles
-Style "XNoteMessage"    NoTitle, Sticky, StaysOnTop, UsePPosition, BorderWidth 0, NoHandles, WindowListSkip
+Style "XNoteMessage"    NoTitle, Sticky, StaysOnTop, UsePPosition, \
+	BorderWidth 0, NoHandles, WindowListSkip
 Style "xclock"		Sticky, WindowListSkip, NeverFocus
 # gnome panel and icons
-Style "panel"		NeverFocus, Sticky, NoTitle, WindowListSkip, CirculateSkip
-Style "desktop_icon"	CirculateSkip, Sticky, NoTitle, WindowListSkip
-Style "xsm"		NeverFocus, Sticky, NoTitle, WindowListSkip, CirculateSkip
+Style "panel"		NeverFocus, Sticky, NoTitle, WindowListSkip, \
+	CirculateSkip, UsePPosition
+Style "desktop_icon"	CirculateSkip, Sticky, NoTitle, WindowListSkip, \
+	NeverFocus, UsePPosition
+Style "gmc-desktop-icon" CirculateSkip, Sticky, NoTitle, WindowListSkip, \
+	NeverFocus, UsePPosition
+Style "xsm"		NeverFocus, Sticky, NoTitle, WindowListSkip, \
+	CirculateSkip
 Style "xmessage"        UsePPosition
 
 

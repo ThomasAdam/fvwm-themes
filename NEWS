@@ -1,6 +1,7 @@
 fvwm-themes-0.3.20 - not released yet
 
-* The GUI Theme Selector can manage FVWM sessions
+* The FvwmScript-ThemesCenter can manage FVWM sessions and "settings" and 
+  can speak french
 
 fvwm-themes-0.3.19 - 20000917
 
