@@ -53,7 +53,7 @@ FVWM Themes является мощным окружением для оконного менеджера FVWM,
 %setup
 
 %build
-./configure --prefix=%{prefix} --mandir=/usr/share/man %{c_p}
+./configure --prefix=%{prefix} --mandir='/${prefix}'/share/man %{c_p}
 make %{m_p}
 
 %install

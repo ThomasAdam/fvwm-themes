@@ -57,7 +57,7 @@ FVWM Themes является мощным окружением для оконного менеджера FVWM.
 %setup
 
 %build
-./configure --prefix=%{prefix} %{c_p}
+./configure --prefix=%{prefix} --mandir='/${prefix}'/share/man %{c_p}
 make %{m_p}
 
 %install
@@ -79,7 +79,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/FAQ doc/README.1st doc/colorsets doc/creating-themes
 %doc doc/fvwm-themes.lsm doc/menus-extra doc/functions-appbind-extra
 %{prefix}/bin/*
-%{prefix}/man/*/*
 %{prefix}/share/*/*
 
 %post
