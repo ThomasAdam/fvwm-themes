@@ -417,7 +417,7 @@ BEGIN { $cfgFileCache = {}; $cfgCacheFileStatus = 0; }
 
 my @dependencyKeys = qw(
 	provides requires complements precedes follows
-	local-imagepath start-stop uses
+	local-imagepath start-stop uses auto-drops
 );
 
 sub loadThemeCfg ($) {
@@ -1113,8 +1113,11 @@ sub useNewComponents ($$$;$) {
 		$self->applyThemeComponentMemory($theme, $component);
 
 		if (ref($cc->{'auto-drops'}) eq 'ARRAY') {
-			my @toDrop = grep { $self->hasComponent($_) } @{$cc->{'auto-drops'}};
-			$self->useNewComponents([], \@toDrop, 0) if @toDrop;
+			my @compsToDrop = grep {
+				$self->hasComponent($_) &&
+					!($self->getComponentCfg($_)->{'locked'} || 0)
+			} @{$cc->{'auto-drops'}};
+			$self->useNewComponents([], \@compsToDrop, 0) if @compsToDrop;
 		}
 
 		my $imageDirs = $cc->{'local-imagepath'};

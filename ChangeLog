@@ -12,6 +12,10 @@
 	* themes/multichoice/buttons/main:
 	refixed the problem with application mini-icon, now correctly
 
+	* bin/fvwm-themes-config.in:
+	added forgotten "auto-drops" to @dependencyKeys, so now colors@
+	actually drops colors-decor@; "auto-drops" respects component locking
+
 2001-05-31  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
