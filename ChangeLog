@@ -10,6 +10,9 @@
 	* configure.in:
 	updated for 0.4.2; make fvwm-2.3.30 a requirement
 
+	* themes/luthien/windowlook:
+	fixed font name
+
 2001-03-28  migo  <migo@homemail.com>
 
 	* migo/images/decor/title-{in,}active.xpm: restored 1 empty line
