@@ -9,12 +9,12 @@ BorderStyle	Simple -- HiddenHandles !NoInset Raised
 
 TitleStyle	LeftJustified
 TitleStyle	-- Flat
-ButtonStyle	All -- Flat UseTitleStyle
+ButtonStyle	All -- Flat
 
 AddToFunc   FuncFvwmReloadDecor
 + I FuncFvwmSetFont-WindowTitle * "shadow=1 center :xft:Trebuchet MS:style=Bold:pixelsize=11:minspace=True,-*-trebuchet ms-bold-r-normal-*-11-*-*-*-*-*-*-*,-misc-fixed-bold-r-normal-*-13-*-*-*-c-*-*-*"
 + I FuncFvwmSetFont-IconTitle   * "xft:Trebuchet MS:style=Regular:pixelsize=9:minspace=True,-*-trebuchet ms-bold-r-normal-*-9-*-*-*-*-*-*-*"
 + I BorderStyle	Simple -- HiddenHandles !NoInset Raised
 + I TitleStyle	-- Flat
-+ I ButtonStyle	All -- Flat UseTitleStyle
++ I ButtonStyle	All -- Flat
 + I FuncFvwmOverRideWindowLook
