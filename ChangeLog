@@ -3,6 +3,9 @@
 	* themes/default/functions-appbind:
 	try to reuse existing netscape in FuncFvwmWWW
 
+	* scripts/FvwmScript-ConfigCenter:
+	spelling and more
+
 2000-10-25  olicha  <olivier.chapuis@free.fr>
 
         * bin/fvwm-themes-script.in:
