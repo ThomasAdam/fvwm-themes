@@ -2,9 +2,34 @@
 
 set -e
 
-[ "$1" = "configure" ] && [ -x /usr/bin/fvwm-themes-menuapp ] && /usr/bin/fvwm-themes-menuapp --site --build-menus --remove-popup
-	 if [ -x /usr/sbin/update-alternatives ] ; then update-alternatives --install /usr/bin/x-window-manager x-window-manager /usr/bin/fvwm-themes-start 60 \
-	--slave /usr/share/man/man1/x-windows-manager.1.gz x-windows-manager.1.gz /usr/share/man/man1/fvwm-themes-start.1.gz; fi
-	if [ -x /usr/sbin/update-alternatives ] ; then update-alternatives --set x-window-manager /usr/bin/fvwm-themes-start ; fi
+case "$1" in
+        configure)
+		if [ -x /usr/bin/fvwm-themes-menuapp ]; then
+			/usr/bin/fvwm-themes-menuapp \
+				--site --build-menus --remove-popup
+		fi
 
-if [ -x /usr/bin/update-menus ] ; then update-menus ; fi
+		if [ -x /usr/sbin/update-alternatives ]; then
+			update-alternatives --install \
+				/usr/bin/x-window-manager x-window-manager \
+				/usr/bin/fvwm-themes-start 60 --slave \
+				/usr/share/man/man1/x-windows-manager.1.gz \
+				x-windows-manager.1.gz \
+				/usr/share/man/man1/fvwm-themes-start.1.gz
+			update-alternatives --set \
+				x-window-manager /usr/bin/fvwm-themes-start
+		fi
+
+		if [ -x /usr/bin/update-menus ]; then
+			then update-menus
+		fi
+		;;
+
+	abort-upgrade|abort-remove|abort-deconfigure)
+		;;
+
+	*)
+		echo "postinst called with unknown argument \`$1'" >&2
+		exit 1
+		;;
+esac

@@ -53,17 +53,15 @@ inplace:
 	echo "  * new upstream release" >> debian/changelog
 	echo "" >> debian/changelog
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
-	./configure --prefix=/usr --mandir=/usr/share/man $(cparams)
+	./configure --prefix=/usr --mandir='/${prefix}/share/man' $(cparams)
 	cp -f debian/full-control debian/control
 	fakeroot dh_clean
 	(cd  .. && dpkg-source -b $(CURDIR))
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE) $(mparams)
-	$(MAKE) prefix=$(DESTDIR)/usr ROOT_PREFIX=$(DESTDIR) mandir=$(DESTDIR)/usr/share/man install
+	$(MAKE) prefix=$(DESTDIR)/usr ROOT_PREFIX=$(DESTDIR) install
 	chmod 0644 $(DESTDIR)/usr/share/fvwm/themes/cde/background/pattern
-	pwd
-	echo $(CURDIR)
 	-mkdir $(DESTDIR)/usr/lib
 	-mkdir $(DESTDIR)/usr/lib/menu
 	cp debian/fvwm-themes.menu $(DESTDIR)/usr/lib/menu/fvwm-themes
@@ -94,14 +92,14 @@ inplace-base:
 	echo "  * new upstream release" >> debian/changelog
 	echo "" >> debian/changelog
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
-	./configure --prefix=/usr --mandir=/usr/share/man $(cparams)
+	./configure --prefix=/usr --mandir='/${prefix}/share/man' $(cparams)
 	cp -f debian/base-control debian/control
 	fakeroot dh_clean
 	(cd .. && dpkg-source -b $(CURDIR))
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE) $(mparams)
-	$(MAKE) prefix=$(DESTDIR)/usr ROOT_PREFIX=$(DESTDIR) mandir=$(DESTDIR)/usr/share/man install
+	$(MAKE) prefix=$(DESTDIR)/usr ROOT_PREFIX=$(DESTDIR) install
 	@for t in $(EXTRA_THEMES); do \
 		rm -r $(DESTDIR)/usr/share/fvwm/themes/$$t ; \
 	done
