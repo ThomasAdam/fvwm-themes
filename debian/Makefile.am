@@ -53,7 +53,7 @@ inplace:
 	echo "" >> debian/changelog
 	echo "  * new upstream release" >> debian/changelog
 	echo "" >> debian/changelog
-	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
+	(LANG=en_UK && LC_ALL=en_UK && echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog)
 	echo '?package(fvwm-themes-full): needs=wm section=WindowManagers title="FVWM Themes" longtitle="FVWM Window Manager with Themes" command="/usr/bin/fvwm-themes-start"' > debian/fvwm-themes.menu
 	./configure --prefix=/usr --mandir='/$$'{prefix}/share/man $(cparams)
 	cp -f debian/full-control debian/control
