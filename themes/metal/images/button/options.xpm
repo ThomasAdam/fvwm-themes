@@ -1,0 +1,26 @@
+/* XPM */
+static char *options[] = {
+/* width height num_colors chars_per_pixel */
+"    16    16        3            1",
+/* colors */
+"  c None",
+". c #ffffff",
+"d c #666699",
+/* pixels */
+" dddddddddddddd ",
+"dddddddddddddddd",
+"dd.  .  .  .  dd",
+"dd d  d  d  d dd",
+"dd            dd",
+"dddddddddddddddd",
+"dd............dd",
+"dd............dd",
+"dd............dd",
+"dd............dd",
+"dd............dd",
+"dd............dd",
+"dd............dd",
+"dd............dd",
+"dddddddddddddddd",
+" dddddddddddddd ",
+};

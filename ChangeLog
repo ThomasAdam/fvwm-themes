@@ -9,6 +9,10 @@
 	* themes/default/theme.cfg:
 	s/FuncFvwmTitleBackground/FuncFvwmDecorBackground/
 
+	* themes/metal/buttons:
+	* themes/metal/images/button/*.xpm:
+	started new theme (Java Metal like), buttons@metal
+
 2001-08-16  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
