@@ -1,4 +1,4 @@
-This is a developement release of fvwm-themes.
+This is a beta release of fvwm-themes.
 
 FVWM Themes is an attempt to create easy, configurable and modular framework
 for the FVWM configuration. You can visit the project's home page at:
@@ -7,16 +7,16 @@ for the FVWM configuration. You can visit the project's home page at:
 
 or project's developement page (where you download the package):
 
-	https://sourceforge.net/project/?group_id=1738
+	http://sourceforge.net/projects/fvwm-themes/
 
-This release should work and is stable enough, but it does not contain yet
-all planed functionality. Hopefully this is improved in the near future.
+This release should work out of box and is stable enough.
+The developement continues.
 
 How To Install
 --------------
 
 Please read INSTALL file.
-In short you should do after untarring fvwm-themes package:
+In short you should execute after untarring fvwm-themes package:
 
 	./configure
 	make install
@@ -41,7 +41,7 @@ You should get the default theme, which you can change using the root menu.
 Documentation
 -------------
 
-There is now an initial documentation in doc/ directory.
+There is some documentation in doc/ directory.
 Please read it before asking your questions. Thank you.
 
 Notes
@@ -55,7 +55,7 @@ Notes
   rplayd must be run for rplay. You should update your rplay.conf file with
   the sounds in .fvwm/sounds for rplayD.
 * fvwm-themes is wm-icons compatible. If you want to use more icon sets
-  than included 16x16-general and 48x48-general, you should install
-  wm-icons package and choose wm-icons choice of current/settings/Icon Styles.
+  than included 16x16-general and 48x48-general, you should install wm-icons
+  package and choose wm-icons variant of current/settings/Icon Styles.
 
 Success to you and enjoy!

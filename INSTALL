@@ -1,4 +1,4 @@
-Welcome to FVWM Themes, an alpha release.
+Welcome to FVWM Themes, a beta release.
 
 
 HOW TO INSTALL
@@ -23,30 +23,31 @@ see the last section of this file for instructions.
 
 Please report any installation problems to fvwm-themes-devel mailing list.
 
+
 FVWM THEMES CONFIGURE OPTIONS
 -----------------------------
 
 Try ./configure --help for the list of all the options to configure.
-In addition of the "standard" options there is the following option:
+In addition to the standard options there is the following option:
 
---enable-gnome-icons - This cause fvwm-themes installation procedure
-to convert GNOME PNG icons into xpm icons and mini-icons (under 
-datadir/fvwm/tr-icons directory). For that you need GNOME and ImageMagick
-installed. Use this option if you want original GNOME icons into your
-fvwm GNOME menus and for the Icon and MiniIcon Style of the GNOME
-applications. See the FAQ and fvwm-themes-image man page for more
-details.
+--enable-gnome-icons - This causes fvwm-themes installation procedure
+to find and convert GNOME PNG icons into xpm icons and mini-icons (under 
+datadir/fvwm/tr-images directory). For that you need GNOME and ImageMagick
+installed. Use this option if you want original GNOME icons into your fvwm
+GNOME menus and for the Icon and MiniIcon Style of the GNOME applications.
+See the FAQ and the fvwm-themes-images man page for more details.
+
 
 THE DEFAULT DIRECTORIES
 -----------------------
 
-The fvwm-themes is designed as an add-on, integrated to fvwm pre-2.4.
+The fvwm-themes is designed as an add-on, integrated to fvwm 2.4 versions.
 The default is to install fvwm-themes to the same directories as fvwm itself,
 more specifically, to ones returned by:
 
 	fvwm-config --bindir --mandir --fvwm-datadir
 
-If fvwm bin directory (fvwm-config utility is part of fvwm-2.3.17) is not
+If fvwm bin directory (fvwm-config utility is part of fvwm-2.3.17+) is not
 in your $PATH, we suggest you to add this directory to your $PATH or specify
 --with-fvwm-bindir parameter to ./configure. Adding fvwm bin to your $PATH
 is needed anyway if you want to use all features (like fvwm-menu-* scripts).
