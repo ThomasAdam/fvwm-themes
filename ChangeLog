@@ -7,6 +7,16 @@
 	* themes/migo/images/modcolor/plast-inverted-green.png:
 	replaced decorations and module colors
 
+	* themes/migo/modules/FvwmButtons-Compact:
+	* themes/migo/modules/FvwmPager-Compact:
+	* themes/migo/modules/FvwmPager-Desker:
+	* themes/migo/modules/FvwmPager-Single:
+	* themes/migo/modules/fonts:
+	* themes/migo/modules/main:
+	* themes/migo/images/module/plast-green.png:
+	* themes/migo/images/module/plast-magenta.png:
+	some experimental changes
+
 	* themes/migo/windowlook:
 	updated fonts
 

@@ -9,6 +9,11 @@
 Style * IconBox screen w 130 5 -130 -200, IconGrid 74 10, IconFill left top
 Style * SlipperyIcon, IconTitle
 
+Colorset 24 Pixmap module/plast-magenta.png, bg rgb:3c/10/47, fg gray92
+Colorset 25 Pixmap module/plast-green.png, bg rgb:19/47/0b, fg white
+
+Style * IconTitleColorset 24, HilightIconTitleColorset 25, IconTitleRelief 1
+
 # Create alias 'bar' if it does not exist yet (actually needed only once).
 Exec test \! -d $HOME/.wm-icons || wm-icons-config -q -p -w bar || wm-icons-config -q -p -f bar 14x14-general
 
@@ -17,7 +22,7 @@ Exec test \! -d $HOME/.wm-icons || wm-icons-config -q -p -w bar || wm-icons-conf
 
 DestroyFunc FuncFvwmStartThemeModules
 AddToFunc   FuncFvwmStartThemeModules
-+ I Colorset 23 fg $[fg.cs10], bg $[bg.cs10], Transparent, NoShape
++ I Colorset 23 fg $[fg.cs10], bg $[bg.cs10], Plain, NoShape
 + I FuncFvwmStartChosenPager
 + I FuncFvwmStartChosenButtons
 + I FuncFvwmStartNormalIcons
@@ -29,7 +34,7 @@ AddToFunc   FuncFvwmReloadThemeModules
 
 DestroyFunc FuncFvwmReloadColorsModules
 AddToFunc   FuncFvwmReloadColorsModules
-+ I Colorset 23 fg $[fg.cs10], bg $[bg.cs10], Transparent, NoShape
++ I Colorset 23 fg $[fg.cs10], bg $[bg.cs10], Plain, NoShape
 + I FuncFvwmStartChosenButtons
 
 DestroyFunc FuncFvwmStopThemeModules
@@ -53,6 +58,7 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmButtons-CompactApps
 + I DestroyFunc FuncFvwmButtons-CompactClock
 + I DestroyFunc FuncFvwmButtons-CompactLoad
++ I Style IconTitleColorset, HilightIconTitleColorset, IconTitleRelief
 
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules
@@ -111,11 +117,6 @@ AddToFunc   FuncFvwmStartMyPager
 ###
 #  Change bar icon set submenu
 ###
-
-# Just because settings/iconstyles/wm-icons uses FuncFvwmStartAllHooks...
-#AddToFunc FuncFvwmStartAllHooks
-#+ I AddToMenu MenuFvwmConfiguration
-#+ I + "wm-icons Bar Alias%menu/themes.xpm%" Popup MenuFvwmBarIconSet
 
 DestroyFunc FuncFvwmSwitchBarIconSet
 AddToFunc   FuncFvwmSwitchBarIconSet

@@ -16,25 +16,25 @@ FuncFvwmSetFont-ModuleWindowList FvwmIconMan: Font \
 FuncFvwmSetFont-ModuleTips FvwmTaskBar StatusFont "fixed"
 
 FuncFvwmSetFont-ModuleTips FvwmPager-Single BalloonFont \
-	-*-fixed-medium-r-semicondensed-*-13-*
+	"xft:Luxi Sans:Medium:pixelsize=12:minspace=true;-*-fixed-medium-r-semicondensed-*-13-*"
 FuncFvwmSetFont-ModuleTips FvwmPager-Desker BalloonFont \
-	-*-fixed-medium-r-semicondensed-*-13-*
-FuncFvwmSetFont-ModuleTips FvwmPager-Desker BalloonFont \
-	-*-fixed-medium-r-semicondensed-*-13-*
+	"xft:Luxi Sans:Medium:pixelsize=12:minspace=true;-*-fixed-medium-r-semicondensed-*-13-*"
+FuncFvwmSetFont-ModuleTips FvwmPager-Compact BalloonFont \
+	"xft:Luxi Sans:Medium:pixelsize=12:minspace=true;-*-fixed-medium-r-semicondensed-*-13-*"
 
 FuncFvwmSetFont-ModuleSmall FvwmPager-Single SmallFont \
 	"-*-fixed-medium-r-normal-*-8-*"
 FuncFvwmSetFont-ModuleSmall FvwmPager-Desker SmallFont \
 	"-*-fixed-medium-r-normal-*-8-*"
-FuncFvwmSetFont-ModuleSmall FvwmPager-Desker SmallFont \
+FuncFvwmSetFont-ModuleSmall FvwmPager-Compact SmallFont \
 	"-*-fixed-medium-r-normal-*-8-*"
 
 FuncFvwmSetFont-ModuleLabel FvwmPager-Single Font \
-	"-*-helvetica-bold-r-*-*-10-*"
+	"xft:Luxi Sans:Bold:pixelsize=12:minspace=true;-*-helvetica-bold-r-*-*-12-*"
 FuncFvwmSetFont-ModuleLabel FvwmPager-Desker Font \
-	"-*-helvetica-bold-r-*-*-10-*"
-FuncFvwmSetFont-ModuleLabel FvwmPager-Desker Font \
-	"-*-helvetica-bold-r-*-*-10-*"
+	"xft:Luxi Sans:Bold:pixelsize=12:minspace=true;-*-helvetica-bold-r-*-*-12-*"
+FuncFvwmSetFont-ModuleLabel FvwmPager-Compact Font \
+	"xft:Luxi Sans:Bold:pixelsize=12:minspace=true;-*-helvetica-bold-r-*-*-12-*"
 
 FuncFvwmSetFont-ModuleSmallLabel FvwmButtons-Pager Font \
 	"-*-fixed-medium-r-normal-*-7-*"
