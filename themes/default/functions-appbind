@@ -22,7 +22,7 @@ AddToFunc   FuncFvwmViewFileTail
 
 DestroyFunc FuncFvwmOpenURL
 AddToFunc   FuncFvwmOpenURL
-+ I Exec netscape -remote 'openURL($0, new-window)' || netscape '$0'
++ I Exec netscape -remote 'openURL($0, new-window)' 2>/dev/null || netscape '$0'
 
 DestroyFunc FuncFvwmRunInXterm
 AddToFunc   FuncFvwmRunInXterm
@@ -181,7 +181,7 @@ AddToFunc   FuncFvwm3Calculator
 # Used in aftersep, migo, olicha, redmond98, osx
 DestroyFunc FuncFvwmWWW
 AddToFunc   FuncFvwmWWW
-+ I Exec exec netscape
++ I Exec netscape -remote 'openURL(about:, new-window)' 2>/dev/null || netscape
 
 DestroyFunc FuncFvwm2WWW
 AddToFunc   FuncFvwm2WWW
