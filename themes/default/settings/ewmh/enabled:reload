@@ -1,0 +1,20 @@
+DestroyModuleConfig FvwmNetHints*
+*FvwmNetHints: ActivateWindowCmd FuncFvwmDeiconifyFocusAndRaise
+# focus workaround
+*FvwmNetHints: DockNetStyle Focus
+*FvwmNetHints: DesktopNetStyle Focus
+*FvwmNetHints: ToolBarNetStyle Focus
+*FvwmNetHints: MenuNetStyle Focus
+# system fnh star-stop files ($. fail to work ...)
+*FvwmNetHints: SystemStartStopFiles themes/default/settings/ewmh/ft-fnh
+*FvwmNetHints: SystemDesktopStartStopFiles themes/default/settings/ewmh/ft-fnh-desktop
+
+*FvwmPager-Desker: UseListSkip
+*FvwmPager-Single: UseListSkip
+
+Style "KDE Desktop" ClickToFocus,Sticky,WindowListSkip,CirculateSkip,\
+	BorderWidth 0,HandleWidth 0, NoTitle
+Style "kicker" ClickToFocus
+
+SendToModule FvwmNetHints ReadStartFile
+SendToModule FvwmNetHints ReadStartDesktopFile

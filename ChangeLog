@@ -1,3 +1,21 @@
+2001-10-24  olicha  <olivier.chapuis@free.fr>
+
+	* configure.in:
+	* rpm/Makefile.am:
+	made $FVWM_BINDIR prioritary against $PATH. This allows to install
+	fvwm-themes together multiple version of FVWM without changing
+	the $PATH. Added --with-fvwm-bindir=/usr/bin to configure for rpm
+	building
+	
+	* themes/default/styles:
+	* themes/default/menus-programs:
+	Added gkrellm styles. gkrellm is a popular universal cpu, mem,
+	disk, ... monitor we may want to add a special support for it in
+	the future
+
+	* themes/default/settings/ewmh/enabled:reload: (new file)
+	I forget this file when I add ewmh support ...
+	
 2001-10-24  migo  <migo@homemail.com>
 
 	* themes/default/functions-appbind:

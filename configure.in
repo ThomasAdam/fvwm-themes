@@ -164,7 +164,7 @@ GNOME_IMAGES_DIR=`echo $GNOME_SESSION | sed -e "s,/[[^/]]*/gnome-session$,,"`/sh
 AC_SUBST(GNOME_IMAGES_DIR)dnl
 
 $UNSET ac_cv_path_FVWM_CONFIG
-AC_PATH_PROG(FVWM_CONFIG, fvwm-config --version, , "${PATH}:$FVWM_BINDIR")
+AC_PATH_PROG(FVWM_CONFIG, fvwm-config --version, , "$FVWM_BINDIR:${PATH}")
 if test -z "$FVWM_CONFIG"; then
 	AC_MSG_ERROR([
 	fvwm-config is not found; try --with-fvwm-bindir

@@ -7,7 +7,7 @@ EXTRA_THEMES=@EXTRA_THEMES@
 
 version = @VERSION@
 release = 0.`date +%Y%m%d`
-cparams = --disable-run-updatemenu --disable-build-menus --disable-menu-system
+cparams = --disable-run-updatemenu --disable-build-menus --disable-menu-system --with-fvwm-bindir=\/usr\/bin
 mparams = CFLAGS="-O2"
 
 rpm: @PACKAGE@.spec

@@ -35,4 +35,5 @@ Style "XSm"		Sticky
 Style "xsm"		NeverFocus, NoTitle, WindowListSkip, CirculateSkip
 Style "xmessage"        UsePPosition
 
+Style "gkrellm" Sticky, WindowListSkip, CirculateSkip, UsePPosition
 

@@ -42,6 +42,7 @@ AddToMenu   MenuFvwmSystem "System" Title
 + "&XSysStats%menu/monitoring.xpm%"	Exec exec xsysstats
 + "&TrafShow%menu/monitoring.xpm%"	FuncFvwmRunInXterm "trafshow" "trafshow -S -s 2 -u 1"
 + "&xconsole%menu/terminal.xpm%"        Exec exec xconsole
++ "&Gkrellm%menu/monitoring.xpm%"	Exec exec gkrellm 
 + "" Nop
 + "&Midnight-Commander%menu/file-manager.xpm%" FuncFvwmRunInXterm "Midnight-Commander" "mc -x"
 + "File Runner%menu/file-manager.xpm%"	Exec exec fr
