@@ -29,10 +29,10 @@
 
 # for feedback windows (like geometry window and NoteMessage) and FvwmScroll
 #
-Colorset 0  sh grey50 , hi grey70,  bg grey60, fg White,\
+Colorset 0  sh grey50, hi grey70, bg grey60, fg White,\
             cgradient 255 grey40 grey60
 #Vgradient 255 3 grey85 15 grey40 50 grey55 20 grey30
-             #pixmap decor/grey.png,Tint White 20
+             #pixmap decor/grey.png, Tint White 20
 
 # -----------------------
 # I.2. Window Decorations
@@ -45,10 +45,10 @@ Colorset 0  sh grey50 , hi grey70,  bg grey60, fg White,\
 
 # window title, inactive and active
 #
-Colorset 1  sh grey35, hi grey55, bg grey45,  fg grey10,\
-            fg_alpha 80, fgsh grey55, IconAlpha 50, Plain, NoShape
-Colorset 2  sh grey45, hi grey65, bg grey55, fg Black ,\
-            fg_alpha 95, fgsh grey60, Plain, NoShape
+Colorset 1  sh grey35, hi grey55, bg grey45, fg grey10, \
+            fgAlpha 80, fgsh grey55, IconAlpha 50, Plain, NoShape
+Colorset 2  sh grey45, hi grey65, bg grey55, fg Black, \
+            fgAlpha 95, fgsh grey60, Plain, NoShape
 
 # window borders, inactive and active
 #
@@ -81,13 +81,13 @@ AddToFunc   FuncFvwmDecorBackground
 
 # inactive menu item fg+bg and menu face if any
 #
-Colorset 5  sh grey50, hi grey60, Transparent, Tint black 50, fg White,\
-            fg_alpha 85, fgsh grey10, NoShape
+Colorset 5  sh grey50, hi grey60, Transparent, Tint black 50, fg White, \
+            fgAlpha 85, fgsh grey10, NoShape
 
 # active menu item fg+bg
 #
-Colorset 6 sh grey55, hi grey45, bg Black, fg White,\
-            fg_alpha 90, fgsh grey20
+Colorset 6 sh grey55, hi grey45, bg Black, fg White, \
+            fgAlpha 90, fgsh grey20, Plain, NoShape
 
 # greyed menu item fg
 #
@@ -108,13 +108,14 @@ Colorset 7 bg grey48, fg grey48, fgsh grey68, Transparent, NoShape
 # For FvwmButtons, FvwmPager, can be also used for FvwmIconMan, FvwmIconBox.
 #
 #fixmeVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-Colorset 10 sh grey50, hi grey70,  pixmap decor/grey.png,Tint White 20,\
-    bg grey60, fg White, fg_alpha 85, fgsh grey10, NoShape
+Colorset 10 sh grey50, hi grey70, pixmap decor/grey.png, Tint White 20, \
+	bg grey60, fg White, fgAlpha 85, fgsh grey10, NoShape
 
 # default hilight for modules
 # For hilighting a part of a button bar (some swallowed apps for example).
 #
-Colorset 11 fg White, bg grey60, pixmap decor/grey.png, sh black, hi black, NoShape
+Colorset 11 fg White, bg grey60, pixmap decor/grey.png, \
+	sh black, hi black, NoShape
 
 # special or funny: a gradient or a pixmap
 # May be used in certain FvwmButtons, FvwmIconMan, FvwmIconBox.
@@ -131,8 +132,8 @@ Colorset 13 fg White, bg grey60, hi grey50, sh grey40, \
 # default #2
 # FvwmPager or to get more colors in FvwmButtons, can be set to 10.
 #
-Colorset 14 fgsh grey10, bg grey50,\
-            fg grey90, sh grey40, hi grey60, fg_alpha 85
+Colorset 14 fgsh grey10, bg grey50, \
+            fg grey90, sh grey40, hi grey60, fgAlpha 85, Plain, NoShape
 
 # default hilight #2
 # FvwmPager or to get more colors in FvwmButtons, can be set to 11.
@@ -141,7 +142,7 @@ Colorset 15 hi grey70,  sh grey50, fg Black, bg grey60, Plain, NoShape
 
 # tips/balloons (TaskBar and FvwmPager)
 #
-Colorset 16 fg grey80, bg grey60,  pixmap decor/blue.png,\
+Colorset 16 fg grey80, bg grey60, pixmap decor/blue.png, \
             sh black, hi grey10, fgsh black, NoShape
 
 # ----------------------------------
@@ -166,7 +167,8 @@ Colorset 20 fg black, bg grey75, Plain, NoShape
 
 # FvwmIdent
 #
-Colorset 21 fgsh grey10, Transparent, Tint black 50, fg White, sh grey50, hi grey60, fg_alpha 85, NoShape
+Colorset 21 fgsh grey10, Transparent, Tint black 50, fg White, \
+	sh grey50, hi grey60, fgAlpha 85, NoShape
 
 # FvwmConsole
 #
@@ -241,3 +243,5 @@ DestroyFunc FuncFvwmStopColors
 AddToFunc   FuncFvwmStopColors
 + I Style "FvwmIdent" !ParentalRelativity
 + I Style "FvwmPager" !ParentalRelativity
+# temporarily until we have Colorset Reset
++ I Colorset 1 IconAlpha
