@@ -1,3 +1,8 @@
+2001-04-17  migo  <migo@homemail.com>
+
+	* themes/osx/buttons:
+	replaced buttons 3 and 5 (it was done in error)
+
 2001-04-15  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-images.in:

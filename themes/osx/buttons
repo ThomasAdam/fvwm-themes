@@ -17,18 +17,18 @@ AddButtonStyle 2 \
 	ActiveDown (Pixmap button/options-activedown.xpm -- flat) \
 	Inactive   (Pixmap button/inactive.xpm   -- flat)
 AddButtonStyle 3 \
-	ActiveUp   (Pixmap button/maximize-activeup.xpm   -- flat) \
-	ActiveDown (Pixmap button/maximize-activedown.xpm -- flat) \
-	Inactive   (Pixmap button/inactive.xpm   -- flat)
-AddButtonStyle 5 \
 	ActiveUp   (Pixmap button/iconify-activeup.xpm   -- flat) \
 	ActiveDown (Pixmap button/iconify-activedown.xpm -- flat) \
+	Inactive   (Pixmap button/inactive.xpm   -- flat)
+AddButtonStyle 5 \
+	ActiveUp   (Pixmap button/maximize-activeup.xpm   -- flat) \
+	ActiveDown (Pixmap button/maximize-activedown.xpm -- flat) \
 	Inactive   (Pixmap button/inactive.xpm   -- flat)
 
 ButtonStyle 1 - Clear
 ButtonStyle 2 - Clear MWMDecorMenu
-ButtonStyle 3 - Clear MWMDecorMax
-ButtonStyle 5 - Clear MWMDecorMin
+ButtonStyle 3 - Clear MWMDecorMin
+ButtonStyle 5 - Clear MWMDecorMax
 
 TitleStyle	Height 20
 
@@ -37,16 +37,16 @@ Mouse 0 	1	A	FuncFvwmDeleteOrDestroy
 Mouse 1 	2	A	FuncFvwmWindowOpsOrAction Delete
 MouseXX 2 3	2	A       Menu MenuFvwmWindowMove
 MouseXX 3 2	2	A	Menu MenuFvwmWindowGroupOps
-Mouse 1 	3	A	FuncFvwmMaximize
-Mouse 2 	3	A	FuncFvwmMaximizeVertically
-Mouse 3 	3	A	FuncFvwmMaximizeHorizontally
-Mouse 1 	5	A	FuncFvwmIconify
-Mouse 2 	5	A	FuncFvwmIconifySameResource on
-Mouse 3 	5	A	FuncFvwmIconifySameResource toggle
+Mouse 1 	3	A	FuncFvwmIconify
+Mouse 2 	3	A	FuncFvwmIconifySameResource on
+Mouse 3 	3	A	FuncFvwmIconifySameResource toggle
+Mouse 1 	5	A	FuncFvwmMaximize
+Mouse 2 	5	A	FuncFvwmMaximizeVertically
+Mouse 3 	5	A	FuncFvwmMaximizeHorizontally
 Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Delete on click^nDestroy on double click"
 Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu or Delete on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
-Mouse 0 	3	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tpartially on click^n^tfully on double click^n^tvertically on hold^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally"
-Mouse 0 	5	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^nMouse 3 - Iconify toggle resource group"
+Mouse 0 	3	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^nMouse 3 - Iconify toggle resource group"
+Mouse 0 	5	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tpartially on click^n^tfully on double click^n^tvertically on hold^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally"
 
 DestroyFunc FuncFvwmStartWindowButtons
 AddToFunc   FuncFvwmStartWindowButtons
