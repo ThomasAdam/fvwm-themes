@@ -4,6 +4,12 @@
 	extended --pattern-type altern to accept multiple row values;
 	some man page improvements
 
+	* themes/migo/modules/main:
+	* themes/migo/modules/main:FvwmButtons-Compact:
+	* themes/migo/modules/main:FvwmPager-Compact:
+	* themes/migo/modules/buttonbar/compact*:
+	try to use transparent colorset 23 for some modules
+
 	* themes/osx/colors:
 	* themes/osx/menustyle:
 	small menu improvements (?)
@@ -11,14 +17,12 @@
 	* themes/osx/background:
 	use gradient background (with pattern)
 
-	* themes/migo/modules/main:
-	* themes/migo/modules/main:FvwmButtons-Compact:
-	* themes/migo/modules/main:FvwmPager-Compact:
-	* themes/migo/modules/buttonbar/compact*:
-	try to use transparent colorset 23 for some modules
-
 	* themes/osx/buttons:
 	title height is 20 now, was 22; new buttons will be added later
+
+	* themes/osx/images/decor/title-{in,}active.xpm:
+	* themes/osx/images/menuback/face.xpm:
+	replaced images with a bit more clean ones taken from PineGUI
 
 2001-04-14  migo  <migo@homemail.com>
 
