@@ -28,7 +28,7 @@ DestroyModuleConfig FvwmPager-Desker*
 *FvwmPager-Desker: SmallFont 5x8
 *FvwmPager-Desker: MiniIcons
 *FvwmPager-Desker: MoveThreshold 1
-*FvwmPager-Desker: Balloons All  # Icon, Desker
+*FvwmPager-Desker: Balloons All  # Icon, Pager
 *FvwmPager-Desker: BalloonFont 6x13
 *FvwmPager-Desker: BalloonBorderWidth 1
 *FvwmPager-Desker: BalloonYOffset +14

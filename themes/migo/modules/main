@@ -149,6 +149,7 @@ Mouse 3 R SCM Menu MenuFvwmBarIconSet Nop
 Read themes/migo/modules/main:FvwmButtons-Compact
 Read themes/migo/modules/main:FvwmPager-Single
 Read themes/migo/modules/main:FvwmPager-Desker
+Read themes/migo/modules/main:FvwmPager-Compact
 Read themes/migo/modules/main:FvwmButtons-Pager
 # We should think how one theme can reuse module configs of other theme.
 Read themes/olicha/modules/main:FvwmIconBox

@@ -25,6 +25,9 @@
 	We can think about an automatic way to create .xpm cursors from .xbm
 	and .xbm.mask (using combine? I didn't succeed). Not urgent at all.
 
+	* themes/migo/modules/*:
+	added a separate pager alias FvwmPager-Compact for FvwmButtons-Compact
+
 2000-09-02  migo  <migo@homemail.com>
 
 	* themes/default/menus:

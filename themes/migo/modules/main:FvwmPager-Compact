@@ -1,0 +1,29 @@
+Style FvwmPager-Compact NoTitle, NoHandles, Sticky, WindowListSkip, \
+	NoLenience, TitleAtTop
+
+DestroyModuleConfig FvwmPager-Compact*
+
+*FvwmPager-Compact: Colorset * 14
+*FvwmPager-Compact: HilightColorset * 15
+*FvwmPager-Compact: BalloonColorset * 16
+*FvwmPager-Compact: WindowColorsets 1 2
+
+*FvwmPager-Compact: Font -*-lucida-bold-r-*-*-11-*-*-*-*-*-*-*
+*FvwmPager-Compact: Geometry 100x90+30000+30000
+*FvwmPager-Compact: WindowLabelFormat "%t"
+*FvwmPager-Compact: Rows 1
+*FvwmPager-Compact: Columns 1
+*FvwmPager-Compact: SmallFont 5x8
+*FvwmPager-Compact: MiniIcons
+*FvwmPager-Compact: MoveThreshold 1
+*FvwmPager-Compact: Balloons All  # Icon, Pager
+*FvwmPager-Compact: BalloonFont 6x13
+*FvwmPager-Compact: BalloonBorderWidth 1
+*FvwmPager-Compact: BalloonYOffset +14
+*FvwmPager-Compact: WindowBorderWidth 1
+*FvwmPager-Compact: Window3dBorders
+
+*FvwmPager-Compact: Label 0 Main
+*FvwmPager-Compact: Label 1 Internet
+*FvwmPager-Compact: Label 2 Devel
+*FvwmPager-Compact: Label 3 Games
