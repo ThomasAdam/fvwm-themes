@@ -1,3 +1,13 @@
+2000-08-18  migo  <migo@homemail.com>
+
+	* NEWS:
+	* themes/default/settings/session-manager/{gnome,none}:
+	Spelling; MouseXX is redudant; added a missing trailing EOLN,
+	please grep this ChangeLog file for 'require-final-newline'
+
+	* themes/default/settings/session/*:
+	removed unused component
+
 2000-08-18  olicha  <olivier.chapuis@free.fr>
 
 	* themes/awol/colors:

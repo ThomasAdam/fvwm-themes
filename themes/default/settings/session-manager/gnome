@@ -21,4 +21,3 @@ AddToMenu   MenuFvwmQuit "Really Quit GNOME?" Title
 	Exec exec save-session --kill
 +  "" Nop
 + "&No, Don't Quit%menu/choice-no.xpm%"    Nop
-
