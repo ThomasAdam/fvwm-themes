@@ -23,7 +23,7 @@ Mouse 3 	4	S	Maximize grow grow
 Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Circulate to the next application"
 Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1:^n^tDelete on click^n^tDestroy on double click^nMouse 3 - Shade"
 Mouse 0 	3	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu or Delete on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
-Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^nMouse 3 - Maximize fully on click^n^tMaximize menu on double click^n^tGrow with shift"
+Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^nMouse 3 - Maximize fully on click^n^tMaximize menu on double click^n^tgrow with shift"
 
 DestroyFunc FuncFvwmStartWindowButtons
 AddToFunc   FuncFvwmStartWindowButtons

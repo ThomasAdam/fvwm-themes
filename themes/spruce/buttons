@@ -23,7 +23,7 @@ Mouse 2 	4	A	FuncFvwmMaximizeVertically
 Mouse 3 	4	A	FuncFvwmMaximizeHorizontally
 Mouse 1 	4	S	Maximize grow grow
 Mouse 2 	4	S	Maximize    0 grow
-Mouse 3 	2	S	Maximize grow    0
+Mouse 3 	4	S	Maximize grow    0
 Mouse 1 	6	A	FuncFvwmIconify
 Mouse 2 	6	A	FuncFvwmIconifySameResource on
 Mouse 3 	6	A	FuncFvwmIconifySameResource toggle

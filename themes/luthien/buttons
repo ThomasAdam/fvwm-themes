@@ -20,10 +20,10 @@ Mouse 1 	1	A	FuncFvwmWindowOpsOrAction Delete
 MouseXX 2 3	1	A       Menu MenuFvwmWindowMove Destroy
 MouseXX 3 2	1	A	Menu MenuFvwmWindowGroupOps Nop
 Mouse 1 	2	A	FuncFvwmMaximize
-Mouse 1 	2	S	Maximize grow grow
 Mouse 2 	2	A	FuncFvwmMaximizeVertically
-Mouse 2 	2	S	Maximize    0 grow
 Mouse 3 	2	A	FuncFvwmMaximizeHorizontally
+Mouse 1 	2	S	Maximize grow grow
+Mouse 2 	2	S	Maximize    0 grow
 Mouse 3 	2	S	Maximize grow    0
 Mouse 1 	3	A	Stick
 Mouse 0 	4	A	FuncFvwmIconify
@@ -44,10 +44,10 @@ AddToFunc   FuncFvwmStopWindowButtons
 + I Mouse 2	1	A	-
 + I Mouse 3	1	A       -
 + I Mouse 1 	2	A	-
-+ I Mouse 1 	2	S	-
 + I Mouse 2 	2	A	-
-+ I Mouse 2 	2	S	-
 + I Mouse 3 	2	A	-
++ I Mouse 1 	2	S	-
++ I Mouse 2 	2	S	-
 + I Mouse 3 	2	S	-
 + I Mouse 1 	3	A	-
 + I Mouse 0 	4	A	-
