@@ -154,7 +154,7 @@ Begin
     Set $ShadeFont = {-adobe-helvetica-medium-r-*-*-12-*}
     Set $nonDefaultFont = 0
 
-    Set $Lang = {en}
+    #Set $Lang = {en}
     #Set $Lang = {ru}
     Set $locateSet = 1
     If $Lang == {} Then
