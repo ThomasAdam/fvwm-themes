@@ -6,7 +6,8 @@ SUBDIRS = bin doc rpm scripts forms locale
 FT_DATA_SUBDIRS = themes images sounds
 FT_MODULE_SUBDIRS = 
 EXTRA_DIST = images.tar.gz sounds.tar.gz
-EXTRA_THEMES = awol blackbox brushedmetal nanogui osx spruce
+
+EXTRA_THEMES=@EXTRA_THEMES@
 
 install-data-local:
 	FT_DATADIR=@FT_DATADIR@
@@ -91,9 +92,11 @@ distclean2: distclean
 
 dist3: dist
 	@tar xzf $(distdir).tar.gz
+	@rm -rf $(PACKAGE)-extra-$(VERSION)
 	@mkdir $(PACKAGE)-extra-$(VERSION)
 	@for t in $(EXTRA_THEMES); do \
 		echo "creating ft-$$t-$(VERSION).tar.gz"; \
+		rm -rf ft-$$t-$(VERSION); \
 		mkdir ft-$$t-$(VERSION); \
 		cp -rdp $(distdir)/themes/$$t $(PACKAGE)-extra-$(VERSION); \
 		mv -f $(distdir)/themes/$$t ft-$$t-$(VERSION); \
@@ -101,11 +104,13 @@ dist3: dist
 		rm -rf ft-$$t-$(VERSION); \
 	done
 	@echo "creating $(PACKAGE)-extra-$(VERSION).tar.gz"
-	@tar czf $(PACKAGE)-extra-$(VERSION).tar.gz $(PACKAGE)-extra-$(VERSION)
-	@rm -rf $(PACKAGE)-extra-$(VERSION)
-	@echo "creating $(PACKAGE)-base-$(VERSION).tar.gz"
-	@tar czf $(PACKAGE)-base-$(VERSION).tar.gz $(distdir)
-	@rm -rf $(distdir)
+	@tar czf $(PACKAGE)-extra-$(VERSION).tar.gz $(PACKAGE)-extra-$(VERSION);
+	@rm -rf $(PACKAGE)-extra-$(VERSION);
+	@echo "creating $(PACKAGE)-base-$(VERSION).tar.gz";
+	@rm -rf $(PACKAGE)-base-$(VERSION);
+	@mv -f $(distdir) $(PACKAGE)-base-$(VERSION);
+	@tar czf $(PACKAGE)-base-$(VERSION).tar.gz $(PACKAGE)-base-$(VERSION);
+	@rm -rf $(PACKAGE)-base-$(VERSION)
 
 dist4: dist3
 	@echo "creating $(distdir).tar.bz2"
@@ -130,5 +135,16 @@ dist4: dist3
 
 rpm-dist: dist rpm-this
 
+rpm-dist3: dist3 rpm-base-this rpm-extra-this rpm-themes-this
+
 rpm-this:
 	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) rpm) || exit 1
+
+rpm-base-this:
+	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) rpm-base) || exit 1
+
+rpm-extra-this:
+	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) rpm-extra) || exit 1
+
+rpm-themes-this:
+	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) rpm-themes) || exit 1

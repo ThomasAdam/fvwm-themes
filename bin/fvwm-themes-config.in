@@ -2216,7 +2216,7 @@ if (defined $createPack) {
 	if (-d "$tarDir") {
 		system("rm -rf '$tarDir'");
 	}
-	mkdir "$tarDir" ||
+	makePath ("$tarDir") ||
 		errDie("Cannot create $tarDir (see the --tmp-dir option)");
 	errDie("Cannot chdir to $themesDir") unless chdir "$themesDir";
 	my $theme;

@@ -129,6 +129,10 @@ AC_SUBST(FT_VERSION_INFO)dnl
 SETTINGS_FILE='${FT_DATADIR}/themes/default/settings.cfg'
 AC_SUBST(SETTINGS_FILE)dnl
 
+# list of extra themes
+EXTRA_THEMES="awol blackbox brushedmetal nanogui osx spruce"
+AC_SUBST(EXTRA_THEMES)dnl
+
 AC_OUTPUT(
 	Makefile
 	bin/Makefile
@@ -148,6 +152,9 @@ AC_OUTPUT(
 	bin/fvwm-themes-images
 	doc/fvwm-themes.lsm
 	rpm/fvwm-themes.spec
+	rpm/fvwm-themes-base.spec
+	rpm/fvwm-themes-extra.spec
+	rpm/fvwm-themes-themes.spec
 	rpm/Makefile
 )
 

@@ -7,7 +7,7 @@
 %define _sourcedir /tmp
 
 Summary:   FVWM Themes, configurational framework for FVWM
-Name:      fvwm-themes-extra
+Name:      ft-xxxThemesxxx
 Version:   %{ver}
 Release:   %{rel}
 Copyright: GPL
@@ -20,8 +20,6 @@ Autoreq:   1
 
 Requires:  fvwm-themes = @VERSION@
 
-Provides:  fvwm-themes-extra
-
 Docdir:    %{prefix}/share/doc
 
 %description
@@ -29,16 +27,18 @@ FVWM Themes is a powerful configurational framework for FVWM,
 designed to be easily extendible and configurable, includes
 several pre-built themes, a pack of images and sounds.
 
-This package contains 6 themes for use with the base FVWM Themes
-package.
+This package contains the xxxThemesxxx themes for use with the
+base FVWM Themes package. This theme as well as others is also
+contained in the extra FVWM Themes package. 
 
 %description -l fr
 FVWM Themes est un systХme de configuration puissant pour FVWM.
 Il est extansible, facilement configurable et contient des
 thХmes, des images et des fichiers sons.
 
-Ce paquet contient 6 themes fait pour Йtre utilisИ avec le paquet
-base de FVWM Themes.
+Ce paquet contient le thХme xxxThemesxxx fait pour Йtre utilisИ 
+avec le paquet base de FVWM Themes. Ce thХme avec d'autres fait
+aussi partie du paquet extra de FVWM Themes. 
 
 %description -l ru
 Пакет FVWM Themes является мощным окружением для FVWM, которое

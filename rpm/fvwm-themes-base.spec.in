@@ -7,7 +7,7 @@
 %define _sourcedir /tmp
 
 Summary:   FVWM Themes, configurational framework for FVWM
-Name:      fvwm-themes-extra
+Name:      fvwm-themes-base
 Version:   %{ver}
 Release:   %{rel}
 Copyright: GPL
@@ -18,9 +18,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-root
 Packager:  FVWM Themes Developers <fvwm-themes-devel@lists.sourceforge.net>
 Autoreq:   1
 
-Requires:  fvwm-themes = @VERSION@
+Requires:  fvwm >= @REQUIRED_FVWM_VERSION@
+Requires:  perl >= 5.002
 
-Provides:  fvwm-themes-extra
+Provides:  fvwm-themes
 
 Docdir:    %{prefix}/share/doc
 
@@ -29,16 +30,16 @@ FVWM Themes is a powerful configurational framework for FVWM,
 designed to be easily extendible and configurable, includes
 several pre-built themes, a pack of images and sounds.
 
-This package contains 6 themes for use with the base FVWM Themes
-package.
+The base package contains the themes engines and utilities
+as well as 8 themes.
 
 %description -l fr
 FVWM Themes est un systËme de configuration puissant pour FVWM.
 Il est extansible, facilement configurable et contient des
 thËmes, des images et des fichiers sons.
 
-Ce paquet contient 6 themes fait pour Ítre utilisÈ avec le paquet
-base de FVWM Themes.
+Le paquet main contient le moteur et des utilitaires ainsi
+que 8 thËmes.
 
 %description -l ru
 ¡À≈‘ FVWM Themes —◊Ã—≈‘”— Õœ›ŒŸÕ œÀ“’÷≈Œ…≈Õ ƒÃ— FVWM, Àœ‘œ“œ≈
@@ -49,14 +50,12 @@ base de FVWM Themes.
 %setup
 
 %build
+./configure --disable-build-menus --prefix=%{prefix} %{c_p}
+make %{m_p}
 
 %install
-mkdir $RPM_BUILD_ROOT
-mkdir $RPM_BUILD_ROOT%{prefix}
-mkdir $RPM_BUILD_ROOT%{prefix}/share
-mkdir $RPM_BUILD_ROOT%{prefix}/share/fvwm
-mkdir $RPM_BUILD_ROOT%{prefix}/share/fvwm/themes
-cp -ard ./ $RPM_BUILD_ROOT%{prefix}/share/fvwm/themes
+rm -rf $RPM_BUILD_ROOT
+make prefix=$RPM_BUILD_ROOT%{prefix} ROOT_PREFIX=$RPM_BUILD_ROOT install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -64,13 +63,24 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-, root, root)
 
+%doc AUTHORS COPYING INSTALL NEWS README TODO
+%doc doc/FAQ doc/README.1st doc/colorsets doc/creating-themes
+%doc doc/fvwm-themes.lsm
+%{prefix}/bin/*
+%{prefix}/man/*/*
 %{prefix}/share/*/*
+#%{bindir}/*
+#%{mandir}/*/*
+#%{FT_DATADIR}/*
 
 %post
-echo ""
-echo "    Refresh with no cache with the themes management menu"
-echo "    and have fun!"
-echo ""
+[ -x %{prefix}/bin/fvwm-themes-menuapp ] && %{prefix}/bin/fvwm-themes-menuapp --site --build-menus --remove-popup || true
 
-#* 21 May 2001 FVWM Themes Developers  <fvwm-themes-devel@lists.sourceforge.net>
-#- First try at making the extra package
+## TODO: how to specify the current date in .spec? Or how to run a `command`?
+#%changelog
+#
+#* Thu 07 Sep 2000 20:00:00 IDT  FVWM Themes Developers  <fvwm-themes-devel@lists.sourceforge.net>
+#- Auto building %{PACKAGE_VERSION}
+#
+#* Thu 07 Sep 2000 20:00:00 IDT  Mikhael Goikhman  <migo@homemail.com>
+#- First try at making the package

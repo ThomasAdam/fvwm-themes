@@ -1,3 +1,26 @@
+2001-05-22  olicha  <olivier.chapuis@free.fr>
+
+	* configure.in:
+	* Makefile.am:
+	Move EXTRA_THEMES from the make file to the configure file.
+	Small fix and fvwm-themes-extra-VERSION.tar main directory
+	is now fvwm-themes-base-VERSION and not fvwm-themes-VERSION
+
+	* Makefile.am:
+	* rpm/Makefile.am:
+	* rpm/fvwm-themes-*.spec.in:
+	* configure.in:
+	make rpm-{base,extra,themes}-this create the rpm package that
+	correspond to the new tarballs build by the previous commits.
+	make rpm-dist3 build all the gz tarballs and all the rpm but
+	the full rpm (make rpm-dist or rpm-this for that).
+	Warning: English checking and Russian translation needed in
+	in the spec files
+
+	* bin/fvwm-themes-config.in:
+	Added support for extra version "_x.x" for --create-pack with
+	a --pack-extra-version option. New option --pack-prefix.
+
 2001-05-22  migo  <migo@homemail.com>
 
 	* Makefile.am:
