@@ -63,7 +63,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 
 %doc AUTHORS COPYING INSTALL NEWS README TODO
-%doc doc/FAQ doc/README.1st doc/colorsets doc/fvwm-themes.lsm
+%doc doc/FAQ doc/README.1st doc/colorsets doc/creating-themes
+%doc doc/fvwm-themes.lsm
 %{prefix}/bin/*
 %{prefix}/man/*/*
 %{prefix}/share/*/*

@@ -2,6 +2,8 @@
 
 	* themes/awol/colors: change fg of disabled menu item to visible
 
+	* rpm/fvwm-themes.spec.in: include doc/creating-themes to rpm
+
 2001-04-26  migo  <migo@homemail.com>
 
 	* themes/default/settings/iconstyles/style-icon-miniicon:
