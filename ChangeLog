@@ -1,3 +1,8 @@
+2002-06-11 migo  <migo@homemail.com>
+
+	* themes/default/settings/banner/enabled:
+	increase FvwmBanner timeout to 5 seconds, I am biased :)
+
 2003-06-06  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings/stroke/enabled:
