@@ -1112,6 +1112,11 @@ sub useNewComponents ($$$;$) {
 		$self->setComponentCfg($component, $cc);
 		$self->applyThemeComponentMemory($theme, $component);
 
+		if (ref($cc->{'auto-drops'}) eq 'ARRAY') {
+			my @toDrop = grep { $self->hasComponent($_) } @{$cc->{'auto-drops'}};
+			$self->useNewComponents([], \@toDrop, 0) if @toDrop;
+		}
+
 		my $imageDirs = $cc->{'local-imagepath'};
 		createCurrentImageDirLinks($theme, $imageDirs)
 			if ref($imageDirs) eq 'ARRAY';
