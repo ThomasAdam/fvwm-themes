@@ -75,7 +75,7 @@ MenuStyle * ActiveFore, HilightBack
 # Common Colorsets
 
 # default for modules
-*FvwmTheme: Colorset 10 fg black, bg lightgreen, Plain, NoShape
+*FvwmTheme: Colorset 10 fg black, bg #80C080, Plain, NoShape
 
 # default hilight
 *FvwmTheme: Colorset 11 fg black, bg white, Plain, NoShape
@@ -88,7 +88,7 @@ MenuStyle * ActiveFore, HilightBack
 	Plain, NoShape
 
 # default2 (FvwmPager or to get more colors in Buttons)
-*FvwmTheme: Colorset 14 fg black, bg lightgreen, Plain, NoShape
+*FvwmTheme: Colorset 14 fg black, bg #80C080, Plain, NoShape
 
 # default hilight2: (FvwmPager or to get more colors in a Buttons)
 *FvwmTheme: Colorset 15 fg black, bg white, Plain, NoShape
@@ -100,7 +100,7 @@ MenuStyle * ActiveFore, HilightBack
 # Window Lists Colorsets
 
 # standard item
-*FvwmTheme: Colorset 17 fg black, bg lightgreen, Plain, NoShape
+*FvwmTheme: Colorset 17 fg black, bg #80C080, Plain, NoShape
 
 # active item
 *FvwmTheme: Colorset 18 fg white, bg rgb:6e/9a/71, Plain, NoShape
@@ -109,7 +109,7 @@ MenuStyle * ActiveFore, HilightBack
 *FvwmTheme: Colorset 19 fg black, bg #3B553D, Plain, NoShape
 
 # pointed item
-*FvwmTheme: Colorset 20 fg black, bg lightgreen, Plain, NoShape
+*FvwmTheme: Colorset 20 fg black, bg #80C080, Plain, NoShape
 
 # ------------------------
 # Others Modules Colorsets
@@ -127,7 +127,7 @@ DestroyModuleConfig FvwmIdent: *
 # III. Applications Colorsets
 
 # Terminals
-*FvwmTheme: Colorset 30 fg black, bg lightgreen, Plain, NoShape
+*FvwmTheme: Colorset 30 fg black, bg #80C080, Plain, NoShape
 
 # Administrations
 *FvwmTheme: Colorset 31 fg black, bg forestgreen, Plain, NoShape
@@ -139,7 +139,7 @@ DestroyModuleConfig FvwmIdent: *
 *FvwmTheme: Colorset 33 fg white, bg DarkGreen, Plain, NoShape
 
 # Small Text Input file or Hilighting some Items
-*FvwmTheme: Colorset 34 fg black, bg lightgreen, Plain, NoShape
+*FvwmTheme: Colorset 34 fg black, bg #80C080, Plain, NoShape
 
 DestroyModuleConfig FvwmFormDefault: ItemColorset*
 *FvwmFormDefault: ItemColorset 34

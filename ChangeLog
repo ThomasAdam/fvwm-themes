@@ -12,6 +12,10 @@
 	* themes/{awol,default}/sound:
 	finally use $. in module commands
 
+	* themes/spruce/colors:
+	s/lightgreen/#80C080/;
+	we should start to use $[*.cs*] in colorsets...
+
 2001-05-24  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/functions:
