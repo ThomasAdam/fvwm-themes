@@ -10,6 +10,7 @@
 	* debian/Makefile.am:
 	* debian/postinst:
 	* debian/postrm:
+	* debian/fvwm-themes.menu:
 	improved
 
 	* bin/fvwm-themes-config.in:
