@@ -5,6 +5,57 @@
 Important items to do:
 ---------------------
 
+* colors@ components. We should improve colorset list, probably add some
+  items and move others. Application bar modules have only 3 colorsets, it
+  is inacceptable, there should be 4-6. [Olivier]
+
+* Fix problem with FvwmTheme: sometimes the colors of the swallowed window
+of the Buttons are not the good one. May be we can restart FvwmTheme in
+colors as before. Mikhael any objections? - Yes, any. :)
+I think I fixed this, DestroyModuleConfig FvwmTheme* was commented in.
+If not, how can I reproduce this?
+
+* settings@default: think which subcomponents to remove/move.
+  Move settings/stroke@ to bindings@ option.
+
+* Think where belong all functions sitting in different components.
+  Probably rename functions-appbind to functions-user. [migo]
+
+* Completing 'cde' theme. [olivier, jos]
+
+* Do so that the session support works again (need discussion).
+
+* Finish colors@spruce.
+
+* Begin "FvwmScript-ThemeCenter".
+
+* Write some documentation about CCDS. [migo]
+
+* Fix all crashes.
+
+Optional items to do:
+--------------------
+
+* Add a special variable $. in fvwm for specifying relative paths. [migo]
+
+* desktop@, we may leave this for now as is, but in the future it should
+  be more formalized.
+
+* Providing some ready to use functions for background@ components.
+  Like functions dealing with image types and formats (tiles, gradients).
+
+* It would be nice if someone enhance 'multichoice' theme.
+  I.e. add some color schemes, backgrounds and cursors (bitmap cursors?).
+  If noone does this, this theme can probably be removed.
+
+* A better web page. Does someone want to help on this?
+
+* Better integration of fvwm-themes-xres.
+
+* Creating fvwm-themes-gtk. Jos?
+
+* Creating fvwm-themes-qt. Someone?
+
 * CCDS (component configuration & dependancy system, a better name?).
   It may be surprizing, but I think that we don't really need to implement
   something more than we have now before 0.4, It is difficult and time
@@ -13,63 +64,14 @@ Important items to do:
   the future. The idea here is that a user should be able to create a
   normal theme (no options) by providing only components, without .cfg.
 
-* colors@ components. We should improve colorset list, probably add some
-  items and move others. Application bar modules have only 3 colorsets, it
-  is inacceptable, there should be 4-6. [Olivier]
-
-* fix problem with FvwmTheme: sometimes the colors of the swallowed window
-of the Buttons are not the good one. May be we can restart FvwmTheme in
-colors as before. Mikhael any objections? - Yes, any. :)
-I think I fixed this, DestroyModuleConfig FvwmTheme* was commented in.
-If not, how can I reproduce this?
-
-* modules@ components. Several things may be improved.
-
-* settings@default: think which subcomponents to remove/move.
-  Move settings/stroke@ to bindings@ option.
-
-* to think where belong all functions sitting in different components.
-  Probably rename functions-appbind to functions-user.
-
-* completing 'cde' theme. [olivier, jos]
-
-* Do so that the session support work again (need discussion).
-
-* Finish colors@spruce.
-
-* Begin "FvwmScript-ThemeCenter".
-
-* I will write some documentation about CCDS.
-
-* of course, fixing all crashes.
-
-Optional items to do:
---------------------
-
-* I can add a special variable $. in fvwm for specifying relative paths.
-
-* desktop@, we may leave this for now as is, but in the future it should
-  be more formalized.
-
-* providing some ready to use functions for background@ components.
-  Like functions dealing with image types and formats (tiles, gradients).
-
-* It would be nice if someone enhance 'multichoice' theme.
-  I.e. add some color schemes, backgrounds and cursors (bitmap cursors?).
-  If noone does this, this theme can probably be removed.
-
-* a better web page. Does someone want to help on this?
-  Maybe someone who didn't wrote to this list yet?
-
-* better integration of fvwm-themes-xres
-
-* Creating fvwm-themes-gtk. Jos?
-
-* Creating fvwm-themes-qt. Someone?
-
 Problems without obvious soluton:
 --------------------------------
 
 * Rereading iconstyles/style-icon-miniicon file dynamically is not enough
   if someone (me) have icon style extentions. Should be solved using
   dependances somehow (using 'extends').
+
+Closed (will be deleted after 0.4.0):
+------------------------------------
+
+* modules@ components. Several things may be improved.
