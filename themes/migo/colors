@@ -38,8 +38,8 @@ AddToFunc   FuncFvwmDecorBackground
 	UnderText AdjustedPixmap decor/text-under.png, \
 	LeftOfText AdjustedPixmap decor/text-left.png, \
 	RightOfText AdjustedPixmap decor/text-right.png
-+ I AddTitleStyle AllInactive Colorset 1 58
-+ I AddTitleStyle AllActive   Colorset 2 36
++ I AddTitleStyle AllInactive Colorset 1 54
++ I AddTitleStyle AllActive   Colorset 2 30
 #
 + I ButtonStyle	All Simple #-- UseTitleStyle
 
