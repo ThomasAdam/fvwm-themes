@@ -1,0 +1,7 @@
+fvwm-themes for Debian
+----------------------
+
+   * change menu entry submenu Programs to /Debian
+   * to activate you must place "fvwm-themes-start" line into ~/.xinitrc
+
+ -- Andrei Mitrofanow (Smilie) <smilebef@web.de>, Mon, 14 Apr 2003 16:24:36 +0200

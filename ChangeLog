@@ -1,3 +1,18 @@
+2002-07-13 migo  <migo@homemail.com>
+
+	* debian/README.Debian:
+	* debian/changelog:
+	* debian/compat:
+	* debian/control:
+	* debian/copyright:
+	* debian/dirs:
+	* debian/docs:
+	* debian/files:
+	* debian/fvwm-themes.substvars:
+	* debian/postinst:
+	* debian/rules:
+	initially added files to create deb packages, anything may be changed
+
 2002-06-11 migo  <migo@homemail.com>
 
 	* forms/FvwmButtons-Colorsets:
