@@ -1,7 +1,10 @@
 2002-05-30  migo  <migo@homemail.com>
 
-	Makefile.am:
+	* Makefile.am:
 	small changes
+
+	* themes/awol/sounds/yesb.wav:
+	replaced incorrect wav
 
 2002-05-29  migo  <migo@homemail.com>
 
