@@ -1,3 +1,9 @@
+2000-12-24  olicha  <olivier.chapuis@free.fr>
+
+	* themes/*/*.cfg
+	Added some requires/provides dependence (in practice only globalfeel
+	is affected: it is loaded before any XPM is loaded)
+
 2000-12-23  olicha  <olivier.chapuis@free.fr>
 
 	* fvwm-themes-config.in:
