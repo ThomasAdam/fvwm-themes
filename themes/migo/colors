@@ -18,26 +18,29 @@ Colorset 0 fg rgb:f8/f8/f3, bg rgb:50/50/78, Plain, NoShape
 # Window decorations
 
 # window title, inactive and active
-Colorset 1 fg rgb:30/10/58, bg rgb:ce/ce/9c, fgsh rgb:a1/a1/7a, \
+Colorset 1 fg black, bg rgb:ce/ce/9c, \
 	TiledPixmap decor/rose.xpm, bgTint black 22, Tint black 22, NoShape
-Colorset 2 fg rgb:ff/ff/a0, bg rgb:ce/ce/9c, fgsh rgb:30/54/88, \
+Colorset 2 fg black, bg rgb:ce/ce/9c, \
 	TiledPixmap decor/rose.xpm, NoShape
 
 # window borders, inactive and active
-Colorset 3 fg black, bg #cece9c, bgTint black 20, Plain, NoShape
-Colorset 4 fg black, bg #cece9c, Plain, NoShape
+Colorset 3 fg black, bg rgb:ce/ce/9c, bgTint black 20, Plain, NoShape
+Colorset 4 fg black, bg rgb:ce/ce/9c, Plain, NoShape
 
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
-+ I TitleStyle AllInactive MultiPixmap Main Colorset 1
++ I TitleStyle AllInactive MultiPixmap Main Colorset 1, \
+	UnderText AdjustedPixmap decor/text-under.png, \
+	LeftOfText AdjustedPixmap decor/text-left.png, \
+	RightOfText AdjustedPixmap decor/text-right.png
 + I TitleStyle AllActive   MultiPixmap Main Colorset 2, \
 	UnderText AdjustedPixmap decor/text-under.png, \
 	LeftOfText AdjustedPixmap decor/text-left.png, \
 	RightOfText AdjustedPixmap decor/text-right.png
-+ I AddTitleStyle AllInactive Colorset 1 30
-
-#+ I ButtonStyle	All Pixmap 16x16/empty.xpm
++ I AddTitleStyle AllInactive Colorset 1 58
++ I AddTitleStyle AllActive   Colorset 2 36
+#
 + I ButtonStyle	All Simple #-- UseTitleStyle
 
 # --------------

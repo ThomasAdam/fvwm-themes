@@ -3,6 +3,10 @@
 	* themes/awol/colors:
 	new colors
 
+	* themes/migo/colors:
+	* themes/migo/windowlook:
+	make it look more like intended, the TitleStyle config is a bit unusual
+
 2003-10-18  migo  <migo@homemail.com>
 
 	* themes/redmondxp/modules/FvwmThemesPanelManager:

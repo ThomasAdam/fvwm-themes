@@ -1,5 +1,5 @@
-FuncFvwmSetFont-WindowTitle * "Shadow=1 l dl d dr r:xft:Luxi Serif:Bold:pixelsize=14:minspace=true;-*-helvetica-bold-r-normal-*-12-*"
-FuncFvwmSetFont-IconTitle   * "Shadow=1:xft:Luxi Serif:Medium:pixelsize=12:minspace=true;-*-fixed-medium-r-semicondensed-*-13-*
+FuncFvwmSetFont-WindowTitle * "xft:Luxi Serif:Bold:pixelsize=14:minspace=true;-*-helvetica-bold-r-normal-*-12-*"
+FuncFvwmSetFont-IconTitle   * "xft:Luxi Serif:Medium:pixelsize=12:minspace=true;-*-fixed-medium-r-semicondensed-*-13-*
 
 Style "*"	BorderWidth 5, HandleWidth 7
 Style "*"	FvwmBorder, FirmBorder
