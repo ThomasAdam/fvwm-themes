@@ -4,6 +4,9 @@
 	* themes/redmondxp/modules/main:
 	use Read instead of PipeRead (this is temporary anyway), so $. works
 
+	* themes/qnx/**:
+	added QNX theme from Suzanne that uses TitleStyle MultiPixmap
+
 2002-08-28  migo  <migo@homemail.com>
 
 	* themes/redmondxp/modules/FvwmThemesPanelManager:
