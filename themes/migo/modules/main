@@ -60,6 +60,10 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmStopMyPager
 + I DestroyFunc FuncFvwmSwitchBarIconSet
 + I DestroyMenu MenuFvwmBarIconSet
++ I FuncFvwmStopModule FvwmIconBox
++ I FuncFvwmStopModule FvwmIconMan
++ I FuncFvwmStopModule FvwmTaskBar
++ I FuncFvwmStopModule FvwmWinList
 
 ###
 #  Theme module menus
