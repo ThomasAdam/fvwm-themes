@@ -4,7 +4,6 @@ FVWM Themes Frequently Asked Questions and Answers.
 
 1. About FVWM Themes
 
-  1.0  Why this FAQ does not contain my question about fvwm-themes?
   1.1  What is theme, component, variant, option in our terminology?
   1.2  Does fvwm-themes overwrites my .fvwm2rc? If no, how does it work?
   1.3  Why theme switching takes some time and it is even increased?!
@@ -33,12 +32,6 @@ FVWM Themes Frequently Asked Questions and Answers.
 
 ==============================================================================
 
-
-------------------------------------------------------------------------------
-1.0  Why this FAQ does not contain my question about fvwm-themes?
-
-A: Because there were no many questions up until now. It is a new project.
-==============================================================================
 
 ------------------------------------------------------------------------------
 1.1  What is theme, component, variant, option in our terminology?

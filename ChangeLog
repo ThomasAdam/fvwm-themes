@@ -24,6 +24,9 @@
 	* rpm/*.spec.in:
 	some fixes
 
+	* doc/FAQ:
+	removed question 1.0 (too old)
+
 2001-08-09  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
