@@ -11,6 +11,9 @@
 	* acinclude.m4:
 	use ${AWK} instead of awk
 
+	* menu-system/.cvsignore:
+	added
+
 2001-08-14  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
