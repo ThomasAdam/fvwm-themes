@@ -173,7 +173,7 @@ dist6: dist5
 
 rpm-dist: dist3 rpm-this
 
-rpm-dist3: dist3 rpm-this-base rpm-this-extra
+rpm-dist3: dist3 rpm-this3
 
 rpm-dist5: dist5 rpm-this-themes
 
@@ -183,6 +183,8 @@ rpm-regenerate:
 
 rpm-this: rpm-regenerate
 	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) this) || exit 1
+
+rpm-this3: rpm-this-base rpm-this-extra
 
 rpm-this-base: rpm-regenerate
 	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) this-base) || exit 1

@@ -17,6 +17,11 @@
 	* themes/default/functions:
 	improved xmessage and FuncFvwmShowMessage calls
 
+	* Makefile.am:
+	* rpm/fvwm-themes-base.spec.in:
+	* rpm/fvwm-themes-extra.spec.in:
+	fixed number of themes in rpm description
+
 2003-10-31  migo  <migo@homemail.com>
 
 	* themes/redmondxp/images/module/panel-start.png:
