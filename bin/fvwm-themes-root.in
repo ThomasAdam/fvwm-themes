@@ -80,6 +80,7 @@ my $HelperSetRootCommands = {
 	],
 	adjust => [
 		'xv -root -quit -max $image',
+		'display -window root -geometry `xwininfo -root | grep geometry | cut -d" " -f4`\! $image',
 		'xsetbg -fullscreen $image -border $fg',
 	],
 	aspect => [
@@ -91,7 +92,13 @@ my $HelperSetRootCommands = {
 	],
 };
 
-sub isExeInPath ($) { 1 }
+sub isExeInPath ($) {
+	my $exe = shift;
+	foreach my $dir ('/usr/local/bin', '/usr/bin', '/usr/bin/X11') {
+		return 1 if -x "$dir/$exe";
+	}
+	return 0;
+}
 
 my $commands = $HelperSetRootCommands->{$type};
 die "Internal error #1\n" unless defined $commands;
