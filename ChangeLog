@@ -10,6 +10,9 @@
 	* themes/default/menus:
 	call man fvwm
 
+	* themes/migo/colors:
+	remove fgsh
+
 2002-06-02  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings.cfg: 
