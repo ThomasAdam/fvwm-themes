@@ -2,10 +2,10 @@
 
 DestroyFunc WindowListFunc
 AddToFunc   WindowListFunc
-+ I WindowId $0 Iconify false
-+ I WindowId $0 FlipFocus
-+ I WindowId $0 Raise
-+ I WindowId $0 WarpToWindow 10p 10p
++ I Iconify false
++ I FlipFocus
++ I Raise
++ I WarpToWindow 10p 10p
 
 DestroyFunc FuncFvwmSelectWindow
 AddToFunc   FuncFvwmSelectWindow
@@ -23,18 +23,18 @@ AddToFunc   FuncFvwmDeiconifyFocusAndRaise
 
 DestroyFunc FuncFvwmIconifyOrFocusAndRaise
 AddToFunc   FuncFvwmIconifyOrFocusAndRaise
-+ I DestroyFunc RealIconifyOrFocusAndRaise
-+ I AddToFunc   RealIconifyOrFocusAndRaise
-+ I ThisWindow ( Iconic)         + I Iconify off
-+ I ThisWindow ( Iconic)         + I Focus
-+ I ThisWindow (!Iconic  Raised) + I Iconify on
-+ I ThisWindow (!Iconic !Raised) + I Focus
-+ I ThisWindow (!Iconic !Raised) + I Raise
-+ I RealIconifyOrFocusAndRaise
-#+ I ThisWindow (Iconic) Iconify off
-#+ I Cond (NoMatch) ThisWindow (Raised) Iconify on
-#+ I ThisWindow (!Iconic) Focus
-#+ I ThisWindow (!Iconic) Raise
+#+ I DestroyFunc RealIconifyOrFocusAndRaise
+#+ I AddToFunc   RealIconifyOrFocusAndRaise
+#+ I ThisWindow ( Iconic)         + I Iconify off
+#+ I ThisWindow ( Iconic)         + I Focus
+#+ I ThisWindow (!Iconic  Raised) + I Iconify on
+#+ I ThisWindow (!Iconic !Raised) + I Focus
+#+ I ThisWindow (!Iconic !Raised) + I Raise
+#+ I RealIconifyOrFocusAndRaise
++ I ThisWindow (Iconic) Iconify off
++ I TestRc (NoMatch) ThisWindow (Raised) Iconify on
++ I ThisWindow (!Iconic) Focus
++ I ThisWindow (!Iconic) Raise
 
 DestroyFunc FuncFvwmDeiconifyFocusAndWarp
 AddToFunc   FuncFvwmDeiconifyFocusAndWarp
@@ -139,12 +139,8 @@ AddToFunc   FuncFvwmConfirm
 
 DestroyFunc FuncFvwmShowColorset
 AddToFunc   FuncFvwmShowColorset
-+ I SetEnv COLORSET_DUMP "Will be implemented later"
-# migo: This does not work for some reason and I have no time to fix it now
-#+ I SetEnv COLORSET_DUMP "FvwmPerl does not appear to work^nSee error messages"
-#+ I ModuleSynchronous FvwmPerl FvwmPerl-DumpColorset
-#+ I SendToModule FvwmPerl-DumpColorset eval cmd("SetEnv COLORSET_DUMP " . $module->track('Colorsets')->dump($0)); stop();
-+ I FuncFvwmShowMessage "Colorset $0 Information" "$[COLORSET_DUMP]"
++ I ModuleSynchronous FvwmPerl -e 'cmd("SetEnv COLORSET_DUMP `" . $module->track("Colorsets")->dump(2) . "`")'
++ I FuncFvwmShowMessage "Colorset $0 Information" `$[COLORSET_DUMP]`
 
 DestroyFunc FuncFvwmShowAllColorsets
 AddToFunc   FuncFvwmShowAllColorsets

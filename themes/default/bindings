@@ -34,9 +34,9 @@ AddToFunc   FuncFvwmMoveOrIconify
 DestroyFunc FuncFvwmMaximizeFullScreen
 AddToFunc   FuncFvwmMaximizeFullScreen
 + I ThisWindow (Maximized) WindowStyle Title, Borders
-+ I KeepRc TestRc (NoMatch) WindowStyle NoTitle, !Borders
-+ I KeepRc TestRc (NoMatch) Raise
-+ I KeepRc TestRc (NoMatch) UpdateStyles
++ I TestRc (!Match) WindowStyle !Title, !Borders
++ I TestRc (!Match) Raise
++ I TestRc (!Match) UpdateStyles
 + I Maximize ewmhiwa
 
 DestroyFunc FuncFvwmWindowOpsOrAction
