@@ -18,7 +18,7 @@ ButtonStyle 2 - Clear
 ButtonStyle 4 - Clear MWMDecorMax
 ButtonStyle 6 - Clear MWMDecorMin
 
-TitleStyle	Height 22
+TitleStyle	Height 20
 
 #     button    context modifie function
 Mouse 1 	1	A	FuncFvwmWindowOpsOrAction Delete
