@@ -1,0 +1,26 @@
+# bindings:
+Mouse 1 R S GnomeButton
+MouseXX 2 3 R S GnomeButton
+MouseXX 3 2 R S GnomeButton
+
+AddToFunc   FuncFvwmRemoveBindings
++ I Mouse 1 R S -
++ I Mouse 2 R S -
++ I Mouse 3 R S -
+
+# quit menu
+DestroyMenu MenuFvwmQuit
+AddToMenu   MenuFvwmQuit "Really Quit GNOME?" Title
++ "&Restart%menu/wm-restart.xpm%"          Restart
++  "" Nop
++ "Re&fresh Screen%menu/wm-refresh.xpm%"   Refresh
++ "Re&capture Screen%menu/wm-refresh.xpm%" Recapture
++ "" Nop
++ "&Yes, Really Quit%menu/choice-yes.xpm%" 	QuitSession
++ "Yes, Quit and &Save Session%menu/choice-yes.xpm%"  \
+	Exec exec save-session --kill
++  "" Nop
++ "&No, Don't Quit%menu/choice-no.xpm%"    Nop
+
+# number of desk (be dynamic):
+GnomeShowDesks 1

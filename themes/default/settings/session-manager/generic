@@ -1,0 +1,12 @@
+# quit menu
+DestroyMenu MenuFvwmQuit
+AddToMenu   MenuFvwmQuit "Really Quit Session?" Title
++ "&Restart%menu/wm-restart.xpm%"          Restart
++  "" Nop
++ "Re&fresh Screen%menu/wm-refresh.xpm%"   Refresh
++ "Re&capture Screen%menu/wm-refresh.xpm%" Recapture
++ "" Nop
++ "&Yes, Really Quit%menu/choice-yes.xpm%" 	QuitSession
++ "Yes, Quit and &Save Session%menu/choice-yes.xpm%"	SaveQuitSession
++  "" Nop
++ "&No, Don't Quit%menu/choice-no.xpm%"    Nop
