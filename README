@@ -1,11 +1,11 @@
-This is a beta release of fvwm-themes.
+This is a release of fvwm-themes based on the stable fvwm 2.4.0 version.
 
 FVWM Themes is an attempt to create easy, configurable and modular framework
 for the FVWM configuration. You can visit the project's home page at:
 
 	http://fvwm-themes.sourceforge.net/
 
-or project's developement page (where you download the package):
+or project's developement page (where you may download the package):
 
 	http://sourceforge.net/projects/fvwm-themes/
 
@@ -21,17 +21,11 @@ In short, after untarring fvwm-themes package you should execute:
 	./configure
 	make install
 
-If you are upgrading from 0.2.* versions, please remove ~/.fvwm/themes-rc;
-you can also remove all ~/.fvwm/*-old* directories and even directories
-~/.fvwm/{themes,options,images,scripts,sounds}. They all are now in the site
-place and not in the user place. User place is supported too, but you may
-have some inconsistences if you leave old version files in your ~/.fvwm.
-
 How to Start
 ------------
 
-Make sure you use one of the latest developement versions of fvwm >= 2.3.30.
-Replace the last line of your ~/.Xclients (or ~/.xinirc or ~/.xsession):
+Make sure you use one of the latest versions of fvwm >= 2.4.0.
+Replace the last line of your ~/.Xclients (or ~/.xinitrc or ~/.xsession):
 	fvwm2
 with:
 	fvwm-themes-start
@@ -52,6 +46,11 @@ For example, there are 42 color schemes in the cde theme, and 32 in the
 luthien theme. You first choose cde->colors, then current->colors->scheme.
 You can also fully manipulate theme components using the Themes Center GUI.
 
+Some themes may be more attractive to you, some less. At any time you may
+reset all loaded theme components by choosing "Reset all to default".
+Once you find the component combination you like, it is automatically
+becomes permanent, the next time you start fvwm-themes, it will be loaded.
+
 You will find more interesting things (about a possibility to ask a window
 button itself what it does, about changing icon sets, or redefining bound
 applications, or defining sessions and more) while exploring fvwm-themes.
@@ -68,10 +67,6 @@ Please read it before asking your questions. Thank you.
 Notes
 -----
 
-* This is a developement version based on a developement fvwm version.
-  Since fvwm is changing right now, we only test fvwm-themes against the
-  latest fvwm version as of fvwm-themes release date (2.3.30 for now).
-  This will be changed after the stable fvwm-2.4 is out.
 * For sound effects to work you need one of the sounds player listed under
   Theme Management->current->settings->Sound Player to be installed (but
   having one which can play .wav sound is a good idea). You can use esdplay

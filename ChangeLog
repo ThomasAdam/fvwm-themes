@@ -20,6 +20,10 @@
 	* themes/default/styles:
 	add GrabFocus for FvwmConsole
 
+	* NEWS:
+	* README:
+	prepare documentation for 0.5.0
+
 2001-07-05  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
