@@ -18,7 +18,7 @@
 #-----------------------------------------------------------------------------
 
 
-WindowTitle {FVWM Themes - Component Properties}
+WindowTitle {FVWM Themes: Component Properties}
 WindowSize 320 300
 Font		-adobe-helvetica-bold-r-*-*-12-*
 
