@@ -1,3 +1,22 @@
+2001-03-24  olicha  <olivier.chapuis@free.fr>
+
+	* themes/{olicha,luthien,redmond98}/menustyle:
+	* themes/lutien/windowlook:
+	* themes/luthien/modules/main:FvwmWinList:
+	* themes/default/modules/main:FvwmPager*:
+	* themes/default/modules/main:FvwmTaskBar:
+	Use pixel size in the place of point size for the font: the font 
+	seems to me too horrible if 100dpi are prioritary. For blackbox, migo 
+	and osx point size are still used in menustyle.
+  	In the case of windowlook the pixel size must be used!
+
+	* themes/spruce/colors:
+	Fixed ButtonStyle
+
+	* themes/luthien/modules/main:FvwmButtons:
+	* themes/default/modules/main:startmenu
+	wm-icons 0.3.0 fixes
+
 2001-03-21  migo  <migo@homemail.com>
 
 	* themes/default/settings/session-manager/xsm: added a workaround

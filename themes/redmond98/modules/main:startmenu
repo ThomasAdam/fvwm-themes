@@ -15,10 +15,10 @@ AddToMenu   MenuFvwmStartMenu@menuback/fvwm2.xpm@^black^
 
 DestroyMenu StartMenuFvwmSettings
 AddToMenu   StartMenuFvwmSettings "Settings" Title
-+ "&Shells%menu/xterm.xpm%"			Popup MenuFvwmShells
-+ "S&ystem%menu/monitor.xpm%"			Popup MenuFvwmSystem
-+ "&Theme Management%menu/desktop.xpm%"		Popup MenuFvwmThemes
-+ "&Fvwm Configuration%menu/unknown.xpm%"	Popup MenuFvwmConfiguration
++ "&Shells%menu/terminal.xpm%"			Popup MenuFvwmShells
++ "S&ystem%menu/system.xpm%"			Popup MenuFvwmSystem
++ "&Theme Management%menu/themes.xpm%"		Popup MenuFvwmThemes
++ "&Fvwm Configuration%menu/configuration.xpm%"	Popup MenuFvwmConfiguration
 #+ "&X Configuration"				Popup MenuFvwmXConfiguration
 
 DestroyMenu StartMenuFvwmDocuments

@@ -1,5 +1,5 @@
 MenuStyle * Hilight3DThickness 2
-MenuStyle * Font lucidasanstypewriter-14
+MenuStyle * Font -*-lucidatypewriter-medium-r-normal-sans-14-*-*-*-*-*-*-*
 MenuStyle * PopupDelayed, PopupDelay 120, PopdownDelayed, PopdownDelay 120
 MenuStyle * PopupOffset -3 100, TitleWarpOff
 MenuStyle * TitleUnderlines2, SeparatorsLong, TrianglesRelief

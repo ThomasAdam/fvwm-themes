@@ -4,7 +4,7 @@ DestroyModuleConfig FvwmWinList: *
 *FvwmWinList: Colorset 17
 *FvwmWinList: FocusColorset 18
 *FvwmWinList: IconColorset 19
-*FvwmWinList: Font lucidasanstypewriter-12
+*FvwmWinList: Font -*-lucidatypewriter-medium-r-normal-sans-12-*-*-*-*-*-*-*
 *FvwmWinList: Action Click1 FuncFvwmDeiconifyFocusAndRaise
 *FvwmWinList: Action Click2 Iconify
 *FvwmWinList: Action Click3 Popup MenuFvwmWindowOps2 Mouse -102m c

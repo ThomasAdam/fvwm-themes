@@ -31,7 +31,7 @@ DestroyModuleConfig FvwmButtons-Bar: *
 *FvwmButtons-Bar: (3x2+0+3,  Icon 16x16/quit.xpm, Action FuncFvwmQuitVerify)
 *FvwmButtons-Bar: (3x2+3+3,  Icon 16x16/restart.xpm, Action (Mouse 1) FuncFvwmWmRestart, Action (Mouse 2) FuncFvwm2WmRestart, Action (Mouse 3) FuncFvwm3WmRestart)
 *FvwmButtons-Bar: (3x2+6+3,  Icon 16x16/window-close.xpm, Action (Mouse 1) FuncFvwmWindowClose, Action (Mouse 2) FuncFvwm2WindowClose, Action (Mouse 3) FuncFvwm3WindowClose)
-*FvwmButtons-Bar: (3x2+9+3,  Icon 16x16/wm-refresh.xpm, Action Recapture)
+*FvwmButtons-Bar: (3x2+9+3,  Icon 16x16/refresh.xpm, Action Recapture)
 *FvwmButtons-Bar: (3x2+12+3, Icon 16x16/information.xpm, Action (Mouse 1) ToggleXMessages, Action (Mouse 2) ToggleStickyXMessages, Action (Mouse 3) ToggleSlipperyXMessages)
 *FvwmButtons-Bar: (3x2+15+3, Icon 16x16/terminal.xpm, Action (Mouse 1) FuncFvwmTerminal, Action (Mouse 2) FuncFvwm2Terminal, Action (Mouse 3) FuncFvwm3Terminal)
 # big items
