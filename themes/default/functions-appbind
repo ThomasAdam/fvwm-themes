@@ -188,7 +188,7 @@ AddToFunc   FuncFvwm3WWW
 # Used in migo
 DestroyFunc FuncFvwmIrc
 AddToFunc   FuncFvwmIrc
-+ I Exec exec xterm -fg $[fg.cs34] -bg $[bg.cs34] -g 80x40 -sb +sk -si -sl 500 -j -ls -fn 7x14 -fb 7x14bold -n irc -T irc -e irc
++ I FuncFvwmRunInXterm irc irc
 
 DestroyFunc FuncFvwm2Irc
 AddToFunc   FuncFvwm2Irc

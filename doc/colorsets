@@ -215,7 +215,7 @@ DestroyModuleConfig FvwmIdent: *
 *FvwmTheme: Colorset 33 fg white, bg rgb:00/60/00, Plain, NoShape
 
 # Small Text Input file or Hilighting some Items
-# (for Script and Form items, ft-xres)
+# (for Script and Form items, xmessage, ft-xres)
 #
 *FvwmTheme: Colorset 34 fg black, bg white, Plain, NoShape
 
@@ -226,7 +226,7 @@ DestroyModuleConfig FvwmFormDefault: ItemColorset*
 #
 *FvwmTheme: Colorset 35 fg black, bg gray, Plain, NoShape
 
-# Not in one of the above category (for Script and Form, ft-xres)
+# Not in one of the above category (for Script and Form, xmessage, ft-xres)
 #
 *FvwmTheme: Colorset 36 fg black, bg MediumPurple, Plain, NoShape
 

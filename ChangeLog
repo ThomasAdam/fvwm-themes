@@ -9,6 +9,17 @@
 	remove xmessage timeout, it is too nice to be killed :),
 	try to load personal theme, this may cause non-working fvwm-themes...
 
+	* themes/default/functions-appbind:
+	use FuncFvwmRunInXterm in FuncFvwmIrc
+
+	* themes/default/functions:
+	* themes/default/colors:
+	* doc/colorsets:
+	use 2 colorsets in FuncFvwmShowMessage (xmessage), was 1
+
+	* themes/default/menus:
+	implemented workaround in FuncFvwmDesktopCreateScreenshot using Pick
+
 2000-09-15 olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in (comLoop): 
