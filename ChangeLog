@@ -11,6 +11,10 @@
 	but running wrong versions of fvwm and fvwm-themes utilities
 	(if there are several instalations) is probably worse for us
 
+	* devel/doc/style-guide.txt:
+	moved this file from fvwm-themes-web as a part of its reorgonization;
+	this style guide is successfully used in our company for many years :)
+
 2001-03-30  migo  <migo@homemail.com>
 
 	* configure.in:

@@ -1,0 +1,99 @@
+
+                     * Programming Style Guidelines *
+--------------------------------------------------------------------------
+
+* Use strong indentation to show the structure of sources and documents.
+
+* In the sources always use a real TAB for indentation. Expect TAB to be
+  expanded to any number of spaces (2, 3, 4 or 8) in viewers and editors.
+
+* In the plain text files you can use TAB's or other indentation methods.
+  For example, in email messages or pod documentation, where TAB is usually
+  always expanded to 8, you can use two spaces instead of TAB. In this case
+  don't mix spaces and TAB's; use only one for indentation in any block.
+
+* In the ASCII art files without any text structure you should not use
+  TAB's, of course, since this may break your nice diagrams.
+
+* TAB's should only be on the left side of the line, never in the middle.
+  The only exception is for commented out code, the comment sign may
+  precede TAB's.
+
+* When TAB is used (in the sources) never try to line up two lines in
+  different indentation levels, it makes no sense. If you want to add
+  multi-line comments on the right, put them on lines by themselves.
+
+	$a = [ 	               # never try
+	       	"value",       # to line up
+	     ];	               # like this
+
+	# put multi-line
+	# comments here
+	$a = [
+		"value",
+	];
+
+  Lining up two lines in the same indentation levels is ok.
+
+	$size  = 12;  # this is a one line comment
+	$limit = 25;  # it's ok
+
+* Here is an advice of using space before and after punctuation marks.
+
+  Types of punctuation:
+    * braces as indexes of $hash{"key"}, $array[1] or function(2)
+      parameters: no spaces needed.
+    * braces anywhere else: 2 pairs of surrounding spaces or newlines.
+    * comma-like (, : ; ? "dot in english"): trailing space required.
+    * minus-like (- + = . "other dual-operators"): 2 surrounding spaces.
+
+* Usually there is no need for more then one consecutive space, except
+  for a side comment (2 spaces separate a comment better).
+
+* Try to fit your paragraph and code lines to 74-78 characters per line
+  to be more readable. You can use an editor's wrap (but preserve TAB's).
+
+* Identifier names should satisfy Java naming convention, like in
+  $myVar = MyClass->myMethod($MY_CONSTANT);
+
+* Use the style of indenting and placing curly brackets demonstrated in
+  the following Perl code examples (applies to Java and C as well):
+
+	$persons[0] = {
+		name => "Ann",
+		age => 21,
+		marks => {
+			subj1 => 4,
+			subj2 => 5,
+		},
+	};
+
+	if (defined($property)) {
+		# modifier versus accessor
+		if (@params) {
+			$self->setModified();
+			return $property->set(@params);
+		} else {
+			return $property->get();
+		}
+	}
+
+* Consider any program warning to be an error, use strict;, always run with
+  "perl -w" switch, try to check everything which theoretically may fail.
+
+* Try to keep short functions/methods that perform their job very well.
+  It is suggested to read Tom's object-oriented tutorial (man perltoot).
+
+* Spell check your english if possible. In unix there is 'ispell' utility,
+  which can be used by itself or within text editors.
+
+* Use the same (lower or UPPER) case in SGML-like language (HTML, XML, XSL)
+  tags and modifiers. XML is case sensitive and has <lower> standard tags.
+
+* If you create many similar files, use the same naming scheme if possible.
+  For scripts try to use thisScheme.pl, but this_scheme.txt, this-scheme.c
+  or ThisScheme.html may also be used if you find this useful.
+
+* Feel free to improvise on these rules, but at least keep in mind why
+  they were created - to make life of coders reading, editing, merging and
+  understanding your files easier.
