@@ -3,6 +3,9 @@
 	* debian/Makefile.am:
 	small changes
 
+	* themes/redmondxp/modules/FvwmThemesPanelManager:
+	more clock formats
+
 2003-10-16  migo  <migo@homemail.com>
 
 	* AUTHORS:

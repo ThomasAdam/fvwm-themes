@@ -18,12 +18,16 @@ my $configFile = ".$name.cfg";
 my $clockFormats = {
 	time => [
 		'%H:%M',
+		'%a, %H:%M',
+		'%H:%M, %a',
 		'%I:%M %P',
 		'%I:%M %p',
 	],
 	date => [
 		'%d %h',
+		'%d %B',
 		'%h %d',
+		'%B %d',
 		'%a, %d %h',
 		'%h %d, %a',
 		'%a %d',
@@ -284,8 +288,8 @@ sub popupClockBarConfigMenu ($) {
 		AddToMenu   PanelClockBarConfigMenu
 		+ "%menu/$iconFO0.xpm%Order: time, date" $backCmd set clockbar-field-order 0
 		+ "%menu/$iconFO1.xpm%Order: date, time" $backCmd set clockbar-field-order 1
-		+ "%menu/$iconFO2.xpm%Order: time"       $backCmd set clockbar-field-order 2
-		+ "%menu/$iconFO3.xpm%Order: date"       $backCmd set clockbar-field-order 3
+	#	+ "%menu/$iconFO2.xpm%Order: time"       $backCmd set clockbar-field-order 2
+	#	+ "%menu/$iconFO3.xpm%Order: date"       $backCmd set clockbar-field-order 3
 
 		Popup PanelClockBarConfigMenu $addition
 	});
