@@ -74,7 +74,7 @@ Begin
 	Set $Lang = (GetOutput $cmd 1 -1)
     End
 
-    Do {Echo New Methde}
+    #Do {Echo New Methde}
     Set $msg = {}
     Set $id = {}
     Set $cmd = {fvwm-themes-script --get-msg }FvwmScript-ThemesCenter{ --lang }$Lang

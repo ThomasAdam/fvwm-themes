@@ -38,32 +38,58 @@ Begin
 
     #Set $Lang = {en}
     #Set $Lang = {ru}
-    # Internationalization.
+    # ------------------------------------- Internationalization.
     Set $DocLoaded = 0
-    Set $localeSet = 0 
+
     If $Lang == {} Then
     Begin
 	Set $cmd = {echo "$LANG" | cut -c1-2}
 	Set $Lang = (GetOutput $cmd 1 -1)
 	Set $localeSet = 1
     End
-    If $Lang == {fr} Then
+
+    Set $msg = {}
+    Set $id = {}
+    Set $cmd = {fvwm-themes-script --get-msg }FvwmScript-ColorSelector{ --lang }$Lang
+    Set $MSG = (GetOutput $cmd 1 -1)
+    Set $index = 0
+    Set $notdone = 1
+    While $notdone == 1 Do
     Begin
-	ChangeTitle 1 {Sélectionnez une Couleur avec les Palettes}
-	ChangeTitle 14 {Couleur Sélectionnée:}
-	ChangeTitle 993 {Aide}
-	ChangeTitle 994 {Annuler}
-	Set $localeSet = 1
+	Set $index = (Add $index 1)
+	Set $id = (StrCopy $MSG $index (Add $index 11))
+	Set $index = (Add $index 12)
+	Set $tmp = (StrCopy $MSG $index (Add $index 3))
+	Set $index = (Add $index 4)
+	Set $pos = (Add $index $tmp)
+	Set $msg = (StrCopy $MSG $index $pos)
+	Set $index = (Add $index $tmp)
+	#Do {Echo id:}$id{:msg:}$msg{:}
+
+	If $index > 9999 Then
+	    Set $notdone = 0
+	If $id == {END         } Then
+	    Set $notdone = 0
+	If $id == {} Then
+	    Set $notdone = 0
+	# TS
+	If $id == {Title       } Then
+	    ChangeTitle 1 $msg
+	If $id == {SelColor    } Then
+	    ChangeTitle 14 $msg
+	If $id == {Help        } Then
+	    ChangeTitle 993 $msg
+	If $id == {Ok          } Then
+	Begin
+	    ChangeTitle 992 $msg
+	    ChangeTitle 999 $msg
+	End
+	If $id == {Cancel      } Then
+	    ChangeTitle 994 $msg
     End
-    If $Lang == {ru} Then
-    Begin
-    End
-    If $localeSet == 0 Then
-    Begin
-	Set $Lang = {en}
-	Set $localeSet = 1
-    End
-    
+
+    # ---------------------- Color init
+
     Set $cmd = {echo "$FT_DATADIR"}
     Set $FtDataDir = (GetOutput $cmd 1 -1)
     Set $RainbowFile = $FtDataDir{/images/fvwmscript/pallete-rainbow.xpm}
@@ -87,6 +113,8 @@ Begin
     Set $LightNumGreen = (HexToNum (StrCopy $LightColor 4 5))
     Set $LightNumBlue = (HexToNum (StrCopy $LightColor 6 7))
 End
+
+#----------------------------------------------------------------------------
 
 PeriodicTasks
 Begin
@@ -118,13 +146,15 @@ Begin
 
 End
 
+# ----------------------------------------------------------------------------
+
 Widget 1
 Property
     Flags NoReliefString
     Position 10 5
     Size 296 20
     Type ItemDraw
-    Title {Select a Color using the Palletes}
+    Title {}
 Main
 Case message of
  SingleClic :
@@ -336,13 +366,14 @@ Case message of
  End
 End
 
+# Selected Color:
 Widget 14
 Property
     Flags NoReliefString
     Position 5 152
     Size 145 20
     Type ItemDraw
-    Title {Selcted Color:}
+    Title {}
 Main
 Case message of
  SingleClic :
@@ -584,6 +615,7 @@ End
 
 #----------------------------------------------------------------------------
 
+# Ok
 Widget 992
 Property
     Flags NoReliefString
@@ -605,6 +637,7 @@ Case message of
  End
 End
 
+# Help
 Widget 993
 Property
     Flags NoReliefString
@@ -612,7 +645,7 @@ Property
     Size 80 20
     #Font fixed
     Type PushButton
-    Title {Help}
+    Title {}
 Main
 Case message of
  SingleClic :
@@ -646,6 +679,7 @@ Case message of
  End
 End
 
+# Cancel
 Widget 994
 Property
     Flags NoReliefString
@@ -653,7 +687,7 @@ Property
     Size 80 20
     #Font fixed
     Type PushButton
-    Title {Cancel}
+    Title {}
 Main
 Case message of
  SingleClic :
@@ -682,7 +716,7 @@ Case message of
 End
 
 
-
+# Ok for the doc
 Widget 999
 Property
     Position 220 245
@@ -690,7 +724,7 @@ Property
     #Font fixed
     Type PushButton
     Flags NoReliefString Hidden
-    Title {OK}
+    Title {}
 Main
 Case message of
  SingleClic :

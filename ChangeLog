@@ -1,3 +1,10 @@
+2000-11-26  olicha  <olivier.chapuis@free.fr>
+
+	* locale/{fr,en}/FvwmScript-ColorSelector.msg:
+	* script/FvwmScript-ThemesCenter:
+	* locale/fr/FvwmScript-ColorSelector.txt:
+	Use the new locale methode for the ColorSelector. Spelling
+	
 2000-11-26  migo  <migo@homemail.com>
 
 	* locale/{en,fr,ru}/FvwmScript-ThemesCenter.msg:
