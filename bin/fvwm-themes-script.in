@@ -118,7 +118,7 @@ sub buildMsg {
 		$file = $getMsg;
 	}
 	else {
-		$file = "$localeDir/$lang/$getMsg.$msgExt";
+		$file = "$localeDir/$lang/$getMsg.$msgExt" if ($lang ne "");
 		$file = "$localeDir/C/$getMsg.$msgExt" if (! -f $file);
 		$file = "$localeDir/en/$getMsg.$msgExt" if (! -f $file);
 	}

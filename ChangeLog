@@ -1,3 +1,9 @@
+2000-12-14  olicha  <olivier.chapuis@free.fr>
+
+	* scripts/FvwmScript-*:
+	* scripts/fvwm-themes-scripts.in:
+	Fixes for those with LANG=""
+	
 2000-12-13  olicha  <olivier.chapuis@free.fr>
 
 	* configure.in:
@@ -15,7 +21,7 @@
 	very pretty ...)
 
 	* scripts/FvwmScript-*Browser:
-	Add Flags NoReliefString Hidden
+	Add Flags NoReliefString
 
 	* NEWS:
 	* TODO:

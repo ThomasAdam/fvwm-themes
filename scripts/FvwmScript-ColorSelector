@@ -48,6 +48,8 @@ Begin
 	Set $Lang = (GetOutput $cmd 1 -1)
 	Set $localeSet = 1
     End
+    If $Lang == {} Then
+	Set $Lang = {C}
 
     Set $msg = {}
     Set $id = {}
