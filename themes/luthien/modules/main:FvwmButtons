@@ -21,15 +21,15 @@ DestroyModuleConfig FvwmButtons-Bar: *
 	Action (Mouse 2) Beep, Action (Mouse 3) `Menu MenuFvwmConfiguration      rectangle $widthx$height+$left+$top o+30 -100m Nop`)
 #*FvwmButtons-Bar: (3x1+18+0, Padding 2, Panel(smooth, indicator 15, position Module bottom left +0 -0 mtb) FvwmButtons-ColourTable `Module FvwmButtons -transientpanel FvwmButtons-ColourTable`, Action (Mouse 2) Beep)
 # first row of buttons from left to right:
-*FvwmButtons-Bar: (3x2+0+1,  Icon 16x16/wm-lock.xpm, Action (Mouse 1) FuncFvwmWmLock, Action (Mouse 2) FuncFvwm2WmLock, Action (Mouse 2) FuncFvwm3WmLock)
+*FvwmButtons-Bar: (3x2+0+1,  Icon 16x16/lock.xpm, Action (Mouse 1) FuncFvwmWmLock, Action (Mouse 2) FuncFvwm2WmLock, Action (Mouse 2) FuncFvwm3WmLock)
 *FvwmButtons-Bar: (3x2+3+1,  Icon 16x16/window-resize.xpm, Action Resize)
 *FvwmButtons-Bar: (3x2+6+1,  Icon 16x16/window-move.xpm, Action Move)
 *FvwmButtons-Bar: (3x2+9+1,  Icon 16x16/window-raise.xpm, Action (Mouse 1) Raise, Action (Mouse 2) Lower, Action (Mouse 3) RaiseLower)
 *FvwmButtons-Bar: (3x2+12+1, Icon 16x16/window-shade.xpm, Action (Mouse 1) WindowShade, Action (Mouse 2) WindowShade on, Action (Mouse 3) WindowShade off)
 *FvwmButtons-Bar: (3x2+15+1, Icon 16x16/utility.xpm, Action ToggleFvwmConsole)
 # second row of buttons from left to right:
-*FvwmButtons-Bar: (3x2+0+3,  Icon 16x16/wm-quit.xpm, Action FuncFvwmQuitVerify)
-*FvwmButtons-Bar: (3x2+3+3,  Icon 16x16/wm-restart.xpm, Action (Mouse 1) FuncFvwmWmRestart, Action (Mouse 2) FuncFvwm2WmRestart, Action (Mouse 3) FuncFvwm3WmRestart)
+*FvwmButtons-Bar: (3x2+0+3,  Icon 16x16/quit.xpm, Action FuncFvwmQuitVerify)
+*FvwmButtons-Bar: (3x2+3+3,  Icon 16x16/restart.xpm, Action (Mouse 1) FuncFvwmWmRestart, Action (Mouse 2) FuncFvwm2WmRestart, Action (Mouse 3) FuncFvwm3WmRestart)
 *FvwmButtons-Bar: (3x2+6+3,  Icon 16x16/window-close.xpm, Action (Mouse 1) FuncFvwmWindowClose, Action (Mouse 2) FuncFvwm2WindowClose, Action (Mouse 3) FuncFvwm3WindowClose)
 *FvwmButtons-Bar: (3x2+9+3,  Icon 16x16/wm-refresh.xpm, Action Recapture)
 *FvwmButtons-Bar: (3x2+12+3, Icon 16x16/information.xpm, Action (Mouse 1) ToggleXMessages, Action (Mouse 2) ToggleStickyXMessages, Action (Mouse 3) ToggleSlipperyXMessages)

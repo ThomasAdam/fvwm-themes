@@ -15,13 +15,13 @@ DestroyModuleConfig FvwmButtons-AsBar: *
 *FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Swallow (Kill) "FvwmApplet-DayClock" \
 	'FvwmScript FvwmApplet-DayClock 10 13')
 #*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Swallow "asclock" 'Exec exec asclock -shape -position +5000+5000')
-*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Title(Left) ..., Icon 48x48-general/folders.xpm, Panel(left, position mlr) "FvwmButtons-AsPanel" 'FvwmButtons -transientpanel FvwmButtons-AsPanel')
+*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Title(Left) ..., Icon 48x48-general/folder-open.xpm, Panel(left, position mlr) "FvwmButtons-AsPanel" 'FvwmButtons -transientpanel FvwmButtons-AsPanel')
 #*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Swallow "xeyes" 'Exec exec xeyes -shape -geometry +5000+5000')
 *FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Title "load", \
 	Swallow(UseOld,NoHints) "xload" \
 	`Exec exec xload -bg $[bg.cs11] -fg $[fg.cs11] -hl $[shadow.cs11]\
 	-update 5 -nolabel -geometry +5000+5000`)
-*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Icon 48x48-general/wm-restart.xpm, Action 'Restart')
+*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Icon 48x48-general/restart.xpm, Action 'Restart')
 *FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Icon 48x48-general/choice-no.xpm, Action 'Module FvwmForm FvwmForm-QuitVerify')
 *FvwmButtons-AsBar: (1x1, Colorset 12, Title(Left) ...., Panel(left, position module bottom mtb mlr) "FvwmButtons-AsAppletsPanel" 'FvwmButtons FvwmButtons-AsAppletsPanel')
 
@@ -48,11 +48,11 @@ DestroyModuleConfig FvwmButtons-AsPanel: *
 	Action(Mouse 1) 'FuncFvwmDocView', \
 	Action(Mouse 2) 'FuncFvwm2DocView', \
 	Action(Mouse 3) 'FuncFvwm3DocView')
-*FvwmButtons-AsPanel: (Size 64 64, Icon 48x48-general/xv.xpm, Colorset 12, \
+*FvwmButtons-AsPanel: (Size 64 64, Icon 48x48-general/image-viewer.xpm, Colorset 12, \
 	Action(Mouse 1) 'FuncFvwmImageView', \
 	Action(Mouse 2) 'FuncFvwm2ImageView', \
 	Action(Mouse 3) 'FuncFvwm3ImageView')
-*FvwmButtons-AsPanel: (Size 64 64, Icon 48x48-general/image-viewer.xpm, \
+*FvwmButtons-AsPanel: (Size 64 64, Icon 48x48-general/image-processor.xpm, \
 	Colorset 12, \
 	Action(Mouse 1) 'FuncFvwmImageEdit', \
 	Action(Mouse 2) 'FuncFvwmImageEdit', \

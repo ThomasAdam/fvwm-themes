@@ -160,7 +160,7 @@ AddToMenu   MenuFvwmCDE
 + "Desktop &Help%menu/help.xpm%"       	Exec exec /usr/dt/bin/dthelpview -helpVolume browser
 + "Man Pages%menu/help.xpm%"           	Exec exec /usr/dt/bin/dthelpview -man
 + "&Mailer%menu/mail.xpm%"             	Exec exec /usr/dt/bin/dtmail
-+ "&Calandar%menu/clock.xpm"     	Exec exec /usr/dt/bin/dtcm
++ "&Calendar%menu/clock.xpm"     	Exec exec /usr/dt/bin/dtcm
 + "&Calculator%menu/calculator.xpm%"   	Exec exec /usr/dt/bin/dtcalc
 + "&Icon Editor%menu/image-processor.xpm%" Exec exec /usr/dt/bin/dticon
 + "&Print Manager%menu/printing.xpm%" 	Exec exec /usr/dt/bin/dtprintinfo
@@ -221,7 +221,7 @@ DestroyMenu MenuFvwmEditors
 AddToMenu   MenuFvwmEditors "Editors" Title
 + "Emacs%menu/gnu.xpm%"			Exec exec emacs
 + "Xemacs%menu/gnu.xpm%"		Exec exec xemacs
-" "gnuclient%menu/gnu.xpm%"		Exec exec gnuclient
++ "gnuclient%menu/gnu.xpm%"		Exec exec gnuclient
 + "VI%menu/editor.xpm%"			FuncFvwmRunInXterm "VI" "vi"
 + "Gvim%menu/editor.xpm%"		Exec exec gvim
 + "NEdit%menu/editor.xpm%"		Exec exec nedit
@@ -247,7 +247,7 @@ AddToMenu   MenuFvwmInternet "Internet" Title
 + "Xmh%menu/mail.xpm%" 			Exec exec xmh
 + "Xfmail%menu/mail.xpm%" 		Exec exec xfmail
 + "" Nop
-+ "Slrn%menu/news.xpm%"			FuncFvwmRunInXterm "Slrn" "slrn"
++ "Slrn%menu/news.xpm%"			FuncFvwmRunInXterm "News" "slrn"
 + "" Nop
 + "&Irc%menu/chat.xpm%"			FuncFvwmRunInXterm "Irc" "irc"
 + "&Tkirc%menu/chat.xpm%"		Exec exec tkirc	

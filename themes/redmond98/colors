@@ -41,7 +41,7 @@ TitleStyle	ActiveDown HGradient 128 Blue4 DeepSkyBlue
 TitleStyle	Inactive   Solid grey51
 
 # window button background
-ButtonStyle	All Pixmap mini/empty.xpm
+ButtonStyle	All Pixmap 16x16-general/empty.xpm
 
 AddButtonStyle  All     Inactive solid grey51
 AddButtonStyle  All     ToggledInactive solid grey51

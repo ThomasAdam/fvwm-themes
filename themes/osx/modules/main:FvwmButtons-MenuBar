@@ -47,5 +47,5 @@ define({X_POS11},eval(29*X_DELTA))
 	'FvwmScript FvwmApplet-DigitalClock 5')
 *FvwmButtons-MenuBar: (1x1, Right, Icon 16x16/display.xpm, Action(Mouse 1) \
 	'Menu MenuFvwmScreenSaver Context +X_POS10{p} +27p')
-*FvwmButtons-MenuBar: (1x1, Right, Icon 16x16/wm-quit.xpm, Action(Mouse 1) \
+*FvwmButtons-MenuBar: (1x1, Right, Icon 16x16/quit.xpm, Action(Mouse 1) \
 	'Menu MenuFvwmQuit Context +X_POS11{p} +27p')

@@ -44,7 +44,7 @@ TitleStyle	ToggledActiveDown VGradient 20 #6068DB #475293
 TitleStyle	ToggledInactive   Solid #6e5b52
 
 # window button background
-ButtonStyle	All Pixmap mini/empty.xpm
+ButtonStyle	All Pixmap 16x16-general/empty.xpm
 ButtonStyle	All -- UseTitleStyle
 
 # -----

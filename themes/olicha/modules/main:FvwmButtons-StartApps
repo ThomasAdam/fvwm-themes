@@ -19,7 +19,7 @@ DestroyModuleConfig FvwmButtons-Apps: *
 *FvwmButtons-Apps: Colorset 12
 *FvwmButtons-Apps: Frame 1
 *FvwmButtons-Apps: Geometry +5000+5000
-*FvwmButtons-Apps: (Icon 16x16/folders.xpm, \
+*FvwmButtons-Apps: (Icon 16x16/file-manager.xpm, \
 	Action(Mouse 1) 'FuncFvwmFileManager', \
 	Action(Mouse 2) 'FuncFvwm2FileManager', \
 	Action(Mouse 3) 'FuncFvwm3FileManager')
@@ -35,15 +35,15 @@ DestroyModuleConfig FvwmButtons-Apps: *
 	Action(Mouse 1) 'FuncFvwmDocView', \
 	Action(Mouse 2) 'FuncFvwm2DocView', \
 	Action(Mouse 3) 'FuncFvwm3DocView')
-*FvwmButtons-Apps: (Icon 16x16/xv.xpm, \
+*FvwmButtons-Apps: (Icon 16x16/image-viewer.xpm, \
 	Action(Mouse 1) 'FuncFvwmImageView', \
 	Action(Mouse 2) 'FuncFvwm2ImageView', \
 	Action(Mouse 3) 'FuncFvwm3ImageView')
-*FvwmButtons-Apps: (Icon 16x16/image-viewer.xpm, \
+*FvwmButtons-Apps: (Icon 16x16/image-processor.xpm, \
 	Action(Mouse 1) 'FuncFvwmImageEdit', \
 	Action(Mouse 2) 'FuncFvwm2ImageEdit', \
 	Action(Mouse 3) 'FuncFvwm3ImageEdit')
-*FvwmButtons-Apps: (Icon 16x16/todo.xpm, \
+*FvwmButtons-Apps: (Icon 16x16/monitoring.xpm, \
 	Action(Mouse 1) 'FuncFvwmProcess', \
 	Action(Mouse 2) 'FuncFvwm2Process', \
 	Action(Mouse 3) 'FuncFvwm3Process')
@@ -55,7 +55,7 @@ DestroyModuleConfig FvwmButtons-Apps: *
 	Action(Mouse 1) 'FuncFvwmCalculator', \
 	Action(Mouse 2) 'FuncFvwm2Calculator', \
 	Action(Mouse 3) 'FuncFvwm3Calculator')
-*FvwmButtons-Apps: (Icon 16x16/netscape.xpm, \
+*FvwmButtons-Apps: (Icon 16x16/www.xpm, \
 	Action(Mouse 1) 'FuncFvwmWWW', \
 	Action(Mouse 2) 'FuncFvwm2WWW', \
 	Action(Mouse 3) 'FuncFvwm3WWW')

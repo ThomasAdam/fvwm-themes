@@ -56,7 +56,7 @@ TitleStyle	ToggledActiveUp   VGradient 20 CDE_COLOR1_BG CDE_COLOR5_BG
 TitleStyle	ToggledActiveDown VGradient 20 CDE_COLOR1_BG CDE_COLOR5_BG
 
 # window button background
-ButtonStyle     All Pixmap mini/empty.xpm
+ButtonStyle     All Pixmap 16x16-general/empty.xpm
 ButtonStyle	All -- UseTitleStyle
 
 # -----

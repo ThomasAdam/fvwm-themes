@@ -45,7 +45,7 @@ TitleStyle \
 	ToggledInactive   (TiledPixmap decor/title-inactive.xpm)
 
 # window button background
-ButtonStyle	All Pixmap mini/empty.xpm
+ButtonStyle	All Pixmap 16x16-general/empty.xpm
 ButtonStyle	All -- UseTitleStyle
 
 # -----

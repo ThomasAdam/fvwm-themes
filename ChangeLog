@@ -1,8 +1,18 @@
-2001-03-17  olicha  <olivier.chapuis@free.fr>
+2001-03-18  olicha  <olivier.chapuis@free.fr>
 	
-	* themes/default/settings/iconstyles/wm-icons:menu:
+	* themes/default/settings/iconstyles/style-icons-miniicons:
 	* themes/default/menus-user:
-	(x)emacs use gnu
+	(x)emacs use gnu, calendar fix
+
+	* themes/olicha/modules/main:FvwmButtonsStartApps
+	* themes/luthien/modules/main:FvwmButtons
+	* themes/awol/modules/main:FvwmButtons-*
+	* themes/osx/modules/main:FvwmButtons-MenuBar
+	update for wm-icons-0.3.0
+
+	* themes/*/{colors||colors/main}
+	replace mini/empty.xpm 16x16-general/empty.xpm
+	Do I made a mistake? I think this is really resonable ...
 	
 2001-03-18  migo  <migo@homemail.com>
 

@@ -44,7 +44,7 @@ AddTitleStyle	ActiveDown	Pixmap decor/titlebutton-mod.xpm      -- Right
 AddTitleStyle	Inactive	Pixmap decor/titlebutton-mod-dark.xpm -- Right
 
 # window button background
-ButtonStyle	All Pixmap mini/empty.xpm
+ButtonStyle	All Pixmap 16x16-general/empty.xpm
 AddButtonStyle	All ActiveUp           TiledPixmap decor/titlebar_fill.xpm
 AddButtonStyle	All ActiveDown         TiledPixmap decor/titlebar_fill_s.xpm
 AddButtonStyle	All Inactive           TiledPixmap decor/titlebar_fill_i.xpm

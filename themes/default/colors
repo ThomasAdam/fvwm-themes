@@ -71,7 +71,7 @@ TitleStyle	ToggledInactive   (Solid rgb:80/80/80 -- Raised)
 
 # window button background
 #
-ButtonStyle	All Pixmap mini/empty.xpm
+ButtonStyle	All Pixmap 16x16-general/empty.xpm
 ButtonStyle	All -- UseTitleStyle
 
 # -------------------
