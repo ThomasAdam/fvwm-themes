@@ -141,7 +141,7 @@ AddToMenu   MenuFvwmPrograms "   Programs   " Title
 + "&CDE Menu%menu/unknown.xpm%"		Popup MenuFvwmCDE
 + "" Nop
 + "&Utilities%menu/utility.xpm%"	Popup MenuFvwmUtilities
-+ "&Applications%menu/program.xpm%"	Popup MenuFvwmApplications
++ "&Applications%menu/programs.xpm%"	Popup MenuFvwmApplications
 + "&Science%menu/science.xpm%"		Popup MenuFvwmScience
 + "&Editors%menu/editor.xpm%"		Popup MenuFvwmEditors
 + "&Internet%menu/www.xpm%"		Popup MenuFvwmInternet

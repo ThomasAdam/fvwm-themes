@@ -1712,6 +1712,10 @@ sub encode16bpp($) {
 	elsif ($color =~ /none/i) {
 		return "None";
 	}
+	# fixed some bugs in various apps
+	elsif ($color =~ /transparent/i) {
+		return "None";
+	}
 	elsif ($color =~ /^random\s*(.*)$/i) {
 		return randomColor($1);
 	}
