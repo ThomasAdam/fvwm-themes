@@ -153,8 +153,8 @@ Begin
 	End
 	If $id == {Lock        } Then
 	    Set $l_Lock = $msg
-	If $id == {UnLock      } Then
-	    Set $l_UnLock = $msg
+	If $id == {Unlock      } Then
+	    Set $l_Unlock = $msg
 	If $id == {NoProp      } Then
 	    Set $l_NoProperties = $msg
 	If $id == {ThreeEditor } Then
@@ -245,8 +245,8 @@ Begin
 	    Set $l_SysErr = $msg
 	If $id == {CNewSession } Then
 	    Set $l_ClickNewSession = $msg
-	If $id == {NoNewComp   } Then
-	    Set $l_NoNewComp = $msg
+	If $id == {NoChanges   } Then
+	    Set $l_NoChanges = $msg
 	If $id == {AThemeConf  } Then
 	    Set $l_ApplyThemeConfig = $msg
 	If $id == {ANewSession } Then
@@ -2167,7 +2167,7 @@ Case message of
 	End
 	Else
 	Begin
-	    ChangeTitle 95 $l_NoNewComp
+	    ChangeTitle 95 $l_NoChanges
 	End
     End
  End

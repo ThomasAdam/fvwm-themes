@@ -1,4 +1,5 @@
 #[Font]
+#ChangeFont	{1}
 #SelFont	{-adobe-helvetica-bold-r-*-*-12-*}
 #ShadeFont	{-adobe-helvetica-medium-r-*-*-12-*}
 #FixedFont	{fixed}
@@ -18,7 +19,7 @@ Load		{Sélectionner}
 Info		{Info}
 View		{Aperçu}
 MSelThemeCp	{Vous devez sélectionner une composante !}
-MselCC		{Vous devez sélectionner une composante !}
+MSelCC		{Vous devez sélectionner une composante !}
 NoScreenShot	{Les Aperçus ne sont pas encore implémentés}
 NoHelp		{L'aide n'est pas encore implémentés}
 USThemeComp	{Composantes des Thèmes Utilisées et Sélectionnées}
@@ -26,7 +27,7 @@ Properties	{Propriétés}
 Restore		{Rétablir}
 Drop		{Enlever}
 Lock		{Bloquer}
-UnLock		{Débloquer}
+Unlock		{Débloquer}
 NoProp		{Cette composente n'a pas d'options ni de sous composantes}
 PropEditor	{L'éditeur de Propriétés pour}
 AActive		{est déjà utilisé}
@@ -73,7 +74,8 @@ NameAlreadyU	{Le nom pour la session est déjà utilisé!}
 SysErr		{Une erreure "system" inconnu a eu lieu, GASP!}
 CNewSession	{Cliquer sur "Appliquer" pour charger votre nouvelle session}
 MsgInfo		{Les messages d'erreurs et d'informations s'affichent ici}
-NoNewComp	{Aucune composante n'est sélectionnées}
+# Needs a better translation
+NoChanges	{Aucune composante n'est sélectionnées}
 AThemeConf	{Chargement de la nouvelle configurartion}
 ANewSession	{Chargement de la nouvelle session}
 RefreshConf	{Rafréchisement de la configuration}

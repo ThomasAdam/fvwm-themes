@@ -1,10 +1,11 @@
 #[Font]
-#SelFont		-adobe-helvetica-bold-r-*-*-12-*
+#ChangeFont	{1}
+#SelFont	-adobe-helvetica-bold-r-*-*-12-*
 #ShadeFont	-adobe-helvetica-medium-r-*-*-12-*
 #FixedFont	fixed
 
 [Msg]
-CT	{Configuration Tools:}
+CT		{Configuration Tools:}
 CTList		{       Themes Selector        |       General Settings        |       FVWM Themes Sessions      }
 ThemesList	{List of Themes:}
 Readme		{ReadMe}
@@ -18,7 +19,7 @@ Load		{Load}
 Info		{Info}
 View		{View}
 MSelThemeCp	{You must select a theme component first}
-MSelCC		{You must select a used or set component first}
+MSelCC		{You must select a used or a set component first}
 NoScreenShot	{ScreenShots are not available yet}
 NoHelp		{Help is not available yet}
 USThemeComp	{Used and Set Theme Components:}
@@ -26,7 +27,7 @@ Properties	{Properties}
 Restore		{Restore}
 Drop		{Drop}
 Lock		{Lock}
-UnLock		{Unlock}
+Unlock		{Unlock}
 NoProp		{This used or set component has no options, variants or subcomponents}
 PropEditor	{Property editor for}
 AActive		{already active}
@@ -34,7 +35,7 @@ ThreeEditor	{Number of Property editors is limited to 3}
 CompNotSet	{This used component is not re-set}
 DropNotImp	{Dropping currently is not available}
 NoDrop		{This component cannot be dropped}
-SetUsComp	{Settings: Used and Set Components}
+SetUSComp	{Settings: Used and Set Components}
 SelAComp	{Select a Component}
 VariantsFor	{Variants for}
 Set		{Set}
@@ -61,7 +62,7 @@ NRemoveCur	{You cannot remove the currently used session!}
 BReallyRem	{Really Remove }
 AReallyRem	{?}
 # exact
-SessionName	{Session Name:}
+SessionName	{Session Name:         }
 # exact
 ConfigOf	{Configuration of:     }
 Ok		{OK}
@@ -73,7 +74,7 @@ NameAlreadyU	{The name of the session is already used!}
 SysErr		{An Unknown "system" error happen, GASP!}
 CNewSession	{Click on Apply to load your new session}
 MsgInfo		{Warning and infomation messages are displayed here}
-NoNewComp	{No components are set}
+NoChanges	{There are no changes in components to be applied}
 AThemeConf	{Applying new theme configurations}
 ANewSession	{Loading the new session}
 RefreshConf	{Refreshing the current configuration}

@@ -11,7 +11,7 @@ ThemesList	{Список Тем:}
 Readme		{Инфо}
 LoadAll		{Взять Все}
 LoadLook	{Взять Вид}
-MSTheme		{Сначала выберите тему}
+MSelTheme		{Сначала выберите тему}
 BComponent	{Компоненты темы }
 AComponent	{:}
 NoThemeSel	{Не выбрана тема}
@@ -21,14 +21,13 @@ View		{Снимок}
 MSelThemeCp	{Сначала выберите компонент темы}
 MSelCC		{Сначала выберите использ. или установ. компонент}
 NoScreenShot	{Снимки пока не доступны}
-# Why Help is not translated ?
-NoHelp		{Help пока не доступен}
+NoHelp		{Инфо пока не доступно}
 USThemeComp	{Используемые и установленные компоненты:}
 Properties	{Свойства}
 Restore		{Возврат}
 Drop		{Удалить}
 Lock		{Запереть}
-UnLock		{Отпереть}
+Unlock		{Отпереть}
 NoProp		{Этот компонент не имеет опций, вариантов или под-компонентов}
 PropEditor	{Редактор свойств для}
 AActive		{уже активный}
@@ -52,6 +51,7 @@ AEdit		{ }
 Edit		{Изменить}
 Add		{Добавить}
 Remove		{Удалить}
+# exact for the next 4
 SessionH1	{* Для загрузки сессии, выберите её и нажмите на "Применить"                    }
 SessionH2	{* Для перезагрузки текущей сессии, нажмите на "Освежить"                       }
 SessionH3	{* Нажатие на "Обновить" перестроит текущую конфигурацию                        }
@@ -63,8 +63,8 @@ BReallyRem	{Действительно удалить сессию }
 AReallyRem	{?}
 # exact
 SessionName	{Название сессии:      }
-# exact Need Translation!
-ConfigOf	{Configuration of:     }
+# exact
+ConfigOf	{Использoвать конфиг.: }
 Ok		{Согласие}
 Cancel		{Отмена}
 Yes		{Да}
@@ -74,9 +74,8 @@ NameAlreadyU	{Название сессии уже используется!}
 SysErr		{Неизвестная "системная" ошибка, Караул!}
 CNewSession	{Выберите "Применить" для загрузки вашей новой сессии}
 MsgInfo		{Место для информационных и предупреждающих сообщений}
-# Need Translation!
-NoNewComp	{No components are set}
-AThemeConfig	{Применить новую конфигурацию тем}
+NoChanges	{Нет изменений в компонентах, которые необходимо применить}
+AThemeConf	{Применить новую конфигурацию тем}
 ANewSession	{Загрузка новой сессии}
 RefreshConf	{Перегрузка текущей конфигурации}
 UpdateConf	{Обновление текущей конфигурации}

@@ -1,3 +1,9 @@
+2000-11-26  migo  <migo@homemail.com>
+
+	* locale/{en,fr,ru}/FvwmScript-ThemesCenter.msg:
+	* script/FvwmScript-ThemesCenter:
+	several fixes
+
 2000-11-26  olicha  <olivier.chapuis@free.fr>
 
 	* locale/{fr,en,ru}/FvwmScript-ThemesCenter.msg:
