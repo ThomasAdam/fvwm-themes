@@ -5,6 +5,9 @@
 	* themes/luthien/colors/main:
 	menu colors (gradient), module colors, still may ne not finished
 
+	* themes/luthien/buttons:
+	make Maximize button bindings the same as the original
+
 2000-09-17  migo  <migo@homemail.com>
 
 	* configure.in:

@@ -149,8 +149,10 @@ MenuStyle * ActiveFore, HilightBack
 # Others Modules Colorsets
 
 # FvwmIdent
-*FvwmTheme: Colorset 21 fg CDE_COLOR6_FG, \
-	bg CDE_COLOR6_BG, Plain, NoShape
+*FvwmTheme: Colorset 21 fg CDE_COLOR2_FG, \
+	bg CDE_COLOR2_BG, \
+	VGradient 100 CDE_COLOR6_BG \
+	CDE_COLOR2_BG, NoShape
 
 DestroyModuleConfig FvwmIdent: *
 *FvwmIdent: Colorset 21
