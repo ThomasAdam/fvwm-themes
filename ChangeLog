@@ -6,6 +6,10 @@
 	* themes/default/bindings.switch-mouse-2-3.yes:
 	renamed again, this time Solaris pkgmk does not like '=' in file names
 
+	* NEWS:
+	* TODO:
+	updated
+
 2002-10-30  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

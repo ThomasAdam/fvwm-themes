@@ -1,6 +1,13 @@
 fvwm-themes-0.7.0 - not yet released
 
 * New full-featured theme: RedmondXP.
+* Several new themes.
+
+fvwm-themes-0.6.2 - not yet released
+
+* Fixes for RedHat 8.0.
+* Included 48x48-infox icon set (was 48x48-general) for normal icons,
+* This is probably the last version for fvwm-2.4.x.
 
 fvwm-themes-0.6.1 - 20020619
 

@@ -29,8 +29,7 @@ Optional items to do:
   ftp://fvwm-themes.sourceforge.net/pub/fvwm-themes/samples/nikke/
   We need a twm user here, maybe, nikke.
 
-* Add theme similar to http://uop.sourceforge.net/screenshots/bridge.jpg
-  or other default enlightenment like. How to call it?
+* Add SGI theme like in http://www.canonical.org/~kragen/sgi_snap.gif .
 
 * Improve fvwm-themes-images:
   + support the X standard rgb:rr/gg/bb better then #rrggbb
@@ -99,10 +98,6 @@ Problems without obvious soluton:
   [olicha: I think this is fixed with the iconstyles-extra component?]
   [migo: I mean, "Read style-icon-miniicon" in modules/main is not enough.]
 
-Closed items (will be deleted after 0.5.1):
+Closed items (will be deleted after 0.7.0):
 ------------------------------------------
-* Internationalization using locale/LANG/ directories.
-
-* FvwmScript-Confirm
-
-* Enhance vector buttons in fvwm, support @2 - bg, @3 - fg.
+* Add theme(s) similar to some enlightenment themes.
