@@ -1,6 +1,7 @@
 MenuStyle * Hilight3DThickness 2
 MenuStyle * Font -adobe-helvetica-medium-r-*-120-*
-MenuStyle * PopupDelayed, PopupDelay 100, PopupOffset -3 100, TitleWarpOff
+MenuStyle * PopupDelayed, PopupDelay 100, PopdownDelayed, PopdownDelay 100
+MenuStyle * PopupOffset -3 100, TitleWarpOff
 MenuStyle * TitleUnderlines1, SeparatorsLong, TrianglesRelief
 MenuStyle * Animation, AutomaticHotkeysOff, DoubleClickTime
 MenuStyle * BorderWidth 2, SidePic, SideColor

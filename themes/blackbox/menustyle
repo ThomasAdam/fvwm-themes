@@ -1,6 +1,7 @@
 MenuStyle * Hilight3DThickness 1
 MenuStyle * Font lucidasans-10
-MenuStyle * PopupDelayed, PopupDelay 0, PopupOffset 0 100, TitleWarpOff
+MenuStyle * PopupDelayed, PopupDelay 0, PopdownDelayed, PopdownDelay 150
+MenuStyle * PopupOffset 0 100, TitleWarpOff
 MenuStyle * TitleUnderlines1, SeparatorsLong, TrianglesRelief
 MenuStyle * Animation, AutomaticHotkeysOff, DoubleClickTime
 MenuStyle * BorderWidth 1, SidePic, SideColor
