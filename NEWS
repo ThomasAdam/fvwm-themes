@@ -3,6 +3,7 @@ fvwm-themes-0.5.1 - not released yet
 * The Themes Center GUI is faster (more reactive)
 * Added ewmh and ksmserver support
 * Added Debian menu system support
+* New theme: minimal (in extra)
 
 fvwm-themes-0.5.0 - 20010810
 

@@ -132,7 +132,7 @@ Begin
     Set $GetLine = {fvwm-themes-com --name config-}$pid{ --buffer-name config-bis-}$pid{ --get-buffer --line=}	
      
     # Get all the options and the first list
-    Set $cmd = $SendMsgAndGetBuff{"options }$MainComponent{ }$MainTheme{ 1"}
+    Set $cmd = $SendMsgAndGetBuff{"options }$MainComponent{ }$MainTheme{ 0"}
     Set $MSG = (GetOutput $cmd 1 -1)
     Set $i = 1
     Set $j = (StrCopy $MSG 1 4)

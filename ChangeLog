@@ -1,3 +1,15 @@
+2001-09-21  olicha  <olivier.chapuis@free.fr>
+
+	* themes/minimal/*
+	* NEWS:
+	A new theme (pure X background, no buttons, no title, a reduced
+	root menu, an empty programs menu, no mini icons in menus, a pretty
+	small buttons with laptop support).
+
+	* scripts/FvwmScript-ComponentProperties:
+	* bin/fvwm-themes-config.in:
+	Fixed
+	
 2001-09-09  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:

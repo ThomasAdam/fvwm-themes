@@ -3847,7 +3847,7 @@ sub getScriptOptionsVariants($$$$$$$) {
 		if defined $optionToSet->{"$theme/$comp:$optFile"};
 		my $values = $optionEntry->{'value'};
 		$return = 
-		  variantsOptionsScriptList($values,$i,$isSet,$maxLengthOpt);
+		  variantsOptionsScriptList($values,$i,$isSet,$maxLengthOpt,$theme,$comp);
 	}
 	elsif (ref($variants) eq 'ARRAY') {
 		my $i = getVariantIndex($self,$theme,$comp,@$variants);
@@ -3855,7 +3855,8 @@ sub getScriptOptionsVariants($$$$$$$) {
 		$isSet = $variantToSet->{"$theme/$comp"} 
 		if defined $variantToSet->{"$theme/$comp"};
 		$return = 
-		  variantsOptionsScriptList($variants,$i,$isSet,$maxLengthOpt);
+		  variantsOptionsScriptList($variants,$i,$isSet,$maxLengthOpt,
+											 $theme,$comp);
 	}
 	elsif (ref($contains) eq 'ARRAY' && defined $contains->[$o]) {
 		my $c = $contains->[$o];
@@ -3867,7 +3868,8 @@ sub getScriptOptionsVariants($$$$$$$) {
 			$isSet = $variantToSet->{"$theme/$comp/$c"}
 			if defined $variantToSet->{"$theme/$comp/$c"};
 			$return = 
-			  variantsOptionsScriptList($sVariants,$i,$isSet,$maxLengthOpt);
+			  variantsOptionsScriptList($sVariants,$i,$isSet,$maxLengthOpt,
+												$theme,$comp);
 		}
 		$return .= "Drop This component";
 	}
@@ -3882,6 +3884,10 @@ sub variantsOptionsScriptList {
 	my $index = shift;
 	my $isSet = shift;
 	my $max = shift;
+	my $theme = shift;
+	my $comp = shift;
+	my $usedS = "Used";
+	my $setS = "Set";
 
 	my $return = "";
 	my $i;
@@ -3891,13 +3897,32 @@ sub variantsOptionsScriptList {
 		my $set = 0;
 		my $used = "";
 		my $name = $variants->[$i]->{'name'};
+		$name =~ s/\t/ /g;
+		#FIXME
+		if ($theme eq 'multichoice' && $comp eq 'buttons' && $name =~ /\[/) {
+			$name =~ s/Options/O/;
+			$name =~ s/Maximize/M/;
+			$name =~ s/Iconify/I/;
+			$name =~ s/Shade/Sh/;
+			$name =~ s/Stick/St/;
+			$name =~ s/Close/C/;
+			my $cst1 = 10;
+			my $cst2 = 7;
+			my $tmp = $name;
+			my @t = split(/\[|\]/,$name);
+			$name = $t[0] . " " x ($cst1 - length($t[0]))."[" . 
+			  $t[1] . "]" ." " x ($cst2 - length($t[1])).$t[2];
+			$max = 34;
+			#$usedS = "U";
+			#$setS = "S";
+		}
 		$set = 1 if $isSet == $i+1;
 		my $l = $max - length($name);
 		$l = 1 if $l < 1;
 		$used = " " x $l . "(" if $isCurrent || $set;
-		$used .= $isCurrent? "Used": "";
+		$used .= $isCurrent? "$usedS": "";
 		$used .= "/" if  $isCurrent && $set;
-		$used .= "Set" if  $set;
+		$used .= "$setS" if  $set;
 		$used .= ")" if $isCurrent || $set;
 		$return .= "$name$used|";
 	}
