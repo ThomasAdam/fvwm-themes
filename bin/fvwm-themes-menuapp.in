@@ -284,7 +284,7 @@ sub comLoop {
 		}
 		elsif ($command =~ /^save/) {
 			wrotefilesLines();
-			next;
+			$return = 1;
 		}
 		elsif ($command eq "exit") {
 			unlink($lockFifo);
@@ -409,20 +409,21 @@ sub getPrettyIconName {
 sub buildFilesLists {
 
 	if ($menuFiles ne "") {
-		@menuFilesList = split(',',$menuFiles);
+		@menuFilesList = @menuFilesListIn = split(',',$menuFiles);
 	} else {
 		if ($site) {
 			@menuFilesList = ("$siteMenusUser");
+			@menuFilesListIn = ("$siteMenusUser");
 			return;
 		}
 		@menuFilesList = ("$persThemeDir/menus-user");
 		if (! -f "$persThemeDir/menus-user") {
-			mkdir($persThemeDir, 0775) unless -d $persThemeDir;
-			myCopyFile("$siteMenusUser","$persThemeDir/menus-user");
+			@menuFilesListIn = ("$siteMenusUser");
+		} else {
+			@menuFilesListIn = ("$persThemeDir/menus-user");
 		}
-		if (-f "$persThemeDir/menus-extra") {
-			push(@menuFilesList,"$persThemeDir/menus-extra");
-		}
+		push @menuFilesList, "$persThemeDir/menus-extra";
+		push @menuFilesListIn,"$persThemeDir/menus-extra";
 	}
 }
 
@@ -441,14 +442,38 @@ sub buildstrMenuFromFvwmMenu {
 	
 	my ($file,$line,$multiline,$tmpline,$currentMenu,$side,$destroy,$provide)= 
 		("","","","","","","");
-	my ($nbr,$index,$utils,$active,$i) = (0,0,0,0,0);
+	my $outFile;
+	my ($nbr,$index,$utils,$active,$i,$j) = (0,0,0,0,0,0);
 
-	foreach $file (@menuFilesList) {
-		print STDERR "$comName: <<Warning>> No file $file" 
-			if (! -f $file);
+	foreach $file (@menuFilesListIn) {
+		next if -f $file || "$file" eq "$persThemeDir/menus-extra";
+		print STDERR "$comName: <<Warning>> No file $file";
 	}
 
-	for $file (@menuFilesList) {
+	for $file (@menuFilesListIn) {
+
+		$outFile = $menuFilesList[$j];
+		$j++;
+
+		if (! -f "$file" && "$file" eq "$persThemeDir/menus-extra") {
+			# creating virtual menus-extra:
+			# DestroyMenu MenuFvwmPersonal
+			# AddToMenu MenuFvwmPersonal "Personal" Title
+			$filesLines{$outFile}[0]{line} = "DestroyMenu MenuFvwmPersonal\n";
+			$filesLines{$outFile}[1]{line} = 
+				"AddToMenu   MenuFvwmPersonal \"Personal\" Title\n";
+			$menuInfo{"MenuFvwmPersonal"}{destroyline}=
+					\$filesLines{$outFile}[0]{line};
+			addItemMenuInfo("MenuFvwmPersonal","");
+			$strMenu{"MenuFvwmPersonal"}[0]{line} =
+					\$filesLines{$outFile}[1]{line};
+			addItemstrMenu("MenuFvwmPersonal","Title", "Personal",
+				"","","", "", "", "", "",$outFile,"1");
+			$filesLines{$outFile}[1]{menu} = "MenuFvwmPersonal";
+			$filesLines{$outFile}[1]{index} = 0;
+			$lastLine{"$outFile"}= 1;
+			next;
+		}
 
 		open(IN,"$file") || die "Cannot read $file";
 		$nbr = 0;
@@ -466,7 +491,7 @@ sub buildstrMenuFromFvwmMenu {
 			$multiline = "";
 			}
 
-			$filesLines{$file}[$nbr]{line} = $line;
+			$filesLines{$outFile}[$nbr]{line} = $line;
 
 			$tmpline = $line;
 			$tmpline =~ s/^\s*//;
@@ -479,11 +504,11 @@ sub buildstrMenuFromFvwmMenu {
 				addItemMenuInfo($currentMenu,$side);
 				$index=$menuInfo{$currentMenu}{itemsnbr};
 				$strMenu{$currentMenu}[$index]{line} =
-					\$filesLines{$file}[$nbr]{line};
+					\$filesLines{$outFile}[$nbr]{line};
 				addItemstrMenu($currentMenu, analyzeMenuLine($tmpline),
-					$file, $nbr);
-				$filesLines{$file}[$nbr]{menu} = $currentMenu;
-				$filesLines{$file}[$nbr]{index} = $index;
+					$outFile, $nbr);
+				$filesLines{$outFile}[$nbr]{menu} = $currentMenu;
+				$filesLines{$outFile}[$nbr]{index} = $index;
  
 			} elsif ($tmpline =~ /^DestroyMenu/i) {
 
@@ -496,14 +521,15 @@ sub buildstrMenuFromFvwmMenu {
 					print STDERR "Warning: Destroying a menu after creation is" . 
 						" not yet supported\n";
 				}
-				$menuInfo{$destroy}{destroyline}=\$filesLines{$file}[$nbr]{line};
+				$menuInfo{$destroy}{destroyline}=
+					\$filesLines{$outFile}[$nbr]{line};
 				$currentMenu = "";
 
 			} elsif ($tmpline =~ /^PipeRead/i) {
 				$tmpline =~ s/^PipeRead\s+//i;
 				($utils,$i,$provide,$active)=analyzePipeRead($tmpline);
 				if ($utils) {
-					$menuPipeRead[$i]{line} = \$filesLines{$file}[$nbr]{line};
+					$menuPipeRead[$i]{line} = \$filesLines{$outFile}[$nbr]{line};
 					$menuPipeRead[$i]{provide} = $provide;
 					$menuPipeRead[$i]{active} = $active;
 				}
@@ -517,7 +543,7 @@ sub buildstrMenuFromFvwmMenu {
 			$nbr++;
 
 		}
-		$lastLine{"$file"}=$nbr-1;
+		$lastLine{"$outFile"}=$nbr-1;
 	}
 }
 
@@ -1566,6 +1592,10 @@ sub getTypeForItemsList {
 
 sub wrotefilesLines {
 
+	if ($menuFiles eq "" && !$site) {
+		-d $persThemeDir || mkdir($persThemeDir, 0775) ||
+			die "cannot create directory $persThemeDir\n";
+	}
 	foreach $key (keys(%filesLines)) {
 		open(OUT,">$key");
 		for ($i=0; $i <= $lastLine{$key}; $i++) {
@@ -1769,8 +1799,10 @@ fvwm-themes-menuapp. By default, fvwm-themes-menuapp will
 read $FT_DATADIR/themes/default/menus-user with the --site option. Without
 the --site option fvwm-themes-menuapp will read menus-user and menus-extra 
 (if found) in the fvwm-themes personal dir: $FVWM_USERDIR/themes/personal. 
-If menus-user is not found in this directory, then the site menus-user 
-is copied in this directory.
+If menus-user is not found in this directory the site menus-users file is
+used (the one under $FT_DATADIR). Moreover, if menus-extra is not found
+a virtual such file is created so that the "personal" menus can
+be created (MenuFvwmPersonal).
 
 B<--site> - Change the default for the --menu-files option.
  
@@ -1798,7 +1830,7 @@ Then use fvwm-themes-com as:
 	fvwm-themes-com --name menuapp[-pid] [--lock-and-get] --message="Command"
 
 where Command is one of the following. All this commands are "lock and
-get" but the save and the exit command. A return value of 0 indicate an error.
+get" but the exit command. A return value of 0 indicate an error.
 
 B<menus-list> - List of the menus.
 
@@ -1848,7 +1880,7 @@ When fvwm-themes is installed, fvwm-themes-menuapp is run as:
 
   fvwm-themes-menuapp --site --build-menus --remove-popup
 
-ScripFvwmMenus used (and in fact is based on) fvwm-themes-menuapp. See
+FvwmScript-Menus used (and in fact is based on) fvwm-themes-menuapp. See
 this FvwmScript script for examples with the com-mode option.
 
 =head1 AUTHORS

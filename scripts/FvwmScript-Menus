@@ -45,12 +45,13 @@ Begin
 	Set $i = (Add $i 2)
 	Set $arg = (GetScriptArgument $i)
     End
+    
+    Set $cmd = {echo "$FT_DATADIR"}
+    Set $FtDataDir = (GetOutput $cmd 1 -1)
 
     If $ImagesDir == {} Then
     Begin
-	Set $cmd = {echo "$FT_DATADIR"}
-	Set $dir = (GetOutput $cmd 1 -1)
-	Set $ImagesDir=$dir{/images/menu/}
+	Set $ImagesDir=$FtDataDir{/images/menu/}
     End
     If $TextColorset <> {} Then
     Begin
@@ -1283,10 +1284,22 @@ Main
     Set $cmd=$SendMsgAndGet{"try"}
     Do {PipeRead '}$cmd{'}
 
-    Set $cmd=$SendMsg{"save"}
+    Set $cmd=$SendMsgAndGet{"save"}
+    Set $dummy = (GetOutput $cmd 1 -1)
+
+    Set $cmd = {fvwm-themes-config --load menus-user@personal --load menus-extra@personal}
     Do {Exec }$cmd
 
-    Set $t={}
+    # In the future we replace the above with something like:
+    # FuncFvwmThemeLoad "menus-user@personal menus-extra@personal"
+    # the problem with the current method is that the GNOME and KDE menu are
+    # lost and that the personal component are not updated at once but
+    # at the next switching. We can fix that by using the current method
+    # and in the place of the previous effective line:
+    #Do {PipeRead '}$cmd{'}
+    #Do {FuncFvwmThemesFresh}
+    #But without the CCDS this not IMHO a good idea. So:
+    Set $t={"Refresh the Current Theme" when leaving the Editor}
     ChangeTitle 16 $t
 
   End
