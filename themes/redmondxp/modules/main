@@ -29,7 +29,7 @@ AddToFunc   FuncFvwmStartThemeModules
 + I Colorset 19 fg rgb:ff/f0/f0, bg average, TiledPixmap module/panel-bg.xpm, Tint cyan 20, NoShape
 + I Colorset 20 fg rgb:ff/ff/f0, bg average, TiledPixmap module/panel-bg.xpm, Tint white 30, NoShape
 + I FuncFvwmStartNormalIcons
-+ I Style "*" IconBox screen w 10 10 -10 -40 p, IconGrid 64 10
++ I Style "*" IconBox screen w 10 10 -10 -40 p, IconGrid 76 90
 # Hmm, I don't like that the bottom pixels are cursored and blocked
 #+ I EdgeCommand bottom All (FvwmButtons-Panel, !Raised, CirculateHit) Raise
 + I *FvwmIconMan: resolution page
