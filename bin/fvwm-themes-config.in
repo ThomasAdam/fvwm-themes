@@ -2953,7 +2953,7 @@ sub comLoop {
 			}
 			if ($return ne "") {
 				# old
-				$return = 'FuncFvwmThemesConfigAndUpdate "'. $return . '"';
+				#$return = 'FuncFvwmThemesConfigAndUpdate "'. $return . '"';
 				# new
 				$return = "FuncFvwmThemesCenterUpdate";
 			}
@@ -3161,17 +3161,24 @@ sub comLoop {
 		#-----------------------------------------------------------------------
 		# SM
 		elsif ($command =~ /^session-info$/) {
-			$return = "$currentSession\n$uptime\n";
+			my $l = length($currentSession) + 4;
+			$return = "0" x (4-length($l)) . "$l" . "$currentSession";
+			$l = $l + length($uptime) + 4;
+			$return .= "0" x (4-length($l)) . "$l" . "$uptime";
 			my $configList = "Default|";
+			my $tmp = "";
 			foreach(@$sessionList) {
-				$return .= "$_";
+				$tmp .= "$_";
 				$configList .= "$_|";
-				$return .= " "x10 . "(Current)" if $_ eq $currentSession;
-				$return .= "|";
+				$tmp .= " "x10 . "(Current)" if $_ eq $currentSession;
+				$tmp .= "|";
 			}
-			$return =~ s/\|$//;
+			$tmp =~ s/\|$//;
 			$configList =~ s/\|$//;
-			$return .= "\n$configList";
+			$l = $l + length($tmp) + 4;
+			$return .= "0" x (4-length($l)) . "$l" . "$tmp";
+			$l = $l + length($configList) + 4;
+			$return .= "0" x (4-length($l)) . "$l" . "$configList";
 		}
 		# --------------------------------------
 		elsif ($command =~ /^session-uptime$/) {

@@ -2,6 +2,12 @@
 
 	* bin/fvwm-themes-config.in:
 	* script/FvwmScript-ThemesCenter:
+	Some Session info speedup in the Themes Center 
+
+2001-09-05  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	* script/FvwmScript-ThemesCenter:
 	Speedup (really!) the ThemesCenter Themes Selector reactivity (not
 	themes switching). The idea is to reduce the call to the ft-config
 	comLoop (need to do that for the 2 others tools).
@@ -13,7 +19,7 @@
 	
 2001-01-09  olicha  <olivier.chapuis@free.fr>
 
-	* * themes/default/settings/ewmh/enabled:
+	* themes/default/settings/ewmh/enabled:
 	* themes/default/settings/stroke/enabled:
 	* themes/default/bindings*:
 	* themes/theme.cfg:

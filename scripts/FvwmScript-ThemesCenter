@@ -302,15 +302,15 @@ Begin
     Set $cmd = $SendMsgAndGet{"all-ts-lists }0{ }0{"}
     Set $MSG = (GetOutput $cmd 1 -1)
     Set $i = 1
-    Set $j = (StrCopy $MSG $i (Add $i 3))
+    Set $j = (StrCopy $MSG 1 4)
     Set $ThemesList = (StrCopy $MSG 5 $j)
     ChangeTitle 6 $ThemesList
     # 3 next line semi-dummy ...
     Set $i = (Add $j 1)
-    Set $j = (StrCopy $MSG $i (Add $i 4))
+    Set $j = (StrCopy $MSG $i (Add $i 3))
     #Set $tmp = (StrCopy $MSG (Add $i 4) $j)
     Set $i = (Add $j 1)
-    Set $j = (StrCopy $MSG $i (Add $i 4))
+    Set $j = (StrCopy $MSG $i (Add $i 3))
     Set $CurrentConfig = (StrCopy $MSG (Add $i 4) $j)
     ChangeTitle 17 $CurrentConfig
 
@@ -320,17 +320,23 @@ Begin
     ChangeTitle 22 $SettingsConfig
 
     # Get the session info
-    Set $cmd = $SendMsgAndGet{"session-info" --line=1}
-    Set $CurrentSession = (GetOutput $cmd 1 -1)
-    Set $cmd = $GetLine{2}
-    Set $SessionUpTime = (GetOutput $cmd 1 -1)
+    Set $cmd = $SendMsgAndGet{"session-info"}
+    Set $MSG = (GetOutput $cmd 1 -1)
+    Set $i = 1
+    Set $j = (StrCopy $MSG 1 4)
+    Set $CurrentSession = (StrCopy $MSG 5 $j)
+    Set $i = (Add $j 1)
+    Set $j = (StrCopy $MSG $i (Add $i 3))
+    Set $SessionUpTime = (StrCopy $MSG (Add $i 4) $j)
     Set $tmp = {Current Session: }$CurrentSession{                 Up Time:  }$SessionUpTime
     ChangeTitle 39 $tmp
-    Set $cmd = $GetLine{3}
-    Set $SessionList = (GetOutput $cmd 1 -1)
+    Set $i = (Add $j 1)
+    Set $j = (StrCopy $MSG $i (Add $i 3))
+    Set $SessionList = (StrCopy $MSG (Add $i 4) $j)
     ChangeTitle 41 $SessionList
-    Set $cmd = $GetLine{4 --clear-buffer}
-    Set $ConfigurationList = (GetOutput $cmd 1 -1)
+    Set $i = (Add $j 1)
+    Set $j = (StrCopy $MSG $i (Add $i 3))
+    Set $ConfigurationList = (StrCopy $MSG (Add $i 4) $j)
     ChangeTitle 52 $ConfigurationList
     
     # Common Variables
@@ -705,11 +711,11 @@ Begin
 	Set $cmd = $SendMsgAndGet{"all-ts-lists }$ThemeIndex{ }$CSCompIndex{"}
 	Set $MSG = (GetOutput $cmd 1 -1)
 	Set $i = 1
-	Set $j = (StrCopy $MSG $i (Add $i 3))
+	Set $j = (StrCopy $MSG 1 4)
 	Set $ThemesList = (StrCopy $MSG 5 $j)
 	ChangeTitle 6 $ThemesList
 	Set $i = (Add $j 1)
-	Set $j = (StrCopy $MSG $i (Add $i 4))
+	Set $j = (StrCopy $MSG $i (Add $i 3))
 	Set $tmp = (StrCopy $MSG (Add $i 4) $j)
 	If $ThemeIndex <> 0 Then
 	Begin
@@ -717,19 +723,19 @@ Begin
 	    ChangeTitle 12 $ThemeComponents
 	End
 	Set $i = (Add $j 1)
-	Set $j = (StrCopy $MSG $i (Add $i 4))
+	Set $j = (StrCopy $MSG $i (Add $i 3))
 	Set $CurrentConfig = (StrCopy $MSG (Add $i 4) $j)
 	ChangeTitle 17 $CurrentConfig
 	If $CSCompIndex <> 0 Then
 	Begin
 	    Set $i = (Add $j 1)
-	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $j = (StrCopy $MSG $i (Add $i 3))
 	    Set $CSCompName = (StrCopy $MSG (Add $i 4) $j)
 	    Set $i = (Add $j 1)
-	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $j = (StrCopy $MSG $i (Add $i 3))
 	    Set $CSThemeName = (StrCopy $MSG (Add $i 4) $j)
 	    Set $i = (Add $j 1)
-	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $j = (StrCopy $MSG $i (Add $i 3))
 	    Set $tmp = (StrCopy $MSG (Add $i 4) $j)
 	    Set $CSCompHasOpt = (StrCopy $tmp 1 1)
 	    Set $CSCompIsSet = (StrCopy $tmp 2 2)
@@ -745,19 +751,19 @@ Begin
 	Set $cmd = $SendMsgAndGet{"current-config }$CSCompIndex{"}
 	Set $MSG = (GetOutput $cmd 1 -1)
 	Set $i = 1
-	Set $j = (StrCopy $MSG $i (Add $i 3))
+	Set $j = (StrCopy $MSG 1 4)
 	Set $CurrentConfig = (StrCopy $MSG 5 $j)
 	ChangeTitle 17 $CurrentConfig
 		If $CSCompIndex <> 0 Then
 	Begin
 	    Set $i = (Add $j 1)
-	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $j = (StrCopy $MSG $i (Add $i 3))
 	    Set $CSCompName = (StrCopy $MSG (Add $i 4) $j)
 	    Set $i = (Add $j 1)
-	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $j = (StrCopy $MSG $i (Add $i 3))
 	    Set $CSThemeName = (StrCopy $MSG (Add $i 4) $j)
 	    Set $i = (Add $j 1)
-	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $j = (StrCopy $MSG $i (Add $i 3))
 	    Set $tmp = (StrCopy $MSG (Add $i 4) $j)
 	    Set $CSCompHasOpt = (StrCopy $tmp 1 1)
 	    Set $CSCompIsSet = (StrCopy $tmp 2 2)
@@ -775,13 +781,13 @@ Begin
 	    Set $cmd = $SendMsgAndGet{"current-comp-name }$CSCompIndex{"}
 	    Set $MSG = (GetOutput $cmd 1 -1)
 	    Set $i = 1
-	    Set $j = (StrCopy $MSG $i (Add $i 3))
+	    Set $j = (StrCopy $MSG 1 4)
 	    Set $CSCompName = (StrCopy $MSG 5 $j)
 	    Set $i = (Add $j 1)
-	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $j = (StrCopy $MSG $i (Add $i 3))
 	    Set $CSThemeName = (StrCopy $MSG (Add $i 4) $j)
 	    Set $i = (Add $j 1)
-	    Set $j = (StrCopy $MSG $i (Add $i 4))
+	    Set $j = (StrCopy $MSG $i (Add $i 3))
 	    Set $tmp = (StrCopy $MSG (Add $i 4) $j)
 	    Set $CSCompHasOpt = (StrCopy $tmp 1 1)
 	    Set $CSCompIsSet = (StrCopy $tmp 2 2)
@@ -904,18 +910,23 @@ Begin
     If $UpdateSMLists == 1 Then
     Begin
 	Set $UpdateSMLists = 0
-        Set $cmd = $SendMsgAndGet{"session-info" --line=1}
-	Set $CurrentSession = (GetOutput $cmd 1 -1)
-	Set $cmd = $GetLine{2}
-	Set $SessionUpTime = (GetOutput $cmd 1 -1)
-	Set $tmp = $l_CurrentSession{: }$CurrentSession{                 }$l_UpTime{:  }$SessionUpTime
+	Set $cmd = $SendMsgAndGet{"session-info"}
+	Set $MSG = (GetOutput $cmd 1 -1)
+	Set $i = 1
+	Set $j = (StrCopy $MSG 1 4)
+	Set $CurrentSession = (StrCopy $MSG 5 $j)
+	Set $i = (Add $j 1)
+	Set $j = (StrCopy $MSG $i (Add $i 3))
+	Set $SessionUpTime = (StrCopy $MSG (Add $i 4) $j)
+	Set $tmp = {Current Session: }$CurrentSession{                 Up Time:  }$SessionUpTime
 	ChangeTitle 39 $tmp
-	Set $cmd = $GetLine{3}
-	Set $SessionList = (GetOutput $cmd 1 -1)
+	Set $i = (Add $j 1)
+	Set $j = (StrCopy $MSG $i (Add $i 3))
+	Set $SessionList = (StrCopy $MSG (Add $i 4) $j)
 	ChangeTitle 41 $SessionList
-	ChangeValue 41 $SessionIndex
-	Set $cmd = $GetLine{4 --clear-buffer}
-	Set $ConfigurationList = (GetOutput $cmd 1 -1)
+	Set $i = (Add $j 1)
+	Set $j = (StrCopy $MSG $i (Add $i 3))
+	Set $ConfigurationList = (StrCopy $MSG (Add $i 4) $j)
 	ChangeTitle 52 $ConfigurationList
     End
 
@@ -1107,10 +1118,10 @@ SingleClic :
 	Set $j = (StrCopy $MSG $i (Add $i 3))
 	Set $ThemeComponents = (StrCopy $MSG 5 $j)
 	Set $i = (Add $j 1)
-	Set $j = (StrCopy $MSG $i (Add $i 4))
+	Set $j = (StrCopy $MSG $i (Add $i 3))
 	Set $ThemeName = (StrCopy $MSG (Add $i 4) $j)
 	Set $i = (Add $j 1)
-	Set $j = (StrCopy $MSG $i (Add $i 4))
+	Set $j = (StrCopy $MSG $i (Add $i 3))
 	Set $ThemeDir = (StrCopy $MSG (Add $i 4) $j)
 	ChangeTitle 12 $ThemeComponents
 	Set $t = $l_B_Component $ThemeName $l_A_Component
