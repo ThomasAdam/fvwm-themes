@@ -4,6 +4,12 @@
 	put a dir in quotes; there is a perl warning in this function
 	(seems like index is out of range), but I don't know why
 
+	* scripts/FvwmScript-IconBrowser:
+	don't remove title (this is probably not a good idea to change Style);
+	use mini/empty.xpm, since None produce warnings
+	* scripts/FvwmScript-ImageBrowser:
+	don't change a wrong Style
+
 2002-06-10  migo  <migo@homemail.com>
 
 	* scripts/FvwmApplet-DayClock:

@@ -60,10 +60,10 @@ Begin
 	Set $ARG = (GetScriptArgument $i)
     End
 
-    If $Launched == 1 Then
-	Do {Style "FvwmScript-IconBrowser" NoTitle, StaysOnTop, NoHandles}
-    Else
-	Do {Style "FvwmScript-IconBrowser" Title, StaysPut, NoHandles}
+#    If $Launched == 1 Then
+#	Do {Style "FvwmScript-IconBrowser" StaysOnTop, NoHandles}
+#    Else
+#	Do {Style "FvwmScript-IconBrowser" StaysPut, NoHandles}
 
     If $TextColorset <> {} Then
     Begin
@@ -117,7 +117,7 @@ Begin
 	    Set $Directory=(GetOutput $CMD 1 -1)
 	    ChangeTitle 5 $Directory
 	    ChangeTitle 9 {}
-	    ChangeIcon 8 None
+	    ChangeIcon 8 mini/empty.xpm
 	End
 	Else
 	Begin
@@ -145,7 +145,7 @@ Begin
 	ChangeTitle 7 $List
 	ChangeTitle 5 $Directory
 	ChangeTitle 9 {}
-	ChangeIcon 8 None
+	ChangeIcon 8 mini/empty.xpm
 	ChangeValue 7 0
     End
 
@@ -324,7 +324,7 @@ Property
  Position 280 5
  Size 365 335
  Type ItemDraw
- Icon None
+ Icon mini/empty.xpm
 Main
  Case message of
   SingleClic :
