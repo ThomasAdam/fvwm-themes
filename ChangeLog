@@ -1,3 +1,7 @@
+2000-10-26  migo  <migo@homemail.com>
+
+	* themes/default/settings/autoraise/modules: fixed
+
 2000-10-25  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-script.in:
