@@ -238,16 +238,11 @@ sub getExpandedRc ($) {
 
 sub searchThemeCfgIncludeFile ($$) {
 	my ($file, $theme) = @_;
-	#olicha: allows the default theme to get *.cfg file which are not
-	# "read" by default. The only "default" cfg is $themeCfgFile and 
-	# settings.cfg
-	#OLD
-	#my @subDirs = ('.', $theme, 'default');
-	#NEW 
-	my  @subDirs = ('.', $theme);
-	push @subDirs, 'default' if 
-		($file eq $themeCfgFile || $file eq "settings.cfg");
-	#END
+	my @subDirs = ($theme);
+	if ($file =~ /^\.\.\/(.*)/) {
+		$file = $1;
+		unshift @subDirs, ".";
+	}
 	my $dir;
 	foreach $dir (@searchPath) {
 		foreach (@subDirs) {
@@ -361,6 +356,7 @@ BEGIN { $cfgFileCache = {}; }
 sub loadThemeCfg ($) {
 	my $theme = shift;
 	my $cfgFile = searchThemeCfgIncludeFile($themeCfgFile, $theme);
+	$cfgFile ||= searchThemeCfgIncludeFile($themeCfgFile, "default");
 	errDie("No $themeCfgFile for $theme found") unless defined $cfgFile;
 
 	return $cfgFileCache->{$cfgFile} if exists $cfgFileCache->{$cfgFile};

@@ -19,6 +19,11 @@
 	* themes/default/settings/kde/system-menu/*:
 	small clean-up, added missing menu delimiter
 
+	* bin/fvwm-themes-config.in:
+	* themes/*/theme.cfg:
+	don't search .cfg files in default theme accept for theme.cfg;
+	now, "include ../theme/xxx.cfg" should be used, not theme/xxx.cfg
+
 2000-10-04  migo  <migo@homemail.com>
 
 	* themes/default/{menus,menus-user}:
