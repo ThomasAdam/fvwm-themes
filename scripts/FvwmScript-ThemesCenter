@@ -26,6 +26,9 @@ Init
 Begin
     Do {FvwmScript FvwmScript-NoteMessage "Loading Themes"}
     Set $Lang = {}
+    Set $TextColorset = {}
+    Set $ViewerColorset = {}
+    Set $IconColorset = {}
     # Arguments
     Set $i = 1
     Set $arg = (GetScriptArgument $i)
@@ -2242,7 +2245,11 @@ Main
  Case message of
   SingleClic :
   Begin
-    Set $arg={FvwmScript-Help --text-colorset }$TextColorset{ --in-line-doc FvwmScript-ThemesCenter --title "Themes Center" --lang }$Lang
+    Set $arg={FvwmScript-Help --in-line-doc FvwmScript-ThemesCenter --title "Themes Center"}
+    If $TextColorset <> {} Then
+	Set $arg=$arg{ --text-colorset }$TextColorset
+    If $Lang <> {} Then
+	Set $arg=$arg{ --lang }$Lang
     Set $dummy = (LaunchScript $arg)
   End
 End

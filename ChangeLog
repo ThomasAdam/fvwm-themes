@@ -9,6 +9,9 @@
 	* scripts/FvwmScript-Help:
 	add support for --lang
 
+	* scripts/FvwmScript-ThemesCenter:
+	fixed when called without --text-colorset
+
 2000-11-29  olicha  <olivier.chapuis@free.fr>
 
 	* locale/{en,fr}/FvwmScript-ConfigCenter.msg:
