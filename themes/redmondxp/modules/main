@@ -79,8 +79,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmStopPanel
 + I DestroyFunc FuncFvwmRestartPanel
 # This is very bad, but we should restore modified colorsets
-+ I PipeRead `fvwm-themes-config --component colors --show-value read-file | xargs cat`
-+ I PipeRead `fvwm-themes-config --component colors-decor --show-value read-file 2>/dev/null | xargs cat`
++ I PipeRead `fvwm-themes-config --component colors --show-value read-file | xargs echo Read`
++ I PipeRead `fvwm-themes-config --component colors-decor --show-value read-file 2>/dev/null | xargs -r echo Read`
 
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules
