@@ -34,6 +34,7 @@ AddToMenu   MenuFvwmRoot "Root Menu" Title
 #----------- Personal
 
 # Define this menus in your personal theme: themes/personal/menus-extra
+AddToMenu   MenuFvwmPersonal
 
 #-----------------------------------------------------------------------------
 #----------- Help
@@ -138,14 +139,28 @@ AddToMenu   MenuFvwmForms "Fvwm Forms" Title
 #------------------------------------------------------------------------------
 #--------- Configuration Menus
 
-DestroyFunc FuncFvwmFormThemeSettings 
+DestroyFunc FuncFvwmFormThemeSettings
 AddToFunc   FuncFvwmFormThemeSettings
 + I FvwmForm FvwmForm-ThemeSettings
+
+DestroyFunc FuncFvwmStartGtkThemeSettings
+AddToFunc   FuncFvwmStartGtkThemeSettings
++ I Read FvwmGtk-Themes
++ I KillModule FvwmGtk FvwmGtk-Themes
++ I ModuleSynchronous FvwmGtk FvwmGtk-Themes
+
+DestroyFunc FuncFvwmGtkThemeSettings 
+AddToFunc   FuncFvwmGtkThemeSettings
++ I FuncFvwmStartGtkThemeSettings
++ I DestroyFunc FuncFvwmStartGtkThemeSettings
++ I AddToFunc   FuncFvwmStartGtkThemeSettings
++ I SendToModule FvwmGtk SettingsDialog
 
 DestroyMenu MenuFvwmConfiguration
 AddToMenu   MenuFvwmConfiguration "Fvwm Configuration" Title
 #+ "Base Configuration"	FvwmScript ScriptFvwmBaseConfig
-+ "Theme Settings Form"	FuncFvwmFormThemeSettings
++ "Theme Settings (form)"	FuncFvwmFormThemeSettings
++ "Theme Settings (gtk)"	FuncFvwmGtkThemeSettings
 + "Menu Editor"		FvwmScript FvwmScript-Menus --text-colorset 34 --icon-colorset 5 --viewer-colorset 33
 + "R&oot Cursor"	Module FvwmForm FormFvwmRootCursor.
 + "Form &Defaults"	Module FvwmForm FormFvwmForm.

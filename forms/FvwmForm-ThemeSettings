@@ -98,8 +98,7 @@ DestroyModuleConfig FvwmForm-ThemeSettings*
 *FvwmForm-ThemeSettingsText ""
 *FvwmForm-ThemeSettingsLine expand
 *FvwmForm-ThemeSettingsButton continue "Apply & Save"
-*FvwmForm-ThemeSettingsCommand FuncFvwmThemesConfigAndUpdate \
-'fvwm-themes-config \
+*FvwmForm-ThemeSettingsCommand FuncFvwmThemesConfigAndUpdate ' \
 --choice settings/animation=$(ANIM!1)$(ANIM?2) \
 --choice settings/background=$(BACK!1)$(BACK?2) \
 --choice settings/banner=$(BANN!1)$(BANN?2) \

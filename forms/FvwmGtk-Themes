@@ -1,0 +1,88 @@
+# This or similar config should be automatically produced by something like:
+#   fvwm-themes-gtk --edit --component settings --display
+
+# This dialog is invoked using:
+#   KillModule FvwmGtk FvwmGtk-Themes
+#   Read FvwmGtk-Themes
+#   Module FvwmGtk FvwmGtk-Themes
+#   SendToModule FvwmGtk SettingsDialog  # why not FvwmGtk-Themes?
+
+DestroyModuleConfig FvwmGtk-Themes*
+
+*FvwmGtk-ThemesDestroy SettingsDialog
+*FvwmGtk-ThemesDialog SettingsDialog "FVWM Theme Settings"
+*FvwmGtk-ThemesBox vertical 10 12
+*FvwmGtk-ThemesLabel "FVWM Theme Settings" -- 10 expand fill
+
+*FvwmGtk-ThemesFrame Switches
+*FvwmGtk-ThemesBox
+*FvwmGtk-ThemesCheckButton animation Animation enabled disabled on
+*FvwmGtk-ThemesCheckButton background Background theme disabled on
+*FvwmGtk-ThemesCheckButton banner Banner enabled disabled on
+*FvwmGtk-ThemesCheckButton stroke Stroke enabled disabled
+*FvwmGtk-ThemesEndBox
+*FvwmGtk-ThemesEndFrame
+
+### I don't know why this gives Gtk-CRITICAL, probably FvwmGtk bug.
+*FvwmGtk-ThemesFrame "Sound Player"
+# the following box is optional, just not to expand all frame
+*FvwmGtk-ThemesBox
+*FvwmGtk-ThemesOptionMenu sound-player
+#*FvwmGtk-ThemesDestroy sound-player2
+#*FvwmGtk-ThemesMenu sound-player2
+*FvwmGtk-ThemesItem "Disabled" disabled on
+*FvwmGtk-ThemesItem "play (sox)" play
+*FvwmGtk-ThemesItem "esdplay" esdplay
+*FvwmGtk-ThemesItem "audioplay" audioplay
+*FvwmGtk-ThemesItem "auplay" auplay
+*FvwmGtk-ThemesItem "rplay" rplay
+*FvwmGtk-ThemesItem "rplayD" rplayD
+*FvwmGtk-ThemesEndOptionMenu
+*FvwmGtk-ThemesEndBox
+*FvwmGtk-ThemesEndFrame
+
+*FvwmGtk-ThemesFrame "Auto Raise"
+*FvwmGtk-ThemesBox
+*FvwmGtk-ThemesRadioGroup autoraise
+*FvwmGtk-ThemesRadioButton "Disabled" disabled on
+*FvwmGtk-ThemesRadioButton "Auto Raise (1/2 sec)" autoraise-500
+*FvwmGtk-ThemesRadioButton "Auto Raise (2 sec)" autoraise-2000
+*FvwmGtk-ThemesRadioButton "Auto Raise Modules" modules
+*FvwmGtk-ThemesEndRadioGroup
+*FvwmGtk-ThemesEndBox
+*FvwmGtk-ThemesEndFrame
+
+*FvwmGtk-ThemesFrame "Icon Styles"
+*FvwmGtk-ThemesBox
+*FvwmGtk-ThemesRadioGroup iconstyles
+*FvwmGtk-ThemesRadioButton "Disabled" disabled
+*FvwmGtk-ThemesRadioButton "Native" native on
+*FvwmGtk-ThemesRadioButton "wm-icons" wm-icons
+*FvwmGtk-ThemesEndBox
+*FvwmGtk-ThemesEndFrame
+
+*FvwmGtk-ThemesBox homogeneous
+# Maybe to add "close" before "--"?
+*FvwmGtk-ThemesButton "Apply" "FuncFvwmThemesConfigAndUpdate ' \
+	--choice settings/animation=$(animation) \
+	--choice settings/background=$(background) \
+	--choice settings/banner=$(banner) \
+	--choice settings/stroke=$(stroke) \
+	--choice settings/sound-player=$(sound-player) \
+	--choice settings/autoraise=$(autoraise) \
+	--choice settings/iconstyles=$(iconstyles) \
+	'" -- default can-default
+
+#	--choice settings/kde/kfm-icons=$(kde/kfm-icons) \
+#	--choice settings/kde/system-menu=$(kde/system-menu) \
+#	--choice settings/kde/user-menu=$(kde/user-menu) \
+#	--choice settings/session=$(session) \
+#	--choice settings/gnome/panel-staysput=$(gnome/panel-staysput) \
+#	--choice settings/gnome/system-menu=$(gnome/system-menu) \
+#	--choice settings/gnome/user-menu=$(gnome/user-menu) \
+#	--choice settings/gnome/anotherlevel-menu=$(gnome/anotherlevel-menu) \
+
+*FvwmGtk-ThemesButton "Close" close
+*FvwmGtk-ThemesEndBox
+
+*FvwmGtk-ThemesEndBox

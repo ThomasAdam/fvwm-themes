@@ -1,3 +1,23 @@
+2000-08-07  migo  <migo@homemail.com>
+
+	* forms/FvwmForm-ThemeSettings:
+	removed fvwm-themes-config string.
+	Using this form freezes fvwm for me, Ctrl-Alt-Esc helps. Again?
+
+	* forms/FvwmGtk-Themes:
+	Temporary config until we have fvwm-themes-gtk (not before 0.4.0).
+	We should use FvwmGtk aliases for all our gtk menus, I think,
+	or we should implement module config delimiter in fvwm ASAP.
+	The name FvwmGtk-Themes means that all gtk-based fvwm-themes dialogs
+	may be defined in this file, but this is unclear yet.
+
+	* themes/default/menus:
+	Added "AddToMenu MenuFvwmPersonal" to avoid warning.
+	Added FvwmGtk-Themes:SettingsDialog.
+
+	When I choose sound-player (play, esd), FvwmEvent (I suppose) does
+	not respond (fvwm freezes) and is killed after 30 seconds timeout.
+
 2000-08-07  olicha  <olivier.chapuis@free.fr>
 
 	* configure.in: set cvs version to 0.3.16
