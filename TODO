@@ -1,11 +1,11 @@
                       Things to do before 1.0.0
                       -------------------------
 
-* localization using locale/LANG/ directories
+* Internationalization using locale/LANG/ directories.
 
-* internationalization (translations)
+* Localization (actual translations).
 
-* optimizing a reload needed for changes in components
+* Optimizing reload commands needed for changes in components.
 
 * Test and port fvwm-themes to native BSD's and Solaris.
   There are problems for sure, mkdir without -p, no killall etc.
@@ -81,3 +81,6 @@ Problems without obvious soluton:
 * Rereading iconstyles/style-icon-miniicon file dynamically is not enough
   if someone (me) have icon style extentions. Should be solved using
   dependances somehow (using 'extends').
+
+Closed items (will be deleted after 1.0.0):
+------------------------------------------
