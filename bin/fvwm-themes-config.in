@@ -236,10 +236,13 @@ sub searchThemeCfgIncludeFile ($$) {
 	return undef;
 }
 
-sub escapeMenuName ($) {
+# unfortunately fvwm is inconsistent, so the second parameter.
+sub escapeMenuName ($;$) {
 	my $name = shift;
-	$name =~ s/&/\\&/g;
+	my $hasUnderline = shift;
+	my $escapeStr = $hasUnderline? '\\': '&';
 	$name =~ s/\\/\\\\/g;
+	$name =~ s/&/$escapeStr&/g;
 	$name;
 }
 
@@ -946,9 +949,10 @@ sub getOwnThemeSubMenusRc ($) {
 					}
 					my $i;
 					for ($i = 0; $i < @$values; $i++) {
-						my $name = escapeMenuName($values->[$i]->{'name'});
-						my $icon = $i eq $index? "choice-yes": "empty";
-						my $star = $i eq $index? "": "&";
+						my $isCurrent = $i eq $index;
+						my $name = escapeMenuName($values->[$i]->{'name'}, !$isCurrent);
+						my $star = $isCurrent? "": "&";
+						my $icon = $isCurrent? "choice-yes": "empty";
 						my $n = $i + 1;
 						my $menuItem = qq(+ "%menu/$icon.xpm%$star$name"\tFuncFvwmThemesOption $_:$optionFile=$n\n);
 						($inline? $menusRc: $subRc2) .= $menuItem;
@@ -970,9 +974,10 @@ sub getOwnThemeSubMenusRc ($) {
 				$cc->{'read-file'} =~ s:/[^/]+$:/$choices->[$index]->{'file'}:;
 				my $i;
 				for ($i = 0; $i < @$choices; $i++) {
-					my $name = escapeMenuName($choices->[$i]->{'name'});
-					my $icon = $i eq $index? "choice-yes": "empty";
-					my $star = $i eq $index? "": "&";
+					my $isCurrent = $i eq $index;
+					my $name = escapeMenuName($choices->[$i]->{'name'}, !$isCurrent);
+					my $icon = $isCurrent? "choice-yes": "empty";
+					my $star = $isCurrent? "": "&";
 					my $n = $i + 1;
 					$menusRc .= qq(+ "%menu/$icon.xpm%$star$name"\tFuncFvwmThemesChoice $_=$n\n);
 				}

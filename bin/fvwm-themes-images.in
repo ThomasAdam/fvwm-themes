@@ -56,12 +56,34 @@ my $postfix = "";
 my $transFilter = 1;
 my @types = ();
 my $preserve = 0;
-my %build = ('48x48' => 1,'16x16' => 1,'56x56' => 0,'32x32' => 0,'tiles' => 0);
-my %tileOpt = ('48x48'=>"",'16x16'=>"",'56x56'=>"",'32x32'=>"",'tiles'=>"");
-my %addBorderOpt = ('48x48'=>"",'16x16'=>"",'56x56'=>"",'32x32'=>"",
-	'tiles'=>"");
-my %size = ('48x48' => "48x48",'56x56' => "56x56",'32x32' => "32x32",
-	'16x16' => "17x17", 'tile' => "");
+my %build = (
+	'48x48' => 1,
+	'16x16' => 1,
+	'56x56' => 0,
+	'32x32' => 0,
+	'tiles' => 0,
+);
+my %tileOpt = (
+	'48x48' => "",
+	'16x16' => "",
+	'56x56' => "",
+	'32x32' => "",
+	'tiles' => "",
+);
+my %addBorderOpt = (
+	'48x48' => "",
+	'16x16' => "",
+	'56x56' => "",
+	'32x32' => "",
+	'tiles' => "",
+);
+my %size = (
+	'48x48' => "48x48",
+	'16x16' => "17x17",  # huh?
+	'56x56' => "56x56",
+	'32x32' => "32x32",
+	'tiles' => "",
+);
 
 # tile options
 my $tile = "";
@@ -181,7 +203,7 @@ GetOptions(
 	"set-back-prog=s"    => \$setBackProg,
 	"rotate=s"           => \$rotate,
 	"show-xcolors"       => \$xcolorsInfo,
-	"show-xcolorset"     => \$xcolorsetsInfo,
+	"show-xcolorsets"    => \$xcolorsetsInfo,
 	"show-color-info=s"  => \$colorToShow,
 	"verbose=i"          => \$verboseOpt,
 	"site"               => \$site,
@@ -211,7 +233,7 @@ die "--convert and --set-background are incompatible\n"
 	if $setBackground && $convert;
 
 if ($xcolorsInfo || $xcolorsetsInfo) {
-	showXcolorsInfo($xcolorsetsInfo);	
+	showXcolorsInfo($xcolorsetsInfo);
 	exit;
 }
 
@@ -273,7 +295,7 @@ sub transform {
 		$gnomeInstallDir =~ s,/$,,;
 		$gnomeInstallDir =~ 	s,/[-A-Za-z]+$,,;
 		$gnomeInstallDir =~ s,/$,,;
-		$gnomeInstallDir = $defaultGnomeInstallDir 
+		$gnomeInstallDir = $defaultGnomeInstallDir
 			if $gnomeInstallDir eq 'not found';
 		$inDir = "$gnomeInstallDir/share/pixmaps";
 		$postfix = "gnome";
@@ -282,7 +304,7 @@ sub transform {
 	}
 
 	$inDir = "$inDir/" unless $inDir =~ /\/$/ || $inDir eq "";
-	if ($inDir !~ /^\// && $inFile !~ /^\//) { 
+	if ($inDir !~ /^\// && $inFile !~ /^\//) {
 		my $tmp =`pwd`;
 		chomp($tmp);
 		$inDir ="$tmp/$inDir";
@@ -307,14 +329,14 @@ sub transform {
 	$outDir = "$transformOutDir/$outDir" if ($outDir eq "");
 
 	if ($inFile ne "" && $outFile eq "" && !$convert) {
-		if ($setBackground) { $outFile = "$setBackFile"; } 
+		if ($setBackground) { $outFile = "$setBackFile"; }
 		else {
 			die "If you specify an in-file you must specify an out-file\n" .
 				"(but for --set-background and convert)\n";
 		}
 	}
 
-	if ($outDir !~ /^\// && $outFile !~ /^\//) { 
+	if ($outDir !~ /^\// && $outFile !~ /^\//) {
 		my $tmp =`pwd`;
 		chomp($tmp);
 		$outDir ="$tmp/$outDir";
@@ -323,14 +345,14 @@ sub transform {
 	if ($outFile ne "") {
 		if ($outFile =~ /\//) {
 			my $index = rindex($outFile,"/");
-			if ($outFile =~ /^\//) { $outDir = substr($outFile,0,$index); } 
+			if ($outFile =~ /^\//) { $outDir = substr($outFile,0,$index); }
 			else { $outDir = "$outDir" . substr($outFile,0,$index);}
 			$outFile = substr($outFile,$index+1);
 		}
 	}
 	$outDir =~ s/\/$//;
 
-	-d $outDir || mkdir("$outDir", 0775) || 
+	-d $outDir || mkdir("$outDir", 0775) ||
 		die "impossible to create $outDir \n\t (we do not create more than one".
 			" level of directory).\n";
 
@@ -361,13 +383,13 @@ sub transform {
 			$sizeOpt = "-geometry $size{$type}" if $size{$type} ne "";
 		}
 
-		-d "$outDir$dirtype" || mkdir("$outDir$dirtype", 0775) || 
+		-d "$outDir$dirtype" || mkdir("$outDir$dirtype", 0775) ||
 			die "impossible to create $outDir$dirtype";
 
 		# tile ?
 		my $haveToTile = 0;
 		my $tileXpm; my $tileType;
-		my ($xTile,$yTile) = qw(0 0);
+		my ($xTile,$yTile) = (0, 0);
 		if ($convert && $tileOpt{$type} ne "") {
 			($tileXpm,$tileType,$xTile,$yTile) = getTile("$tileOpt{$type}");
 			$haveToTile = 1;
@@ -378,7 +400,7 @@ sub transform {
 
 		# add border ?
 		my $haveToAddBorder = 0;
-		my ($xBorder, $yBorder) = qw(0 0);
+		my ($xBorder, $yBorder) = (0, 0);
 		my $borderColor = "Gray0";
 		if ($convert && $addBorderOpt{$type} =~ /^\+(\d+)\+(\d+):*(.*)/) {
 			$xBorder = $1; $yBorder = $2;
@@ -395,7 +417,7 @@ sub transform {
 		if ($convert) {
 			$info .= "convert ";
 			$infoType .= "$type xpm";
-		  }
+		}
 		$info .= "rotate " if ($rotate);
 		$info .= "colorize " if ($colorize);
 		$info .= "tile " if ($haveToTile);
@@ -437,10 +459,10 @@ sub transform {
 				myPrint (1,"transform $file ...");
 			}
 
-			if ($convert && hasMatte("$dir/$file") && $transFilter && 
+			if ($convert && hasMatte("$dir/$file") && $transFilter &&
 				$file !~ /.xpm$/) {
 				myPrint(2,"\n\t transparent filter ... ");
-		 		system("$magickPath/convert -mono -colorspace $colorspace ". 
+		 		system("$magickPath/convert -mono -colorspace $colorspace ".
 					"-layers Matte".
 					" $sizeOpt -threshold $threshold ".
 					"$dir/$file $outDir$dirtype/.mask.xpm");
@@ -453,7 +475,7 @@ sub transform {
 
 			if ($rotate ne "0") {
 				myPrint(2,"\n\t rotate ... ");
-				$mainXpm = loadXpm("$xpmdir/$xpmFile") 
+				$mainXpm = loadXpm("$xpmdir/$xpmFile")
 					if ref($mainXpm) ne "HASH";
 				rotateXpm($mainXpm,$rotate);
 				myPrint(2,"done");
@@ -461,7 +483,7 @@ sub transform {
 
 			if ($colorize) {
 				myPrint(2,"\n\t colorize ... ");
-				$mainXpm = loadXpm("$xpmdir/$xpmFile") 
+				$mainXpm = loadXpm("$xpmdir/$xpmFile")
 					if ref($mainXpm) ne "HASH";
 				colorizeXpm($mainXpm);
 				myPrint(2,"done");
@@ -469,7 +491,7 @@ sub transform {
 
 			if ($haveToTile) {
 				myPrint(2,"\n\t tile ... ");
-				$mainXpm = loadXpm("$xpmdir/$xpmFile") 
+				$mainXpm = loadXpm("$xpmdir/$xpmFile")
 					if ref($mainXpm) ne "HASH";
 				applyTile($mainXpm,$tileXpm,$tileType,$xTile,$yTile);
 				myPrint(2,"done");
@@ -477,7 +499,7 @@ sub transform {
 
 			if ($haveToAddBorder) {
 				myPrint(2,"\n\t add border ... ");
-				$mainXpm = loadXpm("$xpmdir/$xpmFile") 
+				$mainXpm = loadXpm("$xpmdir/$xpmFile")
 					if ref($mainXpm) ne "HASH";
 				addBorder($mainXpm,$xBorder,$xBorder,$yBorder,$yBorder,
 					$borderColor);
@@ -514,14 +536,14 @@ sub getTile($) {
 	my $tile = shift;
 	my $xpm;
 	my $type = "tile";
-	my ($x,$y) =qw(0 0);
+	my ($x,$y) = (0, 0);
 
 	if ($tile =~ /^\s*color:(.*)\s*/) {
 		my $color = $1;
 		if ($color =~ /^\+(\d+)\+(\d+):(.*)/) {
 			$color = encode16bpp($3);
 			$x=$1; $y=$2;
-		} 
+		}
 		$xpm = createMonoXpm(1,1,$color);
 	} elsif ($tile =~ /^\s*expand:(.*)\s*/) {
 		$xpm = $1;
@@ -574,17 +596,17 @@ sub scanDir {
 	my  @dirList = ();
 	opendir(DIR, "$scanPath") || die "cannot open dir $scanPath\n";
 	foreach (readdir(DIR)) {
-	# must be fixed one day: found all the formats supported
-	# by ImageMagick ...
-	push @dirList, $_
-		if (/.png$/ || /.xpm$/ || /.jpg$/ || /.gif$/);
+		# must be fixed one day: found all the formats supported
+		# by ImageMagick ...
+		push @dirList, $_
+			if (/.png$/ || /.xpm$/ || /.jpg$/ || /.gif$/);
 	}
 	closedir(DIR);
 	return(@dirList);
 }
-  
+
 #-------------------------------------
-# 
+#
 
 sub getExecFileDir($) {
 	my $execFile = shift;
@@ -610,16 +632,16 @@ sub createSymLink {
 	myPrint(1,"Create symbolic link\n");
 	foreach $type ("norm", "mini") {
 		unlink("$ftImagesDir/$type$postfix");
-		symlink("$dest[$i]","$ftImagesDir/$type$postfix") || 
+		symlink("$dest[$i]","$ftImagesDir/$type$postfix") ||
 			die "Can't symlink $dest[$i] to $ftImagesDir/$type$postfix";
 		myPrint(2,"symlink $dest[$i] to $ftImagesDir/$type$postfix\n");
 		$i++;
 	}
 }
-	
+
 #-------------------------------------
 # check for Image Magick: there is now a Magick-config, but
-# old (and very good) version of ImageMagick does not have it. 
+# old (and very good) version of ImageMagick does not have it.
 
 sub checkMagick {
 	my $dir  = "";
@@ -657,7 +679,7 @@ sub checkMagick {
 		myPrint(1,"WARN: QuantumLeap: no indication from ImageMagick\n".
 			"\t 16 is assumed (see the -magick-bpp option)\n");
 	}
-		
+
 	return ($dir,$bpp);
 }
 
@@ -668,15 +690,15 @@ sub checkMagick {
 sub cdeSky() {
 	my @pattern=();
 	my $coef;
-	if ($patternType ne "") { @pattern = createPattern() } 
-	elsif ($patternXpm ne "") { @pattern = createPatternXpm() } 
+	if ($patternType ne "") { @pattern = createPattern() }
+	elsif ($patternXpm ne "") { @pattern = createPatternXpm() }
 	else {
 		die "pattern file $patternFile not found\n" unless -f $patternFile;
 		open(INFILE,$patternFile);
 		@pattern = <INFILE>;
 		close(INFILE);
 	}
-	
+
 	if ($patternY !~ /^\d+$/) {
 		my ($ScreenX, $ScreenY) = `xdpyinfo|grep dimensions:` =~ / (\d+)x(\d+)/;
 		$patternY = $rotate =~ /90/ ? $ScreenX:$ScreenY;
@@ -709,7 +731,7 @@ sub cdeSky() {
 	my $xpm = createMonoXpm($W,1,"None");
 	my $def = $xpm->{'def'};
 	my $pixels = $xpm->{'pixels'};
-	my ($i,$k) = qw(0 0);
+	my ($i,$k) = (0, 0);
 	my $id; my $nextId;
 
 	while ($i < $NY) {
@@ -731,7 +753,7 @@ sub cdeSky() {
 		}
 		$i++;
 	}
-	
+
 	rotateXpm($xpm,$rotate) if $rotate ne "0";
 
 	$outFile = "$setBackFile" if $outFile eq "";
@@ -744,39 +766,40 @@ sub cdeSky() {
 # create some pattern. Any other idea?
 # Can one create the "cde-like" like pattern?
 
-sub createPattern {
+sub createPattern () {
 
 	my $type = "uniform";
 	my @pattern = ();
 	my $i;
 	my $coef = 1;
-	my $coef2 = "";
+	my $coef2 = undef;
 
-	if ($patternType =~ /^random:(\d+):*(\d*)$/) {
+	# perl: '?:' may be ommited, but then $2 should be $3.
+	if ($patternType =~ /^random:(\d+)(?::(\d+))?$/) {
 		$type = "rand";
 		$coef = $1;
-		$coef2 = $2 ne "" ? $2 : 8;
-	} elsif ($patternType =~ /^uniform:(\d+):*(\d*)$/) {
+		$coef2 = $2 || 8;
+	} elsif ($patternType =~ /^uniform:(\d+)(?::(\d+))?$/) {
 		$type = "uniform";
 		$coef = $1;
-		$coef2 = $2 ne "" ? $2 : 8;
-	} elsif ($patternType =~ /^square:(\d+):*(\d*)$/) {
+		$coef2 = $2 || 8;
+	} elsif ($patternType =~ /^square:(\d+)(?::(\d+))?$/) {
 		$type = "square";
 		$coef = $1;
-		$coef2 = $2 ne "" ? $2 : $coef;
-	} elsif ($patternType =~ /^altern:(\d+):*(\d*)$/) {
+		$coef2 = $2 || $coef;
+	} elsif ($patternType =~ /^altern:(\d+)(?::(\d*))?$/) {
 		$type = "altern";
 		$coef = $1;
-		$coef2 = $2 ne "" ? $2 : 8;
-	} elsif ($patternType =~ /^(\d+):*(\d*)$/) {
-		$coef = $1;
-		$coef2 = $2 ne "" ? $2 : 8;
+		$coef2 = $2 || 8;
+	} elsif ($patternType =~ /^(\d+)(?::(\d+))?$/) {
 		$type = "uniform";
+		$coef = $1;
+		$coef2 = $2 || 8;
 	} else {
 		die "bad pattern-type option";
 	}
 
-	if ($type eq "uniform") {	
+	if ($type eq "uniform") {
 		my $p = "+" x $coef2 ."\n";
 		for ($i=0; $i < $coef; $i++) { push @pattern, $p }
 	}
@@ -786,7 +809,7 @@ sub createPattern {
 		$p = "-" x $coef2 ."\n";
 		for ($i=0; $i < $coef; $i++) { push @pattern, $p }
 	}
-	elsif ($type eq "square") {	
+	elsif ($type eq "square") {
 		my $p = "+" x $coef2 . "-"x$coef2 ."\n";
 		for ($i=0; $i < $coef; $i++) { push @pattern, $p }
 	}
@@ -803,7 +826,7 @@ sub createPattern {
 #-------------------------------------
 # create pattern from an xpm
 
-sub createPatternXpm($) {
+sub createPatternXpm () {
 	my $xpm = loadXpm($patternXpm);
 	my ($c,$r,$nc) = ($xpm->{'def'}->[0],$xpm->{'def'}->[1],$xpm->{'def'}->[2]);
 	my $colors = $xpm->{colors};
@@ -811,7 +834,7 @@ sub createPatternXpm($) {
 	my $ids = $xpm->{ids};
 	my $id = "";
 	my @pattern = ();
-	
+
 	# found the transparent id
 	my $i = 0; my $done =0;
 	while($i < $nc && !$done) {
@@ -833,7 +856,7 @@ sub createPatternXpm($) {
 # set the background
 #------------------------------------------------------------------------------
 
-sub setBack($) {
+sub setBack ($) {
 	my $file = shift;
 	die "no file $file" unless -f $file;
 	system("$setBackProg $file");
@@ -889,7 +912,7 @@ sub showColorInfo {
 	loadRGB();
 	my $nbr = encode16bpp("$color");
 	my $a = bppTo3intArray($nbr);
-	
+
 	print "Information on $color:\n\n";
 
 	my $best = 256;
@@ -898,7 +921,7 @@ sub showColorInfo {
 	my $key;
 	foreach $key (sort keys %rgb) {
 		my $b = bppTo3intArray($rgb{"$key"});
-		$t = 
+		$t =
 		  sqrt(($$a[0]-$$b[0])**2+($$a[1]-$$b[1])**2+($$a[2]-$$b[2])**2)/sqrt(3);
 		push @x, $key if $t == $best;
 		if ($t < $best) { $best = $t; @x = ("$key"); }
@@ -914,9 +937,9 @@ sub showColorInfo {
 	print "\t", formatColorInfoLine("$color", "$nbr", $base), "\n";
 
 	my $prefix;
-	foreach $prefix ("shadow", "hilight", "random", "top255", "top200", 
+	foreach $prefix ("shadow", "hilight", "random", "top255", "top200",
 		"top150", "top100", "top50") {
-		print "\t", formatColorInfoLine("$prefix $color", "$prefix$nbr", $base), 
+		print "\t", formatColorInfoLine("$prefix $color", "$prefix$nbr", $base),
 			"\n";
 	}
 	print "\n";
@@ -927,15 +950,15 @@ sub showColorInfo {
 # an xpm lib
 #------------------------------------------------------------------------------
 
-sub loadXpm($) {
+sub loadXpm ($) {
 
 	my $file = shift;
 	my $xpm;
 
 	open(XPM, $file) || die "Impossible to load $file";
 	my $count = -1;
-	my ($isColors,$isPixels) = qw(0 0);
-	my ($pixCount, $inComment)= qw(0 0);
+	my ($isColors,$isPixels) = (0, 0);
+	my ($pixCount, $inComment) = (0, 0);
 	my ($nc,$cpp);
 	my ($i,$re);
 	my $def = [];
@@ -954,10 +977,11 @@ sub loadXpm($) {
 		next if $_ !~ /^\"/;
 		chomp;
 		s/^\"//;
-		s/\"*,*\}*;*$//;
+		s/\"*,*\}*;*\s*$//;
 		my $line = $_;
 		if ($isPixels) {
 			# can we do this faster ?
+			### migo: split($line, $cpp)?
 			$pixels->[$pixCount] = [ $line =~ /$re/ ];
 			#die "bad number of columns in xpm file $file\n"
 			#	if ($#{@{$pixels->[$pixCount]}} != $def->[0]);
@@ -968,6 +992,7 @@ sub loadXpm($) {
 			$line = substr($line,$cpp+1);
 			$line =~ s/^\s*//;
 			# suppress these stupids "s None"
+			### migo: not stupid, without it xpm is not transparent
 			$line =~ s/s\s+none$//i;
 			$line =~ s/^\s*c\s+//;
 			$line =~ s/\s*$//;
@@ -1098,7 +1123,7 @@ sub addColor($$) {
 	# does the color is already there?
 	if (!$beFast) {
 		my $i;
-		for($i = 0; $i < $def->[2]; $i++) { 
+		for($i = 0; $i < $def->[2]; $i++) {
 			return $ids->[$i] if $colors->[$i] eq "$color";
 		}
 	}
@@ -1154,15 +1179,15 @@ sub applyTrans {
 	my ($mcolors,$mids,$mpixels,$nc) = ($mask->{'colors'}, $mask->{'ids'},
 		$mask->{'pixels'},$mask->{'def'}->[2]);
 	my ($xpixels,$def) = ($xpm->{'pixels'},$xpm->{'def'});
-	my ($done,$i) = qw(0 0);
+	my ($done,$i) = (0, 0);
 	my $j;
 	my $t = "";
 
 	# found the transparent id
 	while($i < $nc && !$done) {
 		my $tmp = $mask->{'colors'}->[$i];
-		if ($mcolors->[$i] =~ /^#0*$/ || 
-			$mcolors->[$i] =~ /^gray0$/i || 
+		if ($mcolors->[$i] =~ /^#0*$/ ||
+			$mcolors->[$i] =~ /^gray0$/i ||
 			$mcolors->[$i] =~ /^black$/i) {
 			$t = $mids->[$i];
 			$done = 1;
@@ -1236,7 +1261,7 @@ sub applyTile {
 	my $rows = $xpm->{'def'}->[1];
 
 	if ($type eq "expand") {
-		system("$magickPath/convert -geomerty $columns" . 
+		system("$magickPath/convert -geomerty $columns" .
 			"x$rows" ."! $tile /tmp/ft-tmp-images.xpm");
 		$tile = loadXpm("/tmp/ft-tmp-images.xpm");
 		unlink("/tmp/ft-tmp-images.xpm");
@@ -1281,18 +1306,18 @@ sub applyTile {
 
 	return if $t eq "";
 
-	# add some space if need in the id hash 
+	# add some space if need in the id hash
 	my $xpmcpp = $xpm->{'def'}->[3];
 	foreach $i (keys %idConv) {
 		my $len = length($idConv{"$i"});
 		$idConv{"$i"} .= " "x($xpmcpp-$len);
 	}
-	
+
 	# apply the tile:
 	my $pixels = $xpm->{'pixels'};
 	my $tpixels = $tile->{'pixels'};
 	for ($i = 0; $i < $rows; $i++) {
-		my($j,$l)=qw(0 0);
+		my($j,$l) = (0, 0);
 		for ($j = 0; $j < $columns; $j++) {
 			if ($pixels->[$i]->[$j] eq "$t") {
 				$pixels->[$i]->[$j] = $idConv{"$tpixels->[$k]->[$l]"};
@@ -1309,7 +1334,7 @@ sub applyTile {
 sub colorizeXpm() {
 
 	my $xpm = shift;
-	my ($min,$max)= qw(255 0); 
+	my ($min,$max)= qw(255 0);
 	my @tmp;
 	my $colors = $xpm->{'colors'};
 
@@ -1487,7 +1512,7 @@ sub encode16bpp($) {
 	if (ref($color) eq "ARRAY") {
 		# here we must be as fast as possible
 		int2hexRef($color);
-		return 
+		return
 			"#$color->[0]$color->[0]$color->[1]$color->[1]$color->[2]$color->[2]";
 	}
 	$color =~ s/^\s*//;
@@ -1510,16 +1535,16 @@ sub encode16bpp($) {
 	}
 	elsif ($color =~ /^random\s*(.*)$/i) {
 		return randomColor($1);
-	} 
+	}
 	elsif ($color =~ /^top(\d*)\s*(.+)$/i) {
 		my $a;
 		$a = $1;
 		$a = 255 if $a eq "";
 		return topColor($2,$a);
-	} 
+	}
 	elsif ($color =~ /^hilight\s*(.+)$/i) {
 		return hilightColor($1);
-	} 
+	}
 	elsif ($color =~ /^shadow\s*(.+)$/i) {
 		return shadowColor($1);
 	}
@@ -1597,7 +1622,8 @@ sub topColor {
 #-------------------------------------
 # from jos-colorset-cdegradient
 # an hilight white is white ?
-# Yes for GTK style hilighting, no for motif.
+# migo: Yes for GTK style hilighting, no for motif.
+# migo: fvwm algorithms are in libs/ColorUtils.c (2.2.4 is better).
 
 sub hilightColor {
 	my $color = shift;
@@ -1605,10 +1631,10 @@ sub hilightColor {
 	$color = encode16bpp($color);
 	my $a = bppTo3intArray($color);
 	my $i;
-	for ($i = 0; $i<3; $i++) {
-		$$a[$i] = max(255/5, $$a[$i]);
-  		$$a[$i] = min(255, ($$a[$i] * 110) / 100);
-  		$$a[$i] = int($$a[$i]);
+	for ($i = 0; $i < 3; $i++) {
+		$a->[$i] = max(255/5, $a->[$i]);
+  		$a->[$i] = min(255, ($a->[$i] * 130) / 100);  # was 110
+  		$a->[$i] = int($a->[$i]);
 	}
 	return  encode16bpp($a);
 }
@@ -1617,7 +1643,7 @@ sub hilightColor {
 # from jos-colorset-cdegradient
 # is this 0.9 official? What about 0.8
 # Moreover a shadow black is black ?
-# Yes for GTK style hilighting, no for motif.
+# migo: Yes for GTK style hilighting, no for motif.
 
 sub shadowColor {
 	my $color = shift;
@@ -1626,8 +1652,8 @@ sub shadowColor {
 	my $a = bppTo3intArray($color);
 	my $i;
 	for ($i = 0; $i < 3; $i++) {
-		$$a[$i] *= 0.9;
-		$$a[$i] = int($$a[$i]);
+		$a->[$i] *= 0.7;  # was 0.9
+		$a->[$i] = int($a->[$i]);
 	}
 	return  encode16bpp($a);
 }
@@ -1716,7 +1742,7 @@ sub interpolateColors {
 # integer to hexadecimal (from jos-colorfun)
 
 # $h = int2hex(255); -> "ff"
-sub int2hex { 
+sub int2hex {
 	my $i= shift;
  	# modified for speed (olicha)
 	my $h = $Hex[$i/16] . $Hex[$i%16];
@@ -1763,7 +1789,7 @@ sub hasMatte {
 	return $r;
 }
 
-#----------------------------------------------------------------------------- 
+#-----------------------------------------------------------------------------
 # The starndard functions
 
 
@@ -1808,8 +1834,8 @@ sub showHelp {
 	print "\t--magick-colors n   Number of colors used by ImageMagick\n";
 	print "\t--magick-space val  see the ImageMagick convert man page\n";
 	print "Simple transformations\n";
-	print "\t--rotate value      rotate and/or mirorr an XPM\n"; 
-	print "\t--add-border opt    add border to an/all image(s)\n"; 
+	print "\t--rotate value      rotate and/or mirorr an XPM\n";
+	print "\t--add-border opt    add border to an/all image(s)\n";
 	print "\t--tile value        tile an/all image(s)\n";
 	print "Colorize\n";
 	print "\t--colorize          colorize an/all image(s)\n";
@@ -1866,7 +1892,7 @@ sub myDebug {
 	}
 	# note: for time eval it is better to use perl -d:DProf with dprofpp
 
-}	
+}
 __END__
 
 # ---------------------------------------------------------------------------
@@ -1877,8 +1903,8 @@ fvwm-themes-images - fvwm-themes images utility
 
 =head1 SYNOPSIS
 
-B<fvwm-themes-images> 
-B<--convert> or/and B<--rotate> value or/and B<--colorize> or/and 
+B<fvwm-themes-images>
+B<--convert> or/and B<--rotate> value or/and B<--colorize> or/and
 B<--tile> or/and B<--add-border> or B<--cde-sky> or B<--show-xcolors>
 or B<--show-xcolors-set> or B<--show-color-info> color or B<--help>
 or B<--version>
@@ -1937,7 +1963,7 @@ The aim of this script is to build images to be used by fvwm-themes.
 
 =head2 Convert Images to XPM Images
 
-fvwm-themes-images can convert images in various format 
+fvwm-themes-images can convert images in various format
 (especially PNG GNOME icons) into XPM images of various sizes. This
 use ImageMagick plus some internal XPM manipulations (to get
 better results). For example, if you run:
@@ -1949,7 +1975,7 @@ in the GNOME images directory will be converted into 48x48 and 16x16
 XPM icons under ~/tr-images (if GNOME is not found the
 images in /usr/share/pixmaps will be converted). To control the
 result of the conversion you can use the --threshold
-and --magick-colors option below. If the result is very very bad you must use 
+and --magick-colors option below. If the result is very very bad you must use
 the --magick-bpp option.
 
 You can also convert an individual images by using the --in-file and
@@ -1959,11 +1985,11 @@ You can also convert an individual images by using the --in-file and
 
 fvwm-themes-images can perform other transformations (which do not require
 ImageMagick). You can colorize, rotate, add border and tile an XPM
-images. These operations can be done together (and with "convert") 
-for all images in a directory or for an individual image. 
-For example, if you want blue/red mirrored gnome icons tiled with 
-a-48x48-tile.xpm for 48x48 icons and tiled with a-16x16-tile.xpm for 
-16x16 icons and with a yellow border of 5 pixels for 48x48 icons and of 
+images. These operations can be done together (and with "convert")
+for all images in a directory or for an individual image.
+For example, if you want blue/red mirrored gnome icons tiled with
+a-48x48-tile.xpm for 48x48 icons and tiled with a-16x16-tile.xpm for
+16x16 icons and with a yellow border of 5 pixels for 48x48 icons and of
 2 pixels for 16x16 icons just run fvwm-themes-images with the following
 options :o)
 
@@ -1980,16 +2006,16 @@ fvwm-themes-images can colorize an XPM image (or a family of images
 in a directory). The main aim of "colorize" is to produce an infinite
 number of backgrounds with only one xpm. For examples:
 
-	fvwm-themes-images --colorize --colorize-colors black:red \ 
+	fvwm-themes-images --colorize --colorize-colors black:red \
 	--trans-color yellow --in-file My.xpm --set-background
 
 will tile your root window with an XPM build from My.xpm, such that
-the darkest pixels in My.xpm are replaced by black pixels, the lightest 
+the darkest pixels in My.xpm are replaced by black pixels, the lightest
 pixels are replaced by red pixels, the pixels in between are
 interpolated between black and red and the transparent pixels are
 replaced by yellow pixels. Moreover, you can use more than 2 colors
-and some options allows you to control the interpolation. 
-You can also rotate, tile and borderize your XPM. 
+and some options allows you to control the interpolation.
+You can also rotate, tile and borderize your XPM.
 By default, fvwm-themes-images use xpmroot as "background
 program" you can specify an other program with the --set-back-prog
 option, e.g., if you want to use xv just add the option
@@ -2001,16 +2027,16 @@ is saved in /tmp/$USER-ft-back.xpm.
 
 =head2 CDE-SKY
 
-fvwm-themes-images can sets the root display to a gradient pattern like 
-CDE has. CDE has an option to display a gradient on the background, 
+fvwm-themes-images can set the root display to a gradient pattern like
+CDE does. CDE has an option to display a gradient on the background,
 which consists of a repeated pattern, but along the color
 gradient, the color of the pattern varies. Try:
 
 	fvwm-themes-images --cde-sky --sky-colors \
 	turquoise:darkblue --set-background
 
-in this case the default pattern file is used 
-($FT_DATADIR/themes/cde/background/pattern). A pattern file must contain a 
+in this case the default pattern file is used
+($FT_DATADIR/themes/cde/background/pattern). A pattern file must contain a
 rectangular pattern consisting of +es and -es like this:
 
 	+++++
@@ -2018,7 +2044,7 @@ rectangular pattern consisting of +es and -es like this:
 	-+-+-
 	-----
 
-and nothing else. This pattern is painted repeatedly over the 
+and nothing else. This pattern is painted repeatedly over the
 screen. However, the colors change in the y direction accordingly
 with the --sky-colors and --sky-comp options. fvwm-themes-images
 can generate some pattern. If you want a regular gradient add the
@@ -2028,7 +2054,7 @@ If you want an horizontal gradient just rotate: --rotate 90.
 You can also control the gradient computation. Try: --pattern-type
 square:50 --sky-comp c for a chess like background, --pattern-type
 altern:50 --sky-comp c for a band background, --pattern-type 1
---sky-comp r for an irregular gradient, and --pattern-type 1 
+--sky-comp r for an irregular gradient, and --pattern-type 1
 --sky-comp t for an horrible background.
 Note that if your sky contains a lot of coulours you can speed a
 lot the construction of you sky by using the --be-fast option
@@ -2036,20 +2062,20 @@ lot the construction of you sky by using the --be-fast option
 
 =head2 COLORS
 
-When giving colors to fvwm-themes-image, you can use X colors name 
-(blue, turquoise, ...etc.), 8bits hexadecimal number 
+When giving colors to fvwm-themes-image, you can use X colors name
+(blue, turquoise, ...etc.), 8bits hexadecimal number
 (#0000ff, #40e0d0, ...etc.), 16bits  hexadecimal number (#00000000ffff,
 #0404e0e0d0d0, ...etc) or an array of 3 decimal numbers between 0 and 255
 ([0,0,255], [64,224,208], ...etc.). All these numbers represent the
 red, green and blue values of the colors. To get the list of your X colors
-which have a name with the corresponding value in 8bits and in an array 
+which have a name with the corresponding value in 8bits and in an array
 of 3 integer just type:
 
 	fvwm-themes-images --show-xcolors | less
 
-if you use hexadecimal numbers you must put your colors between some ".
-Note that if you give colors by numbers, fvwm-themes-images will be
-faster, since if you give color by X name the X rgb.txt will be loaded. 
+if you use hexadecimal numbers like B<#abcdef> in some shells you must put
+these colors in quotes. Note, if you give colors by hexadecimal numbers
+fvwm-themes-images is faster, since rgb.txt should not be loaded.
 
 fvwm-themes-images have some generic ways to create colors. You can
 give to fvwm-themes-images a color of the form:
@@ -2062,18 +2088,18 @@ such a color fvwm-themes-images compute for you the "type" color
 of the "color". To see the result of these computations for
 all the colors which have name try:
 
-	fvwm-themes-images --show-xcolors-set | less
+	fvwm-themes-images --show-xcolorsets | less
 
 for any individual color type:
 
-	fvwm-themes-images --show-color_info color
+	fvwm-themes-images --show-color-info color
 
 You can enter random alone, this try to produce a random color. The only
 type which does not have a clear meaning is "top". top may have an integer
 between 0 and 255 after it (default is 255). top255 will purify your
 color as top0 will destroy it completely to black. Typically, top255blue
 will give blue, top255darkblue will give blue, top50blue will give a
-very dark blue. The top type (without integer argument) is used in a 
+very dark blue. The top type (without integer argument) is used in a
 special way with the --colorize-colors option: if you want to colorize
 an XPM with "color" as a "center color" try the following:
 
@@ -2093,14 +2119,14 @@ B<--version> - show the version and exit
 
 B<--in-dir> dir - The input directory. Default is the working directory
 of the shell that will run fvwm-themes-images. You can give either a complete
-path or a relative path (relative to the working directory). 
-With the --gnome option fvwm-themes-images will try to find the GNOME icons 
+path or a relative path (relative to the working directory).
+With the --gnome option fvwm-themes-images will try to find the GNOME icons
 directory, if GNOME is not found the default is /usr/share/pixmaps.
 
 B<--out-dir> dir - The main directory for output the images. Default
-is $HOME/tr-images and $FT_DATADIR/tr-images where $FT_DATADIR 
+is $HOME/tr-images and $FT_DATADIR/tr-images where $FT_DATADIR
 is the fvwm-themes installation directory with the --site option.
-You can give either a complete path or a relative path (relative 
+You can give either a complete path or a relative path (relative
 to the working directory).
 
 B<--in-file> file - input file relatively to the --in-dir option
@@ -2120,14 +2146,14 @@ useful for example after you have installed some new GNOME applications
 and you do not want to rebuild all your xpm icons, with --update only
 the new icons are builded.
 
-B<--gnome> imply --convert, --postfix gnome, and try to find the GNOME icons 
-directory to define the --in-dir, if GNOME is not found --in-dir is set 
-to /usr/share/pixmaps 
+B<--gnome> imply --convert, --postfix gnome, and try to find the GNOME icons
+directory to define the --in-dir, if GNOME is not found --in-dir is set
+to /usr/share/pixmaps
 
 B<--ft-install> equivalent to --gnome (so --convert) --site --update
 --create-symlink
 
-B<--create-symlink> A:B - where A and B are either 48x48, 16x16, 32x32. 
+B<--create-symlink> A:B - where A and B are either 48x48, 16x16, 32x32.
 Create symbolic link from $FT_DATADIR/images/norm-postfix to OUT/A-postfix
 and from $FT_DATADIR/images/mini-postfix to OUT/B-postfix. Where postfix
 is defined with the --postfix option and where OUT is the directory
@@ -2142,7 +2168,7 @@ case the default is 0.
 B<--convert> - Will cause fvwm-themes-images to convert all images
 in the directory specified by the --in-dir options into XPM icons
 of various sizes. By default, XPM icons of sizes 48x48 and 16x16
-are build in dir/48x48 and dir/16x16 where dir is he directory specified 
+are build in dir/48x48 and dir/16x16 where dir is he directory specified
 by the --out-dir option
 
 B<--[no]trans-filter> - Apply or not the internal "transparent filter".
@@ -2151,8 +2177,8 @@ Default is --trans-filter and this filter can be controlled with the
 When ImageMagick convert a PNG image into an XPM one the result is not
 perfect (or I have not found the good procedure). The problems is that
 a PNG image has a "matte" channel which represent the degree of
-transparency/opacity of the images. On the other hands, an XPM image has 
-a binary matte channel (a pixel is either opaque or transparent). 
+transparency/opacity of the images. On the other hands, an XPM image has
+a binary matte channel (a pixel is either opaque or transparent).
 The "transparent filter" extract the matte channel (using ImageMagick),
 then "threshold" it (using again ImageMagick) to get  the "good"
 transparency zone which is applied to the XPM image using an internal
@@ -2170,17 +2196,17 @@ black background). Default is 70.
 
 B<--postfix> str - add "-str" to the name of the output directories of the
 converted images: OUTDIR/48x48-str, OUTDIR/16x16-str ...etc.
- 
+
 B<--[no]build-48x48> - build or not the 48x48 XPM icons. Default is
 --build-48x48.
 
 B<--[no]build-16x16> - build or not the 16x16 XPM icons. Default is
 --build-16x16.
 
-B<--[no]build-56x56> - build or not the 56x56 XPM icons (under 56x56/). 
+B<--[no]build-56x56> - build or not the 56x56 XPM icons (under 56x56/).
 Default is --nobuild-56x56.
 
-B<--[no]build-32x32> - build or not the 32x32 XPM icons (under 32x32/). 
+B<--[no]build-32x32> - build or not the 32x32 XPM icons (under 32x32/).
 Default is --nobuild-32x32.
 
 B<--[no]build-tiles> - build or not the tiles XPM icons from the
@@ -2190,11 +2216,11 @@ tiles sub directory of the --in-dir option (under tiles/). Default is
 B<--preserve> - Set to no all the 5 previous options and convert without
 size modifications under the out-dir.
 
-B<--size-48x48> geometry - Set the size of the 48x48 XPM icons via an 
-ImageMagick size geometry. See the --size option of "man convert". 
+B<--size-48x48> geometry - Set the size of the 48x48 XPM icons via an
+ImageMagick size geometry. See the --size option of "man convert".
 Default is 48x48.
 
-B<--size-16x16> geometry - As above for the 16x16 XPM icons. 
+B<--size-16x16> geometry - As above for the 16x16 XPM icons.
 Default is 17x17 :)
 
 B<--size-56x56> geometry - As above for the 56x56 XPM icons. Default is 56x56.
@@ -2214,7 +2240,7 @@ B<--add-border-32x32> +x+y:color - As above for the 32x32 XPM icons.
 
 B<--add-border-tile> +x+y:color - As above for the tiles XPM icons.
 
-B<--tile-48x48> rule:file - tile the 48x48 XPM icons with the xpm file 
+B<--tile-48x48> rule:file - tile the 48x48 XPM icons with the xpm file
 following the rule "rule". See the ---tile option for details.
 
 B<--tile-16x16> rule:file - As above for the 16x16 XPM icons.
@@ -2230,7 +2256,7 @@ B<--tile-tiles> rule:file - As above for the tiles XPM icons.
 B<--magick-colors> value - Number of colors used. Default is 256. If
 you use X under 16bpp (xdpyinfo) you can use for example 65536.
 
-B<--magick-space> value - Where value must be GRAY, OHTA, RGB, Transparent, 
+B<--magick-space> value - Where value must be GRAY, OHTA, RGB, Transparent,
 XYZ, YCbCr, YIQ, YPbPr, YUV, or CMYK. See the -colorspace option of
 ImageMagick (man convert). Default is Transparent.
 
@@ -2247,7 +2273,7 @@ to 16. This is very important for the --threshold option above.
 =head2 Other Simple Transformations
 
 B<--tile> [rule:][+x+y:]file_or_color - where rule can be "expand",
-"center", "color" or nothing, where x and y are integers 
+"center", "color" or nothing, where x and y are integers
 and where file_or_color is a
 xpm tile file or a color in the "color" case. Without "rule" the
 xpm file will be tiled as usual on the background of the image.
@@ -2270,7 +2296,7 @@ is the degree of the rotation the "m" says to also mirror the image.
 =head2 Colorize
 
 B<--colorize-colors> - Colorize an XPM image such that
-the darkest pixels are replaced by pixels with the first color in the 
+the darkest pixels are replaced by pixels with the first color in the
 color list below and the lightest pixels are replaced by pixels with
 the last color in the list below. The pixels in between are
 interpolated between these two colors and the colors in between.
@@ -2281,7 +2307,7 @@ XPM is too contrasted you can try the "--colorize-rule min" option
 (or change the color list).
 
 B<--colorize-colors> color1:color2... - list of colors for colorization.
-The top type (without integer argument) is used in a 
+The top type (without integer argument) is used in a
 special way here. If you use top with the first color and/or the last
 color fvwm-themes-images will try to find the good integer values
 to top to do so that these colors are "centred" in the colorization.
@@ -2293,19 +2319,19 @@ Type can be "l" for linear (this is the default), "r" for perturbed (as
 linear but the colors obtained is randomly perturbed), "c" for
 circular (the colors in the list are used alternatively), "t" for totally
 random (then the list of colors are ignored and the pixels are colorized
-randomly ... this is funny). 
+randomly ... this is funny).
 
 B<--colorize-rule> value - value can be max or min, default is max. max
 does nothing. min change the way of the colorization: black is "mapped"
 to the first color in the list and white  is "mapped" to the last color
-in the list. 
+in the list.
 
 =head2 CDE SKY
 
-B<--cde-sky> -  Create a "gradient" XPM which consists of a repeated 
+B<--cde-sky> -  Create a "gradient" XPM which consists of a repeated
 pattern, but along the color gradient, the color of the pattern varies.
-A pattern file must contain a rectangular pattern consisting of +es and 
--es. This pattern is painted repeatedly over the screen. 
+A pattern file must contain a rectangular pattern consisting of +es and
+-es. This pattern is painted repeatedly over the screen.
 However, the colors change in the y direction accordingly
 with the --sky-colors and --sky-comp options. By default, the pattern
 used is $FT_DATADIR/themes/cde/background/pattern. You can use one
@@ -2351,7 +2377,7 @@ On the other hands, the XPM file builded will be larger.
 B<--set-background> - Set the background with the XPM file produced.
 Of course, this work only for a "transformation" which produce
 only one file (I.e., with the --in-file without --convert or with
---cde-sky).  
+--cde-sky).
 
 B<--set-back-prog> exec - to execute "exec out.xpm" to set the background.
 Default is xpmroot.
@@ -2367,14 +2393,14 @@ B<--show-color-info color> - show full informations for the specified color
 =head1 AUTHORS
 
 Olivier Chapuis <olivier.chapuis@free.fr> (general design, convert, simple
-transformations, internal xpm library, interpolation, amelioration in 
-"colorize" and cde-sky). 22 July 2000. 
+transformations, internal xpm library, interpolation, amelioration in
+"colorize" and cde-sky). 22 July 2000.
 
 Jos van Riswick  <josvanr@xs4all.nl> (Colorize, cde-sky, numerous
 functions in the colors "library").
 
-The starting point of this script is the fvwm2gnome script written 
-by Clarence Smith, Jr 
+The starting point of this script is the fvwm2gnome script written
+by Clarence Smith, Jr
 <csmith@staticbomb.com> and Jer Warren <jer@digitalaccess.net>,
 where ImageMagick is used to convert GNOME icons into 20x20 XPM icons.
 

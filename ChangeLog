@@ -1,3 +1,23 @@
+2000-07-29  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in (escapeMenuName, getOwnThemeSubMenusRc):
+	Fix escaping of & in menu labels, I think it is a bug in fvwm.
+
+	* bin/fvwm-themes-images.in:
+	I would really like to check all algorithms, but have no time now.
+	Highlight algorithms are bad. Must support rgb:RRRR/GGGG/BBBB format.
+	s/--show-xcolorset/--show-xcolorsets/, we show many (all) colorsets.
+	Removed traling spaces/tabs, s/size{'tile'}/size{'tiles'}/,
+	Some small changes, spelling and comments.
+	I use a space between function name and args ($) to distinguish between
+	a call and a definition: find 'funcName '. Also in perlsub(1) examples.
+
+	* themes/multichoice/theme.cfg:
+	s/Motif/Sky/
+
+	* Makefile.am:
+	don't include CVS dirs into distribution
+
 2000-07-28  migo  <migo@homemail.com>
 
 	* themes/multichoice/background/6:

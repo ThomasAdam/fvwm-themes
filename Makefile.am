@@ -5,7 +5,7 @@ AUTOMAKE_OPTIONS = foreign
 SUBDIRS = bin scripts forms
 FT_DATA_SUBDIRS = themes images sounds
 FT_MODULE_SUBDIRS = 
-EXTRA_DIST = doc themes images.tar.gz sounds.tar.gz
+EXTRA_DIST = doc images.tar.gz sounds.tar.gz
 
 install-data-local:
 	FT_DATADIR=@FT_DATADIR@
@@ -27,7 +27,7 @@ install-data-local:
 	mv -f $(SETTINGS_FILE).tmp $(SETTINGS_FILE)
 
 	$(bindir)/fvwm-themes-config --site --reset
-#	# I see no reason to remove Popup / with MissingSubmenuFunc.
+#	# I see no reason to remove Popup ~ with MissingSubmenuFunc.
 #	$(bindir)/fvwm-themes-menuapp --site --build-menus --remove-popup
 	$(bindir)/fvwm-themes-menuapp --site --build-menus
 
@@ -44,23 +44,6 @@ install-data-local:
 	@echo ==============================================================================
 	@echo
 
-## Just a remainder of the old user-home installer
-##	FVWM_HOME = $${FVWM_USERHOME-$$HOME/.fvwm}
-##	DATE_STR  = `date +%Y%m%d-%H%M%S`
-
-##	test -d $(FVWM_HOME) || mkdir $(FVWM_HOME)
-##		test -d $(FVWM_HOME)/$$dir-old && mv $(FVWM_HOME)/$$dir-old $(FVWM_HOME)/$$dir-old-$(DATE_STR) || true; \
-##		test -d $(FVWM_HOME)/$$dir && -n "`ls $(FVWM_HOME)/$$dir | grep -v current`" && ( \
-##			mv $(FVWM_HOME)/$$dir $(FVWM_HOME)/$$dir-old \
-##		) || true; \
-##		test -d $(FVWM_HOME)/$$dir || mkdir $(FVWM_HOME)/$$dir; \
-##	[ -d $(FVWM_HOME)/themes-old/personal ] && (tar cpf - $(FVWM_HOME)/themes-old/personal | (cd "$(FVWM_HOME)" && tar xfBp -)) || true
-##	env FVWM_USERHOME=$(FVWM_HOME) $(bindir)/fvwm-themes-config --reset
-##	[ -d $(FVWM_HOME)/themes/personal ] && env FVWM_USERHOME=$(FVWM_HOME) $(bindir)/fvwm-themes-config --use personal || true
-
-##		test -d $(FVWM_HOME)/$$dir && mv $(FVWM_HOME)/$$dir $(FVWM_HOME)/$$dir-$(DATE_STR) || true; \
-##		test -d $(FVWM_HOME)/$$dir-old && mv $(FVWM_HOME)/$$dir-old $(FVWM_HOME)/$$dir || true; \
-
 uninstall-local:
 	FT_DATADIR=@FT_DATADIR@
 
@@ -74,6 +57,11 @@ uninstall-local:
 	@echo "Don't forget to come back to fvwm-themes later. :-)"
 	@echo ==============================================================================
 	@echo
+
+dist-hook:
+	cp -rpd $(srcdir)/themes $(distdir)
+	find $(distdir)/themes -name CVS -exec rm -r {} \; 2>/dev/null || true
+
 
 ## ---------------------------------------------------------------------------
 ## If we want bzip2 archives too (dist2, distcheck2, distclean2)
