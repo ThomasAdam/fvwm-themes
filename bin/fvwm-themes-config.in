@@ -1931,7 +1931,7 @@ DestroyFunc FuncFvwmMinimalThemesConfigAndUpdate
 AddToFunc   FuncFvwmMinimalThemesConfigAndUpdate
 + I FvwmScript FvwmScript-NoteMessage "Minimal theme switching"
 + I Wait FvwmScript-NoteMessage
-# The stop function is executed in the begining of themes-rc-3
+# The stop functions are executed in the begining of themes-rc-3
 + I PipeRead `@$scriptFile@ $0 --pipe`
 + I Read @$rcFile3@
 + I FuncFvwmStartAllHooks
