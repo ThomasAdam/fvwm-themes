@@ -8,6 +8,9 @@
 	* debian/Makefile.am:
 	some improvements
 
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	workaround for annoying "XTerm icon is empty" bug
+
 2003-10-27  migo  <migo@homemail.com>
 
 	* themes/osx/**:

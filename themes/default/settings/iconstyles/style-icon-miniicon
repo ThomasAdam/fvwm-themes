@@ -7,7 +7,6 @@
 Style * EWMHDonateIcon, EWMHDonateMiniIcon
 #Style Eterm* IconOverride
 Style * IconOverride
-Style XTerm NoActiveIconOverride  # enable: xterm +ai
 
 ###
 #  Known applications
@@ -469,3 +468,6 @@ Style "ktron"                  Icon norm/game-action.xpm,      MiniIcon mini/gam
 Style "ktetris"                Icon norm/game.xpm,             MiniIcon mini/game.xpm
 Style "ktuberling"             Icon norm/game.xpm,             MiniIcon mini/game.xpm
 Style "kwin4"                  Icon norm/game-logic.xpm,       MiniIcon mini/game-logic.xpm
+
+# this should be after XTerm Icon, otherwise Icon is not used on reload (bug?)
+Style XTerm NoActiveIconOverride  # enable: xterm +ai
