@@ -1,3 +1,33 @@
+2001-03-17  olicha <olivier.chapuis@free.fr>
+
+	* images.tar.gz:
+	Use wm-icons {16x16,48x48}-general 21:00 GMT
+	I've not removed the old names: there are symlinks, I think
+	that we can remove it ...
+	
+	* themes/default/menus:
+	* themes/default/menus-user:
+	* themes/default/settings/iconstyles/wm-icons:menu:
+	* themes/default/settings/iconstyles/style-icon-miniicon:
+	* themes/default/settings/autoraise/modules:
+	* themes/default/settings/session-manager/*:
+	* themes/default/settings/sound-player/*:
+	* themes/cde/colors/main:
+	* themes/luthien/colors/main:
+	Updated to ww-icons version 0.3.0, need some works in particular
+	I've not touched to fvwm-themes-config.in and the modules themes.
+	Some times I made some choice that are disputable.
+
+	* bin/fvwm-themes-images.in:
+	Add option -kde2Hi. The meaning/name of this option will change
+	soon
+	
+	* scripts/FvwmScript-ColorSelector:
+	Better errors handling
+
+	* scripts/FvwmScript-Menus:
+	Change the name of the window
+
 2001-03-14  migo  <migo@homemail.com>
 
 	* doc/FAQ:

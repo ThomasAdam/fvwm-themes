@@ -3,31 +3,31 @@
 
 DestroyMenu MenuFvwmShells
 AddToMenu   MenuFvwmShells "Shells" Title
-+ "&Xterm	default%menu/xterm.xpm%" Exec exec xterm  -fg $[fg.cs30] -bg $[bg.cs30]
-+ "Xterm/r&oot	default%menu/xterm.xpm%" Exec exec xterm  -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
-+ "&NXterm	default%menu/xterm.xpm%" Exec exec nxterm -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Rxvt	default%menu/xterm.xpm%" Exec exec rxvt   -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Eterm	default%menu/xterm.xpm%" Exec exec Eterm
-+ "X&iterm	default%menu/xterm.xpm%" Exec exec xiterm -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Aterm	default%menu/xterm.xpm%" Exec exec aterm -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Gnome Term	default%menu/xterm.xpm%" Exec exec gnome-terminal --foreground=$[fg.cs30] --background=$[bg.cs30]
-+ "&Kvt	default%menu/xterm.xpm%"         Exec exec kvt -vt_fg $[fg.cs30] -vt_bg $[bg.cs30]
-+ "&Konsole	default%menu/xterm.xpm%" Exec exec konsole
-+ "&Dtterm	default%menu/xterm.xpm%" Exec exec /usr/dt/bin/dtterm -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Xterm	default%menu/terminal.xpm%" Exec exec xterm  -fg $[fg.cs30] -bg $[bg.cs30]
++ "Xterm/r&oot	default%menu/terminal-special.xpm%" Exec exec xterm  -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
++ "&NXterm	default%menu/terminal.xpm%" Exec exec nxterm -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Rxvt	default%menu/terminal.xpm%" Exec exec rxvt   -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Eterm	default%menu/terminal.xpm%" Exec exec Eterm
++ "X&iterm	default%menu/terminal.xpm%" Exec exec xiterm -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Aterm	default%menu/terminal.xpm%" Exec exec aterm -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Gnome Term	default%menu/terminal.xpm%" Exec exec gnome-terminal --foreground=$[fg.cs30] --background=$[bg.cs30]
++ "&Kvt	default%menu/terminal.xpm%"         Exec exec kvt -vt_fg $[fg.cs30] -vt_bg $[bg.cs30]
++ "&Konsole	default%menu/terminal.xpm%" Exec exec konsole
++ "&Dtterm	default%menu/terminal.xpm%" Exec exec /usr/dt/bin/dtterm -fg $[fg.cs30] -bg $[bg.cs30]
 + "" Nop
-+ "&Xterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec xterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
-+ "Xterm/r&oot	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec xterm  -n root@$HOST  -T root@$HOST  -g 80x40 -sb +sk +si -sl 4096 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
-+ "&NXterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec nxterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Rxvt 	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec rxvt   -n $USER@$HOST -T $USER@$HOST -g 80x40 --loginShell -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Eterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec Eterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 --login-shell --font 7x14 --bold-font 7x14bold
-+ "X&iterm 	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec xiterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Aterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec aterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
-+ "&Gnome Term	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec gnome-terminal --title=$USER@$HOST --geometry=80x40 --login --font=7x14 --foreground=$[fg.cs30] --background=$[bg.cs30]
-+ "&Kvt	80x40 (7x14 font)%menu/xterm.xpm%"         Exec exec kvt    -n $USER@$HOST -T $USER@$HOST -vt_geometry 80x40 -sl 4096 -ls -vt_font 7x14 -vt_fg $[fg.cs30] -vt_bg $[bg.cs30]
-+ "&Konsole	80x40%menu/xterm.xpm%"             Exec exec konsole -nowelcome -sl 4096 -ls -vt_sz 80x40
-+ "&Dtterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec /usr/dt/bin/dtterm -n $USER@$HOST -T $USER@$HOST -sl 4096 -ls -g 80x40 -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Xterm	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec xterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "Xterm/r&oot	80x40 (7x14 font)%menu/terminal-special.xpm%" Exec exec xterm  -n root@$HOST  -T root@$HOST  -g 80x40 -sb +sk +si -sl 4096 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
++ "&NXterm	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec nxterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Rxvt 	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec rxvt   -n $USER@$HOST -T $USER@$HOST -g 80x40 --loginShell -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Eterm	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec Eterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 --login-shell --font 7x14 --bold-font 7x14bold
++ "X&iterm 	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec xiterm -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Aterm	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec aterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "&Gnome Term	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec gnome-terminal --title=$USER@$HOST --geometry=80x40 --login --font=7x14 --foreground=$[fg.cs30] --background=$[bg.cs30]
++ "&Kvt	80x40 (7x14 font)%menu/terminal.xpm%"         Exec exec kvt    -n $USER@$HOST -T $USER@$HOST -vt_geometry 80x40 -sl 4096 -ls -vt_font 7x14 -vt_fg $[fg.cs30] -vt_bg $[bg.cs30]
++ "&Konsole	80x40%menu/terminal.xpm%"             Exec exec konsole -nowelcome -sl 4096 -ls -vt_sz 80x40
++ "&Dtterm	80x40 (7x14 font)%menu/terminal.xpm%" Exec exec /usr/dt/bin/dtterm -n $USER@$HOST -T $USER@$HOST -sl 4096 -ls -g 80x40 -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
 + "" Nop
-+ "Remote login...%menu/xterm.xpm%" FvwmForm FvwmForm-Rlogin
++ "Remote login...%menu/terminal-remote.xpm%" FvwmForm FvwmForm-Rlogin
 
 
 # ----------------------------------------------------------------------------
@@ -35,22 +35,22 @@ AddToMenu   MenuFvwmShells "Shells" Title
 
 DestroyMenu MenuFvwmSystem
 AddToMenu   MenuFvwmSystem "System" Title
-+ "&Top%menu/information.xpm%"		FuncFvwmRunInXterm "Top" top
-+ "TK &ps%menu/information.xpm%"	Exec exec tkps
-+ "X&Load%menu/information.xpm%"	Exec exec xload
-+ "X&osview%menu/information.xpm%"	Exec exec xosview
-+ "&XSysStats%menu/information.xpm%"	Exec exec xsysstats
-+ "&TrafShow%menu/information.xpm%"	FuncFvwmRunInXterm "trafshow" "trafshow -S -s 2 -u 1"
-+ "&xconsole%menu/xterm.xpm%"           Exec exec xconsole
++ "&Top%menu/monitoring.xpm%"		FuncFvwmRunInXterm "Top" top
++ "TK &ps%menu/monitoring.xpm%"		Exec exec tkps
++ "X&Load%menu/monitoring.xpm%"		Exec exec xload
++ "X&osview%menu/monitoring.xpm%"	Exec exec xosview
++ "&XSysStats%menu/monitoring.xpm%"	Exec exec xsysstats
++ "&TrafShow%menu/monitoring.xpm%"	FuncFvwmRunInXterm "trafshow" "trafshow -S -s 2 -u 1"
++ "&xconsole%menu/terminal.xpm%"        Exec exec xconsole
 + "" Nop
-+ "&Midnight-Commander%menu/folders.xpm%" FuncFvwmRunInXterm "Midnight-Commander" "mc -x"
-+ "File Runner%menu/folders.xpm%"	Exec exec fr
-+ "xfm%menu/folders.xpm%"		Exec exec xfm
-+ "xftree%menu/folders.xpm%"		Exec exec xftree
-+ "gmc%menu/folders.xpm%"		Exec exec gmc
-+ "kfm%menu/folders.xpm%"		Exec exec kfmclient openURL $HOME
-+ "Dtfile%menu/folders.xpm%"		Exec exec /usr/dt/bin/dtfile 
-+ "Xfilemanager%menu/folders.xpm%"	Exec exec xfilemanager
++ "&Midnight-Commander%menu/file-manager.xpm%" FuncFvwmRunInXterm "Midnight-Commander" "mc -x"
++ "File Runner%menu/file-manager.xpm%"	Exec exec fr
++ "xfm%menu/file-manager.xpm%"		Exec exec xfm
++ "xftree%menu/file-manager.xpm%"	Exec exec xftree
++ "gmc%menu/file-manager.xpm%"		Exec exec gmc
++ "kfm%menu/file-manager.xpm%"		Exec exec kfmclient openURL $HOME
++ "Dtfile%menu/file-manager.xpm%"	Exec exec /usr/dt/bin/dtfile 
++ "Xfilemanager%menu/file-manager.xpm%"	Exec exec xfilemanager
 + "" Nop
 + "Xsession log%menu/viewer.xpm%"	FuncFvwmViewFileTail "Xsession Log" "$HOME/.xsession-errors"
 + "System log%menu/viewer.xpm%"		FuncFvwmViewFileTail "System Log" "/var/log/messages"
@@ -74,16 +74,16 @@ AddToMenu   MenuFvwmSystem "System" Title
 DestroyMenu MenuFvwmScreenSaver
 AddToMenu   MenuFvwmScreenSaver "Screen Saver" Title
 + "Screen Saver%menu/display.xpm%" Exec xlock -nolock -nice 19 -mode random
-+ "Screen Lock%menu/wm-lock.xpm%"  Exec xlock -nice 19 -mode random
++ "Screen Lock%menu/lock.xpm%"  Exec xlock -nice 19 -mode random
 + "" Nop
 + "Screen Saver Modes%menu/display.xpm%" Popup MenuFvwmScreenSaverModes
-+ "Screen Lock Modes%menu/wm-lock.xpm%"  Popup MenuFvwmScreenLockModes
++ "Screen Lock Modes%menu/lock.xpm%"  Popup MenuFvwmScreenLockModes
 + "" Nop
 + "(Re)start &XscreenSaver%menu/display.xpm%" Exec xscreensaver-command -exit ; exec xscreensaver -no-splash
 + "&Stop XscreenSaver%menu/choice-no.xpm%" Exec exec xscreensaver-command -exit
 + "XscreenSaver &Demo%menu/display.xpm%" Exec xscreensaver-command -exit ; exec xscreensaver; exec xscreensaver-command -demo
 + "" Nop
-+ "&Locked XscreenSaver%menu/wm-lock.xpm%" Exec exec xscreensaver-command -lock
++ "&Locked XscreenSaver%menu/lock.xpm%" Exec exec xscreensaver-command -lock
 + "&Activate XscreenSaver%menu/display.xpm%" Exec exec xscreensaver-command -activate
 
 PipeRead 'fvwm-menu-xlock --name MenuFvwmScreenSaverModes --title "Screen Saver Modes" --icon-item menu/display.xpm --special-first -- -nice 19 -nolock'
@@ -108,30 +108,30 @@ DestroyModuleConfig FvwmForm-Restart: *
 
 DestroyMenu MenuFvwmWindowManager
 AddToMenu   MenuFvwmWindowManager "Window Managers" Title
-+ "&fvwm-themes-start"	Restart fvwm-themes-start
-+ "&fvwm1"		Restart fvwm -s
-+ "&fvwm95"		Restart fvwm95 -s
-+ "&AnotherLevel"	Restart AnotherLevel
-+ "&AnotherLevelUp"	Restart AnotherLevelUp
++ "&fvwm-themes-start%menu/windows.xpm%"	Restart fvwm-themes-start
++ "&fvwm1%menu/windows.xpm%"			Restart fvwm -s
++ "&fvwm95%menu/windows.xpm%"			Restart fvwm95 -s
++ "&AnotherLevel%menu/windows.xpm%"		Restart AnotherLevel
++ "&AnotherLevelUp%menu/windows.xpm%"		Restart AnotherLevelUp
 + "" Nop
-+ "&afterstep"		Restart afterstep
-+ "&blackbox" 		Restart blackbox
-+ "&enlightenment"	Restart enlightenment
-+ "&flwm"		Restart flwm
-+ "&icewm"		Restart icewm
-+ "&mwm"		Restart mwm
-+ "&olvwm"		Restart olvwm
-+ "&sawfish"		Restart sawfish
-+ "&sawmill"		Restart sawmill
-+ "&twm"		Restart twm
-+ "&uwm"		Restart uwm
-+ "&wm2"		Restart wm2
-+ "&wmaker"		Restart wmaker
-+ "&wmx"		Restart wmx
-+ "&xfwm"		Restart xfwm
++ "&afterstep%menu/windows.xpm%"		Restart afterstep
++ "&blackbox%menu/windows.xpm%" 		Restart blackbox
++ "&enlightenment%menu/windows.xpm%"		Restart enlightenment
++ "&flwm%menu/windows.xpm%"			Restart flwm
++ "&icewm%menu/windows.xpm%"			Restart icewm
++ "&mwm%menu/windows.xpm%"			Restart mwm
++ "&olvwm%menu/windows.xpm%"			Restart olvwm
++ "&sawfish%menu/windows.xpm%"			Restart sawfish
++ "&sawmill%menu/windows.xpm%"			Restart sawmill
++ "&twm%menu/windows.xpm%"			Restart twm
++ "&uwm%menu/windows.xpm%"			Restart uwm
++ "&wm2%menu/windows.xpm%"			Restart wm2
++ "&wmaker%menu/windows.xpm%"			Restart wmaker
++ "&wmx%menu/windows.xpm%"			Restart wmx
++ "&xfwm%menu/windows.xpm%"			Restart xfwm
 + "" Nop
-+ "Just &xterm"         Restart xterm
-+ "More&..."            FvwmForm FvwmForm-Restart
++ "Just &xterm%menu/terminal.xpm%"         	Restart xterm
++ "More&...%menu/windows.xpm%"            	FvwmForm FvwmForm-Restart
 
 # ----------------------------------------------------------------------------
 # ---------- Programs
@@ -141,32 +141,32 @@ AddToMenu   MenuFvwmPrograms "   Programs   " Title
 + "&CDE Menu%menu/unknown.xpm%"		Popup MenuFvwmCDE
 + "" Nop
 + "&Utilities%menu/utility.xpm%"	Popup MenuFvwmUtilities
-+ "&Applications%menu/desktop.xpm%"	Popup MenuFvwmApplications
-+ "&Science%menu/calculator.xpm%"	Popup MenuFvwmScience
++ "&Applications%menu/program.xpm%"	Popup MenuFvwmApplications
++ "&Science%menu/science.xpm%"		Popup MenuFvwmScience
 + "&Editors%menu/editor.xpm%"		Popup MenuFvwmEditors
 + "&Internet%menu/www.xpm%"		Popup MenuFvwmInternet
-+ "&Graphics%menu/image-viewer.xpm%"	Popup MenuFvwmGraphics
-+ "&Multimedia%menu/sound.xpm%"		Popup MenuFvwmMultimedia
-+ "&Games%menu/game-chess.xpm%"		Popup MenuFvwmGames
-+ "&Amusements%menu/game.xpm%"		Popup MenuFvwmAmusements
++ "&Graphics%menu/graphics.xpm%"	Popup MenuFvwmGraphics
++ "&Multimedia%menu/multimedia.xpm%"	Popup MenuFvwmMultimedia
++ "&Games%menu/game.xpm%"		Popup MenuFvwmGames
++ "&Amusements%menu/amusement.xpm%"	Popup MenuFvwmAmusements
 
 DestroyMenu MenuFvwmCDE
 AddToMenu   MenuFvwmCDE
-+ "&Applications Manager%menu/unknown.xpm%" Exec exec /usr/dt/bin/dtaction Dtappmgr
-+ "&Terminal%menu/xterm.xpm%"          Exec exec /usr/dt/bin/dtterm
-+ "&File Manager%menu/folder.xpm%"     Exec exec /usr/dt/bin/dtfile
-+ "&Trash Can%menu/folder.xpm%"        Exec exec /usr/dt/bin/dtaction Dttrash
-+ "Text &Editor%menu/editor.xpm%"      Exec exec /usr/dt/bin/dtpad
-+ "Desktop &Help%menu/help.xpm%"       Exec exec /usr/dt/bin/dthelpview -helpVolume browser
-+ "Man Pages%menu/help.xpm%"           Exec exec /usr/dt/bin/dthelpview -man
-+ "&Mailer%menu/mail.xpm%"             Exec exec /usr/dt/bin/dtmail
-+ "&Calandar%menu/information.xpm"     Exec exec /usr/dt/bin/dtcm
-+ "&Calculator%menu/calculator.xpm%"   Exec exec /usr/dt/bin/dtcalc
-+ "&Icon Editor%menu/image-viewer.xpm%"  Exec exec /usr/dt/bin/dticon
-+ "&Print Manager%menu/information.xpm%" Exec exec /usr/dt/bin/dtprintinfo
-+ "&Styles Manager%menu/utility.xpm%"    Exec exec /usr/dt/bin/dtstyle
++ "&Applications Manager%menu/program.xpm%" Exec exec /usr/dt/bin/dtaction Dtappmgr
++ "&Terminal%menu/terminal.xpm%"	Exec exec /usr/dt/bin/dtterm
++ "&File Manager%menu/file-manager.xpm%" Exec exec /usr/dt/bin/dtfile
++ "&Trash Can%menu/file-manager.xpm%"	Exec exec /usr/dt/bin/dtaction Dttrash
++ "Text &Editor%menu/editor.xpm%"      	Exec exec /usr/dt/bin/dtpad
++ "Desktop &Help%menu/help.xpm%"       	Exec exec /usr/dt/bin/dthelpview -helpVolume browser
++ "Man Pages%menu/help.xpm%"           	Exec exec /usr/dt/bin/dthelpview -man
++ "&Mailer%menu/mail.xpm%"             	Exec exec /usr/dt/bin/dtmail
++ "&Calandar%menu/clock.xpm"     	Exec exec /usr/dt/bin/dtcm
++ "&Calculator%menu/calculator.xpm%"   	Exec exec /usr/dt/bin/dtcalc
++ "&Icon Editor%menu/image-processor.xpm%" Exec exec /usr/dt/bin/dticon
++ "&Print Manager%menu/printing.xpm%" 	Exec exec /usr/dt/bin/dtprintinfo
++ "&Styles Manager%menu/configuration.xpm%" Exec exec /usr/dt/bin/dtstyle
 + "" Nop
-+ "&Exit CDE%menu/wm-quit.xpm%"        Exec exec /usr/dt/bin/dtaction ExitSession
++ "&Exit CDE%menu/quit.xpm%" Exec exec /usr/dt/bin/dtaction ExitSession
 
 DestroyMenu MenuFvwmUtilities
 AddToMenu   MenuFvwmUtilities "Utilities" Title
@@ -179,12 +179,12 @@ AddToMenu   MenuFvwmUtilities "Utilities" Title
 + "&Xdaliclock%menu/clock.xpm%" 	Exec exec xdaliclock
 + "&xfclock%menu/clock.xpm%"		Exec exec xfclock
 + "XFontSel%menu/font.xpm%"		Exec exec xfontsel
-+ "X&ColorSel%menu/unknown.xpm%"	Exec exec xcolorsel
-+ "&Color List%menu/unknown.xpm%"	FuncFvwmViewFile /usr/X11R6/lib/X11/rgb.txt
-+ "Xcolormap%menu/unknown.xpm%"		Exec exec xcolormap
-+ "Xx&gdb%menu/debugger.xpm%"		Exec exec xxgdb
-+ "&Ddd%menu/debugger.xpm%"		Exec exec ddd
-+ "x&apm%menu/unknown.xpm%" 		Exec exec xapm
++ "X&ColorSel%menu/colors.xpm%"		Exec exec xcolorsel
++ "&Color List%menu/colors.xpm%"	FuncFvwmViewFile /usr/X11R6/lib/X11/rgb.txt
++ "Xcolormap%menu/colors.xpm%"		Exec exec xcolormap
++ "Xx&gdb%menu/developement.xpm%"	Exec exec xxgdb
++ "&Ddd%menu/developement.xpm%"		Exec exec ddd
++ "x&apm%menu/monitoring.xpm%" 		Exec exec xapm
 + "&Xclipboard%menu/unknown.xpm%"	Exec exec xclipboard
 + "Xgrab%menu/display.xpm%"		Exec exec xgrab
 + "Calendar%menu/clock.xpm%"		Exec exec ical
@@ -208,14 +208,14 @@ AddToMenu   MenuFvwmApplications "Applications" Title
 DestroyMenu MenuFvwmScience
 AddToMenu   MenuFvwmScience "Science" Title
 + "Thx-1138%menu/calculator.xpm%"	Exec exec thx-1138
-+ "GNUplot%menu/calculator.xpm%"	FuncFvwmRunInXterm "GNUplot" "gnuplot"	
-+ "Scilab%menu/calculator.xpm%"		Exec exec scilab
-+ "Mathematica%menu/calculator.xpm%"	Exec exec mathematica
-+ "Mapel%menu/calculator.xpm%"		Exec exec xmaple
-+ "XaoS%menu/unknown.xpm%" 		Exec exec xaos
-+ "&Fractint%menu/unknown.xpm%"		FuncFvwmRunInXterm "Fractine" "xfracrine"
-+ "Xtide%menu/unknown.xpm%" 		Exec exec xtide
-+ "XEphem%menu/unknown.xpm%" 		Exec exec xephem
++ "GNUplot%menu/science.xpm%"	FuncFvwmRunInXterm "GNUplot" "gnuplot"	
++ "Scilab%menu/science.xpm%"		Exec exec scilab
++ "Mathematica%menu/science.xpm%"	Exec exec mathematica
++ "Mapel%menu/science.xpm%"		Exec exec xmaple
++ "XaoS%menu/science.xpm%" 		Exec exec xaos
++ "&Fractint%menu/science.xpm%"		FuncFvwmRunInXterm "Fractine" "xfracrine"
++ "Xtide%menu/science.xpm%" 		Exec exec xtide
++ "XEphem%menu/science.xpm%" 		Exec exec xephem
 
 DestroyMenu MenuFvwmEditors
 AddToMenu   MenuFvwmEditors "Editors" Title
@@ -246,26 +246,29 @@ AddToMenu   MenuFvwmInternet "Internet" Title
 + "Xmh%menu/mail.xpm%" 			Exec exec xmh
 + "Xfmail%menu/mail.xpm%" 		Exec exec xfmail
 + "" Nop
++ "Slrn%menu/news.xpm%"			FuncFvwmRunInXterm "Slrn" "slrn"
++ "" Nop
 + "&Irc%menu/chat.xpm%"			FuncFvwmRunInXterm "Irc" "irc"
 + "&Tkirc%menu/chat.xpm%"		Exec exec tkirc	
 + "X&chat%menu/chat.xpm%"		Exec exec xchat
 + "X&Bitch%menu/chat.xpm%"		Exec exec xbitch
 + "&Zircon%menu/chat.xpm%"		Exec exec zircon
 + "&ICQ%menu/chat.xpm%"			Exec exec icq
-+ "&Licq%menu/chat.xpm%"			Exec exec licq
++ "&Licq%menu/chat.xpm%"		Exec exec licq
 + "" Nop
-+ "&Minitel%menu/terminal.xpm%"		Exec exec xtel -petit
-+ "&Minicom%menu/terminal.xpm%"		FuncFvwmRunInXterm "Minicom" "minicom"
++ "&Minitel%menu/terminal-special.xpm%"	Exec exec xtel -petit
++ "&Minicom%menu/terminal-special.xpm%"	FuncFvwmRunInXterm "Minicom" "minicom"
 
 DestroyMenu MenuFvwmGraphics
 AddToMenu   MenuFvwmGraphics "Graphics" Title
-+ "XV%menu/xv.xpm%"			Exec exec xv
-+ "XbmBrowser%menu/xv.xpm%" 		Exec exec xbmbrowser
++ "XV%menu/xv.xpm%"				Exec exec xv
++ "XbmBrowser%menu/image-viewer.xpm%" 		Exec exec xbmbrowser
 + "" Nop
-+ "Gimp%menu/image-viewer.xpm%"		Exec exec gimp
-+ "Xpaint%menu/image-viewer.xpm%"	Exec exec xpaint
-+ "Xfig%menu/image-viewer.xpm%"		Exec exec xfig
-+ "X&Fpovray%menu/image-viewer.xpm%"	Exec exec xfpovray
++ "Gimp%menu/gimp.xpm%"				Exec exec gimp
++ "ImageMagick%menu/image-processor.xpm%"	Exec exec display
++ "Xpaint%menu/image-processor.xpm%"		Exec exec xpaint
++ "Xfig%menu/image-processor.xpm%"		Exec exec xfig
++ "X&Fpovray%menu/image-processor.xpm%"		Exec exec xfpovray
 
 DestroyMenu MenuFvwmMultimedia
 AddToMenu   MenuFvwmMultimedia "Multimedia" Title
@@ -284,10 +287,10 @@ AddToMenu   MenuFvwmMultimedia "Multimedia" Title
 
 DestroyMenu MenuFvwmGames
 AddToMenu   MenuFvwmGames "Games" Title
-+ "Action%menu/game.xpm%"		Popup MenuFvwmGamesAction
-+ "Board%menu/game-chess.xpm%"		Popup MenuFvwmGamesBoard
++ "Action%menu/game-action.xpm%"	Popup MenuFvwmGamesAction
++ "Board%menu/game-board.xpm%"		Popup MenuFvwmGamesBoard
 + "Cards%menu/game-cards.xpm%"		Popup MenuFvwmGamesCards
-+ "Puzzle%menu/game.xpm%"		Popup MenuFvwmGamesPuzzle
++ "Puzzle%menu/game-logic.xpm%"		Popup MenuFvwmGamesPuzzle
 ##+ "Strategy%menu/game.xpm%"		Popup MenuFvwmGamesStrategy
 + "Tetris%menu/game.xpm%"		Popup MenuFvwmGamesTetris
 + "Ace of Penguins%menu/penguin.xpm%"	Popup MenuFvwmGamesPenguins
@@ -295,33 +298,33 @@ AddToMenu   MenuFvwmGames "Games" Title
 
 DestroyMenu MenuFvwmGamesAction
 AddToMenu   MenuFvwmGamesAction "Action" Title
-+ "X&lander%menu/game.xpm%"		Exec exec xlander
-+ "XKoules%menu/game.xpm%" 		Exec exec xkoules
-+ "XKobo%menu/game.xpm%"		Exec exec xkobo
-+ "XGalaga%menu/game.xpm%"		Exec exec xgal
-+ "Xoids%menu/game.xpm%"		Exec exec xoids
-+ "XSoldier%menu/game.xpm%"		Exec exec xsoldier
-##+ "Xlander%menu/game.xpm%"		Exec xterm -name info -geometry 44x4 -e xlander
-+ "Xlander%menu/game.xpm%"		Exec exec xlander
-+ "XEvil%menu/game.xpm%"		Exec exec xevil
-+ "XBill%menu/game.xpm%"		Exec exec xbill
-+ "Scavenger%menu/game.xpm%"		Exec exec scavenger
-+ "Ice Breaker%menu/penguin.xpm%"	Exec exec icebreaker
++ "X&lander%menu/game-action.xpm%"		Exec exec xlander
++ "XKoules%menu/game-action.xpm%" 		Exec exec xkoules
++ "XKobo%menu/game-action.xpm%"			Exec exec xkobo
++ "XGalaga%menu/game-action.xpm%"		Exec exec xgal
++ "Xoids%menu/game-action.xpm%"			Exec exec xoids
++ "XSoldier%menu/game-action.xpm%"		Exec exec xsoldier
+##+ "Xlander%menu/game-action.xpm%"		Exec xterm -name info -geometry 44x4 -e xlander
++ "Xlander%menu/game-action.xpm%"		Exec exec xlander
++ "XEvil%menu/game-action.xpm%"			Exec exec xevil
++ "XBill%menu/game-action.xpm%"			Exec exec xbill
++ "Scavenger%menu/game-action.xpm%"		Exec exec scavenger
++ "Ice Breaker%menu/penguin.xpm%"		Exec exec icebreaker
 # Pac-man like
 + "" Nop
-+ "XChomp%menu/game.xpm%"		Exec exec xchomp
-+ "XMris%menu/game.xpm%"		Exec exec xmris
++ "XChomp%menu/game-action.xpm%"		Exec exec xchomp
++ "XMris%menu/game-action.xpm%"			Exec exec xmris
 + "" Nop
-+ "Xonix%menu/game.xpm%"		Exec exec xonix
-+ "XTron%menu/game.xpm%"		Exec exec xtron
++ "Xonix%menu/game-action.xpm%"			Exec exec xonix
++ "XTron%menu/game-action.xpm%"			Exec exec xtron
 
 DestroyMenu MenuFvwmGamesBoard
 AddToMenu   MenuFvwmGamesBoard "Board" Title
-+ "Xboard%menu/game-chess.xpm%" 	Exec exec xboard -size small
-+ "Xboard (net)%menu/game-chess.xpm%"	Exec FuncFvwmRunInXterm "Chess (net)" "xboard -size small -ics -icshost fics.onenet.net"
-+ "XBagammon%menu/game-chess.xpm%" 	Exec exec xgammon
-+ "Pente%menu/game-chess.xpm%"		Exec pente
-+ "XGoban%menu/game-chess.xpm%"		Exec xgoban
++ "Xboard%menu/game-board.xpm%" 	Exec exec xboard -size small
++ "Xboard (net)%menu/game-board.xpm%"	Exec FuncFvwmRunInXterm "Chess (net)" "xboard -size small -ics -icshost fics.onenet.net"
++ "XBagammon%menu/game-board.xpm%" 	Exec exec xgammon
++ "Pente%menu/game-board.xpm%"		Exec pente
++ "XGoban%menu/game-board.xpm%"		Exec xgoban
 
 DestroyMenu MenuFvwmGamesCards
 AddToMenu   MenuFvwmGamesCards "Cards" Title
@@ -415,22 +418,22 @@ AddToFunc   FuncFvwmKillEventAndRun
 
 DestroyMenu MenuFvwmAmusements
 AddToMenu   MenuFvwmAmusements "Amusements" Title
-+ "Start XSnow%menu/game.xpm%"		Exec exec xsnow >/dev/null
-+ "Stop XSnow%menu/window-delete.xpm%"	Exec exec killall xsnow
++ "Start XSnow%menu/amusement.xpm%"		Exec exec xsnow >/dev/null
++ "Stop XSnow%menu/window-delete.xpm%"		Exec exec killall xsnow
 + "" Nop
-+ "Start XPenguins%menu/penguin.xpm%"	Exec exec xpenguins -q
++ "Start XPenguins%menu/penguin.xpm%"		Exec exec xpenguins -q
 + "Stop XPenguins%menu/window-delete.xpm%"	Exec exec killall xpenguins
 + "" Nop
-+ "Start XTurtles%menu/penguin.xpm%"	Exec exec xturtles -q -rectwin
++ "Start XTurtles%menu/penguin.xpm%"		Exec exec xturtles -q -rectwin
 + "Stop XTurtles%menu/window-delete.xpm%"	Exec exec killall xturtles
 + "" Nop
-+ "Start XSheep%menu/game.xpm%"		Exec exec xsheep >/dev/null
-+ "Stop XSheep%menu/window-delete.xpm%"	Exec exec killall xsheep
++ "Start XSheep%menu/amusement.xpm%"		Exec exec xsheep >/dev/null
++ "Stop XSheep%menu/window-delete.xpm%"		Exec exec killall xsheep
 + "" Nop
-+ "Start XEarth%menu/game.xpm%"		Exec exec xearth
-+ "Stop XEarth%menu/window-delete.xpm%"	Exec exec killall xearth
++ "Start XEarth%menu/amusement.xpm%"		Exec exec xearth
++ "Stop XEarth%menu/window-delete.xpm%"		Exec exec killall xearth
 + "" Nop
-+ "Start Decay Screen%menu/game.xpm%"	Exec exec /usr/X11R6/lib/xscreensaver/decayscreen -root
++ "Start Decay Screen%menu/amusement.xpm%"	Exec exec /usr/X11R6/lib/xscreensaver/decayscreen -root
 + "Stop Decay Screen%menu/window-delete.xpm%"	Exec exec killall /usr/X11R6/lib/xscreensaver/decayscreen
 + "" Nop
 ## it should be: nice -n 9 oneko
@@ -440,35 +443,35 @@ AddToMenu   MenuFvwmAmusements "Amusements" Title
 + "Stop Oneko%menu/window-delete.xpm"	Exec killall oneko
 + "" Nop
 ## it should be: exec nice -n 19 xoj
-+ "Start O.J.S. emulator%game.xpm"	Exec exec xoj
-+ "Stop O.J.S. emulator%window-delete.xpm"	Exec exec killall xoj
++ "Start O.J.S. emulator%menu/amusement.xpm"	Exec exec xoj
++ "Stop O.J.S. emulator%menu/window-delete.xpm"	Exec exec killall xoj
 + "" Nop
-+ "Mesa Demo%menu/game.xpm%" 		Popup MenuFvwmMesaDemos
-+ "Xeyes%menu/game.xpm%" 		Exec exec xeyes
-+ "&X logo%menu/game.xpm%"		Exec exec xlogo
-+ "X&roach%menu/game.xpm%%"		Exec exec xroach
++ "Mesa Demo%menu/amusement.xpm%" 	Popup MenuFvwmMesaDemos
++ "Xeyes%menu/amusement.xpm%" 		Exec exec xeyes
++ "&X logo%menu/amusement.xpm%"		Exec exec xlogo
++ "X&roach%menu/amusement.xpm%%"	Exec exec xroach
 
 DestroyMenu MenuFvwmMesaDemos
 AddToMenu   MenuFvwmMesaDemos "Mesa Demos" Title
-+ "Glutfx%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.1/demos/glutfx
-+ "Gears%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.1/demos/gears
-+ "Morph3D%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.1/demos/morph3d
-+ "IsoSurf%menu/game.xpm%"	Exec cd /usr/lib/Mesa-3.1/demos/ ; exec ./isosurf
-+ "Multiext%menu/game.xpm%"	Exec cd /usr/lib/Mesa-3.1/demos/ ; exec ./multiext
-+ "Point Blast%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.1/demos/pointblast
-+ "Reflect%menu/game.xpm%"	Exec cd /usr/lib/Mesa-3.1/demos/ ; exec ./reflect
-+ "Renormal%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.1/demos/renormal
-+ "Spectex%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.1/demos/spectex
-+ "Stex3D%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.1/demos/stex3d
-+ "Texcyl%menu/game.xpm%" 	Exec cd /usr/lib/Mesa-3.1/demos/ ; exec ./texcyl
-+ "Glutfx%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.0/demos/glutfx
-+ "Gears%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.0/demos/gears
-+ "Morph3D%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.0/demos/morph3d
-+ "IsoSurf%menu/game.xpm%"	Exec cd /usr/lib/Mesa-3.0/demos/ ; exec ./isosurf
-+ "Multiext%menu/game.xpm%"	Exec cd /usr/lib/Mesa-3.0/demos/ ; exec ./multiext
-+ "Point Blast%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.0/demos/pointblast
-+ "Reflect%menu/game.xpm%"	Exec cd /usr/lib/Mesa-3.0/demos/ ; exec ./reflect
-+ "Renormal%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.0/demos/renormal
-+ "Spectex%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.0/demos/spectex
-+ "Stex3D%menu/game.xpm%"	Exec exec /usr/lib/Mesa-3.0/demos/stex3d
-+ "Texcyl%menu/game.xpm%" 	Exec cd /usr/lib/Mesa-3.0/demos/ ; exec ./texcyl
++ "Glutfx%menu/amusement.xpm%"	Exec exec /usr/lib/Mesa-3.1/demos/glutfx
++ "Gears%menu/amusement.xpm%"	Exec exec /usr/lib/Mesa-3.1/demos/gears
++ "Morph3D%menu/amusement.xpm%"	Exec exec /usr/lib/Mesa-3.1/demos/morph3d
++ "IsoSurf%menu/amusement.xpm%"	Exec cd /usr/lib/Mesa-3.1/demos/ ; exec ./isosurf
++ "Multiext%menu/amusement.xpm%" Exec cd /usr/lib/Mesa-3.1/demos/ ; exec ./multiext
++ "Point Blast%menu/amusement.xpm%" Exec exec /usr/lib/Mesa-3.1/demos/pointblast
++ "Reflect%menu/amusement.xpm%"	Exec cd /usr/lib/Mesa-3.1/demos/ ; exec ./reflect
++ "Renormal%menu/amusement.xpm%" Exec exec /usr/lib/Mesa-3.1/demos/renormal
++ "Spectex%menu/amusement.xpm%"	Exec exec /usr/lib/Mesa-3.1/demos/spectex
++ "Stex3D%menu/amusement.xpm%"	Exec exec /usr/lib/Mesa-3.1/demos/stex3d
++ "Texcyl%menu/amusement.xpm%" 	Exec cd /usr/lib/Mesa-3.1/demos/ ; exec ./texcyl
++ "Glutfx%menu/amusement.xpm%"	Exec exec /usr/lib/Mesa-3.0/demos/glutfx
++ "Gears%menu/amusement.xpm%"	Exec exec /usr/lib/Mesa-3.0/demos/gears
++ "Morph3D%menu/amusement.xpm%"	Exec exec /usr/lib/Mesa-3.0/demos/morph3d
++ "IsoSurf%menu/amusement.xpm%"	Exec cd /usr/lib/Mesa-3.0/demos/ ; exec ./isosurf
++ "Multiext%menu/amusement.xpm%" Exec cd /usr/lib/Mesa-3.0/demos/ ; exec ./multiext
++ "Point Blast%menu/amusement.xpm%" Exec exec /usr/lib/Mesa-3.0/demos/pointblast
++ "Reflect%menu/amusement.xpm%"	Exec cd /usr/lib/Mesa-3.0/demos/ ; exec ./reflect
++ "Renormal%menu/amusement.xpm%" Exec exec /usr/lib/Mesa-3.0/demos/renormal
++ "Spectex%menu/amusement.xpm%"	Exec exec /usr/lib/Mesa-3.0/demos/spectex
++ "Stex3D%menu/amusement.xpm%"	Exec exec /usr/lib/Mesa-3.0/demos/stex3d
++ "Texcyl%menu/amusement.xpm%" 	Exec cd /usr/lib/Mesa-3.0/demos/ ; exec ./texcyl

@@ -11,16 +11,16 @@ AddToFunc   FuncFvwmRemoveBindings
 # quit menu
 DestroyMenu MenuFvwmQuit
 AddToMenu   MenuFvwmQuit "Quit GNOME Session?" Title
-+ "&Restart%menu/wm-restart.xpm%"          Restart
++ "&Restart%menu/restart.xpm%"          Restart
 +  "" Nop
-+ "Re&fresh Screen%menu/wm-refresh.xpm%"   Refresh
-+ "Re&capture Screen%menu/wm-refresh.xpm%" Recapture
++ "Re&fresh Screen%menu/refresh.xpm%"   Refresh
++ "Re&capture Screen%menu/refresh.xpm%" Recapture
 + "" Nop
 + "&Yes, Quit Session%menu/choice-yes.xpm%" QuitSession
 + "Yes, Save and Quit Session%menu/choice-yes.xpm%" \
 	Exec exec save-session --kill
 +  "" Nop
-+ "Quit FVWM &Only%menu/unknown.xpm%"      Quit
-+ "&Save Session Only%menu/unknown.xpm%"   Exec exec save-session
++ "Quit FVWM &Only%menu/quit.xpm%"      Quit
++ "&Save Session Only%menu/windows.xpm%"   Exec exec save-session
 + "" Nop
 + "&No, Don't Quit%menu/choice-no.xpm%"    Nop

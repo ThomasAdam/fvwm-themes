@@ -57,6 +57,7 @@ my %rgb;
 my $convert = 0;
 my $gnome = 0;
 my $kde2 = 0;
+my $kde2Hi = 0;
 my $postfix = "";
 my $transFilter = 1;
 my @types = ();
@@ -171,6 +172,7 @@ GetOptions(
 	"convert"            => \$convert,
 	"gnome"              => \$gnome,
 	"kde2"               => \$kde2,
+	"kde2-hi"            => \$kde2Hi,
 	"postfix"            => \$postfix,
 	"trans-filter!"      => \$transFilter,
 	"48x48-size=s"       => \$size{"48x48"},
@@ -428,7 +430,10 @@ sub transform {
 		} else {
 			$dir = $inDir;
 			if ($kde2) {
-				if (-d "$inDir/locolor/$type/apps") {
+				if ($kde2Hi && -d "$inDir/hicolor/$type/apps") {
+					$dir = "$inDir/hicolor/$type/apps";
+				}
+				elsif (-d "$inDir/locolor/$type/apps") {
 					$dir = "$inDir/locolor/$type/apps";
 				}
 				elsif (-d "$inDir/hicolor/$type/apps") {
@@ -1970,6 +1975,7 @@ sub showHelp {
 	print "\t--out-dir dir       The main directory for output the images\n";
 	print "\t--gnome             short cut for converting GNOME icons\n";
 	print "\t--kde2              short cut for converting KDE2 icons\n";
+	print "\t--kde2Hi            convert hight colors KDE2 icons\n";
 	print "\t--site              set the out dir to \$FT_DATADIR/tr-image\n";
 	print "\t--create-symlink n  Create symlink for use with fvwm-themes\n";
 	print "\t--update            only create images which are needed\n";
@@ -2090,6 +2096,7 @@ or B<--help> or B<--version>
 [ B<--out-file> file ]
 [ B<--gnome> ]
 [ B<--kde2> ]
+[ B<--kde2Hi> ]
 [ B<--site> ]
 [ B<--create-symlink> name ]
 [ B<--update> ]
@@ -2365,6 +2372,9 @@ B<--kde2> imply --convert, --postfix kde2, and try to find the KDE2 icons
 directory to define the internal generalization of --in-dir, if these
 directories are not found or if the KDEDIR environement variable is not set
 nothing is done.
+
+B<--kde2Hi> if --kde2 is used convert the KDE2 "hight" colors icons in the
+place of the KDE2 low colors icons.
 
 B<--ft-install> equivalent to --site --update --create-symlink. This option
 must be use with --gnome or --kde2 (but not both).

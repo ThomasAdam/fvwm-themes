@@ -34,7 +34,7 @@ AddToFunc   FuncFvwmRestartFvwmAutoRaiseModules
 DestroyFunc FuncFvwmStartFvwmAutoRaise
 AddToFunc   FuncFvwmStartFvwmAutoRaise
 + I FuncFvwmRestartFvwmAutoRaiseModules
-+ I AddToMenu MenuFvwmStartRegularModules "Auto Raise Modules" FuncFvwmRestartFvwmAutoRaiseModules
++ I AddToMenu MenuFvwmStartRegularModules "Auto Raise Modules%menu/window-raise.xpm%" FuncFvwmRestartFvwmAutoRaiseModules
 
 DestroyFunc FuncFvwmStopFvwmAutoRaise
 AddToFunc   FuncFvwmStopFvwmAutoRaise

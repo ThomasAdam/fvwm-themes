@@ -1,19 +1,19 @@
 DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot "Root Menu" Title
-+ "&Shells%menu/xterm.xpm%"			Popup MenuFvwmShells
-+ "&Programs%menu/utility.xpm%"			Popup MenuFvwmPrograms
-+ "S&ystem%menu/monitor.xpm%"			Popup MenuFvwmSystem
++ "&Shells%menu/terminal.xpm%"			Popup MenuFvwmShells
++ "&Programs%menu/programs.xpm%"		Popup MenuFvwmPrograms
++ "S&ystem%menu/system.xpm%"			Popup MenuFvwmSystem
 + "Person&al%menu/home.xpm%"			Popup MenuFvwmPersonal
 + "" Nop
-+ "&Theme Management%menu/desktop.xpm%"		Popup MenuFvwmThemes
-+ "Fvwm &Configuration%menu/unknown.xpm%"	Popup MenuFvwmConfiguration
++ "&Theme Management%menu/themes.xpm%"		Popup MenuFvwmThemes
++ "Fvwm &Configuration%menu/configuration.xpm%"	Popup MenuFvwmConfiguration
 + "&Help%menu/help.xpm%"			Popup MenuFvwmHelp
 + "" Nop
-+ "Fvwm &Modules%menu/unknown.xpm%"		Popup MenuFvwmModules
++ "Fvwm &Modules%menu/modules.xpm%"		Popup MenuFvwmModules
 + "&Window Operations%menu/window.xpm%"		Popup MenuFvwmWindowOps
 + "" Nop
 + "Screen Saver%menu/display.xpm%"		Popup MenuFvwmScreenSaver
-+ "&Quit FVWM%menu/wm-quit.xpm%"		Popup MenuFvwmQuit
++ "&Quit FVWM%menu/quit.xpm%"			Popup MenuFvwmQuit
 
 # ----------------------------------------------------------------------------
 # ---------- Shells
@@ -41,13 +41,14 @@ AddToMenu   MenuFvwmPersonal
 
 DestroyMenu MenuFvwmHelp
 AddToMenu   MenuFvwmHelp "Help" Title
-+ "%menu/help.xpm%FVWM Man Pages"	Popup MenuFvwmManPages
-+ "%menu/www.xpm%FVWM Web Pages"	Popup MenuFvwmWebPages
-+ "%menu/information.xpm%Show FVWM Version" FuncFvwmShowVersionInfo
++ "%menu/help.xpm%FVWM Man Pages"		Popup MenuFvwmManPages
++ "%menu/www.xpm%FVWM Web Pages"		Popup MenuFvwmWebPages
++ "%menu/information.xpm%Show FVWM Version"	FuncFvwmShowVersionInfo
 + "" Nop
 + "%menu/help.xpm%Xman"      		Exec exec xman
 + "%menu/help.xpm%Gnome Help Browser"	Exec exec gnome-help-browser
 + "%menu/help.xpm%KDE Help"		Exec exec kdehelp
++ "%menu/help.xpm%KDE Help"		Exec exec khelpcenter
 
 DestroyMenu MenuFvwmWebPages
 AddToMenu   MenuFvwmWebPages
@@ -116,55 +117,57 @@ AddToMenu   MenuFvwmManPages "FVWM Man Pages" Title
 
 DestroyMenu MenuFvwmModules
 AddToMenu   MenuFvwmModules "Fvwm Modules" Title
-+ "Start Theme Modules"   Popup MenuFvwmStartThemeModules
-+ "Stop Theme Modules"    Popup MenuFvwmStopThemeModules
++ "Start Theme Modules%menu/modules.xpm%"	Popup MenuFvwmStartThemeModules
++ "Stop Theme Modules%menu/quit.xpm%"		Popup MenuFvwmStopThemeModules
 + "" Nop
-+ "Start Regular Modules" Popup MenuFvwmStartRegularModules
-+ "Stop Regular Modules"  Popup MenuFvwmStopRegularModules
++ "Start Regular Modules%menu/modules.xpm%" Popup MenuFvwmStartRegularModules
++ "Stop Regular Modules%menu/quit.xpm%"	    Popup MenuFvwmStopRegularModules
 
 DestroyMenu MenuFvwmStartRegularModules
 AddToMenu   MenuFvwmStartRegularModules "Regular Modules" Title
-+ "&Animation"            FuncFvwmRestartModule FvwmAnimate
-+ "Backe&r"            	  FuncFvwmRestartModule FvwmBacker
-+ "Ba&nner"               Module FvwmBanner
-+ "Co&mmandS"             FuncFvwmRestartModule FvwmCommandS
-+ "&Console"              FuncFvwmConsole
-+ "&Identify"          	  Module FvwmIdent
-+ "&ScrollBar (1/2 app)"  Module FvwmScroll 2 2
-+ "&ScrollBar (75%% scr)" Module FvwmScroll 75p 75p
-+ "Auto Raise (1/2 sec)"  FuncFvwmRestartModule 'FvwmAuto 500 "Silent Raise" Nop'
-+ "Auto Raise (2 sec)"    FuncFvwmRestartModule 'FvwmAuto 2000 "Silent Raise" Nop'
++ "&Animation%menu/window-iconify.xpm%"	FuncFvwmRestartModule FvwmAnimate
++ "Backe&r%menu/display.xpm%"		FuncFvwmRestartModule FvwmBacker
++ "Ba&nner%menu/display.xpm%"		Module FvwmBanner
++ "Co&mmandS%menu/terminal-special.xpm%" FuncFvwmRestartModule FvwmCommandS
++ "&Console%menu/terminal-special.xpm%"		FuncFvwmConsole
++ "&Identify%menu/window-identify.xpm%"		Module FvwmIdent
++ "&ScrollBar (1/2 app)%menu/window.xpm%"	Module FvwmScroll 2 2
++ "%menu/window.xpm%&ScrollBar (75%% scr)"	Module FvwmScroll 75p 75p
++ "Auto Raise (1/2 sec)%menu/window-raise.xpm%"  \
+	FuncFvwmRestartModule 'FvwmAuto 500 "Silent Raise" Nop'
++ "Auto Raise (2 sec)%menu/window-raise.xpm%"    \
+	FuncFvwmRestartModule 'FvwmAuto 2000 "Silent Raise" Nop'
 + "" Nop
-+ "&Forms"                Popup  MenuFvwmForms
-+ "&Applets"              Popup  MenuFvwmApplets
++ "&Forms%menu/utility.xpm%"                Popup  MenuFvwmForms
++ "&Applets%menu/utility.xpm%"              Popup  MenuFvwmApplets
 + "" Nop
 
 DestroyMenu MenuFvwmStopRegularModules
 AddToMenu   MenuFvwmStopRegularModules "Regular Modules" Title
-+ "Stop &Animation"     KillModule FvwmAnimate
-+ "Stop Backe&r"       	KillModule FvwmBacker
-+ "Stop Co&mmandS"      KillModule FvwmCommandS
-+ "Stop &Console"      	KillModule FvwmConsole
-+ "Stop &Identify"     	KillModule FvwmIdent
-+ "Stop &ScrollBar"    	KillModule FvwmScroll
-+ "Stop Auto Rais&e"   	KillModule FvwmAuto
-+ "Stop Sound Event"    KillModule FvwmEvent
-+ "Stop All &Buttons"   KillModule FvwmButtons
-+ "Stop All &Forms"     KillModule FvwmForm
++ "Stop &Animation%menu/quit.xpm%"	KillModule FvwmAnimate
++ "Stop Backe&r%menu/quit.xpm%"		KillModule FvwmBacker
++ "Stop Co&mmandS%menu/quit.xpm%"	KillModule FvwmCommandS
++ "Stop &Console%menu/quit.xpm%"	KillModule FvwmConsole
++ "Stop &Identify%menu/quit.xpm%"	KillModule FvwmIdent
++ "Stop &ScrollBar%menu/quit.xpm%"	KillModule FvwmScroll
++ "Stop Auto Rais&e%menu/quit.xpm%"	KillModule FvwmAuto
++ "Stop Sound Event%menu/quit.xpm%"	KillModule FvwmEvent
++ "Stop All &Buttons%menu/quit.xpm%"	KillModule FvwmButtons
++ "Stop All &Forms%menu/quit.xpm%"	KillModule FvwmForm
 
 DestroyMenu MenuFvwmForms
 AddToMenu   MenuFvwmForms "Fvwm Forms" Title
-+ "&Capture"           Module FvwmForm FvwmForm-Capture
-+ "&Rlogin"            Module FvwmForm FvwmForm-Rlogin
-+ "&Talk"              Module FvwmForm FvwmForm-Talk
-+ "&QuitVerify"        Module FvwmForm FvwmForm-QuitVerify
++ "&Capture%menu/display.xpm%"		Module FvwmForm FvwmForm-Capture
++ "&Rlogin%menu/terminal-remote.xpm%"	Module FvwmForm FvwmForm-Rlogin
++ "&Talk%menu/terminal-special.xpm%"	Module FvwmForm FvwmForm-Talk
++ "&QuitVerify%menu/quit.xpm%"		Module FvwmForm FvwmForm-QuitVerify
 
 DestroyMenu MenuFvwmApplets
 AddToMenu   MenuFvwmApplets "Fvwm Applets" Title
-+ "Day"                Module FvwmScript FvwmApplet-Day
-+ "DayClock"           Module FvwmScript FvwmApplet-DayClock
-+ "DigitalClock"       Module FvwmScript FvwmApplet-DigitalClock
-+ "Mixer"              Module FvwmScript FvwmApplet-Mixer
++ "Day%menu/clock.xpm%"		 Module FvwmScript FvwmApplet-Day
++ "DayClock%menu/clock.xpm%"	 Module FvwmScript FvwmApplet-DayClock
++ "DigitalClock%menu/clock.xpm%" Module FvwmScript FvwmApplet-DigitalClock
++ "Mixer%menu/sound.xpm%"	 Module FvwmScript FvwmApplet-Mixer
 
 
 # -----------------------------------------------------------------------------
@@ -190,23 +193,24 @@ AddToFunc   FuncFvwmGtkThemeSettings
 
 DestroyMenu MenuFvwmConfiguration
 AddToMenu   MenuFvwmConfiguration "Fvwm Configuration" Title
-+ "Themes Center GUI"    FvwmScript FvwmScript-ThemesCenter \
-		--text-colorset 34 --viewer-colorset 33
-+ "Configuration Center" FvwmScript FvwmScript-ConfigCenter \
++ "Themes Center GUI%menu/themes.xpm%" \
+  FvwmScript FvwmScript-ThemesCenter --text-colorset 34 --viewer-colorset 33
++ "Configuration Center%menu/configuration.xpm%" FvwmScript \
+	FvwmScript-ConfigCenter --text-colorset 34 --icon-colorset 5 \
+	--viewer-colorset 33
++ "Theme Settings (form)%menu/themes.xpm%" FuncFvwmFormThemeSettings
++ "Theme Settings (gtk)%menu/themes.xpm%"  FuncFvwmWithGtk FuncFvwmGtkThemeSettings
++ "&Menu Editor (Personal)%menu/editor.xpm%"	  FvwmScript FvwmScript-Menus \
 		--text-colorset 34 --icon-colorset 5 --viewer-colorset 33
-+ "Theme Settings (form)"	FuncFvwmFormThemeSettings
-+ "Theme Settings (gtk)"	FuncFvwmWithGtk FuncFvwmGtkThemeSettings
-+ "&Menu Editor (Personal)"	FvwmScript FvwmScript-Menus \
-		--text-colorset 34 --icon-colorset 5 --viewer-colorset 33
-+ "&Root Cursor"	Module FvwmForm FvwmForm-RootCursor
-+ "Form &Defaults"	Module FvwmForm FvwmForm-Form
-+ "Control &Animation"	Popup MenuFvwmAnimate
-+ "&X Configuration"	Popup MenuFvwmXConfiguration
++ "&Root Cursor%menu/display.xpm%"	Module FvwmForm FvwmForm-RootCursor
++ "Form &Defaults%menu/configuration.xpm%"	Module FvwmForm FvwmForm-Form
++ "Control &Animation%menu/window-iconify.xpm%"	Popup MenuFvwmAnimate
++ "&X Configuration%menu/display.xpm%"		Popup MenuFvwmXConfiguration
 + "" Nop
-+ "&Utilities"		Popup MenuFvwmConfigUtilities
++ "&Utilities%menu/utility.xpm%"		Popup MenuFvwmConfigUtilities
 + "" Nop
-+ "Restore Theme &Background"	FuncFvwmStartThemeBackground
-+ "Restore Theme &Cursors"	PipeRead `printf 'Read '; fvwm-themes-config --component cursors --show-value read-file`
++ "Restore Theme &Background%menu/display.xpm%"	FuncFvwmStartThemeBackground
++ "Restore Theme &Cursors%menu/display.xpm%"	PipeRead `printf 'Read '; fvwm-themes-config --component cursors --show-value read-file`
 + "" Nop
 
 DestroyMenu MenuFvwmXConfiguration
@@ -218,14 +222,14 @@ AddToMenu   MenuFvwmXConfiguration "X Configuration" Title
 
 DestroyMenu MenuFvwmConfigUtilities
 AddToMenu   MenuFvwmConfigUtilities "Configuration Utilities" Title
-+ "&Color Selector%menu/image-viewer.xpm%" FvwmScript FvwmScript-ColorSelector \
++ "&Color Selector%menu/colors.xpm%"	FvwmScript FvwmScript-ColorSelector \
 	--text-colorset 34 --viewer-colorset 33
-+ "&Font Selector%menu/font.xpm%"          FvwmScript FvwmScript-FontSelector \
++ "&Font Selector%menu/font.xpm%"	FvwmScript FvwmScript-FontSelector \
 	--text-colorset 34 --viewer-colorset 33
-+ "&Icon Browser%menu/image-viewer.xpm%"   FvwmScript FvwmScript-IconBrowser \
++ "&Icon Browser%menu/image-viewer.xpm%" FvwmScript FvwmScript-IconBrowser \
 	--text-colorset 34 --icon-colorset 5 --launched 0 \
 	--dir $[FT_DATADIR]/images/
-+ "&Image Browser%menu/image-viewer.xpm%"  FvwmScript FvwmScript-ImageBrowser \
++ "&Image Browser%menu/image-viewer.xpm%" FvwmScript FvwmScript-ImageBrowser \
 	--text-colorset 34 --launched 0 --dir $[FT_DATADIR]/images/
 
 # -----------------------------------------------------------------------------
@@ -233,11 +237,11 @@ AddToMenu   MenuFvwmConfigUtilities "Configuration Utilities" Title
 
 DestroyMenu MenuFvwmQuit
 AddToMenu   MenuFvwmQuit "Really Quit FVWM?" Title
-+ "&Restart%menu/wm-restart.xpm%"          Restart
-+ "&Restart Other%menu/wm-restart.xpm%"    Popup MenuFvwmWindowManager
++ "&Restart%menu/restart.xpm%"		Restart
++ "&Restart Other%menu/restart.xpm%"	Popup MenuFvwmWindowManager
 + "" Nop
-+ "Re&fresh Screen%menu/wm-refresh.xpm%"   Refresh
-+ "Re&capture Screen%menu/wm-refresh.xpm%" Recapture
++ "Re&fresh Screen%menu/refresh.xpm%"	Refresh
++ "Re&capture Screen%menu/refresh.xpm%"	Recapture
 + "" Nop
 + "&Yes, Really Quit%menu/choice-yes.xpm%" Quit
 + "&No, Don't Quit%menu/choice-no.xpm%"    Nop
@@ -262,16 +266,16 @@ AddToMenu   MenuFvwmWindowOps "Window Operations" Title
 + "Destroy%menu/window-destroy.xpm%"            Destroy
 + "" Nop
 + "Move to Page%menu/window-move.xpm%"          Popup MenuFvwmWindowMove
-+ "Group Operations%menu/window.xpm%"           Popup MenuFvwmWindowGroupOps
++ "Group Operations%menu/windows.xpm%"          Popup MenuFvwmWindowGroupOps
 + "Window Style%menu/window.xpm%"               Popup MenuFvwmWindowStyle
 + "Maximize Window%menu/window-maximize.xpm%"   Popup MenuFvwmWindowMaximize
-+ "Refresh Window%menu/wm-refresh.xpm%"         Popup MenuFvwmWindowRefresh
-+ "Rearrange All%menu/wm-refresh.xpm%"          Popup MenuFvwmRearrangeWindows
++ "Refresh Window%menu/refresh.xpm%"         	Popup MenuFvwmWindowRefresh
++ "Rearrange All%menu/refresh.xpm%"          	Popup MenuFvwmRearrangeWindows
 + "Window Utility%menu/utility.xpm%"            Popup MenuFvwmWindowUtility
 + "" Nop
 + "Identify%menu/window-identify.xpm%"          Module FvwmIdent
-+ "Switch to...%menu/window.xpm%"               WindowList
-+ "Arrange Icons%menu/wm-refresh.xpm%" All (CurrentDesk Iconic) RecaptureWindow
++ "Switch to...%menu/windows.xpm%"              WindowList
++ "Arrange Icons%menu/refresh.xpm%" All (CurrentDesk Iconic) RecaptureWindow
 
 # A trimmed down version of MenuFvwmWindowOps, good for binding to decorations
 DestroyMenu MenuFvwmWindowOps3
@@ -325,10 +329,10 @@ AddToFunc   FuncFvwmStyleAndRecapture
 
 DestroyMenu MenuFvwmWindowStyle
 AddToMenu   MenuFvwmWindowStyle "Window Style" Title
-+ "%menu/window.xpm%TitleAtTop"           Pick (CirculateHit) Style $n TitleAtTop
-+ "%menu/window.xpm%TitleAtBottom"        Pick (CirculateHit) Style $n TitleAtBottom
-+ "%menu/window.xpm%Title"                Pick (CirculateHit) Style $n Title
-+ "%menu/window.xpm%NoTitle"              Pick (CirculateHit) Style $n NoTitle
++ "%menu/window.xpm%TitleAtTop"    Pick (CirculateHit) Style $n TitleAtTop
++ "%menu/window.xpm%TitleAtBottom" Pick (CirculateHit) Style $n TitleAtBottom
++ "%menu/window.xpm%Title"         Pick (CirculateHit) Style $n Title
++ "%menu/window.xpm%NoTitle"       Pick (CirculateHit) Style $n NoTitle
 + "" Nop
 + "%menu/window-raise.xpm%StaysOnTop"     Pick (CirculateHit) FuncFvwmStyleAndRecapture $n StaysOnTop
 + "%menu/window.xpm%StaysPut"             Pick (CirculateHit) FuncFvwmStyleAndRecapture $n StaysPut
@@ -363,9 +367,9 @@ AddToMenu   MenuFvwmWindowMaximize "Maximize Window" Title
 
 DestroyMenu MenuFvwmWindowRefresh
 AddToMenu   MenuFvwmWindowRefresh "Refresh Window" Title
-+ "%menu/wm-refresh.xpm%RefreshWindow"    RefreshWindow
-+ "%menu/wm-refresh.xpm%RecaptureWindow"  RecaptureWindow
-+ "%menu/wm-refresh.xpm%PlaceAgain"       PlaceAgain anim
++ "%menu/refresh.xpm%RefreshWindow"    RefreshWindow
++ "%menu/refresh.xpm%RecaptureWindow"  RecaptureWindow
++ "%menu/refresh.xpm%PlaceAgain"       PlaceAgain anim
 + "" Nop
 + "%menu/window.xpm%Restore"              FuncFvwmRestore
 
@@ -374,11 +378,11 @@ AddToMenu   MenuFvwmWindowRefresh "Refresh Window" Title
 # migo: and maybe move these entries to MenuFvwmWindowUtility menu?
 DestroyMenu MenuFvwmRearrangeWindows
 AddToMenu   MenuFvwmRearrangeWindows "Rearrange Windows" Title
-+ "%menu/wm-refresh.xpm%&Cascade" FvwmRearrange -cascade -m 3 3 -incx 2
-+ "%menu/wm-refresh.xpm%&PlaceAgain" All (CurrentPage !Sticky) PlaceAgain anim
++ "%menu/refresh.xpm%&Cascade" FvwmRearrange -cascade -m 3 3 -incx 2
++ "%menu/refresh.xpm%&PlaceAgain" All (CurrentPage !Sticky) PlaceAgain anim
 + "" Nop
-+ "%menu/wm-refresh.xpm%Tile &horizontally" FvwmRearrange -tile -h -m 2 2 98 98
-+ "%menu/wm-refresh.xpm%Tile &vertically"   FvwmRearrange -tile    -m 2 2 98 98
++ "%menu/refresh.xpm%Tile &horizontally" FvwmRearrange -tile -h -m 2 2 98 98
++ "%menu/refresh.xpm%Tile &vertically"   FvwmRearrange -tile    -m 2 2 98 98
 
 DestroyFunc FuncFvwmRaiseAndExec
 AddToFunc   FuncFvwmRaiseAndExec
@@ -410,7 +414,7 @@ AddToFunc   FuncFvwmDesktopCreateScreenshot
 DestroyMenu MenuFvwmWindowUtility
 AddToMenu   MenuFvwmWindowUtility "Window Utility" Title
 + "%menu/window.xpm%Create &Screenshot"   Pick (CirculateHit) FuncFvwmWindowCreateScreenshot
-+ "%menu/desktop.xpm%&Desktop Screenshot" Pick (CirculateHit) FuncFvwmDesktopCreateScreenshot
++ "%menu/display.xpm%&Desktop Screenshot" Pick (CirculateHit) FuncFvwmDesktopCreateScreenshot
 + "" Nop
 + "%menu/utility.xpm%&Print"              Pick (CirculateHit) FuncFvwmWindowPrint
 + "%menu/utility.xpm%Print &Reverse"      Pick (CirculateHit) FuncFvwmWindowPrintReverse

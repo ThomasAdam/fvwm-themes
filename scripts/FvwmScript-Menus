@@ -18,7 +18,7 @@
 #-----------------------------------------------------------------------------
 
 
-WindowTitle {Fvwm Menus Editor}
+WindowTitle {FVWM Themes Menus Editor}
 WindowSize 650 405
 Font		-adobe-helvetica-bold-r-*-*-12-*
 #Flags NoReliefString

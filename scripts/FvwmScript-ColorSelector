@@ -119,13 +119,38 @@ Begin
 
     Set $cmd = {echo "$FT_DATADIR"}
     Set $FtDataDir = (GetOutput $cmd 1 -1)
-    Set $RainbowFile = $FtDataDir{/images/fvwmscript/pallete-rainbow.xpm}
+    Set $RainbowFile = $FtDataDir{/images/fvwmscript/pallet-rainbow.xpm}
     Set $GreyFile    = $FtDataDir{/images/fvwmscript/pallete-gray.xpm}
 
-    Set $cmd = {cat }$RainbowFile
-    Set $ColorLine = (GetOutput $cmd 282 -1)
-    Set $cmd = {cat }$GreyFile
-    Set $GreyColorLine = (GetOutput $cmd 282 -1)
+    # get the rainbow color line
+    Set $cmd = {if [ -f }$RainbowFile{ ]; then echo 1; else echo "0"; fi}
+    Set $test = (GetOutput $cmd 1 -1)
+    If $test == {0} Then
+    Begin
+	Do {Echo [FvwmScript-ColorSelector] Unable to find }$RainbowFile
+	Do {Echo [FvwmScript-ColorSelector] exiting!}
+	Quit
+    End
+    Else
+    Begin
+	Set $cmd = {cat }$RainbowFile
+	Set $ColorLine = (GetOutput $cmd 282 -1)
+    End
+
+    # get the grey color line
+    Set $cmd = {if [ -f }$GreyFile{ ]; then echo "1"; else echo "0"; fi}
+    Set $test = (GetOutput $cmd 1 -1)
+    If $test == {0} Then
+    Begin
+	Do {Echo [FvwmScript-ColorSelector] Unable to find }$GreyFile
+	Do {Echo [FvwmScript-ColorSelector] exiting!}
+	Quit
+    End
+    Else
+    Begin
+	Set $cmd = {cat }$GreyFile
+	Set $GreyColorLine = (GetOutput $cmd 282 -1)
+    End
 
     If $Color <> {} Then
 	Set $CurrentColor = $Color

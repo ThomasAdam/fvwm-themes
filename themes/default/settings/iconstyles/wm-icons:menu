@@ -8,12 +8,13 @@
 # Also, MenuFvwmIconSets is not Destroyed when you quit this component...
 
 AddToFunc FuncFvwmStartAllHooks
-+ I AddToMenu MenuFvwmConfiguration "wm-icons Icons" Popup MenuFvwmIconSets
++ I AddToMenu MenuFvwmConfiguration "%menu/display.xpm%wm-icons Icons" Popup MenuFvwmIconSets
 
 DestroyMenu MenuFvwmIconSets
-AddToMenu   MenuFvwmIconSets "Change Icon Set" Title
+AddToMenu MenuFvwmIconSets "Change Icon Set" Title
 + "%menu/display.xpm%menu	14x14-general"   Exec wm-icons-config -q -p -f menu 14x14-general
 + "%menu/display.xpm%menu	16x16-general"   Exec wm-icons-config -q -p -f menu 16x16-general
++ "%menu/display.xpm%menu	16x16-gnome"     Exec wm-icons-config -q -p -f menu 16x16-gnome
 + "%menu/display.xpm%menu	16x16-kde"       Exec wm-icons-config -q -p -f menu 16x16-kde
 + "%menu/display.xpm%menu	17x14-3dpixmaps" Exec wm-icons-config -q -p -f menu 17x14-3dpixmaps
 + "%menu/display.xpm%menu	20x20-martys"    Exec wm-icons-config -q -p -f menu 20x20-martys
@@ -22,6 +23,7 @@ AddToMenu   MenuFvwmIconSets "Change Icon Set" Title
 + "" Nop
 + "%menu/display.xpm%mini	14x14-general"   Exec wm-icons-config -q -p -f mini 14x14-general
 + "%menu/display.xpm%mini	16x16-general"   Exec wm-icons-config -q -p -f mini 16x16-general
++ "%menu/display.xpm%mini	16x16-gnome"     Exec wm-icons-config -q -p -f mini 16x16-gnome
 + "%menu/display.xpm%mini	16x16-kde"       Exec wm-icons-config -q -p -f mini 16x16-kde
 + "%menu/display.xpm%mini	17x14-3dpixmaps" Exec wm-icons-config -q -p -f mini 17x14-3dpixmaps
 + "%menu/display.xpm%mini	20x20-martys"    Exec wm-icons-config -q -p -f mini 20x20-martys
@@ -32,14 +34,17 @@ AddToMenu   MenuFvwmIconSets "Change Icon Set" Title
 + "%menu/display.xpm%norm	32x32-kde2"      Exec wm-icons-config -q -p -f norm 32x32-kde2
 + "%menu/display.xpm%norm	44x52-penguins"  Exec wm-icons-config -q -p -f norm 44x52-penguins
 + "%menu/display.xpm%norm	48x48-general"   Exec wm-icons-config -q -p -f norm 48x48-general
++ "%menu/display.xpm%norm	48x48-gnome"     Exec wm-icons-config -q -p -f norm 48x48-gnome
 + "%menu/display.xpm%norm	48x48-kde2"      Exec wm-icons-config -q -p -f norm 48x48-kde2
 + "%menu/display.xpm%norm	56x46-3dpixmaps" Exec wm-icons-config -q -p -f norm 56x46-3dpixmaps
 + "%menu/display.xpm%norm	56x56-martys"    Exec wm-icons-config -q -p -f norm 56x56-martys
 + "%menu/display.xpm%norm	56x56-martys2"   Exec wm-icons-config -q -p -f norm 56x56-martys2
 + "" Nop
-+ "%menu/display.xpm%16x16	16x16-general"   Exec wm-icons-config -q -p -f 16x16 16x16-general
-+ "%menu/display.xpm%16x16	16x16-kde"       Exec wm-icons-config -q -p -f 16x16 16x16-kde
++ "%menu/display.xpm%norm	16x16-general"   Exec wm-icons-config -q -p -f 16x16 16x16-general
++ "%menu/display.xpm%norm	16x16-gnome"     Exec wm-icons-config -q -p -f 16x16 16x16-gnome
++ "%menu/display.xpm%norm	16x16-kde"       Exec wm-icons-config -q -p -f 16x16 16x16-kde
 + "" Nop
-+ "%menu/wm-restart.xpm%Restart	to activate"     Restart
++ "%menu/restart.xpm%Restart	to activate"     Restart
 
-Mouse 3 R CM Menu MenuFvwmIconSets Nop
+# You can comment the following out or in.
+Mouse 3 R CM Menu MenuIconSets Nop
