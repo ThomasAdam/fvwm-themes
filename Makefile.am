@@ -209,10 +209,13 @@ rpm-themes-this:
 # first the original rule to build for debian
 # it includes all
 
-deb-dist:
+deb-dist: 
+#	cp fvwm-themes-full-$(VERSION).tar.gz ../fvwm-themes-full-$(VERSION)-0.tar.gz
 	cp -f debian/full-control debian/control
 	cp -f debian/full-changelog debian/changelog
-	dpkg-buildpackage -rfakeroot 
+	fakeroot debian/rules clean
+	fakeroot debian/rules binary-archfull
+	fakeroot dh_builddeb --filename=$(PACKAGE)-full_$(VERSION)-$(release)_i386.deb
 
 # build base and extra debs
 deb-dist3:
@@ -235,7 +238,7 @@ deb-dist3:
 	debian/fvwm-themes-extra/usr/share/fvwm/themes/; \
 	done
 	fakeroot dh_md5sums
-	fakeroot dh_builddeb --filename=$(PACKAGE)-base_$(VERSION)_$(release)_i386.deb
+	fakeroot dh_builddeb --filename=$(PACKAGE)_$(VERSION)-$(release)_i386.deb
 	
 	cp -f debian/extra-control debian/control
 	cp -f debian/extra-changelog debian/changelog
@@ -249,7 +252,7 @@ deb-dist3:
 	fakeroot dh_shlibdeps
 	fakeroot dh_gencontrol 
 	fakeroot dh_md5sums
-	fakeroot dh_builddeb --filename=$(PACKAGE)-extra_$(VERSION)_$(release)_i386.deb
+	fakeroot dh_builddeb --filename=$(PACKAGE)-extra_$(VERSION)-$(release)_i386.deb
 	rm -fr debian/fvwm-themes-base
 	rm -fr debian/fvwm-themes-extra
 

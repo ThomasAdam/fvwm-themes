@@ -1,4 +1,4 @@
-fvwm-themes-extra (0.7.0-1) unstable; urgency=low
+fvwm-themes (0.7.0-0) unstable; urgency=low
 
   * Initial Release.
   * changed menu-entry: Programs default to menudefs.hook
