@@ -337,22 +337,12 @@ AddToMenu    MenuFvwmWindowGroupOps "Resource Group Ops" Title
 + "" Nop
 + "Quick Move To ...%menu/window-move.xpm%" Popup MenuFvwmWindowGroupQuickMove
 
-# Needed for the initial placement style options
-DestroyFunc FuncFvwmStyleAndRecapture
-AddToFunc   FuncFvwmStyleAndRecapture
-+ I Style "$0" $1
-+ I All ("$0") RecaptureWindow
-
 DestroyMenu MenuFvwmWindowStyle
 AddToMenu   MenuFvwmWindowStyle "Window Style" Title
 + "%menu/window.xpm%TitleAtTop"    Pick (CirculateHit) Style $n TitleAtTop
 + "%menu/window.xpm%TitleAtBottom" Pick (CirculateHit) Style $n TitleAtBottom
 + "%menu/window.xpm%Title"         Pick (CirculateHit) Style $n Title
 + "%menu/window.xpm%NoTitle"       Pick (CirculateHit) Style $n NoTitle
-+ "" Nop
-+ "%menu/window-raise.xpm%StaysOnTop"     Pick (CirculateHit) FuncFvwmStyleAndRecapture $n StaysOnTop
-+ "%menu/window.xpm%StaysPut"             Pick (CirculateHit) FuncFvwmStyleAndRecapture $n StaysPut
-+ "%menu/window-lower.xpm%StaysOnBottom"  Pick (CirculateHit) FuncFvwmStyleAndRecapture $n StaysOnBottom
 + "" Nop
 + "%menu/window.xpm%FvwmBorder"           Pick (CirculateHit) Style $n FvwmBorder
 + "%menu/window.xpm%MWMBorder"            Pick (CirculateHit) Style $n MWMBorder
@@ -448,8 +438,11 @@ AddToMenu   MenuFvwmWindowUtility "Window Utility" Title
 + "%menu/printing.xpm%&Print"             Pick (CirculateHit) FuncFvwmWindowPrint
 + "%menu/printing.xpm%Print &Reverse"     Pick (CirculateHit) FuncFvwmWindowPrintReverse
 + "" Nop
++ "%menu/window-raise.xpm%StaysOnTop"     Pick (CirculateHit) Layer 0 6
 + "%menu/window-raise.xpm%Layer +1"       Pick (CirculateHit) Layer +1
++ "%menu/window.xpm%StaysPut"             Pick (CirculateHit) Layer 0 4
 + "%menu/window-lower.xpm%Layer -1"       Pick (CirculateHit) Layer -1
++ "%menu/window-lower.xpm%StaysOnBottom"  Pick (CirculateHit) Layer 0 2
 + "" Nop
 + "%menu/window-resize.xpm%Scroll&Bar (1/2 app)"  Pick Module FvwmScroll 2 2
 + "%menu/window-resize.xpm%ScrollBar (&75%% scr)" Pick Module FvwmScroll 75p 75p
