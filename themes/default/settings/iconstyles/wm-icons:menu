@@ -37,6 +37,9 @@ AddToMenu   MenuFvwmIconSets "Change Icon Set" Title
 + "%menu/display.xpm%norm	56x56-martys"    Exec wm-icons-config -q -p -f norm 56x56-martys
 + "%menu/display.xpm%norm	56x56-martys2"   Exec wm-icons-config -q -p -f norm 56x56-martys2
 + "" Nop
++ "%menu/display.xpm%16x16	16x16-general"   Exec wm-icons-config -q -p -f 16x16 16x16-general
++ "%menu/display.xpm%16x16	16x16-kde"       Exec wm-icons-config -q -p -f 16x16 16x16-kde
++ "" Nop
 + "%menu/wm-restart.xpm%Restart	to activate"     Restart
 
 Mouse 3 R CM Menu MenuFvwmIconSets Nop

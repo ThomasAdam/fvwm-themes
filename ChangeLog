@@ -12,6 +12,9 @@
 	* scripts/FvwmScript-ThemesCenter:
 	several changes in labels in english and russian
 
+	* themes/default/settings/iconstyles/wm-icons:menu:
+	added a menu for 16x16 wm-icons set
+
 2000-10-01  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ThemesCenter:
