@@ -33,6 +33,7 @@ install-data-local:
 		$(SETTINGS_FILE) > $(SETTINGS_FILE).tmp && \
 	mv -f $(SETTINGS_FILE).tmp $(SETTINGS_FILE)
 
+	PATH="$(bindir):$(FVWM_BINDIR):$$PATH"; \
 	$(bindir)/fvwm-themes-config --site --reset
 
 	if test "$(BUILD_MENUS)" = "yes"; then \

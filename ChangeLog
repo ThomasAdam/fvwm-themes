@@ -1,3 +1,8 @@
+2002-05-15  migo  <migo@homemail.com>
+
+	* Makefile.am:
+	fixed "make install" when fvwm-config is not in $PATH
+
 2002-02-28  migo  <migo@homemail.com>
 
 	* rpm/Makefile.am:
