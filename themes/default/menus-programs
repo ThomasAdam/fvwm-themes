@@ -268,6 +268,8 @@ AddToMenu   MenuFvwmInternet "Internet" Title
 + "&ICQ%menu/chat.xpm%"			Exec exec icq
 + "&Licq%menu/chat.xpm%"		Exec exec licq
 + "" Nop
++ "&Gtk-Gnutella%menu/network.xpm%"	Exec exec gtk-gnutella
++ "" Nop
 + "&Minitel%menu/terminal-special.xpm%"	Exec exec xtel -petit
 + "&Minicom%menu/terminal-special.xpm%"	FuncFvwmRunInXterm "Minicom" "minicom"
 
@@ -402,6 +404,7 @@ AddToMenu   MenuFvwmGamesStrategy "Strategy" Title
 + "LinCity%menu/game.xpm%"		Exec exec xlincity
 + "Crimson%menu/game.xpm%"		Exec exec crimson
 + "LiquidWar%menu/game.xpm%"		Exec exec liquidwar
++ "Enigma%menu/game.xpm%"		Exec exec enigma
 + "FreeCraft%menu/game.xpm%"		Exec exec freecraft
 + "FreeCiv Server%menu/game.xpm%"	Exec exec civserver-wrapper
 + "FreeCiv Client%menu/game.xpm%"	Exec exec civclient-wrapper
