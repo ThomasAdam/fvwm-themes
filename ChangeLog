@@ -4,6 +4,9 @@
 	* configure.in:
 	increased to 0.7.1
 
+	* themes/redmondxp/images/module/panel-bg.xpm:
+	removed redundant file
+
 2003-10-31  migo  <migo@homemail.com>
 
 	* themes/redmondxp/images/module/panel-start.png:
