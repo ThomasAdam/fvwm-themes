@@ -201,20 +201,32 @@ rpm-themes-this:
 #    make version=2.3.22 release=2 deb-this
 #    make deb-dist cparams='--enable-gnome --quiet' mparams='CFLAGS="-O2 -g"'
 
-deb-dist: deb-this
+deb-dist: dist
+	(cd debian && $(MAKE) Makefile) && \
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) dist || exit 1
+
 
 #    make deb-dist3  # creates -base and -extra debs
 
-deb-dist3: deb-base-this deb-extra-this
+deb-dist3: dist deb-base-dist deb-extra-dist
+
+deb-base-dist:
+	(cd debian && $(MAKE) Makefile) && \
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) dist-base || exit 1
+
+
+deb-extra-dist:
+	(cd debian && $(MAKE) Makefile) && \
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) dist-extra || exit 1
 
 deb-this:
 	(cd debian && $(MAKE) Makefile) && \
-	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) deb || exit 1
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) this || exit 1
 
 deb-base-this:
 	(cd debian && $(MAKE) Makefile) && \
-	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) deb-base || exit 1
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) this-base || exit 1
 
 deb-extra-this:
 	(cd debian && $(MAKE) Makefile) && \
-	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) deb-extra || exit 1
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) this-extra || exit 1

@@ -11,7 +11,29 @@ email = fvwm-themes-devel@lists.sourceforge.net
 arch ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
 
 
-deb:
+
+dist:
+	(cd debian && tar -xzf ../fvwm-themes-$(version).tar.gz)
+	-cp debian/* debian/fvwm-themes-$(version)/debian
+	(cd debian/fvwm-themes-$(version) && ./configure --prefix=/usr --disable-run-updatemenu)
+	(cd debian/fvwm-themes-$(version) && make deb-this)
+	-(cd debian && rm -r -f fvwm-themes-$(version))
+
+dist-base:
+	(cd debian && tar -xzf ../fvwm-themes-$(version).tar.gz)
+	-cp debian/* debian/fvwm-themes-$(version)/debian
+	(cd debian/fvwm-themes-$(version) && ./configure --prefix=/usr --disable-run-updatemenu)
+	(cd debian/fvwm-themes-$(version) && make deb-base-this)
+	-(cd debian && rm -r -f fvwm-themes-$(version))
+
+dist-extra:
+	(cd debian && tar -xzf ../fvwm-themes-$(version).tar.gz)
+	-cp debian/* debian/fvwm-themes-$(version)/debian
+	(cd debian/fvwm-themes-$(version) && ./configure --prefix=/usr --disable-run-updatemenu)
+	(cd debian/fvwm-themes-$(version) && make deb-extra-this)
+	-(cd debian && rm -r -f fvwm-themes-$(version))
+
+this:
 	make clean
 	echo "fvwm-themes-full ($(version)-$(release)) unstable; urgency=low" > debian/changelog
 	echo "" >> debian/changelog
@@ -42,13 +64,13 @@ deb:
 	fakeroot dh_gencontrol
 	fakeroot dh_md5sums
 	fakeroot dh_builddeb
-	-@dpkg-genchanges > ../fvwm-themes-full_$(version)-$(release)_$(arch).changes
-	-@debsign ../fvwm-themes-full_$(version)-$(release)_$(arch).changes
+	-dpkg-genchanges > ../fvwm-themes-full_$(version)-$(release)_$(arch).changes
+	-debsign ../fvwm-themes-full_$(version)-$(release)_$(arch).changes
 	fakeroot dh_clean
 	rm -f debian/control debian/full-control
 
 
-deb-base:
+this-base:
 	make clean
 	echo "fvwm-themes ($(version)-$(release)) unstable; urgency=low" > debian/changelog
 	echo "" >> debian/changelog
@@ -90,13 +112,13 @@ deb-base:
 	fakeroot dh_gencontrol
 	fakeroot dh_md5sums
 	fakeroot dh_builddeb
-	-@dpkg-genchanges > ../fvwm-themes_$(version)-$(release)_$(arch).changes
-	-@debsign ../fvwm-themes_$(version)-$(release)_$(arch).changes
+	-dpkg-genchanges > ../fvwm-themes_$(version)-$(release)_$(arch).changes
+	-debsign ../fvwm-themes_$(version)-$(release)_$(arch).changes
 	fakeroot dh_clean
 	rm -f debian/control debian/base-control
 
 
-deb-extra:
+this-extra:
 	make clean
 	echo "fvwm-themes-extra ($(version)-$(release)) unstable; urgency=low" > debian/changelog
 	echo "" >> debian/changelog
@@ -136,11 +158,11 @@ deb-extra:
 	fakeroot dh_shlibdeps
 	fakeroot dh_gencontrol
 	fakeroot dh_md5sums
-	rm debian/fvwm-themes-extra/DEBIAN/postinst
-	rm debian/fvwm-themes-extra/DEBIAN/postrm
+	-rm debian/fvwm-themes-extra/DEBIAN/postinst
+	-rm debian/fvwm-themes-extra/DEBIAN/postrm
 	fakeroot dh_builddeb 
-	-@dpkg-genchanges > ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes
-	-@debsign  ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes
+	-dpkg-genchanges > ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes
+	-debsign  ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes
 	fakeroot dh_clean
 	rm -f debian/control debian/extra-control
 
