@@ -1,3 +1,31 @@
+2001-08-01  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	* themes/default/settings.cfg:
+	* themes/multichoice/fonts.cfg:
+	New .cfg option system-requires for components and variants (not
+	for options). Applies this new option to settings/* and fonts
+	variants of multichoice. Possible values are:
+		
+	fvwm-supports:arg
+		check if fvwm-config --supports-arg
+	inpath:exec
+		check if the executable exec is in the $PATH
+	font:list
+		where list is a "," separated list of fonts which should
+		"xlsfonts-match"
+		
+	it is easy to add more by using the checkSystemRequires sub.
+
+	Note: For fonts, if multibyte is enabled in fvwm, we should check for
+	LC_CTYPE (and corresponding locale) to see if the font can be displayed
+	correctly (even if the font is not multibyte ...). Do not see how to
+	do that in a generic way, but we can do this for koi8-r, big5, gb2312,
+	jisx0208, ksc5601 (as these fonts seems attached to a "unique" locale) 
+	
+	* themes/default/sounds:
+	fixed the path (add missing ../)
+
 2001-07-30  migo  <migo@homemail.com>
 
 	* themes/default/globallook:

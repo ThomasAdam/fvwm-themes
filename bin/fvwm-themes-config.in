@@ -459,6 +459,14 @@ sub loadThemeCfg ($) {
 			$entryStr =~ /^$idKey\s*=\s*(.*)\s*$/m;
 			my $key = $1;
 			errDie("No '$idKey' value in entry [$entryTag] in $cfgFile") unless $key;
+			# check for system requires
+			while ($theme ne 'current' &&
+					 $entryStr =~ s/^system-requires\s*=\s*(.*)\s*$//m) {
+				my $cmd = $1;
+				if (!checkSystemRequires($cmd)) {
+					$entry->{'hidden'} = 1;
+				}
+			}
 
 			# these defaults are probably ok
 			my $reuseDependences = 1;
@@ -491,6 +499,47 @@ sub loadThemeCfg ($) {
 		decodeCfgEntry($entryStr, $entry);
 	}
 
+	# system requires check
+	my $components = $cfg->[0]->{$componentKey};
+	my $i;
+	my $j;
+	my $comp;
+	my @allComp = ();
+	if ($theme ne 'current') {
+		push @allComp, @$components;
+	}
+	foreach $comp (@allComp) {
+		my $contains = $cfg->[1]->{$comp}->{'contains'};
+		if (ref($contains) eq 'ARRAY') {
+			my $subComponent;
+			foreach $subComponent (@$contains) {
+				push @allComp, "$comp/$subComponent";
+				if (defined $cfg->[1]->{"$comp"}->{'hidden'}) {
+					$cfg->[1]->{"$comp/$subComponent"}->{'hidden'} = 1;
+				}
+			}
+		}
+	}
+	foreach $comp (@allComp) {
+		my $variants = $cfg->[1]->{$comp}->{'variant'};
+		if (ref($variants) eq 'ARRAY') {
+			for ($i = 0; $i < @$variants; $i++) {
+				my $sr = $variants->[$i]->{'system-requires'};
+				if (ref($sr) eq 'ARRAY') {
+					for ($j = 0; $j < @$sr; $j++) {
+						$variants->[$i]->{'hidden'} = 1 
+						  if !checkSystemRequires("$sr->[$j]");
+					}
+					undef @$sr;
+					delete $variants->[$i]->{'system-requires'};
+				}
+				elsif (defined $sr) {
+					$variants->[$i]->{'hidden'} = 1 if !checkSystemRequires("$sr");
+					delete $variants->[$i]->{'system-requires'};
+				}
+			}
+		}
+	}
 #	# leave only real components
 #	my $components = $cfg->[0]->{$componentKey};
 #	errDie("No '$componentKey' in entry [theme]") unless ref($components) eq 'ARRAY';
@@ -506,6 +555,38 @@ sub loadThemeCfg ($) {
 	#ccf: 1 line
 	saveCfgCacheFile($theme,$cfg);
 	return $cfg;
+}
+
+sub checkSystemRequires($) {
+	my $check = shift;
+
+	my ($cmd,$arg) = split(':',$check);
+	if ($cmd eq 'inpath') {
+		my $dir;
+		my @pathDirs = split(':',$ENV{PATH});
+		foreach $dir (@pathDirs) {
+			return 1 if -x "$dir/$arg";
+		}
+		return 0;
+	}
+	elsif ($cmd eq 'env') {
+		my $r = 1;
+		my $t = $ENV{"$arg"} || "";
+		$r = 0 if $t eq "";
+		return $r;
+	}
+	elsif ($cmd eq 'fvwm-supports') {
+		return 0 if system("fvwm-config --supports-$arg") != 0;
+	}
+	elsif ($cmd eq 'font') {
+		my @fonts = split(',',$arg);
+		foreach (@fonts) {
+			my $t = "";
+			$t = `xlsfonts -fn \"$_\" 2> /dev/null`;
+			return 0 if $t eq "";
+		}
+	}
+	return 1;
 }
 
 #ccf: new function
@@ -976,7 +1057,8 @@ sub storeThemeComponentMemory ($$$) {
 	my $cc = $self->getComponentCfg($component);
 	my $cm = {};
 
-	if (ref($cc->{'variant'}) eq 'ARRAY' && $cc->{'current'}) {
+	if (ref($cc->{'variant'}) eq 'ARRAY' && $cc->{'current'} &&
+		 !defined $cc->{'variant'}->[$cm->{'current'}]->{'hidden'}) {
 		$cm->{'current'} = $cc->{'current'};
 	}
 	my $options = $cc->{'option'};
@@ -1019,11 +1101,18 @@ sub applyThemeComponentMemory ($$$) {
 		delete $themeMemory->{$component};
 		return;
 	}
-
 	my $cc = $self->getComponentCfg($component);
+	
 	if ($cm->{'current'} && ref($cc->{'variant'}) eq 'ARRAY') {
 		$cc->{'current'} = $cm->{'current'};
+		if (defined $cc->{'variant'}->[$cm->{'current'}]->{'hidden'}) {
+			delete $themeMemory->{$component};
+		}
+		else {
+			$cc->{'current'} = $cm->{'current'};
+		}	
 	}
+
 	my $mOptions = $cm->{'option'};
 	my $options = $cc->{'option'};
 	if (ref($mOptions) eq 'ARRAY' && ref($options) eq 'ARRAY') {
@@ -1170,6 +1259,12 @@ sub setNewComponentValues ($$$$) {
 		$index = $cc->{'default'} if $index == 0;
 		errDie("Unexisting variant '$variant' in component '$component'")
 			if $index <= 0 || $index > @$variants;
+		if (defined $variants->[$index-1]->{'hidden'}) {
+			$index = $cc->{'default'};
+			errWarn("variant '$variant' in component '$component' not supported " .
+					  "by your system:\nuse the default variant (you may need " .
+					  "to refresh with no cache)\n");
+		}
 		#ccds: 1
 		$cc->{'used'} = 2;
 		$self->setComponentCfg($component, $cc);
@@ -1246,6 +1341,7 @@ sub getOwnThemeSubMenusRc ($) {
 		my $cc = $self->getComponentCfg($_);
 		#olicha 1
 		next unless $cc->{'used'};
+		next if defined $cc->{'hidden'};
 		$dropExtraArgs .= " --drop $_" if /-extra$/;
 
 		my $name = escapeMenuName($cc->{'name'} || $_);
@@ -1257,6 +1353,9 @@ sub getOwnThemeSubMenusRc ($) {
 		if (ref($contains) eq 'ARRAY') {
 			my $subComponent;
 			foreach $subComponent (@$contains) {
+				if (defined $self->getComponentCfg("$_/$subComponent")->{'hidden'}){
+				  next;
+			  }
 				my $name = $self->getComponentCfg("$_/$subComponent")->{'name'};
 				$name = escapeMenuName($name || $subComponent);
 				$menusRc .= qq(+ "$name"\tPopup "$currMenu/$subComponent"\n);
@@ -1309,6 +1408,13 @@ sub getOwnThemeSubMenusRc ($) {
 			if (ref($variants) eq 'ARRAY') {
 				$cc->{'current'} ||= $cc->{'default'};
 				my $index = $cc->{'current'} - 1;
+				if (defined $variants->[$index]->{'hidden'}) {
+					errWarn("variant $variants->[$index]->{'name'} of " . 
+							  "$name\@$cc->{'theme'}\nnot supported by your " .
+							  "system (you may need to refresh with no cache)\n");
+					$cc->{'current'} = $cc->{'default'};
+					$index = $cc->{'current'} - 1;
+				}
 				if ($index < 0 || $index >= @$variants) {
 					$index = 0;  # maybe die on this error?
 					$cc->{'current'} = $index + 1;
@@ -1321,6 +1427,7 @@ sub getOwnThemeSubMenusRc ($) {
 				}
 				my $i;
 				for ($i = 0; $i < @$variants; $i++) {
+					next if defined $variants->[$i]->{'hidden'};
 					my $isCurrent = $i eq $index;
 					my $name = escapeMenuName($variants->[$i]->{'name'}, !$isCurrent);
 					my $icon = $isCurrent? "choice-yes": "empty";
@@ -1373,6 +1480,7 @@ sub getSortedComponentsToRead ($) {
 		next if $component =~ /^_/;
 		#olicha 1
 		next unless $cc->{'used'};
+		next if defined $cc->{'hidden'};
 		next unless $cc->{'read-file'};
 		if (exists $cc->{'complements'}) {
 			my $mainComponent = $cc->{'complements'} || '*none*';
@@ -1711,6 +1819,7 @@ sub getAllHooksRc ($) {
 		my $items = $self->getComponentNamedValue($c, 'start-stop');
 		#ccds 4
 		my $cc = $self->getComponentCfg($c);
+		next if defined $cc->{'hidden'};
 		if ($c eq "colors" && $cc->{'used'} == 2) {
 			$hardCodedStopHooks = "FuncFvwmRestartFvwmTheme\n";
 		}
@@ -2298,7 +2407,7 @@ if ($comMode) {
 	$comPid = $comName;
 	$comPid =~ s/config-//;
 	$comPid = 0 if ($comPid !~ /^\d+$/);
-	$pipe = 1;
+	#$pipe = 1;
 	$cfg->comLoop($comName);
 	# we never return here
 }
@@ -2970,6 +3079,11 @@ sub comLoop {
 				my $optionFile = $optionEntry->{'file'};
 				$optionToSet{"$theme/$comp:$optionFile"} = $value;
 			} elsif (ref($variants) eq 'ARRAY') {
+				my $i;
+				my $v = $value;
+				for ($i = 0; $i < @$variants; $i++) {
+					$value++ if (defined $variants->[$i]->{'hidden'} && $i < $value)  
+				}
 				$variantToSet{"$theme/$comp"}="$value";
 			} elsif (ref($contains) eq 'ARRAY' && defined $contains->[$o]) {
 				my $c = $contains->[$o];
@@ -3328,6 +3442,7 @@ sub getAllSubComponents {
 	my $c;
 	foreach $c (@$contains) {
 		my $dd = $themeCfg->getComponentCfg("$component/$c");
+		next if defined $dd->{'hidden'};
 		my $subConfig = getAllSubComponents($self,$theme,"$component/$c",
 			$themeCfg,$dd->{'name'});
 		if (ref($subConfig) eq 'ARRAY') {
@@ -3341,7 +3456,6 @@ sub getAllSubComponents {
 			my $variants = $dd->{'variant'};
 			if (ref($variants) eq 'ARRAY') {
 				my $j = getVariantIndex($self,$theme,"$component/$c",@$variants);
-				#print STDERR "!!!!!! $j\n";
 				$config->[$i]->{'index'} = $j;
 				$config->[$i]->{'current'} = 	$variants->[$j]->{'name'};
 			}
@@ -3403,6 +3517,7 @@ sub variantsOptionsScriptList {
 	my $return = "";
 	my $i;
 	for ($i = 0; $i < @$variants; $i++) {
+		next if defined $variants->[$i]->{'hidden'};
 		my $isCurrent = $i eq $index;
 		my $set = 0;
 		my $used = "";
