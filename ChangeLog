@@ -8,6 +8,9 @@
 	* themes/default/settings/session-manager/generic:
 	added a new "xsm" variant of session-manager
 
+	* images.tar.gz:
+	removed compatibility symlinks (it is now fully from wm-icons-0.3.0)
+
 2001-03-19  migo  <migo@homemail.com>
 
 	* themes/default/menus: fixed menu item with '%'
