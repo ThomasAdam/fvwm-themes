@@ -6,8 +6,8 @@ EXTRA_THEMES=@EXTRA_THEMES@
 
 version = @VERSION@
 release = 0.`date +%Y%m%d`
-cparams = '--without-gnome'
-mparams = 'CFLAGS="-O2"'
+cparams = --without-gnome --without-rplay-library
+mparams = CFLAGS="-O2"
 
 rpm: @PACKAGE@.spec
 	@\
