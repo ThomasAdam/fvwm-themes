@@ -12,6 +12,11 @@
 	* debian/postrm:
 	improved
 
+	* bin/fvwm-themes-config.in:
+	* bin/fvwm-themes-start.in:
+	* themes/default/functions:
+	improved xmessage and FuncFvwmShowMessage calls
+
 2003-10-31  migo  <migo@homemail.com>
 
 	* themes/redmondxp/images/module/panel-start.png:

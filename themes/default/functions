@@ -111,10 +111,14 @@ AddToFunc   FuncFvwmConsole
 DestroyFunc FuncFvwmShowMessage
 AddToFunc   FuncFvwmShowMessage
 + I Test (x xmessage) Exec echo "$1" | \
-	perl -pe 's/\^n/\n/g; s/\^t/\t/g; s/\^d/\$/g; s/\^\^/^/g' - | \
+	perl -pe 's/\^n/\n/g; s/\^t/\t/g; s/\^d/\$/g; s/^q/"/g; s/\^\^/^/g' - | \
 	xmessage -g 480x124 -nearmouse -title "$0" -file - \
-	-xrm "*form*foreground:$[fg.cs35]" -xrm "*form*background:$[bg.cs35]" \
-	-xrm "*form*message*foreground:$[fg.cs36]" -xrm "*form*message*background:$[bg.cs36]"
+	-xrm "*textSink*font:lucidasans-14" \
+	-xrm "*form*scrollVertical:false" \
+	-xrm "*form*foreground:$[fg.cs35]" \
+	-xrm "*form*background:$[bg.cs35]" \
+	-xrm "*form*message*foreground:$[fg.cs36]" \
+	-xrm "*form*message*background:$[bg.cs36]" $2
 + I TestRc (!Match) FvwmPerl -e \
 	'$_ = qq{$1}; s/\^n/\n/g; s/\^t/\t/g; s/\^d/\044/g; s/\^\^/^/g; showMessage($_, $0, 1)'
 

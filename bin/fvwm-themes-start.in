@@ -91,7 +91,7 @@ isNewVersion="$?"
 if [ "$isNewVersion" = 1 -o "$isNewSession" = 1 ]; then
 	if [ "$isNewVersion" = 1 ]; then
 		echo '[FVWM-Themes]: Welcome to FVWM Themes @VERSION@!'
-		xmessage -g 400x100+0+0 -xrm "*form*background:rgb:c0/c0/a0" -xrm "*form*okay*background:rgb:90/90/7a" -xrm "*textSink*font:lucidasans-18" -xrm "*form*message*background:rgb:f0/f0/c0" 'Welcome to FVWM Themes @VERSION@!' 2>/dev/null &
+		xmessage -g 400x100+0+0 -xrm "*form*background:rgb:c0/c0/a0" -xrm "*form*okay*background:rgb:90/90/7a" -xrm "*textSink*font:lucidasans-18" -xrm "*form*scrollVertical:false" -xrm "*form*message*background:rgb:f0/f0/c0" 'Welcome to FVWM Themes @VERSION@!' 2>/dev/null &
 	else
 		echo "[FVWM-Themes]: Initial $session FVWM Themes session"
 	fi

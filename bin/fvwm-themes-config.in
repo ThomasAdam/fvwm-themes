@@ -125,31 +125,30 @@ sub errDie ($) {
 	my $msg = shift;
 	$msg .= "\n" unless $msg =~ /\n$/s;
 	if ($pipe) {
-		$msg =~ s/\n+$//s;
-		$msg =~ s/\n/ /sg;
-		$msg =~ s/'/`/g;
-		print qq(Exec exec xmessage -g 400x100 -xrm "*form*background:rgb:c0/50/50" -xrm "*form*okay*background:rgb:90/40/40" -xrm "*textSink*font:lucidasans-14" -xrm "*form*message*background:rgb:f0/60/60" -title '$scriptName error' -center '$msg'\n);
+		$msg =~ s/\n/^n/sg;
+		$msg =~ s/"/^q/sg;
+		print qq(FuncFvwmShowMessage "$scriptName error" "$msg" '-center -xrm "*form*background:rgb:c0/50/50" -xrm "*form*okay*background:rgb:90/40/40" -xrm "*form*message*background:rgb:f0/60/60"'\n);
 		exit -1;
 	} else {
 		die $msg;
 	}
 }
 
-#' <- a fix for my xemacs (olicha)
+#" <- a fix for my xemacs (olicha)
 
 sub errWarn ($) {
 	my $msg = shift;
 	$msg .= "\n" unless $msg =~ /\n$/s;
 	if ($pipe) {
-		$msg =~ s/\n$//s;
-		$msg =~ s/'/`/g;
-		print qq(Exec exec xmessage -g 400x100 -xrm "*form*background:rgb:90/90/50" -xrm "*form*okay*background:rgb:70/70/40" -xrm "*textSink*font:lucidasans-14" -xrm "*form*message*background:rgb:b0/b0/60" -title '$scriptName warning' -center '$msg'\n);
+		$msg =~ s/\n/^n/sg;
+		$msg =~ s/"/^q/sg;
+		print qq(FuncFvwmShowMessage "$scriptName warning" "$msg" '-center -xrm "*form*background:rgb:90/90/50" -xrm "*form*okay*background:rgb:70/70/40" -xrm "*form*message*background:rgb:b0/b0/60"'\n);
 	} else {
 		warn $msg;
 	}
 }
 
-#' <- a fix for my xemacs (olicha)
+#" <- a fix for my xemacs (olicha)
 
 sub sysDie ($) {
 	my $msg = shift;
