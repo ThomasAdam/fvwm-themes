@@ -2038,7 +2038,7 @@ sub getReadsRc($) {
 			($readAfterward? $readRc2: $readRc1) .= "$command\n";
 			
 			my $reloadCommand = $command;
-			if (defined $optionEntry->{'reload-read-command'}&& $cc->{'used'} < 3){ 
+			if (defined $optionEntry->{'reload-read-command'} && $cc->{'used'} < 3) {
 				$reloadCommand = $optionEntry->{'reload-read-command'};
 				$reloadCommand =~ s/%f/$valueFile/sg;
 				$reloadCommand =~ s/%F/$valueFile0/sg;  # to be obsolete?
@@ -2610,7 +2610,7 @@ sub showInfoForConfigCenter {
 			my $dd = $themeCfg->getComponentCfg($c);
 			my $file = $dd->{'read-file'} || "";
 			$return .= "$file\n";
-			my $options  = $cc->{$c}->{'option'};
+			my $options = $cc->{$c}->{'option'};
 			if (ref($options) eq 'ARRAY') {
 				$return .= "OPTIONS\n";
 				my $opt;
@@ -2636,7 +2636,7 @@ sub showInfoForConfigCenter {
 sub comLoop {
 	my $self = shift;
 	my $outFifo = ".tmp-com-out-" . $comName;
-	my $inFifo = ".tmp-com-in-"  . $comName;
+	my $inFifo = ".tmp-com-in-" . $comName;
 	my $command = "";
 	my $return = "";
 
@@ -2655,7 +2655,7 @@ sub comLoop {
 
 	my $settingsConfig = $self->getAllSubComponents("default", "settings");
 
-	my ($currentSession,$sessionList,$uptime) =  sessionInfo();
+	my ($currentSession, $sessionList, $uptime) = sessionInfo();
 
 	chdir($userDir) || die "No FvwmConfigHome $userDir";
 	unlink($outFifo) if -p "$outFifo";
@@ -2702,20 +2702,20 @@ sub comLoop {
 		# flush the message that does not need an answer
 		my $s;
 		for ($s = 0; $s < @tt; $s++) {
-		  if ($tt[$s] =~ /^remove-to-pid-list\s+(\d+)\s+(\d+)$/) {
-			  my $id = $1;
-			  $comPid[$id] = 0;
-			  $tt[$s] = "";
-		  }
-		  elsif ($tt[$s] =~ /^add-to-pid-list\s+(\d+)\s+(\d+)$/) {
-			  my $id = $1;
-			  my $p = $2;
-			  $comPid[$id] = $p;
-			  $tt[$s] = "";
-		  }
-		  elsif ($tt[$s] eq "exit") {
-			  exit(0);
-		  }
+			if ($tt[$s] =~ /^remove-to-pid-list\s+(\d+)\s+(\d+)$/) {
+				my $id = $1;
+				$comPid[$id] = 0;
+				$tt[$s] = "";
+			}
+			elsif ($tt[$s] =~ /^add-to-pid-list\s+(\d+)\s+(\d+)$/) {
+				my $id = $1;
+				my $p = $2;
+				$comPid[$id] = $p;
+				$tt[$s] = "";
+			}
+			elsif ($tt[$s] eq "exit") {
+				exit(0);
+			}
 		}
 
 		# now answer the first message which needs one
@@ -2828,7 +2828,7 @@ sub comLoop {
 		#-------------------------------------------
 		elsif ($command =~ /^all-ts-lists\s+(\d+)\s+(\d+)$/)
 		{
-			my $tcIndex =  $1 - 1;
+			my $tcIndex = $1 - 1;
 			my $ccnIndex = $2;
 			my $l;
 			my $theme;
@@ -2871,9 +2871,9 @@ sub comLoop {
 					\%variantToSet
 				);
 			#------- build the answer:
-			$return =
-			  mergeScriptAnswerForParse(
-				   "$tlReturn\n$tcReturn1\n$ccReturn\n$ccnReturn1\n$ccnReturn2\n$ccnReturn3");
+			$return = mergeScriptAnswerForParse(
+				"$tlReturn\n$tcReturn1\n$ccReturn\n" .
+				"$ccnReturn1\n$ccnReturn2\n$ccnReturn3");
 		}
 
 		# -------------------------------------------------
@@ -3346,18 +3346,18 @@ sub comLoop {
 			foreach (@$sessionList) {
 				$return = "Err2" if $opt[0] eq $_;
 			}
-			
+
 			if ($return eq "") {
 				my $dirConfig = "";
 				my $i = 1;
 				foreach (@$sessionList) {
-						$i++;
-						$dirConfig = "themes/current-$$sessionList[$i-2]" 
-							if $i == $opt[1];
+					$i++;
+					$dirConfig = "themes/current-$$sessionList[$i-2]"
+						if $i == $opt[1];
 				}
 				makePath("$userDir/$currentThemeSubDir-$opt[0]");
 				if ($dirConfig ne "") {
-					chdir($dirConfig);	
+					chdir($dirConfig);
 					system("cp -rdp * '../../$currentThemeSubDir-$opt[0]'");
 					chdir($userDir);
 				}
@@ -4063,8 +4063,8 @@ sub variantsOptionsScriptList {
 		$l = 1 if $l < 1;
 		$used = " " x $l . "(" if $isCurrent || $set;
 		$used .= $isCurrent? "$usedS": "";
-		$used .= "/" if  $isCurrent && $set;
-		$used .= "$setS" if  $set;
+		$used .= "/" if $isCurrent && $set;
+		$used .= "$setS" if $set;
 		$used .= ")" if $isCurrent || $set;
 		$return .= "$name$used|";
 	}
@@ -4126,7 +4126,7 @@ END {
 
 			unlink($outFifo) if -p "$outFifo";
 			unlink($inFifo) if -p "$inFifo";
-		  	if ($comPid[0]) {
+			if ($comPid[0]) {
 				kill(9, $comPid[0]);
 				$message .= "\tkilling FvwmScript-ThemesCenter";
 			}

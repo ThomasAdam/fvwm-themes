@@ -13,6 +13,9 @@
 	* themes/migo/colors:
 	remove fgsh
 
+	* bin/fvwm-themes-config.in:
+	minor spacing
+
 2002-06-02  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings.cfg: 
