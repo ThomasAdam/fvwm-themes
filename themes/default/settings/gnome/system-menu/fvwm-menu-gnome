@@ -1,6 +1,6 @@
 AddToMenu gnome-sys
-+ "" Nop
 + DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop gnome-sys -enable-tran-mini-icons --tran-mini-icons-path $FT_DATADIR/images/mini-gnome'
 
 AddToMenu MenuFvwmPrograms
++ "" Nop
 + "Gnome menu%menu/gnome.xpm" popup gnome-sys
