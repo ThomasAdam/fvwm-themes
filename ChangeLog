@@ -6,6 +6,9 @@
 	* themes/redmondxp/colors:
 	try a bit of new tints in menus
 
+	* themes/redmondxp/modules/FvwmButtons-Panel:
+	fixed container colorset
+
 2002-09-22  migo  <migo@homemail.com>
 
 	* configure.in:

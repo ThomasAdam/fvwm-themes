@@ -110,12 +110,12 @@ PipeRead `echo -n "SetEnv IconManWidth "; expr $[vp.width] / 4 - 90`
 *FvwmButtons-Panel: (16x1, Container(Columns 1, Colorset 14, \
 	Font "shadow=1:xft:Luxi Sans:Bold:pixelsize=9:minspace=true" \
 ))
-*FvwmButtons-Panel: (Id clock1, Title " ", Colorset 14, \
+*FvwmButtons-Panel: (Id clock1, Title " ", \
 	ActionOnPress, \
 	Action `SendToModule $./FvwmThemesPanelManager popup clockbar-config rectangle $widthx$height+$left+$top -0 -100m`, \
 	Action(Mouse 3) `SendToModule $./FvwmThemesPanelManager circulate clockbar-field1-format`, \
 )
-*FvwmButtons-Panel: (Id clock2, Title " ", Colorset 14, \
+*FvwmButtons-Panel: (Id clock2, Title " ", \
 	ActionOnPress, \
 	Action `SendToModule $./FvwmThemesPanelManager popup clockbar-config rectangle $widthx$height+$left+$top -0 -100m`, \
 	Action(Mouse 3) `SendToModule $./FvwmThemesPanelManager circulate clockbar-field2-format`, \
