@@ -62,6 +62,7 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyModuleConfig FvwmIconMan: *
 + I FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmDestroyModulesThemeStyle
+### very incorrect!
 + I Read $./../colors
 
 DestroyFunc FuncFvwmUnReloadColorsModules

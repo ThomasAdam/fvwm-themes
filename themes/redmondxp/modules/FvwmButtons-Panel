@@ -50,7 +50,7 @@ DestroyModuleConfig FvwmButtons-Panel: *
 	Action(Mouse 3) `FuncFvwm3ImageView`, \
 )
 
-# ---- pager bar ----
+# ---- page bar ----
 DestroyFunc ToggleFvwmPager
 AddToFunc   ToggleFvwmPager
 + I None ($0, CirculateHit) FvwmPager $*
@@ -59,7 +59,7 @@ AddToFunc   ToggleFvwmPager
 # Ohhh...
 PipeRead "echo '*FvwmButtons-Panel: (3x1, Icon module/panel-holder.png, \
 	ActionOnPress, \
-	Action `SendToModule $./FvwmThemesPanelManager popup pager-config rectangle $$widthx$$height+$$left+$$top 0 -100m`, \
+	Action `SendToModule $./FvwmThemesPanelManager popup pagebar-config rectangle $$widthx$$height+$$left+$$top 0 -100m`, \
 )'"
 *FvwmButtons-Panel: (8x1, Container(Rows 2, \
 	Font "shadow=1:xft:Luxi Sans:Bold:pixelsize=8:minspace=true" \
@@ -99,9 +99,10 @@ PipeRead "echo '*FvwmButtons-Panel: (3x1, Icon module/panel-holder.png, \
 *FvwmButtons-Panel: (End)
 
 # ---- task bar ----
-*FvwmButtons-Panel: (3x1, Icon module/panel-holder.png, \
-	Action `Popup MenuFvwmPanelMovePart rectangle $widthx$height+$left+$top 0 -100m`, \
-)
+PipeRead "echo '*FvwmButtons-Panel: (3x1, Icon module/panel-holder.png, \
+	ActionOnPress, \
+	Action `SendToModule $./FvwmThemesPanelManager popup taskbar-config rectangle $$widthx$$height+$$left+$$top 0 -100m`, \
+)'"
 *FvwmButtons-Panel: (200x1, Swallow FvwmIconMan 'Module FvwmIconMan')
 
 # ---- clock/dock bar ----

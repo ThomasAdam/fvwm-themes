@@ -15,8 +15,8 @@ my $name = $fullName; $name =~ s|.*/||g;
 my $configFile = ".$name.cfg";
 my $config = {
 	'taskbar-resolution' => 'page',
-	'pager-show-single' => 0,
-	'pager-show-desker' => 0,
+	'pagebar-show-single' => 0,
+	'pagebar-show-desker' => 0,
 };
 my $newConfig = {};
 my $pageButtonIndexes = [ 8, 9, 10, 11 ];
@@ -35,7 +35,7 @@ sub loadConfig () {
 	foreach (split(/\n/s, $$textRef)) {
 		next unless /=/;
 		my ($key, $value) = split(/=/, $_, 2);
-		$newConfig->{$key} = $value;
+		$newConfig->{$key} = $value if exists $config->{$key};
 	}
 }
 
@@ -51,30 +51,36 @@ sub applyNewConfig () {
 	my $key;
 	foreach $key (keys %$newConfig) {
 		my $newValue = $newConfig->{$key};
+		my $oldValue = $config->{$key};
+		die("Internal error: undefined key ($key)")
+			unless defined $newValue && defined $oldValue;
 		delete $newConfig->{$key};
-		next if $newValue eq $config->{$key};
+		next if $newValue eq $oldValue;
 		$config->{$key} = $newValue;
 
-		if ($key eq 'pager-show-single') {
+		if ($key eq 'pagebar-show-single') {
 			my $cmd = $newValue?
-				"FvwmPager FvwmPager-Single":
+				"FvwmPager FvwmPager-Single * *":
 				"KillModule FvwmPager FvwmPager-Single";
 			$module->send($cmd);
 		}
-		if ($key eq 'pager-show-desker') {
+		if ($key eq 'pagebar-show-desker') {
 			my $cmd = $newValue?
 				"FvwmPager FvwmPager-Desker 0 3":
 				"KillModule FvwmPager FvwmPager-Desker";
 			$module->send($cmd);
 		}
+		if ($key eq 'taskbar-resolution') {
+			$module->send("*FvwmIconMan: resolution $newValue");
+		}
 	}
 	saveConfig();
 }
 
-sub popupPagerConfigMenu ($) {
+sub popupPageBarConfigMenu ($) {
 	my $addition = shift;
-	my $iconSSP = $config->{'pager-show-single'}? "choice-yes": "empty";
-	my $iconSDP = $config->{'pager-show-desker'}? "choice-yes": "empty";
+	my $iconSSP = $config->{'pagebar-show-single'}? "choice-yes": "empty";
+	my $iconSDP = $config->{'pagebar-show-desker'}? "choice-yes": "empty";
 	my $iconGD0 = $currDeskNum == 0? "choice-yes": "empty";
 	my $iconGD1 = $currDeskNum == 1? "choice-yes": "empty";
 	my $iconGD2 = $currDeskNum == 2? "choice-yes": "empty";
@@ -82,17 +88,35 @@ sub popupPagerConfigMenu ($) {
 	my $backCmd = "SendToModule $fullName";
 
 	$module->send(qq{
-		DestroyMenu PanelPagerConfigMenu
-		AddToMenu   PanelPagerConfigMenu
-		+ "%menu/$iconSSP.xpm%Show Single Pager" $backCmd toggle pager-show-single
-		+ "%menu/$iconSDP.xpm%Show Desker Pager" $backCmd toggle pager-show-desker
+		DestroyMenu PanelPageBarConfigMenu
+		AddToMenu   PanelPageBarConfigMenu
+		+ "%menu/$iconSSP.xpm%Show Single Pager" $backCmd toggle pagebar-show-single
+		+ "%menu/$iconSDP.xpm%Show Desker Pager" $backCmd toggle pagebar-show-desker
 		+ "" Nop
 		+ "%menu/$iconGD0.xpm%Goto Desk 0" GotoDesk 0 0
 		+ "%menu/$iconGD1.xpm%Goto Desk 1" GotoDesk 0 1
 		+ "%menu/$iconGD2.xpm%Goto Desk 2" GotoDesk 0 2
 		+ "%menu/$iconGD3.xpm%Goto Desk 3" GotoDesk 0 3
 
-		Popup PanelPagerConfigMenu $addition
+		Popup PanelPageBarConfigMenu $addition
+	});
+}
+
+sub popupTaskBarConfigMenu ($) {
+	my $addition = shift;
+	my $iconTRP = $config->{'taskbar-resolution'} eq 'page'? "choice-yes": "empty";
+	my $iconTRD = $config->{'taskbar-resolution'} eq 'desk'? "choice-yes": "empty";
+	my $iconTRS = $config->{'taskbar-resolution'} eq 'screen'? "choice-yes": "empty";
+	my $backCmd = "SendToModule $fullName";
+
+	$module->send(qq{
+		DestroyMenu PanelTaskBarConfigMenu
+		AddToMenu   PanelTaskBarConfigMenu
+		+ "%menu/$iconTRP.xpm%Resolution: page" $backCmd set taskbar-resolution page
+		+ "%menu/$iconTRD.xpm%Resolution: desk" $backCmd set taskbar-resolution desk
+		+ "%menu/$iconTRS.xpm%Resolution: screen" $backCmd set taskbar-resolution screen
+
+		Popup PanelTaskBarConfigMenu $addition
 	});
 }
 
@@ -140,13 +164,23 @@ $module->addHandler(M_STRING, sub {
 	if ($action eq 'toggle') {
 		my $key = getToken($string);
 		return unless exists $config->{$key};
-		$newConfig->{$key} = !$config->{$key};
+		$newConfig->{$key} = $config->{$key}? 0: 1;
+		applyNewConfig();
+	}
+	elsif ($action eq 'set') {
+		my ($key, $value) = getTokens($string);
+		return unless defined $key && defined $value;
+		return unless exists $config->{$key};
+		$newConfig->{$key} = $value;
 		applyNewConfig();
 	}
 	elsif ($action eq 'popup') {
 		my $menu = cutToken(\$string);
-		if ($menu eq 'pager-config') {
-			popupPagerConfigMenu($string);
+		if ($menu eq 'pagebar-config') {
+			popupPageBarConfigMenu($string);
+		}
+		if ($menu eq 'taskbar-config') {
+			popupTaskBarConfigMenu($string);
 		}
 	}
 });
