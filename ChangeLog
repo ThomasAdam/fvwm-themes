@@ -7,7 +7,10 @@
 	create directory for personal theme
 
 	* debian/Makefile.am:
-	removed unneeded lines
+	removed redundant lines
+
+	* themes/redmondxp/modules/FvwmButtons-Panel:
+	add some minor fail safe default
 
 2002-09-26  migo  <migo@homemail.com>
 
