@@ -30,12 +30,12 @@ AddToFunc   FuncFvwmDecorBackground
 	ToggledActiveDown (TiledPixmap $./images/decor/underline-active.xpm) \
 	ToggledInactive   (TiledPixmap $./images/decor/underline-inactive.xpm)
 
-AddToFunc   FuncFvwmStartColors
-+ I BorderStyle \
-	Active     (TiledPixmap $./images/decor/border-active.xpm -- flat) \
-	Inactive   (TiledPixmap $./images/decor/border-inactive.xpm -- flat HiddenHandles)
-# this does not really work
-AddToFunc   FuncFvwmReloadDecor
-+ I BorderStyle \
-	Active     (TiledPixmap $./images/decor/border-active.xpm -- flat) \
-	Inactive   (TiledPixmap $./images/decor/border-inactive.xpm -- flat HiddenHandles)
+#AddToFunc   FuncFvwmStartColors
+#+ I BorderStyle \
+#	Active     (TiledPixmap $./images/decor/border-active.xpm -- flat) \
+#	Inactive   (TiledPixmap $./images/decor/border-inactive.xpm -- flat HiddenHandles)
+## this does not really work
+#AddToFunc   FuncFvwmReloadDecor
+#+ I BorderStyle \
+#	Active     (TiledPixmap $./images/decor/border-active.xpm -- flat) \
+#	Inactive   (TiledPixmap $./images/decor/border-inactive.xpm -- flat HiddenHandles)

@@ -31,6 +31,9 @@
 	* themes/default/functions:
 	make FuncFvwmSelectWindow to Raise by a user request
 
+	* themes/metal/colors-decor:
+	commented out BorderStyle tile, it is not updated well anyway
+
 2002-10-30  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:
