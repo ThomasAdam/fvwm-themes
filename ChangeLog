@@ -11,6 +11,10 @@
 	By default don't use Shift in Alt-F1 - Alt-F12, like mwm and some
 	others do. Add an option to enable Shift (helps for many apps).
 
+	* doc/FAQ:
+	* NEWS:
+	document some new bindings
+
 2000-10-29  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

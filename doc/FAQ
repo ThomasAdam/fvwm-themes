@@ -156,7 +156,7 @@ Q. What are the default bindings?
 
 A. As you can guess they are in themes/current/bindings and
 themes/current/buttons. The default bindings were chosen to be
-consistent and functional. Here is a list of some useful bindings:
+consistent and functional. Here is a list of some useful global bindings:
 
   Alt-Tab               - Window List of all normal applications
   Shift-Alt-Tab         - Window List of all skipped applications
@@ -164,11 +164,11 @@ consistent and functional. Here is a list of some useful bindings:
   Ctrl-Mouse2 on root   - Transient pager
   Shift-Ctrl-Mouse2     - Transient desker
 
-  Shift-Alt-F1          - like Mouse1 on root (Root menu)
-  Shift-Alt-F2          - like Mouse2 on root (Window List menu)
-  Shift-Alt-F3          - like Mouse3 on root (Window Ops menu)
+  Alt-F1                - like Mouse1 on root (Root menu)
+  Alt-F2                - like Mouse2 on root (Window List menu)
+  Alt-F3                - like Mouse3 on root (Window Ops menu)
 
-  Shift-Alt-{F4-F10}    - mostly like mwm's Alt-{F4-F10}
+  Alt-F4 .. F10         - mostly like in mwm; there is an option to add Shift
 
   Mouse1 on decorations - Resize, Raise, WindowShadow
   Mouse2 on decorations - Move, RaiseLower
@@ -178,7 +178,22 @@ consistent and functional. Here is a list of some useful bindings:
   Alt-Mouse2 in window  - like Mouse2 on decorations (Move, RaiseLower)
   Alt-Mouse3 in window  - like Mouse3 on root (Window Ops menu)
 
-You can get the bindings description for every title button by holding
+Key bindings using numbers (on the left keyboard side and on the key pad):
+
+  Ctrl-Alt-1 .. 4       - Go to desk 0 to 3
+  Shift-Ctrl-1 .. 4     - Move the active window to desk 0 to 3
+  Ctrl-Alt-KP1 .. KP9   - Go to page (like in 3x3 pager, 7 - the first page)
+  Shift-Ctrl-KP1 .. KP9 - Move the active window to page (like in 3x3 pager)
+  Ctrl-KP_1 .. KP_9     - Switch to window in this direction (8 - up)
+
+Key bindings using arrows:
+
+  Ctrl-Alt-Left ..      - Go to the page on the left (right, up, down)
+  Shift-Ctrl-Alt-Left ..- Scroll by the 10% of the page to the left ..
+  Shift-Ctrl-Left ..    - reserved
+  Shift-Alt-Left ..     - Move the pointer by 1% of a page to the left ..
+
+You can get the description for every title button binding by holding
 Ctrl-Alt and pressing that button. This should work in all core themes.
 
 For guys, which have no mouse button 2, it is sometimes simulated by Ctrl
@@ -186,7 +201,7 @@ with the mouse button 1.
 
 It is possible to switch bindings of mouse buttons 2 and 3 in most of cases
 by choosing the corresponding option in the default bindings component menu,
-but this is a bit less consistent (for example, Shift-Alt-F2 is like Mouse 3
+but this is a bit less consistent (for example, Alt-F2 will be like Mouse 3
 on the root, not Mouse 2) and a bit less functional (can't move a window
 with Mouse 3 and use PlacedByButton3 fvwm's style or use stroke inside it).
 

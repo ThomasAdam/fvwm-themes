@@ -1,8 +1,9 @@
-fvwm-themes-0.3.21 - 20001027
+fvwm-themes-0.3.21 - 20001101
 
 * completed cde theme
 * new GUI started - Configuration Center
 * new FvwmScript-ColorSelector
+* added some more global bindings
 * small fixes and improvements
 
 fvwm-themes-0.3.20 - 20001004
