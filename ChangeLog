@@ -1,3 +1,11 @@
+2000-08-29  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in (comLoop):
+	Fix "Update"
+
+	* scripts/FvwmScript-ThemesCenter:
+	Some preparation and cleanup.
+	
 2000-08-27  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

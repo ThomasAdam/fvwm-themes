@@ -48,6 +48,7 @@ Begin
 	ChangeColorset 6 $TextColorset
 	ChangeColorset 12 $TextColorset
 	ChangeColorset 17 $TextColorset
+	ChangeColorset 41 $TextColorset
     End
 
     If $ViewerColorset <> {} Then
@@ -77,7 +78,7 @@ Begin
     Set $CurrentConfig = (GetOutput $cmd 1 -1)
     ChangeTitle 17 $CurrentConfig
 
-    # TS main variable
+    # TS main variables
     Set $ThemeName = {}
     Set $ThemeIndex = 0
     Set $ComponentName = {}
@@ -94,8 +95,10 @@ Begin
     Set $OptionEditorTwoTandC = {}
     Set $OptionEditorLast = {}
     Set $OptionEditorLastTandC = {}
+    # SM main variables
+    Set $CurrentSessionIndex = 0
 
-    # TS: Themes Selector; GS: General Setting
+    # TS: Themes Selector; GS: General Setting; SM: FT Sessions Management
     Set $ConfigTool = "TS" 
 
     Set $SelFont = {-adobe-helvetica-bold-r-*-*-12-*}
@@ -113,6 +116,12 @@ Begin
 
     # Hide the widgets
     HideWidget 21
+    Set $tmp = 40
+    While $tmp <> 43 Do
+    Begin
+	HideWidget $tmp
+	Set $tmp = (Add $tmp 1)
+    End
 
     Do {All (FvwmScript-NoteMessage) Delete}
 End
@@ -157,6 +166,17 @@ Begin
 	End
     End
 
+    If $HideSession == {1} Then
+    Begin
+	Set $HideSession = 0
+	Set $tmp = 40
+	While $tmp <> 43 Do
+	Begin
+	    HideWidget $tmp
+ 	    Set $tmp = (Add $tmp 1)
+	End
+    End
+
     If $ShowThemeChooser == {1} Then
     Begin
 	Set $ShowThemeChooser = 0
@@ -181,6 +201,18 @@ Begin
 	Set $ConfigTool = "GS"
 	Set $tmp = 21
 	While $tmp <> 22 Do
+	Begin
+	    ShowWidget $tmp
+ 	    Set $tmp = (Add $tmp 1)
+	End
+    End
+
+    If $ShowSession == {1} Then
+    Begin
+	Set $ShowSession = 0
+	Set $ConfigTool = "SM"
+	Set $tmp = 40
+	While $tmp <> 43 Do
 	Begin
 	    ShowWidget $tmp
  	    Set $tmp = (Add $tmp 1)
@@ -366,7 +398,8 @@ Property
     Flags NoReliefString
     Position 270 5
     Type PopupMenu
-    Title {       Themes Selector        |General Settings Configuration}
+    Title {       Themes Selector        |       General Settings        |        FT Sessions          }
+
 Main
 Case message of
  SingleClic :
@@ -375,12 +408,20 @@ Case message of
     If $tmp == 1 Then
     Begin
 	Set $ShowThemeChooser = 1
+	Set $HideSession = 1
 	Set $HideGeneralSetting = 1
     End
     If $tmp == 2 Then
     Begin
 	Set $HideThemeChooser = 1
+	Set $HideSession = 1
 	Set $ShowGeneralSetting = 1
+    End
+    If $tmp == 3 Then
+    Begin
+	Set $HideThemeChooser = 1
+	Set $HideGeneralSetting = 1
+	Set $ShowSession = 1
     End
     Set $NullMessage = 1
  End
@@ -432,39 +473,39 @@ Property
     Title {}
 Main
 Case message of
-    SingleClic :
+SingleClic :
+ Begin
+    Set $index = (GetValue 6)
+    If $index <> $ThemeIndex Then
     Begin
-	Set $index = (GetValue 6)
-	If $index <> $ThemeIndex Then
+	Set $tmp = 7
+	While $tmp <> 10 Do
 	Begin
-	    Set $tmp = 7
-	    While $tmp <> 10 Do
-	    Begin
-		ChangeFont $tmp $SelFont
-		Set $tmp = (Add $tmp 1)
-	    End  
-	    Set $ThemeIndex = $index
-	    Set $cmd = $SendMsgAndGet{"theme-components }$ThemeIndex{" --line=1}
-	    Set $ThemeComponents = (GetOutput $cmd 1 -1)
-	    ChangeTitle 12 $ThemeComponents
-	    Set $cmd = $GetLine{2}
-	    Set $ThemeName=(GetOutput $cmd 1 -1)
-	    Set $t = $ThemeName{ Components}
-	    ChangeTitle 11 $t
-	    Set $cmd = $GetLine{3 --clear-buffer}
-	    Set $ThemeDir=(GetOutput $cmd 1 -1)
+	    ChangeFont $tmp $SelFont
+	    Set $tmp = (Add $tmp 1)
+	End  
+	Set $ThemeIndex = $index
+	Set $cmd = $SendMsgAndGet{"theme-components }$ThemeIndex{" --line=1}
+	Set $ThemeComponents = (GetOutput $cmd 1 -1)
+	ChangeTitle 12 $ThemeComponents
+	Set $cmd = $GetLine{2}
+	Set $ThemeName=(GetOutput $cmd 1 -1)
+	Set $t = $ThemeName{ Components}
+	ChangeTitle 11 $t
+	Set $cmd = $GetLine{3 --clear-buffer}
+	Set $ThemeDir=(GetOutput $cmd 1 -1)
 
-	    Set $NullMessage = 1
-	    Set $ComponentName = {}
-	    ChangeValue 12 0
-	    Set $tmp = 13
-	    While $tmp <> 16 Do
-	    Begin
-		ChangeFont $tmp $ShadeFont
-		Set $tmp = (Add $tmp 1)
-	    End
+	Set $NullMessage = 1
+	Set $ComponentName = {}
+	ChangeValue 12 0
+	Set $tmp = 13
+	While $tmp <> 16 Do
+	Begin
+	    ChangeFont $tmp $ShadeFont
+	    Set $tmp = (Add $tmp 1)
 	End
     End
+ End
 End
 
 
@@ -475,18 +516,20 @@ Property
     Type PushButton
     Title {ReadMe}
 Main
-    Case message of
-    SingleClic :
-    Begin
+Case message of
+ SingleClic :
+ Begin
     If $ThemeName == {} Then
     Begin
 	Set $msg = {Warn: You must select a theme}
  	ChangeTitle 95 $msg
     End
     Else
+    Begin
 	Do {FuncFvwmViewFile }$ThemeDir{/README}
 	Set $NullMessage = 1
     End
+ End
 End
 
 Widget 8
@@ -858,6 +901,54 @@ Property
     Position 50 200
      Type ItemDraw
     Title {Work In Progress!!!!!!!!!!!!!!!}
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
+#-----------------------------------------------------------------------------
+#
+# FT Sessions
+#
+#-----------------------------------------------------------------------------
+
+Widget 40
+Property
+    Flags NoReliefString
+    Position 20 45
+    Size 560 20
+     Type ItemDraw
+    Title {List of FVWM Themes Sessions}
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
+Widget 41
+Property
+    Flags NoReliefString
+    Position 170 70
+    Size 255 150
+    Font fixed
+    Type List
+    Title {}
+Main
+Case message of
+SingleClic :
+ Begin
+ End
+End
+
+Widget 42
+Property
+ Flags NoReliefString
+ Position 50 300
+ Type ItemDraw
+ Title {Work In Progress!!!!!!!!!!!!!!!}
 Main
 Case message of
     SingleClic :

@@ -2041,7 +2041,7 @@ sub comLoop {
 			$self = Fvwm::ThemeCfg->new('current', 'current', $fresh);
 			$allThemes = getAllThemes();
 			$tmp = $self->{$componentKey};
-			@currentComponents = [ sort @$tmp ];
+			@currentComponents = sort @$tmp;
 			$CC = $self->{cc};
 		}
 		elsif ($command eq "exit") {
