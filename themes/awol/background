@@ -1,16 +1,17 @@
 DestroyModuleConfig FvwmBacker: *
 
-# first set a default background
-*FvwmBacker: Command (Desk *, Page * *) \
-	Exec xpmroot $FT_DATADIR/themes/awol/images/background/bckgnd3.xpm
-*FvwmBacker: Command (Desk *, Page * 0) \
-	Exec xpmroot $FT_DATADIR/themes/awol/images/background/bckgnd3.xpm
-*FvwmBacker: Command (Desk *, Page * 1) \
-	Exec xpmroot $FT_DATADIR/themes/awol/images/background/bckgnd1.xpm
-*FvwmBacker: Command (Desk *, Page * 2) \
-	Exec xpmroot $FT_DATADIR/themes/awol/images/background/bckgnd3.xpm
-*FvwmBacker: Command (Desk *, Page * 3) \
-	Exec xpmroot $FT_DATADIR/themes/awol/images/background/bckgnd1.xpm
+*FvwmBacker: Command (Desk *, Page 0 0) \
+	Exec fvwm-root $FT_DATADIR/themes/awol/images/background/bckgnd3.xpm
+*FvwmBacker: Command (Desk *, Page 0 1) \
+	Exec fvwm-root $FT_DATADIR/themes/awol/images/background/bckgnd6.xpm
+*FvwmBacker: Command (Desk *, Page 1 0) \
+	Exec fvwm-root $FT_DATADIR/themes/awol/images/background/bckgnd2.xpm
+*FvwmBacker: Command (Desk *, Page 1 1) \
+	Exec fvwm-root $FT_DATADIR/themes/awol/images/background/bckgnd4.xpm
+*FvwmBacker: Command (Desk *, Page 2 0) \
+	Exec fvwm-root $FT_DATADIR/themes/awol/images/background/bckgnd1.xpm
+*FvwmBacker: Command (Desk *, Page 2 1) \
+	Exec fvwm-root $FT_DATADIR/themes/awol/images/background/bckgnd5.xpm
 
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground
