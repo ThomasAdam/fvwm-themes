@@ -5,6 +5,9 @@
 	* devel/doc/cvs:
 	moved an example script from ./cvs, removed +x flag
 
+	* AUTHORS:
+	added Dan
+
 2001-03-09  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ColorSelector: fixed core dump
