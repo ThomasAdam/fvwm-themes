@@ -1,3 +1,13 @@
+2002-05-18  migo  <migo@homemail.com>
+
+	* themes/redmondxp/buttons:
+	* themes/redmondxp/colors:
+	* themes/redmondxp/fonts:
+	* themes/redmondxp/README:
+	* themes/redmondxp/images/button/*.png:
+	* themes/redmondxp/images/decor/*.png:
+	added an initial theme RedmondXP, images from Lunatic sawfish theme
+
 2002-05-15  migo  <migo@homemail.com>
 
 	* Makefile.am:

@@ -1,0 +1,140 @@
+# colors@osx
+
+# more details and comments can be found in colors@default
+# I.   FVWM Colorsets
+# II.  Module Colorsets
+# III. Application Colorsets
+# IV.  Start/Stop Functions
+
+# ----------------------------------------------------------------------------
+# I. FVWM Colorsets
+
+# ----------------
+# Default colorset
+
+*FvwmTheme: Colorset 0 fg black, bg rgb:98/B0/C8, Plain, NoShape
+
+# ------------------
+# Window decorations
+
+# window title, inactive and active
+Colorset 1 fg rgb:e8/f5/f5, bg rgb:3d/60/90, fgsh rgb:26/36/5d, Plain, NoShape
+Colorset 2 fg rgb:df/ff/ff, bg rgb:03/56/cc, fgsh rgb:00/25/84, Plain, NoShape
+
+# window borders, inactive and active
+Colorset 3 fg black, bg $[bg.cs1], Plain, NoShape
+Colorset 4 fg black, bg $[bg.cs2], Plain, NoShape
+
+# background for window title, buttons and border
+DestroyFunc FuncFvwmDecorBackground
+AddToFunc   FuncFvwmDecorBackground
++ I TitleStyle ActiveUp   TiledPixmap decor/title-active.png
++ I TitleStyle ActiveDown TiledPixmap decor/title-active.png
++ I TitleStyle Inactive   TiledPixmap decor/title-inactive.png
+
++ I ButtonStyle All Pixmap 16x16-general/empty.xpm
++ I ButtonStyle All ToggledActiveUp   Pixmap decor/title-active.png
++ I ButtonStyle All ToggledActiveDown Pixmap decor/title-active.png
++ I ButtonStyle All ToggledInactive   Pixmap decor/title-inactive.png
++ I ButtonStyle All -- UseTitleStyle
+
+# --------------
+# Menu Colorsets
+
+# inactive menu item fg+bg and menu face
+Colorset 5 fg $[fg.cs1], bg $[bg.cs1], fgsh $[fgsh.cs1], Plain, NoShape
+
+# active menu item fg+bg
+Colorset 6 fg $[fg.cs2], bg $[bg.cs2], fgsh $[fgsh.cs2], Plain, NoShape
+
+# greyed menu item fg
+Colorset 7 fg grey, bg grey, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# II. Module Colotsets 
+
+# ----------------
+# Common Colorsets
+
+# default for modules
+Colorset 10 fg black, bg rgb:98/B0/C8, Plain, NoShape
+
+# default hilight
+Colorset 11 fg black, bg white, Plain, NoShape
+
+# special
+Colorset 12 fg black, bg rgb:98/B0/C8, \
+	TiledPixmap decor/title-inactive.png, NoShape
+
+# swallowed window
+Colorset 13 fg black, bg rgb:98/B0/C8, hi black, sh blue, \
+	Plain, NoShape
+
+# default2 (FvwmPager or to get more colors in Buttons)
+Colorset 14 fg black, bg rgb:98/B0/C8, Plain, NoShape
+
+# default hilight2: (FvwmPager or to get more colors in a Buttons)
+Colorset 15 fg black, bg white, Plain, NoShape
+
+# tips/balloons
+Colorset 16 fg white, bg DarkBlue, Plain, NoShape
+
+# ----------------------------
+# Window List Module Colorsets
+
+# standard item
+Colorset 17 fg black, bg rgb:98/B0/C8, \
+	TiledPixmap decor/title-inactive.png, NoShape
+
+# active item
+Colorset 18 fg black, bg white, \
+	TiledPixmap decor/title-active.png, NoShape
+
+# iconified item
+Colorset 19 fg white, bg rgb:98/B0/C8, \
+	TiledPixmap decor/title-inactive.png, NoShape
+
+# pointed item
+Colorset 20 fg black, bg rgb:98/B0/C8, Plain, NoShape
+
+# ----------------------
+# Other Module Colorsets
+
+# FvwmIdent
+Colorset 21 fg white, bg DarkBlue, Plain, NoShape
+
+# FvwmConsole
+Colorset 22 fg black, bg lightblue, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# III. Application Colorsets
+
+# regular terminal
+Colorset 30 fg black, bg lightgoldenrod, Plain, NoShape
+
+# admin terminal
+Colorset 31 fg black, bg lightcyan3, Plain, NoShape
+
+# remote terminal
+Colorset 32 fg black, bg lightgreen, Plain, NoShape
+
+# viewer terminal
+Colorset 33 fg black, bg lightblue, Plain, NoShape
+
+# application run in the terminal, text editor
+Colorset 34 fg black, bg grey70, Plain, NoShape
+
+# dialog main area
+Colorset 35 fg white, bg DarkBlue, Plain, NoShape
+
+# dialog text area
+Colorset 36 fg black, bg lightgoldenrod, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# IV. Start/Stop Functions
+
+DestroyFunc FuncFvwmStartColors
+AddToFunc   FuncFvwmStartColors
+
+DestroyFunc FuncFvwmStopColors
+AddToFunc   FuncFvwmStopColors
