@@ -93,7 +93,8 @@ MenuStyle * ActiveFore, HilightBack
 
 # swallowed window
 *FvwmThemeColorset 13 fg CDE_COLOR6_FG, \
-	bg CDE_COLOR6_BG,  hi white, \
+	bg CDE_COLOR6_BG, \
+	hi CDE_COLOR1_FG, \
 	sh CDE_COLOR1_BG, Plain, NoShape
 
 # default2 (FvwmPager or to get more colors in Buttons)

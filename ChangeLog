@@ -1,3 +1,11 @@
+2000-08-07  migo  <migo@homemail.com>
+
+	* themes/cde/colors/main:
+	in swallowed colorset change white to CDE_COLOR1_FG, much better IMHO.
+
+	* themes/awol/theme.cfg:
+	added missing file, soon these "empty" files will not be needed, I hope
+
 2000-08-06  migo  <migo@homemail.com>
 
 	* themes/*/modules/main:FvwmPager*:
