@@ -22,7 +22,6 @@
 	Renamed default session to 'main'. Some small changes.
 	I will do some changes later. (mkdir -p and some others - not portable)
 
->>>>>>> 1.34
 2000-08-15  olicha <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-start.in:
