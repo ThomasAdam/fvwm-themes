@@ -13,6 +13,9 @@
 	* themes/default/bindings:
 	make Shift-borders do ResizeMaximize as intended
 
+	* themes/sa/colors:
+	fixed colorsets 18 and 19
+
 2003-10-20  migo  <migo@homemail.com>
 
 	* themes/*/colors*:

@@ -100,10 +100,10 @@ Colorset 16 fg White, bg grey30, Pixmap decor/grey.png, \
 Colorset 17 fg Black, bg #9999A3, Plain, NoShape
 
 # active item
-Colorset 18 fg Black, bg grey60
+Colorset 18 fg Black, bg grey60, Plain, NoShape
 
 # iconified item
-Colorset 19  fg Black, bg grey60, NoShape
+Colorset 19  fg Black, bg grey60, Plain, NoShape
 
 # pointed item
 Colorset 20 fg black, bg grey75, Plain, NoShape
