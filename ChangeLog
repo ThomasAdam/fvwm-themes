@@ -1,3 +1,8 @@
+2002-10-30  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	work around (?) for perl-5.8.0 and utf8 locale
+
 2002-10-05  migo  <migo@homemail.com>
 
 	* themes/redmondxp/modules/FvwmThemesPanelManager:
