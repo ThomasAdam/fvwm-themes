@@ -152,20 +152,20 @@ AddToFunc   FuncFvwmTaskBarGlobal
 
 DestroyFunc FuncFvwmIconManGlobal
 AddToFunc   FuncFvwmIconManGlobal 
-+ "I" *FvwmIconMan: *Resolution global
-+ "I" *FvwmIconMan: *title "Global IconMan"
++ "I" *FvwmIconMan: Resolution global
++ "I" *FvwmIconMan: title "Global IconMan"
 + "I" Module FvwmIconMan
 
 DestroyFunc FuncFvwmIconManDesk
 AddToFunc   FuncFvwmIconManDesk
-+ "I" *FvwmIconMan: *Resolution desk
-+ "I" *FvwmIconMan: *title "Desk IconMan"
++ "I" *FvwmIconMan: Resolution desk
++ "I" *FvwmIconMan: title "Desk IconMan"
 + "I" Module FvwmIconMan
 
 DestroyFunc FuncFvwmIconManPage
 AddToFunc   FuncFvwmIconManPage
-+ "I" *FvwmIconMan: *Resolution page
-+ "I" *FvwmIconMan: *title "Page IconMan"
++ "I" *FvwmIconMan: Resolution page
++ "I" *FvwmIconMan: title "Page IconMan"
 + "I" Module FvwmIconMan
 
 DestroyFunc FuncFvwmIconBoxDesk

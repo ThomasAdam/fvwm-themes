@@ -24,6 +24,9 @@
 	restored MwmDecors (needed for panel/xmms), but I want NoDecorHints
 	for transients...
 
+	* themes/*/modules/*:
+	use a new syntax for FvwmIconMan
+
 2002-06-10  migo  <migo@homemail.com>
 
 	* scripts/FvwmApplet-DayClock:

@@ -1,5 +1,5 @@
-*FvwmIconMan: *Resolution global
-*FvwmIconMan: *title "Global IconMan"
+*FvwmIconMan: Resolution global
+*FvwmIconMan: title "Global IconMan"
 
 AddToFunc   FuncFvwmStartThemeModules
 + I Module FvwmIconMan

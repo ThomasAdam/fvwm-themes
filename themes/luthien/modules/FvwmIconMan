@@ -1,29 +1,29 @@
 DestroyModuleConfig FvwmIconMan: *
-*FvwmIconMan: *NumManagers 1
+*FvwmIconMan: NumManagers 1
 
-*FvwmIconMan: *Colorset		23
-*FvwmIconMan: *TitleColorset	1
-*FvwmIconMan: *IconColorset	10
-*FvwmIconMan: *PlainColorset	10
-*FvwmIconMan: *SelectColorset	10
-*FvwmIconMan: *FocusColorset	18
-*FvwmIconMan: *FocusAndSelectColorset	18
+*FvwmIconMan: Colorset		23
+*FvwmIconMan: TitleColorset	1
+*FvwmIconMan: IconColorset	10
+*FvwmIconMan: PlainColorset	10
+*FvwmIconMan: SelectColorset	10
+*FvwmIconMan: FocusColorset	18
+*FvwmIconMan: FocusAndSelectColorset	18
 
-*FvwmIconMan: *IconButton	up
-*FvwmIconMan: *TitleButton	flat
-*FvwmIconMan: *PlainButton	up
-*FvwmIconMan: *SelectButton	flat
-*FvwmIconMan: *FocusButton	up
-*FvwmIconMan: *FocusAndSelectButton	flat
+*FvwmIconMan: IconButton	up
+*FvwmIconMan: TitleButton	flat
+*FvwmIconMan: PlainButton	up
+*FvwmIconMan: SelectButton	flat
+*FvwmIconMan: FocusButton	up
+*FvwmIconMan: FocusAndSelectButton	flat
 
-*FvwmIconMan: *Format      "%t"
-*FvwmIconMan: *Action  Mouse   1 N sendcommand "FuncFvwmDeiconifyFocusAndRaise"
-*FvwmIconMan: *Action  Mouse   2 N sendcommand "Iconify"
-*FvwmIconMan: *Action  Mouse   3 N sendcommand \
+*FvwmIconMan: Format      "%t"
+*FvwmIconMan: Action  Mouse   1 N sendcommand "FuncFvwmDeiconifyFocusAndRaise"
+*FvwmIconMan: Action  Mouse   2 N sendcommand "Iconify"
+*FvwmIconMan: Action  Mouse   3 N sendcommand \
 	"Popup MenuFvwmWindowOps2 Mouse c -102m"
-*FvwmIconMan: *FollowFocus true
-*FvwmIconMan: *Sort        none
+*FvwmIconMan: FollowFocus true
+*FvwmIconMan: Sort        none
 
-*FvwmIconMan: *ManagerGeometry 2x5+32767+32767
-*FvwmIconMan: *NoIconAction Nop #"SendToModule FvwmAnimate animate"
-*FvwmIconMan: *Resolution page
+*FvwmIconMan: ManagerGeometry 2x5+32767+32767
+*FvwmIconMan: NoIconAction Nop #"SendToModule FvwmAnimate animate"
+*FvwmIconMan: Resolution page

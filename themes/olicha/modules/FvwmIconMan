@@ -1,52 +1,52 @@
 DestroyModuleConfig FvwmIconMan: *
 
-*FvwmIconMan: *nummanagers 1 
-*FvwmIconMan: *resolution desk
+*FvwmIconMan: nummanagers 1 
+*FvwmIconMan: resolution desk
 
-*FvwmIconMan: *plainbutton  up
-*FvwmIconMan: *selectbutton down
-*FvwmIconMan: *focusbutton  up
-*FvwmIconMan: *focusandselectbutton down
-*FvwmIconMan: *iconbutton down
+*FvwmIconMan: plainbutton  up
+*FvwmIconMan: selectbutton down
+*FvwmIconMan: focusbutton  up
+*FvwmIconMan: focusandselectbutton down
+*FvwmIconMan: iconbutton down
 
-*FvwmIconMan: *colorset		12
-*FvwmIconMan: *iconcolorset	19
-*FvwmIconMan: *plaincolorset	17
-*FvwmIconMan: *selectcolorset	20
-*FvwmIconMan: *focuscolorset	18
-*FvwmIconMan: *focusandselectcolorset 20
+*FvwmIconMan: colorset		12
+*FvwmIconMan: iconcolorset	19
+*FvwmIconMan: plaincolorset	17
+*FvwmIconMan: selectcolorset	20
+*FvwmIconMan: focuscolorset	18
+*FvwmIconMan: focusandselectcolorset 20
 
-*FvwmIconMan: *usewinlist true
+*FvwmIconMan: usewinlist true
 
-*FvwmIconMan: *drawicons always
+*FvwmIconMan: drawicons always
 
-*FvwmIconMan: *shape false
+*FvwmIconMan: shape false
 
-*FvwmIconMan: *followfocus true
-*FvwmIconMan: *sort name
-*FvwmIconMan: *format %i
+*FvwmIconMan: followfocus true
+*FvwmIconMan: sort name
+*FvwmIconMan: format %i
 
-*FvwmIconMan: *managergeometry 5x0+0-0
-*FvwmIconMan: *buttongeometry 125x20
+*FvwmIconMan: managergeometry 5x0+0-0
+*FvwmIconMan: buttongeometry 125x20
 
 # action
-*FvwmIconMan: *action  Mouse 1    N sendcommand FuncFvwmDeiconifyFocusAndRaise
-*FvwmIconMan: *action  Mouse 2    N sendcommand Iconify
-*FvwmIconMan: *action  Mouse 3    N sendcommand "Popup MenuFvwmWindowOps2 Mouse c -102m"
-*FvwmIconMan: *action  Key Left   N gotobutton Left, select
-*FvwmIconMan: *action  Key Right  N gotobutton Right, select
-*FvwmIconMan: *action  Key Up     N gotobutton Up, select
-*FvwmIconMan: *action  Key Down   N gotobutton Down, select
-*FvwmIconMan: *action  Key Return N sendcommand FuncFvwmDeiconifyFocusAndRaise
-*FvwmIconMan: *action  Key q      M quit
+*FvwmIconMan: action  Mouse 1    N sendcommand FuncFvwmDeiconifyFocusAndRaise
+*FvwmIconMan: action  Mouse 2    N sendcommand Iconify
+*FvwmIconMan: action  Mouse 3    N sendcommand "Popup MenuFvwmWindowOps2 Mouse c -102m"
+*FvwmIconMan: action  Key Left   N gotobutton Left, select
+*FvwmIconMan: action  Key Right  N gotobutton Right, select
+*FvwmIconMan: action  Key Up     N gotobutton Up, select
+*FvwmIconMan: action  Key Down   N gotobutton Down, select
+*FvwmIconMan: action  Key Return N sendcommand FuncFvwmDeiconifyFocusAndRaise
+*FvwmIconMan: action  Key q      M quit
 
-*FvwmIconMan: *action  Key i      N sendcommand Iconify
-*FvwmIconMan: *action  Key c      N sendcommand Close
-*FvwmIconMan: *action  Key d      N sendcommand Destroy
+*FvwmIconMan: action  Key i      N sendcommand Iconify
+*FvwmIconMan: action  Key c      N sendcommand Close
+*FvwmIconMan: action  Key d      N sendcommand Destroy
 
-*FvwmIconMan: *action  Key g      N sendcommand FuncFvwmIconManGlobal
-*FvwmIconMan: *action  Key p      N sendcommand FuncFvwmIconManPage
-*FvwmIconMan: *action  Key d      N sendcommand FuncFvwmIconManDesk
+*FvwmIconMan: action  Key g      N sendcommand FuncFvwmIconManGlobal
+*FvwmIconMan: action  Key p      N sendcommand FuncFvwmIconManPage
+*FvwmIconMan: action  Key d      N sendcommand FuncFvwmIconManDesk
 
 # animation
-*FvwmIconMan: *NoIconAction "SendToModule FvwmAnimate animate"
+*FvwmIconMan: NoIconAction "SendToModule FvwmAnimate animate"

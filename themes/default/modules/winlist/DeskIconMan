@@ -1,5 +1,5 @@
-*FvwmIconMan: *Resolution desk
-*FvwmIconMan: *title "Desk IconMan"
+*FvwmIconMan: Resolution desk
+*FvwmIconMan: title "Desk IconMan"
 
 AddToFunc   FuncFvwmStartThemeModules
 + I Module FvwmIconMan

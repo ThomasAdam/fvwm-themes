@@ -8,31 +8,29 @@ AddToFunc   FuncFvwmIconFocusAndOptions
 + I Popup MenuFvwmWindowOps2 Mouse c -102m
 
 DestroyModuleConfig FvwmIconMan: *
-### migo: the first and last config lines cause core dump...
-### olicha: I've uncommented the last line ...
 # it should be 0x1+0-0 anyway
-*FvwmIconMan: *1*managergeometry 10x1+0-0
+*FvwmIconMan: 1 managergeometry 10x1+0-0
 
-*FvwmIconMan: *colorset		12
-*FvwmIconMan: *iconcolorset	19
-*FvwmIconMan: *plaincolorset	17
-*FvwmIconMan: *selectcolorset	20
-*FvwmIconMan: *focuscolorset	18
-*FvwmIconMan: *focusandselectcolorset 20
+*FvwmIconMan: colorset		12
+*FvwmIconMan: iconcolorset	19
+*FvwmIconMan: plaincolorset	17
+*FvwmIconMan: selectcolorset	20
+*FvwmIconMan: focuscolorset	18
+*FvwmIconMan: focusandselectcolorset 20
 
-*FvwmIconMan: *1*buttongeometry 100x14
-*FvwmIconMan: *1*plainbutton flat
-*FvwmIconMan: *1*titlebutton flat
-*FvwmIconMan: *1*followfocus true
-*FvwmIconMan: *1*focusbutton flat
-*FvwmIconMan: *1*focusandselectbutton flat
-*FvwmIconMan: *1*resolution desk
-#*FvwmIconMan: *1*drawicons true
-*FvwmIconMan: *1*usewinlist true
-*FvwmIconMan: *format %i
-*FvwmIconMan: *1*action Mouse 1 N sendcommand FuncFvwmDeiconifyFocusAndRaise
-*FvwmIconMan: *1*action Mouse 2 N sendcommand FuncFvwmIconManWarpToMiddle
-*FvwmIconMan: *1*action Mouse 3 N sendcommand FuncFvwmIconFocusAndOptions
-*FvwmIconMan: *1*shape true
+*FvwmIconMan: 1 buttongeometry 100x14
+*FvwmIconMan: 1 plainbutton flat
+*FvwmIconMan: 1 titlebutton flat
+*FvwmIconMan: 1 followfocus true
+*FvwmIconMan: 1 focusbutton flat
+*FvwmIconMan: 1 focusandselectbutton flat
+*FvwmIconMan: 1 resolution desk
+#*FvwmIconMan: 1 drawicons true
+*FvwmIconMan: 1 usewinlist true
+*FvwmIconMan: format %i
+*FvwmIconMan: 1 action Mouse 1 N sendcommand FuncFvwmDeiconifyFocusAndRaise
+*FvwmIconMan: 1 action Mouse 2 N sendcommand FuncFvwmIconManWarpToMiddle
+*FvwmIconMan: 1 action Mouse 3 N sendcommand FuncFvwmIconFocusAndOptions
+*FvwmIconMan: 1 shape true
 
-*FvwmIconMan: *NoIconAction "SendToModule FvwmAnimate animate"
+*FvwmIconMan: NoIconAction "SendToModule FvwmAnimate animate"
