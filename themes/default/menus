@@ -459,5 +459,5 @@ AddToMenu   MenuFvwmWindowUtility "Window Utility" Title
 
 DestroyMenu MenuFvwmWebBrowsing
 AddToMenu   MenuFvwmWebBrowsing "Web Browsing" Title
-+ "FVWM Web Pages" Popup MenuFvwmWebPages
++ "%menu/www.xpm%FVWM Web Pages" Popup MenuFvwmWebPages
 
