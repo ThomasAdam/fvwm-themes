@@ -48,7 +48,7 @@ ButtonStyle	All Pixmap 16x16-general/empty.xpm
 ButtonStyle	All ActiveUp           TiledPixmap decor/titlebar_fill.xpm
 ButtonStyle	All ActiveDown         TiledPixmap decor/titlebar_fill_s.xpm
 ButtonStyle	All Inactive           TiledPixmap decor/titlebar_fill_i.xpm
-ButtonStyle     All ToggledActiveUp    TiledPixmap decor/titlebar_fill.xpm
+ButtonStyle	All ToggledActiveUp    TiledPixmap decor/titlebar_fill.xpm
 ButtonStyle	All ToggledActiveDown  TiledPixmap decor/titlebar_fill_s.xpm
 ButtonStyle	All ToggledInactive    TiledPixmap decor/titlebar_fill_i.xpm
 
