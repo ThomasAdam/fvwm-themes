@@ -3,6 +3,17 @@
 	* themes/default/theme.cfg:
 	don't include fonts@ to 'base look' group
 
+	* themes/multichoice/buttons.cfg
+	* themes/multichoice/buttons/faces/spruce:
+	* themes/multichoice/buttons/images/mac.tar.gz:
+	Added 2 new window button faces, image-based "mac" and
+	vector-based "spruce"
+
+	* themes/multichoice/buttons/main:
+	when mini-icon is used add UseTitleStyle (does not work always);
+	the correct solution is not to define options button content at all,
+	so no need to remove it, but this require changes in all faces...
+
 2001-05-26  migo  <migo@homemail.com>
 
 	* themes/migo/modules.cfg:
