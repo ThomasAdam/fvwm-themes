@@ -4,25 +4,30 @@ Style "*" Button 1, Button 2, Button 4, Button 6
 Style "*" MWMButtons  # button relief follows the state
 
 AddButtonStyle 1 \
-	ActiveUp   (Pixmap button/options-activeup.xpm   -- flat) \
-	ActiveDown (Pixmap button/options-activedown.xpm -- flat) \
-	Inactive   (Pixmap button/options-inactive.xpm   -- flat)
+	ActiveUp     (Pixmap button/options-activeup.xpm     -- flat) \
+	ActiveDown   (Pixmap button/options-activedown.xpm   -- flat) \
+	InactiveUp   (Pixmap button/options-inactiveup.xpm   -- flat) \
+	InactiveDown (Pixmap button/options-inactivedown.xpm -- flat)
 AddButtonStyle 2 \
-	ActiveUp   (Pixmap button/close-activeup.xpm   -- flat) \
-	ActiveDown (Pixmap button/close-activedown.xpm -- flat) \
-	Inactive   (Pixmap button/close-inactive.xpm   -- flat)
+	ActiveUp     (Pixmap button/close-activeup.xpm     -- flat) \
+	ActiveDown   (Pixmap button/close-activedown.xpm   -- flat) \
+	InactiveUp   (Pixmap button/close-inactiveup.xpm   -- flat) \
+	InactiveDown (Pixmap button/close-inactivedown.xpm -- flat)
 AddButtonStyle 4 \
-	ActiveUp   (Pixmap button/maximize-activeup.xpm   -- flat) \
-	ActiveDown (Pixmap button/maximize-activedown.xpm -- flat) \
-	Inactive   (Pixmap button/maximize-inactive.xpm   -- flat)
+	ActiveUp     (Pixmap button/maximize-activeup.xpm     -- flat) \
+	ActiveDown   (Pixmap button/maximize-activedown.xpm   -- flat) \
+	InactiveUp   (Pixmap button/maximize-inactiveup.xpm   -- flat) \
+	InactiveDown (Pixmap button/maximize-inactivedown.xpm -- flat)
 AddButtonStyle 6 \
-	ActiveUp   (Pixmap button/iconify-activeup.xpm   -- flat) \
-	ActiveDown (Pixmap button/iconify-activedown.xpm -- flat) \
-	Inactive   (Pixmap button/iconify-inactive.xpm   -- flat)
+	ActiveUp     (Pixmap button/iconify-activeup.xpm     -- flat) \
+	ActiveDown   (Pixmap button/iconify-activedown.xpm   -- flat) \
+	InactiveUp   (Pixmap button/iconify-inactiveup.xpm   -- flat) \
+	InactiveDown (Pixmap button/iconify-inactivedown.xpm -- flat)
 AddButtonStyle 4 \
-	ToggledActiveUp   (Pixmap button/maximize-activedown.xpm -- flat) \
-	ToggledActiveDown (Pixmap button/maximize-activeup.xpm   -- flat) \
-	ToggledInactive   (Pixmap button/maximize-inactive.xpm   -- flat)
+	ToggledActiveUp     (Pixmap button/maximize-activedown.xpm   -- flat) \
+	ToggledActiveDown   (Pixmap button/maximize-activeup.xpm     -- flat) \
+	ToggledInactiveUp   (Pixmap button/maximize-inactivedown.xpm -- flat) \
+	ToggledInactiveDown (Pixmap button/maximize-inactiveup.xpm   -- flat)
 
 ButtonStyle 1 - Clear MWMDecorMenu
 ButtonStyle 2 - Clear
@@ -57,25 +62,30 @@ DestroyFunc FuncFvwmReloadDecor
 AddToFunc   FuncFvwmReloadDecor
 + I FuncFvwmDecorBackground
 + I AddButtonStyle 1 \
-	ActiveUp   (Pixmap button/options-activeup.xpm   -- flat) \
-	ActiveDown (Pixmap button/options-activedown.xpm -- flat) \
-	Inactive   (Pixmap button/options-inactive.xpm   -- flat)
+	ActiveUp     (Pixmap button/options-activeup.xpm     -- flat) \
+	ActiveDown   (Pixmap button/options-activedown.xpm   -- flat) \
+	InactiveUp   (Pixmap button/options-inactiveup.xpm   -- flat) \
+	InactiveDown (Pixmap button/options-inactivedown.xpm -- flat)
 + I AddButtonStyle 2 \
-	ActiveUp   (Pixmap button/close-activeup.xpm   -- flat) \
-	ActiveDown (Pixmap button/close-activedown.xpm -- flat) \
-	Inactive   (Pixmap button/close-inactive.xpm   -- flat)
+	ActiveUp     (Pixmap button/close-activeup.xpm     -- flat) \
+	ActiveDown   (Pixmap button/close-activedown.xpm   -- flat) \
+	InactiveUp   (Pixmap button/close-inactiveup.xpm   -- flat) \
+	InactiveDown (Pixmap button/close-inactivedown.xpm -- flat)
 + I AddButtonStyle 4 \
-	ActiveUp   (Pixmap button/maximize-activeup.xpm   -- flat) \
-	ActiveDown (Pixmap button/maximize-activedown.xpm -- flat) \
-	Inactive   (Pixmap button/maximize-inactive.xpm   -- flat)
+	ActiveUp     (Pixmap button/maximize-activeup.xpm     -- flat) \
+	ActiveDown   (Pixmap button/maximize-activedown.xpm   -- flat) \
+	InactiveUp   (Pixmap button/maximize-inactiveup.xpm   -- flat) \
+	InactiveDown (Pixmap button/maximize-inactivedown.xpm -- flat)
 + I AddButtonStyle 6 \
-	ActiveUp   (Pixmap button/iconify-activeup.xpm   -- flat) \
-	ActiveDown (Pixmap button/iconify-activedown.xpm -- flat) \
-	Inactive   (Pixmap button/iconify-inactive.xpm   -- flat)
+	ActiveUp     (Pixmap button/iconify-activeup.xpm     -- flat) \
+	ActiveDown   (Pixmap button/iconify-activedown.xpm   -- flat) \
+	InactiveUp   (Pixmap button/iconify-inactiveup.xpm   -- flat) \
+	InactiveDown (Pixmap button/iconify-inactivedown.xpm -- flat)
 + I AddButtonStyle 4 \
-	ToggledActiveUp   (Pixmap button/maximize-activedown.xpm -- flat) \
-	ToggledActiveDown (Pixmap button/maximize-activeup.xpm   -- flat) \
-	ToggledInactive   (Pixmap button/maximize-inactive.xpm   -- flat)
+	ToggledActiveUp     (Pixmap button/maximize-activedown.xpm   -- flat) \
+	ToggledActiveDown   (Pixmap button/maximize-activeup.xpm     -- flat) \
+	ToggledInactiveUp   (Pixmap button/maximize-inactivedown.xpm -- flat) \
+	ToggledInactiveDown (Pixmap button/maximize-inactiveup.xpm   -- flat)
 
 DestroyFunc FuncFvwmOverRideWindowLook
 AddToFunc   FuncFvwmOverRideWindowLook
