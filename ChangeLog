@@ -1,7 +1,8 @@
 2002-08-30  migo  <migo@homemail.com>
 
 	* themes/*/colors-decor:
-	removed *FvwmTheme:
+	* themes/*/modules/main:
+	removed "*FvwmTheme:" and "SendToModule FvwmTheme"
 
 2002-08-29  migo  <migo@homemail.com>
 

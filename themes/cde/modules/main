@@ -15,8 +15,7 @@ Style "*" SlipperyIcon, IconTitle
 DestroyFunc FuncFvwmStartThemeModules
 AddToFunc   FuncFvwmStartThemeModules
 #+ I FuncFvwmStartNormalIcons
-+ I SendToModule FvwmTheme Colorset 23 fg $[fg.cs10], bg $[bg.cs10], \
-	Transparent, NoShape
++ I Colorset 23 fg $[fg.cs10], bg $[bg.cs10], Transparent, NoShape
 + I Module FvwmButtons FvwmButtons-Panel
 
 DestroyFunc FuncFvwmReloadThemeModules
@@ -25,8 +24,7 @@ AddToFunc   FuncFvwmReloadThemeModules
 
 DestroyFunc FuncFvwmReloadColorsModules
 AddToFunc   FuncFvwmReloadColorsModules
-+ I SendToModule FvwmTheme Colorset 23 fg $[fg.cs10], bg $[bg.cs10], \
-	Transparent, NoShape
++ I Colorset 23 fg $[fg.cs10], bg $[bg.cs10], Transparent, NoShape
 + I Module FvwmButtons FvwmButtons-Panel
 
 DestroyFunc FuncFvwmStopThemeModules
