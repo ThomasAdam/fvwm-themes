@@ -6,7 +6,6 @@
 # ----------------------------------------------------------------------------
 # Icon related configuration
 
-Style "*" IconBox screen w 10 10 -10 -40 p, IconGrid 64 10, IconFill top right
 Style "*" SlipperyIcon, IconTitle
 
 # No icons at all...
@@ -29,15 +28,15 @@ AddToFunc   FuncFvwmStartThemeModules
 + I Colorset 17 fg rgb:ff/ff/f0, bg average, TiledPixmap module/panel-bg.xpm, NoShape
 + I Colorset 19 fg rgb:ff/f0/f0, bg average, TiledPixmap module/panel-bg.xpm, Tint cyan 20, NoShape
 + I Colorset 20 fg rgb:ff/ff/f0, bg average, TiledPixmap module/panel-bg.xpm, Tint white 30, NoShape
-+ I Schedule 45000 34543 FuncFvwmShowMessage "Error Message" "It seems that FvwmThemesPanelManager module can not be started.^nYour saved and dynamic panel configuration will not work.^nPlease check the error messages on your console and report to^nfvwm-themes-users@lists.sf.net mailing list if needed."
-+ I FvwmButtons FvwmButtons-Panel
-+ I $./FvwmThemesPanelManager
 + I FuncFvwmStartNormalIcons
++ I Style "*" IconBox screen w 10 10 -10 -40 p, IconGrid 64 10
++ I *FvwmIconMan: resolution page
++ I FuncFvwmStartPanel
 
 DestroyFunc FuncFvwmReloadThemeModules
 AddToFunc   FuncFvwmReloadThemeModules
 + I Read $./styles
-+ I FuncFvwmStartNormalIcons
+#+ I FuncFvwmStartNormalIcons
 
 DestroyFunc FuncFvwmReloadColorsModules
 AddToFunc   FuncFvwmReloadColorsModules
@@ -50,18 +49,7 @@ AddToFunc   FuncFvwmReloadColorsModules
 + I Colorset 17 fg rgb:ff/ff/f0, bg average, TiledPixmap module/panel-bg.xpm, NoShape
 + I Colorset 19 fg rgb:ff/f0/f0, bg average, TiledPixmap module/panel-bg.xpm, Tint cyan 20, NoShape
 + I Colorset 20 fg rgb:ff/ff/f0, bg average, TiledPixmap module/panel-bg.xpm, Tint white 30, NoShape
-+ I FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Panel
-
-DestroyFunc FuncFvwmStopPanel
-AddToFunc   FuncFvwmStopPanel
-+ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Panel
-+ I KillModule $./FvwmThemesPanelManager
-
-DestroyFunc FuncFvwmRestartPanel
-AddToFunc   FuncFvwmRestartPanel
-+ I FuncFvwmStopPanel
-+ I FvwmButtons FvwmButtons-Panel
-+ I $./FvwmThemesPanelManager
+#+ I FuncFvwmStartPanel
 
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
@@ -77,17 +65,29 @@ AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmStopPanel
-+ I DestroyFunc FuncFvwmRestartPanel
++ I DestroyFunc FuncFvwmStartPanel
 # This is very bad, but we should restore modified colorsets
-+ I PipeRead `fvwm-themes-config --component colors --show-value read-file | xargs echo Read`
++ I PipeRead `fvwm-themes-config --component colors --show-value read-file | grep -v /main | xargs -r echo Read`
 + I PipeRead `fvwm-themes-config --component colors-decor --show-value read-file 2>/dev/null | xargs -r echo Read`
 
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules
-+ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Panel
+#+ I FuncFvwmStopPanel
 
 DestroyFunc FuncFvwmUnReloadThemeModules
 AddToFunc   FuncFvwmUnReloadThemeModules
+
+DestroyFunc FuncFvwmStopPanel
+AddToFunc   FuncFvwmStopPanel
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Panel
++ I KillModule $./FvwmThemesPanelManager
+
+DestroyFunc FuncFvwmStartPanel
+AddToFunc   FuncFvwmStartPanel
++ I FuncFvwmStopPanel
++ I Schedule 45000 34543 FuncFvwmShowMessage "Error Message" "It seems that FvwmThemesPanelManager module can not be started.^nYour saved and dynamic panel configuration will not work.^nPlease check the error messages on your console and report to^nfvwm-themes-users@lists.sf.net mailing list if needed."
++ I FvwmButtons FvwmButtons-Panel
++ I $./FvwmThemesPanelManager
 
 # ----------------------------------------------------------------------------
 # Theme module menus
@@ -95,7 +95,7 @@ AddToFunc   FuncFvwmUnReloadThemeModules
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules
 + "RedmondXP Modules" Title
-+ "%menu/item.xpm%&Panel" FuncFvwmRestartPanel
++ "%menu/item.xpm%&Panel" FuncFvwmStartPanel
 + "%menu/item.xpm%&Single Pager" \
 	FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Single '* *'
 + "%menu/item.xpm%&Desker Pager" \

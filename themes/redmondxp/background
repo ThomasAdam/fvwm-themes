@@ -11,5 +11,5 @@ AddToFunc   FuncFvwmStopThemeBackground
 + I FuncFvwmStopModule FvwmBacker
 + I DestroyModuleConfig FvwmBacker: *
 # This is very bad, but we should restore modified colorsets
-+ I PipeRead `fvwm-themes-config --component colors --show-value read-file | xargs echo Read`
++ I PipeRead `fvwm-themes-config --component colors --show-value read-file | grep -v /main | xargs -r echo Read`
 + I PipeRead `fvwm-themes-config --component colors-decor --show-value read-file 2>/dev/null | xargs -r echo Read`

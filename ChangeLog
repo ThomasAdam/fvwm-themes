@@ -4,6 +4,12 @@
 	* themes/*/modules/main:
 	removed "*FvwmTheme:" and "SendToModule FvwmTheme"
 
+	* themes/redmondxp/background:
+	* themes/redmondxp/modules/FvwmIconMan:
+	* themes/redmondxp/modules/FvwmThemesPanelManager:
+	* themes/redmondxp/modules/main:
+	several fixes for theme interoperability
+
 2002-08-29  migo  <migo@homemail.com>
 
 	* themes/redmondxp/background:

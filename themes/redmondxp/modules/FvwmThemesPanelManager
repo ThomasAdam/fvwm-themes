@@ -186,7 +186,7 @@ sub applyNewConfig () {
 	}
 	if ($updateSinglePager) {
 		$module->send("KillModule FvwmPager FvwmPager-Single");
-		$module->send("KillModule FvwmPager FvwmPager-Single")
+		$module->send("FvwmPager FvwmPager-Single")
 			if $config->{'pagebar-show-single'};
 		$updateIconbox = 1;
 	}

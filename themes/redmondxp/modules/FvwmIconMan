@@ -1,7 +1,8 @@
 DestroyModuleConfig FvwmIconMan: *
 
-*FvwmIconMan: nummanagers 1 
-*FvwmIconMan: resolution page
+*FvwmIconMan: nummanagers 1
+# resolution is configurable in this theme
+#*FvwmIconMan: resolution page
 *FvwmIconMan: title "FVWM Themes, RedmondXP theme, http://fvwm-themes.sf.net/"
 
 # migo: these reliefs make the most sense to me.
@@ -51,6 +52,7 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: action  Key c      N sendcommand Close
 *FvwmIconMan: action  Key d      N sendcommand Destroy
 
+# currently there is an FvwmIconMan bug in parsing the following
 #*FvwmIconMan: action  Key p      N sendcommand *FvwmIconMan: resolution page
 #*FvwmIconMan: action  Key s      N sendcommand *FvwmIconMan: resolution screen
 #*FvwmIconMan: action  Key d      N sendcommand *FvwmIconMan: resolution desk
