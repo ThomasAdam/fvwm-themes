@@ -3,7 +3,8 @@ AddToMenu MenuFvwmWebBrowsing
 
 DestroyFunc FuncFvwmMenuHeadlines
 AddToFunc   FuncFvwmMenuHeadlines
-+ I PipeRead `fvwm-menu-headlines --frontpage --wm-icons --site $0`
++ I PipeRead `fvwm-menu-headlines --frontpage --wm-icons --command FuncFvwmOpenURL --site $0`
++ I Schedule 900000 DestroyMenu $0  # keep the generated menu for 15 minutes
 
 DestroyMenu MenuFvwmHeadlines
 AddToMenu   MenuFvwmHeadlines "Headlines" Title

@@ -5,6 +5,9 @@
 	* themes/qnx/colors-decor:
 	some clean up and fixes (added stretched)
 
+	* themes/default/settings/automenus/headlines/enabled:
+	use the user defined browser instead of netscape
+
 2003-11-09  migo  <migo@homemail.com>
 
 	* NEWS:
