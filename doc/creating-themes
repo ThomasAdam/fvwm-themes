@@ -133,15 +133,15 @@ about such things as division to files/directories, images, other resources.
 Feel free to ask your questions on fvwm-themes-devel@ mailing list.
 
 If you did it right, you get mytheme directory with several components.
-Use this command to pack a theme (or even several themes):
+Execute this command to pack a theme (or even several themes):
 
   % fvwm-themes-config --create-pack john_themes theme1 theme2
 
-You can tar/gzip your directory (please ensure you include the directory
-mytheme/ as the top directory of your archive).
+This creates a tarball containing ft-john_themes-0.6.x directory with
+theme1 and theme2 subdirectories.
 
-Now you can distribute your mytheme.tar.gz file to others, to install
-this new theme, one should execute:
+Now you can distribute this tarball file to other users.
+To install a theme (or themes) in this pack one should execute:  
 
   fvwm-themes-config --install ft-john_themes-0.6.x.tar.gz
 
