@@ -74,16 +74,16 @@ DestroyFunc FuncFvwmSimpleMaximize
 AddToFunc   FuncFvwmSimpleMaximize
 + I Maximize $0
 
-DestroyFunc FuncFvwmSimpleMaximizeVert
-AddToFunc   FuncFvwmSimpleMaximizeVert
+DestroyFunc FuncFvwmSimpleMaximizeVertically
+AddToFunc   FuncFvwmSimpleMaximizeVertically
 + I Maximize $0 0 100
 
-DestroyFunc FuncFvwmSimpleMaximizeHoriz
-AddToFunc   FuncFvwmSimpleMaximizeHoriz
+DestroyFunc FuncFvwmSimpleMaximizeHorizontally
+AddToFunc   FuncFvwmSimpleMaximizeHorizontally
 + I Maximize $0 100 0
 
-DestroyFunc FuncFvwmSimplePartialMaximizeVert
-AddToFunc   FuncFvwmSimplePartialMaximizeVert
+DestroyFunc FuncFvwmSimpleMaximizePartially
+AddToFunc   FuncFvwmSimpleMaximizePartially
 + I Maximize $0 0 95
 
 DestroyFunc FuncFvwmIconifySameResource

@@ -362,18 +362,17 @@ AddToMenu   MenuFvwmWindowMaximize "Maximize Window" Title
 + "%menu/window-maximize.xpm%Maximize Fully	Alt-F10" Maximize On 100 100
 + "%menu/window-maximize.xpm%Unmaximize 	Alt-F10" Maximize Off
 + "" Nop
++ "%menu/window-maximize.xpm%Maximize Partially" \
+	Pick FuncFvwmSimpleMaximizePartially On
 + "%menu/window-maximize.xpm%Maximize Vertically" \
-	Pick FuncFvwmSimpleMaximizeVert On
+	Pick FuncFvwmSimpleMaximizeVertically On
 + "%menu/window-maximize.xpm%Maximize Horizontally" \
-	Pick FuncFvwmSimpleMaximizeHoriz On
-+ "%menu/window-maximize.xpm%Maximize Vertically Partially" \
-	Pick FuncFvwmSimplePartialMaximizeVert On
+	Pick FuncFvwmSimpleMaximizeHorizontally On
 + "" Nop
-# this does not seems to work well if you use these functions in an incremental
-# way.
-+ "%menu/window-maximize.xpm%Maximize Grow"              Maximize On grow grow
-+ "%menu/window-maximize.xpm%Maximize Grow Vert."        Maximize On   0 grow
-+ "%menu/window-maximize.xpm%Maximize Grow Horiz."       Maximize On grow    0
+# these bound functions do not seem to work well if used in an incremental way.
++ "%menu/window-maximize.xpm%Maximize Grow"        Maximize On grow grow
++ "%menu/window-maximize.xpm%Maximize Grow Vert."  Maximize On    0 grow
++ "%menu/window-maximize.xpm%Maximize Grow Horiz." Maximize On grow    0
 + "" Nop
 + "%menu/window-maximize.xpm%Maximize Full Screen	Shift-Ctrl-F11" Pick FuncFvwmMaximizeFullScreen
 + "%menu/window-maximize.xpm%Unmaximize Full Screen	Shift-Ctrl-F12" Pick FuncFvwmUnmaximizeFullScreen
