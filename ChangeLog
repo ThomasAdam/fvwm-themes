@@ -1,3 +1,8 @@
+2001-07-21  migo  <migo@homemail.com>
+
+	* themes/multichoice/buttons/faces/_images:
+	some old GNU tar versions do not overwrite symlinks, so rm -r first
+
 2001-07-19  migo  <migo@homemail.com>
 
 	* Makefile.am:

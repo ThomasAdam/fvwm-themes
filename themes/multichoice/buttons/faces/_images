@@ -1,5 +1,6 @@
 define({{AutoButtonDir}}, FVWM_USERDIR/themes/current/images/auto-button)
-syscmd(test -d AutoButtonDir || mkdir AutoButtonDir)
+#syscmd(test -d AutoButtonDir || mkdir AutoButtonDir)
+syscmd(rm -rf AutoButtonDir; mkdir AutoButtonDir)
 syscmd(gzip -dc CompRoot/images/FaceName.tar.gz | tar -C AutoButtonDir -xf -)
 
 Style "*" FvwmButtons  # button relief does not follow the state
