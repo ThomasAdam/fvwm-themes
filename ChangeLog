@@ -1,3 +1,13 @@
+2003-03-15 sa <sa@xmission.com>
+    * themes/sa/images/button/maxxed.png:
+    * themes/sa/images/decor/stripe.png:
+    * themes/sa/buttons:
+    * themes/sa/colors:
+    * themes/sa/windowlook:
+    Added maximize toggle graphics
+    Removed font shadow options
+    Some color / graphics fixes
+
 2002-03-14  migo  <migo@homemail.com>
 
 	* NEWS:
