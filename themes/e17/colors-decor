@@ -13,16 +13,13 @@ DestroyFunc FuncFvwmTitleStyleEntry
 AddToFunc   FuncFvwmTitleStyleEntry
 + I TitleStyle $0 MultiPixmap \
 	Main     (stretched) $./images/decor/title-main-$1.xpm, \
-	LeftEnd  $./images/decor/title-leftend-$1.xpm, \
-	RightEnd $./images/decor/title-rightend-$1.xpm, \
+	LeftEnd  (stretched) $./images/decor/title-leftend-$1.xpm, \
+	RightEnd (stretched) $./images/decor/title-rightend-$1.xpm, \
 
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
-+ I FuncFvwmTitleStyleEntry Active   active
-+ I FuncFvwmTitleStyleEntry Inactive inactive
-+ I FuncFvwmTitleStyleEntry ToggledActive   active
-+ I FuncFvwmTitleStyleEntry ToggledInactive inactive
-
-+ I ButtonStyle All Pixmap 16x16/empty.xpm
-+ I ButtonStyle All -- UseTitleStyle
++ I FuncFvwmTitleStyleEntry AllActive   active
++ I FuncFvwmTitleStyleEntry AllInactive inactive
+#
++ I ButtonStyle All Simple -- UseTitleStyle

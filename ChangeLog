@@ -1,3 +1,10 @@
+2003-11-29  migo  <migo@homemail.com>
+
+	* themes/e17/colors-decor:
+	* themes/ice/colors-decor:
+	* themes/qnx/colors-decor:
+	some clean up and fixes (added stretched)
+
 2003-11-09  migo  <migo@homemail.com>
 
 	* NEWS:
