@@ -2,7 +2,7 @@
 ## Process this file with automake to create Makefile.in
 
 EXTRA_THEMES = @EXTRA_THEMES@
-EXTRA_DIST = docs dirs postinst postrm
+EXTRA_DIST = docs dirs postinst postrm fvwm-themes.menu
 
 version = @VERSION@
 release = 0.`date +%Y%m%d`
@@ -62,6 +62,11 @@ inplace:
 	$(MAKE) $(mparams)
 	$(MAKE) prefix=$(DESTDIR)/usr ROOT_PREFIX=$(DESTDIR) mandir=$(DESTDIR)/usr/share/man install
 	chmod 0644 $(DESTDIR)/usr/share/fvwm/themes/cde/background/pattern
+	pwd
+	echo $(CURDIR)
+	-mkdir $(DESTDIR)/usr/lib
+	-mkdir $(DESTDIR)/usr/lib/menu
+	cp debian/fvwm-themes.menu $(DESTDIR)/usr/lib/menu/fvwm-themes
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	fakeroot dh_installchangelogs
@@ -101,6 +106,9 @@ inplace-base:
 		rm -r $(DESTDIR)/usr/share/fvwm/themes/$$t ; \
 	done
 	chmod 0644 $(DESTDIR)/usr/share/fvwm/themes/cde/background/pattern
+	-mkdir $(DESTDIR)/usr/lib
+	-mkdir $(DESTDIR)/usr/lib/menu
+	cp debian/fvwm-themes.menu $(DESTDIR)/usr/lib/menu/fvwm-themes
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	fakeroot dh_installchangelogs
