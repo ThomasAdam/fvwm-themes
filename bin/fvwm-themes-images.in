@@ -22,7 +22,7 @@
 # Filter this script to pod2man to get a man page:
 #   pod2man -c "Fvwm Utility" fvwm-themes-images | nroff -man | less -e
 
-#use strict;
+use strict;
 use Getopt::Long;
 
 my $prefix = '@prefix@';
@@ -252,14 +252,14 @@ if ($install) {
 	$convert = 1;
 	$update = 1;
 	$createSymLink = "48x48,16x16";
-	die "--install need --gnome or --kde2 (not both)\n"
-		if !$gnome && !$kde2;
+	die "$scriptName: --install needs --gnome or --kde2 (but not both)\n"
+		unless $gnome xor $kde2;
 }
 
-die "--convert and --setroot are incompatible\n"
+die "$scriptName: --convert and --setroot are incompatible\n"
 	if $convert && $setRoot;
 
-die "--gnome and --kde2 are incompatible\n"
+die "$scriptName: --gnome and --kde2 are incompatible\n"
 	if $gnome && $kde2;
 
 if ($xcolorsInfo || $xcolorsetsInfo) {
@@ -537,8 +537,8 @@ sub transform {
 				myPrint (1,"transform $file ...");
 			}
 
-			if ($convert && hasMatte("$dir/$file") && $transFilter &&
-				$file !~ /.xpm$/) {
+			if ($convert && $file !~ /.xpm$/ && hasMatte("$dir/$file")
+				&& $transFilter) {
 				myPrint(2,"\n\t transparent filter ... ");
 		 		system("$magickPath/convert -mono -colorspace $magickColorspace ".
 					"-layers Matte $sizeOpt -threshold $threshold ".
@@ -586,7 +586,7 @@ sub transform {
 
 			$xpmFile = $outFile if ($inFile ne "" && $outFile ne "");
 			writeXpm($mainXpm,"$outDir$dirtype/$xpmFile")
-				if ref($mainXpm->{'def'}) eq "ARRAY";
+				if $mainXpm && ref($mainXpm->{'def'}) eq "ARRAY";
 
 			myPrint(2,"\n");
 			myPrint(1, "done\n");
@@ -1969,7 +1969,7 @@ sub showHelp {
 	print "\t--in-dir dir        The input directory\n";
 	print "\t--out-dir dir       The main directory for output the images\n";
 	print "\t--gnome             short cut for converting GNOME icons\n";
-	print "\t--kde2             short cut for converting KDE2 icons\n";
+	print "\t--kde2              short cut for converting KDE2 icons\n";
 	print "\t--site              set the out dir to \$FT_DATADIR/tr-image\n";
 	print "\t--create-symlink n  Create symlink for use with fvwm-themes\n";
 	print "\t--update            only create images which are needed\n";
@@ -2362,7 +2362,7 @@ directory to define the --in-dir, if GNOME is not found --in-dir is set
 to /usr/share/pixmaps
 
 B<--kde2> imply --convert, --postfix kde2, and try to find the KDE2 icons
-directory to define the a internal generalization of --in-dir, if these
+directory to define the internal generalization of --in-dir, if these
 directories are not found or if the KDEDIR environement variable is not set
 nothing is done.
 

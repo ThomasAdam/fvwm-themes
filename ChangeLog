@@ -1,3 +1,10 @@
+2000-11-23  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-images.in:
+	small fixes (reenabled 'use strict');
+	On --gnome for me, all xpm files are "converted" - losing "None" and
+	using less colors, but on .png I get "convert: Allocation failed"...
+
 2000-11-22  olicha  <olivier.chapuis@free.fr>
 
 	* themes/{cde,luthien}/colors.cfg
