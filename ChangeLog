@@ -1,3 +1,11 @@
+2000-10-01  migo  <migo@homemail.com>
+
+	* themes/default/bindings:
+	* themes/default/functions:
+	* themes/default/functions-appbind:
+	* themes/default/menus:
+	added FuncFvwmConsole, minor changes
+
 2000-09-31  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ThemesCenter:

@@ -263,20 +263,20 @@ DestroyFunc FuncFvwm3WmLock
 AddToFunc   FuncFvwm3WmLock
 + I Nop
 
-# Used in migo
+# Used in migo, luthien
 DestroyFunc FuncFvwmWindowClose
 AddToFunc   FuncFvwmWindowClose
 + I Close
 
 DestroyFunc FuncFvwm2WindowClose
 AddToFunc   FuncFvwm2WindowClose
-+ I Iconify
++ I Delete
 
 DestroyFunc FuncFvwm3WindowClose
 AddToFunc   FuncFvwm3WindowClose
 + I Destroy
 
-# Used in migo
+# Used in migo & luthien
 DestroyFunc FuncFvwmWmRestart
 AddToFunc   FuncFvwmWmRestart
 + I Restart
@@ -289,7 +289,7 @@ DestroyFunc FuncFvwm3WmRestart
 AddToFunc   FuncFvwm3WmRestart
 + I Recapture
 
-# used in stroke; IMHO, both beep and grab are very annoying
+# used in stroke & luthien; IMHO, both beep and grab are very annoying
 DestroyFunc FuncFvwmQuitVerify
 AddToFunc   FuncFvwmQuitVerify
 + I FvwmForm FormFvwmQuitVerify.
