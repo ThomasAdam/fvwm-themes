@@ -1,6 +1,6 @@
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground
-+ I Exec exec xpmroot $./images/background/circle-energy.xpm
++ I Exec exec xpmroot $./images/background/trefoil.xpm
 
 DestroyFunc FuncFvwmStopThemeBackground
 AddToFunc   FuncFvwmStopThemeBackground
@@ -10,4 +10,4 @@ DestroyFunc FuncFvwmBackgroundPixmapColors
 AddToFunc   FuncFvwmBackgroundPixmapColors
 + I DestroyFunc FuncFvwmStartThemeBackground
 + I AddToFunc   FuncFvwmStartThemeBackground
-+ I + I Exec exec fvwm-themes-images --in-file $./images/background/circle-energy.xpm --colorize --colorize-colors $* --setroot
++ I + I Exec exec fvwm-themes-images --in-file $./images/background/trefoil.xpm --colorize --colorize-colors $* --setroot
