@@ -981,8 +981,6 @@ sub loadXpm ($) {
 		my $line = $_;
 		if ($isPixels) {
 			# can we do this faster ?
-			### migo: split($line, $cpp)?
-			### olicha: but this give "$cpp".
 			$pixels->[$pixCount] = [ $line =~ /$re/ ];
 			#die "bad number of columns in xpm file $file\n"
 			#	if ($#{@{$pixels->[$pixCount]}} != $def->[0]);
@@ -993,9 +991,6 @@ sub loadXpm ($) {
 			$line = substr($line,$cpp+1);
 			$line =~ s/^\s*//;
 			# suppress these stupids "s None"
-			### migo: not stupid, without it xpm is not transparent
-			### olicha: "c None" pixels are transparent, some applications/libs
-			### does not understand "c None s None" and set it to black !!
 			$line =~ s/s\s+none$//i;
 			$line =~ s/^\s*c\s+//;
 			$line =~ s/\s*$//;
