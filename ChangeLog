@@ -13,6 +13,9 @@
 	restored 'use strict'; eval is not really needed, but it may decrease
 	a possibility of script crashing on a user in a less debugged function
 
+	* forms/FvwmGtk-Themes:
+	updated, now uses notebook pages
+
 2000-10-04  migo  <migo@homemail.com>
 
 	* themes/default/{menus,menus-user}:
