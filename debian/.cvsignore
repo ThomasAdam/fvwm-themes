@@ -2,6 +2,7 @@ Makefile
 Makefile.in
 changelog
 control
+compat
 files
 base-control
 extra-control
