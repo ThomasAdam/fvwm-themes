@@ -13,6 +13,12 @@
 	enable %F in option commands, like %f, but the option file path
 	is not prepended
 
+	* themes/migo/background:
+	* themes/migo/background.cfg [new]:
+	* devel/bin/random-migo-background [new]:
+	added the color option to background@migo without actually adding
+	option value files :)
+
 2000-11-16  migo  <migo@homemail.com>
 
 	* locale/en/FvwmScript-ColorSelector.txt:

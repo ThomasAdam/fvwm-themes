@@ -1,0 +1,19 @@
+#!/usr/bin/perl -w
+
+sub getRandomColor () {
+	sprintf("#%06x", int(rand(256*256*256)));
+}
+
+my $colorN = shift;
+$colorN = 3 unless defined $colorN && $colorN =~ /^\d+$/;
+
+my @colors = ();
+# don't use this perl 5.004 "my" construct in public scripts
+for my $i (1 .. $colorN) { push @colors, getRandomColor(); }
+# don't use this perl 5.005 "for" construct in public scripts
+#push @colors, getRandomColor() for (1 .. $colorN);
+
+my $colorStr = join(',', @colors);
+print(qq(Colors used: "$colorStr"\n));
+my $dir = `fvwm-themes-config --show-dir --theme migo`; chomp($dir);
+system(qq(fvwm-themes-images --in-file $dir/images/background/circle-energy.xpm --setroot --colorize --colorize-colors "$colorStr"));
