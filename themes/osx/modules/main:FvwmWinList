@@ -1,5 +1,3 @@
-Style "FvwmWinList"  NoHandles, NoTitle, Sticky, WindowListSkip
-
 DestroyModuleConfig FvwmWinList: *
 *FvwmWinList: FocusColorset 18
 *FvwmWinList: Colorset 17

@@ -1,6 +1,3 @@
-Style "FvwmButtons" NoTitle, Sticky, WindowListSkip, CirculateSkip, NoHandles \
-	TitleAtBottom
-
 DestroyModuleConfig FvwmButtons: *
 *FvwmButtons: Geometry 200x90-0-0
 *FvwmButtons: Colorset 10

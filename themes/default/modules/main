@@ -32,6 +32,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyModuleConfig FvwmIconMan: *
 + I DestroyModuleConfig FvwmTaskBar: *
 + I DestroyModuleConfig FvwmWinList: *
++ I FuncFvwmDestroyModulesThemeStyle
++ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
 
 # ----------------------------------------------------------------------------
 # Theme module menus
@@ -60,6 +62,7 @@ AddToMenu   MenuFvwmStopThemeModules "Default Modules" Title
 # ----------------------------------------------------------------------------
 # Modules configuration
 
+Read themes/default/modules/main:styles
 Read themes/default/modules/main:FvwmButtons
 Read themes/default/modules/main:FvwmIconBox
 Read themes/default/modules/main:FvwmIconMan

@@ -36,6 +36,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc ToggleSlipperyXMessages
 + I DestroyFunc ToggleFvwmConsole
 + I DestroyFunc FuncFvwmStartBarXosview
++ I FuncFvwmDestroyModulesThemeStyle
++ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
 
 # ----------------------------------------------------------------------------
 # Theme module menus
@@ -58,6 +60,7 @@ AddToMenu   MenuFvwmStopThemeModules "Default Modules" Title
 # ----------------------------------------------------------------------------
 # Modules configuration
 
+Read themes/luthien/modules/main:styles
 Read themes/luthien/modules/main:FvwmButtons
 Read themes/luthien/modules/main:FvwmIconMan
 Read themes/luthien/modules/main:FvwmPager

@@ -37,6 +37,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmStartChosenTaskBar
 + I DestroyFunc FuncFvwmStartChosenTaskBarPos
 + I DestroyFunc FuncFvwmStartChosenPager
++ I FuncFvwmDestroyModulesThemeStyle
++ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
 
 # ----------------------------------------------------------------------------
 # Theme module menus
@@ -58,6 +60,7 @@ AddToMenu   MenuFvwmStopThemeModules "Redmond98 Modules" Title
 # ----------------------------------------------------------------------------
 # Modules configuration
 
+Read themes/redmond98/modules/main:styles
 Read themes/redmond98/modules/main:FvwmButtons-Bar
 Read themes/redmond98/modules/main:FvwmPager-Single
 Read themes/redmond98/modules/main:FvwmPager-Desker

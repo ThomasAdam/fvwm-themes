@@ -1,3 +1,8 @@
+2000-10-22  olicha  <olivier.chapuis@free.fr>
+
+	* themes/{default,lutien,migo,osx,redmond98}/modules/*
+	move modules styles in separated files. Maybe New core dump!!
+	
 2000-10-22  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-start.in:

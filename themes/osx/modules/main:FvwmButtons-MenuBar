@@ -1,6 +1,3 @@
-Style "FvwmButtons-MenuBar" NoTitle, NoHandles, BorderWidth 1, \
-	Sticky, WindowListSkip, CirculateSkip
-
 DestroyModuleConfig FvwmButtons-MenuBar: *
 
 define({TWIDTH},eval(WIDTH-2))

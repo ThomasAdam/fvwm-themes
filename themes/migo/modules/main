@@ -37,6 +37,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmStopModule FvwmIconMan
 + I FuncFvwmStopModule FvwmTaskBar
 + I FuncFvwmStopModule FvwmWinList
++ I FuncFvwmDestroyModulesThemeStyle
++ I DestroyFunc FuncFvwmDestroyModulesThemeStyle
 
 # ----------------------------------------------------------------------------
 # Theme module menus
@@ -118,6 +120,7 @@ Mouse 3 R SCM Menu MenuFvwmBarIconSet Nop
 # ----------------------------------------------------------------------------
 # Modules configuration
 
+Read themes/migo/modules/main:styles
 Read themes/migo/modules/main:FvwmButtons-Compact
 Read themes/migo/modules/main:FvwmPager-Single
 Read themes/migo/modules/main:FvwmPager-Desker

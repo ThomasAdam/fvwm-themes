@@ -4,9 +4,6 @@
 
 ### rename to FvwmButtons-AdjectiveBar? (if we want to enable some bars)
 
-Style FvwmButtons-Bar  NoTitle, NoHandles, Sticky, WindowListSkip, \
-	CirculateSkip, StaysPut, TitleAtBottom
-
 DestroyModuleConfig FvwmButtons-Bar: *
 *FvwmButtons-Bar: Colorset 10
 *FvwmButtons-Bar: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*

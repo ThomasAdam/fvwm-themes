@@ -1,0 +1,27 @@
+Style "FvwmButtons-MenuBar" NoTitle, NoHandles, BorderWidth 1, \
+	Sticky, WindowListSkip, CirculateSkip
+Style "FvwmButtons-OsxApps" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
+	NoHandles, BorderWidth 1, TitleAtBottom
+Style "FvwmButtons-OsxCentral" NoTitle, Sticky, WindowListSkip, \
+	CirculateSkip, NoHandles, BorderWidth 1, TitleAtBottom
+Style "FvwmButtons-OsxStartApplets" NoTitle, NoHandles, BorderWidth 1, \
+	Sticky, WindowListSkip, CirculateSkip, TitleAtTop
+Style "FvwmButtons-OsxApplets" NoTitle, NoHandles, BorderWidth 1, Sticky, \
+	WindowListSkip, CirculateHit, TitleAtTop
+Style "FvwmPager-Desker" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
+	NoHandles NoLenience, BorderWidth 0, TitleAtBottom
+Style "FvwmPager-Single" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
+	NoHandles
+Style "FvwmWinList"  NoHandles, NoTitle, Sticky, WindowListSkip, \
+	CirculateSkip, TitleAtBottom
+
+DestroyFunc FuncFvwmDestroyModulesThemeStyle
+AddToFunc   FuncFvwmDestroyModulesThemeStyle
++ I DestroyStyle "FvwmButtons-MenuBar"
++ I DestroyStyle "FvwmButtons-OsxApps"
++ I DestroyStyle "FvwmButtons-OsxCentral"
++ I DestroyStyle "FvwmButtons-OsxStartApplets"
++ I DestroyStyle "FvwmButtons-OsxApplets"
++ I DestroyStyle "FvwmPager-Desker"
++ I DestroyStyle "FvwmPager-Single"
++ I DestroyStyle "FvwmWinList"

@@ -182,6 +182,7 @@ AddToFunc   FuncFvwmGtkThemeSettings
 DestroyMenu MenuFvwmConfiguration
 AddToMenu   MenuFvwmConfiguration "Fvwm Configuration" Title
 #+ "Base Configuration"	FvwmScript ScriptFvwmBaseConfig
++ "Configuration Center" FvwmScript FvwmScript-ConfigCenter --text-colorset 34 --icon-colorset 5 --viewer-colorset 33
 + "Theme Settings (form)"	FuncFvwmFormThemeSettings
 + "Theme Settings (gtk)"	FuncFvwmGtkThemeSettings
 + "&Menu Editor"	FvwmScript FvwmScript-Menus --text-colorset 34 --icon-colorset 5 --viewer-colorset 33

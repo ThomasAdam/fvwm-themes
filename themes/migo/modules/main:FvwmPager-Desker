@@ -10,9 +10,6 @@ AddToMenu MenuFvwmWindowGroupOps "" Nop
 + "Desk	2%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2
 + "Desk	3%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
 
-Style FvwmPager-Desker NoTitle, NoHandles, Sticky, WindowListSkip, \
-	NoLenience, TitleAtTop
-
 DestroyModuleConfig FvwmPager-Desker: *
  
 *FvwmPager-Desker: Colorset * 14

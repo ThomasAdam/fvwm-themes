@@ -13,8 +13,6 @@ AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
 + "D&own	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p +1p
 + "&Up  	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p -1p
 
-Style "FvwmPager-Single" NoTitle, Sticky, WindowListSkip, CirculateSkip, NoHandles
-
 DestroyModuleConfig FvwmPager-Single: *
 
 *FvwmPager-Single: Colorset * 23
@@ -51,8 +49,6 @@ AddToMenu MenuFvwmWindowGroupOps "" Nop
 + "Desk 1%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 1
 + "Desk 2%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2
 + "Desk 3%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
-
-Style "FvwmPager-Desker" NoTitle, Sticky, WindowListSkip, CirculateSkip, NoHandles 
 
 DestroyModuleConfig FvwmPager-Desker: *
 

@@ -1,9 +1,6 @@
 # We may need to have an option with two buttonbar's, one is standard
 # and one with Dominik's icons, Fvwm
 
-Style "FvwmButtons-Bar" NoTitle, TitleAtBottom, NoHandles, Sticky, \
-	WindowListSkip, CirculateSkip
-
 DestroyModuleConfig FvwmButtons-Bar: *
 *FvwmButtons-Bar: Font	5x7
 *FvwmButtons-Bar: Frame	1

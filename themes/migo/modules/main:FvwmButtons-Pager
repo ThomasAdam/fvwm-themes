@@ -1,6 +1,3 @@
-Style "FvwmButtons-Pager" NoTitle, NoHandles, Sticky, NeverFocus, \
-	WindowListSkip, CirculateSkip
-
 DestroyModuleConfig FvwmButtons-Pager: *
 
 *FvwmButtons-Pager: Colorset 14

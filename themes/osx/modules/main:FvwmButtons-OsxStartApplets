@@ -1,9 +1,5 @@
-Style "FvwmButtons-OsxStartApplets" NoTitle, NoHandles, BorderWidth 1, \
-	Sticky, WindowListSkip, CirculateSkip, TitleAtTop
-Style "FvwmButtons-OsxApplets" NoTitle, NoHandles, BorderWidth 1, Sticky, \
-	WindowListSkip, CirculateHit, TitleAtTop
-
 DestroyModuleConfig FvwmButtons-OsxStartApplets: *
+
 *FvwmButtons-OsxStartApplets: Colorset 10
 *FvwmButtons-OsxStartApplets: Frame 1
 *FvwmButtons-OsxStartApplets: Geometry 10x66+0-200

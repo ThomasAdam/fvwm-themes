@@ -14,10 +14,6 @@ AddToMenu MenuFvwmWindowGroupOps "" Nop
 + "Internet	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2
 + "Misc 	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
 
-
-Style FvwmPager-Desker NoTitle, NoHandles, Sticky, WindowListSkip, \
-	CirculateSkip NoLenience, BorderWidth 5, TitleAtTop
-
 DestroyModuleConfig FvwmPager-Desker: *
 
 *FvwmPager-Desker: Colorset * 14

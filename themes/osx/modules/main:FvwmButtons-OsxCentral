@@ -1,9 +1,6 @@
 # This probably can be renamed back to FvwmButtons-Osx or maybe -Defaut later,
 # but not until fvwm is changed to accept a delimiter.
 
-Style "FvwmButtons-OsxCentral" NoTitle, Sticky, WindowListSkip, \
-	CirculateSkip, NoHandles, BorderWidth 1, TitleAtBottom
-
 DestroyModuleConfig FvwmButtons-OsxCentral: *
 *FvwmButtons-OsxCentral: Geometry 263x112+273-0
 *FvwmButtons-OsxCentral: Colorset 10
