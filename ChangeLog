@@ -6,6 +6,12 @@
 	* menu-system/fvwm_themes.in:
 	s/lang()/$lang/ for Debian, untested on Mandrake...
 
+	* themes/default/background:
+	* themes/default/background.cfg:
+	* themes/default/images/background/fvwm-wallpaper-tigerskin.jpg:
+	include the new default background, it is jpg, but fvwm-themes-root
+	should fall back to stone.xpm if no root setter found
+
 2002-04-30 migo  <migo@homemail.com>
 
 	* themes/default/menus:
