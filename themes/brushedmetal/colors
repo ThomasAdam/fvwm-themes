@@ -29,15 +29,11 @@ Colorset 4 fg rgb:00/00/00, bg rgb:d0/d0/d0, Plain, NoShape
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
 + I TitleStyle \
-	ActiveUp   (TiledPixmap decor/title-activeup.xpm) \
-	ActiveDown (TiledPixmap decor/title-activedown.xpm) \
-	Inactive   (TiledPixmap decor/title-inactive.xpm) \
-	ToggledActiveUp   (TiledPixmap decor/title-activeup.xpm) \
-	ToggledActiveDown (TiledPixmap decor/title-activedown.xpm) \
-	ToggledInactive   (TiledPixmap decor/title-inactive.xpm)
-
-+ I ButtonStyle All Pixmap 16x16/empty.xpm
-+ I ButtonStyle All -- UseTitleStyle
+	AllActiveUp   (TiledPixmap decor/title-activeup.xpm) \
+	AllActiveDown (TiledPixmap decor/title-activedown.xpm) \
+	AllInactive   (TiledPixmap decor/title-inactive.xpm)
+#
++ I ButtonStyle All Simple -- UseTitleStyle
 
 # --------------
 # Menu Colorsets

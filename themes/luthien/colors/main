@@ -40,9 +40,8 @@ DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
 + I TitleStyle AllInactive VGradient 30 CDE_COLOR6_BG CDE_COLOR3_BG
 + I TitleStyle AllActive   VGradient 30 CDE_COLOR1_BG CDE_COLOR5_BG
-
-+ I ButtonStyle All Pixmap 16x16/empty.xpm
-+ I ButtonStyle All -- UseTitleStyle
+#
++ I ButtonStyle All Simple -- UseTitleStyle
 
 # --------------
 # Menu Colorsets
@@ -58,7 +57,7 @@ Colorset 6 fg CDE_COLOR2_FG, bg CDE_COLOR2_BG, Plain, NoShape
 Colorset 7 fg CDE_COLOR4_BG, bg CDE_COLOR4_BG, Plain, NoShape
 
 # ----------------------------------------------------------------------------
-# II. Module Colotsets 
+# II. Module Colorsets
 
 # ----------------
 # Common Colorsets

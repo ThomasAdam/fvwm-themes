@@ -45,11 +45,10 @@ Colorset 4 fg CDE_COLOR1_FG, bg CDE_COLOR1_BG, Plain, NoShape
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
-+ I TitleStyle	AllActive   (Solid CDE_COLOR1_BG -- Raised)
-+ I TitleStyle	AllInactive (Solid CDE_COLOR2_BG -- Raised)
-
-+ I ButtonStyle	All Pixmap 16x16/empty.xpm
-+ I ButtonStyle	All -- UseTitleStyle
++ I TitleStyle	AllInactive Colorset 1 -- Raised
++ I TitleStyle	AllActive   Colorset 2 -- Raised
+#
++ I ButtonStyle	All Simple -- UseTitleStyle
 
 # -----
 # Menus
@@ -64,7 +63,7 @@ Colorset 6 fg CDE_COLOR3_FG, bg CDE_COLOR3_BG, Plain, NoShape
 Colorset 7 fg CDE_COLOR4_BG, bg CDE_COLOR4_BG, Plain, NoShape
 
 # ----------------------------------------------------------------------------
-# II. Module Colotsets 
+# II. Module Colorsets
 
 # ----------------
 # Common Colorsets

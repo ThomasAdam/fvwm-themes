@@ -30,14 +30,11 @@ DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
 + I TitleStyle AllInactive Solid grey51
 + I TitleStyle Active      HGradient 128 Blue4 DeepSkyBlue
-
-+ I ButtonStyle All Pixmap 16x16/empty.xpm
-
+#
++ I ButtonStyle All Simple -- UseTitleStyle
 + I AddButtonStyle All   AllInactive Solid grey51
 + I AddButtonStyle Left  AllActive   Solid Blue4
 + I AddButtonStyle Right AllActive   Solid DeepSkyBlue
-
-+ I ButtonStyle All -- UseTitleStyle
 
 # --------------
 # Menu Colorsets
@@ -52,7 +49,7 @@ Colorset 6 fg white, bg Blue3, hi #40B0F0, sh navy, Plain, NoShape
 Colorset 7 fg grey60, bg grey60, Plain, NoShape
 
 # ----------------------------------------------------------------------------
-# II. Module Colotsets 
+# II. Module Colorsets
 
 # ----------------
 # Common Colorsets

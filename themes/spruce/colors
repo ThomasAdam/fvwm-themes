@@ -28,19 +28,17 @@ Colorset 4 fg white, bg grey40
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
-### should be converted to MultiPixmap!
 + I TitleStyle    AllActive   TiledPixmap decor/titlebar_fill.xpm
 + I TitleStyle    AllInactive TiledPixmap decor/titlebar_fill_i.xpm
 + I AddTitleStyle AllActive   Pixmap decor/titlebutton-mod.xpm      -- Right
 + I AddTitleStyle AllInactive Pixmap decor/titlebutton-mod-dark.xpm -- Right
-
-+ I ButtonStyle All Pixmap 16x16/empty.xpm
-+ I ButtonStyle All ActiveUp          TiledPixmap decor/titlebar_fill.xpm
-+ I ButtonStyle All ActiveDown        TiledPixmap decor/titlebar_fill_s.xpm
-+ I ButtonStyle All Inactive          TiledPixmap decor/titlebar_fill_i.xpm
-+ I ButtonStyle All ToggledActiveUp   TiledPixmap decor/titlebar_fill.xpm
-+ I ButtonStyle All ToggledActiveDown TiledPixmap decor/titlebar_fill_s.xpm
-+ I ButtonStyle All ToggledInactive   TiledPixmap decor/titlebar_fill_i.xpm
+#
++ I ButtonStyle All ActiveUp          AdjustedPixmap decor/titlebar_fill.xpm
++ I ButtonStyle All ActiveDown        AdjustedPixmap decor/titlebar_fill_s.xpm
++ I ButtonStyle All Inactive          AdjustedPixmap decor/titlebar_fill_i.xpm
++ I ButtonStyle All ToggledActiveUp   AdjustedPixmap decor/titlebar_fill.xpm
++ I ButtonStyle All ToggledActiveDown AdjustedPixmap decor/titlebar_fill_s.xpm
++ I ButtonStyle All ToggledInactive   AdjustedPixmap decor/titlebar_fill_i.xpm
 
 # --------------
 # Menu Colorsets

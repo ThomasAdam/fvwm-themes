@@ -19,7 +19,7 @@ Colorset 0 fg rgb:f8/f8/f3, bg rgb:50/50/78, Plain, NoShape
 
 # window title, inactive and active
 Colorset 1 fg black, bg rgb:ce/ce/9c, \
-	TiledPixmap decor/rose.xpm, bgTint black 22, Tint black 22, NoShape
+	TiledPixmap decor/rose.xpm, Tint black 22, bgTint black 22, NoShape
 Colorset 2 fg black, bg rgb:ce/ce/9c, \
 	TiledPixmap decor/rose.xpm, NoShape
 
@@ -41,7 +41,7 @@ AddToFunc   FuncFvwmDecorBackground
 + I AddTitleStyle AllInactive Colorset 1 54
 + I AddTitleStyle AllActive   Colorset 2 30
 #
-+ I ButtonStyle	All Simple #-- UseTitleStyle
++ I ButtonStyle	All Simple
 
 # --------------
 # Menu Colorsets
@@ -57,7 +57,7 @@ Colorset 6 fg rgb:f8/f8/f3, bg rgb:40/5a/40, Plain, NoShape
 Colorset 7 fg gray, bg gray, Plain, NoShape
 
 # ----------------------------------------------------------------------------
-# II. Module Colorsets 
+# II. Module Colorsets
 
 # ----------------
 # Common Colorsets
@@ -149,6 +149,9 @@ AddToFunc   FuncFvwmStartColors
 
 DestroyFunc FuncFvwmStopColors
 AddToFunc   FuncFvwmStopColors
-# temporarily until we have Colorset Reset
-+ I Colorset 1 bgTint, Tint
-+ I Colorset 3 bgTint, Tint
+# temporarily until we have Colorset Clear
++ I Colorset  1 Tint, bgTint
++ I Colorset  3 Tint, bgTint
++ I Colorset 19 Tint, bgTint
++ I Colorset 20 Tint, bgTint
++ I Colorset 21 Tint, bgTint

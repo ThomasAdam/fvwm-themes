@@ -1,5 +1,8 @@
 2003-10-20  migo  <migo@homemail.com>
 
+	* themes/*/colors*:
+	all colors components revisited: clean up in decors and small fixes
+
 	* themes/sa/modules/main:
 	make IconBox work better for 64x64 icons
 

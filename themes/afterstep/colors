@@ -28,11 +28,10 @@ Colorset 4 fg #E5E2E8, bg #475293, Plain, NoShape
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
-+ I TitleStyle AllActive   VGradient 20 #6068DB #475293
-+ I TitleStyle AllInactive Solid #6e5b52
-
-+ I ButtonStyle All Pixmap 16x16/empty.xpm
-+ I ButtonStyle All -- UseTitleStyle
++ I TitleStyle AllInactive Colorset 1
++ I TitleStyle AllActive   Colorset 2
+#
++ I ButtonStyle All Simple -- UseTitleStyle
 
 # --------------
 # Menu Colorsets
@@ -47,7 +46,7 @@ Colorset 6 fg white, bg #475293, Plain, NoShape
 Colorset 7 fg grey40, bg grey40, Plain, NoShape
 
 # ----------------------------------------------------------------------------
-# II. Module Colotsets 
+# II. Module Colorsets
 
 # ----------------
 # Common Colorsets
@@ -96,7 +95,7 @@ Colorset 20 fg grey, bg grey40, \
 # Other Module Colorsets
 
 # FvwmIdent
-Colorset 21 fg grey70, bg black, Plain, NoShape
+Colorset 21 fg grey70, bg grey30, Plain, NoShape
 
 # FvwmConsole
 Colorset 22 fg yellow4, bg grey30, Plain, NoShape

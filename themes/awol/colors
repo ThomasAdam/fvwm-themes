@@ -32,8 +32,7 @@ AddToFunc   FuncFvwmDecorBackground
 + I TitleStyle AllActiveDown DGradient 400 3 grey45 100 grey88 1 grey45 100 grey88
 + I TitleStyle AllInactive   Simple
 #
-+ I ButtonStyle All Pixmap 16x16/empty.xpm
-+ I ButtonStyle All -- UseTitleStyle
++ I ButtonStyle All Simple -- UseTitleStyle
 
 # --------------
 # Menu Colorsets
@@ -48,7 +47,7 @@ Colorset 6 fg DarkGreen, bg grey77, hi grey90, sh grey57, Plain, NoShape
 Colorset 7 fg gray60, bg grey60, Plain, NoShape
 
 # ----------------------------------------------------------------------------
-# II. Module Colotsets
+# II. Module Colorsets
 
 # ----------------
 # Common Colorsets
