@@ -7,7 +7,7 @@ AM_INIT_AUTOMAKE(fvwm-themes, 0.6.2)
 REQUIRED_FVWM_VERSION=2.4.8
 AC_SUBST(REQUIRED_FVWM_VERSION)dnl
 
-mg_ARG_WITH(fvwm-bindir, 
+mg_ARG_WITH(fvwm-bindir,
 	[  --with-fvwm-bindir DIR    specify fvwm bin directory, if not in PATH],
 	FVWM_BINDIR, ""
 )
