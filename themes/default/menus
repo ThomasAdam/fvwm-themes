@@ -41,10 +41,23 @@ AddToMenu   MenuFvwmPersonal
 
 DestroyMenu MenuFvwmHelp
 AddToMenu   MenuFvwmHelp "Help" Title
-+ "%menu/help.xpm%FVWM Manual Pages"     Popup MenuFvwmManPages
-+ "%menu/help.xpm%Xman"                  Exec exec xman
-+ "%menu/information.xpm%FVWM Home Page" FuncFvwmOpenURL http://www.fvwm.org/
-+ "%menu/information.xpm%FVWM Themes HP" FuncFvwmOpenURL http://fvwm-themes.sourceforge.net/
++ "%menu/help.xpm%FVWM Manual Pages" Popup MenuFvwmManPages
++ "%menu/help.xpm%Help Browser"      Exec which gnome-help-browser >/dev/null 2>&1 && (gnome-help-browser; true) || xman
++ "%menu/www.xpm%FVWM Web Pages"     Popup MenuFvwmWebPages
+
+DestroyMenu MenuFvwmWebPages
+AddToMenu   MenuFvwmWebPages
++ "FVWM Web Pages" Title
++ "%menu/information.xpm%Home Page"    FuncFvwmOpenURL http://www.fvwm.org/
++ "%menu/information.xpm%Screenshots"  FuncFvwmOpenURL http://www.fvwm.org/screenshots/
++ "%menu/information.xpm%Download"     FuncFvwmOpenURL http://www.fvwm.org/download.html
++ "%menu/information.xpm%FAQ"          FuncFvwmOpenURL http://www.fvwm.org/generated/FAQ.html
++ "FVWM Themes Web Pages" Title
++ "%menu/information.xpm%Home Page"    FuncFvwmOpenURL http://fvwm-themes.sourceforge.net/
++ "%menu/information.xpm%Project Page" FuncFvwmOpenURL https://sourceforge.net/projects/fvwm-themes/
++ "%menu/information.xpm%Screenshots"  FuncFvwmOpenURL http://www.fvwm.org/screenshots/
++ "%menu/information.xpm%Download"     FuncFvwmOpenURL https://sourceforge.net/project/showfiles.php?group_id=1738
++ "%menu/information.xpm%FAQ"          FuncFvwmOpenURL http://fvwm-themes.sourceforge.net/doc/FAQ
 
 DestroyMenu MenuFvwmManPages
 AddToMenu   MenuFvwmManPages "FVWM Manual Pages" Title

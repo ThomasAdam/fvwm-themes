@@ -4,6 +4,9 @@
 	added a check for our bindir too just to be sure, general clean up,
 	new --fvwm option to be even more flexible
 
+	* themes/default/menus:
+	enhanced MenuFvwmHelp with a submenu
+
 2000-10-21  migo  <migo@homemail.com>
 
 	* themes/migo/modules/pager/none:
