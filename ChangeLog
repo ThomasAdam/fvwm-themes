@@ -20,6 +20,9 @@
 	* themes/default/menus:
 	implemented workaround in FuncFvwmDesktopCreateScreenshot using Pick
 
+	* themes/multichoice/theme.cfg:
+	changed background default to fvwm-tiger (olicha also has many colors)
+
 2000-09-15 olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in (comLoop): 
