@@ -1,9 +1,9 @@
-Style "*"	BorderWidth 8, HandleWidth 8
-Style "*"	FvwmBorder
-
 # migo: -adobe-*chancery- replaced with -adobe-times-
 Style "*"	Font -adobe-times-*-*-*-*-18-*-*-*-*-*-*-*
 Style "*"	IconFont -adobe-times-*-*-*-*-14-*-*-*-*-*-*-*
+
+Style "*"	BorderWidth 8, HandleWidth 8
+Style "*"	FvwmBorder
 
 BorderStyle	Active   -- !HiddenHandles !NoInset
 BorderStyle	Inactive --  HiddenHandles  NoInset

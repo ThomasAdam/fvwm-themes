@@ -632,7 +632,8 @@ sub new ($$;$$) {
 			}
 			$cc->{'read-file'} = $readFile;
 		}
-		$cc->{'used'} = 1 unless (exists $cc->{'used'});
+		$cc->{'locked'} = 0 unless exists $cc->{'locked'};
+		$cc->{'used'} = 1 unless exists $cc->{'used'};
 		errDie("Duplicated component '$component' for theme '$theme'")
 			if exists $self->{'cc'}->{$component} && 
 				$self->{'cc'}->{$component}->{'used'} eq 1;
@@ -1030,11 +1031,15 @@ sub getOwnThemeSubMenusRc ($) {
 		}
 		$menusRc .= qq(+ "" Nop\n) unless $m == 2;
 		### Temporarily hardcoded
-		my $dropAction = !/^(settings|colors|menus)/ || /-extra$/?
+		my $dropCommand = !/^(settings|colors|menus)/ || /-extra$/?
 			qq(FuncFvwmThemesDrop "$_"):
 			'Exec xmessage "Dropping of this component is not supported"';
-		$menusRc .= qq(+ "%menu/choice-no.xpm%&Drop this component"\t$dropAction\n);
-		$menusRc .= qq(+ "%menu/information.xpm%&Info for $_\@$cc->{'theme'}"\tExec xmessage "Help is not available yet"\n);
+		my $lockLabel = $cc->{'locked'}? "Unlock": "Lock";
+		my $lockCommand = 'Exec exec xmessage "Help is not available yet"';
+		my $infoCommand = 'Exec exec xmessage "Help is not available yet"';
+		$menusRc .= qq(+ "%menu/choice-no.xpm%&$lockLabel this component"\t$dropCommand\n);
+		$menusRc .= qq(+ "%menu/choice-no.xpm%&Drop this component"\t$lockCommand\n);
+		$menusRc .= qq(+ "%menu/information.xpm%&Info for $_\@$cc->{'theme'}"\t$infoCommand\n);
 
 		# use $name instead of $_?
 		$menuRc[$m] .= qq(+ "$_"\tPopup "$selfMenuName/$_"\n) unless m:/:;

@@ -1,3 +1,11 @@
+2000-09-10  migo  <migo@homemail.com>
+
+	* themes/*/desktop:
+	added GrabFocusTransient
+
+	* bin/fvwm-themes-config.in:
+	started adding a locking of a current component
+
 2000-09-09  migo  <migo@homemail.com>
 
 	* configure.in:

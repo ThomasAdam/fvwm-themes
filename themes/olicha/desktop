@@ -1,16 +1,17 @@
 XORValue	55555	# decent rubber band color for resizing
 ClickTime	150	# <n milliseconds to be considered a "click"
-MoveThreshold   3	# >=n pixels to be considered a "drag"
-SetAnimation    10 -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
+MoveThreshold	3	# >=n pixels to be considered a "drag"
+SetAnimation	10 -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
 ColormapFocus	FollowsMouse
 
 Style * MWMFunctions, HintOverride, MWMDecor, OLDecor
 
 # Transient windows
-Style   "*"     NakedTransient
-Style   "*"     DontRaiseTransient
-Style   "*"     DontLowerTransient
-Style   "*"     DontStackTransientParent
+Style "*"	NakedTransient
+Style "*"	DontRaiseTransient
+Style "*"	DontLowerTransient
+Style "*"	DontStackTransientParent
+Style "*"	GrabFocusTransient
 
 # The rest of the file is generated and can be modified with:
 # FvwmScript FvwmScript-BaseConfig 
