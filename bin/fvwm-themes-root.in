@@ -53,9 +53,15 @@ unless (defined $image || defined $color) {
 	exit(0);
 }
 
+my $HelperImageTypeAliases = {
+	tif => 'tiff',
+	jpg => 'jpeg',
+};
+
 my $HelperImageTypeSupport = {
 	'fvwm-root' => 'png|xpm|xbm',
 	'xsetroot'  => 'xbm',
+	'xsetbg'    => 'jpeg|tiff',  # does not support some types of JPG
 	'display'   => '*',
 	'xv'        => '*',
 };
@@ -65,13 +71,16 @@ my $HelperSetRootCommands = {
 		'fvwm-root -r $image',
 		'xsetroot -bg $bg -fg $fg -bitmap $image',
 		'xv -root -quit $image',
+		'xsetbg $image',
 	],
 	center => [
 		'display -window root -backdrop -foreground $fg $image',
+		'xsetbg -center $image -border $fg',
 		'xv -root -quit -rmode 5 -rfg $fg $image',
 	],
 	adjust => [
 		'xv -root -quit -max $image',
+		'xsetbg -fullscreen $image -border $fg',
 	],
 	aspect => [
 		'xv -root -quit -maxpect $image',
@@ -101,6 +110,8 @@ foreach (@$commands) {
 	} else {
 		$image =~ /\.([^\.]+)(?:\.gz|\.bz2)?$/;
 		my $ext = $1;
+		$ext = $HelperImageTypeAliases->{$ext}
+			if defined $ext && defined $HelperImageTypeAliases->{$ext};
 		my $regexp = $HelperImageTypeSupport->{$exe};
 		die "Internal error #2\n" unless defined $regexp;
 		if ($regexp eq "*" || defined $ext && $ext =~ /^$regexp$/) {
