@@ -819,13 +819,9 @@ Begin
     Begin
 	Set $UpdateSettingsListAndVariants = 0
 	If $SettingsComponent <> {} Then
-	Begin
 	    Set $cmd = $SendMsgAndGet{"settings-config-and-variant }$SettingsComponent{ default }$SettingsIndex{"} 
-	End
 	Else
-	Begin
 	   Set $cmd = $SendMsgAndGet{"settings-config-and-variant None None 0"}
-	End
 	Set $MSG = (GetOutput $cmd 1 -1)
 	Set $i = 1
 	Set $j = (StrCopy $MSG 1 4)

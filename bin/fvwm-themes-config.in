@@ -1340,6 +1340,15 @@ sub getOwnThemeSubMenusRc ($) {
 	my $menusRc = "";
 	my $dropExtraArgs = "";
 
+	# check if the menustyle implies no mini icon:
+	my $noIconsInMenus = 0;
+	my $hints = $self->getComponentNamedValue("menustyle",'hints');
+	if (defined $hints) {
+		foreach(@$hints) {
+			$noIconsInMenus = 1 if $_ eq "no_icons_in_menus";
+		}
+	}
+
 	$menuRc[0] .= qq(DestroyMenu "$selfMenuName"\n);
 	$menuRc[0] .= qq(AddToMenu   "$selfMenuName" "$name Theme" Title\n);
 	foreach (@$currentComponents) {
@@ -1400,8 +1409,9 @@ sub getOwnThemeSubMenusRc ($) {
 						my $name = escapeMenuName($values->[$i]->{'name'}, !$isCurrent);
 						my $star = $isCurrent? "": "&";
 						my $icon = $isCurrent? "choice-yes": "empty";
+						my $mark = ($isCurrent && $noIconsInMenus) ? "\t(c)" : "";
 						my $n = $i + 1;
-						my $menuItem = qq(+ "%menu/$icon.xpm%$star$name"\tFuncFvwmThemesOption $_:$optionFile=$n\n);
+						my $menuItem = qq(+ "%menu/$icon.xpm%$star$name$mark"\tFuncFvwmThemesOption $_:$optionFile=$n\n);
 						($inline? $menusRc: $subRc2) .= $menuItem;
 					}
 					#$menusRc .= qq(+ "" Nop\n);
@@ -1440,8 +1450,9 @@ sub getOwnThemeSubMenusRc ($) {
 					my $name = escapeMenuName($variants->[$i]->{'name'}, !$isCurrent);
 					my $icon = $isCurrent? "choice-yes": "empty";
 					my $star = $isCurrent? "": "&";
+					my $mark = ($isCurrent && $noIconsInMenus) ? "\t(c)" : "";
 					my $n = $i + 1;
-					$menusRc .= qq(+ "%menu/$icon.xpm%$star$name"\tFuncFvwmThemesVariant $_=$n\n);
+					$menusRc .= qq(+ "%menu/$icon.xpm%$star$name$mark"\tFuncFvwmThemesVariant $_=$n\n);
 				}
 				$m = 1;
 			}
@@ -2986,9 +2997,6 @@ sub comLoop {
 				}
 			}
 			if ($return ne "") {
-				# old
-				#$return = 'FuncFvwmThemesConfigAndUpdate "'. $return . '"';
-				# new
 				$return = "FuncFvwmThemesCenterUpdate";
 			}
 			$self->setNewComponentValues(\%optLoad, \%variantLoad, \%compLock);
@@ -3002,10 +3010,6 @@ sub comLoop {
 			foreach (@deleteVariant) { delete $variantToSet{$_} }
 			foreach (@deleteLock) { delete $componentToLock{$_} }
 			# reset
-	  		#$tmp = $self->{$componentKey};
-			#@currentComponents = sort @$tmp;
-			#$settingsConfig = $self->getAllSubComponents("default", "settings");
-			# rest the used flags:
 			foreach (@currentComponents) {
 				if (defined $self->{'cc'}->{$_}) {
 					my $cc = $self->getComponentCfg($_);
@@ -3024,6 +3028,7 @@ sub comLoop {
 					$self->setComponentCfg($comp, $cc);
 				}
 			}
+			$settingsConfig = $self->getAllSubComponents("default", "settings");
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^options-variants\s+(.+)\s+(.+)\s+(\d+)$/) {

@@ -1,4 +1,17 @@
-2001-10-17  migo  <migo@homemail.com>
+2001-10-21  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in (comLoop):
+	* scripts/FvwmScript-ThemesCenter:
+	Fixed the state of the settings components after an "apply"
+
+	* bin/fvwm-themes-config.in (getOwnThemeSubMenusRc):
+	* themes/blackbox/menustyle.cfg: (new file)
+	* themes/unsafe/menustyle.cfg:   (new file)
+	Fixed Themes Management Menu choice-yes for menu without mini
+	icons. I used the ft cfg cmd: hints+=no_icons_in_menus
+	and add \t(c) at the end in the place of choice-yes.xpm
+
+2001-10-21  migo  <migo@homemail.com>
 
 	* locale/{en,ru}/FvwmScript-GlobalFeel.msg:
 	* scripts/FvwmScript-GlobalFeel:
