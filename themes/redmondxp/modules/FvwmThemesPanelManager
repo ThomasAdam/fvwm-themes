@@ -298,6 +298,16 @@ sub popupClockBarConfigMenu ($) {
 	});
 }
 
+sub updatePageLabel ($) {
+	my $pageNum = shift;
+	return if $pageNum == -1;
+
+	my $pageId = $pageNum + 1;
+	my $pageLabel = $pageNum == $currPageNum? "($pageId)": $pageId;
+	$module->send("SendToModule FvwmButtons-Panel ChangeButton " .
+		"page$pageId Title $pageLabel");
+}
+
 # ----------------------------------------------------------------------------
 # main
 
@@ -320,20 +330,12 @@ $module->addHandler(M_NEW_PAGE, sub {
 	my $pageNum = $page_nx + $page_ny * 2;
 	return if $pageNum == $currPageNum;
 
-	if ($currPageNum != -1) {
-		my $currPageStr = $currPageNum + 1;
-		$module->send("SendToModule FvwmButtons-Panel ChangeButton " .
-			"page$currPageStr Title $currPageStr");
-	}
-
-	$pageNum = -1 if $pageNum < 0 || $pageNum >= 4;
+	my $prevCurrPageNum = $currPageNum;
 	$currPageNum = $pageNum;
+	$currPageNum = -1 if $currPageNum < 0 || $currPageNum >= 4;
 
-	if ($pageNum != -1) {
-		my $pageStr = $pageNum + 1;
-		$module->send("SendToModule FvwmButtons-Panel ChangeButton " .
-			"page$pageStr Title ($pageStr)");
-	}
+	updatePageLabel($prevCurrPageNum);
+	updatePageLabel($currPageNum);
 });
 
 $module->addHandler(M_NEW_DESK, sub {
@@ -382,9 +384,19 @@ $module->addHandler(M_STRING, sub {
 		}
 		applyNewConfig();
 	}
+	elsif ($action eq 'init-current-page') {
+		my ($pagex, $pagey) = getTokens($string, 2);
+		$currPageNum = $pagey * 2 + $pagex;
+		$currPageNum = -1 if $currPageNum < 0 || $currPageNum >= 4;
+		updatePageLabel(0);
+		updatePageLabel(1);
+		updatePageLabel(2);
+		updatePageLabel(3);
+	}
 });
 
 $module->send("Deschedule 34543");
+$module->send("SendToModule $fullName init-current-page \$[page.nx] \$[page.ny]");
 
 showClockNowAndRegularly() unless $clockStarted;
 
