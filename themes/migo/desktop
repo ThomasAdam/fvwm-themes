@@ -35,5 +35,8 @@ Style "*"	NoPPosition
 Style "*"	SloppyFocus
 Style "*"	MouseFocusClickRaisesOff
 # olicha: commenting this line fix a core dump in my machine, but this
-# must be fixed in fvwm.
-#Style "*"	ClickToFocusRaisesOff
+# must be fixed in fvwm. In fact not, I still have core dump! The things
+# that fix *some* core dump is to replace the previous line by
+# Style "*"	MouseFocusClickRaises ... 
+# but I've still some core dump ...
+Style "*"	ClickToFocusRaisesOff

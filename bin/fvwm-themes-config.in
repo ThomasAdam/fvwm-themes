@@ -1552,7 +1552,7 @@ sub comLoop {
 
 	my $allThemes = getAllThemes();
 	my $tmp = $self->{$componentKey};
-	@currentComponents = sort @$tmp;
+	my @currentComponents = sort @$tmp;
 	my $CC = $self->{cc};
 
 	chdir($userDir) || die "No FvwmConfigHome $userDir";
@@ -2018,7 +2018,7 @@ sub comLoop {
 			$self = Fvwm::ThemeCfg->new('current', 'current', $fresh);
 			$allThemes = getAllThemes();
 			$tmp = $self->{$componentKey};
-			$currentComponents = [ sort @$tmp ];
+			@currentComponents = [ sort @$tmp ];
 			$CC = $self->{cc};
 		}
 		elsif ($command eq "exit") {

@@ -53,7 +53,7 @@ DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "Awol Modules" Title
 + "Standar &Buttons"  		FuncFvwmButtonsSwitch FvwmButtons-Default
 + "&Dali \& kLo Buttons"  	FuncFvwmButtonsSwitch FvwmButtons-DaLo
-+ "&Desker"          Module FvwmPager FvwmPager-Desker 0 3
++ "&Desker"      FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker '-7 7'
 + "" Nop
 + "No normal icons" Style * NoIcon
 + "Normal icons"    Read themes/default/settings/iconstyles/style-icon-miniicon

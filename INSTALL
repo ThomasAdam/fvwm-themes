@@ -23,6 +23,19 @@ see the last section of this file for instructions.
 
 Please report any installation problems to fvwm-themes-devel mailing list.
 
+FVWM THEMES CONFIGURE OPTIONS
+-----------------------------
+
+Try ./configure --help for the list of all the options to configure.
+In addition of the "standard" options there is the following option:
+
+--enable-gnome-icons - This cause fvwm-themes installation procedure
+to convert GNOME PNG icons into xpm icons and mini-icons (under 
+datadir/fvwm/tr-icons directory). For that you need GNOME and ImageMagick
+installed. Use this option if you want original GNOME icons into your
+fvwm GNOME menus and for the Icon and MiniIcon Style of the GNOME
+applications. See the FAQ and fvwm-themes-image man page for more
+details.
 
 THE DEFAULT DIRECTORIES
 -----------------------

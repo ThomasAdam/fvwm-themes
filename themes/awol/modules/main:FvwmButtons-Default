@@ -14,9 +14,9 @@ DestroyModuleConfig FvwmButtons-Default*
 *FvwmButtons-Default(20x11, Container (Rows 12, Columns 20), Frame 0)
 
 *FvwmButtons-Default(20x3, Container (Rows 1, Columns 20), Frame 0)
-*FvwmButtons-Default(1x1, Icon module/isn_prev.xpm, Action 'Desk -1 0 3', Frame -1)
+*FvwmButtons-Default(1x1, Icon module/isn_prev.xpm, Action 'Desk -1 -6 6', Frame -1)
 *FvwmButtons-Default(18x1, Swallow(UseOld,Respawn) "FvwmIconMan" 'Module FvwmIconMan', NoSize, Padding 0 0, Frame -1)
-*FvwmButtons-Default(1x1, Icon module/isn_next.xpm, Action 'Desk 1 0 3', Frame -1)
+*FvwmButtons-Default(1x1, Icon module/isn_next.xpm, Action 'Desk 1 -6 6', Frame -1)
 *FvwmButtons-Default(End)
 
 *FvwmButtons-Default(20x9, Container (Rows 1, Columns 20), NoSize, Frame 0, Padding 0 0)

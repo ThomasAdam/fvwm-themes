@@ -12,6 +12,11 @@ Q. Can I use fvwm-themes with a session manager?
 Q. Can I use fvwm-themes with GNOME?
 Q. I am screwed. How can I get fvwm config in one file?
 Q. How can I submit my own theme?
+Q. I use the X Configuration Scripts (under the Fvwm Configuration menu 
+   entries), but the changes I mad are not saved for the next sessions!
+Q. Where I can found some documentations on fvwm-themes-config, 
+   fvwm-themes-start, fvwm-themes-menuapp, fvwm-themes-images and 
+   fvwm-themes-com? 
 ==============================================================================
 
 ------------------------------------------------------------------------------
@@ -40,13 +45,10 @@ If no such file is found, the default/theme.cfg is used for this theme.
 All currently used components (probably from different themes) compose
 the current theme, which is reflected in the Theme Management menu.
 
-Any component can come in several choices. In this case, the first time
-such component is loaded, the default choice is used. This may be changed
-from the menu.
-
-Any component can have options, each with several values. The first time
-a user loads such comopnent, all component options are reset to the default
-values. This may be changed from the menu or other interface to fvwm-themes.
+Any component can come with several choices, options or sub components
+which allows a fine configuration. These can be used via the the Theme
+Management menu under "current" or using the "Opt/Cho/Sub" button of
+the Theme Center.
 ==============================================================================
 
 ------------------------------------------------------------------------------
@@ -74,15 +76,17 @@ that you like to overwrite or override. Create ~/.fvwm/themes/personal dir.
 
 Example: you want completely different menus. Copy themes/current/menus
 (don't preserve symlinks) to themes/personal/menus and edit this component.
-If you only want to add (not overwrite) menus, create a component named
-menus-my with AddToMenu commands. You may need to choose 'Regenerate the
-current' item from the theme menu for your new components to be reflected in
-the menu, then choose your component menus or menus-my from within the
-personal theme submenu. Use Ctrl-Alt-Mouse2 in case you didn't include
-MenuFvwmThemes menu in your root menu (MenuFvwmRoot).
+If you only want to add (not overwrite) menus, create a file named
+themes/personal/menus-extra and use "AddToMenu MenuFvwmPersonal" to add
+menu entries under the "Personal" entries of the "Root Menu". You may need 
+to choose 'Refresh the current theme' item from the theme menu for your 
+new components to be reflected in the menu, then choose your component menus 
+or menus-extra from within the personal theme submenu. Use Ctrl-Alt-Mouse2 
+in case you didn't include MenuFvwmThemes menu in your root menu 
+(MenuFvwmRoot).
 
 Another useful example redefining customizable functions FuncFvwmMaximize,
-FuncFvwmViewManPage and others in personal/functions[-my] component.
+FuncFvwmViewManPage and others in personal/functions[-extra] component.
 
 In the future you will need to create some configuration file in your
 personal theme, describing your components. But by that time there will
@@ -198,66 +202,55 @@ But bound applications or fvwm commands are easy configurable.
 ------------------------------------------------------------------------------
 Q. Can I use fvwm-themes under a session manager?
 
-A. Yes and fvwm and Fvwm-Themes detect if it is the case. From the point 
-of view of Fvwm-Themes the main difference with a regular fvwm "session" 
-is that less "visible" modules are started and in fact most of the modules 
-themes are configurated for GNOME (see the next question for more 
-informations on GNOME and Fvwm-Themes). Moreover, you should select your 
-session manger type under the Session Support Fvwm-Themes option (currently, 
-a generic session support or a GNOME one). Also, with some session manager 
-(e.g., xsm) some Fvwm-Themes session functionality may fail to work (e.g., 
-with xsm you need to use xsm to logout and to save session, the corresponding 
-menu entries do not work).
+A. Yes! First, you should start Fvwm-Themes in a special way. Put,
+the following lines at the end of your "start X" file:
 
-From the technical point of view the first session functionality come
-from fvwm itself: under session fvwm use the SessionInitFunction and
-SessionRestartFunction functions in the place of the InitFunction and
-RestartFunction. This functionality is used by Fvwm-Themes together
-with the FuncFvwmSessionStartThemeModule function to start different
-set of modules under session (see any themes/*/modules/main file). 
-Moreover, there is a function FuncFvwmFvwmOrSessionOrGnome that take 3 
-arguments, so that the first argument is executed if fvwm is started 
-"alone", the second argument is executed if fvwm is started via a session 
-manager and the regular option of the Session Support is selected and the 
-3rd one is executed if fvwm is started via session and the GNOME option 
-of the Session Support is selected. This function allows Fvwm-Themes to be 
-NoSession / Session / GnomeSession award.
+	fvwm-themes-start --session a_name --no-start
+	exec the_sm_executable
 
-If you want a special support for a given session manager ask the
-fvwm-themes developers.
+the --session option is optional, but this allows you to use a different
+Fvwm-Themes configuration when you use a given session manager or
+when you use Fvwm-Themes under a normal FVWM session.
+
+At the present time there is a special support for GNOME and a generic 
+support (current->settings->Session Manager).If you want a special support 
+for a given session manager ask the fvwm-themes developers.
 ==============================================================================
 
 ------------------------------------------------------------------------------
 Q. Can I use fvwm-themes with GNOME?
 
-A. Yes. You must have fvwm2 compiled with GNOME enabled and it is
-preferable to run fvwm under gnome-session. Use the control center
-to add fvwm-themes in your list of GNOME window manager (Name: Fvwm-Themes,
-Command: fvwm2 -f themes-rc, fvwm is a session managed window manager).
-And you should select GNOME for the Session Support Fvwm-Themes option (this
-is the default). Note that the Fvwm-Themes GNOME support may depend on the
-GNOME version you use!
+A. Yes. You must have fvwm2 compiled with GNOME enabled (this the default) 
+and it is preferable to run fvwm under gnome-session. Start a gnome-session 
+as explained in the above question (with say --session gnome) and use the 
+control center to add fvwm-themes in your list of GNOME window manager 
+(Name: Fvwm-Themes, Command: fvwm2 -f themes-rc, fvwm is a session managed 
+window manager). Then, you should select GNOME as Session Manager under 
+(current->settings of the theme management menu). This give to you the 
+GNOME "buttons" menus: Shift-Mouse 1/2/3 and a special quit menu. 
+The --session gnome option ensure you that this option will be set only 
+under a GNOME session. Moreover, this way, you can have a completely different
+configuration under a GNOME session (e.g., starting different modules to take 
+in account the GNOME panel, disabling the background if you want to use a 
+GNOME background ...etc.). Others Fvwm Themes components are specially designed
+for GNOME (current->settings->GNOME under the theme management menu).
 
-As explained in the question which concerns session managers, the modules 
-started under (gnome-)session are not the same than those started under a
-regular fvwm "session". Most modules themes are configurated for a panel 
-on the bottom and for GNOME icons on the left (middle-top). Read the
-above question for other informations.
+If you want to use only the GNOME panel start Fvwm Themes as usual (may
+be using the fvwm-themes-start --session options and start the panel before
+fvwm-themes-start). If you want a stays put  panel (i.e., a panel which 
+can cover and be covered by normal windows) enabled the panel stays put 
+option of Fvwm Themes and disabled any GNOME configuration options 
+concerning such things (you may completely restart X so that this options 
+work fine).
 
-To get GNOME "buttons" meuns: Shift-Mouse 1/2/3.
-
-You can also get the system, user and "redhat" GNOME menu via the
-fvwm-themes options. You may have to edit the file 
-/options/gnome/start:fvwmgtk to set the GNOME icons directories
-(the default is /usr/share/pixmaps)
-
-If you want a stays put panel (i.e., a panel which can cover and be
-covered by normal windows) enabled the panel stays put option of
-Fvwm-Themes and disabled any GNOME configuration options concerning
-such things. This does not work perfectly: currently I need to slide/unslide 
-the panel before the option work. Also, the option is not really "dynamic" 
-(even after a restart): the option applies only to windows started after 
-you enabled the option (so you need to quit the session and re-run it).
+Also, do not forget that you can run GNOME applications without using the 
+GNOME panel neither a gnome-session. Again, Fvwm Themes has special
+components for this: you can get the system, user and "redhat" GNOME menu
+as well as Icon and MiniIcon Styles for GNOME applications. So that this
+work with GNOME icons you need to use the --enable-gnome-icons option
+to configure when you install fvwm-themes or you have to login under the
+same user that run "make install" and run "fvwm-themes-images --ft-install".
+See the fvwm-themes-images man pages for more details.
 ==============================================================================
 
 ------------------------------------------------------------------------------
@@ -290,6 +283,23 @@ interesting, we will finish and clean it up.
 
 Finally, send your files to fvwm-themes-devel@lists.sourceforge.org
 or contact one of the main fvwm-themes developers.
+==============================================================================
+
+------------------------------------------------------------------------------
+Q. I use the X Configuration Scripts (under the Fvwm Configuration menu
+   entries), but the changes I mad are not saved for the next sessions!
+
+A. Just add the line
+	.xinitrc-fvwm
+in your .xinitrc or .xsession file before running fvwm-themes-start.
+==============================================================================
+
+------------------------------------------------------------------------------
+Q. Where I can found some documentations on fvwm-themes-config, 
+   fvwm-themes-start, fvwm-themes-menuapp, fvwm-themes-images and 
+   fvwm-themes-com?
+
+A. All this scripts (perl/shell) have a manual page.
 ==============================================================================
 
 ------------------------------------------------------------------------------

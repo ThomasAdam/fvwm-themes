@@ -35,7 +35,7 @@ Replace the last line of your ~/.Xclients (or ~/.xinirc or ~/.xsession):
 	fvwm2
 with:
 	fvwm-themes-start
-and rerun X.
+and rerun X. See the fvwm-themes-start manual page for more details.
 You should get the default theme, which you can change using the root menu.
 
 Documentation

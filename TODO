@@ -14,11 +14,6 @@ files.
 * Think where belong all functions sitting in different components.
   Probably rename functions-appbind to functions-user. [migo]
 
-* Completing 'cde' theme. need a windowlook and a modules theme [olivier, jos]
-
-* Finish colors@spruce. I've done some works but maybe it is too much
-green (olicha).
-
 * Write some documentation about CCDS. [migo]
 
 * Fix all crashes.
@@ -55,6 +50,11 @@ Optional items to do:
   dependency types and syntax improvements in .cfg which we may need in
   the future. The idea here is that a user should be able to create a
   normal theme (no options) by providing only components, without .cfg.
+
+* Completing 'cde' theme. need a windowlook and a modules theme [olivier, jos]
+
+* Fix button@spruce: can we do these buttons with vectors? The problems
+  is that they have fixed colors.
 
 Problems without obvious soluton:
 --------------------------------

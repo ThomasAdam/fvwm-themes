@@ -27,7 +27,8 @@ DestroyModuleConfig FvwmPager-Single*
 *FvwmPager-SingleFont -b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1
 *FvwmPager-SingleDeskHilight
 *FvwmPager-SingleMiniIcons
-*FvwmPager-SingleLabel -8 Furthest!
+*FvwmPager-SingleLabel -7 One more
+*FvwmPager-SingleLabel -6 Furthest!
 *FvwmPager-SingleLabel -5 Furtherer
 *FvwmPager-SingleLabel -4 Further
 *FvwmPager-SingleLabel -3 Heaps Far
@@ -54,12 +55,14 @@ DestroyModuleConfig FvwmPager-Desker*
 *FvwmPager-DeskerBalloonColorset * 16
 *FvwmPager-DeskerWindowColorsets 1 2
 
-*FvwmPager-DeskerGeometry -0+0
+*FvwmPager-DeskerGeometry 48x500-0+0
+*FvwmPager-DeskerColumns 1
 #*FvwmPager-DeskerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPager-DeskerFont -b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1
 *FvwmPager-DeskerDeskHilight
 *FvwmPager-DeskerMiniIcons
-*FvwmPager-DeskerLabel -8 Furthest!
+*FvwmPager-DeskerLabel -7 One More
+*FvwmPager-DeskerLabel -6 Furthest!
 *FvwmPager-DeskerLabel -5 Furtherer
 *FvwmPager-DeskerLabel -4 Further
 *FvwmPager-DeskerLabel -3 Heaps Far
