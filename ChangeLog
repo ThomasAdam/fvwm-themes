@@ -8,6 +8,10 @@
 	* themes/default/menustyle:
 	use less annoying PopupOffset
 
+	* themes/default/styles:
+	return to global NoPPosition, there are still programs wanting
+	to place themselves in (0, 0)
+
 2001-08-01  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:

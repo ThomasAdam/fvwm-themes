@@ -1,6 +1,7 @@
-# Experimental. This may be FVWM default.
-Style "*"		UsePPosition
-Style "Netscape"	NoPPosition
+# Experimental, not too successful.
+#Style "*"		UsePPosition
+#Style "Netscape"	NoPPosition
+Style "*"		NoPPosition
 
 Style "Fvwm*"		Sticky, Title, Handles, WindowListHit, CirculateSkip
 Style "FvwmBanner"	NoTitle, StaysOnTop, WindowListSkip, NeverFocus
@@ -20,7 +21,7 @@ Style "FvwmApplet*"	RandomPlacement
 
 Style "XNoteMessage"    NoTitle, Sticky, StaysOnTop, UsePPosition, \
 	BorderWidth 0, NoHandles, WindowListSkip
-Style "xclock"		Sticky, WindowListSkip, NeverFocus
+Style "xclock"		Sticky, WindowListSkip, CirculateSkip
 # gnome panel and icons
 Style "panel"		NeverFocus, Sticky, NoTitle, WindowListSkip, \
 	CirculateSkip, UsePPosition
