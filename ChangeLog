@@ -11,6 +11,9 @@
 	* bin/fvwm-themes-start.1:
 	some rewordings
 
+	* themes/migo/colors: improved 1 form color
+	* themes/redmond98/colors: improved 2 for colors; still too whitish?
+
 2001-04-02  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-start.in: fixed a typo

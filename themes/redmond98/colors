@@ -150,10 +150,10 @@ DestroyModuleConfig FvwmFormDefault: ItemColorset*
 *FvwmFormDefault: ItemColorset 34
 
 # Application run in a terminal, text file of an editor for xres ...
-*FvwmTheme: Colorset 35 fg black, bg grey95, Plain, NoShape
+*FvwmTheme: Colorset 35 fg black, bg grey65, Plain, NoShape
 
 # Not in one of the above category (for Script and Form, ft-xres)
-*FvwmTheme: Colorset 36 fg black, bg grey85, Plain, NoShape
+*FvwmTheme: Colorset 36 fg black, bg grey80, Plain, NoShape
 
 DestroyModuleConfig FvwmScript: DefaultColorset*
 *FvwmScript: DefaultColorset 36
