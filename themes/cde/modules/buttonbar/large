@@ -28,7 +28,7 @@ DestroyModuleConfig FvwmButton-CenterPanel: *
 *FvwmButton-CenterPanel: (2x6+0+0, Frame 0, Icon module/large/panel-lock.xpm, Action FuncFvwmWmLock, Action (Mouse 2) FuncFvwm2WmLock, Action (Mouse 3) FuncFvwm3WmLock)
 *FvwmButton-CenterPanel: (2x6+0-0, Frame 0, Icon module/large/panel-arrow.xpm, Action Module FvwmPager -transient FvwmPager-Desker 0 3)
 *FvwmButton-CenterPanel: (2x6-0+0, Frame 0, Icon module/large/panel-lite.xpm, Action FuncFvwmWmRestart, Action (Mouse 2) FuncFvwm2WmRestart, Action (Mouse 3) FuncFvwm3WmRestart)
-*FvwmButton-CenterPanel: (2x6-0-0, Frame 0, Icon module/large/panel-exit.xpm, Action 'Menu MenuFvwmQuit rectangle $widthx$height+$left+$top o+50 -100m')
+*FvwmButton-CenterPanel: (2x6-0-0, Frame 0, Icon module/large/panel-exit.xpm, Action 'Menu MenuFvwmQuit rectangle $widthx$height+$left+$top@g o+50 -100m')
 
 
 DestroyModuleConfig FvwmButtons-Panel: *
@@ -43,7 +43,7 @@ PipeRead 'if [ -n "$FT_XINERAMA_PWIDTH" ]; then echo "*FvwmButtons-Panel: Geomet
 *FvwmButtons-Panel: (1x2+13+0, Frame 1, Colorset 11)
 *FvwmButtons-Panel: (1x2+29+0, Frame 1, Colorset 11)
 *FvwmButtons-Panel: (1x2+0+0, Frame 1, Icon module/large/panel-menu.xpm, \
-	Padding 0 0, Colorset 11, Action 'Next (FvwmButtons-Panel, CirculateHit) Menu MenuFvwmWindowOps2 rectangle $widthx$height+$left+$top o+0 -100m')
+	Padding 0 0, Colorset 11, Action 'Next (FvwmButtons-Panel, CirculateHit) Menu MenuFvwmWindowOps2 rectangle $widthx$height+$left+$top@g o+0 -100m')
 *FvwmButtons-Panel: (1x7+0+2, Frame 1, Icon module/large/panel-handle.xpm, \
 	Padding 0 0, Colorset 11, Action 'Next (FvwmButtons-Panel, CirculateHit) Move')
 *FvwmButtons-Panel: (1x2-0+0, Frame 1, Icon module/large/panel-iconify.xpm, \
@@ -54,15 +54,15 @@ PipeRead 'if [ -n "$FT_XINERAMA_PWIDTH" ]; then echo "*FvwmButtons-Panel: Geomet
 *FvwmButtons-Panel: (3x7+1+2, Frame 0, Padding 0 0, Swallow xclock `Exec xclock -padding 5 -geometry +5000+5000 -bg $$[bg.cs10] -fg $$[fg.cs10] -hd $$[shadow.cs13] -hl $$[hilight.cs13]`)
 *FvwmButtons-Panel: (3x2+4+0, Frame 1, Colorset 11)
 *FvwmButtons-Panel: (3x7+4+2, Frame 0, Icon module/large/date.xpm, Padding 0 0)
-*FvwmButtons-Panel: (3x2+7+0, Frame 1, Icon module/large/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmShells rectangle $widthx$height+$left+$top o+50 -100m')
+*FvwmButtons-Panel: (3x2+7+0, Frame 1, Icon module/large/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmShells rectangle $widthx$height+$left+$top@g o+50 -100m')
 *FvwmButtons-Panel: (3x7+7+2, Frame 0, Icon module/large/terminal.xpm, Padding 0 0, Action FuncFvwmTerminal, Action (Mouse 2) FuncFvwm2Terminal, Action (Mouse 3) FuncFvwm3Terminal)
-*FvwmButtons-Panel: (3x2+10+0, Frame 1, Icon module/large/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmPrograms rectangle $widthx$height+$left+$top o+50 -100m')
+*FvwmButtons-Panel: (3x2+10+0, Frame 1, Icon module/large/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmPrograms rectangle $widthx$height+$left+$top@g o+50 -100m')
 *FvwmButtons-Panel: (3x7+10+2, Frame 0, Icon module/large/netscape.xpm, Padding 0 0, Action FuncFvwmWWW, Action (Mouse 2) FuncFvwm2WWW, Action (Mouse 3) FuncFvwm3WWW)
-*FvwmButtons-Panel: (3x2+30+0, Frame 1, Icon module/large/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmThemes rectangle $widthx$height+$left+$top o+50 -100m', Action (Mouse 2) 'Menu MenuFvwmConfiguration rectangle $widthx$height+$left+$top o+50 -100m')
+*FvwmButtons-Panel: (3x2+30+0, Frame 1, Icon module/large/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmThemes rectangle $widthx$height+$left+$top@g o+50 -100m', Action (Mouse 2) 'Menu MenuFvwmConfiguration rectangle $widthx$height+$left+$top@g o+50 -100m')
 *FvwmButtons-Panel: (3x7+30+2, Frame 0, Icon module/large/configuration.xpm, Padding 0 0, Action FvwmScript FvwmScript-ThemesCenter)
-*FvwmButtons-Panel: (3x2+33+0, Frame 1, Icon module/large/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmSystem rectangle $widthx$height+$left+$top o+50 -100m')
+*FvwmButtons-Panel: (3x2+33+0, Frame 1, Icon module/large/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmSystem rectangle $widthx$height+$left+$top@g o+50 -100m')
 *FvwmButtons-Panel: (3x7+33+2, Frame 0, Icon module/large/folders.xpm, Padding 0 0, Action FuncFvwmFileManager, Action (Mouse 2) FuncFvwm2FileManager, Action (Mouse 3) FuncFvwm3FileManager)
 *FvwmButtons-Panel: (3x2+36+0, Frame 1, Colorset 11)
 *FvwmButtons-Panel: (3x7+36+2, Frame 0, Icon module/large/mail.xpm, Padding 0 0, Action FuncFvwmMail, Action (Mouse 2) FuncFvwm2Mail, Action (Mouse 3) FuncFvwm3Mail)
-*FvwmButtons-Panel: (3x2+39+0, Frame 1, Icon module/large/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmHelp rectangle $widthx$height+$left+$top o+50 -100m')
+*FvwmButtons-Panel: (3x2+39+0, Frame 1, Icon module/large/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmHelp rectangle $widthx$height+$left+$top@g o+50 -100m')
 *FvwmButtons-Panel: (3x7+39+2, Frame 0, Icon module/large/help.xpm, Padding 0 0, Action Exec xman)

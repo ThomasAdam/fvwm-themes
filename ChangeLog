@@ -1,3 +1,17 @@
+2001-10-07  olicha  <olivier.chapuis@free.fr>
+
+	* themes/*/modules/main:
+	Use "screen w" in all IconBox. Fixed y IconGrid
+
+	* themes/default/settings/xinerama/disabled:
+	Sls to False and UnsetEnv FT_XINERAMA_PWIDTH
+
+	* themes/olicha/modules/main:FvwmButtons-WMakerApplets:
+	* themes/osx/modules/main:FvwmButtons-MenuBar:
+	* themes/cde/modules/buttonsbar/{small,large}:
+	* themes/luthien/modules/main:FvwmButtons
+	Some Xinerama fixes. Use @g in menu positions
+
 2001-09-27  olicha  <olivier.chapuis@free.fr>
 
 	* themes/minimal/modules/main:

@@ -3,18 +3,19 @@ DestroyModuleConfig FvwmButtons-WMaker*Applets*
 #-------------------------------------
 # Buttons:
 
+*FvwmButtons-WMakerApplets: Geometry +0+0
 *FvwmButtons-WMakerApplets: Columns 1
 *FvwmButtons-WMakerApplets: Colorset 12
-*FvwmButtons-WMakerApplets: ButtonGeometry 66x6
+*FvwmButtons-WMakerApplets: ButtonGeometry 66x6+0+0
 *FvwmButtons-WMakerApplets: (1x11, Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmCalClock" 'Exec exec wmCalClock -24', Action(Mouse 1) \
-	'FuncFvwmMyPopupPanel "FvwmButtons-WMakerClockApplets" $right $top', \
+	'FuncFvwmMyPopupPanel "FvwmButtons-WMakerClockApplets" +$right+$top@g', \
 	Action(Mouse 3) 'All (FvwmButtons-WMakerClockApplets) Close')
 # a good monitor:
 # Swallow "asmon" 'Exec exec asmon'
 *FvwmButtons-WMakerApplets: (1x11, Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmmon" 'Exec exec wmmon', Action(Mouse 1) \
-	'FuncFvwmMyPopupPanel "FvwmButtons-WMakerCpuApplets" $right $top', \
+	'FuncFvwmMyPopupPanel "FvwmButtons-WMakerCpuApplets" +$right+$top@g', \
 	Action(Mouse 3) 'All (FvwmButtons-WMakerCpuApplets) Close')
 # with a laptop you may want to use:
 # Swallow "asapm" 'Exec exec asapm -u 5'
@@ -22,11 +23,11 @@ DestroyModuleConfig FvwmButtons-WMaker*Applets*
 # in the place of wmjmail 
 *FvwmButtons-WMakerApplets: (1x11, Frame 1, Size 64 64, Colorset 12, \
 	Swallow "wmjmail" 'Exec exec wmjmail', Action(Mouse 1) \
-	'FuncFvwmMyPopupPanel "FvwmButtons-WMakerCdApplets" $right $top', \
+	'FuncFvwmMyPopupPanel "FvwmButtons-WMakerCdApplets" +$right+$top@g', \
 	Action(Mouse 3) 'All (FvwmButtons-WMakerCdApplets) Close')
 *FvwmButtons-WMakerApplets: (1x1, Colorset 12, Frame 0, Padding 1 1, NoSize, \
 	Action(Mouse 1) 'FuncFvwmMyPopupPanel "FvwmButtons-WMakerMoreApplets" \
-	$left $bottom', Action(Mouse 3) 'All (FvwmButtons-WMakerMoreApplets) Close')
+	+$left+$bottom@g', Action(Mouse 3) 'All (FvwmButtons-WMakerMoreApplets) Close')
 
 #--------------------------------------
 # Panels

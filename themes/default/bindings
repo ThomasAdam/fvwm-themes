@@ -183,7 +183,7 @@ Key F9		A	SC	FuncFvwmShowColourTable
 
 # pointer in Root
 Mouse 1 	R	A	Menu MenuFvwmRoot
-MouseXX 2 3	R	A	WindowList
+MouseXX 2 3	R	A	WindowList Mouse
 MouseXX 3 2	R	A	Menu MenuFvwmWindowOps
 
 MouseXX 2 3	R	C	Module FvwmPager -transient FvwmPager-Single * *
