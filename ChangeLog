@@ -3,6 +3,7 @@
 	* themes/default/menus:
 	added FvwmGtkDebug
 
+	* themes/migo/images/decor/text-{under,left,right}.png:
 	* themes/migo/colors:
 	some experimentations with colorsets
 
