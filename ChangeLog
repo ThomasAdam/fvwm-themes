@@ -3,6 +3,9 @@
 	* AUTHORS:
 	add Jeremy Nickurak
 
+	* themes/default/background.cfg:
+	add 3+3 more color choices
+
 2002-12-24  migo  <migo@homemail.com>
 
 	* themes/*/modules/FvwmPager*:
