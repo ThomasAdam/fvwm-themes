@@ -14,6 +14,9 @@
 	* themes/default/menus-programs:
 	added 2 WMs
 
+	* themes/redmond98/colors:
+	use violet not red for root terminal fg
+
 2001-07-05  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:

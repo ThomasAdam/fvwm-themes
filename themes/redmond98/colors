@@ -136,7 +136,7 @@ FuncFvwmSetFont-FvwmIdent
 *FvwmTheme: Colorset 30 fg gray94, bg black, Plain, NoShape
 
 # Administrations
-*FvwmTheme: Colorset 31 fg red, bg black, Plain, NoShape
+*FvwmTheme: Colorset 31 fg violet, bg black, Plain, NoShape
 
 # Remote Terminals
 *FvwmTheme: Colorset 32 fg green, bg grey20, Plain, NoShape
