@@ -1,3 +1,14 @@
+2000-09-17  migo  <migo@homemail.com>
+
+	* Makefile.am:
+	* rpm/Makefile.am:
+	* rpm/fvwm-themes.spec.in:
+	reworked bzip2/rpm generation parts (from fvwm)
+
+	* bin/fvwm-themes-start.in:
+	remove xmessage timeout, it is too nice to be killed :),
+	try to load personal theme, this may cause non-working fvwm-themes...
+
 2000-09-15 olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in (comLoop): 

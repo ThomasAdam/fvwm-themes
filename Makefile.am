@@ -62,7 +62,11 @@ dist-hook:
 
 
 ## ---------------------------------------------------------------------------
-## Produce bzip2 archives too (dist2, distcheck2, distclean2)
+## Manage bzip2 archive together with gzip archive
+#  Usage:
+#    make dist2       # instead of make dist
+#    make distcheck2  # instead of make distcheck
+#    make distclean2  # instead of make distclean
 
 dist2: dist
 	gzip -dc $(distdir).tar.gz | bzip2 -9c >$(distdir).tar.bz2
@@ -75,19 +79,15 @@ distcheck2: dist2 distcheck
 
 distclean2: distclean
 
-## Dirty trick to work around automake not working with symbolic links.
-## 'make predist' should be run before 'make dist'.
-predist predist2:
-	for file in Makefile */Makefile; do \
-		sed -e 's/ cp -p/ cp -dp/g' -e 's/$$(TAR) chozf/$$(TAR) czf/g' \
-			<$$file >$$file.tmp && mv $$file.tmp $$file; \
-	done
-
 ## ---------------------------------------------------------------------------
-## Produce an rpm package from a dist or tarball (rpm, rpm-other)
+## Produce an rpm package using dist or from the given tarball
+#  Usage:
+#    make rpm-dist
+#    make release=1 rpm-dist
+#    make rpm-this
+#    make version=2.3.22 release=2 rpm-this
 
-rpm: rpm/Makefile rpm/fvwm-themes.spec dist fvwm-themes-@VERSION@.tar.gz
-	@echo Press Enter to start building rpm, Ctrl-C to cancel
-	@head -1 >/dev/null
-	cp fvwm-themes-@VERSION@.tar.gz $$HOME/redhat/SOURCES || true
-	rpm -bb rpm/fvwm-themes.spec
+rpm-dist: dist rpm-this
+
+rpm-this:
+	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) rpm) || exit 1
