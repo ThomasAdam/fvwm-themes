@@ -1,0 +1,254 @@
+                    COLORSETS USED BY FVWM-THEMES
+
+This is simply the default colors file (I, II and III) plus somme
+comments on where these colorset are used (IV, V and VI).
+Fvwm-themes use internaly colorset 0 to 39 (some colorsets
+are reserved for future use). So, the colorset that are free
+for the users begin with colorset 40
+ 
+# ----------------------------------------------------------------------------
+#
+# I.   Fvwm Colorsets (colorsets 0 to 9)
+#	I.1. Default Colorsets
+#	I.2. Window Decorations
+#	I.3. Menus Colorsets
+#
+# II.  Modules Colorsets (colorsets 10 to 29)
+#	II.1. "Common" Colorsets
+#	II.2. Window List Modules Colorset
+#       II.3. Other Modules
+#       II.4. External Colorsets
+#
+# III. Applications Colorsets (colorsets 30 to 35)
+#
+# IV.  Fixed Part of the Configuaration (themes-rc)
+#
+# V.   Modules configurations (under modules/)
+#
+# VI.  Misc. Configurations
+#
+#----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# I. Fvwm Colorsets
+# ----------------------------------------------------------------------------
+
+# ----------------------
+# I.1. Default Colorsets
+# ----------------------
+
+# mainly for feedback windows (geometry window and NoteMessage)
+# we use this also these colors for FvwmScroll, this may change
+
+*FvwmThemeColorset 0 fg black, bg #908090
+
+# -----------------------
+# I.2. Window Decorations
+# -----------------------
+
+# title bar shade/hilight colors of inactive and active windows
+# (this colors are computed from the fg and bg colors, you can
+# set its using sh and hi). the "plain" color is defined below using 
+# TitleStyle. These are also the colors for the icon titles and 
+# are used in FvwmPager for the window colors.
+
+# inactive 
+*FvwmThemeColorset 1 fg black, bg rgb:80/80/80, Plain, NoShape
+# active
+*FvwmThemeColorset 2 fg black, bg rgb:C0/C0/C0, Plain, NoShape
+
+
+# borders of the windows active and inactive:
+*FvwmThemeColorset 3 fg black, bg rgb:80/80/80, Plain, NoShape
+*FvwmThemeColorset 4 fg black, bg rgb:C0/C0/C0, Plain, NoShape
+
+# title bar colors
+TitleStyle	ActiveUp   (Solid rgb:C0/C0/C0 -- Raised)
+TitleStyle	ActiveDown (Solid rgb:C0/C0/C0 -- Raised)
+TitleStyle	Inactive   (Solid rgb:80/80/80 -- Raised)
+
+# window button background
+ButtonStyle	All Pixmap mini/empty.xpm
+ButtonStyle	All -- UseTitleStyle
+
+# ------------------
+# 3. Menus Colorests
+# ------------------
+
+# inactive menu item fg+bg and menu face
+
+*FvwmThemeColorset 5 fg black, bg grey70, Plain, NoShape
+
+# active menu item fg+bg
+
+*FvwmThemeColorset 6 fg black, bg grey80, Plain, NoShape
+
+# greyed menu item fg
+
+*FvwmThemeColorset 7 fg grey40, bg grey40, Plain, NoShape
+
+#----------------
+# Note: Colorset 8 and 9 are reserved for futur use
+
+# ----------------------------------------------------------------------------
+# II. Modules Colorsets
+# ----------------------------------------------------------------------------
+
+#-------------------------
+# II.1. "Common" Colorsets
+#-------------------------
+
+# default for modules
+# FvwmButtonsColorset, FvwmPagerColorset, can be use for:
+# FvwmIconMan*Colorset, FvwmIconBoxColorset
+
+*FvwmThemeColorset 10 fg black, bg #908090, Plain, NoShape
+
+# default hilight colorset. for hilightning a part of a
+# buttons (some swallowed apps for example).
+
+*FvwmThemeColorset 11 fg black, bg white, Plain, NoShape
+
+# special, a gradient, a pixmap, a "funy colorset", may be
+# use in certain FvwmButtons, FvwmIconMan*Colorset, FvwmIconBoxColorset
+
+*FvwmThemeColorset 12 fg black, bg #908090, \
+	VGradient 20 #908090 #cab3ca, NoShape
+
+# swallowed window: the hilight and shadow colors can be used
+# (-hd xclock and -hl xload use sh and -hl xclock use hi; perhaps
+# strange but this is xload fault :)
+
+*FvwmThemeColorset 13 fg black, bg #c0a0c0, hi black, sh gray40, Plain, NoShape
+
+# default2 (FvwmPager or to get more colors in Buttons)
+# can be set to 10
+
+*FvwmThemeColorset 14 fg black, bg #908090, Plain, NoShape
+
+# default hilight2: (FvwmPager or to get more colors in a Buttons)
+# can be set to 11
+
+*FvwmThemeColorset 15 fg black, bg #cab3ca, Plain, NoShape
+
+# tips/balloons (TaskBar and FvwmPager)
+
+*FvwmThemeColorset 16 fg black, bg yellow, Plain, NoShape
+
+# ----------------------------
+# II.2. Window Lists Colorsets
+# ----------------------------
+
+# standard item
+*FvwmThemeColorset 17 fg black, bg #908090, Plain, NoShape
+
+# active item
+*FvwmThemeColorset 18 fg black, bg #cab3ca, Plain, NoShape
+
+# iconified item
+*FvwmThemeColorset 19 fg white, bg pink3, Plain, NoShape
+
+# pointed item
+*FvwmThemeColorset 20 fg black, bg #9f8f9f, Plain, NoShape
+
+# ------------------------------
+# II.3. Others Modules Colorsets
+# ------------------------------
+
+# FvwmIdent
+
+*FvwmThemeColorset 21 fg yellow, bg black, Plain, NoShape
+
+# FvwmConsole
+
+*FvwmThemeColorset 22 fg black, bg bisque, Plain, NoShape
+
+# ------------------------
+# II.4. External Colorsets
+# ------------------------
+
+# temporary colorset: 23
+
+# reserved for modules@: 24-25
+
+# reserved for future use: 26-29
+
+# ----------------------------------------------------------------------------
+# III. Applications Colorsets
+# ----------------------------------------------------------------------------
+
+# Terminals
+
+*FvwmThemeColorset 30 fg white, bg rgb:00/00/60, Plain, NoShape
+
+# Administrations (eg, su xterm)
+
+*FvwmThemeColorset 31 fg white, bg rgb:00/60/60, Plain, NoShape
+
+# Remote Terminals
+
+*FvwmThemeColorset 32 fg white, bg rgb:00/60/00, Plain, NoShape
+
+# "Viewer" Colorset (man, less, tail -f, ...)
+
+*FvwmThemeColorset 33 fg white, bg black, Plain, NoShape
+
+# Small Text Input file or Hilighting some Items
+# (for Script and Form Items, ft-xres)
+
+*FvwmThemeColorset 34 fg black, bg white, Plain, NoShape
+
+# Application run in a terminal, text file of an editor for xres ...
+
+*FvwmThemeColorset 34 fg black, bg white, Plain, NoShape
+
+# Not in one of the above category (main Script and Form colors, ft-xres)
+
+*FvwmThemeColorset 35 fg black, bg MediumPurple, Plain, NoShape
+
+# ------------------
+# Note: Colorset 36 to 39 are reserved for future use.
+
+# ---------------------------------------------------------------------------
+# IV. Fixed part of the configuration
+# ---------------------------------------------------------------------------
+
+# The following configuration commands are the fixed part of the
+# colors definition and is in themes-rc (via fvwm-themes-config):
+
+DefaultColorset 0
+
+DestroyModuleConfig FvwmScrollColorset*
+*FvwmScrollColorset 0
+
+Style "*"	Colorset 1
+Style "*"	HilightColorset 2
+Style "*"	BorderColorset 3
+Style "*"	HilightBorderColorset 4
+
+MenuStyle * MenuFace
+MenuStyle * MenuColorset 5, ActiveColorset 6, GreyedColorset 7
+# I have no time now to check whether (or why) the folowing is needed.
+MenuStyle * ActiveFore, HilightBack
+
+DestroyModuleConfig FvwmIdent*
+*FvwmIdentColorset 21
+
+DestroyModuleConfig FvwmScriptDefaultColorset*
+DestroyModuleConfig FvwmFormDefaultColorset*
+*FvwmScriptDefaultColorset 35
+*FvwmFormDefaultColorset 35
+
+# ---------------------------------------------------------------------------
+# V. Modules Configurations
+# ---------------------------------------------------------------------------
+
+# Configuration of the "themes modules" modules colorsets are done
+# under modules/ in the files main:ModuleName
+
+# ---------------------------------------------------------------------------
+# VI. Miscenallous Configurations
+# ---------------------------------------------------------------------------
+
+# the applications colorset are used in functions-appbin, menus@default
+# and menus-users@default

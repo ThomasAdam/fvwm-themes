@@ -1,3 +1,9 @@
+2000-07-29  olicha  <olivier.chapuis@free.fr>
+
+	* doc/colorsets: A color spec.
+
+	* themes/cde/buttons: buttons for CDE
+	
 2000-07-29  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in (escapeMenuName, getOwnThemeSubMenusRc):
@@ -28,7 +34,7 @@
 	I forgot we have http://fvwm.org/generated/icon_shots/banner2.gif .
 	Added these 2 big files, I am not sure where to use them if at all.
 
-2000-07-28  olicha <olivier.chapuis@free.fr>
+2000-07-28  olicha  <olivier.chapuis@free.fr>
 
 	* themes/multichoice/backgrounds/*
 	Add some fvwm-themes-images background and replace xv + bggen when
