@@ -1895,7 +1895,7 @@ sub getAllHooksRc ($) {
 		if ($cc->{'used'} < 3) {
 			if (defined $reloadUnreload) {
 				$startFunctions = $reloadUnreload;
-				$startFunctionsType = "ReLoad";
+				$startFunctionsType = "Reload";
 			}
 			elsif (defined $startStop) {
 				$startFunctions = $startStop;
