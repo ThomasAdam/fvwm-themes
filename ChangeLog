@@ -10,6 +10,11 @@
 	use "raised" buttons in FvwmIconMan except for focussed, if this
 	is not ok, this FvwmIconMan file may be copied to @migo
 
+	* themes/luthien/colors.cfg:
+	* themes/luthien/colors/main:
+	* themes/luthien/colors/palettes/Water.dp:
+	added new color palette
+
 2002-06-12  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-script.in (getDirListing):
