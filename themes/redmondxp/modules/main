@@ -29,7 +29,7 @@ AddToFunc   FuncFvwmStartThemeModules
 + I Colorset 17 fg rgb:ff/ff/f0, bg average, TiledPixmap module/panel-bg.xpm, NoShape
 + I Colorset 19 fg rgb:ff/f0/f0, bg average, TiledPixmap module/panel-bg.xpm, Tint cyan 20, NoShape
 + I Colorset 20 fg rgb:ff/ff/f0, bg average, TiledPixmap module/panel-bg.xpm, Tint white 30, NoShape
-+ I Schedule 20000 34543 FuncFvwmShowMessage "Error Message" "It seems that FvwmThemesPanelManager module can not be started.^nYour saved and dynamic panel configuration will not work.^nPlease check the error messages on your console and report to^nfvwm-themes-users@lists.sf.net mailing list if needed."
++ I Schedule 45000 34543 FuncFvwmShowMessage "Error Message" "It seems that FvwmThemesPanelManager module can not be started.^nYour saved and dynamic panel configuration will not work.^nPlease check the error messages on your console and report to^nfvwm-themes-users@lists.sf.net mailing list if needed."
 + I FvwmButtons FvwmButtons-Panel
 + I $./FvwmThemesPanelManager
 + I FuncFvwmStartNormalIcons
