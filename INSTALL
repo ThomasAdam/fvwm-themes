@@ -4,7 +4,7 @@ Welcome to FVWM Themes, a beta release.
 HOW TO INSTALL
 --------------
 
-To install this package unpack the tarball and execute:
+To install this package unpack the fvwm-themes-base tarball and execute:
 
 	./configure
 	make
@@ -20,6 +20,13 @@ After that, the package can be uninstalled at any time using:
 It is possible (but not recommended) to install fvwm-themes to any place,
 regardless of fvwm installation, but you should really know what you do,
 see the last section of this file for instructions.
+
+To install additional themes from fvwm-themes-extra pack, you may execute
+this command as the same user that did "make install" for fvwm-themes-base:
+
+	[/path/]fvwm-themes-config --site --install fvwm-themes-extra.tar.gz
+
+Individual themes may be removed by removing the corresponding directories.
 
 Please report any installation problems to fvwm-themes-devel mailing list.
 

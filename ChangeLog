@@ -17,6 +17,10 @@
 	* bin/fvwm-themes-config.in:
 	fixed saving non-hidden current variant in memory
 
+	* README:
+	* INSTALL:
+	updated instructions of instaling fvwm-themes-base & fvwm-themes-extra
+
 2001-08-09  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
