@@ -244,15 +244,12 @@ AddToMenu   MenuFvwmEditors "Editors" Title
 
 DestroyMenu MenuFvwmInternet
 AddToMenu   MenuFvwmInternet "Internet" Title
++ "&Web Browsers%menu/www.xpm%"		Popup MenuFvwmWebBrowsers
++ "" Nop
 + "&Vppp%menu/network.xpm%"		Exec exec vppp
 + "&Ezppp%menu/network.xpm%"		Exec exec Ezppp
 + "&Kppp%menu/network.xpm%"		Exec exec kppp
 + "XModemLights%menu/network.xpm%"	Exec exec xmodemlights
-+ "" Nop
-+ "Netscape%menu/netscape.xpm%"		Exec exec netscape
-+ "Amaya%menu/netscape.xpm%"		Exec exec amaya
-+ "Mozilla%menu/netscape.xpm%"		Exec exec mozilla
-+ "Lynx%menu/www.xpm%"			FuncFvwmRunInXterm "Lynx" "lynx"
 + "" Nop
 + "Mail%menu/mail.xpm%"			FuncFvwmRunInXterm "Mail" "mail"
 + "Mutt%menu/mail.xpm%"			FuncFvwmRunInXterm "Mail" "mutt"
@@ -273,6 +270,18 @@ AddToMenu   MenuFvwmInternet "Internet" Title
 + "" Nop
 + "&Minitel%menu/terminal-special.xpm%"	Exec exec xtel -petit
 + "&Minicom%menu/terminal-special.xpm%"	FuncFvwmRunInXterm "Minicom" "minicom"
+
+DestroyMenu MenuFvwmWebBrowsers
+AddToMenu   MenuFvwmWebBrowsers "Web Browsers" Title
++ "Mozilla%menu/netscape.xpm%"		Exec exec mozilla
++ "Netscape%menu/netscape.xpm%"		Exec exec netscape
++ "Beonex%menu/netscape.xpm%"		Exec exec beonex-comm
++ "Galeon%menu/gnome.xpm%"		Exec exec galeon
++ "Konqueror%menu/kde.xpm%"		Exec exec konqueror
++ "Opera%menu/netscape.xpm%"		Exec exec opera
++ "Amaya%menu/netscape.xpm%"		Exec exec amaya
++ "Lynx%menu/terminal.xpm%"		FuncFvwmRunInXterm "Lynx" "lynx"
++ "Links%menu/terminal.xpm%"		FuncFvwmRunInXterm "Links" "links"
 
 DestroyMenu MenuFvwmGraphics
 AddToMenu   MenuFvwmGraphics "Graphics" Title

@@ -11,10 +11,14 @@
 	don't change a wrong Style
 
 	* themes/afterstep/colors:
-	replaced one black bg, still to much black...
+	replaced one black bg, still too much black...
 
-	* themes/default//functions:
+	* themes/default/functions:
 	support ^d for dollar in messages
+
+	* themes/default/menus:
+	* themes/default/menus-programs:
+	added Web Browser submenu, it is in both Programs and Web Browsing
 
 2002-06-10  migo  <migo@homemail.com>
 

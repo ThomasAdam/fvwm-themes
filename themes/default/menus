@@ -44,7 +44,6 @@ AddToMenu   MenuFvwmPersonal
 DestroyMenu MenuFvwmHelp
 AddToMenu   MenuFvwmHelp "Help" Title
 + "%menu/help.xpm%FVWM Man Pages"		Popup MenuFvwmManPages
-+ "%menu/www.xpm%FVWM Web Pages"		Popup MenuFvwmWebPages
 + "%menu/information.xpm%Show FVWM Version"	FuncFvwmShowVersionInfo
 + "" Nop
 + "%menu/help.xpm%Xman"      		Exec exec xman
@@ -101,7 +100,7 @@ AddToMenu   MenuFvwmManPages "FVWM Man Pages" Title
 + "%menu/help.xpm%fvwmbug"             FuncFvwmViewManPage fvwmbug
 + "%menu/help.xpm%fvwmrc_convert"      FuncFvwmViewManPage fvwmrc_convert
 + "%menu/help.xpm%fvwm24_convert"      FuncFvwmViewManPage fvwm24_convert
-+ "%menu/help.xpm%xpmroot"             FuncFvwmViewManPage xpmroot
++ "%menu/help.xpm%fvwm-root"           FuncFvwmViewManPage fvwm-root
 + "" Nop
 + "%menu/help.xpm%fvwm-menu-desktop"   FuncFvwmViewManPage fvwm-menu-desktop
 + "%menu/help.xpm%fvwm-menu-directory" FuncFvwmViewManPage fvwm-menu-directory
@@ -459,5 +458,7 @@ AddToMenu   MenuFvwmWindowUtility "Window Utility" Title
 
 DestroyMenu MenuFvwmWebBrowsing
 AddToMenu   MenuFvwmWebBrowsing "Web Browsing" Title
++ "%menu/www.xpm%Web Browsers" Popup MenuFvwmWebBrowsers
 + "%menu/www.xpm%FVWM Web Pages" Popup MenuFvwmWebPages
-
++ "" Nop
++ "%menu/www.xpm%Set Default Browser" FuncFvwmShowMessage "Setting your default browser" "There is no dialog to change the default browser yet.^nPlease do it manually. Put these lines to^n^t~/.fvwm/themes/personal/functions-appbind-extra^n^n# used to open url^nDestroyFunc FuncFvwmOpenURL^nAddToFunc   FuncFvwmOpenURL^n+ I Exec exec mozilla '^d0'^n^n# used to start browser in panels and stroke^nDestroyFunc FuncFvwmWWW^nAddToFunc   FuncFvwmWWW^n+ I Exec exec opera"
