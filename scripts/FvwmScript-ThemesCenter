@@ -2156,6 +2156,7 @@ Case message of
 	Set $SwitchCmd = (GetOutput $cmd 1 -1)
 	If $SwitchCmd <> {} Then
 	Begin
+	    # fs
 	    Do $SwitchCmd
 	    Set $UpdateTSLists = 1
 	    Set $UpdateSettingsList = 1

@@ -1917,6 +1917,16 @@ AddToFunc   FuncFvwmThemesConfigAndUpdate
 + I FuncFvwmStartAllHooks
 + I All (FvwmScript-NoteMessage) Delete
 
+DestroyFunc FuncFvwmThemesCenterUpdate
+AddToFunc   FuncFvwmThemesCenterUpdate
++ I FvwmScript FvwmScript-NoteMessage "Theme switching"
++ I Wait FvwmScript-NoteMessage
++ I FuncFvwmResetInitFunctions
++ I FuncFvwmStopAllHooks
++ I Read @$rcFile2@
++ I FuncFvwmStartAllHooks
++ I All (FvwmScript-NoteMessage) Delete
+
 DestroyFunc FuncFvwmThemesReset
 AddToFunc   FuncFvwmThemesReset
 + I FuncFvwmThemesConfigAndUpdate --reset
@@ -1960,6 +1970,15 @@ AddToFunc   FuncFvwmMinimalThemesConfigAndUpdate
 + I Wait FvwmScript-NoteMessage
 # The stop functions are executed in the begining of themes-rc-3
 + I PipeRead `@$scriptFile@ $0 --pipe`
++ I Read @$rcFile3@
++ I FuncFvwmStartAllHooks
++ I All (FvwmScript-NoteMessage) Delete
+
+DestroyFunc FuncFvwmThemesCenterMinimalUpdate
+AddToFunc   FuncFvwmThemesCenterMinimalUpdate
++ I FvwmScript FvwmScript-NoteMessage "Minimal theme switching"
++ I Wait FvwmScript-NoteMessage
+# The stop functions are executed in the begining of themes-rc-3
 + I Read @$rcFile3@
 + I FuncFvwmStartAllHooks
 + I All (FvwmScript-NoteMessage) Delete
@@ -2279,6 +2298,7 @@ if ($comMode) {
 	$comPid = $comName;
 	$comPid =~ s/config-//;
 	$comPid = 0 if ($comPid !~ /^\d+$/);
+	$pipe = 1;
 	$cfg->comLoop($comName);
 	# we never return here
 }
@@ -2821,13 +2841,25 @@ sub comLoop {
 				}
 			}
 			if ($return ne "") {
+				# old
+				#if ($self->isMinimalReload()) {
+				#	$return = 'FuncFvwmMinimalThemesConfigAndUpdate "'. $return .'"';
+				#} else {
+				#	$return = 'FuncFvwmThemesConfigAndUpdate "'. $return . '"';
+				#}
+				# new
 				if ($self->isMinimalReload()) {
-					$return = 'FuncFvwmMinimalThemesConfigAndUpdate "'. $return .'"';
+					$return = "FuncFvwmThemesCenterMinimalUpdate";
 				} else {
-					$return = 'FuncFvwmThemesConfigAndUpdate "'. $return . '"';
+					$return = "FuncFvwmThemesCenterUpdate";
 				}
 			}
 			$self->setNewComponentValues(\%optLoad, \%variantLoad, \%compLock);
+			#fs 5
+			$self->generateThemesRc();
+			if ($self->isModified()) {
+				$self->save() if $self->isModified();
+			}
 			%componentToLoad = ();
 			%componentToDrop = ();
 	  		$tmp = $self->{$componentKey};
