@@ -1,3 +1,10 @@
+2001-08-05  migo  <migo@homemail.com>
+
+	* doc/colorsets:
+	* themes/default/colors:
+	* themes/default/modules/main:FvwmButtons:
+	small corrections
+
 2001-08-04  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

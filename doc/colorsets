@@ -165,7 +165,8 @@ AddToFunc   FuncFvwmTitleBackground
 # (-hd of xclock and -hl of xload use sh, and -hl of xclock use hi;
 # perhaps strange but this is xload's fault. :) )
 #
-*FvwmTheme: Colorset 13 fg black, bg #c0a0c0, hi black, sh gray40, Plain, NoShape
+*FvwmTheme: Colorset 13 fg black, bg rgb:70/8C/8C, hi black, sh gray40, \
+	Plain, NoShape
 
 # default #2 (FvwmPager or to get more colors in FvwmButtons)
 # can be set to 10
@@ -189,7 +190,7 @@ AddToFunc   FuncFvwmTitleBackground
 *FvwmTheme: Colorset 17 fg black, bg rgb:80/A0/A0, Plain, NoShape
 
 # active item
-*FvwmTheme: Colorset 18 fg black, bg rgb:C0/F0/F0, Plain, NoShape
+*FvwmTheme: Colorset 18 fg black, bg rgb:A0/C8/C8, Plain, NoShape
 
 # iconified item
 *FvwmTheme: Colorset 19 fg white, bg rgb:60/78/78, Plain, NoShape
