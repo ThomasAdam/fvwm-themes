@@ -1,7 +1,7 @@
 DestroyModuleConfig FvwmButtons-Default: *
 *FvwmButtons-Default: Colorset 10
 
-*FvwmButtons-Default: Font -b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1
+*FvwmButtons-Default: Font -b&h-lucida-medium-r-normal-sans-8-*-75-75-p-45-iso8859-1
 *FvwmButtons-Default: Geometry 792x90+0-0
 *FvwmButtons-Default: Rows 11
 *FvwmButtons-Default: Columns 20

@@ -48,7 +48,7 @@ indications in this file).
 Note that the above apply to any "modules" in a modules themes: the only
 problem is that if a module in an other modules theme have the same name
 this configuration will be also over-read. However, for 
-FvwmButtons-WMakerApplets and others this not a problem.
+FvwmButtons-WMakerApplets and others this is not a problem.
 
 Now, the above is enough if you use modules@olicha. But, if you want
 to be able to use this module in any modules themes you must add the 
@@ -65,7 +65,7 @@ Style "FvwmButtons-WMaker*Applets" NoTitle, NoHandles, BorderWidth 0, Sticky, \
 	WindowListSkip, CirculateHit, NoIcon, TitleAtTop
 
 # Maybe you want to always start this modules (of course in this case
-# disabled any applets in modules@olicha). 
+# you must disabled any applets in modules@olicha). 
 #AddToFunc   FuncFvwmStartThemeModules
 #+ I FvwmButtons FvwmButtons-WMakerApplets
 
@@ -111,4 +111,4 @@ Note that again the above method may apply to others modules in other
 modules themes, but you may have to know what you are doing.
 
 -- 
-olicha, last modified: 07/Nov/2000
+olicha, last modified: 10/Nov/2000

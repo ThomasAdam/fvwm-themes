@@ -28,7 +28,7 @@ DestroyModuleConfig FvwmTaskBar: *
 # olicha: IMHO the position is good!
 # migo: I don't think so.
 #*FvwmTaskBar: StartMenu MenuFvwmRoot Mouse c
-*FvwmTaskBar: StartMenu MenuFvwmStartMenu Root +1p +27p
+*FvwmTaskBar: StartMenu MenuFvwmRoot Root +1p +27p
 *FvwmTaskBar: StartIcon 16x16/penguin.xpm
 
 # Animation

@@ -50,7 +50,6 @@ Style "Eterm*"                 Icon norm/xterm.xpm,           MiniIcon mini/xter
 Style "Explorer"               Icon norm/folders.xpm,         MiniIcon mini/folders.xpm
 Style "fr"                     Icon norm/folders.xpm,         MiniIcon mini/folders.xpm
 Style "freeamp"                Icon norm/music.xpm,           MiniIcon mini/music.xpm
-Style "Fvwm*"                  Icon norm/utility.xpm,         MiniIcon mini/utility.xpm
 Style "ghostview"              Icon norm/ghostview.xpm,       MiniIcon mini/ghostview.xpm
 Style "ghostscript"            Icon norm/ghostview.xpm,       MiniIcon mini/ghostview.xpm
 Style "gifview"                Icon norm/image-viewer.xpm,    MiniIcon mini/image-viewer.xpm
@@ -159,6 +158,15 @@ Style "About"                  Icon norm/information.xpm,     MiniIcon mini/info
 Style "about_popup"            Icon norm/information.xpm,     MiniIcon mini/information.xpm
 Style "about"                  Icon norm/information.xpm,     MiniIcon mini/information.xpm
 Style "*kps"                   Icon norm/todo.xpm,            MiniIcon mini/todo.xpm
+
+# Fvwm
+Style "Fvwm*"                  Icon norm/utility.xpm,         MiniIcon mini/utility.xpm
+Style "Fvwm Themes*"           Icon norm/desktop.xpm,         MiniIcon mini/desktop.xpm
+Style "FvwmForm-ThemeSettings" Icon norm/desktop.xpm,         MiniIcon mini/desktop.xpm
+Style "FvwmScript-BellSetup"   Icon norm/sound.xpm,           MiniIcon mini/sound.xpm
+Style "FvwmScript-Keyboard"    Icon norm/keyboard.xpm,        MiniIcon mini/keyboard.xpm
+Style "FvwmScript-ScreenSetup" Icon norm/display.xpm,         MiniIcon mini/display.xpm
+Style "FvwmScript-PointerSetup" Icon norm/mouse.xpm,          MiniIcon mini/mouse.xpm
 
 # GNOME/Gtk Apps
 Style "Galeon-bin"             Icon norm/www.xpm,             MiniIcon mini/www.xpm

@@ -24,9 +24,15 @@ AddToMenu   StartMenuFvwmSettings "Settings" Title
 DestroyMenu StartMenuFvwmDocuments
 AddToMenu   StartMenuFvwmDocuments "Documents" Title
 + "%menu/help.xpm%Fvwm Man Pages"	 Popup MenuFvwmManPages
++ "%menu/www.xpm%FVWM Web Pages"	Popup MenuFvwmWebPages
++ "%menu/information.xpm%Show FVWM Version" FuncFvwmShowVersionInfo
++ "" Nop
 + "%menu/help.xpm%Xman"			 Exec exec xman
-+ "%menu/information.xpm%Fvwm Home Page" FuncFvwmOpenURL http://www.fvwm.org/
-+ "%menu/information.xpm%Fvwm Themes HP" FuncFvwmOpenURL http://fvwm-themes.sourceforge.net/
++ "%menu/help.xpm%Gnome Help Browser"	Exec exec gnome-help-browser
++ "%menu/help.xpm%KDE Help"		Exec exec kdehelp
++ ""  Nop
++ "&Browser%menu/folder.xpm%"		Menu MenuFvwmBrowser
++ "Browser (&cached)%menu/folder.xpm%"	Menu MenuFvwmBrowserCached
 + ""  Nop
 + MissingSubmenuFunction FuncFvwmMenuDirectory
 + "%menu/folder.xpm%Root dir" Popup /

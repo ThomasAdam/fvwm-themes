@@ -1,3 +1,30 @@
+2000-11-09  olicha  <olivier.chapuis@free.fr>
+
+	* themes/olicha/README:
+	Fixed miss prints
+
+	* themes/awol/modules/main:FvwmButtons-*:
+	Fixed xdali font and FvwmButtons-Default one. I get problem with
+	xdaliclock swallowing!
+
+	* themes/default/modules/main:FvwmTaskBar:
+	Fixed the name of the start menu
+
+	* themes/redmond98/modules/main:startmenu:
+	Some update vs the default menu
+
+	* themes/redmond98/modules/taskbarpos:
+	* themes/olicha/modules/main:FvwmTaskBar
+	"Fixed" the position of the start menu for bottom task bar
+	Ok, ok ... I use the taskbar and I almost always resize it, thus
+	the position menu have to be computed from the taskbar window,
+	but the Window (and other contexts) does not work in fvwm2 or I
+	do not understand how it work!
+	So, the only solution is to use a position relatively to the mouse.
+
+	* themes/default/settings/iconstyles/style-icon-miniicon
+	Added styles for Fvwm Themes Form/Script
+
 2000-11-09  migo  <migo@homemail.com>
 
 	* ANNOUNCE:

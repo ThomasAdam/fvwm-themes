@@ -50,7 +50,7 @@ Action(mouse 3) 'Exec tkps', Frame -1)
 *FvwmButtons-DaLo: (1x5, Title "stick", Icon 16x16/window-stick.xpm, Action Stick, Back grey75, Frame -1, Padding 0 0)
 *FvwmButtons-DaLo: (1x5, Title "close", Icon 16x16/window-close.xpm, Action Close, Back grey60, Frame -1, Padding 0 0)
 *FvwmButtons-DaLo: (2x5, Center, Swallow(UseOld) "xbiff" "Exec xbiff -bg $[bg.cs13] -fg $[fg.cs13] -geometry +5000+5000", Frame -1)
-*FvwmButtons-DaLo: (7x3, Frame -1, Padding 0 0, Swallow(UseOld,kill) "xdaliclock" "Exec exec xdaliclock -12 -font -adobe-times-*-*-*-*-24-*-*-*-*-*-*-* -fg red -bg grey75 -geometry +5000+5000")
+*FvwmButtons-DaLo: (7x3, Frame -1, Padding 0 0, Swallow(UseOld,kill) "xdaliclock" "Exec exec xdaliclock -12 -font -adobe-times-*-*-*-*-12-*-*-*-*-*-*-*  -bg $[bg.cs13] -fg $[fg.cs13] -geometry +5000+5000")
 *FvwmButtons-DaLo: (7x2, Frame -1, Padding 0 0, Title "Set DATE/TIME", \
 	Action(mouse 1) 'Module FvwmScript FvwmScript-Date', \
 	Action(mouse 3) "Exec xalarm")
