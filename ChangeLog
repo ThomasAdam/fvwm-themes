@@ -6,6 +6,9 @@
 	implemented a new html (or xhtml) parser, probably any html
 	can be used, but not everything will be shown well
 
+	* scripts/FvwmScript-Help:
+	add support for --lang
+
 2000-11-29  olicha  <olivier.chapuis@free.fr>
 
 	* locale/{en,fr}/FvwmScript-ConfigCenter.msg:

@@ -29,6 +29,7 @@ Begin
     Set $Message = {}
     Set $Title = {}
     Set $InLineDoc = {}
+    Set $Lang = {}
 
     # Arguments
     Set $i = 1
@@ -36,6 +37,8 @@ Begin
     While $arg <> {} Do
     Begin
 	Set $j = (Add $i 1)
+	If $arg == {--lang} Then
+	    Set $Lang = (GetScriptArgument $j)
 	If $arg == {--message} Then
 	    Set $Message = (GetScriptArgument $j)
   	If $arg == {--title} Then
