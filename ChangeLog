@@ -2,6 +2,15 @@
 
 	* TODO: minor change
 
+	* themes/migo/background:
+	* themes/migo/globalfeel:
+	* themes/migo/images/background/circle-energy.xpm:
+	still experimenting :)
+
+	* themes/{awol,migo,olicha,spruce}/background:
+	Replaced $FT_DATADIR/... with $.; unfortunately it can't be done
+	anywhere, for examples in module commands, like sound@.
+
 2000-11-13  migo  <migo@homemail.com>
 
 	* TODO:

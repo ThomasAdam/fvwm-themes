@@ -1,6 +1,6 @@
 DestroyFunc FuncFvwmStartThemeBackground
 AddToFunc   FuncFvwmStartThemeBackground
-+ I exec xv -root -quit $FT_DATADIR/themes/spruce/images/background/bg.jpg
++ I exec xv -root -quit $./images/background/bg.jpg
 
 DestroyFunc FuncFvwmStopThemeBackground
 AddToFunc   FuncFvwmStopThemeBackground
