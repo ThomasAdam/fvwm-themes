@@ -13,6 +13,9 @@
 	* themes/qnx/buttons:
 	make the maximize state visible
 
+	* themes/redmondxp/modules/main:
+	added EWMHBaseStrut
+
 2002-08-29  migo  <migo@homemail.com>
 
 	* themes/redmondxp/background:

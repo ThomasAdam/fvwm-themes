@@ -81,10 +81,12 @@ DestroyFunc FuncFvwmStopPanel
 AddToFunc   FuncFvwmStopPanel
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Panel
 + I KillModule $./FvwmThemesPanelManager
++ I EWMHBaseStrut 0 0 0 0
 
 DestroyFunc FuncFvwmStartPanel
 AddToFunc   FuncFvwmStartPanel
 + I FuncFvwmStopPanel
++ I EWMHBaseStrut 0 0 0 30
 + I Schedule 45000 34543 FuncFvwmShowMessage "Error Message" "It seems that FvwmThemesPanelManager module can not be started.^nYour saved and dynamic panel configuration will not work.^nPlease check the error messages on your console and report to^nfvwm-themes-users@lists.sf.net mailing list if needed."
 + I FvwmButtons FvwmButtons-Panel
 + I $./FvwmThemesPanelManager
