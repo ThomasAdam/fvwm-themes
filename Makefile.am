@@ -2,7 +2,7 @@
 ## Makefile.am for fvwm-themes.
 
 AUTOMAKE_OPTIONS = foreign
-SUBDIRS = bin doc scripts forms
+SUBDIRS = bin doc rpm scripts forms
 FT_DATA_SUBDIRS = themes images sounds
 FT_MODULE_SUBDIRS = 
 EXTRA_DIST = images.tar.gz sounds.tar.gz

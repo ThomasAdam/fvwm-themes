@@ -3,6 +3,16 @@
 	* themes/spruce/theme.cfg:
 	added needed file
 
+	* Makefile.am:
+	* configure.in:
+	* rpm/Makefile.am:
+	small fixes
+
+	* themes/olicha/modules/main:FvwmTaskBar:
+	adjasted startmenu to 10 pixel font (was 12);
+	* themes/olicha/modules/main:FvwmPager-Single:
+	fixed "Move to Page" labels (x & y were sometimes replaced)
+
 2000-09-07  migo  <migo@homemail.com>
 
 	* themes/redmond98/modules/main:FvwmButtons-Bar: s/cs11/cs13/g

@@ -105,6 +105,7 @@ AC_OUTPUT(
 	bin/fvwm-themes-images
 	doc/fvwm-themes.lsm
 	rpm/fvwm-themes.spec
+	rpm/Makefile
 )
 
 if test -n "$DEBUG"; then
