@@ -1,3 +1,11 @@
+2001-04-06  migo  <migo@homemail.com>
+
+	* themes/default/bindings:
+	* themes/default/menus:
+	* themes/olicha/buttons:
+	switch MenuFvwmWindowOps2 and MenuFvwmWindowOps3;
+	try the new MenuFvwmWindowOps2 anywhere for now even in CDE
+
 2001-04-05  migo  <migo@homemail.com>
 
 	* AUTHORS: added Kristian Peters

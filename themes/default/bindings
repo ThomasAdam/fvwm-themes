@@ -45,7 +45,7 @@ AddToFunc   FuncFvwmUnmaximizeFullScreen
 DestroyFunc FuncFvwmWindowOpsOrAction
 AddToFunc   FuncFvwmWindowOpsOrAction
 + I Menu MenuFvwmWindowOps2 $*
-#+ C Menu MenuFvwmWindowOps2
+#+ C Menu MenuFvwmWindowOps3
 #+ D $*
 
 # ---------------------------------------------------------------------------

@@ -278,14 +278,14 @@ AddToMenu   MenuFvwmWindowOps "Window Operations" Title
 + "Switch to...%menu/windows.xpm%"              WindowList
 
 # A trimmed down version of MenuFvwmWindowOps, good for binding to decorations
-DestroyMenu MenuFvwmWindowOps3
-AddToMenu   MenuFvwmWindowOps3
-+ "Restore	Alt-F6%menu/window-iconify.xpm%"   FuncFvwmRestore
+DestroyMenu MenuFvwmWindowOps2
+AddToMenu   MenuFvwmWindowOps2
++ "Restore	Alt-F6%menu/window.xpm%"           FuncFvwmRestore
 + "&Move	Alt-F7%menu/window-move.xpm%"      Move
 + "&Resize	Alt-F8%menu/window-resize.xpm%"    Resize
 + "&Iconify	Alt-F9%menu/window-iconify.xpm%"   Iconify
 + "Ma&ximize	Alt-F10%menu/window-maximize.xpm%" Maximize
-+ "R&aiseLower	Alt-F5%menu/window-raise.xpm%"     RaiseLower
++ "R&aise	Alt-F5%menu/window-raise.xpm%"     RaiseLower
 + "" Nop
 + "&Close	Alt-F4%menu/window-close.xpm%"     Close
 + "" Nop
@@ -293,14 +293,14 @@ AddToMenu   MenuFvwmWindowOps3
 + "More&...	Alt-F3%menu/window.xpm%"           Menu MenuFvwmWindowOps This 0 0
 
 # Someone may prefer the version without menu icons, like in mwm
-DestroyMenu MenuFvwmWindowOps2
-AddToMenu   MenuFvwmWindowOps2
+DestroyMenu MenuFvwmWindowOps3
+AddToMenu   MenuFvwmWindowOps3
 + "Restore	Alt-F6"  FuncFvwmRestore
 + "&Move	Alt-F7"  Move
 + "&Resize	Alt-F8"  Resize
 + "&Iconify	Alt-F9"  Iconify
 + "Ma&ximize	Alt-F10" Maximize
-+ "R&aiseLower	Alt-F5"  RaiseLower
++ "R&aise	Alt-F5"  RaiseLower
 + "" Nop
 + "&Close	Alt-F4"  Close
 + "" Nop
