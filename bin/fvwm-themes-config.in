@@ -2410,6 +2410,8 @@ if ($install) {
 	my $dir = `pwd`;
 	chomp($dir);
 	errDie("Cannot chdir to $themesDir") unless chdir "$themesDir";
+	errDie("No $workDir/$themesSubDir dir found")
+		unless -d "$workDir/$themesSubDir";
 	my $file;
 	foreach $file (@ARGV) {
 		$file = "$dir/$file" unless $file =~ m:^/:;

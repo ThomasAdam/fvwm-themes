@@ -12,6 +12,9 @@
 	* themes/default/menus:
 	added man pages for some new 2.5.x things
 
+	* bin/fvwm-themes-config.in:
+	added one check to avoid incorrect theme installation
+
 2002-12-05  migo  <migo@homemail.com>
 
 	* themes/mech/buttons:
