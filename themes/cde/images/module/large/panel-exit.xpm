@@ -1,0 +1,37 @@
+/* XPM */
+static char *panel-exit[] = {
+/* width height num_colors chars_per_pixel */
+"    24    24        6            1",
+/* colors */
+". c None",
+"# c #636363",
+"a c #dedede",
+"b c #bdbdbd",
+"c c #424242",
+"d c #212121",
+/* pixels */
+"........................",
+"........................",
+"........................",
+"........................",
+"........................",
+"........................",
+"........................",
+"########################",
+"#aaaaaaaaaaaaaaaaaaaaaaa",
+"#abbbbbbbbbbbbbbbbbbbbca",
+"#abddddbdbbbdbcbdddddbca",
+"#abdbbbbdbbbdbdbbbdbbbca",
+"#abdbbbbbdbdbbdbbbdbbbca",
+"#abdbbbbbdddbbdbbbdbbbca",
+"#abdbbbbbbdbbbdbbbdbbbca",
+"#abdddbbbbdbbbdbbbdbbbca",
+"#abdbbbbbdddbbdbbbdbbbca",
+"#abdbbbbbdbdbbdbbbdbbbca",
+"#abdbbbbbdbdbbdbbbdbbbca",
+"#abdbbbbdbbbdbdbbbdbbbca",
+"#abddddbdbbbdbdbbbdbbbca",
+"#abbbbbbbbbbbbbbbbbbbbca",
+"caccccccccccccccccccccca",
+"caaaaaaaaaaaaaaaaaaaaaaa",
+};

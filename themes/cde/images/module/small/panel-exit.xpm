@@ -1,0 +1,30 @@
+/* XPM */
+static char *panel-exit[] = {
+/* width height num_colors chars_per_pixel */
+"    16    16        7            1",
+/* colors */
+". c None",
+"# c #424242",
+"a c #636363",
+"b c #dedede",
+"c c #bdbdbd",
+"d c #bdbdbd",
+"e c #212121",
+/* pixels */
+"................",
+"................",
+"................",
+"################",
+"abbbbbbbbbbbbbbb",
+"abcccccccccccc#d",
+"abeececececeee#d",
+"abeccecececcec#d",
+"abecccecceccec#d",
+"abeeccecceccec#d",
+"abecccecceccec#d",
+"abeccecececcec#d",
+"abeececececcec#d",
+"#bcccccccccccc#d",
+"#b#############d",
+"#ddddddddddddddd",
+};

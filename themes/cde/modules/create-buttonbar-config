@@ -1,0 +1,155 @@
+#!/usr/bin/perl -w
+
+# Usage: create-buttonbar-config large|small
+
+$barsize = shift;
+
+unless ($barsize) {
+	print "Usage: $0 large|small\n";
+	exit -1;
+}
+
+if ($barsize eq "small") {
+	$buttonsize = 40;
+} else {
+	$buttonsize = 60;
+}
+
+$icondir = "module/$barsize";
+$outfile = "buttonbar/$barsize";
+
+
+# nButtons has to be even
+$nButtons = 8;
+$nPages = 4;
+
+# ENTIRE PANEL
+$sideBarWidth = 1; $sliderHeight = 2; $buttonHeight = 7; $buttonWidth = 3;
+$centerPanelWidth = 5 * $buttonWidth; $buttonsCPMargin = 1;
+$nCols = $buttonWidth * $nButtons + 2 * $sideBarWidth + $centerPanelWidth + 2*$buttonsCPMargin;
+$nRows = $sliderHeight+$buttonHeight;
+
+$buttStartLeft = $sideBarWidth;
+$buttStartRight = $sideBarWidth + $nButtons / 2 * $buttonWidth + $centerPanelWidth + 2 * $buttonsCPMargin;
+
+$buttonsCPMarginLeftX = $buttStartLeft + $nButtons / 2 * $buttonWidth;
+$buttonsCPMarginRightX = $buttStartRight - $buttonsCPMargin;
+
+# CENTER PANEL
+$pageTopMargin = 1; $pageHeight = 10; $pageWidth = 3; $toolbarWidth = 2;
+$cpPagerWidth = $nPages*$pageWidth;
+$cpRows = 2 * $pageTopMargin + $pageHeight;
+$cpCols = 2 * $toolbarWidth + $cpPagerWidth;
+$cpX = $buttStartLeft + $nButtons / 2 * $buttonWidth + $buttonsCPMargin;
+$cpToolHeight = int($cpRows / 2);
+
+$geomx = int($buttonsize / $buttonWidth * $nCols);
+$geomy = int($buttonsize * $nRows / $buttonHeight);
+
+# ----------------------------------------------------------------------------
+
+$str = qq{
+DeskTopSize $nPages 1
+
+DestroyMenu  MenuFvwmWindowMove
+AddToMenu    MenuFvwmWindowMove "Move to ..." Title
++ "&Right	Page%menu/window-move.xpm%" AnimatedMove w+100 w
++  "&Left	Page%menu/window-move.xpm%" AnimatedMove w-100 w
+#+  "&Down	Page%menu/window-move.xpm%" AnimatedMove w w+100
+#+    "&Up	Page%menu/window-move.xpm%" AnimatedMove w w-100
+
+AddToMenu    MenuFvwmWindowGroupOps "Quick move to ..." Title
++ "&Right	Page%menu/window-move.xpm%" Pick All (\$r) MoveToPage +1p +0p
++  "&Left	Page%menu/window-move.xpm%" Pick All (\$r) MoveToPage -1p +0p
+#+  "D&own	Page%menu/window-move.xpm%" Pick All (\$r) MoveToPage +0p +1p
+#+    "&Up	Page%menu/window-move.xpm%" Pick All (\$r) MoveToPage +0p -1p
+
+# ----------------------------------------------------------------------------
+
+# Do we really need CenterPanel? We can do this with FvwmButton Container.
+
+DestroyModuleConfig FvwmButton-CenterPanel: *
+
+*FvwmButton-CenterPanel: Colorset 10
+*FvwmButton-CenterPanel: Rows $cpRows
+*FvwmButton-CenterPanel: Columns $cpCols
+*FvwmButton-CenterPanel: BoxSize fixed
+*FvwmButton-CenterPanel: (${cpPagerWidth}x$pageHeight+$toolbarWidth+$pageTopMargin, Frame 1, Swallow "FvwmPager-Single" "Module FvwmPager FvwmPager-Single * *")
+*FvwmButton-CenterPanel: (${toolbarWidth}x$cpToolHeight+0+0, Frame 0, Icon $icondir/panel-lock.xpm, Action FuncFvwmWmLock, Action (Mouse 2) FuncFvwm2WmLock, Action (Mouse 3) FuncFvwm3WmLock)
+*FvwmButton-CenterPanel: (${toolbarWidth}x$cpToolHeight+0-0, Frame 0)
+*FvwmButton-CenterPanel: (${toolbarWidth}x$cpToolHeight-0+0, Frame 0, Icon $icondir/panel-lite.xpm, Action FuncFvwmWmRestart, Action (Mouse 2) FuncFvwm2WmRestart, Action (Mouse 3) FuncFvwm3WmRestart)
+*FvwmButton-CenterPanel: (${toolbarWidth}x$cpToolHeight-0-0, Frame 0, Icon $icondir/panel-exit.xpm, Action 'Menu MenuFvwmQuit rectangle \$widthx\$height+\$left+\$top o+50 -100m')
+
+
+DestroyModuleConfig FvwmButtons-Panel: *
+
+PipeRead 'echo "*FvwmButtons-Panel: Geometry ${geomx}x$geomy+"`expr "(" \$[vp.width] - $geomx ")" / 2`"-0"'
+*FvwmButtons-Panel: Colorset 10
+*FvwmButtons-Panel: Rows $nRows 
+*FvwmButtons-Panel: Columns $nCols
+*FvwmButtons-Panel: BoxSize fixed
+
+*FvwmButtons-Panel: (${centerPanelWidth}x$nRows+$cpX+0, Frame 1, Swallow "FvwmButton-CenterPanel" "Module FvwmButtons FvwmButton-CenterPanel")
+*FvwmButtons-Panel: (${buttonsCPMargin}x$sliderHeight+$buttonsCPMarginLeftX+0, Frame 1, Colorset 11)
+*FvwmButtons-Panel: (${buttonsCPMargin}x$sliderHeight+$buttonsCPMarginRightX+0, Frame 1, Colorset 11)
+*FvwmButtons-Panel: (${sideBarWidth}x$sliderHeight+0+0, Frame 1, Icon $icondir/panel-menu.xpm, \\
+	Padding 0 0, Colorset 11, Action 'Next (FvwmButtons-Panel, CirculateHit) Menu MenuFvwmWindowOps2 rectangle \$widthx\$height+\$left+\$top o+0 -100m')
+*FvwmButtons-Panel: (${sideBarWidth}x$buttonHeight+0+$sliderHeight, Frame 1, Icon $icondir/panel-handle.xpm, \\
+	Padding 0 0, Colorset 11, Action 'Next (FvwmButtons-Panel, CirculateHit) Move')
+*FvwmButtons-Panel: (${sideBarWidth}x$sliderHeight-0+0, Frame 1, Icon $icondir/panel-iconify.xpm, \\
+	Padding 0 0, Colorset 11, Action 'Next (FvwmButtons-Panel, CirculateHit) Iconify')
+*FvwmButtons-Panel: (${sideBarWidth}x$buttonHeight-0+$sliderHeight, Frame 1, Icon $icondir/panel-handle.xpm, \\
+	Padding 0 0, Colorset 11, Action 'Next (FvwmButtons-Panel, CirculateHit) Move')
+};
+
+open(OUTFILE, ">$outfile");
+print OUTFILE $str;
+
+addButtonEntry(-1, 1,
+	"", #"$icondir/clock.xpm",
+	"Swallow xclock `Exec xclock -padding 5 -bg \$[bg.cs10] -fg \$[fg.cs10] -hd \$[shadow.cs13] -hl \$[hilight.cs13]`",
+	"");
+addButtonEntry(-1, 2,
+	"$icondir/date.xpm",
+	"Swallow FvwmApplet-CDEDate `FvwmScript FvwmApplet-CDEDate 10 10`",
+	"");
+addButtonEntry(-1, 3,
+	"$icondir/terminal.xpm",
+	"Action FuncFvwmTerminal, Action (Mouse 2) FuncFvwm2Terminal, Action (Mouse 3) FuncFvwm3Terminal",
+	"Action 'Menu MenuFvwmShells rectangle \$widthx\$height+\$left+\$top o+50 -100m'");
+addButtonEntry(-1, 4,
+	"$icondir/netscape.xpm",
+	"Action FuncFvwmWWW, Action (Mouse 2) FuncFvwm2WWW, Action (Mouse 3) FuncFvwm3WWW",
+	"Action 'Menu MenuFvwmPrograms rectangle \$widthx\$height+\$left+\$top o+50 -100m'");
+addButtonEntry(+1, 1,
+	"$icondir/configuration.xpm",
+	"Action FvwmScript FvwmScript-ThemesCenter",
+	"Action 'Menu MenuFvwmThemes rectangle \$widthx\$height+\$left+\$top o+50 -100m', Action (Mouse 2) 'Menu MenuFvwmConfiguration rectangle \$widthx\$height+\$left+\$top o+50 -100m'");
+addButtonEntry(+1, 2,
+	"$icondir/folders.xpm",
+	"Action FuncFvwmFileManager, Action (Mouse 2) FuncFvwm2FileManager, Action (Mouse 3) FuncFvwm3FileManager",
+	"Action 'Menu MenuFvwmSystem rectangle \$widthx\$height+\$left+\$top o+50 -100m'");
+addButtonEntry(+1, 3,
+	"$icondir/mail.xpm",
+	"Action FuncFvwmMail, Action (Mouse 2) FuncFvwm2Mail, Action (Mouse 3) FuncFvwm3Mail",
+	"");
+addButtonEntry(+1, 4,
+	"$icondir/help.xpm",
+	"Action Exec xman",
+	"Action 'Menu MenuFvwmHelp rectangle \$widthx\$height+\$left+\$top o+50 -100m'");
+
+close(OUTFILE);
+
+sub addButtonEntry {
+	my ($lr, $n, $i, $a, $ba) = @_;
+	$a = ", $a" if $a;
+	$ba = ", $ba" if $ba;
+	my $cellX = $lr < 0? $buttStartLeft: $buttStartRight;
+	$cellX += ($n - 1) * $buttonWidth;
+	my $sliderIcon = $ba? ", Icon $icondir/panel-arrow.xpm, Padding 1 1": "";
+#	my $sliderIcon = $ba? ", Title ^, Font 5x8, Padding 1 2": "";
+	$drawer = "*FvwmButtons-Panel: (${buttonWidth}x$sliderHeight+$cellX+0, Frame 1$sliderIcon, Colorset 11$ba)\n";
+	my $icon = $i? ", Icon $i": "";
+	my $str = $drawer . "*FvwmButtons-Panel: (${buttonWidth}x$buttonHeight+$cellX+$sliderHeight, Frame 0$icon, Padding 0 0$a)\n";
+	print OUTFILE $str;
+}

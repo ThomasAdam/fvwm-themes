@@ -1,0 +1,16 @@
+/* XPM */
+static char *panel-iconify[] = {
+/* width height num_colors chars_per_pixel */
+"    11     6        3            1",
+/* colors */
+". c None",
+"# c #bdbdbd",
+"a c #636363",
+/* pixels */
+".....#.....",
+"....#.a....",
+"...#...a...",
+"..#.....a..",
+".#.......a.",
+"#aaaaaaaaaa",
+};

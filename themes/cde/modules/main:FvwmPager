@@ -1,0 +1,53 @@
+DestroyModuleConfig FvwmPager-Single: *
+
+*FvwmPager-Single: Colorset * 14
+*FvwmPager-Single: HilightColorset * 15
+*FvwmPager-Single: WindowColorsets 1 2
+*FvwmPager-Single: BalloonColorset * 16 
+
+*FvwmPager-Single: Columns 1
+*FvwmPager-Single: Font none
+*FvwmPager-Single: SmallFont -*-lucidabright-medium-r-*-*-8-*-*-*-*-*-*-*
+*FvwmPager-Single: Balloons            All
+*FvwmPager-Single: BalloonFont -*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*
+*FvwmPager-Single: BalloonYOffset      +2
+*FvwmPager-Single: BalloonBorderWidth  1
+
+*FvwmPager-Single: Label 0 Main
+*FvwmPager-Single: Label 1 Web & Mail
+*FvwmPager-Single: Label 2 Devel
+*FvwmPager-Single: Label 3 Games
+
+# ----------------------------------------------------------------------------
+
+AddToMenu MenuFvwmWindowMove "" Nop
++ "Desk 0%menu/window-move.xpm%"	MoveToDesk 0 0
++ "Desk 1%menu/window-move.xpm%"	MoveToDesk 0 1
++ "Desk 2%menu/window-move.xpm%"	MoveToDesk 0 2
++ "Desk 3%menu/window-move.xpm%"	MoveToDesk 0 3
+
+AddToMenu MenuFvwmWindowGroupOps "" Nop
++ "Desk 0%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 0
++ "Desk 1%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 1
++ "Desk 2%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2
++ "Desk 3%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
+
+DestroyModuleConfig FvwmPager-Desker: *
+
+*FvwmPager-Desker: Colorset * 14
+*FvwmPager-Desker: HilightColorset * 15
+*FvwmPager-Desker: WindowColorsets 1 2
+*FvwmPager-Desker: BalloonColorset * 16 
+
+*FvwmPager-Desker: Columns 1
+*FvwmPager-Desker: Font none
+*FvwmPager-Desker: SmallFont -*-lucidabright-medium-r-*-*-8-*-*-*-*-*-*-*
+*FvwmPager-Desker: Balloons            All
+*FvwmPager-Desker: BalloonFont -*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*
+*FvwmPager-Desker: BalloonYOffset      +2
+*FvwmPager-Desker: BalloonBorderWidth  1
+
+*FvwmPager-Desker: Label 0 Main
+*FvwmPager-Desker: Label 1 Web & Mail
+*FvwmPager-Desker: Label 2 Devel
+*FvwmPager-Desker: Label 3 Games

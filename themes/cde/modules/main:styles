@@ -1,0 +1,11 @@
+Style "FvwmButton-CenterPanel" Sticky, NoTitle, NoHandles, TitleAtBottom, \
+	BorderWidth 1, WindowListSkip, CirculateSkip
+
+Style "FvwmButtons-Panel" Sticky, NoTitle, NoHandles, TitleAtBottom, \
+	BorderWidth 3, WindowListSkip, CirculateSkip, FvwmBorder, NeverFocus
+
+Style "FvwmPager-Single" Sticky, NoTitle, NoHandles, \
+	WindowListSkip, CirculateSkip,
+
+Style "FvwmPager-Desker" Sticky, NoTitle, NoHandles, \
+	WindowListSkip, CirculateSkip,

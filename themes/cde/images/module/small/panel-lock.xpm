@@ -1,0 +1,32 @@
+/* XPM */
+static char *panel-lock[] = {
+/* width height num_colors chars_per_pixel */
+"    16    16        9            1",
+/* colors */
+". c None",
+"# c #636363",
+"a c #dedede",
+"b c #000000",
+"c c #bdbdbd",
+"d c #212121",
+"e c #bdbdbd",
+"f c #636363",
+"g c #949494",
+/* pixels */
+"................",
+".....#####......",
+"....#aaaaabc....",
+"...#adbbbbabc...",
+"...#abccccabc...",
+"...#abc..#abc...",
+"..##abc###adc#..",
+"..#eeeeeeeeeec..",
+"..#effffffffdc..",
+"..#eggggggggdc..",
+"..#effffffffdc..",
+"..#eggggggggdc..",
+"..#ebbbbbbbbdc..",
+"..#ccccccccccc..",
+"................",
+"................",
+};

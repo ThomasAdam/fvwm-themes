@@ -1,0 +1,14 @@
+/* XPM */
+static char *panel-menu[] = {
+/* width height num_colors chars_per_pixel */
+"    12     4        3            1",
+/* colors */
+". c None",
+"# c #bdbdbd",
+"a c #636363",
+/* pixels */
+"############",
+"#..........a",
+"#..........a",
+"#aaaaaaaaaaa",
+};

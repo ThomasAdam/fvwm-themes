@@ -10,6 +10,20 @@
 	used colorset 29; corrected some english; not translated until
 	we have a general approach in locale/* files, not urgent
 
+	* themes/cde/colors/main:
+	* themes/cde/modules.cfg:
+	* themes/cde/images/module/large/*.xpm:
+	* themes/cde/images/module/small/*.xpm:
+	* themes/cde/modules/main:
+	* themes/cde/modules/main:FvwmPager:
+	* themes/cde/modules/main:styles:
+	* themes/cde/modules/create-buttonbar-config:
+	* themes/cde/modules/buttonbar/disabled:
+	* themes/cde/modules/buttonbar/large:
+	* themes/cde/modules/buttonbar/small:
+	completed cde theme; create-buttonbar-config perl script creates
+	buttonbar/{large,small} configurations, it is should be changed
+
 2000-10-24  olicha  <olivier.chapuis@free.fr>
 	
 	* scripts/FvwmScript-ColorSelector: 

@@ -1,0 +1,45 @@
+# 1. Icon related configuration
+# 2. Switch functions
+# 3. Theme module menus
+# 4. Modules configuration
+
+# ----------------------------------------------------------------------------
+# Icon related configuration
+
+Style "*"	IconBox 10 16 -130 700, IconGrid 74 64, IconFill left top
+Style "*"	SlipperyIcon, IconTitle
+
+# ----------------------------------------------------------------------------
+# Switch functions
+
+DestroyFunc FuncFvwmStartThemeModules
+AddToFunc   FuncFvwmStartThemeModules
+#+ I FuncFvwmStartNormalIcons
++ I Module FvwmButtons FvwmButtons-Panel
+
+DestroyFunc FuncFvwmStopThemeModules
+AddToFunc   FuncFvwmStopThemeModules
++ I KillModule FvwmButtons FvwmButtons-Panel
++ I KillModule FvwmButtons FvwmButtons-CentralPanel
++ I KillModule FvwmPager FvwmPager-Single
++ I KillModule FvwmPager FvwmPager-Desker
+
+# ----------------------------------------------------------------------------
+# Theme module menus
+
+DestroyMenu MenuFvwmStartThemeModules
+AddToMenu   MenuFvwmStartThemeModules "CDE Modules" Title
++ "&Panel" FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Panel
+#+ "" Nop
+#+ "No normal icons" Style * NoIcon  # needed to use NoIcon modules
+#+ "Normal icons"    Read themes/default/settings/iconstyles/style-icon-miniicon
+
+DestroyMenu MenuFvwmStopThemeModules
+AddToMenu   MenuFvwmStopThemeModules "CDE Modules" Title
++ "Stop &Panel" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Panel
+
+# ----------------------------------------------------------------------------
+# Modules configuration
+
+Read themes/cde/modules/main:styles
+Read themes/cde/modules/main:FvwmPager

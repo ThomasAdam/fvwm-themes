@@ -91,8 +91,8 @@ MenuStyle * ActiveFore, HilightBack
 	VGradient 26 CDE_COLOR1_BG CDE_COLOR2_BG, NoShape
 
 # swallowed window
-*FvwmTheme: Colorset 13 fg CDE_COLOR2_FG, bg CDE_COLOR2_BG, \
-	hi CDE_COLOR1_BG, sh CDE_COLOR1_BG, Plain, NoShape
+*FvwmTheme: Colorset 13 fg CDE_COLOR5_FG, bg CDE_COLOR5_BG, \
+	hi CDE_COLOR1_FG, sh CDE_COLOR1_BG, Plain, NoShape
 
 # default2 (FvwmPager or to get more colors in Buttons)
 *FvwmTheme: Colorset 14 fg CDE_COLOR5_FG, bg CDE_COLOR5_BG, Plain, NoShape
