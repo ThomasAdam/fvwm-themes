@@ -1,5 +1,5 @@
-# We may need to have an option with two buttonbar's, one is standard
-# and one with Dominik's icons, Fvwm
+# We can have an option with two buttonbar's, one is standard
+# and one with Dominik's icons
 
 DestroyModuleConfig FvwmButtons-Bar: *
 *FvwmButtons-Bar: Font	5x7
