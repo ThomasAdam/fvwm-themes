@@ -15,22 +15,22 @@ arch ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
 this:
 	tar -xzf `cd $(top_srcdir) && pwd`/fvwm-themes-$(version).tar.gz
 	(cd fvwm-themes-$(version) && ./configure) || exit 1
-	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-inline) || exit 1
+	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-inplace) || exit 1
 	-rm -rf fvwm-themes-$(version)
 
 this-base:
 	tar -xzf `cd $(top_srcdir) && pwd`/fvwm-themes-$(version).tar.gz
 	(cd fvwm-themes-$(version) && ./configure) || exit 1
-	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-inline-base) || exit 1
+	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-inplace-base) || exit 1
 	-rm -rf fvwm-themes-$(version)
 
 this-extra:
 	tar -xzf `cd $(top_srcdir) && pwd`/fvwm-themes-$(version).tar.gz
 	(cd fvwm-themes-$(version) && ./configure) || exit 1
-	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-inline-extra) || exit 1
+	(cd fvwm-themes-$(version) && $(MAKE) $(AM_MAKEFLAGS) deb-inplace-extra) || exit 1
 	-rm -rf fvwm-themes-$(version)
 
-inline:
+inplace:
 	$(MAKE) clean
 	echo "fvwm-themes-full ($(version)-$(release)) unstable; urgency=low" > debian/changelog
 	echo "" >> debian/changelog
@@ -66,7 +66,7 @@ inline:
 	fakeroot dh_clean
 	rm -f debian/control debian/full-control
 
-inline-base:
+inplace-base:
 	$(MAKE) clean
 	echo "fvwm-themes ($(version)-$(release)) unstable; urgency=low" > debian/changelog
 	echo "" >> debian/changelog
@@ -113,7 +113,7 @@ inline-base:
 	fakeroot dh_clean
 	rm -f debian/control debian/base-control
 
-inline-extra:
+inplace-extra:
 	$(MAKE) clean
 	echo "fvwm-themes-extra ($(version)-$(release)) unstable; urgency=low" > debian/changelog
 	echo "" >> debian/changelog

@@ -203,7 +203,7 @@ rpm-this-themes: rpm-regenerate
 #    make version=2.3.22 release=2 deb-this
 #    make deb-dist cparams='--enable-gnome --quiet' mparams='CFLAGS="-O2 -g"'
 #    make deb-dist3  # creates -base and -extra debs
-#    make deb-inline release=1  # works on sources directly
+#    make deb-inplace release=1.mg  # works on sources directly
 
 # automatical regeneration is missing for other dirs, so do it explicitly
 deb-regenerate:
@@ -222,11 +222,11 @@ deb-this-base: deb-regenerate
 deb-this-extra: deb-regenerate
 	(cd debian && $(MAKE) $(AM_MAKEFLAGS) this-extra) || exit 1
 
-deb-inline: deb-regenerate
-	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) inline || exit 1
+deb-inplace: deb-regenerate
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) inplace || exit 1
 
-deb-inline-base: deb-regenerate
-	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) inline-base || exit 1
+deb-inplace-base: deb-regenerate
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) inplace-base || exit 1
 
-deb-inline-extra: deb-regenerate
-	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) inline-extra || exit 1
+deb-inplace-extra: deb-regenerate
+	$(MAKE) -f debian/Makefile $(AM_MAKEFLAGS) inplace-extra || exit 1
