@@ -5,53 +5,41 @@
 Important items to do:
 ---------------------
 
-* Think where belong all functions sitting in different components.
-  [optional]
+* Write some documentation about CCDS.
+  [migo]
 
-* Write some documentation about CCDS. [migo]
+* Test and port fvwm-themes to BSD and Solaris.
+  There are problems for sure, mkdir without -p, no killall etc.
 
-* Fix FvwmForm-ThemeSettings (session is obsolete).
-[Alex; if not done before 0.4.0 comment the entries in the menu]
-
-* Fix all crashes.
-
-Ideas:
------
-
-* component's scalar property, which unlike options, where only values
-  from a range (1 .. options) are accepted, can be freely set by a user.
-  Examples of scalar types: Color, String, Minutes, Milliseconds etc.
-  There should be individual editors for this scalar property.
-
-* background-auto@ component (with a scalar of type Minutes), which will
-  iterate over a background@ options randomly or sequencially every n minutes.
-
-* introduce option-value/variant groups, which only affect presentation menus,
-  not logic; for example it is possible to have 6 groups of variants, say,
-  6 types of backgrounds. With inline=1 groups are simply delimited ("" Nop),
-  with inline=0 there are 6 submenus of variants.
+* Increase speed of fvwm-themes-config.
+  Make current theme.cfg with one include line non needed.
+  [migo]
 
 Optional items to do:
 --------------------
 
-* Add a special variable $. in fvwm for specifying relative paths. [migo]
+* Write doc/creating-themes with instructions on how to create themes
+  from zero, what components to include, what to include in each component.
 
-* Increase speed of fvwm-themes-config.
-  Make current theme.cfg with one include line non needed.
+* Convert all hardcoded $FT_DATADIR/... paths to relative $./ .
+
+* Translations.
 
 * Fix a bug, when an option is removed, it is still here (due to 'current').
+  The same if the option is added.
 
-* desktop@, we may leave this for now as is, but in the future it should
-  be more formalized.
+* Fix a problem when the current component (say used in old session) does
+  not exist anymore. Probably write a warning (xmessage), not fatal error.
+
+* Think where belong all functions sitting in different components.
+
+Items not to do for now:
+-----------------------
 
 * Providing some ready to use functions for background@ components.
   Like functions dealing with image types and formats (tiles, gradients).
 
 * A form/script/gtk for FvwmRearrange.
-
-* It would be nice if someone enhance 'multichoice' theme.
-  I.e. add some color schemes, backgrounds and cursors (bitmap cursors?).
-  If noone does this, this theme can probably be removed.
 
 * A better web page. Does someone want to help on this?
 
@@ -69,16 +57,30 @@ Optional items to do:
   the future. The idea here is that a user should be able to create a
   normal theme (no options) by providing only components, without .cfg.
 
-* Completing 'cde' theme. need a windowlook and a modules theme [olivier, jos]
-
 * colors@ components. Check if every things is ok with the new colors
-files. migo: Maybe one colorset for swallowing is not enough?
-I don't think xload's check-like can somehow be related to xclock
-darts colors, probably a separate color would be ok, also hi, sh used
-out of purpose. It is not very critical. Just a note.
+  files. migo: Maybe one colorset for swallowing is not enough?
+  I don't think xload's check-like can somehow be related to xclock
+  darts colors, probably a separate color would be ok, also hi, sh used
+  out of purpose. It is not very critical. Just a note.
 
 * settings@default: think which subcomponents to remove/move.
   Move settings/stroke@ to bindings@ option.
+
+Ideas:
+-----
+
+* component's scalar property, which unlike options, where only values
+  from a range (1 .. options) are accepted, can be freely set by a user.
+  Examples of scalar types: Color, String, Minutes, Milliseconds etc.
+  There should be individual editors for this scalar property.
+
+* background-auto@ component (with a scalar of type Minutes), which will
+  iterate over a background@ options randomly or sequencially every n minutes.
+
+* introduce option-value/variant groups, which only affect presentation menus,
+  not logic; for example it is possible to have 6 groups of variants, say,
+  6 types of backgrounds. With inline=1 groups are simply delimited ("" Nop),
+  with inline=0 there are 6 submenus of variants.
 
 Problems without obvious soluton:
 --------------------------------
@@ -93,6 +95,15 @@ Closed (will be deleted after 0.4.0):
 * modules@ components. Several things may be improved.
 
 * Add luthien theme. olicha: maybe add a Desker? 
-migo: do you want all themes to be the same? :)
-olicha: No, but since almost all modules themes have one, this
-can cause problem
+  migo: I an neutral here
+
+* Fix all crashes.
+
+* Fix FvwmForm-ThemeSettings (session is obsolete).
+
+* desktop@, we may leave this for now as is, but in the future it should
+  be more formalized.
+
+* It would be nice if someone enhance 'multichoice' theme.
+
+* Completing 'cde' theme. need a windowlook and a modules theme.
