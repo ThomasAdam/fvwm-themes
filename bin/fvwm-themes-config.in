@@ -2666,20 +2666,52 @@ sub comLoop {
 		# build the answer
 		chomp($command);
 		my $return = "";
+		if ($command =~ /^all-startup-stuff$/)
+		{
+			#--- themes-list
+			my $tlR = $self->getScriptThemeList($allThemes,
+															\@currentComponents,
+															\%componentToLoad,
+															$maxLength);
+
+			#---- current-config
+			my $ccR = $self->getScriptCurrentConfig(\@currentComponents,
+																 \%componentToLoad,
+																 \%componentToLock,
+																 \%componentToDrop,
+																 \%optionToSet,
+																 \%variantToSet,
+																 $maxLength);
+
+			#---- settings-config
+			my $scR = getScriptSettingsConfig($settingsConfig,\%variantToSet);
+	
+			#---- session-info
+			my $scL = "Default|";
+			my $sL = "";
+			foreach(@$sessionList) {
+				$sL .= "$_";
+				$scL .= "$_|";
+				$sL .= " "x10 . "(Current)" if $_ eq $currentSession;
+				$sL .= "|";
+			}
+			$sL =~ s/\|$//;
+			$scL =~ s/\|$//;
+
+			#------- build the answer:
+			$return = 
+			  mergeScriptAnswer("$tlR\n$ccR\n$scR\n$currentSession\n$uptime\n$sL\n$scL",4);
+		}
 		# -----------------------------------------
-		if ($command =~ /^theme-components\s+(\d+)$/) {
+		elsif ($command =~ /^theme-components\s+(\d+)$/) {
 			my $index = $1 - 1;
 			my ($r1,$r2,$r3) =
 			  $self->getScriptComponentInfo($allThemes, $index,
 													  \@currentComponents,
 													  \%componentToLoad,
 													  $maxLength);
-			my $l = length($r1) + 4;
-			$return = "0" x (4-length($l)) . "$l" . $r1;
-			$l = $l + length($r2) + 4;
-			$return .= "0" x (4-length($l)) . "$l" . $r2;
-			$l = $l + length($r3) + 4;
-			$return .= "0" x (4-length($l)) . "$l" . $r3;
+
+			$return = mergeScriptAnswer("$r1\n$r2\n$r3",4);
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^current-config\s+(\d+)$/) {
@@ -2702,14 +2734,9 @@ sub comLoop {
 														 \%variantToSet);
 
 			#------- build the answer:
-			$l = length($ccReturn) + 4;
-			$return = "0" x (4-length($l)) . "$l" . $ccReturn;
-			$l = $l + length($ccnReturn1) + 4;
-			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn1;
-			$l = $l + length($ccnReturn2) + 4;
-			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn2;
-			$l = $l + length($ccnReturn3) + 4;
-			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn3;
+			$return = 
+			  mergeScriptAnswer("$ccReturn\n$ccnReturn1\n$ccnReturn2\n$ccnReturn3",
+									  4);
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^current-comp-name\s+(\d+)$/) {
@@ -2722,12 +2749,8 @@ sub comLoop {
 														 \%optionToSet,
 														 \%variantToSet);
 
-			my $l = length($ccnReturn1) + 4;
-			$return = "0" x (4-length($l)) . "$l" . $ccnReturn1;
-			$l = $l + length($ccnReturn2) + 4;
-			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn2;
-			$l = $l + length($ccnReturn3) + 4;
-			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn3;
+			$return = 
+			  mergeScriptAnswer("$ccnReturn1\n$ccnReturn2\n$ccnReturn3",4);
 		}
 		
 		#-------------------------------------------
@@ -2770,24 +2793,8 @@ sub comLoop {
 														 \%variantToSet);
 
 			#------- build the answer:
-			$l = length($tlReturn) + 4;
-			$return = "0" x (4-length($l)) . "$l" . $tlReturn;
-			$l = $l + length($tcReturn1) + 4;
-			$return .= "0" x (4-length($l)) . "$l" . $tcReturn1;
-			# not needed here ...
-			#$l = $l + length($tcReturn2) + 4;
-			#$return .= "0" x (4-length($l)) . "$l" . $tcReturn2;
-			#$l = $l + length($tcReturn2) + 4;
-			#$return .= "0" x (4-length($l)) . "$l" . $tcReturn3;
-			$l = $l + length($ccReturn) + 4;
-			$return .= "0" x (4-length($l)) . "$l" . $ccReturn;
-			$l = $l + length($ccnReturn1) + 4;
-			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn1;
-			$l = $l + length($ccnReturn2) + 4;
-			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn2;
-			$l = $l + length($ccnReturn3) + 4;
-			$return .= "0" x (4-length($l)) . "$l" . $ccnReturn3;
-			#print STDERR $return . "\n";
+			$return = 
+			  mergeScriptAnswer("$tlReturn\n$tcReturn1\n$ccReturn\n$ccnReturn1\n$ccnReturn2\nn$ccnReturn3",4);
 		}
 
 		# -------------------------------------------------
@@ -2996,50 +3003,16 @@ sub comLoop {
 			my $comp = $1;
 			my $theme = $2;
 			my $o = $3-1;
-			my $themeCfg = new Fvwm::ThemeCfg($theme);
-			my $cc = $themeCfg->getComponentCfg($comp);
-			my $contains = $cc->{'contains'};
-			my $options  = $cc->{'option'};
-			my $variants = $cc->{'variant'};
-			if (ref($options) eq 'ARRAY' && defined $options->[$o]) {
-				my $optionEntry = $options->[$o];
-				my $i = getOptionIndex($self,$theme,$comp,$optionEntry,$o);
-				my $optFile = $optionEntry->{'file'};
-				my $isSet = -1;
-				$isSet = $optionToSet{"$theme/$comp:$optFile"} 
-					if defined $optionToSet{"$theme/$comp:$optFile"};
-				my $values = $optionEntry->{'value'};
-				$return = 
-					variantsOptionsScriptList($values,$i,$isSet,$maxLengthOpt);
-			}
-			elsif (ref($variants) eq 'ARRAY') {
-				my $i = getVariantIndex($self,$theme,$comp,@$variants);
-				my $isSet = -1;
-				$isSet = $variantToSet{"$theme/$comp"} 
-					if defined $variantToSet{"$theme/$comp"};
-				$return = 
-					variantsOptionsScriptList($variants,$i,$isSet,$maxLengthOpt);
-			}
-			elsif (ref($contains) eq 'ARRAY' && defined $contains->[$o]) {
-				my $c = $contains->[$o];
-				my $dd = $themeCfg->getComponentCfg("$comp/$c");
-				my $sVariants = $dd->{'variant'};
-				if (ref($sVariants) eq 'ARRAY') {
-					my $i = getVariantIndex($self,$theme,"$comp/$c",@$sVariants);
-					my $isSet = -1;
-					$isSet = $variantToSet{"$theme/$comp/$c"}
-						if defined $variantToSet{"$theme/$comp/$c"};
-					$return = 
-						variantsOptionsScriptList($sVariants,$i,$isSet,$maxLengthOpt);
-				}
-				$return .= "Drop This component";
-			}
-			$return =~ s/\|$//;
+			$return = $self->getScriptOptionsVariants($theme,$comp,$o,
+																	\%optionToSet,
+																	\%variantToSet,
+																	$maxLengthOpt);
 		}
 		# --------------------------------------------
-		elsif ($command =~ /^options\s+(.+)\s+(.+)$/) {
+		elsif ($command =~ /^options\s+(.+)\s+(.+)\s+(\d+)$/) {
 			my $comp = $1;
 			my $theme = $2;
+			my $o = $3;
 			my $themeCfg = new Fvwm::ThemeCfg($theme);
 			my $cc = $themeCfg->getComponentCfg($comp);
 			my $contains = $cc->{'contains'};
@@ -3047,6 +3020,7 @@ sub comLoop {
 			my $variants = $cc->{'variant'};
 			my $i = 0;
 			my $type = "";
+			my $list = "";
 			if (ref($options) eq 'ARRAY' && ref($variants) eq 'ARRAY') {
 				$type = "Options & Variants";
 			}
@@ -3055,13 +3029,13 @@ sub comLoop {
 				$type = "Options" if $type eq "";
 				foreach $opt (@$options) {
 					$i++;
-					$return .= "$opt->{'name'}|";
+					$list .= "$opt->{'name'}|";
 				}
 			}
 			if (ref($variants) eq 'ARRAY') {
 				$type = "Variants" if $type eq "";
 				$i++;
-				$return .= "$comp variants"
+				$list .= "$comp variants"
 			}
 			elsif (ref($contains) eq 'ARRAY') {
 				$type = "Sub Components";
@@ -3070,11 +3044,18 @@ sub comLoop {
 					$i++;
 					my $name = $themeCfg->getComponentCfg("$comp/$c")->{'name'};
 					$name = $name || $c;
-					$return .= "$name|";
+					$list .= "$name|";
 				}
 			}
-			$return = "$i\n$type\n$return";
-			$return =~ s/\|$//;
+			$list =~ s/\|$//;
+
+			my $ol = $self->getScriptOptionsVariants($theme,$comp,$o,
+																  \%optionToSet,
+																  \%variantToSet,
+																  $maxLengthOpt);
+
+			$return = mergeScriptAnswer("$i\n$type\n$list\n$ol",4);
+			print STDERR $return ."\n";
 		}
 		# --------------------------------------------
 		elsif ($command =~ /^set-options\s+(.+)\s+(.+)\s+(\d+)\s+(\d+)$/) {
@@ -3126,45 +3107,37 @@ sub comLoop {
 		}
 		#-----------------------------------------------------------------------
 		# GS
+
+		# -----------------------------------------
+		elsif ($command =~ /^settings-config-and-variant\s+(.+)\s+(.+)\s+(\d+)$/) {
+			my $comp = $1;
+			my $theme = $2;
+			my $o = $3-1;
+			
+			my $r1 = getScriptSettingsConfig($settingsConfig,\%variantToSet);
+			my $r2 = $self->getScriptOptionsVariants($theme,$comp,$o,\%optionToSet,
+														 \%variantToSet, $maxLengthOpt);
+			$return = mergeScriptAnswer("$r1\n$r2",4);
+		}
 		# -----------------------------------------
 		elsif ($command =~ /^settings-config$/) {
-			my $config;
-			foreach $config (@$settingsConfig) {
-				my $l = 26 - length($config->{'name'});
-				$l = 1 if $l <= 0;
-				$return .= $config->{'name'} . " "x$l . "U: " .
-					$config->{'current'};
-				if (defined $variantToSet{"default/$config->{comp}"}) {
-					my $j = $variantToSet{"default/$config->{comp}"};
-					my $themeCfg = new Fvwm::ThemeCfg('default');
-					my $dd = $themeCfg->getComponentCfg("$config->{comp}");
-					my $variants = $dd->{'variant'};
-					my $set = $variants->[$j-1]->{'name'};
-					$l = 28 - length($config->{'current'});
-					$l = 1 if $l <= 0;
-					$return .= " "x$l . "S: $set";
-				}
-				$return .=	"|";
-			}
-			$return =~ s/\|$//;
+			$return = getScriptSettingsConfig($settingsConfig,\%variantToSet);
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^settings-comp\s+(\d+)$/) {
-			$return = "$settingsConfig->[$1-1]->{'name'}\n";
-			$return .= "$settingsConfig->[$1-1]->{'comp'}\n";
+			my $r1 = "$settingsConfig->[$1-1]->{'name'}";
+			my $r2 = "$settingsConfig->[$1-1]->{'comp'}";
 			my $isSet = 0;
 			$isSet = 1 
 				if defined $variantToSet{"default/$settingsConfig->[$1-1]->{comp}"};
-			$return .= $isSet;
-			
+			my $r3 = $isSet;
+			my $r4 = $self->getScriptOptionsVariants('default',$r2,$1,\%optionToSet,
+														 \%variantToSet, $maxLengthOpt);
+			$return = mergeScriptAnswer("$r1\n$r2\n$r3\n$r4",4);
 		}
 		#-----------------------------------------------------------------------
 		# SM
 		elsif ($command =~ /^session-info$/) {
-			my $l = length($currentSession) + 4;
-			$return = "0" x (4-length($l)) . "$l" . "$currentSession";
-			$l = $l + length($uptime) + 4;
-			$return .= "0" x (4-length($l)) . "$l" . "$uptime";
 			my $configList = "Default|";
 			my $tmp = "";
 			foreach(@$sessionList) {
@@ -3175,10 +3148,7 @@ sub comLoop {
 			}
 			$tmp =~ s/\|$//;
 			$configList =~ s/\|$//;
-			$l = $l + length($tmp) + 4;
-			$return .= "0" x (4-length($l)) . "$l" . "$tmp";
-			$l = $l + length($configList) + 4;
-			$return .= "0" x (4-length($l)) . "$l" . "$configList";
+			$return = mergeScriptAnswer("$currentSession\n$uptime\n$tmp\n$configList",4);
 		}
 		# --------------------------------------
 		elsif ($command =~ /^session-uptime$/) {
@@ -3532,6 +3502,24 @@ sub secToUptime {
 #----------------------------------------------------------------------------
 # useful functions for the com loop
 
+#---------------------------------------
+# merging
+sub mergeScriptAnswer($$) {
+	my $in = shift;
+	my $num = shift;
+	my $out = "";
+	my $l = 0;
+
+	foreach (split(/\n/,$in)) {
+		$l = $l + length($_) + $num;
+		$out .= "0" x ($num-length($l)) . "$l" . $_;
+	}
+
+	return $out;
+}
+
+#---------------------------------------
+# list of all themes
 sub getScriptThemeList($$$$$) {
 	my $self = shift;
 	my $allThemes = shift;
@@ -3571,6 +3559,8 @@ sub getScriptThemeList($$$$$) {
 	return $return;
 }
 
+#---------------------------------------
+# info for a component
 sub getScriptComponentInfo($$$$$) {
 	my $self = shift;
 	my $allThemes = shift;
@@ -3615,6 +3605,8 @@ sub getScriptComponentInfo($$$$$) {
 	return ($r1,$r2,$r3);
 }
 
+#---------------------------------------
+# the current config
 sub getScriptCurrentConfig($$$$$$$$) {
 	my $self = shift;
 	my $currentComponents = shift;
@@ -3715,6 +3707,8 @@ sub getScriptCurrentConfig($$$$$$$$) {
 	return $return;
 }
 
+#---------------------------------------
+#
 sub getScriptCurrentCompName($$$$$$$$) {
 	my $self = shift;
 	my $index = shift;
@@ -3794,6 +3788,95 @@ sub getScriptCurrentCompName($$$$$$$$) {
 	return ($r1,$r2,$r3);
 }
 
+#---------------------------------------
+# 
+sub getScriptSettingsConfig($$) {
+	my $settingsConfig = shift;
+	my $variantToSet = shift;
+	my $config;
+	my $return = "";
+
+	foreach $config (@$settingsConfig) {
+		my $l = 26 - length($config->{'name'});
+		$l = 1 if $l <= 0;
+		$return .= $config->{'name'} . " "x$l . "U: " .
+		  $config->{'current'};
+		if (defined $variantToSet->{"default/$config->{comp}"}) {
+			my $j = $variantToSet->{"default/$config->{comp}"};
+			my $themeCfg = new Fvwm::ThemeCfg('default');
+			my $dd = $themeCfg->getComponentCfg("$config->{comp}");
+			my $variants = $dd->{'variant'};
+			my $set = $variants->[$j-1]->{'name'};
+			$l = 28 - length($config->{'current'});
+			$l = 1 if $l <= 0;
+			$return .= " "x$l . "S: $set";
+		}
+		$return .=	"|";
+	}
+	$return =~ s/\|$//;
+	return $return;
+}
+
+#---------------------------------------
+#
+sub getScriptOptionsVariants($$$$$$$) {
+	my $self = shift;
+	my $theme = shift;
+	my $comp = shift;
+	my $o = shift;
+	my $optionToSet = shift;
+	my $variantToSet = shift;
+	my $maxLengthOpt = shift;
+	my $return = "";
+
+	if ($comp eq "None" || $theme eq "None") {
+		return "None";
+	}
+
+	my $themeCfg = new Fvwm::ThemeCfg($theme);
+	my $cc = $themeCfg->getComponentCfg($comp);
+	my $contains = $cc->{'contains'};
+	my $options  = $cc->{'option'};
+	my $variants = $cc->{'variant'};
+	if (ref($options) eq 'ARRAY' && defined $options->[$o]) {
+		my $optionEntry = $options->[$o];
+		my $i = getOptionIndex($self,$theme,$comp,$optionEntry,$o);
+		my $optFile = $optionEntry->{'file'};
+		my $isSet = -1;
+		$isSet = $optionToSet->{"$theme/$comp:$optFile"} 
+		if defined $optionToSet->{"$theme/$comp:$optFile"};
+		my $values = $optionEntry->{'value'};
+		$return = 
+		  variantsOptionsScriptList($values,$i,$isSet,$maxLengthOpt);
+	}
+	elsif (ref($variants) eq 'ARRAY') {
+		my $i = getVariantIndex($self,$theme,$comp,@$variants);
+		my $isSet = -1;
+		$isSet = $variantToSet->{"$theme/$comp"} 
+		if defined $variantToSet->{"$theme/$comp"};
+		$return = 
+		  variantsOptionsScriptList($variants,$i,$isSet,$maxLengthOpt);
+	}
+	elsif (ref($contains) eq 'ARRAY' && defined $contains->[$o]) {
+		my $c = $contains->[$o];
+		my $dd = $themeCfg->getComponentCfg("$comp/$c");
+		my $sVariants = $dd->{'variant'};
+		if (ref($sVariants) eq 'ARRAY') {
+			my $i = getVariantIndex($self,$theme,"$comp/$c",@$sVariants);
+			my $isSet = -1;
+			$isSet = $variantToSet->{"$theme/$comp/$c"}
+			if defined $variantToSet->{"$theme/$comp/$c"};
+			$return = 
+			  variantsOptionsScriptList($sVariants,$i,$isSet,$maxLengthOpt);
+		}
+		$return .= "Drop This component";
+	}
+	$return =~ s/\|$//;
+	return $return;
+}
+
+#---------------------------------------
+#
 sub variantsOptionsScriptList {
 	my $variants = shift;
 	my $index = shift;
@@ -3821,6 +3904,8 @@ sub variantsOptionsScriptList {
 	return $return;
 }
 
+#---------------------------------------
+# 
 sub updateCurrentComponents {
 	my $currentComponents = shift;
 	my $comp = shift;

@@ -298,33 +298,28 @@ Begin
     Set $SendMsg = {fvwm-themes-com --name config-}$pid{ --message=}
     Set $GetLine = {fvwm-themes-com --name config-}$pid{ --get-buffer --line=}
 
-    # Get the themes list and the current config
-    Set $cmd = $SendMsgAndGet{"all-ts-lists }0{ }0{"}
+    # Get the themes list, the current config, ...etc.
+    Set $cmd = $SendMsgAndGet{"all-startup-stuff"}
     Set $MSG = (GetOutput $cmd 1 -1)
     Set $i = 1
     Set $j = (StrCopy $MSG 1 4)
     Set $ThemesList = (StrCopy $MSG 5 $j)
     ChangeTitle 6 $ThemesList
-    # 3 next line semi-dummy ...
-    Set $i = (Add $j 1)
-    Set $j = (StrCopy $MSG $i (Add $i 3))
-    #Set $tmp = (StrCopy $MSG (Add $i 4) $j)
     Set $i = (Add $j 1)
     Set $j = (StrCopy $MSG $i (Add $i 3))
     Set $CurrentConfig = (StrCopy $MSG (Add $i 4) $j)
     ChangeTitle 17 $CurrentConfig
 
     # Get the settings config
-    Set $cmd = $SendMsgAndGet{"settings-config"}
-    Set $SettingsConfig = (GetOutput $cmd 1 -1)
+    Set $i = (Add $j 1)
+    Set $j = (StrCopy $MSG $i (Add $i 3))
+    Set $SettingsConfig = (StrCopy $MSG (Add $i 4) $j)
     ChangeTitle 22 $SettingsConfig
 
     # Get the session info
-    Set $cmd = $SendMsgAndGet{"session-info"}
-    Set $MSG = (GetOutput $cmd 1 -1)
-    Set $i = 1
-    Set $j = (StrCopy $MSG 1 4)
-    Set $CurrentSession = (StrCopy $MSG 5 $j)
+    Set $i = (Add $j 1)
+    Set $j = (StrCopy $MSG $i (Add $i 3))
+    Set $CurrentSession = (StrCopy $MSG (Add $i 4) $j)
     Set $i = (Add $j 1)
     Set $j = (StrCopy $MSG $i (Add $i 3))
     Set $SessionUpTime = (StrCopy $MSG (Add $i 4) $j)
@@ -587,8 +582,7 @@ Begin
 	    # fs
 	    Do $SwitchCmd
 	    Set $UpdateAllTSLists = 1
-	    Set $UpdateSettingsList = 1
-	    Set $UpdateSettingsVariants = 1
+	    Set $UpdateSettingsListAndVariants = 1
 	    If $PropertyEditorOne <> {} Then
 		SendToScript $PropertyEditorOne {update}
 	    If $PropertyEditorTwo <> {} Then
@@ -614,8 +608,7 @@ Begin
 	    Do {FuncFvwmThemesFresh}
 	Set $UpdateSMLists = 1
 	Set $UpdateAllTSLists = 1
-	Set $UpdateSettingsList = 1
-	Set $UpdateSettingsVariants = 1
+	Set $UpdateSettingsListAndVariants = 1
 	If $PropertyEditorOne <> {} Then
 	    SendToScript $PropertyEditorOne {update}
 	If $PropertyEditorTwo <> {} Then
@@ -822,23 +815,37 @@ Begin
 #----------------------------------------------------------------------------
 # GS
 
+    If $UpdateSettingsListAndVariants == 1 Then
+    Begin
+	Set $UpdateSettingsListAndVariants = 0
+	If $SettingsComponent <> {} Then
+	Begin
+	    Set $cmd = $SendMsgAndGet{"settings-config-and-variant }$SettingsComponent{ default }$SettingsIndex{"} 
+	End
+	Else
+	Begin
+	   Set $cmd = $SendMsgAndGet{"settings-config-and-variant None None 0"}
+	End
+	Set $MSG = (GetOutput $cmd 1 -1)
+	Set $i = 1
+	Set $j = (StrCopy $MSG 1 4)
+	Set $SettingsConfig = (StrCopy $MSG 5 $j)
+	ChangeTitle 22 $SettingsConfig
+	If $SettingsComponent <> {} Then
+	Begin
+	    Set $i = (Add $j 1)
+	    Set $j = (StrCopy $MSG $i (Add $i 3))
+	    Set $SettingsVariants = (StrCopy $MSG (Add $i 4) $j)
+	    ChangeTitle 27 $SettingsVariants
+	End
+    End
+
     If $UpdateSettingsList == 1 Then
     Begin
 	Set $UpdateSettingsList = 0
 	Set $cmd = $SendMsgAndGet{"settings-config"}
 	Set $SettingsConfig = (GetOutput $cmd 1 -1)
 	ChangeTitle 22 $SettingsConfig
-    End
-
-    If $UpdateSettingsVariants == 1 Then
-    Begin
-	Set $UpdateSettingsVariants = 0
-	If $SettingsComponent <> {} Then
-	Begin
-	    Set $cmd = $SendMsgAndGet{"options-variants }$SettingsComponent{ default }$SettingsIndex{"}
-	    Set $SettingsVariants = (GetOutput $cmd 1 -1)
-	    ChangeTitle 27 $SettingsVariants
-	End
     End
 
 #----------------------------------------------------------------------------
@@ -983,8 +990,7 @@ Case message of
 	    # fs
 	    Do $SwitchCmd
 	    Set $UpdateAllTSLists = 1
-	    Set $UpdateSettingsList = 1
-	    Set $UpdateSettingsVariants = 1
+	    Set $UpdateSettingsListAndVariants = 1
 	    If $PropertyEditorOne <> {} Then
 		SendToScript $PropertyEditorOne {update}
 	    If $PropertyEditorTwo <> {} Then
@@ -1594,15 +1600,23 @@ Case message of
 	    #ChangeFont 25 $SelFont
 	End
 	Set $SettingsIndex = $value
-	Set $cmd = $SendMsgAndGet{"settings-comp }$SettingsIndex{" --line=1}
-	Set $SettingsName = (GetOutput $cmd 1 -1)
+	Set $cmd = $SendMsgAndGet{"settings-comp }$SettingsIndex{"}
+	Set $MSG = (GetOutput $cmd 1 -1)
+	Set $i = 1
+	Set $j = (StrCopy $MSG 1 4)
+	Set $SettingsName = (StrCopy $MSG 5 $j)
 	Set $tmp = $l_VariantsFor{ }$SettingsName
 	ChangeTitle 26 $tmp
-	Set $cmd = $GetLine{2}
-	Set $SettingsComponent = (GetOutput $cmd 1 -1)
-	Set $cmd = $GetLine{3 --clear-buffer}
-	Set $SettingsComponentIsSet = (GetOutput $cmd 1 -1)
-	Set $UpdateSettingsVariants = 1
+	Set $i = (Add $j 1)
+	Set $j = (StrCopy $MSG $i (Add $i 3))
+	Set $SettingsComponent = (StrCopy $MSG (Add $i 4) $j)
+	Set $i = (Add $j 1)
+	Set $j = (StrCopy $MSG $i (Add $i 3))
+	Set $SettingsComponentIsSet = (StrCopy $MSG (Add $i 4) $j)
+	Set $i = (Add $j 1)
+	Set $j = (StrCopy $MSG $i (Add $i 3))
+	Set $SettingsVariants = (StrCopy $MSG (Add $i 4) $j)
+	ChangeTitle 27 $SettingsVariants
 	If $SettingsComponentIsSet == 1 Then
 	    ChangeFont 23 $SelFont
 	Else
@@ -1646,8 +1660,7 @@ SingleClic :
     Begin
 	Set $cmd = $SendMsgAndGet{"restore }$SettingsComponent{"}
 	Set $tmp = (GetOutput $cmd 1 -1)
-	Set $UpdateSettingsVariants = 1
-	Set $UpdateSettingsList = 1
+	Set $UpdateSettingsListAndVariants = 1
 	ChangeFont 23 $ShadeFont
 	Set $NullMessage = 1
     End
@@ -1755,8 +1768,7 @@ SingleClic :
 	Set $dummy = (GetOutput $cmd 1 -1)
 	Set $SettingsComponentIsSet = 1
 	ChangeFont 23 $SelFont
-	Set $UpdateSettingsVariants  = 1
-	Set $UpdateSettingsList = 1
+	Set $UpdateSettingsListAndVariants = 1
 	Set $NullMessage = 1
     End
     Else
@@ -2304,8 +2316,7 @@ Case message of
 	    Set $tmp = (GetOutput $cmd 1 -1)
 	    Set $UpdateSMLists = 1
 	    Set $UpdateAllTSLists = 1
-	    Set $UpdateSettingsList = 1
-	    Set $UpdateSettingsVariants = 1
+	    Set $UpdateSettingsListAndVariants = 1
 	    If $PropertyEditorOne <> {} Then
 		SendToScript $PropertyEditorOne {exit}
 	    If $PropertyEditorTwo <> {} Then

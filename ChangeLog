@@ -1,3 +1,12 @@
+2001-09-09  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	* script/FvwmScript-ThemesCenter:
+	* script/FvwmScript-ComponentProperties:
+	* NEWS
+	More speedup in the Themes Center (modulo some bugs and cleanup,
+	the Themes Center is ok for 0.5.1)
+	
 2001-09-05  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:

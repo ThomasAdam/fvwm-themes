@@ -130,15 +130,26 @@ Begin
     Set $SendMsgAndGetBuff = {fvwm-themes-com --name config-}$pid{ --lock-and-get --buffer-name config-bis-}$pid{ --message=}
     Set $SendMsg = {fvwm-themes-com --name config-}$pid{ --message=}
     Set $GetLine = {fvwm-themes-com --name config-}$pid{ --buffer-name config-bis-}$pid{ --get-buffer --line=}	
-     # Get all the options
-    Set $cmd = $SendMsgAndGetBuff{"options }$MainComponent{ }$MainTheme{" --line 1}
-    Set $NbrOfOptions = (GetOutput $cmd 1 -1)
-    Set $cmd = $GetLine{2}
-    Set $Type = (GetOutput $cmd 1 -1)
+     
+    # Get all the options and the first list
+    Set $cmd = $SendMsgAndGetBuff{"options }$MainComponent{ }$MainTheme{ 1"}
+    Set $MSG = (GetOutput $cmd 1 -1)
+    Set $i = 1
+    Set $j = (StrCopy $MSG 1 4)
+    Set $NbrOfOptions= (StrCopy $MSG 5 $j)
+    Set $i = (Add $j 1)
+    Set $j = (StrCopy $MSG $i (Add $i 3))
+    Set $Type = (StrCopy $MSG (Add $i 4) $j)
     Set $tmp = $Type{ }$l_for{ }$MainComponent{@}$MainTheme
     ChangeTitle 1 $tmp
-    Set $cmd = $GetLine{3 --clear-buffer}
-    Set $Options = (GetOutput $cmd 1 -1)
+    Set $i = (Add $j 1)
+    Set $j = (StrCopy $MSG $i (Add $i 3))
+    Set $Options = (StrCopy $MSG (Add $i 4) $j)
+    Set $i = (Add $j 1)
+    Set $j = (StrCopy $MSG $i (Add $i 3))
+    Set $CurrentVariants = (StrCopy $MSG (Add $i 4) $j)
+    ChangeTitle 5 $CurrentVariants
+
     If $NbrOfOptions == 1 Then
     Begin
 	HideWidget 3
@@ -152,7 +163,7 @@ Begin
 
     # Get the "current" options List
     Set $CurrentOptionsIndex = 1
-    Set $UpdateList = 1
+    Set $UpdateList = 0
 
     # the selected option
     Set $OptionIndex = 0
