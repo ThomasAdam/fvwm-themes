@@ -145,36 +145,34 @@ AddToFunc   FuncFvwmTitleBackground
 # ----------------------
 
 # default for modules
-# for FvwmButtonsColorset, FvwmPagerColorset, can be also used for
-# FvwmIconMan*Colorset, FvwmIconBoxColorset
+# For FvwmButtons, FvwmPager, can be also used for FvwmIconMan, FvwmIconBox.
 #
 *FvwmTheme: Colorset 10 fg black, bg rgb:80/A0/A0, Plain, NoShape
 
-# default hilight colorset. for hilighting a part of a
-# button bar (some swallowed apps for example).
+# default hilight for modules
+# For hilighting a part of a button bar (some swallowed apps for example).
 #
 *FvwmTheme: Colorset 11 fg black, bg white, Plain, NoShape
 
-# special, a gradient, a pixmap a "funny colorset", may be
-# used in certain FvwmButtons, FvwmIconMan*Colorset, FvwmIconBoxColorset
+# special or funny: a gradient or a pixmap
+# May be used in certain FvwmButtons, FvwmIconMan, FvwmIconBox.
 #
 *FvwmTheme: Colorset 12 fg black, bg rgb:80/A0/A0, \
 	VGradient 20 rgb:80/A0/A0 rgb:C0/F0/F0, NoShape
 
-# swallowed window: the hilight and shadow colors can be used
-# (-hd of xclock and -hl of xload use sh, and -hl of xclock use hi;
-# perhaps strange but this is xload's fault. :) )
+# swallowed window: the hilight and shadow colors should be defined
+# (-hd of xclock and -hl of xload use sh, and -hl of xclock uses hi)
 #
 *FvwmTheme: Colorset 13 fg black, bg rgb:70/8C/8C, hi black, sh gray40, \
 	Plain, NoShape
 
-# default #2 (FvwmPager or to get more colors in FvwmButtons)
-# can be set to 10
+# default #2
+# FvwmPager or to get more colors in FvwmButtons, can be set to 10.
 #
 *FvwmTheme: Colorset 14 fg black, bg rgb:80/A0/A0, Plain, NoShape
 
-# default hilight #2: (FvwmPager or to get more colors in FvwmButtons)
-# can be set to 11
+# default hilight #2
+# FvwmPager or to get more colors in FvwmButtons, can be set to 11.
 #
 *FvwmTheme: Colorset 15 fg black, bg rgb:C0/F0/F0, Plain, NoShape
 

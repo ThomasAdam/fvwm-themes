@@ -4,6 +4,10 @@
 	restored one small cmd:arg change :) The intention was that a
 	separator between cmd and arg may be just space.
 
+	* themes/default/colors:
+	* doc/colorsets:
+	small changes in colorset descriptions
+
 2001-08-09  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
