@@ -74,6 +74,18 @@ if test -z "$PERL"; then
 fi
 AC_SUBST(PERL)dnl
 
+AC_PATH_PROG(AWK, gawk)
+if test -z "$AWK"; then
+	AC_PATH_PROG(AWK, nawk)
+fi
+if test -z "$AWK"; then
+	AC_PATH_PROG(AWK, mawk)
+fi
+if test -z "$AWK"; then
+	AWK=awk
+fi
+AC_SUBST(AWK)dnl
+
 AC_PATH_PROG(MKFIFO, mkfifo)
 if test -z "$MKFIFO"; then
 	AC_MSG_WARN(mkfifo is not found; you will have some problems with GUI!)
@@ -99,6 +111,7 @@ if test "$MENU_SYSTEM" = yes; then
 	AC_SUBST(MENU_SYSTEM_CONFIGDATA)
 else
 	RUN_UPDATEMENU=no
+	UPDATE_MENU=false
 fi
 AC_SUBST(RUN_UPDATEMENU)
 AC_SUBST(UPDATE_MENU)
@@ -189,8 +202,8 @@ AC_SUBST(FT_VERSION_INFO)dnl
 SETTINGS_FILE='${FT_DATADIR}/themes/default/settings.cfg'
 AC_SUBST(SETTINGS_FILE)dnl
 
-# list of all themes, base and extra
-ALL_THEMES=`ls -d ./themes/*/ | grep -v CVS/ | cut -d/ -f3`
+# 3 lists: all themes, base and extra
+ALL_THEMES=`ls -d ./themes/* | grep -v /CVS | grep -v /Makefile | cut -d/ -f3`
 ALL_THEMES=`echo $ALL_THEMES`
 BASE_THEMES="afterstep cde default luthien migo multichoice olicha redmond98"
 mg_LIST_MINUS(ALL_THEMES, BASE_THEMES, EXTRA_THEMES)

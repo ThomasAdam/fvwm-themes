@@ -20,7 +20,7 @@ fi
 dnl mg_DEFAULT_DIR_ARG(ARG, DEFAULT_VALUE)
 AC_DEFUN(mg_DEFAULT_DIR_ARG,
 [var=`echo [$]$1`
-if echo "${var}NONE" | awk '/^\$|^NONE/ { exit 1 }'; then
+if echo "${var}NONE" | ${AWK} '/^\$|^NONE/ { exit 1 }'; then
 	$1=$var
 else
 	$1=$2
@@ -32,7 +32,7 @@ dnl mg_LIST_MINUS(LIST1-VAR, LIST2-VAR, LIST3-VAR)
 AC_DEFUN(mg_LIST_MINUS,
 [list1=`echo [$]$1`
 list2=`echo [$]$2`
-$3=`awk -v l1="${list1}" -v l2="${list2}" 'BEGIN {
+$3=`${AWK} -v l1="${list1}" -v l2="${list2}" 'BEGIN {
 	split(l1, a1, / +/); split(l2, a2, / +/); l3 = "";
 	for (i1 in a1) {
 		u = 1; for (i2 in a2) { if (a1[[i1]] == a2[[i2]]) u = 0; }
