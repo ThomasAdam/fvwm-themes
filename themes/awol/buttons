@@ -1,7 +1,7 @@
 Style "*" Button 1, Button 2, Button 4, Button 6
 Style "*" FVWMButtons
 
-AddButtonStyle	1 Pixmap mini/penguin.xpm
+AddButtonStyle	1 Pixmap mini/linux.xpm
 AddButtonStyle	2 Pixmap button/win-window-close.xpm
 AddButtonStyle	4 Pixmap button/win-window-maximize.xpm
 AddButtonStyle	6 Pixmap button/win-window-iconify.xpm

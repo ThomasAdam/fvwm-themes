@@ -29,7 +29,7 @@ DestroyModuleConfig FvwmTaskBar: *
 # migo: I don't think so.
 #*FvwmTaskBar: StartMenu MenuFvwmRoot Mouse c
 *FvwmTaskBar: StartMenu MenuFvwmRoot Root +1p +27p
-*FvwmTaskBar: StartIcon 16x16/penguin.xpm
+*FvwmTaskBar: StartIcon 16x16/linux.xpm
 
 # Animation
 *FvwmTaskBar: NoIconAction SendToModule FvwmAnimate animate

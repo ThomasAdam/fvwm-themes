@@ -21,7 +21,7 @@ define({X_POS11},eval(29*X_DELTA))
 *FvwmButtons-MenuBar: Font -adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
 *FvwmButtons-MenuBar: Rows 1
 *FvwmButtons-MenuBar: Frame 0
-*FvwmButtons-MenuBar: (2x1, Left, Icon 16x16/penguin.xpm, \
+*FvwmButtons-MenuBar: (2x1, Left, Icon 16x16/linux.xpm, \
 	Action(Mouse 1) 'WindowList Context 0 +27p', \
 	Action(Mouse 2) 'WindowList Context 0 +27p', \
 	Action(Mouse 3) 'WindowList Context 0 +27p')

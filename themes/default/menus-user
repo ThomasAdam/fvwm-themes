@@ -294,7 +294,7 @@ AddToMenu   MenuFvwmGames "Games" Title
 + "Puzzle%menu/game-logic.xpm%"		Popup MenuFvwmGamesPuzzle
 ##+ "Strategy%menu/game.xpm%"		Popup MenuFvwmGamesStrategy
 + "Tetris%menu/game.xpm%"		Popup MenuFvwmGamesTetris
-+ "Ace of Penguins%menu/penguin.xpm%"	Popup MenuFvwmGamesPenguins
++ "Ace of Penguins%menu/game-cards.xpm%" Popup MenuFvwmGamesPenguins
 + "Other%menu/game.xpm%"		Popup MenuFvwmGamesOther
 
 DestroyMenu MenuFvwmGamesAction

@@ -24,7 +24,7 @@ DestroyModuleConfig FvwmTaskBar: *
 *FvwmTaskBar: StartName
 *FvwmTaskBar: StartMenu MenuFvwmRoot Mouse -100m -102m
 #*FvwmTaskBar: StartMenu MenuFvwmRoot Root +1p o100-25p
-*FvwmTaskBar: StartIcon 16x16/penguin.xpm
+*FvwmTaskBar: StartIcon 16x16/linux.xpm
 
 *FvwmTaskBar: MailCommand FuncFvwmMail
 *FvwmTaskBar: MailCheck 30

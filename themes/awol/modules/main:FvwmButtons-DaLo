@@ -18,7 +18,7 @@ DestroyModuleConfig FvwmButtons-DaLo: *
 
 *FvwmButtons-DaLo: (20x7, Container (Rows 1, Columns 20), NoSize, Frame 0, Padding 0 0)
 *FvwmButtons-DaLo: (7x1, Action(mouse 1) 'Menu MenuFvwmRoot Mouse c -102m', Container (Rows 1, Columns 14), Frame 3, Padding 0 0)
-*FvwmButtons-DaLo: (2x1, Icon 16x16/penguin.xpm, Action Menu MenuFvwmAnimate Mouse c -102m, Frame -1, Padding 0 0)
+*FvwmButtons-DaLo: (2x1, Icon 16x16/linux.xpm, Action Menu MenuFvwmAnimate Mouse c -102m, Frame -1, Padding 0 0)
 *FvwmButtons-DaLo: (8x1, Icon module/fvwm3.xpm, Action(mouse 1) 'Menu MenuFvwmRoot Mouse c -102m', Action (mouse 3) 'Menu MenuFvwmModules Mouse c -102m', Frame -1, Padding 0 0)
 *FvwmButtons-DaLo: (2x1, Title "2.4.x", Icon module/Pinky.xpm, Action(mouse 1) 'Menu MenuFvwmThemes Mouse c -102m', Action(mouse 3) 'Menu MenuFvwmConfiguration Mouse c -102m', Frame -1)
 *FvwmButtons-DaLo: (2x1, Title "Tools", Icon module/mini-tools.xpm, Action 'Menu MenuFvwmPrograms Mouse c -102m', Frame -1, Back grey75)
