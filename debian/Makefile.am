@@ -9,7 +9,7 @@ datum = `date "+%a, %d %b %Y %T %z"`
 fullname = FVWM Themes Developers
 email = fvwm-themes-devel@lists.sourceforge.net
 arch ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
-sdir ?= $(shell pwd)
+
 
 deb:
 	make clean
@@ -21,7 +21,7 @@ deb:
 	./configure --prefix=/usr --disable-run-updatemenu
 	cp -f debian/full-control debian/control
 	fakeroot dh_clean
-	(cd  .. && dpkg-source -b $(sdir))
+	(cd  .. && dpkg-source -b $(CURDIR))
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE)
@@ -31,7 +31,6 @@ deb:
 	fakeroot dh_testroot
 	fakeroot dh_installchangelogs
 	fakeroot dh_installdocs
-	fakeroot dh_install
 	fakeroot dh_installmenu
 	fakeroot dh_link
 	fakeroot dh_strip
@@ -59,7 +58,7 @@ deb-base:
 	./configure --prefix=/usr --disable-run-updatemenu
 	cp -f debian/base-control debian/control
 	fakeroot dh_clean
-	(cd .. && dpkg-source -b $(sdir))
+	(cd .. && dpkg-source -b $(CURDIR))
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE)
@@ -80,7 +79,6 @@ deb-base:
 	fakeroot dh_testroot
 	fakeroot dh_installchangelogs
 	fakeroot dh_installdocs
-	fakeroot dh_install
 	fakeroot dh_installmenu
 	fakeroot dh_link
 	fakeroot dh_strip
@@ -108,7 +106,7 @@ deb-extra:
 	./configure --prefix=/usr --disable-run-updatemenu
 	cp -f debian/extra-control debian/control
 	fakeroot dh_clean
-	(cd .. && dpkg-source -b $(sdir))
+	(cd .. && dpkg-source -b $(CURDIR))
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE)
@@ -128,7 +126,6 @@ deb-extra:
 	fakeroot dh_testroot
 	fakeroot dh_installchangelogs
 	fakeroot dh_installdocs
-	fakeroot dh_install
 	fakeroot dh_installmenu
 	fakeroot dh_link
 	fakeroot dh_strip
