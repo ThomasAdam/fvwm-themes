@@ -15,6 +15,9 @@
 	* themes/default/background:
 	use fvwm-themes-root to set solid bg, not xsetroot
 
+	* themes/default/settings/automenus/headlines/enabled:
+	update bbc headlines
+
 2003-07-20  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings/session-manager/none:

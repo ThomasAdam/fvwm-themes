@@ -23,8 +23,7 @@ AddToMenu   MenuFvwmHeadlines "Headlines" Title
 + "%menu/www.xpm%ThinkGeek"  Popup thinkgeek
 + "" Nop
 + "%menu/www.xpm%CNN"        Popup cnn
-+ "%menu/www.xpm%BBC-World"  Popup bbc-world
-+ "%menu/www.xpm%BBC-SciTech" Popup bbc-scitech
++ "%menu/www.xpm%BBC"        Popup bbc
 + "" Nop
 + "%menu/refresh.xpm%Reset all"  FuncFvwmResetHeadlines
 
@@ -44,5 +43,4 @@ AddToFunc   FuncFvwmResetHeadlines
 + I DestroyMenu linuxfr
 + I DestroyMenu thinkgeek
 + I DestroyMenu cnn
-+ I DestroyMenu bbc-world
-+ I DestroyMenu bbc-scitech
++ I DestroyMenu bbc
