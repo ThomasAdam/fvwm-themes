@@ -5,20 +5,11 @@
 Important items to do:
 ---------------------
 
-* Revise all existing docs.
-  migo: ready by me.
-
-* Write some documentation about CCDS.
-  [migo]
-
 * Test and port fvwm-themes to BSD and Solaris.
   There are problems for sure, mkdir without -p, no killall etc.
 
 Optional items to do:
 --------------------
-
-* Write doc/creating-themes with instructions on how to create themes
-  from zero, what components to include, what to include in each component.
 
 * Convert all hardcoded $FT_DATADIR/... paths to relative $./ .
 
@@ -109,3 +100,10 @@ Closed (will be deleted after 0.4.0):
 
 * Increase speed of fvwm-themes-config.
   Make current theme.cfg with one include line non needed.
+
+* Revise all existing docs.
+
+* Write some documentation about CCDS.
+
+* Add missing info to doc/creating-themes, info about how to create themes
+  from zero, what components to include, what to include in each component.

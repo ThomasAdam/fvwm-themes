@@ -1,0 +1,258 @@
+This documents tries to popularly cover the following questions:
+
+  * Introduction into themes & components
+  * How fvwm-themes works
+  * How to create your personal parts to use with fvwm-themes
+  * How to create a new theme
+  * CCDS (Component Configuration and Dependancy System)
+  * Syntax of theme.cfg
+
+Introduction into themes & components
+-------------------------------------
+
+Themes are a set of their components. Themes are placed into directories.
+Component is a meaningful part of the configuration, not something fixed.
+There are standard components; it is easier if you stick to the standard
+components, in this case you should not define component dependancies,
+they are pre-defined. It is possible to create completely new components,
+like 'joystick', 'wheel-mouse', 'menus-auto' and so on, but then there
+should be defined their dependances, for example, 'wheel-mouse' component
+requires something which 'bindings' provides, 'menus-auto' follows 'menus'.
+
+Standard components are:
+
+  background, bindings, buttons, colors, cursors, functions,
+  functions-appbind, globalfeel, menus, menus-user, menustyle,
+  modules, settings, sound, startup, styles, windowlook.
+
+The default theme contains all standard components.
+A typical theme contains a subset of standard components, like:
+
+  background, buttons, colors, menustyle, modules, windowlook.
+
+Notation colors@cde - means 'colors' component in 'cde' theme.
+Notation colors@    - means 'colors' component in any theme.
+Notation @cde       - means 'cde' theme or all components in 'cde' theme.
+
+It is possible to mix different components from different themes,
+like background@multichoice, buttons@osx, colors@luthien, cursors@migo.
+
+A component can come in several variants (reflected in menu) and can have
+any number of options (also automatically reflected). Also a component can
+be a complex one, i.e. include other components, like settings@default.
+
+How fvwm-themes works
+---------------------
+
+This is kind of magic.
+To be written.
+
+How to create your personal parts to use with fvwm-themes
+---------------------------------------------------------
+
+For the user convenience, there are user-definable versions of all standard
+component, where she can extend this component. For example, the user can
+add more bindings in bindings-extra@personal component, more menus in
+menus-extra@personal component and so on.
+
+First, you should create ~/.fvwm/themes/personal directory, if it is not
+created yet by some graphical utility. To add an extra component to the
+personal theme, means to create a file in this directory with the name of
+the needed component.
+
+Examples:
+
+$HOME/.fvwm/themes/bindings-extra may contain:
+
+  Key F13 	A	S	FuncFvwmWWW
+  Key Help	A	A	Menu MenuFvwmHelp
+  Key C	  	A	CM	FuncFvwmConsole
+
+$HOME/.fvwm/themes/menus-extra may contain:
+
+  DestroyMenu MenuFvwmPersonal
+  AddToMenu   MenuFvwmPersonal "Personal" Title
+  + "Mozilla Home%menu/www.xpm"        Exec exec mozilla http://mozilla.org/
+  + "Remote Shells%menu/terminal.xpm%" Popup MenuMyRemoteShells
+  + "Private%menu/home.xpm%"           Popup MenuPrivate
+
+How to create a new theme
+-------------------------
+
+Create a directory for the new theme in ~/.fvwm/themes/ directory.
+We highly suggest to add components of your theme one by one.
+Adding an entire theme at once is hard and not really needed, adding
+components one by one also ensures these component will be usable even
+without rest of components in your theme.
+
+The procedure for adding a new component.
+
+  1) decide which specific component you want to implement
+  2) find a theme, which has the same component, which you think is closer
+     to the one you want to implement
+  3) copy the existing component file(s) or component directory to your
+     own theme directory
+  4) if there is component.cfg, copy it too
+  5) you may need to do something about theme.cfg, but usually you do not
+  6) edit the copied files; don't add fvwm commands which are defined
+     in other components if you want to get an independent component
+  7) to see your work in action, choose "Refresh the Current Theme"
+  8) you should now see your new component in your new theme
+  9) you can load this component, but don't be upset if it does not work
+     as you expected for the first time, repeat steps 6 and 9 :)
+ 10) repeat steps 6 and 7 as many times as needed;
+ 11) if you messed things up use Restart or unload (drop) your component
+
+You can repeat this procedure for every component.
+
+We suggest to put your images in mytheme/images subdirectories, like
+it is done in other themes. There is internal support for these
+subdirectories. But you can choose other places if you really need.
+
+Creating a theme is an art. It is also a technical task. You should decide
+about such things as division to files/directories, images, other resources.
+Feel free to ask your questions on fvwm-themes-devel@ mailing list.
+
+If you did it right, you get mytheme directory with several components.
+You can tar/gzip your directory (please ensure you include the directory
+mytheme/ as the top directory of your archive).
+
+Now you can distribute your mytheme.tar.gz file to others, to install
+this new theme, one should execute:
+
+  fvwm-themes-config --install mytheme.tar.gz
+
+or to install it to a system wide place (usually as root):
+
+  fvwm-themes-config --install mytheme.tar.gz
+
+Good luck in creating new themes.
+
+CCDS (Component Configuration and Dependancy System)
+----------------------------------------------------
+
+Theme components behave differently, one can be a simple file, other ca have
+several options or go in several variants, or even both. Some options are
+only fvwm configurations to be read (in this case it is important to specify
+whether the option files are read before or after the main component file),
+some options only set dynamical variables to be used by the main file
+(usually this is done using FvwmM4 variables, but may be done using shell
+variables; in this case an option has no associated file to be read).
+
+The order of reading components is very important. The order between
+components can be specified by providing their dependancies, say colors@
+provides colors-menus item, and menus@ requires colors-menus item, so
+colors@ will be read before menus@.
+
+Both two things mentioned above (component configuration and dependancy)
+is covered by CCDS and defined in theme.cfg file in every theme.
+If theme.cfg is absent in the theme, the default one is used, which
+should work well for themes using only standard components.
+
+theme.cfg may include other .cfg files, usually there is one .cfg file for
+every non-simple component. If you your component has several options or
+variants, it is suggested to add a corresponding component.cfg, where all
+options are defined, instead of adding theme.cfg.
+
+Syntax of theme.cfg
+-------------------
+
+The lines started with '#' sign are comments.
+The like with only spaces/tabs are ignored.
+
+Directives started with '!' sign, currently there are following directives:
+
+  !include file.cfg  # includes another file.cfg in this directory
+  !include-quiet file.cfg  # the same, but ignore if file.cfg is not found
+
+There are several sections of 2 types:
+
+  [theme] - one such section should be defined
+  [component] - every such section corresponds to a theme component
+
+A line in theme.cfg usually has a format key=value, where
+  value is a string, which may mean id, label, number or anything else
+  key may be string as well, but it is usually more complex
+
+A section is actually a hash of key=value lines, but since a flat hash
+is not a good data structure this hash usually contains array of other
+hashes.
+
+If you don't understand these several paragraphs, skip them.
+We are using here a terminology of perl, where array corresponds to a list
+of something (strings or hashes), and hash is dictionary or in other words
+a list of pairs (key, value). All perl values requiring consisting from
+scalars, ARRAYs, HASHs can be defined in theme.cfg syntax by using symbols
+dot, plus, colon. Here how we can define array named key0
+ARRAY [ HASH { key1 => value1, key2 => value2 }, HASH { key1 => value1 } ]
+
+  key0+key1=value1
+  key0.key2=value2
+  key0+key1=value1
+
+To define array values, like [ Peter, John ] and [ red ], the following
+syntax is used (note plus before equal sign):
+
+  team+name+=Peter
+  team.name+=John
+  team.color+=red
+
+[theme] section includes the following keys:
+
+  file - the theme directory if different; never really needs to be defined
+
+  name - the name-to-show of the theme, if not defined - use 'file' key
+
+  version - the version of theme.cfg format, currently not used
+
+  component - array of logical components, note that list of the actual
+    components, which is a subset of this array, is evaluated dynamically
+    by checking whether the file or directory of the given component exist
+
+  group - array of hashs with keys (name, component), used to define
+    component groups, like [ all ], [ basic look ].
+
+[component]
+
+  file - the component id, it is the same as component file
+
+  name - the name-to-show of the component, if not defined - use 'file' key
+
+  provides - array of item that the component provides
+
+  requires - array of item that the component requires
+
+  follows - array of component that the component follows
+
+  precedes - array of component that the component precedes
+
+  start-stop - array of hooks that are called when the component is entered
+    (start hook) and when the component is left (stop hook)
+
+  local-imagepath - array of subdirectories of theme/images directory,
+    which are used by the component, they will be added to ImagePath
+
+  external-imagepath - array of directories the component uses and expects
+    to be added to ImagePath
+
+  read-command - fvwm command to use instead of Read main-component-file
+
+  priority - flag 0 (default) or 1, defines a priority of the component
+
+  contains - array of subcomponents if the component is a complex component
+
+  variant - array of hashs with keys (file, name), variants of the component
+
+  default - default variant index, starting from 1
+
+  current - current variant index, starting from 1
+
+  option-read-afterward - flag, 1 means read options after the main file
+
+  inline - flag, 0 (default) means show every option in a separate place,
+    1 means show all options in-line (in the same menu)
+
+  option - array of hashs with keys (value, default, current,
+    read-command, read-afterward), defines component options;
+    value itself is array of hashs with keys (file, name)
+

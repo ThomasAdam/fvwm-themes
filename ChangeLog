@@ -6,6 +6,10 @@
 	use different dirs!). Olivier, please verify that it works.
 	And I can't rebuild src rpm, /tmp errors...
 
+	* TODO:
+	* doc/creating-themes:
+	added a new documentation file
+
 2000-11-07  olicha  <olivier.chapuis@free.fr>
 
 	* themes/olicha/README:
