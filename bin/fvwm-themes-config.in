@@ -3055,7 +3055,7 @@ sub comLoop {
 																  $maxLengthOpt);
 
 			$return = mergeScriptAnswer("$i\n$type\n$list\n$ol",4);
-			print STDERR $return ."\n";
+			#print STDERR $return ."\n";
 		}
 		# --------------------------------------------
 		elsif ($command =~ /^set-options\s+(.+)\s+(.+)\s+(\d+)\s+(\d+)$/) {
