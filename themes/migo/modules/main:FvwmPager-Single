@@ -8,8 +8,8 @@ AddToMenu    MenuFvwmWindowMove
 + "Page	 v%menu/window-move.xpm%"	AnimatedMove w w+100
 + "Page	 ^%menu/window-move.xpm%"	AnimatedMove w w-100
 + "Page	 \\.%menu/window-move.xpm%"	AnimatedMove w+100 w+100
-+ "Page	 \/'%menu/window-move.xpm%"	AnimatedMove w-100 w+100
-+ "Page	 .\/%menu/window-move.xpm%"	AnimatedMove w+100 w-100
++ "Page	 \/'%menu/window-move.xpm%"	AnimatedMove w+100 w-100
++ "Page	 .\/%menu/window-move.xpm%"	AnimatedMove w-100 w+100
 + "Page	 '\\%menu/window-move.xpm%"	AnimatedMove w-100 w-100
 
 AddToMenu    MenuFvwmWindowGroupOps
@@ -19,8 +19,8 @@ AddToMenu    MenuFvwmWindowGroupOps
 + "Page	 v%menu/window-move.xpm%"	Pick All ($r) MoveToPage +0p +1p
 + "Page	 ^%menu/window-move.xpm%"	Pick All ($r) MoveToPage +0p -1p
 + "Page	 \\.%menu/window-move.xpm%"	Pick All ($r) MoveToPage +1p +1p
-+ "Page	 \/'%menu/window-move.xpm%"	Pick All ($r) MoveToPage -1p +1p
-+ "Page	 .\/%menu/window-move.xpm%"	Pick All ($r) MoveToPage +1p -1p
++ "Page	 \/'%menu/window-move.xpm%"	Pick All ($r) MoveToPage +1p -1p
++ "Page	 .\/%menu/window-move.xpm%"	Pick All ($r) MoveToPage -1p +1p
 + "Page	 '\\%menu/window-move.xpm%"	Pick All ($r) MoveToPage -1p -1p
 
 DestroyModuleConfig FvwmPager-Single: *

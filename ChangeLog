@@ -1,3 +1,8 @@
+2001-07-22  migo  <migo@homemail.com>
+
+	* themes/migo/modules/main:FvwmPager-Single:
+	fixed diagonal page window movement
+
 2001-07-21  migo  <migo@homemail.com>
 
 	* themes/multichoice/buttons/faces/_images:
