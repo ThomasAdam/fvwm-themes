@@ -1,6 +1,12 @@
                       Things to do before 1.0.0
                       -------------------------
 
+* Improve wm-icons icon sets, release 0.3.0 as soon as possible.
+
+* Fully support a new wm-icons icon list (84 icons) in fvwm-themes.
+
+* Fix GUI problems on FreeBSD.
+
 * Localization (actual translations).
 [In progress]
 
@@ -14,8 +20,6 @@
   The same if the option is added.
 
 * To verify: seems like GUI loads @personal theme when not asked.
-
-* Improve wm-icons icon sets, release 0.3.0.
 
 * Check fvwm-themes and fvwm with kde2.
 [In progress; need to (re?)add a FAQ entries for KDE]
@@ -77,6 +81,12 @@ Ideas:
   from a range (1 .. options) are accepted, can be freely set by a user.
   Examples of scalar types: Color, String, Minutes, Milliseconds etc.
   There should be individual editors for this scalar property.
+
+  Or alternatively, extend a functionality of option. It may have type (File,
+  Color, String, Minutes, Milliseconds) for choices, which are all either
+  predefined or user-defined. Every choice (that is currently called value)
+  has name and value. The user-defined choice has user-value and user-defined
+  keys; it may be represented in a menu as "user-value ... Change".
 
 * background-auto@ component (with a scalar of type Minutes), which will
   iterate over a background@ options randomly or sequencially every n minutes.

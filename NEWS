@@ -1,5 +1,7 @@
 fvwm-themes-0.4.2 - Not yet released
- 
+
+* improved @redmond98, press-able buttons and gradien titles
+* some work on a minimal reload (optional); reload is now a bit faster
 
 fvwm-themes-0.4.1 - 20001220
 
