@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//PL">
+<html lang="pl">
+<title>Dokumentacja schematów FVWM</title>
+
+<h1 align=center>Dokumentacja schematów FVWM</h1>
+<div id="abstract">
+<p><em>Zarz±dzanie schematami</em> umo¿liwia ustawienie konfiguracji 
+wybranego schematu, oraz sesji FVWM. Uruchamia siê je z podmenu 
+<em> Konfiguracja / Zarz±dzanie schematami</em>.
+</div>
+
+<h3>Spis tre¶ci</h3>
+<ol>
+	<li>Wybór schematów</li>
+	<li>Ustawienia ogólne</li>
+	<li>Sesje pracy FVWM Themes</li>
+	<li>Rozmaite</li>
+	<li>B³êdy oraz zapytania</li>
+</ol>
+
+<h3>1. Wybór schematów</h3>
+
+<p>W górnym lewym oknie znajduje siê spis wszystkich znalezionych schematów. 
+Po wybraniu jednego z nich, w górnym prawym oknie wy¶wietla siê lista dostêpnych
+sk³adników schematu. Wtedy mo¿na dokonaæ wyboru jednej z dwóch opcji
+u¿ywaj±c b±d¼ to przycisku <em>Za³aduj max.</em>, który za³aduje wszystkie
+dostêpne sk³adniki danego schematu, lub te¿ przycisku <em>Za³aduj min.</em>,
+wybieraj±c wy³±cznie te sk³adniki, które dla danego schematu okre¶laj±
+jego wygl±d. Trzeci± opcj± jest wybór tylko jednego sk³adnika z okienka w prawym
+górnym rogu formularza i u¿ycie przycisku <em>£adowanie</em>. Ogólne informacje
+o danym schemacie otrzyma siê klikaj±c na przycisk <em>CzytajTo</em>.
+
+
+<p>Aktualnie u¿ywana konfiguracja oraz wszystkie zmiany dokonywane za pomoc±
+Zarz±dcy schematów podawane s± w dolnym okienku tekstowym. Pierwsza kolumna
+wy¶wietla wszytkie dostêpne sk³adniki, druga - nazwê schematu, z którego
+pochodzi bêd±cy w u¿yciu sk³adnik, natomiast trzecia (zazwyczaj pusta na
+pocz±tku) wy¶wietla nazwê schematu, z którego dokonali¶my wyboru danego
+sk³adnika, je¿eli schemat ten ró¿ni siê od obecnie u¿ywanego. Ostatnia kolumna
+mo¿e wy¶wietlaæ znaczki: <em>Var</em>, <em>Opt</em> lub <em>V/O</em> co oznacza,
+i¿ sk³adnik schematu (u¿ywany b±d¼ nie) ma warianty lub opcje.
+
+
+<p>Je¶li sk³adnik posiada warianty, lub opcje, to mo¿na dokonaæ ich zmiany
+poprzez wybór sk³adnika i klikniêcie przycisku <em>W³a¶ciwo¶ci</em>. 
+Ponadto, mo¿na przywróciæ u¿ywany schemat lub sk³adnik (odwróciæ zmianê 
+sk³adnika schematu) za pomoc± przycisku <em>Przywróæ</em> , oraz pos³u¿yæ siê
+opcj± "k³ódki", co oznacza i¿ przycisk "£aduj max." zignoruje sk³adnik, na
+który na³o¿ono k³ódkê. Funkcja <em>Odrzuæ </em> nie zosta³a jeszcze zaimplementowana.
+
+
+<p>W celu zachowania zmian nale¿y klikn±æ na przycisk <em>Zastosuj</em>.
+Przycisk <em>Od¶wie¿</em> ma podobne dzia³anie do przycisku <em>Zastosuj</em>
+z t± ró¿nic± i¿ dokonuje prze³adowania ca³ej konfiguracji, natomiast zmiany
+nie zostaj± zapamiêtane. Przycisk <em> Aktualizuj</em> przebudowuje listê
+sk³adników dostêpnych w Zarz±dcy schematów, co jest u¿yteczne w przypadku gdy
+dokona³o siê zmian konfiguracji za pomoc± innych narzêdzi, jak np: podmenu
+<em>Schematy</em> lub te¿ linia komend.
+
+
+<h3>2. Ustawienia ogólne</h3>
+
+<p><em>Ustawienia ogólne</em> spe³niaj± t± sam± rolê co menu dynamiczne: <em>
+Schematy - > Theme Management -> current -> settings -></em> i s± zamiennikiem
+ustawieñ schematu za pomoc± formularza lub formularza gtk. Górna lista pokazuje 
+zestaw u¿ywanej konfiguracji, której zmiany ustawieñ dokonujemy za pomoc± klikniêcia 
+na wybrany sk³adnik, z kolei przyciski u do³u ekranu zachowuj± siê analogicznie jak 
+w przypadku formularza <em>Wybór schematów</em>. 
+
+
+<p>Uwaga: Klikniêcie na przycisk <em>Zastosuj</em> dokona zmian równocze¶nie dla
+dwóch formularzy: <em>Wybór schematów</em> i <em>Ustawienia ogólne</em>.
+
+
+<h3>3. Sesje pracy FVWM Themes</h3>
+
+<p>Schematy FVWM u¿ywaj± odrêbnego i sobie tylko w³a¶ciwego pojêcia sesji. 
+Jest to wyja¶nione w manualu fvwm-themes-start oraz odpowiednich plikach FAQ. 
+Znajduje to zastosowanie dla rozmaitych konfiguracji sk³adników schematów FVWM.
+
+
+<p>Kilka wskazówek odno¶nie u¿ywania sesji FVWM: je¿eli zamierza siê 
+dokonaæ kilku zmian o charakterze testowym, bez utraty bie¿±cej konfiguracji
+nale¿y dodaæ sesjê o nazwie np: <em>test</em> i za³adowaæ ustawienia 
+z sesji domy¶lnej (zazwyczaj nazywanej <em>main</em>). Po dokonaniu
+wy¿ej wymienionych czynno¶ci klikamy przycisk <em>Zastosuj</em>.
+Terez mo¿emy dokonywaæ zmian za pomoc± <em>Wyboru schematów</em> oraz
+<em>Ustawieñ ogólnych</em> bez obaw o utratê g³ównej konfiguracji. 
+Mo¿na oczywi¶cie w ka¿dym momencie powróciæ do niej, klikaj±c
+na <em>main</em> i przycisk <em>Zastosuj</em>, które to czynno¶ci przywróc±
+konfiguracjê poprzedni±, a ponadto istnieje te¿ mo¿liwo¶æ zaktualizowania konfiguracji
+<em>main</em> do u¿ywanej konfiguracji <em>test</em> wykonuj±c czynno¶ci analogiczne do
+opisanych powy¿ej.
+
+
+<h3>4. Rozmaite</h3>
+
+<p>Skrypt FvwmScript posiada niewiele opcji. Uruchamia siê je z menu
+<em>Zarz±dzanie schematami</em>:
+
+<blockquote>
+  FvwmScript FvwmScript-ThemesCenter
+    --text-colorset 36 --viewer-colorset 33
+</blockquote>
+
+<p>N.p.., colorset 36 jest u¿ywany dla listy pól, lub te¿ okienek tekstowych,
+natomiast colorset 33 wykorzystywany jest dla okienka pomocy. Ka¿dy skrypt
+FvwmScript u¿ywa zestawu kolorów colorset 35. Z kolei jedyn± dodatkow± opcj±
+jest opcja --lang xx, gdzie xx oznacza pierwsze dwie litery zmiennej LANG, 
+jak np "ru_RU.koi8r". Domy¶lnie LANG jest ustawiona na zmienn± ¶rodowiskow±
+$LANG lub "en". Obecnie wspierane zmienne to en, fr oraz ru.
+
+
+<h3>5. B³êdy oraz zapytania</h3>
+
+<p>Raporty b³êdów proszê zg³aszaæ pod:
+<a href="mailto:fvwm-themes-devel@lists.sourceforge.net">
+fvwm-themes-devel@lists.sourceforge.net</a>.
+
+<p>Pytania mo¿na wysy³aæ na listê dyskusyjn±:
+<a href="mailto:fvwm-themes-users@lists.sourceforge.net">
+fvwm-themes-users@lists.sourceforge.net</a>.

@@ -1,3 +1,12 @@
+2002-08-19 migo  <migo@homemail.com>
+
+	* configure.in:
+	* locale/Makefile.am:
+	* locale/pl/*:
+	* AUTHORS:
+	added Polish translations as found in http://free.polbox.pl/p/pkarwow/
+	strange that the author did not submit them to us
+
 2002-08-03 migo  <migo@homemail.com>
 
 	* debian/.cvsignore:

@@ -256,6 +256,7 @@ AC_OUTPUT(
 	locale/ru/Makefile
 	locale/ja/Makefile
 	locale/de/Makefile
+	locale/pl/Makefile
 	bin/fvwm-themes-config
 	bin/fvwm-themes-start
 	bin/fvwm-themes-xrdb
