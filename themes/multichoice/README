@@ -1,0 +1,15 @@
+Multichoice theme is provided for both demonstrative and functional reasons.
+It includes highly configurable components with several choices each.
+
+background - this component has more than 20 background choices,
+from gradient-based to image-based.
+
+buttons - this component includes many titlebar button faces, from
+vector-based to image-based; you may also choose which window buttons
+are used and their order.
+
+cursors - this component has several cursor sets to choose from, including
+shape and color variations.
+
+fonts - this component may help if you want to use international charsets,
+which are not normally chosen on your system by default.
