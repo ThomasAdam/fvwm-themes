@@ -35,17 +35,17 @@ DestroyFunc FuncFvwmStopWindowButtons
 AddToFunc   FuncFvwmStopWindowButtons
 + I FuncFvwmRemoveAllButtons
 + I Mouse 1 	1	A	-
-+ I Mouse 2	1	A	-
-+ I Mouse 3	1	A       -
++ I Mouse 2 	1	A	-
++ I Mouse 3 	1	A       -
 + I Mouse 1 	2	A	-
-+ I Mouse 2	2	A	-
-+ I Mouse 3	2 	A	-
++ I Mouse 2 	2	A	-
++ I Mouse 3 	2 	A	-
 + I Mouse 1 	3	A	-
 + I Mouse 2 	3	A	-
 + I Mouse 3 	3	A	-
 + I Mouse 1 	4	A	-
-+ I Mouse 2	4	A	-
-+ I Mouse 3	4 	A	-
++ I Mouse 2 	4	A	-
++ I Mouse 3 	4 	A	-
 + I Mouse 1 	4	S	-
 + I Mouse 2 	4	S	-
 + I Mouse 3 	4	S	-

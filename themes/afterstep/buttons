@@ -40,6 +40,7 @@ AddToFunc   FuncFvwmStopWindowButtons
 + I Mouse 1 	4	A	-
 + I Mouse 2 	4	A	-
 + I Mouse 3 	4	A	-
++ I Mouse 3 	4	S	-
 + I Mouse 0 	1	CM	-
 + I Mouse 0 	2	CM	-
 + I Mouse 0 	3	CM	-

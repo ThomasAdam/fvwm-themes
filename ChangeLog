@@ -6,6 +6,9 @@
 	* themes/migo/modules/buttonbar/*:
 	move to another Button Bar definition system (added 2 options)
 
+	* themes/*/buttons:
+	minor corrections
+
 2001-05-24  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/functions:
