@@ -2,4 +2,4 @@
 
 # GNU does not support installing pure text documentation...
 
-EXTRA_DIST = FAQ README.1st fvwm-themes.lsm colorsets
+EXTRA_DIST = FAQ README.1st colorsets creating-themes fvwm-themes.lsm

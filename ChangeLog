@@ -5,7 +5,8 @@
 	increased version to 0.4.1 after setting a cvs tag version-0_4_0;
 
 	* doc/Makefile.am:
-	added fvwm-themes.lsm to dist; we forgot to add ANNOUNCE to dist.. :)
+	added fvwm-themes.lsm and creating-themes to dist;
+	we also forgot to add ANNOUNCE to dist, ufff.. :)
 
 	* themes/redmond98/modules/main:startmenu:
 	s/Fvwm/FVWM/ for consistency
