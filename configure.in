@@ -67,6 +67,7 @@ dnl the cached value!  For ancient shells "rm config.cache" is a solution.
 UNSET=true
 if unset UNSET 2>/dev/null; then UNSET=unset; fi
 
+AC_PROG_INSTALL
 dnl Reports are that INSTALL is set incorrectly on Solaris.
 if test "`echo $INSTALL | cut -c1-2`" = ".."; then
 	AC_MSG_ERROR([
@@ -105,13 +106,26 @@ AC_SUBST(TAR)dnl
 
 AC_PATH_PROG(MKFIFO, mkfifo)
 if test -z "$MKFIFO"; then
-	AC_MSG_WARN(mkfifo is not found; you will have some problems with GUI!)
+	AC_MSG_WARN([
+	mkfifo is not found; you will have some problems with GUI!])
 fi
 
 # we check for FvwmM4 below
 AC_PATH_PROG(M4, m4)
 if test -z "$M4"; then
-	AC_MSG_WARN(m4 is not found; you will have a few problems using this package!)
+	AC_MSG_WARN([
+	m4 is not found; you will have a few problems using this package!])
+fi
+
+# Solaris is not shipped with xmessage...
+AC_PATH_PROG(XMESSAGE, xmessadge)
+if test -z "$XMESSAGE"; then
+	additional_msg=""
+	if test "`uname`" != "SunOS"; then additional_msg="
+	You may find the binary at http://sunfreeware.com/ ."
+	fi
+	AC_MSG_WARN([
+	xmessage is not found; you will have some problems; please install it.$additional_msg])
 fi
 
 # debian menu system
@@ -136,7 +150,8 @@ AC_SUBST(UPDATE_MENU)
 # fvwm-themes-images needs to know where the rgb.txt file is
 AC_PATH_XTRA
 if test -z "$X_LIBS"; then
-	AC_MSG_WARN(Xlib is not found; fvwm-themes-images will not fully work!)
+	AC_MSG_WARN([
+	Xlib is not found; fvwm-themes-images will not fully work!])
 fi
 
 # FIXME: a better way to find GNOME_IMAGES_DIR?
@@ -168,7 +183,8 @@ FVWM_MODULEDIR=`$FVWM_CONFIG --fvwm-moduledir`
 $UNSET ac_cv_path_FVWM_M4
 AC_PATH_PROG(FVWM_M4, FvwmM4, ,"$FVWM_MODULEDIR")
 if test -z "$FVWM_M4"; then
-	AC_MSG_WARN(FvwmM4 is not found; you will have a few problems using this package!)
+	AC_MSG_WARN([
+	FvwmM4 is not found; you will have a few problems using this package!])
 fi
 
 FVWM_VERSION=`$FVWM_CONFIG --version`
