@@ -1,3 +1,8 @@
+2000-09-15 olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in (comLoop): 
+	ThemesCenter support component with choices and options
+
 2000-09-12  migo  <migo@homemail.com>
 
 	* themes/luthien/background/*:

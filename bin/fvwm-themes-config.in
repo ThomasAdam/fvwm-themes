@@ -1769,8 +1769,8 @@ sub comLoop {
 						my $optFile = $opt->{'file'};
 						$t = "(S)" if defined $optionToSet{"$theme/$_:$optFile"};
 					}
-				} 
-				elsif (ref($choices) eq 'ARRAY') {
+				}
+				if (ref($choices) eq 'ARRAY') {
 					$OptOrContains = " " x $l1 ."Cho";
 					my $c;
 					foreach $c (@$choices) {
@@ -1830,7 +1830,7 @@ sub comLoop {
 					$set = 1 if defined $optionToSet{"$theme/$comp:$optFile"};
 				}
 			}
-			elsif (ref($choices) eq 'ARRAY') {
+			if (ref($choices) eq 'ARRAY') {
 				$OptOrContains = 1;
 				my $c;
 				foreach $c (@$choices) {
@@ -1878,12 +1878,12 @@ sub comLoop {
 					delete $optionToSet{$_} if /^$theme\/$comp:/;
 				}
 			}
-			elsif (ref($choices) eq 'ARRAY') {
+			if (ref($choices) eq 'ARRAY') {
 				foreach (keys %choiceToSet) {
 					delete $choiceToSet{$_} if /^$theme\/$comp/;
 				}
 			}
-			elsif (ref($contains) eq 'ARRAY') {
+			if (ref($contains) eq 'ARRAY') {
 				foreach (keys %choiceToSet) {
 					delete $choiceToSet{$_} if /^$theme\/$comp\//;
 				}				
@@ -2020,17 +2020,21 @@ sub comLoop {
 			my $contains = $cc->{'contains'};
 			my $choices = $cc->{'choice'};
 			my $i = 0;
-			my $type = "Options";
+			my $type = "";
+			if (ref($options) eq 'ARRAY' && ref($choices) eq 'ARRAY') {
+				$type = "Options & Choices";
+			}
 			if (ref($options) eq 'ARRAY') {
 				my $opt;
+				$type = "Options" if $type eq "";
 				foreach $opt (@$options) {
 					$i++;
 					$return .= "$opt->{'name'}|";
 				}
 			}
-			elsif (ref($choices) eq 'ARRAY') {
-				$type = "Choices";
-				$i = 1;
+			if (ref($choices) eq 'ARRAY') {
+				$type = "Choices" if $type eq "";
+				$i++;
 				$return .= "$comp choices"
 			}
 			elsif (ref($contains) eq 'ARRAY') {
