@@ -84,6 +84,7 @@ Style "mxaudio"                Icon norm/music.xpm,            MiniIcon mini/mus
 Style "NEdit*"                 Icon norm/editor.xpm,           MiniIcon mini/editor.xpm
 Style "nedit*"                 Icon norm/editor.xpm,           MiniIcon mini/editor.xpm
 Style "Netscape"               Icon norm/netscape.xpm,         MiniIcon mini/netscape.xpm
+Style "Mozilla"                Icon norm/netscape.xpm,         MiniIcon mini/netscape.xpm
 Style "Mozilla-bin"            Icon norm/netscape.xpm,         MiniIcon mini/netscape.xpm
 Style "Download"               Icon norm/folder.xpm,           MiniIcon mini/folder.xpm
 Style "Mail"                   Icon norm/mail.xpm,             MiniIcon mini/mail.xpm
