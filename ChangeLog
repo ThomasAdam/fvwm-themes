@@ -10,6 +10,15 @@
 	* themes/luthien/modules/main:FvwmButtons:
 	I had problems with swallowing xosview (not sure this solves this)
 
+	* themes/blackbox/modules/main:FvwmButtons-XX:
+	put it in the center by the same technique as in cde@
+
+	* themes/default/functions (FuncFvwmConsole):
+	use colorset 22, not 33 for FvwmConsole
+
+	* themes/blackbox/colors:
+	replaced several "too bright to be able to see anything" colors
+
 2000-11-11  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ConfigCenter:

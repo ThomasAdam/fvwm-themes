@@ -133,16 +133,16 @@ DestroyModuleConfig FvwmIdent: *
 *FvwmTheme: Colorset 30 fg #ffffff, bg #555d5d, Plain, NoShape
 
 # Administrations
-*FvwmTheme: Colorset 31 fg red, bg #555d5d, Plain, NoShape
+*FvwmTheme: Colorset 31 fg #a0f0f0, bg #555d5d, Plain, NoShape
 
 # Remote Terminals
-*FvwmTheme: Colorset 32 fg #555d5d, bg white, Plain, NoShape
+*FvwmTheme: Colorset 32 fg #f0f0a0, bg #555d5d, Plain, NoShape
 
 # "Viewer" Colorset
 *FvwmTheme: Colorset 33 fg grey20, bg grey90, Plain, NoShape
 
 # Small Text Input file or Hilighting some Items
-*FvwmTheme: Colorset 34 fg black, bg white, Plain, NoShape
+*FvwmTheme: Colorset 34 fg black, bg gray80, Plain, NoShape
 
 DestroyModuleConfig FvwmFormDefault: ItemColorset*
 *FvwmFormDefault: ItemColorset 34
@@ -151,7 +151,7 @@ DestroyModuleConfig FvwmFormDefault: ItemColorset*
 *FvwmTheme: Colorset 35 fg black, bg grey70, Plain, NoShape
 
 # Not in one of the above category (for Script and Form, ft-xres)
-*FvwmTheme: Colorset 36 fg white, bg black, Plain, NoShape
+*FvwmTheme: Colorset 36 fg white, bg #555d5d, Plain, NoShape
 
 DestroyModuleConfig FvwmScript: DefaultColorset*
 *FvwmScript: DefaultColorset 36

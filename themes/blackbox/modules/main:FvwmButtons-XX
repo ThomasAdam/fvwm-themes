@@ -12,7 +12,8 @@ AddToFunc    FuncFvwmButtons-XXPrev
 + I All (FvwmButtons-XX) Raise
 
 DestroyModuleConfig FvwmButtons-XX: *
-*FvwmButtons-XX: Geometry 700x18+99-0
+#*FvwmButtons-XX: Geometry 700x18+99-0
+PipeRead 'echo "*FvwmButtons-XX: Geometry 700x18+"`expr "(" $[vp.width] - 700 ")" / 2`"-0"'
 *FvwmButtons-XX: BoxSize fixed
 *FvwmButtons-XX: Columns 70
 *FvwmButtons-XX: Rows 18

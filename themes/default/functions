@@ -73,7 +73,7 @@ AddToFunc   FuncFvwmIconify
 
 DestroyFunc FuncFvwmConsole
 AddToFunc   FuncFvwmConsole
-+ I Module FvwmConsole -fg $[fg.cs33] -bg $[bg.cs33] $*
++ I Module FvwmConsole -fg $[fg.cs22] -bg $[bg.cs22] $*
 
 # ----------------------------------------------------------------------------
 # These functions probably need not be configurable (move to themes-rc?).
