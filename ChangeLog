@@ -1,5 +1,11 @@
 2002-06-19  migo  <migo@homemail.com>
 
+	* configure.in:
+	* NEWS:
+	increased version to 0.6.2 after setting a cvs tag version-0_6_1
+
+2002-06-19  migo  <migo@homemail.com>
+
 	* ANNOUNCE:
 	* NEWS:
 	* README:
