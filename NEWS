@@ -9,7 +9,7 @@ fvwm-themes-0.5.0 - 20010810
 * New component fonts@, may be used to control fonts using filter functions.
 * Added font variants for several euro-asian charsets in fonts@multichoice.
 * Components or variants not supported by the user's system are hidden.
-* Improved several themes, especially Default and OSX.
+* Improvements in several themes, especially Default and OSX.
 
 fvwm-themes-0.4.2 - 20010329
 
