@@ -7,7 +7,7 @@ FT_DATA_SUBDIRS = themes images sounds
 FT_MODULE_SUBDIRS = 
 EXTRA_DIST = images.tar.gz sounds.tar.gz
 
-EXTRA_THEMES=@EXTRA_THEMES@
+EXTRA_THEMES = @EXTRA_THEMES@
 
 install-data-local:
 	FT_DATADIR=@FT_DATADIR@
@@ -131,7 +131,7 @@ dist4: dist3
 #    make release=1 rpm-dist
 #    make rpm-this
 #    make version=2.3.22 release=2 rpm-this
-#    make rpm-dist cparams='--enable-kanji --quiet' mparams='CFLAGS="-O2 -g"'
+#    make rpm-dist cparams='--enable-gnome --quiet' mparams='CFLAGS="-O2 -g"'
 
 rpm-dist: dist rpm-this
 

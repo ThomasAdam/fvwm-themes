@@ -1,3 +1,9 @@
+2001-06-20  migo  <migo@homemail.com>
+
+	* configure.in:
+	* Makefile.am:
+	fixed "make dist3" and similar
+
 2001-06-16  migo  <migo@homemail.com>
 
 	* themes/unsafe/background:
