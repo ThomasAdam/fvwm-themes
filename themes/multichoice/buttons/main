@@ -31,6 +31,8 @@ BrC Style "*" Button BrN
 
 include(CompRoot/faces/FaceFile)
 
+ifdef({{HaveMiniIcon}}, BoC ButtonStyle BoN {{MiniIcon}}, {{}})
+
 ButtonStyle All - Clear
 BmC ButtonStyle BmN - MWMDecorMax
 BoC ButtonStyle BoN - MWMDecorMenu
