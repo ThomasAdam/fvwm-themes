@@ -118,10 +118,10 @@ if test -z "$M4"; then
 fi
 
 # Solaris is not shipped with xmessage...
-AC_PATH_PROG(XMESSAGE, xmessadge)
+AC_PATH_PROG(XMESSAGE, xmessage)
 if test -z "$XMESSAGE"; then
 	additional_msg=""
-	if test "`uname`" != "SunOS"; then additional_msg="
+	if test "`uname`" = "SunOS"; then additional_msg="
 	You may find the binary at http://sunfreeware.com/ ."
 	fi
 	AC_MSG_WARN([
