@@ -7,6 +7,9 @@
 	* themes/default/functions:
 	use ThisWindow
 
+	* themes/default/menus:
+	call man fvwm
+
 2002-06-02  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings.cfg: 

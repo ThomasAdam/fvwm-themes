@@ -67,7 +67,7 @@ AddToMenu   MenuFvwmWebPages
 
 DestroyMenu MenuFvwmManPages
 AddToMenu   MenuFvwmManPages "FVWM Man Pages" Title
-+ "%menu/help.xpm%fvwm2"               FuncFvwmViewManPage fvwm2
++ "%menu/help.xpm%fvwm"                FuncFvwmViewManPage fvwm
 + "%menu/help.xpm%FvwmAnimate"         FuncFvwmViewManPage FvwmAnimate
 + "%menu/help.xpm%FvwmAuto"            FuncFvwmViewManPage FvwmAuto
 + "%menu/help.xpm%FvwmBacker"          FuncFvwmViewManPage FvwmBacker
