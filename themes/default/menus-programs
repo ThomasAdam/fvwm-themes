@@ -432,6 +432,8 @@ AddToMenu   MenuFvwmGamesPenguins "Ace of Penguins" Title
 
 DestroyMenu MenuFvwmGamesOther
 AddToMenu   MenuFvwmGamesOther "Other" Title
++ "GGZ (GTK+ Client)%menu/game.xpm%"	Exec exec ggz-gtk
++ "GGZ (KDE Client)%menu/game.xpm%"	Exec exec kggz
 + "Maelstrom%menu/game-action.xpm%"	Exec exec Maelstrom -gamma 5
 + "Quake%menu/game-action.xpm%" 	Exec cd /usr/local/games/quake/ ; exec ./stquake
 + "Quake2%menu/game-action.xpm%" 	Exec cd /usr/local/games/quake2/ ; exec ./quake2 +set vid_ref softx
