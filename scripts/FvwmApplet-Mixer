@@ -13,14 +13,11 @@ Init
   If $MainColorset <> {} Then
   Begin
    ChangeColorset 0 $MainColorset
-   ChangeColorset 10 $MainColorset
   End
 
   Set $Colorset=(GetScriptArgument 2)
   If $Colorset <> {} Then
   Begin
-   ChangeColorset 5 $Colorset
-   ChangeColorset 15 $Colorset
    ChangeColorset 11 $Colorset
    ChangeColorset 2 $Colorset
    ChangeColorset 20 $Colorset
@@ -57,13 +54,10 @@ Init
   End
   Else
   Begin
-    HideWidget 10
     HideWidget 11
     HideWidget 2
     HideWidget 20    
     HideWidget 3
-    HideWidget 5
-    HideWidget 15
   End
   ChangeTitle 2 $VAL
   ChangeValue 11 $VAL
@@ -106,26 +100,10 @@ PeriodicTasks
   End
 End
 
-Widget 10
-Property
- Size 54 44
- Position 5 2
- ForeColor	{black}
- BackColor	{grey85}
- ShadowColor	{grey55}
- HilightColor	{grey100}
- Type Rectangle
-Main
- Case message of
-  SingleClic :
-  Begin
-  End
-End
-
 Widget 11
 Property
  Size 10 10
- Position 10 8
+ Position 7 5
  Value 50
  MaxValue 100
  MinValue 0
@@ -147,7 +125,7 @@ End
 
 Widget 2
 Property
- Position 34 29
+ Position 34 35
  Size 20 10
  Font 6x10
  Type ItemDraw
@@ -164,27 +142,10 @@ Main
   End
 End
 
-Widget 20
-Property
- Position 36 8
- Size 10 10
- Type ItemDraw
- ForeColor	{black}
- BackColor	{grey85}
- ShadowColor	{grey55}
- HilightColor	{grey100}
- Icon 16x16/sound.xpm
-Main
- Case message of
-  SingleClic :
-  Begin
-  End
-End
-
 Widget 3
 Property
- Position 17 50
- Size 45 10
+ Position 5 50
+ Size 54 10
  Type ItemDraw
  ForeColor	{black}
  BackColor	{grey85}
@@ -199,18 +160,20 @@ Main
   End
 End
 
-Widget 5
+Widget 20
 Property
- Position -7 50
- Size 0 0
- Type RadioButton
- Value 1
- Flags NoReliefString
- Title {>}
+ Position 32 5
+ Size 10 10
+ Type PushButton
+ ForeColor	{black}
+ BackColor	{grey85}
+ ShadowColor	{grey55}
+ HilightColor	{grey100}
+ Icon 16x16/sound.xpm
 Main
- Case message of
-  SingleClic :
-   Begin
+Case message of
+ SingleClic :
+ Begin
     If $COPT == {v} Then
     Begin
       ChangeTitle 3 $CD
@@ -309,124 +272,10 @@ Main
     End
     ChangeTitle 2 $VAL
     ChangeValue 11 $VAL
-   End
+ End
 End
 
-
-Widget 15
-Property
- Position -16 50
- Size 0 0
- Type RadioButton
- Value 1
- Flags NoReliefString
- Title {<}
-Main
- Case message of
-  SingleClic :
-   Begin
-    If $COPT == {v} Then
-    Begin
-      ChangeTitle 3 $LINE2
-      Set $COPT = {2}
-      ChangeIcon 20 16x16/sound.xpm
-    End
-    Else
-    Begin
-     If $COPT == {2} Then
-     Begin
-       ChangeTitle 3 $REC
-       Set $COPT = {r}
-       ChangeIcon 20 16x16/sound.xpm
-     End
-     Else
-     Begin
-       If $COPT == {r} Then
-       Begin
-         ChangeTitle 3 $MIC
-         Set $COPT = {m}
-         ChangeIcon 20 16x16/sound.xpm
-       End
-       Else
-       Begin
-         If $COPT == {m} Then
-         Begin
-           ChangeTitle 3 $SPEAKER
-           Set $COPT = {p}
-           ChangeIcon 20 16x16/sound.xpm
-         End
-         Else
-         Begin
-           If $COPT == {p} Then
-           Begin
-             ChangeTitle 3 $PCM
-             Set $COPT = {w}
-             ChangeIcon 20 16x16/music.xpm
-           End
-           Else
-           Begin
-             If $COPT == {w} Then
-             Begin
-               ChangeTitle 3 $LINE
-               Set $COPT = {l}
-               ChangeIcon 20 16x16/sound.xpm
-             End
-             Else
-             Begin
-               If $COPT == {l} Then
-               Begin
-                 ChangeTitle 3 $SYNT
-                 Set $COPT = {s}
-                 ChangeIcon 20 16x16/sound.xpm
-               End
-               Else
-               Begin
-                 If $COPT == {s} Then
-                 Begin
-                   ChangeTitle 3 $CD
-                   Set $COPT = {c}
-                   ChangeIcon 20 16x16/cd-player.xpm
-                 End
-                 Else
-                 Begin
-                   If $COPT == {c} Then
-                   Begin
-                     ChangeTitle 3 $VOLUME
-                     Set $COPT = {v}
-                     ChangeIcon 20 16x16/sound.xpm
-                   End
-                 End
-               End
-             End
-           End
-         End
-       End
-     End
-    End
-    Set $GET = {exec aumix -} $COPT {q}	
-    Set $VAL = (GetOutput $GET 1 3)
-    # Supression de la virgule
-    Set $TMP = (StrCopy $VAL 2 2)
-    If $TMP=={,} Then
-      Set $VAL = (StrCopy $VAL 1 1)
-    Else
-    Begin
-      Set $TMP = (StrCopy $VAL 3 3)
-      If $TMP=={,} Then
-        Set $VAL = (StrCopy $VAL 1 2)
-      Else
-        Begin
-        Set $TMP = (StrCopy $VAL 4 4)
-        If $TMP=={,} Then
-          Set $VAL = (StrCopy $VAL 1 3)
-        End
-    End
-    ChangeTitle 2 $VAL
-    ChangeValue 11 $VAL
-   End
-End
-
-# ---------------------
+# -----------------------------------------------------------------------------
 
 Widget 96
 Property
