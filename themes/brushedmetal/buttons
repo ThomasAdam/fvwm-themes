@@ -55,6 +55,9 @@ MouseXX 3 2	38	M	Menu MenuFvwmWindowOps
 
 DestroyFunc FuncFvwmStartWindowButtons
 AddToFunc   FuncFvwmStartWindowButtons
+# This is usually not in this component, but these buttons can't be non-flat
++ I TitleStyle -- flat
++ I ButtonStyle All -- flat
 
 DestroyFunc FuncFvwmStopWindowButtons
 AddToFunc   FuncFvwmStopWindowButtons
