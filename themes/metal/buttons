@@ -18,6 +18,7 @@ AddButtonStyle 4 ToggledInactive   Pixmap button/unmaximize-inactive.xpm   -- Le
 
 ButtonStyle All - Clear
 ButtonStyle 4 - MwmDecorMax
+ButtonStyle 6 - MwmDecorMin
 
 TitleStyle	Height 20
 
