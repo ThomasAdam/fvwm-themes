@@ -1833,8 +1833,7 @@ sub getMenusAndHooksAndReadsRc ($) {
 	$menu .= qq(+ "Refresh with no &cache%menu/restart.xpm%" FuncFvwmThemesFreshUncached\n);
 	$menu .= $minimalSwitch;
 	$menu .= qq(+ "" Nop\n);
-	#$menu .= qq(+ "Reset all to the &default%menu/restart.xpm%" FuncFvwmThemesReset\n);
-	$menu .= qq(+ "Reset all to the &default%menu/restart.xpm%" FvwmScript /home/olivier/fvwm-themes/scripts/FvwmScript-Confirm --line1 "Themes Management" --line2 "Or you sure that you what to reset all to the default?" --line3 "__________" --ok Yes --cancel No --command FuncFvwmThemesReset\n);
+	$menu .= qq(+ "Reset all to the &default%menu/restart.xpm%" FvwmScript FvwmScript-Confirm --line1 "Themes Management" --line2 "Are you sure you want to reset all changes to the default?" --line3 "__________" --ok Yes --cancel No --command FuncFvwmThemesReset\n);
 	$menu .= "\n";
 
 	# add own theme menus
