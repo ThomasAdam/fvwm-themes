@@ -1,7 +1,8 @@
 fvwm-themes-0.3.20 - not released yet
 
-* The FvwmScript-ThemesCenter can manage FVWM sessions and "settings" and 
-  can speak french
+* Themes Center can manage FVWM Themes' sessions and "settings"
+* Themes Center supports french and russian locales
+* added modules@luthien
 
 fvwm-themes-0.3.19 - 20000917
 

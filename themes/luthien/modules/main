@@ -1,0 +1,57 @@
+# 1. Icon related configuration
+# 2. Switch functions
+# 3. Theme module menus
+# 4. Modules configuration
+
+# ----------------------------------------------------------------------------
+# Icon related configuration
+
+Style "*"	IconBox 10 16 -130 700, IconGrid 64 64, IconFill left top
+Style "*"	SlipperyIcon, IconTitle
+
+# ----------------------------------------------------------------------------
+# Switch functions
+
+DestroyFunc FuncFvwmStartThemeModules
+AddToFunc   FuncFvwmStartThemeModules
++ I FuncFvwmStartNormalIcons
++ I FvwmButtons FvwmButtons-Bar
+
+DestroyFunc FuncFvwmStopThemeModules
+AddToFunc   FuncFvwmStopThemeModules
++ I KillModule FvwmButtons FvwmButtons-Bar
++ I KillModule FvwmPager FvwmPager-Single
++ I KillModule FvwmPager FvwmPager-Desker
++ I KillModule FvwmIconMan
++ I KillModule FvwmWinList
++ I DestroyModuleConfig FvwmButtons-Bar: *
++ I DestroyModuleConfig FvwmPager-Single: *
++ I DestroyModuleConfig FvwmPager-Desker: *
++ I DestroyModuleConfig FvwmIconMan: *
++ I DestroyModuleConfig FvwmWinList: *
+
+# ----------------------------------------------------------------------------
+# Theme module menus
+
+DestroyMenu MenuFvwmStartThemeModules
+AddToMenu   MenuFvwmStartThemeModules "Default Modules" Title
++ "&Buttons"        FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Bar
++ "&Pager"          FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Single
++ "" Nop
++ "No normal icons" Style * NoIcon  # needed to use NoIcon modules
++ "Normal icons"    Read themes/default/settings/iconstyles/style-icon-miniicon
++ "&WinList"        FuncFvwmRestartModule FvwmWinList
+
+DestroyMenu MenuFvwmStopThemeModules
+AddToMenu   MenuFvwmStopThemeModules "Default Modules" Title
++ "Stop &Buttons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Bar
++ "Stop &Pager"   FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Single
++ "Stop &WinList" KillModule FvwmWinList
+
+# ----------------------------------------------------------------------------
+# Modules configuration
+
+Read themes/luthien/modules/FvwmButtons
+Read themes/luthien/modules/FvwmIconMan
+Read themes/luthien/modules/FvwmPager
+Read themes/luthien/modules/FvwmWinList

@@ -1,4 +1,15 @@
-2000-09-31  olicha  <olivier.chapuis@free.fr>
+2000-10-01  migo  <migo@homemail.com>
+
+	* themes/luthien/modules.cfg:
+	* themes/luthien/modules/{main,FvwmWinList}:
+	* themes/luthien/modules/{FvwmButtons,FvwmIconMan,FvwmPager}:
+	* themes/luthien/modules/normal-icons/{yes,no}:
+	* themes/luthien/colors/main:
+	Added modules@luthien. Not perfect. I don't know what to do with
+	ColourTable. We probably should allocate colorset 23 for transparent
+	module colorset and 29 for temporary (was 23).
+
+2000-10-01  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/FvwmScript-ThemesCenter:
 	* bin/fvwm-themes-config.in:

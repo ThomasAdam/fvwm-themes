@@ -94,7 +94,9 @@ MenuStyle * ActiveFore, HilightBack
 
 # default for modules
 *FvwmTheme: Colorset 10 fg CDE_COLOR2_FG, \
-	bg CDE_COLOR2_BG, Plain, NoShape
+	bg CDE_COLOR2_BG, \
+	VGradient 100 CDE_COLOR6_BG \
+	CDE_COLOR2_BG, NoShape
 
 # default hilight
 *FvwmTheme: Colorset 11 fg CDE_COLOR8_FG, \
@@ -160,6 +162,11 @@ DestroyModuleConfig FvwmIdent: *
 # FvwmConsole
 *FvwmTheme: Colorset 22 fg CDE_COLOR6_FG, \
 	bg CDE_COLOR6_BG, Plain, NoShape
+
+*FvwmTheme: Colorset 24 fg CDE_COLOR2_FG, \
+	bg CDE_COLOR2_BG, Transparent, NoShape
+# We should not kill FvwmTheme to reuse colors
+#*FvwmTheme: Colorset 24 fg $[fg.cs10], bg $[bg.cs10], Transparent, NoShape
 
 # ----------------------------------------------------------------------------
 # III. Applications Colorsets
