@@ -1,0 +1,44 @@
+#!/usr/bin/perl
+
+# This module is intended to contol RedmondXP panel by changing
+# its configuration dynamically.
+
+use strict;
+use lib `fvwm-config -p | tr -d '\n'`;
+use FVWM::Module;
+
+# configuration variables
+my $pageButtonIndexes = [ 9, 10, 12, 13 ];
+my $currPageNum = -1;
+
+my $module = new FVWM::Module(
+	Name => "FvwmThemesPanelManager",
+	Mask => M_NEW_PAGE,
+);
+
+$module->addHandler(M_NEW_PAGE, sub {
+	my ($self, $type, @args) = @_;
+	my ($x0, $y0, $desk, $width, $height) = @args;
+
+	my $page_nx = int($x0 / $width);
+	my $page_ny = int($y0 / $height);
+	my $pageNum = $page_nx + $page_ny * 2;
+	return if $pageNum == $currPageNum;
+
+	if ($currPageNum != -1) {
+		my $currPageButtonIndex = $pageButtonIndexes->[$currPageNum];
+		$module->send("SendToModule FvwmButtons-Panel Title "
+			. "$currPageButtonIndex " . ($currPageNum + 1));
+	}
+
+	$pageNum = -1 if $pageNum < 0 || $pageNum >= 4;
+	$currPageNum = $pageNum;
+
+	if ($pageNum != -1) {
+		my $pageButtonIndex = $pageButtonIndexes->[$pageNum];
+		$module->send("SendToModule FvwmButtons-Panel Title "
+			. "$pageButtonIndex " . ($pageNum + 1) . "*");
+	}
+});
+
+$module->eventLoop;
