@@ -5,7 +5,7 @@ FVWM Themes Frequently Asked Questions and Answers.
 1. About FVWM Themes
 
   1.1  What is theme, component, variant, option in our terminology?
-  1.2  Does fvwm-themes overwrites my .fvwm2rc? If no, how does it work?
+  1.2  Does fvwm-themes overwrite my .fvwm2rc? If no, how does it work?
   1.3  Why theme switching takes some time and it is even increased?!
   1.4  On my system switching themes crashes FVWM! What to do?
   1.5  How much configurable is fvwm-themes?
@@ -63,9 +63,9 @@ button of the Themes Center.
 ==============================================================================
 
 ------------------------------------------------------------------------------
-1.2  Does fvwm-themes overwrites my .fvwm2rc? If no, how does it work?
+1.2  Does fvwm-themes overwrite my .fvwm2rc? If no, how does it work?
 
-A: No, it does not overwrites your .fvwm2rc. The only files and directories,
+A: No, it does not overwrite your .fvwm2rc. The only files and directories,
 which fvwm-themes manages are ~/.fvwm/themes* ones, more precisely:
 
   ~/.fvwm/themes/ - the user themes as opposed to the site themes
