@@ -65,6 +65,7 @@ Begin
 
     Set $SelFont = {-adobe-helvetica-bold-r-*-*-12-*}
     Set $ShadeFont = {-adobe-helvetica-medium-r-*-*-12-*}
+    Set $FixedFont = {fixed}
     Set $nonDefaultFont = 0
 
     #Set $Lang = {en}

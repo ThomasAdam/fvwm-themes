@@ -1,3 +1,8 @@
+2001-08-07  olicha  <olivier.chapuis@free.fr>
+
+	* scripts/FvwmScript-ThemesCenter:
+	fixed "can't get fonts" warning messages
+	
 2001-08-05  migo  <migo@homemail.com>
 
 	* doc/colorsets:
