@@ -8,6 +8,11 @@ DestroyFunc FuncFvwmStopFvwmEvent-Sound
 AddToFunc   FuncFvwmStopFvwmEvent-Sound
 + I KillModule FvwmEvent FvwmEvent-Sound
 
-AddToMenu   MenuFvwmStartRegularModules "Sound Effect (artsplay)%menu/sound.xpm%" \
+DestroyFunc FuncFvwmAddToMenusStartSoundEffect
+AddToFunc   FuncFvwmAddToMenusStartSoundEffect
++ I + "Sound Effect (artsplay)%menu/sound.xpm%" \
 	FuncFvwmRestartModuleByAlias FvwmEvent FvwmEvent-Sound
 
+DestroyFunc FuncFvwmAddToMenusStopSoundEffect
+AddToFunc   FuncFvwmAddToMenusStopSoundEffect
++ I + "Stop Sound Effect%menu/quit.xpm%" killmodule FvwmEvent FvwmEvent-Sound

@@ -3,5 +3,6 @@ AddToMenu MenuFvwmPrograms "" Nop
 
 CopyMenuStyle "*" MenuStyleFvwmKde2System
 
-AddToMenu kde-sys DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop kde-sys --enable-tran-mini-icons --tran-mini-icons-path $FT_DATADIR/images/mini-kde2 --utf8 --menu-style MenuStyleFvwmKde2System'
+AddToMenu kde-sys DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop kde-sys --enable-tran-mini-icons --tran-mini-icons-path $FT_DATADIR/images/mini-kde2 --utf8 --menu-style MenuStyleFvwmKde2System --merge-user-menu'
+
 

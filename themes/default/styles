@@ -18,6 +18,8 @@ Style "FvwmScript-IconBrowser"	StaysOnTop, NoHandles
 Style "FvwmScript-Browser"	StaysOnTop, NoHandles
 # Applets are usually swallowed, so disable ActivePlacement if any.
 Style "FvwmApplet*"	RandomPlacement
+# 
+Style FvwmButtons-ColourTable HandleWidth 2, Title, TitleAtTop
 
 Style "XNoteMessage"    NoTitle, Sticky, StaysOnTop, UsePPosition, \
 	BorderWidth 0, NoHandles, WindowListSkip

@@ -1,3 +1,5 @@
+FuncFvwmDecorBackground
+
 Style "*" Button 1, Button 2, Button 3, Button 5
 Style "*" FvwmButtons  # button relief does not follow the state
 
@@ -50,6 +52,32 @@ Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Delete on click^nDestroy on double click"
 Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu or Delete on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
 Mouse 0 	3	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^nMouse 3 - Iconify toggle resource group"
 Mouse 0 	5	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tfully on click^n^tmenu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
+
+DestroyFunc FuncFvwmUnReloadDecor
+AddToFunc   FuncFvwmUnReloadDecor
+
+DestroyFunc FuncFvwmReloadDecor
+AddToFunc   FuncFvwmReloadDecor
++ I FuncFvwmDecorBackground
++ I AddButtonStyle 1 \
+	ActiveUp   (Pixmap button/close-activeup.xpm   -- flat) \
+	ActiveDown (Pixmap button/close-activedown.xpm -- flat) \
+	Inactive   (Pixmap button/inactive.xpm   -- flat)
++ I AddButtonStyle 2 \
+	ActiveUp   (Pixmap button/options-activeup.xpm   -- flat) \
+	ActiveDown (Pixmap button/options-activedown.xpm -- flat) \
+	Inactive   (Pixmap button/inactive.xpm   -- flat)
++ I AddButtonStyle 3 \
+	ActiveUp   (Pixmap button/iconify-activeup.xpm   -- flat) \
+	ActiveDown (Pixmap button/iconify-activedown.xpm -- flat) \
+	Inactive   (Pixmap button/inactive.xpm   -- flat)
++ I AddButtonStyle 5 \
+	ActiveUp   (Pixmap button/maximize-activeup.xpm   -- flat) \
+	ActiveDown (Pixmap button/maximize-activedown.xpm -- flat) \
+	Inactive   (Pixmap button/inactive.xpm   -- flat)
+
+DestroyFunc FuncFvwmOverRideWindowLook
+AddToFunc   FuncFvwmOverRideWindowLook
 
 DestroyFunc FuncFvwmStartWindowButtons
 AddToFunc   FuncFvwmStartWindowButtons

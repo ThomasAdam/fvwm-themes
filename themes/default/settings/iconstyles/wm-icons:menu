@@ -3,13 +3,16 @@
 # wm-icons-config must be in your path or put full path in Exec below.
 #
 
-# Needs to be read after menus!
-# On the other hand iconstyles/style-icon-miniicon should be read before menus.
-# Also, MenuFvwmIconSets is not destroyed after leaving this component...
+DestroyFunc  FuncFvwmLoadWMIcons
+AddToFunc    FuncFvwmLoadWMIcons
 
-AddToFunc FuncFvwmStartAllHooks
-+ I AddToMenu MenuFvwmConfiguration
+DestroyFunc  FuncFvwmAddToMenusWMIcons
+AddToFunc    FuncFvwmAddToMenusWMIcons
 + I + "%menu/themes.xpm%wm-icons Aliases" Popup MenuFvwmIconSets
+
+DestroyFunc  FuncFvwmUnLoadWMIcons
+AddToFunc    FuncFvwmUnLoadWMIcons
++ I DestroyMenu MenuFvwmIconSets
 
 DestroyMenu MenuFvwmIconSets
 AddToMenu MenuFvwmIconSets "Change Icon Set" Title

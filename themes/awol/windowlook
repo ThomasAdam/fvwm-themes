@@ -14,3 +14,14 @@ TitleStyle	ActiveDown -- Sunk
 TitleStyle	Inactive   -- Raised
 
 ButtonStyle	All -- Raised
+
+AddToFunc   FuncFvwmReloadDecor
++ I FuncFvwmSetFont-WindowTitle * -adobe-times-*-*-*-*-18-*-*-*-*-*-*-*
++ I FuncFvwmSetFont-IconTitle   * -adobe-times-*-*-*-*-14-*-*-*-*-*-*-*
++ I BorderStyle	Active   -- !HiddenHandles !NoInset
++ I BorderStyle	Inactive --  HiddenHandles  NoInset
++ I TitleStyle	ActiveUp   -- Raised
++ I TitleStyle	ActiveDown -- Sunk
++ I TitleStyle	Inactive   -- Raised
++ I ButtonStyle	All -- Raised
++ I FuncFvwmOverRideWindowLook

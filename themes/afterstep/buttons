@@ -1,3 +1,5 @@
+FuncFvwmDecorBackground
+
 Style "*" Button 1, Button 2, Button 3, Button 4
 Style "*" FvwmButtons  # button relief does not follow the state
 
@@ -24,6 +26,21 @@ Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Circulate to the next application"
 Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1:^n^tDelete on click^n^tDestroy on double click^nMouse 3 - Shade"
 Mouse 0 	3	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu or Delete on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
 Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^nMouse 3 - Maximize fully on click^n^tMaximize menu on double click^n^tgrow with shift"
+
+DestroyFunc FuncFvwmUnReloadDecor
+AddToFunc   FuncFvwmUnReloadDecor
+
+DestroyFunc FuncFvwmReloadDecor
+AddToFunc   FuncFvwmReloadDecor
++ I FuncFvwmDecorBackground
++ I AddButtonStyle 1 Pixmap button/as-window-switch.xpm
++ I AddButtonStyle 2 Pixmap button/as-window-close.xpm
++ I AddButtonStyle 3 Pixmap button/as-window-options.xpm
++ I AddButtonStyle 4 Pixmap button/as-window-iconify.xpm
++ I ButtonStyle All - Clear
+
+DestroyFunc FuncFvwmOverRideWindowLook
+AddToFunc   FuncFvwmOverRideWindowLook
 
 DestroyFunc FuncFvwmStartWindowButtons
 AddToFunc   FuncFvwmStartWindowButtons

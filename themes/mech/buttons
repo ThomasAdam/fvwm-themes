@@ -1,3 +1,5 @@
+FuncFvwmDecorBackground
+
 Style "*" Button 1, Button 2, Button 3, Button 4, Button 5, Button 6
 Style "*" MwmButtons  # button follows the state
 
@@ -54,6 +56,45 @@ Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Iconify"
 Mouse 0 	5	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu, or WindowShade on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
 # simulate title bindings on two edge buttons:
 FuncFvwmSetTitleBindings 36
+
+DestroyFunc FuncFvwmUnReloadDecor
+AddToFunc   FuncFvwmUnReloadDecor
+
+DestroyFunc FuncFvwmReloadDecor
+AddToFunc   FuncFvwmReloadDecor
++ I FuncFvwmDecorBackground
++ I ButtonStyle 1 \
+	ActiveUp   (Pixmap button/close-activeup.xpm) \
+	ActiveDown (Pixmap button/close-activedown.xpm) \
+	Inactive   (Pixmap button/close-inactive.xpm)
++ I ButtonStyle 2 \
+	ActiveUp   (Pixmap button/maximize-activeup.xpm) \
+	ActiveDown (Pixmap button/maximize-activedown.xpm) \
+	Inactive   (Pixmap button/maximize-inactive.xpm) \
+	ToggledActiveUp   (Pixmap button/maximize-activedown.xpm) \
+	ToggledActiveDown (Pixmap button/maximize-activeup.xpm) \
+	ToggledInactive   (Pixmap button/maximize-inactive.xpm)
++ I ButtonStyle 3 \
+	ActiveUp   (Pixmap button/titleleft-active.xpm) \
+	ActiveDown (Pixmap button/titleleft-active.xpm) \
+	Inactive   (Pixmap button/titleleft-inactive.xpm)
++ I ButtonStyle 4 \
+	ActiveUp   (Pixmap button/minimize-activeup.xpm) \
+	ActiveDown (Pixmap button/minimize-activedown.xpm) \
+	Inactive   (Pixmap button/minimize-inactive.xpm)
++ I ButtonStyle 5 \
+	ActiveUp   (Pixmap button/options-activeup.xpm) \
+	ActiveDown (Pixmap button/options-activedown.xpm) \
+	Inactive   (Pixmap button/options-inactive.xpm)
++ I ButtonStyle 6 \
+	ActiveUp   (Pixmap button/titleright-active.xpm) \
+	ActiveDown (Pixmap button/titleright-active.xpm) \
+	Inactive   (Pixmap button/titleright-inactive.xpm)
+
+DestroyFunc FuncFvwmOverRideWindowLook
+AddToFunc   FuncFvwmOverRideWindowLook
++ I TitleStyle -- flat
++ I ButtonStyle All -- flat
 
 DestroyFunc FuncFvwmStartWindowButtons
 AddToFunc   FuncFvwmStartWindowButtons

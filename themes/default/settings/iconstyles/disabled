@@ -1,3 +1,6 @@
 # This does not work!
 Style "*" Icon -
 Style "*" MiniIcon -
+
+DestroyFunc  FuncFvwmAddToMenusWMIcons
+AddToFunc    FuncFvwmAddToMenusWMIcons

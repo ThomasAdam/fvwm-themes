@@ -19,6 +19,18 @@ AddToFunc   FuncFvwmStartThemeModules
 + I FuncFvwmStartNormalIcons
 + I FvwmButtons FvwmButtons-Bar
 
+DestroyFunc FuncFvwmReloadThemeModules
+AddToFunc   FuncFvwmReloadThemeModules
++ I Read $./main:styles
++ I FuncFvwmStartNormalIcons
++ I FvwmButtons FvwmButtons-Bar
+
+DestroyFunc FuncFvwmReloadColorsModules
+AddToFunc   FuncFvwmReloadColorsModules
++ I SendToModule FvwmTheme Colorset 23 fg $[fg.cs10], bg $[bg.cs10], \
+	Transparent, NoShape
++ I FvwmButtons FvwmButtons-Bar
+
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
 + I KillModule FvwmButtons FvwmButtons-Bar
@@ -38,6 +50,13 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmStartBarXosview
 + I FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmDestroyModulesThemeStyle
+
+DestroyFunc FuncFvwmUnReloadColorsModules
+AddToFunc   FuncFvwmUnReloadColorsModules
++ I KillModule FvwmButtons FvwmButtons-Bar
+
+DestroyFunc FuncFvwmUnReloadThemeModules
+AddToFunc   FuncFvwmUnReloadThemeModules
 
 # ----------------------------------------------------------------------------
 # Theme module menus

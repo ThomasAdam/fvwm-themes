@@ -1,3 +1,65 @@
+2001-08-28 olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-config.in:
+	Implement "affects-*" ft cfg rules (removed the minimal switching
+	hardcoded code). *depends is used in place of "affects-*" but
+	this will be changed as the good name will be chosen ...
+	Remove the FuncFvwmThemesMinimal* functions as now themes-rc-3 is
+	always needed
+
+	* themes/default/menus:
+	* themes/{luthien,cde}/colors/main:
+	* themes/default/styles:
+	* themes/default/bindings:
+	* themes/default/functions:
+	Make "FuncFvwmShowColourTable" global (not only for luthien and
+	cde).
+
+	* themes/default/globallook
+	* themes/*/{buttons,windowlook}:
+	Move FuncFvwmDecorBackground call from globallook to buttons
+	New function FuncFvwm(Un)ReloadDecor and FuncFvwmOverRideWindowLook
+	for decor reloading
+
+	* themes/default/settings/autoraise/modules:
+	* themes/default/settings/iconstyles/wm-icons:menu:
+	* themes/default/settings/ewmh/*:
+	* themes/default/settings/sound-player/*:
+	* themes/default/menus:
+	Reload implementation. Modules menu entries are now added via
+	functions called in menus and defined in the components.
+	
+	* themes/*/modules.cfg:
+	* themes/*/modules/main:
+	* themes/*/modules/*:
+	New functions FuncFvwm(Un)ReloadThemeModules and
+	FuncFvwm(Un)ReloadColorsModules for reloading modules themes
+
+	* themes/default/themes.cfg:
+	* themes/default/setings.cfg:
+	Activate all the above stuff
+
+	* multichoice/fonts.cfg:
+	Some ad mono renaming
+
+	* themes/default/settings/kde/kde2-system-menu/*
+	The kde user menu is merged with the system menu
+
+	* themes/brushedmetal/buttons
+	Override colors title decor (not the border decor) with brushedmetal
+	colors-decor.
+	Note: this is experimental, but *I* think this is a good idea. We
+	may do the same thing with nanogui and mech
+
+	* themes/migo/modules/main:
+	Moved the wm-icons bar aliases menu into the modules themes
+	menu
+
+	* bin/fvwm-themes-config.in:
+	Fixed back index in "hidden test" in applyThemeComponentMemory
+	Note: This fix a "big" bug in 5.0 ...
+	Fixed expend-rc (more or less handle $./)
+	
 2001-08-27  migo  <migo@homemail.com>
 
 	* themes/default/settings.cfg:

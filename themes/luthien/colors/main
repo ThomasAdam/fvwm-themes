@@ -146,17 +146,18 @@ AddToFunc   FuncFvwmDecorBackground
 
 DestroyFunc FuncFvwmStartColors
 AddToFunc   FuncFvwmStartColors
-+ I AddToMenu MenuFvwmConfiguration
-+ I + "Show Current Palette  Shift-Ctrl-F9%menu/colors.xpm%" FvwmButtons FvwmButtons-ColourTable
-+ I Style FvwmButtons-ColourTable HandleWidth 2, Title, TitleAtTop
-+ I Key F9 A SC Module FvwmButtons FvwmButtons-ColourTable
++ I DestroyFunc FuncFvwmShowColourTable
++ I AddToFunc   FuncFvwmShowColourTable
++ I + I FvwmButtons FvwmButtons-ColourTable
 
 DestroyFunc FuncFvwmStopColors
 AddToFunc   FuncFvwmStopColors
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-ColourTable
 + I DestroyModuleConfig FvwmButtons-ColourTable: *
-+ I DestroyStyle FvwmButtons-ColourTable
-+ I Key F9 A SC -
++ I DestroyFunc FuncFvwmToggleColorsFile
++ I DestroyFunc FuncFvwmShowColourTable
++ I AddToFunc   FuncFvwmShowColourTable
++ I + I FuncFvwmNoColourTable
 
 DestroyFunc FuncFvwmToggleColorsFile
 AddToFunc   FuncFvwmToggleColorsFile

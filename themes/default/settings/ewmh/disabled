@@ -1,13 +1,6 @@
 #
-DestroyFunc FuncFvwmReloadEWMH
-AddToFunc   FuncFvwmReloadEWMH
+DestroyFunc FuncFvwmAddToMenusStartEWMH
+AddToFunc   FuncFvwmAddToMenusStartEWMH
 
-DestroyFunc FuncFvwmPreReloadEWMH
-AddToFunc   FuncFvwmPreReloadEWMH
-
-DestroyFunc FuncFvwmLoadEWMH
-AddToFunc   FuncFvwmLoadEWMH
-
-DestroyFunc FuncFvwmUnLoadEWMH
-AddToFunc   FuncFvwmUnLoadEWMH
-
+DestroyFunc FuncFvwmAddToMenusStopEWMH
+AddToFunc   FuncFvwmAddToMenusStopEWMH

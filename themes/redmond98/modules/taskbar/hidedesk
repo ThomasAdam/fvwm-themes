@@ -1,5 +1,5 @@
 DestroyFunc FuncFvwmStartChosenTaskBar
-+ I AddToFunc   FuncFvwmStartChosenTaskBar
+AddToFunc   FuncFvwmStartChosenTaskBar
 + I *FvwmTaskBar: DeskOnly 
 + I *FvwmTaskBar: AutoHide
 + I Module FvwmTaskBar

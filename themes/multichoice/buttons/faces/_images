@@ -37,3 +37,37 @@ BrC AddButtonStyle BrN \
 BrC	ActiveUp   (Pixmap auto-button/titleright-activeup.xpm   -- flat) \
 BrC	ActiveDown (Pixmap auto-button/titleright-activedown.xpm -- flat) \
 BrC	Inactive   (Pixmap auto-button/titleright-inactive.xpm   -- flat)
+
+AddToFunc   FuncFvwmReloadDecor
++ I BoC AddButtonStyle BoN \
+BoC	ActiveUp   (Pixmap auto-button/options-activeup.xpm   ) \
+BoC	ActiveDown (Pixmap auto-button/options-activedown.xpm ) \
+BoC	Inactive   (Pixmap auto-button/options-inactive.xpm   )
++ I BcC AddButtonStyle BcN \
+BcC	ActiveUp   (Pixmap auto-button/close-activeup.xpm   ) \
+BcC	ActiveDown (Pixmap auto-button/close-activedown.xpm ) \
+BcC	Inactive   (Pixmap auto-button/close-inactive.xpm   )
++ I BmC AddButtonStyle BmN \
+BmC	ActiveUp   (Pixmap auto-button/maximize-activeup.xpm   ) \
+BmC	ActiveDown (Pixmap auto-button/maximize-activedown.xpm ) \
+BmC	Inactive   (Pixmap auto-button/maximize-inactive.xpm   )
++ I BiC AddButtonStyle BiN \
+BiC	ActiveUp   (Pixmap auto-button/iconify-activeup.xpm   ) \
+BiC	ActiveDown (Pixmap auto-button/iconify-activedown.xpm ) \
+BiC	Inactive   (Pixmap auto-button/iconify-inactive.xpm   )
++ I BsC AddButtonStyle BsN \
+BsC	ActiveUp   (Pixmap auto-button/stick-activeup.xpm   ) \
+BsC	ActiveDown (Pixmap auto-button/stick-activedown.xpm ) \
+BsC	Inactive   (Pixmap auto-button/stick-inactive.xpm   )
++ I BhC AddButtonStyle BhN \
+BhC	ActiveUp   (Pixmap auto-button/shade-activeup.xpm   ) \
+BhC	ActiveDown (Pixmap auto-button/shade-activedown.xpm ) \
+BhC	Inactive   (Pixmap auto-button/shade-inactive.xpm   )
++ I BlC AddButtonStyle BlN \
+BlC	ActiveUp   (Pixmap auto-button/titleleft-activeup.xpm   ) \
+BlC	ActiveDown (Pixmap auto-button/titleleft-activedown.xpm ) \
+BlC	Inactive   (Pixmap auto-button/titleleft-inactive.xpm   )
++ I BrC AddButtonStyle BrN \
+BrC	ActiveUp   (Pixmap auto-button/titleright-activeup.xpm   ) \
+BrC	ActiveDown (Pixmap auto-button/titleright-activedown.xpm ) \
+BrC	Inactive   (Pixmap auto-button/titleright-inactive.xpm   )

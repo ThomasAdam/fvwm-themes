@@ -116,6 +116,10 @@ AddToMenu   MenuFvwmManPages "FVWM Man Pages" Title
 # ----------------------------------------------------------------------------
 # ---------- Modules
 
+# fix some warning
+AddToFunc   FuncFvwmAddToMenusStartEWMH
+AddToFunc   FuncFvwmAddToMenusStopEWMH
+
 DestroyMenu MenuFvwmModules
 AddToMenu   MenuFvwmModules "FVWM Modules" Title
 + "Start Theme Modules%menu/modules.xpm%"	Popup MenuFvwmStartThemeModules
@@ -143,6 +147,10 @@ AddToMenu   MenuFvwmStartRegularModules "Regular Modules" Title
 + "&Forms%menu/utility.xpm%"                Popup  MenuFvwmForms
 + "&Applets%menu/utility.xpm%"              Popup  MenuFvwmApplets
 + "" Nop
+# defined in settings/{autoraise,soud-player,ewmh}/*
+FuncFvwmAddToMenusFvwmAutoRaise
+FuncFvwmAddToMenusStartSoundEffect
+FuncFvwmAddToMenusStartEWMH
 
 DestroyMenu MenuFvwmStopRegularModules
 AddToMenu   MenuFvwmStopRegularModules "Regular Modules" Title
@@ -156,6 +164,8 @@ AddToMenu   MenuFvwmStopRegularModules "Regular Modules" Title
 + "Stop All Events%menu/quit.xpm%"	KillModule FvwmEvent
 + "Stop All &Buttons%menu/quit.xpm%"	KillModule FvwmButtons
 + "Stop All &Forms%menu/quit.xpm%"	KillModule FvwmForm
+FuncFvwmAddToMenusStopSoundEffect
+FuncFvwmAddToMenusStopEWMH
 
 DestroyMenu MenuFvwmForms
 AddToMenu   MenuFvwmForms "FvwmForm Tools" Title
@@ -174,7 +184,6 @@ AddToMenu   MenuFvwmApplets "FvwmScript Applets" Title
 
 # -----------------------------------------------------------------------------
 # ---------- Configuration Menus
-
 DestroyFunc FuncFvwmFormThemeSettings
 AddToFunc   FuncFvwmFormThemeSettings
 + I KillModule FvwmForm FvwmForm-ThemeSettings
@@ -214,6 +223,9 @@ AddToMenu   MenuFvwmConfiguration "Configuration" Title
 + "" Nop
 + "Restore Theme &Background%menu/display.xpm%"	FuncFvwmStartThemeBackground
 + "Restore Theme &Cursors%menu/display.xpm%"	PipeRead `printf 'Read '; fvwm-themes-config --component cursors --show-value read-file`
++ "Show Current Palette Shift-Ctrl-F9%menu/colors.xpm%" FuncFvwmShowColourTable
+# settings/iconstyles
+FuncFvwmAddToMenusWMIcons
 
 DestroyMenu MenuFvwmXConfiguration
 AddToMenu   MenuFvwmXConfiguration "X Configuration" Title

@@ -19,6 +19,15 @@ AddToFunc   FuncFvwmStartThemeModules
 + I FuncFvwmStartChosenIconMan
 + I FuncFvwmStartNormalIcons
 
+DestroyFunc FuncFvwmReloadThemeModules
+AddToFunc   FuncFvwmReloadThemeModules
++ I Read $./main:styles
++ I FuncFvwmStartNormalIcons
+
+DestroyFunc FuncFvwmReloadColorsModules
+AddToFunc   FuncFvwmReloadColorsModules
++ I FuncFvwmStartChosenButtons
+
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
 + I KillModule FvwmIconMan
@@ -36,6 +45,13 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmStartNormalIcons
 + I FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmDestroyModulesThemeStyle
+
+DestroyFunc FuncFvwmUnReloadColorsModules
+AddToFunc   FuncFvwmUnReloadColorsModules
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-AsBar
+
+DestroyFunc FuncFvwmUnReloadThemeModules
+AddToFunc   FuncFvwmUnReloadThemeModules
 
 # ----------------------------------------------------------------------------
 # Theme module menus

@@ -23,6 +23,17 @@ AddToFunc   FuncFvwmStartThemeModules
 + I FuncFvwmStartChosenButtons
 + I FuncFvwmStartNormalIcons
 
+DestroyFunc FuncFvwmReloadThemeModules
+AddToFunc   FuncFvwmReloadThemeModules
++ I Read $./main:styles
++ I FuncFvwmStartNormalIcons
+
+DestroyFunc FuncFvwmReloadColorsModules
+AddToFunc   FuncFvwmReloadColorsModules
++ I SendToModule FvwmTheme Colorset 23 fg $[fg.cs10], bg $[bg.cs10], \
+	Transparent, NoShape
++ I FuncFvwmStartChosenButtons
+
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmStopMyPager
@@ -45,6 +56,13 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmButtons-CompactClock
 + I DestroyFunc FuncFvwmButtons-CompactLoad
 
+DestroyFunc FuncFvwmUnReloadColorsModules
+AddToFunc   FuncFvwmUnReloadColorsModules
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Compact
+
+DestroyFunc FuncFvwmUnReloadThemeModules
+AddToFunc   FuncFvwmUnReloadThemeModules
+
 # ----------------------------------------------------------------------------
 # Theme module menus
 
@@ -52,6 +70,7 @@ DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "Migo Modules" Title
 + "%menu/item.xpm%Compact Buttons" \
 	FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Compact
++ "wm-icons Bar Alias%menu/themes.xpm%" Popup MenuFvwmBarIconSet
 + "" Nop
 + "%menu/item.xpm%Pager && Desker"   FuncFvwmStartMyPager \
 	`FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Pager`
@@ -96,9 +115,9 @@ AddToFunc   FuncFvwmStartMyPager
 ###
 
 # Just because settings/iconstyles/wm-icons uses FuncFvwmStartAllHooks...
-AddToFunc FuncFvwmStartAllHooks
-+ I AddToMenu MenuFvwmConfiguration
-+ I + "wm-icons Bar Alias%menu/themes.xpm%" Popup MenuFvwmBarIconSet
+#AddToFunc FuncFvwmStartAllHooks
+#+ I AddToMenu MenuFvwmConfiguration
+#+ I + "wm-icons Bar Alias%menu/themes.xpm%" Popup MenuFvwmBarIconSet
 
 DestroyFunc FuncFvwmSwitchBarIconSet
 AddToFunc   FuncFvwmSwitchBarIconSet

@@ -15,7 +15,17 @@ Style "*"	SlipperyIcon, IconTitle
 DestroyFunc FuncFvwmStartThemeModules
 AddToFunc   FuncFvwmStartThemeModules
 + I FuncFvwmStartNormalIcons
+# defined in the options files
 
+DestroyFunc FuncFvwmReloadThemeModules
+AddToFunc   FuncFvwmReloadThemeModules
++ I Read $./main:styles
++ I FuncFvwmStartNormalIcons
+
+DestroyFunc FuncFvwmReloadColorsModules
+AddToFunc   FuncFvwmReloadColorsModules
+# defined in buttonbar/* (only)
+ 
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
 + I KillModule FvwmButtons
@@ -34,6 +44,13 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyModuleConfig FvwmWinList: *
 + I FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmDestroyModulesThemeStyle
+
+DestroyFunc FuncFvwmUnReloadColorsModules
+AddToFunc   FuncFvwmUnReloadColorsModules
++ I KillModule FvwmButtons
+
+DestroyFunc FuncFvwmUnReloadThemeModules
+AddToFunc   FuncFvwmUnReloadThemeModules
 
 # ----------------------------------------------------------------------------
 # Theme module menus

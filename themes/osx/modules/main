@@ -21,6 +21,15 @@ AddToFunc   FuncFvwmStartThemeModules
 + I FuncFvwmStartChosenApplets
 + I FuncFvwmStartNormalIcons
 
+DestroyFunc FuncFvwmReloadThemeModules
+AddToFunc   FuncFvwmReloadThemeModules
++ I Read $./main:styles
++ I FuncFvwmStartNormalIcons
+
+DestroyFunc FuncFvwmReloadColorsModules
+AddToFunc   FuncFvwmReloadColorsModules
++ I FuncFvwmStartChosenOsxButtons
+
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-MenuBar
@@ -44,6 +53,13 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmStartChosenApplets
 + I FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmDestroyModulesThemeStyle
+
+DestroyFunc FuncFvwmUnReloadColorsModules
+AddToFunc   FuncFvwmUnReloadColorsModules
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-OsxCentral
+
+DestroyFunc FuncFvwmUnReloadThemeModules
+AddToFunc   FuncFvwmUnReloadThemeModules
 
 # ----------------------------------------------------------------------------
 # Theme module menus

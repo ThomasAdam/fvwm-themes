@@ -18,10 +18,13 @@ AddToFunc   FuncFvwmStartThemeModules
 + I FuncFvwmStartNormalIcons
 # defined in the options files
 
-DestroyFunc FuncFvwmReLoadThemeModules
-AddToFunc   FuncFvwmReLoadThemeModules
+DestroyFunc FuncFvwmReloadThemeModules
+AddToFunc   FuncFvwmReloadThemeModules
 + I FuncFvwmStartNormalIcons
-# defined in Applets/fvwm (only) 
+
+DestroyFunc FuncFvwmReloadColorsModules
+AddToFunc   FuncFvwmReloadColorsModules
+# defined in Applets/* (only) 
 
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
@@ -66,9 +69,13 @@ AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmDestroyModulesThemeStyle
 
-DestroyFunc FuncFvwmPreReLoadThemeModules
-AddToFunc   FuncFvwmPreReloadThemeModules
-+ I  
+DestroyFunc FuncFvwmUnReloadColorsModules
+AddToFunc   FuncFvwmUnReloadColorsModules
+# defined in Applets/* (only)
+
+DestroyFunc FuncFvwmUnReloadThemeModules
+AddToFunc   FuncFvwmUnReloadThemeModules
+
 # ----------------------------------------------------------------------------
 # Theme module menus
 

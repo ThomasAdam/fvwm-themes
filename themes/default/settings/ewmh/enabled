@@ -3,11 +3,6 @@ AddToFunc   FuncFvwmRestartFvwmNetHints
 + I SendToModule FvwmNetHints Quit
 + I Module FvwmNetHints
 
-AddToMenu MenuFvwmStartRegularModules "EWMH Support%menu/windows.xpm%" \
-	FuncFvwmRestartFvwmNetHints
-AddToMenu MenuFvwmStopRegularModules "Stop EWMH Support%menu/quit.xpm%" \
-	SendToModule FvwmNetHints Quit
-
 DestroyFunc FuncFvwmNetHintsConfig
 AddToFunc   FuncFvwmNetHintsConfig
 + I DestroyModuleConfig FvwmNetHints*
@@ -31,16 +26,12 @@ AddToFunc   FuncFvwmReloadEWMH
 + I SendToModule FvwmNetHints ReadStartFile
 + I *FvwmPager-Desker: UseListSkip
 + I *FvwmPager-Single: UseListSkip
-+ I AddToMenu MenuFvwmStartRegularModules "EWMH Support%menu/windows.xpm%" \
-	FuncFvwmRestartFvwmNetHints
-+ I AddToMenu MenuFvwmStopRegularModules "Stop EWMH Support%menu/quit.xpm%" \
-	SendToModule FvwmNetHints Quit
 + I Style "kicker" ClickToFocus
 + I Style "KDE Desktop" ClickToFocus,Sticky,WindowListSkip,CirculateSkip,\
 	BorderWidth 0,HandleWidth 0,NoTitle 
 
-DestroyFunc FuncFvwmPreReloadEWMH
-AddToFunc   FuncFvwmPreReloadEWMH
+DestroyFunc FuncFvwmUnReloadEWMH
+AddToFunc   FuncFvwmUnReloadEWMH
 
 DestroyFunc FuncFvwmLoadEWMH
 AddToFunc   FuncFvwmLoadEWMH
@@ -51,3 +42,11 @@ DestroyFunc FuncFvwmUnloadEWMH
 AddToFunc   FuncFvwmUnloadEWMH
 + I DestroyModuleConfig FvwmNetHints: *
 + I SendToModule FvwmNetHints Quit
+
+DestroyFunc FuncFvwmAddToMenusStartEWMH
+AddToFunc   FuncFvwmAddToMenusStartEWMH
++ I + "EWMH Support%menu/windows.xpm%" FuncFvwmRestartFvwmNetHints
+
+DestroyFunc FuncFvwmAddToMenusStopEWMH
+AddToFunc   FuncFvwmAddToMenusStopEWMH
++ I + "Stop EWMH Support%menu/quit.xpm%" SendToModule FvwmNetHints Quit

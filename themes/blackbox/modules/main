@@ -19,9 +19,18 @@ AddToFunc   FuncFvwmStartThemeModules
 + I FuncFvwmStartChosenPager
 + I FuncFvwmStartNormalIcons
 
+DestroyFunc FuncFvwmReloadThemeModules
+AddToFunc   FuncFvwmReloadThemeModules
++ I Read $./main:styles
++ I FuncFvwmStartNormalIcons
+
+DestroyFunc FuncFvwmReloadColorsModules
+AddToFunc   FuncFvwmReloadColorsModules
++ I FuncFvwmStartChosenButtons
+
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
-+ I KillModule FvwmButtons
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-XX
 + I KillModule FvwmPager
 + I KillModule FvwmIconMan
 + I DestroyModuleConfig FvwmButtons-XX: *
@@ -35,6 +44,13 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmIconFocusAndOptions
 + I FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmDestroyModulesThemeStyle
+
+DestroyFunc FuncFvwmUnReloadColorsModules
+AddToFunc   FuncFvwmUnReloadColorsModules
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-XX
+
+DestroyFunc FuncFvwmUnReloadThemeModules
+AddToFunc   FuncFvwmUnReloadThemeModules
 
 # ----------------------------------------------------------------------------
 # Theme module menus

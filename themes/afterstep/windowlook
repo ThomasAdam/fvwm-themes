@@ -10,3 +10,11 @@ TitleStyle	RightJustified
 TitleStyle	-- Flat
 
 ButtonStyle	All -- Flat
+
+AddToFunc   FuncFvwmReloadDecor
++ I FuncFvwmSetFont-WindowTitle * -*-lucida-bold-r-*-*-12-*-*-*-*-*-*-*
++ I FuncFvwmSetFont-IconTitle   * fixed
++ I BorderStyle	Simple -- HiddenHandles NoInset
++ I TitleStyle	-- Flat
++ I ButtonStyle	All -- Flat
++ I FuncFvwmOverRideWindowLook

@@ -17,12 +17,28 @@ AddToFunc   FuncFvwmStartThemeModules
 #+ I FuncFvwmStartNormalIcons
 + I Module FvwmButtons FvwmButtons-Panel
 
+DestroyFunc FuncFvwmReloadThemeModules
+AddToFunc   FuncFvwmReloadThemeModules
++ I Read $./main:styles
+
+DestroyFunc FuncFvwmReloadColorsModules
+AddToFunc   FuncFvwmReloadColorsModules
++ I Module FvwmButtons FvwmButtons-Panel
+
 DestroyFunc FuncFvwmStopThemeModules
 AddToFunc   FuncFvwmStopThemeModules
 + I KillModule FvwmButtons FvwmButtons-Panel
 + I KillModule FvwmButtons FvwmButtons-CentralPanel
 + I KillModule FvwmPager FvwmPager-Single
 + I KillModule FvwmPager FvwmPager-Desker
+
+DestroyFunc FuncFvwmUnReloadColorsModules
+AddToFunc   FuncFvwmUnReloadColorsModules
++ I KillModule FvwmButtons FvwmButtons-Panel
++ I KillModule FvwmButtons FvwmButtons-CentralPanel
+
+DestroyFunc FuncFvwmUnReloadThemeModules
+AddToFunc   FuncFvwmUnReloadThemeModules
 
 # ----------------------------------------------------------------------------
 # Theme module menus

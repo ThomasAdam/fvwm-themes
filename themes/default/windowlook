@@ -10,3 +10,11 @@ TitleStyle	LeftJustified
 TitleStyle	-- Raised
 
 ButtonStyle	All -- Raised
+
+AddToFunc   FuncFvwmReloadDecor
++ I FuncFvwmSetFont-WindowTitle * variable
++ I FuncFvwmSetFont-IconTitle   * fixed
++ I BorderStyle	Simple
++ I TitleStyle	-- Raised
++ I ButtonStyle	All -- Raised
++ I FuncFvwmOverRideWindowLook

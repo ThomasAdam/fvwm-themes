@@ -1,3 +1,5 @@
+FuncFvwmDecorBackground
+
 Style "*" Button 1, Button 3, Button 2, Button 4
 Style "*" FvwmButtons
 
@@ -27,6 +29,20 @@ Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu, or Close on dou
 Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Shade^nMouse 2 - Shade on class group^nMouse 3 - Shade off class group"
 Mouse 0 	3	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^nMouse 3 - Iconify toggle resource group"
 Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tfully on click^n^tmenu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
+
+DestroyFunc FuncFvwmUnReloadDecor
+AddToFunc   FuncFvwmUnReloadDecor
+
+DestroyFunc FuncFvwmReloadDecor
+AddToFunc   FuncFvwmReloadDecor
++ I FuncFvwmDecorBackground
++ I AddButtonStyle 1	Pixmap button/mac-window-close.xpm
++ I AddButtonStyle 2	Pixmap button/mac-window-shade.xpm
++ I AddButtonStyle 3	Pixmap button/mac-window-iconify.xpm
++ I AddButtonStyle 4	Pixmap button/mac-window-maximize.xpm
+
+DestroyFunc FuncFvwmOverRideWindowLook
+AddToFunc   FuncFvwmOverRideWindowLook
 
 DestroyFunc FuncFvwmStartWindowButtons
 AddToFunc   FuncFvwmStartWindowButtons

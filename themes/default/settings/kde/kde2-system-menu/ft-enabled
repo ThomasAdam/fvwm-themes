@@ -3,4 +3,13 @@ AddToMenu MenuFvwmPrograms "" Nop
 
 CopyMenuStyle "*" MenuStyleFvwmKde2System
 
-AddToMenu kde-sys DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop kde-sys --wm-icons --utf8 --menu-style MenuStyleFvwmKde2System'
+AddToMenu kde-sys DynamicPopupAction PipeRead 'fvwm-menu-desktop --desktop kde-sys --wm-icons --utf8 --menu-style MenuStyleFvwmKde2System --merge-user-menu'
+
+DestroyFunc FuncFvwmUnloadKde2Menu
+AddToFunc   FuncFvwmUnloadKde2Menu
++ I DestroyMenu kde-sys*
++ I DestroyMenuStyle MenuStyleFvwmKde2System
+
+DestroyFunc FuncFvwmLoadKde2Menu
+AddToFunc   FuncFvwmLoadKde2Menu
+

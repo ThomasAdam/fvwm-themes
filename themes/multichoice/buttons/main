@@ -7,6 +7,8 @@
 # Button roles used: Options (o), Close (c), Maximize (m), Iconify (i),
 # Stick (s), Shade (h); and pseudo buttons: TitleLeft, TitleRight
 
+FuncFvwmDecorBackground
+
 changecom  # don't treat comments specially
 
 define({{BcC}}, ifdef({{BcN}}, {{}}, {{#}}))
@@ -40,11 +42,24 @@ define({{old_BOC}}, BoC)
 define({{BoC}}, {{#}})
 }})
 
+DestroyFunc FuncFvwmUnReloadDecor
+AddToFunc   FuncFvwmUnReloadDecor
+
+DestroyFunc FuncFvwmReloadDecor
+AddToFunc   FuncFvwmReloadDecor
++ I FuncFvwmDecorBackground
+
 include(CompRoot/faces/FaceFile)
 
 ifdef({{HaveMiniIcon}}, {{
 define({{BoC}}, old_BOC)
 BoC AddButtonStyle BoN MiniIcon
+}})
+
+AddToFunc   FuncFvwmReloadDecor
+ifdef({{HaveMiniIcon}}, {{
+define({{BoC}}, old_BOC)
++ I BoC AddButtonStyle BoN MiniIcon
 }})
 
 ButtonStyle All - Clear
@@ -81,6 +96,14 @@ BsC Mouse 0 	BsN	CM	FuncFvwmShowButtonInfo "Stick"
 # simulate title bindings on two edge buttons:
 BlC FuncFvwmSetTitleBindings BlN
 BrC FuncFvwmSetTitleBindings BrN
+
+DestroyFunc FuncFvwmOverRideWindowLook
+AddToFunc   FuncFvwmOverRideWindowLook
+ifdef({{HaveTitleEdges}}, {{
+# This is usually not in this component, but title edges can't be non-flat
++ I TitleStyle -- flat
++ I ButtonStyle All -- flat
+}})
 
 DestroyFunc FuncFvwmStartWindowButtons
 AddToFunc   FuncFvwmStartWindowButtons

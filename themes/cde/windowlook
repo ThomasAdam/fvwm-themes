@@ -10,3 +10,11 @@ TitleStyle	Centered
 TitleStyle	-- Raised
 
 ButtonStyle	All -- Raised
+
+AddToFunc   FuncFvwmReloadDecor
++ I FuncFvwmSetFont-WindowTitle * -*-lucidabright-medium-r-*-*-14-*-*-*-*-*-*-*
++ I FuncFvwmSetFont-IconTitle   * -*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*
++ I BorderStyle	Simple
++ I TitleStyle	-- Raised
++ I ButtonStyle	All -- Raised
++ I FuncFvwmOverRideWindowLook

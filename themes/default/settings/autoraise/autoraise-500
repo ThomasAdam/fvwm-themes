@@ -1,7 +1,10 @@
-DestroyFunc FuncFvwmStartFvwmAutoRaise
-AddToFunc   FuncFvwmStartFvwmAutoRaise
+DestroyFunc FuncFvwmLoadFvwmAutoRaise
+AddToFunc   FuncFvwmLoadFvwmAutoRaise
 + I FvwmAuto 500 "Silent Raise" "Silent Nop"
 
-DestroyFunc FuncFvwmStopFvwmAutoRaise
-AddToFunc   FuncFvwmStopFvwmAutoRaise
+DestroyFunc FuncFvwmUnLoadFvwmAutoRaise
+AddToFunc   FuncFvwmUnLoadFvwmAutoRaise
 + I KillModule FvwmAuto
+
+DestroyFunc FuncFvwmAddToMenusFvwmAutoRaise
+AddToFunc   FuncFvwmAddToMenusFvwmAutoRaise

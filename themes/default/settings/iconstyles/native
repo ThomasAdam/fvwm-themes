@@ -1,2 +1,5 @@
+DestroyFunc  FuncFvwmAddToMenusWMIcons
+AddToFunc    FuncFvwmAddToMenusWMIcons
+
 Read $./style-icon-miniicon
 

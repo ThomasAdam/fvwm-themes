@@ -10,3 +10,11 @@ TitleStyle	Centered
 TitleStyle	-- Flat
 
 ButtonStyle	All -- Flat
+
+AddToFunc   FuncFvwmReloadDecor
++ I FuncFvwmSetFont-WindowTitle * variable
++ I FuncFvwmSetFont-IconTitle   * fixed
++ I BorderStyle	Simple -- HiddenHandles NoInset
++ I TitleStyle	-- Flat
++ I ButtonStyle	All -- Flat
++ I FuncFvwmOverRideWindowLook

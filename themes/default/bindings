@@ -175,6 +175,9 @@ Key Next	A	M	Next FuncFvwmSelectWindow
 Key F11 	A	SC	Pick FuncFvwmMaximizeFullScreen
 Key F12 	A	SC	Pick FuncFvwmUnmaximizeFullScreen
 
+# misc.
+Key F9		A	SC	FuncFvwmShowColourTable
+
 # ---------------------------------------------------------------------------
 #     button	context	modifie	function
 

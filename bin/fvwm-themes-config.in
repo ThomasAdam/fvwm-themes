@@ -1,5 +1,5 @@
 #!@PERL@ -w
-# for speed testing add: -d:DProf
+# for speed testing add: -d:DProf and use dprofpp
 
 # Filter this script to pod2man to get a man page:
 #   pod2man -c "FVWM Utility" fvwm-themes-config | nroff -man | less -e
@@ -43,6 +43,7 @@ my $themeKey = 'theme';
 my $componentKey = 'component';
 my $componentGroupKey = 'group';
 my $pipe = 0;  # produce fvwm commands for fvwm's PipeRead if set
+my $printRc3 = 0; # experimental (no doc)
 my $useRestart = $ENV{'FT_USE_RESTART'}? 1: 0;
 #ccds 1 (here for easy Minimal/Global switching)
 my $setMinimalReload = "";
@@ -81,6 +82,7 @@ sub showHelp {
 	print "\t--variant cmp=var  change the component variant\n";
 	print "\t--set-locked cmp=v set or unset the component's lock\n";
 	print "\t--pipe             generate fvwm commands\n";
+	#print "\t--print-rc3        print to STDOUT themes-rc-3\n";
 	print "\t--install theme..  install theme.tar.gz or theme.tar.bz2 files\n";
 	print "\t--force-install    replace old themes without prompting\n";
 	print "\t--create-pack pack theme..   create a pack from given themes\n";
@@ -278,13 +280,19 @@ sub getExpandedRc ($) {
 	if (!-f $file) {
 		return "#| File '$file' is not found\n";
 	}
+	my $dir = "";
+	$dir = $1 if ($file =~ /^(\/.+\/)/);
 
 	my $output = "";
 	foreach (`cat $file`) {
 		chomp; $_ .= "\n";
-		/^read\s+['`"]?([^\s'`"]+)/i && do {
+		/^read\s+['`"]?([^\s'`"]+)/i && do { #`
+			my $file = $1;
+			if ($dir ne "" && $file =~ /^\$\.\/(.+)$/) {
+				$file = "$dir/$1";
+			}
 			$output .= "#.---- start: $_";
-			$output .= &getExpandedRc($1);
+			$output .= &getExpandedRc($file);
 			$output .= "#`====== end: $_\n";
 			next;
 		};
@@ -292,8 +300,6 @@ sub getExpandedRc ($) {
 	}
 	return $output;
 }
-
-#"
 
 sub searchThemeCfgIncludeFile ($$) {
 	my ($file, $theme) = @_;
@@ -418,7 +424,8 @@ BEGIN { $cfgFileCache = {}; $cfgCacheFileStatus = 0; }
 my @dependencyKeys = qw(
 	provides requires complements precedes follows
 	local-imagepath start-stop uses auto-drops
-	load-unload reload-prereload reload-read-command
+	load-unload reload-unreload reload-read-command
+	depends stronglydepends weakdepends
 );
 
 # returns 0 if the given condition is false (so should be hidden), 1 - if true
@@ -958,9 +965,8 @@ sub new ($$;$$) {
 			$cc->{'read-file'} = $readFile;
 		}
 		$cc->{'locked'} = 0 unless exists $cc->{'locked'};
-		$cc->{'used'} = 1 unless exists $cc->{'used'};
-		$cc->{'used'} = 1 if $cc->{'used'} >= 2;
-		$cc->{'used'} = 3 if ($fresh && $cc->{'used'});
+		$cc->{'used'} = 1;
+		$cc->{'used'} = 3 if (($fresh && $cc->{'used'})||$loadTheme eq 'default');
 		errDie("Duplicated component '$component' for theme '$theme'")
 			if exists $self->{'cc'}->{$component} &&
 				$self->{'cc'}->{$component}->{'used'};
@@ -1099,7 +1105,7 @@ sub applyThemeComponentMemory ($$$) {
 	my $cc = $self->getComponentCfg($component);
 	
 	if ($cm->{'current'} && ref($cc->{'variant'}) eq 'ARRAY') {
-		if ($cc->{'variant'}->[$cm->{'current'}]->{'hidden'}) {
+		if ($cc->{'variant'}->[$cm->{'current'} - 1]->{'hidden'}) {
 			delete $themeMemory->{$component};
 			return;
 		}
@@ -1334,7 +1340,6 @@ sub getOwnThemeSubMenusRc ($) {
 	foreach (@$currentComponents) {
 		next if /^_/;
 		my $cc = $self->getComponentCfg($_);
-		#olicha 1
 		next unless $cc->{'used'};
 		next if $cc->{'hidden'};
 		$dropExtraArgs .= " --drop $_" if /-extra$/;
@@ -1576,6 +1581,7 @@ sub getSortedComponentsToRead ($) {
 }
 
 # set the 'used' flag:
+#  0: component is dropped during this theme switching!
 #  1: the component is used but nothing have to be done about this component
 #     during theme switching (if isMinimalReloading !!!!)
 #  2: the component must be reloaded but not (re)started
@@ -1586,28 +1592,109 @@ sub setUsedFlags($) {
 	my @currentComponents;
 	my $component;
 
-	# complements
-	foreach $component (sort keys %{$self->{'cc'}}) {
-		my $cc = $self->getComponentCfg($component);
-		next if $component =~ /^_/;
-		next unless $cc->{'used'};
-		next if $cc->{'hidden'};
-		if (exists $cc->{'complements'}) {
-			my $comp = $cc->{'complements'};
-			my $dd = $self->getComponentCfg($comp);
-			if ($cc->{'used'} == 3) {
-				$dd->{'used'} = 3;
-				$self->setComponentCfg($comp, $dd);
+	my $isModified = 1;
+	my $step = 0;
+
+	while($isModified) {
+		$isModified = 0;
+		$step++;
+		foreach $component (keys %{$self->{'cc'}}) {
+			next if $component =~ /^_/;
+			my $cc = $self->getComponentCfg($component);
+			#next unless $cc->{'used'};
+			next if $cc->{'hidden'};
+
+			my @strongComp = ();
+			my @weakComp = ();
+			my @symStrongComp = ();
+			my @dependsComp = ();
+			my $comp;
+			push @symStrongComp, $cc->{'complements'}
+			   if (exists $cc->{'complements'});
+			push @strongComp, @{$cc->{'stronglydepends'}} 
+			   if defined $cc->{'stronglydepends'} &&
+				  ref($cc->{'stronglydepends'}) eq 'ARRAY';
+			push @weakComp, @{$cc->{'weakdepends'}} 
+			   if defined $cc->{'weakdepends'} &&
+				  ref($cc->{'weakdepends'}) eq 'ARRAY';
+			push @dependsComp, @{$cc->{'depends'}}
+			   if defined $cc->{'depends'} && ref($cc->{'depends'}) eq 'ARRAY';
+			
+			foreach $comp (@symStrongComp) {
+				next if !defined $self->{'cc'}->{$comp};
+				my $dd = $self->getComponentCfg($comp);
+				if ($dd->{'used'}) {
+					if ($cc->{'used'} >= 2 && $dd->{'used'} < $cc->{'used'}) {
+						$dd->{'used'} = $cc->{'used'};
+						$self->setComponentCfg($comp, $dd);
+						$isModified = 1;
+					}
+					if ($cc->{'used'} == 0 && $dd->{'used'} < 3) {
+						$dd->{'used'} = 3;
+						$self->setComponentCfg($comp, $dd);
+						$isModified = 1;
+					}
+				}
+				if ($cc->{'used'}) {
+					if ($dd->{'used'} >= 2 && $cc->{'used'} < $dd->{'used'}) {
+						$cc->{'used'} = $dd->{'used'};
+						$self->setComponentCfg($component, $cc);
+						$isModified = 1;
+					}
+					if ($dd->{'used'} == 0 && $cc->{'used'} < 3 && $cc->{'used'}) {
+						$cc->{'used'} = 3;
+						$self->setComponentCfg($component, $cc);
+						$isModified = 1;
+					}
+				}
 			}
-			if ($dd->{'used'} == 3) {
-				$cc->{'used'} = 3;
-				$self->setComponentCfg($component, $cc);
+			next unless $cc->{'used'};
+			foreach $comp (@strongComp) {
+				next if !defined $self->{'cc'}->{$comp};
+				my $dd = $self->getComponentCfg($comp);
+				if ($dd->{'used'} >= 2 && $cc->{'used'} < $dd->{'used'}) {
+					$cc->{'used'} = $dd->{'used'};
+					$self->setComponentCfg($component, $cc);
+					$isModified = 1;
+				}
+				if ($dd->{'used'} == 0 && $cc->{'used'} < 3) {
+					$cc->{'used'} = 3;
+					$self->setComponentCfg($component, $cc);
+					$isModified = 1;
+				}
 			}
+			foreach $comp (@weakComp) {
+				next if !defined $self->{'cc'}->{$comp};
+				my $dd = $self->getComponentCfg($comp);
+				if (($dd->{'used'} >= 3||$dd->{'used'} == 0)&& $cc->{'used'} < 2) {
+					$cc->{'used'} = 2;
+					$self->setComponentCfg($component, $cc);
+					$isModified = 1;
+				}
+			}
+			foreach $comp (@dependsComp) {
+				next if !defined $self->{'cc'}->{$comp};
+				my $dd = $self->getComponentCfg($comp);
+				if (($dd->{'used'} >= 2||$dd->{'used'} == 0) && $cc->{'used'} < 2) {
+					$cc->{'used'} = 2;
+					$self->setComponentCfg($component, $cc);
+					$isModified = 1;
+				}
+			}
+		}
+		$isModified = 0 if ($step > 100);
+	}
+
+	if (0) {
+		print STDERR "STEP: $step\n";
+		foreach $component (sort keys %{$self->{'cc'}}) {
+			next if $component =~ /^_/;
+			my $cc = $self->getComponentCfg($component);
+			print STDERR "$component\@$cc->{'theme'}: $cc->{'used'}\n";
 		}
 	}
 
 	if ($self->isMinimalReload()) {
-		$self->setComponentsToReload();
 		return;
 	}
 
@@ -1620,175 +1707,6 @@ sub setUsedFlags($) {
 		}
 	}
 
-}
-
-#ccds next function
-sub getReloadDependency () {
-
-	# Some comments on the dependency below:
-	# 1. Maybe I forgot some or put some not needed one :o)
-	# 2. modules contain so much stuff that it is reloaded too often;
-	#    we need to implement partial reload to fix that.
-	# 3. As this is hard coded some particular components (as some
-	#    modules component) may need less dependency.
-	# 4. An unfortunate thing is that we have to reload colors with
-	#    windowlook/buttons (because the title/buttons colors are not
-	#    FvwmTheme aware...
-	# 5. In theory, globalfeel need more reload because of ColorLimit
-	#    but since the only way to really reload the ColorLimit is to
-	#    restart I've not put all the needed dependency. 
-	#    So maybe we have to put ColorLimit in an special
-	#    file which enforce restart.
-	# 6. colors is related to menus because of the "show current palette" menus
-	#    entries, in the same way settings/autoraise (modules), 
-	#    settings/sound-player, settings/iconstyles are related to menus.
-	#    With this: changing the sound player restart modules, reload
-	#    the iconstyles, ... etc. this is inacceptable!!!
-	#    We must find a solution.
-   # 7. In some case the dependency depends on the options ... 
-	#
-	# Conclusion: The next stuff is bad, but this is normal, until
-	# now FVWM Themes was not designed for minimal reload. I think
-	# we can do 2 things:
-	# a. It is clear that reload is not the same things that load
-	#    so we can/must be more precise with "reload dependencies".
-	# b. We may rework a bit certain components and do more segmentations.
-
-	my $reload = {
-		'background' => [ 'background-extra', 'settings/background' ],
-		'bindings' => [ 'bindings-extra', 'settings/stroke',
-			'settings/session-manager'  ],
-		'buttons' => [ 'buttons-extra', 'windowlook', 'colors', 'colors-decor' ],
-		'colors' => [ 'colors-extra', 'colors-decor', 'modules', 'windowlook',
-		'buttons', 'globallook' ],
-		'colors-decor' => [ 'colors-decor-extra', 'colors' ],
-		'cursors' => [ 'cursors-extra' ],
-		'fonts' => [ 'fonts-extra', 'colors', 'menustyle', 'modules',
-			'windowlook' ], 
-		'functions' => [ 'functions-extra' ],
-		'functions-appbind' => [ 'functions-appbind-extra' ],
-		'globalfeel' => [ 'globalfeel-extra', 'styles', 'modules' ],
-		'globallook' => [ 'globallook-extra', 'colors' ],
-		'menus' => [ 'menus-extra', 'settings/autoraise', 'colors',
-			'settings/sound-player', 'settings/iconstyles',
-			'settings/session-manager' ],
-		'menus-programs' => [ 'menus-programs-extra',
-			'settings/kde/kde2-system-menu', 'settings/kde/system-menu',
-			'settings/kde/user-menu', 'settings/gnome/system-menu',
-			'settings/gnome/anotherlevel-menu', 'settings/gnome/user-menu' ],
-		'menustyle' => [ 'menustyle-extra',
-			'settings/kde/kde2-system-menu', 'settings/kde/system-menu',
-			'settings/kde/user-menu', 'settings/gnome/system-menu',
-			'settings/gnome/anotherlevel-menu', 'settings/gnome/user-menu' ],
-		'modules' => [ 'modules-extra', 'settings/autoraise',
-			'settings/iconstyles', 'menus' ],
-		'sound' => [ 'sound-extra', 'settings/sound-player' ],
-		'startup' => [ 'startup-extra' ],
-		'styles' => [ 'styles-extra', 'modules' ],
-		'windowlook' => [ 'windowlook-extra', 'buttons', 'styles' ],
-		'background-extra' => [ 'background' ],
-		'bindings-extra' => [ 'bindings' ],
-		'buttons-extra' => [ 'buttons' ],
-		'colors-extra' => [ 'colors' ],
-		'colors-decor-extra' => [ 'colors-decor' ],
-		'cursors-extra' => [ 'cursor' ],
-		'fonts-extra' => [ 'fonts' ],
-		'functions-extra' => [ 'functions'],
-		'functions-appbind-extra' => [ 'functions-appbind' ],
-		'globalfeel-extra' => [ 'globalfeel' ],
-		'globallook-extra' => [ 'globallook' ],
-		'menus-extra' => [ 'menus' ],
-		'menus-programs-extra' => [ 'menus-programs' ],
-		'menustyle-extra' => [ 'menustyle' ],
-		'modules-extra' => [ 'modules' ],
-		'sound-extra' => [ 'sound' ],
-		'startup-extra' => [ 'startup' ],
-		'styles-extra' => [ 'styles' ],
-		'windowlook-extra' => [ 'windowlook' ],
-		'settings/animation' => [ ],
-		'settings/banner' => [ ],
-		'settings/sound-player' => [ 'sound', 'menus' ],
-		'settings/autoraise' => [ 'menus' ],
-		'settings/background' => [ 'background' ],
-		'settings/iconstyles' => [ 'modules', 'menus' ],
-		'settings/stroke' => [ 'bindings' ],
-		'settings/kde/kde2-system-menu' => [ 'menus-programs' ],
-		'settings/kde/system-menu' => [ 'menus-programs', 'settings/iconstyles' ],
-		'settings/kde/user-menu' => [ 'menus-programs', 'settings/iconstyles' ],
-		'settings/kde/kfm-icons' => [ ],
-		'settings/gnome/system-menu' => [ 'menus-programs', 'settings/iconstyles' ],
-		'settings/gnome/anotherlevel-menu' => [ 'menus-programs' ],
-		'settings/gnome/user-menu' => [ 'menus-programs' ],
-		'settings/gnome/panel-staysput' => [ 'styles' ],
-		'settings/session-manager' => [ 'menus', 'bindings' ]
-	};
-
-	return $reload;
-}
-
-#ccds next function
-sub setComponentsToReload ($) {
-	my $self = shift;
-	my @currentComponents;
-
-	my $needReload = {};
-	my $component;
-
-	# prepare components
-	foreach $component (sort keys %{$self->{'cc'}}) {
-		my $cc = $self->getComponentCfg($component);
-		next if $component =~ /^_/;
-		next unless $cc->{'used'};
-		push @currentComponents, $component;
-		if ($cc->{'used'} >= 2) {
-			$needReload->{$component} = 1;
-		} else {
-			$needReload->{$component} = 0;
-		}
-	}
-
-	# next block for debuging
-	if (0 && $self->isMinimalReload()) {
-		print STDERR "NEW: ";
-		foreach (@currentComponents) {
-			print STDERR "$_ " if $needReload->{$_};
-		}
-		print STDERR "\n";
-	}
-
-	my $reload = getReloadDependency();
-
-	my $done = 0;
-	my $i = 0;
-	# a bit dangerous loop, warnings!!
-	while(!$done) {
-		my $old = "";
-		my $new = "";
-		my $c;
-		foreach $c (@currentComponents) {
-			$old .= $needReload->{$c};
-			next unless $needReload->{$c};
-			foreach (@currentComponents) {
-				$needReload->{$_} = 1 if isArrayElement($reload->{$c},$_);
-			}
-		}
-		foreach (@currentComponents) { $new .= $needReload->{$_}; }
-		$i++;
-		$done = 1 if $i > 100 || $new eq $old; 
-	}
-
-#	print STDERR "CCDS ($i): ";
-	foreach (@currentComponents) { 
-		if ($needReload->{$_}) {
-			my $cc = $self->getComponentCfg($_);
-			if ($cc->{'used'} < 2) {
-				$cc->{'used'} = 2;
-				$self->setComponentCfg($_, $cc);
-			}
-#			print STDERR "$_ ";
-		}
-	}
-#	print STDERR "\n";
 }
 								
 # returns component key value, which can be overridden by the current variant
@@ -1877,7 +1795,7 @@ sub getAllHooksRc ($) {
 		# get the saved "stop" functions
 		my @savedStopFunctions = ();
 		my @savedUnloadFunctions = ();
-		my @savedPreReloadFunctions = ();
+		my @savedUnReloadFunctions = ();
 		if (defined $saveStop->{$c} && ref($saveStop->{$c}) eq 'HASH') {
 			if (defined $saveStop->{$c}->{'start-stop'} &&
 				 ref($saveStop->{$c}->{'start-stop'}) eq 'ARRAY') {
@@ -1887,9 +1805,9 @@ sub getAllHooksRc ($) {
 				 ref($saveStop->{$c}->{'load-unload'}) eq 'ARRAY') {
 				@savedUnloadFunctions = @{$saveStop->{$c}->{'load-unload'}};
 			}
-			if (defined $saveStop->{$c}->{'reload-prereload'} &&
-				 ref($saveStop->{$c}->{'reload-prereload'}) eq 'ARRAY') {
-				@savedPreReloadFunctions = @{$saveStop->{$c}->{'reload-prereload'}};
+			if (defined $saveStop->{$c}->{'reload-unreload'} &&
+				 ref($saveStop->{$c}->{'reload-unreload'}) eq 'ARRAY') {
+				@savedUnReloadFunctions = @{$saveStop->{$c}->{'reload-unreload'}};
 			}
 			delete $saveStop->{$c};
 		}
@@ -1899,18 +1817,18 @@ sub getAllHooksRc ($) {
 		}
 		my $startStop = $self->getComponentNamedValue($c,'start-stop');
 		my $loadUnload = $self->getComponentNamedValue($c,'load-unload');
-		my $reloadPrereload = $self->getComponentNamedValue($c,'reload-prereload');
+		my $reloadUnreload = $self->getComponentNamedValue($c,'reload-unreload');
 
-		next unless defined $startStop || $loadUnload || $reloadPrereload ||
+		next unless defined $startStop || $loadUnload || $reloadUnreload ||
 		  @savedStopFunctions || (@savedUnloadFunctions && $cc->{'used'} >= 3) ||
-		  (@savedPreReloadFunctions &&  $cc->{'used'} < 3);
+		  (@savedUnReloadFunctions &&  $cc->{'used'} < 3);
 
 		errDie("start-stop ($startStop) in component '$c' is not ARRAY")
 		  unless !defined $startStop || ref($startStop) eq 'ARRAY';
 		errDie("start-stop ($loadUnload) in component '$c' is not ARRAY")
 		  unless !defined $loadUnload || ref($loadUnload) eq 'ARRAY';
-		errDie("start-stop ($reloadPrereload) in component '$c' is not ARRAY")
-		  unless !defined $reloadPrereload || ref($reloadPrereload) eq 'ARRAY';
+		errDie("start-stop ($reloadUnreload) in component '$c' is not ARRAY")
+		  unless !defined $reloadUnreload || ref($reloadUnreload) eq 'ARRAY';
 
 		# prepare to save the "stop" functions
 		if (defined $startStop) {
@@ -1919,8 +1837,8 @@ sub getAllHooksRc ($) {
 		if (defined $loadUnload) {
 			$cs->{$c}->{'load-unload'} = $loadUnload;
 		}
-		if (defined $reloadPrereload) {
-			$cs->{$c}->{'reload-prereload'} = $reloadPrereload;
+		if (defined $reloadUnreload) {
+			$cs->{$c}->{'reload-unreload'} = $reloadUnreload;
 		}
 
 		my $startFunctions = [];
@@ -1937,16 +1855,16 @@ sub getAllHooksRc ($) {
 			$loadFunctions = $startStop;
 		}
 		if ($cc->{'used'} < 3) {
-			if (defined $reloadPrereload) {
-				$startFunctions = $reloadPrereload;
+			if (defined $reloadUnreload) {
+				$startFunctions = $reloadUnreload;
 				$startFunctionsType = "ReLoad";
 			}
 			elsif (defined $startStop) {
 				$startFunctions = $startStop;
 			}
-			if (@savedPreReloadFunctions) {
-				@stopFunctions = @savedPreReloadFunctions;
-				$stopFunctionsType = "PreReload";
+			if (@savedUnReloadFunctions) {
+				@stopFunctions = @savedUnReloadFunctions;
+				$stopFunctionsType = "UnReload";
 			}
 			elsif (@savedStopFunctions) {
 				@stopFunctions = @savedStopFunctions;
@@ -2008,11 +1926,11 @@ sub getAllHooksRc ($) {
 				 ref($saveStop->{$c}->{'start-stop'}) eq 'ARRAY') {
 				@stopFunctions = @{$saveStop->{$c}->{'start-stop'}};
 			}
-			elsif (defined $saveStop->{$c}->{'reload-prereload'} &&
-					 ref($saveStop->{$c}->{'reload-prereload'}) eq 'ARRAY') {
+			elsif (defined $saveStop->{$c}->{'reload-unreload'} &&
+					 ref($saveStop->{$c}->{'reload-unreload'}) eq 'ARRAY') {
 				# should not happen ?
-				@stopFunctions = @{$saveStop->{$c}->{'reload-prereload'}};
-				$stopFunctionsType = "PreUnload";
+				@stopFunctions = @{$saveStop->{$c}->{'reload-unreload'}};
+				$stopFunctionsType = "Unload";
 			}
 			delete $saveStop->{$c};
 		}
@@ -2129,8 +2047,6 @@ sub getMenusAndHooksAndReadsRc ($) {
 	if ($self->isMinimalReload()) {
 		$minimalSwitch =
 			qq(+ "&Use full reloading%menu/restart.xpm%" FuncFvwmThemesSetMinimalReload 0\n);
-		$ownThemeMenuRc =~ s/FuncFvwmThemes/FuncFvwmMinimalThemes/g;
-		$allThemeMenuRc =~ s/FuncFvwmThemes/FuncFvwmMinimalThemes/g;
 	} else {
 		$minimalSwitch =
 			qq(+ "&Use experimental reloading%menu/restart.xpm%" FuncFvwmThemesSetMinimalReload 1\n);
@@ -2224,12 +2140,9 @@ DestroyFunc FuncFvwmThemesConfigAndUpdate
 AddToFunc   FuncFvwmThemesConfigAndUpdate
 + I FvwmScript FvwmScript-NoteMessage "Theme switching"
 + I Wait FvwmScript-NoteMessage
-+ I PipeRead `@$scriptFile@ $0 --pipe`
-+ I FuncFvwmResetInitFunctions
-#+ I FuncFvwmStopAllHooks
-#+ I FuncFvwmRestartFvwmTheme
-#+ I DestroyModuleConfig FvwmTheme: *
-+ I Read @$rcFile3@
++ I PipeRead `@$scriptFile@ $0 --pipe --print-rc3`
+#+ I FuncFvwmResetInitFunctions
+#+ I Read @$rcFile3@
 + I FuncFvwmStartAllHooks
 + I All (FvwmScript-NoteMessage) Delete
 
@@ -2237,7 +2150,7 @@ DestroyFunc FuncFvwmThemesCenterUpdate
 AddToFunc   FuncFvwmThemesCenterUpdate
 + I FvwmScript FvwmScript-NoteMessage "Theme switching"
 + I Wait FvwmScript-NoteMessage
-+ I FuncFvwmResetInitFunctions
+#+ I FuncFvwmResetInitFunctions
 + I Read @$rcFile3@
 + I FuncFvwmStartAllHooks
 + I All (FvwmScript-NoteMessage) Delete
@@ -2256,7 +2169,7 @@ AddToFunc   FuncFvwmThemesFreshUncached
 
 DestroyFunc FuncFvwmThemesSetMinimalReload
 AddToFunc   FuncFvwmThemesSetMinimalReload
-+ I FuncFvwmMinimalThemesConfigAndUpdate "--set-minimal-reload=$0"
++ I FuncFvwmThemesConfigAndUpdate "--set-minimal-reload=$0"
 
 DestroyFunc FuncFvwmThemesLoad
 AddToFunc   FuncFvwmThemesLoad
@@ -2277,44 +2190,6 @@ AddToFunc   FuncFvwmThemesVariant
 DestroyFunc FuncFvwmThemesSetLocked
 AddToFunc   FuncFvwmThemesSetLocked
 + I FuncFvwmThemesConfigAndUpdate "--set-locked=$0"
-
-#ccds: all Minimal service
-DestroyFunc FuncFvwmMinimalThemesConfigAndUpdate
-AddToFunc   FuncFvwmMinimalThemesConfigAndUpdate
-+ I FvwmScript FvwmScript-NoteMessage "Minimal theme switching"
-+ I Wait FvwmScript-NoteMessage
-+ I PipeRead `@$scriptFile@ $0 --pipe`
-+ I Read @$rcFile3@
-+ I FuncFvwmStartAllHooks
-+ I All (FvwmScript-NoteMessage) Delete
-
-DestroyFunc FuncFvwmThemesCenterMinimalUpdate
-AddToFunc   FuncFvwmThemesCenterMinimalUpdate
-+ I FvwmScript FvwmScript-NoteMessage "Minimal theme switching"
-+ I Wait FvwmScript-NoteMessage
-+ I Read @$rcFile3@
-+ I FuncFvwmStartAllHooks
-+ I All (FvwmScript-NoteMessage) Delete
-
-DestroyFunc FuncFvwmMinimalThemesLoad
-AddToFunc   FuncFvwmMinimalThemesLoad
-+ I FuncFvwmMinimalThemesConfigAndUpdate "--load=$0"
-
-DestroyFunc FuncFvwmMinimalThemesDrop
-AddToFunc   FuncFvwmMinimalThemesDrop
-+ I FuncFvwmMinimalThemesConfigAndUpdate "--drop=$0"
-
-DestroyFunc FuncFvwmMinimalThemesOption
-AddToFunc   FuncFvwmMinimalThemesOption
-+ I FuncFvwmMinimalThemesConfigAndUpdate "--option=$0"
-
-DestroyFunc FuncFvwmMinimalThemesVariant
-AddToFunc   FuncFvwmMinimalThemesVariant
-+ I FuncFvwmMinimalThemesConfigAndUpdate "--variant=$0"
-
-DestroyFunc FuncFvwmMinimalThemesSetLocked
-AddToFunc   FuncFvwmMinimalThemesSetLocked
-+ I FuncFvwmMinimalThemesConfigAndUpdate "--set-locked=$0"
 
 # ---------------------------------------------------
 # Some global functions, extending FVWM functionality
@@ -2385,7 +2260,12 @@ $switchMenusAndHooksRc
 Mouse 2 A CM Menu MenuFvwmThemes
 };
 
-	saveFile("$workDir/$rcFile3", \$contents);
+	if ($printRc3) {
+		print $contents;
+	}
+	else {
+		saveFile("$workDir/$rcFile3", \$contents);
+	}
 
 }
 
@@ -2448,6 +2328,7 @@ GetOptions(
 	"variant=s%"  => $variants,
 	"set-locked=s%" => $setLockeds,
 	"pipe"        => \$pipe,
+   "print-rc3"   => \$printRc3,
 	"install"       => \$install,
 	"force-install" => \$forceInstall,
 	"create-pack=s" => \$createPack,

@@ -3,3 +3,6 @@ AddToFunc   FuncFvwmStartFvwmAutoRaise
 
 DestroyFunc FuncFvwmStopFvwmAutoRaise
 AddToFunc   FuncFvwmStopFvwmAutoRaise
+
+DestroyFunc FuncFvwmAddToMenusFvwmAutoRaise
+AddToFunc   FuncFvwmAddToMenusFvwmAutoRaise
