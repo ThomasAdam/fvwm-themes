@@ -1,3 +1,10 @@
+2000-09-30  migo  <migo@homemail.com>
+
+	* scripts/FvwmScript-ThemesCenter:
+	some minor changes,  added Russian locale just to see how it works,
+	I don't understand why it gives "too many variables (>512)" when I
+	only use existing variables! So I can't test it for now.
+
 2000-09-29  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
