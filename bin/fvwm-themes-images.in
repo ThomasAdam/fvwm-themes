@@ -304,6 +304,11 @@ if ($colorSchemes || $colorSchemesFores ne "") {
 	exit;
 }
 
+if ($setRoot && $inFile) {
+	setRoot($inFile);
+	exit;
+}
+
 wrongUsage();
 
 #------------------------------------------------------------------------------
@@ -570,14 +575,15 @@ sub getTile($) {
 
 	if ($tile =~ /^\s*color:(.*)\s*/) {
 		my $color = $1;
-		if ($color =~ /^\+(\d+)\+(\d+):(.*)/) {
+		### migo: colon as a delimiter will be removed soon
+		if ($color =~ /^\+(\d+)\+(\d+)[,:](.*)/) {
 			$color = encode16bpp($3);
 			$x=$1; $y=$2;
 		}
 		$xpm = createMonoXpm(1,1,$color);
 	} elsif ($tile =~ /^\s*expand:(.*)\s*/) {
 		$xpm = $1;
-		if ($xpm =~ /^\+(\d+)\+(\d+):(.*)/) {
+		if ($xpm =~ /^\+(\d+)\+(\d+)[,:](.*)/) {
 			$xpm = $3;
 			$x=$1; $y=$2;
 		}
@@ -585,7 +591,7 @@ sub getTile($) {
 		$type = "expand";
 	} elsif ($tile =~ /^\s*center:(.*)\s*/) {
 		$tile = $1;
-		if ($tile =~ /^\+(\d+)\+(\d+):(.*)/) {
+		if ($tile =~ /^\+(\d+)\+(\d+)[,:](.*)/) {
 			$tile = $3;
 		}
 		die "no tile xpm $tile" unless -f $tile;
@@ -593,14 +599,14 @@ sub getTile($) {
 		$type = "center";
 	}  elsif ($tile =~ /^\s*tile:(.*)\s*/) {
 		$tile = $1;
-		if ($tile =~ /^\+(\d+)\+(\d+):(.*)/) {
+		if ($tile =~ /^\+(\d+)\+(\d+)[,:](.*)/) {
 			$tile = $3;
 			$x=$1; $y=$2;
 		}
 		die "no tile xpm $tile" unless -f $tile;
 		$xpm = loadXpm($tile);
 	} else {
-		if ($tile =~ /^\+(\d+)\+(\d+):(.*)/) {
+		if ($tile =~ /^\+(\d+)\+(\d+)[,:](.*)/) {
 			$tile = $3;
 			$x=$1; $y=$2;
 		}
@@ -1639,7 +1645,7 @@ sub encode16bpp($) {
 	}
 	$color =~ s/^\s*//;
 	$color =~ s/\s*$//;
-	if ($color =~ /\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*/) {
+	if ($color =~ /^\[?\s*(\d+)\s*\/\s*(\d+)\s*\/\s*(\d+)\s*\]?$/) {
 		my ($a,$b,$c);
 		$a = int2hex($1);
 		$b = int2hex($2);
@@ -1693,13 +1699,6 @@ sub bppTo3intArray($) {
 	my @a = $color =~ /#(..)..(..)..(..)/;
 	@a=(hex($a[0]),hex($a[1]),hex($a[2]));
 	return \@a;
-}
-
-#-------------------------------------
-# ref array (0-255,0-255,0-255) to 16bpp
-
-sub intArrayTo16bpp($) {
-	encode16bpp($_);
 }
 
 #-------------------------------------
@@ -1949,11 +1948,11 @@ sub showHelp {
 	print "\t--size-56x56 geo    Set the size of the 56x56 XPM icons\n";
 	print "\t--size-32x32 geo    Set the size of the 32x32 XPM icons\n";
 	print "\t--size-tiles geo    Set the size of the tiles XPM icons\n";
-	print "\t--tile-48x48        tile to the 48x48 XPM icons\n";
-	print "\t--tile-16x16        tile to the 16x16 XPM icons\n";
-	print "\t--tile-56x56        tile to the 32x32 XPM icons\n";
-	print "\t--tile-32x32        tile to the 56x56 XPM icons\n";
-	print "\t--tile-tiles        tile to the tiles XPM icons\n";
+	print "\t--tile-48x48 value  tile to the 48x48 XPM icons\n";
+	print "\t--tile-16x16 value  tile to the 16x16 XPM icons\n";
+	print "\t--tile-56x56 value  tile to the 32x32 XPM icons\n";
+	print "\t--tile-32x32 value  tile to the 56x56 XPM icons\n";
+	print "\t--tile-tiles value  tile to the tiles XPM icons\n";
 	print "\t--border-48x48      add border to the 48x48 XPM icons\n";
 	print "\t--border-16x16      add border to the 16x16 XPM icons\n";
 	print "\t--border-56x56      add border to the 32x32 XPM icons\n";
@@ -2229,10 +2228,11 @@ color for color2 (like black).
 =head2 COLORS
 
 When giving colors to fvwm-themes-image, you can use X colors name
-(blue, turquoise, ...etc.), 8bits hexadecimal number
+(blue, turquoise, ...etc.), the standard RGB formats rgb:rr/gg/bb
+or rgb:rrrr/gggg/bbbb, 8bits hexadecimal number
 (#0000ff, #40e0d0, ...etc.), 16bits  hexadecimal number (#00000000ffff,
 #0404e0e0d0d0, ...etc) or an array of 3 decimal numbers between 0 and 255
-([0,0,255], [64,224,208], ...etc.). All these numbers represent the
+([0/0/255], [64/224/208], ...etc.). All these numbers represent the
 red, green and blue values of the colors. To get the list of your X colors
 which have a name with the corresponding value in 8bits and in an array
 of 3 integer just type:
@@ -2406,16 +2406,16 @@ B<--border-32x32> +x+y,color - As above for the 32x32 XPM icons.
 
 B<--border-tiles> +x+y,color - As above for the tiles XPM icons.
 
-B<--tile-48x48> rule:file - tile the 48x48 XPM icons with the xpm file
+B<--tile-48x48> [rule:]file_or_color - tile the 48x48 XPM icons with the xpm file
 following the rule "rule". See the ---tile option for details.
 
-B<--tile-16x16> rule:file - As above for the 16x16 XPM icons.
+B<--tile-16x16> [rule:]file_or_color - As above for the 16x16 XPM icons.
 
-B<--tile-56x56> rule:file - As above for the 56x56 XPM icons.
+B<--tile-56x56> [rule:]file_or_color - As above for the 56x56 XPM icons.
 
-B<--tile-32x32> rule:file - As above for the 32x32 XPM icons.
+B<--tile-32x32> [rule:]file_or_color - As above for the 32x32 XPM icons.
 
-B<--tile-tiles> rule:file - As above for the tiles XPM icons.
+B<--tile-tiles> [rule:]file_or_color - As above for the tiles XPM icons.
 
 =head2 ImageMagick Options
 
@@ -2438,7 +2438,7 @@ to 16. This is very important for the --threshold option above.
 
 =head2 Other Simple Transformations
 
-B<--tile> [rule:][+x+y:]file_or_color - where rule can be "expand",
+B<--tile> [rule:][+x+y,]file_or_color - where rule can be "expand",
 "center", "color" or nothing, where x and y are integers
 and where file_or_color is a
 xpm tile file or a color in the "color" case. Without "rule" the
@@ -2513,9 +2513,9 @@ B<--pattern-type> type[[:x]:y] - where type can be uniform, altern,
 square, random and where x and y are positive integers. If no type
 is specified uniform is used, default x is 1 and default y is 8
 but for square which is x. uniform creates a pattern with x rows
-of y +, altern creates a pattern with x rows of y + followed
-by y rows of -, square create a pattern of x rows constituted
-of y + followed by y -, random create a pattern with x random rows
+of y '+', altern creates a pattern with x rows of y '+' followed
+by y rows of '-', square create a pattern of x rows constituted
+of y '+' followed by y '-', random create a pattern with x random rows
 of length y.
 
 B<--pattern-xpm> file - Produce the pattern file from an xpm file.

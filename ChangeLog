@@ -3,6 +3,10 @@
 	* devel/doc/sourceforge-developer:
 	minor clean-up
 
+	* fvwm-themes-images.in:
+	document --tile*; --tile* now have ',' delimiter before file/color,
+	--setroot can be used even without any transformation
+
 2000-11-16  migo  <migo@homemail.com>
 
 	* locale/en/FvwmScript-ColorSelector.txt:
