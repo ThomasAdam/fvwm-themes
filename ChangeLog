@@ -1,3 +1,11 @@
+2002-12-22  migo  <migo@homemail.com>
+
+	* themes/migo/background:
+	* themes/migo/background.cfg:
+	* themes/migo/images/background/trefoil.xpm:
+	* devel/bin/random-migo-background:
+	replaced the background tile and its colored choices
+
 2002-12-21  migo  <migo@homemail.com>
 
 	* themes/underground/background/README:
