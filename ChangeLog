@@ -7,7 +7,10 @@
 	* themes/default/bindings:
 	don't remove 2 unexisting Enter bindings, this caused a core dump
 
-	* themed/default/menus-user:
+	* bin/fvwm-themes-config.in: corrected locking icon
+	* TODO: added some ideas
+
+	* themes/default/menus-user:
 	tried to keep non-default Shell's paramaters the same: title,
 	scrollbar 4Kb, login-shell, 80x40, 7x14[bold] font
 
