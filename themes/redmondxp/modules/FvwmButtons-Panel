@@ -1,9 +1,33 @@
-DestroyMenu MenuFvwmPanelMovePart
-AddToMenu   MenuFvwmPanelMovePart
-+ "Move this part to the left"  FuncFvwmShowMessage "Sorry" "This is not implemented yet"
-+ "Move this part to the right" FuncFvwmShowMessage "Sorry" "This is not implemented yet"
-+ "" Nop
-+ "Configure this part"         FuncFvwmShowMessage "Sorry" "This is not implemented yet"
+DestroyFunc FuncFvwmHideApp
+AddToFunc   FuncFvwmHideApp
++ I Iconify $0
++ I State 0 $0
+
+DestroyFunc FuncFvwmPopupMenuPanelApps
+AddToFunc   FuncFvwmPopupMenuPanelApps
++ I DestroyMenu MenuFvwmSwitchHidePageApps
++ I AddToMenu   MenuFvwmSwitchHidePageApps
++ I Next (CurrentPage, !CirculateHit, !Iconic) \
+	+ "%menu/window-iconify.xpm%Hide all apps on this page" \
+	All (CurrentPage, !CirculateHit, !Iconic) FuncFvwmHideApp true
++ I Next (CurrentPage, !CirculateHit, Iconic, State 0) \
+	+ "%menu/window-iconify.xpm%Unhide hidden apps on this page" \
+	All (CurrentPage, !CirculateHit, Iconic, State 0) FuncFvwmHideApp false
++ I Next (CurrentPage, !CirculateHit, !Iconic) Nop
++ I Cond (NoMatch) Next (CurrentPage, !CirculateHit, Iconic, State 0) Nop
++ I Cond (NoMatch) \
+	+ "%menu/information.xpm%No apps on this page to hide or hidden" Nop
++ I + "" Nop
++ I + "%menu/configuration.xpm%Configure this part" \
+	FuncFvwmShowMessage "Sorry" "This is not implemented yet"
++ I Popup MenuFvwmSwitchHidePageApps $*
+
+DestroyFunc FuncFvwmHideAllApps
+AddToFunc   FuncFvwmHideAllApps
++ I Next (CurrentPage, !CirculateHit, !Iconic) \
+	All (CurrentPage, !CirculateHit, !Iconic) FuncFvwmHideApp true
++ I Cond (NoMatch) Next (CurrentPage, !CirculateHit, Iconic, State 0) \
+	All (CurrentPage, !CirculateHit, Iconic, State 0) FuncFvwmHideApp false
 
 DestroyModuleConfig FvwmButtons-Panel: *
 *FvwmButtons-Panel: Colorset 10
@@ -18,7 +42,9 @@ DestroyModuleConfig FvwmButtons-Panel: *
 	Action(Mouse 3) FuncFvwmShowMessage "Sorry" "Configuration of parts is not implemented yet", \
 )
 *FvwmButtons-Panel: (3x1, Icon module/panel-holder.png, \
-	Action `Popup MenuFvwmPanelMovePart rectangle $widthx$height+$left+$top 0 -100m`, \
+	ActionOnPress, \
+	Action `FuncFvwmPopupMenuPanelApps rectangle $widthx$height+$left+$top 0 -100m`, \
+	Action(Mouse 3) `FuncFvwmHideAllApps`, \
 )
 *FvwmButtons-Panel: (6x1, Padding 4 7, Icon 16x16/terminal.xpm, \
 	Action(Mouse 1) `FuncFvwmTerminal`, \
@@ -30,7 +56,7 @@ DestroyModuleConfig FvwmButtons-Panel: *
 	Action(Mouse 2) `FuncFvwm2WWW`, \
 	Action(Mouse 3) `FuncFvwm3WWW`, \
 )
-*FvwmButtons-Panel: (6x1, Padding 4 7, Icon 16x16/multimedia.xpm, \
+*FvwmButtons-Panel: (6x1, Padding 4 7, Icon 16x16/music.xpm, \
 	Panel(up) FvwmButtons-MultimediaPanel "FvwmButtons FvwmButtons-MultimediaPanel", \
 	Action(Mouse 2) `Menu MenuFvwmMultimedia rectangle $widthx$height+$left+$top c -100m`, \
 	Action(Mouse 3) `FuncFvwmShowMessage "Sorry" "Configuration is not implemented yet"`, \
@@ -106,7 +132,11 @@ PipeRead `echo -n "SetEnv IconManWidth "; expr $[vp.width] / 4 - 90`
 
 # TODO: Should use another colorset for clock
 
-*FvwmButtons-Panel: (1x1, Icon module/panel-sep.xpm)
+#*FvwmButtons-Panel: (1x1, Icon module/panel-sep.xpm)
+*FvwmButtons-Panel: (1x1, Container(Columns 2))
+*FvwmButtons-Panel: (1x1, Colorset 10, Icon module/panel-sep1.png)
+*FvwmButtons-Panel: (1x1, Colorset 14, Icon module/panel-sep2.png)
+*FvwmButtons-Panel: (End)
 *FvwmButtons-Panel: (16x1, Container(Columns 1, Colorset 14, \
 	Font "shadow=1:xft:Luxi Sans:Bold:pixelsize=9:minspace=true" \
 ))
@@ -132,7 +162,7 @@ DestroyModuleConfig FvwmButtons-MultimediaPanel: *
 *FvwmButtons-MultimediaPanel: Frame 0
 *FvwmButtons-MultimediaPanel: Padding 0 0
 
-*FvwmButtons-MultimediaPanel: (6x1, Padding 4 7, Icon 16x16/multimedia.xpm, \
+*FvwmButtons-MultimediaPanel: (6x1, Padding 4 7, Icon 16x16/music.xpm, \
 	Action(Mouse 1) `Exec exec xmms`, \
 	Action(Mouse 2) `Exec exec freeamp`, \
 	Action(Mouse 3) `Exec exec kmid`, \

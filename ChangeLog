@@ -6,6 +6,15 @@
 	* bin/fvwm-themes-images.in:
 	use the fvwm-root name
 
+	* themes/default/settings/wheel/disabled:
+	* themes/default/settings/wheel/enabled:
+	* themes/default/settings.cfg:
+	* themes/default/theme.cfg:
+	initially added a new setting wheel
+
+	* themes/redmondxp/modules/FvwmButtons-Panel:
+	added support for "Hide/Unhide all apps on this page"
+
 2002-10-05  migo  <migo@homemail.com>
 
 	* themes/redmondxp/modules/FvwmThemesPanelManager:
