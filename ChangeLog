@@ -1,3 +1,13 @@
+2000-11-09  migo  <migo@homemail.com>
+
+	* themes/afterstep/modules/main:FvwmButtons-As:
+	* themes/awol/modules/main:FvwmButtons-DaLo:
+	* themes/default/functions-appbind:
+	* themes/default/menus:
+	* themes/default/menus-user:
+	* themes/redmond98/modules/main:startmenu:
+	move fvwm forms and scripts to FvwmModule-SubName scheme
+
 2000-11-08  migo  <migo@homemail.com>
 
 	* rpm/Makefile.am:

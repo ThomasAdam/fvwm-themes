@@ -7,11 +7,11 @@ AddToMenu   MenuFvwmStartMenu@menuback/fvwm2.xpm@^black^
 + "&Personal%winXX-startmenu/personal.xpm%"     Popup MenuFvwmPersonal
 + "&Documents%winXX-startmenu/documents.xpm%"	Popup StartMenuFvwmDocuments
 + "&Settings%winXX-startmenu/settings.xpm%"	Popup StartMenuFvwmSettings
-+ "&Find%winXX-startmenu/find.xpm%"		FvwmScript ScriptFvwmFind
++ "&Find%winXX-startmenu/find.xpm%"		FvwmScript FvwmScript-Find
 + "&Help%winXX-startmenu/help.xpm%"		Exec  exec xman
 + "&Run...%winXX-startmenu/run.xpm%"		FuncFvwmTerminal
 + ""						Nop
-+ "Sh&ut Down%winXX-startmenu/shutdown.xpm%"	Module FvwmScript ScriptFvwmQuit
++ "Sh&ut Down%winXX-startmenu/shutdown.xpm%"	FvwmScript FvwmScript-Quit
 
 DestroyMenu StartMenuFvwmSettings
 AddToMenu   StartMenuFvwmSettings "Settings" Title

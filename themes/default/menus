@@ -154,10 +154,10 @@ AddToMenu   MenuFvwmStopRegularModules "Regular Modules" Title
 
 DestroyMenu MenuFvwmForms
 AddToMenu   MenuFvwmForms "Fvwm Forms" Title
-+ "&Capture"           Module FvwmForm FormFvwmCapture.
-+ "&Rlogin"            Module FvwmForm FormFvwmRlogin.
-+ "&Talk"              Module FvwmForm FormFvwmTalk.
-+ "&QuitVerify"        Module FvwmForm FormFvwmQuitVerify.
++ "&Capture"           Module FvwmForm FvwmForm-Capture
++ "&Rlogin"            Module FvwmForm FvwmForm-Rlogin
++ "&Talk"              Module FvwmForm FvwmForm-Talk
++ "&QuitVerify"        Module FvwmForm FvwmForm-QuitVerify
 
 DestroyMenu MenuFvwmApplets
 AddToMenu   MenuFvwmApplets "Fvwm Applets" Title
@@ -172,7 +172,8 @@ AddToMenu   MenuFvwmApplets "Fvwm Applets" Title
 
 DestroyFunc FuncFvwmFormThemeSettings
 AddToFunc   FuncFvwmFormThemeSettings
-+ I FvwmForm FvwmForm-ThemeSettings
++ I KillModule FvwmForm FvwmForm-ThemeSettings
++ I Module FvwmForm FvwmForm-ThemeSettings
 
 DestroyFunc FuncFvwmStartGtkThemeSettings
 AddToFunc   FuncFvwmStartGtkThemeSettings
@@ -193,8 +194,8 @@ AddToMenu   MenuFvwmConfiguration "Fvwm Configuration" Title
 + "Theme Settings (form)"	FuncFvwmFormThemeSettings
 + "Theme Settings (gtk)"	FuncFvwmGtkThemeSettings
 + "&Menu Editor"	FvwmScript FvwmScript-Menus --text-colorset 34 --icon-colorset 5 --viewer-colorset 33
-+ "&Root Cursor"	Module FvwmForm FormFvwmRootCursor.
-+ "Form &Defaults"	Module FvwmForm FormFvwmForm.
++ "&Root Cursor"	Module FvwmForm FvwmForm-RootCursor
++ "Form &Defaults"	Module FvwmForm FvwmForm-Form
 + "Control &Animation"	Popup MenuFvwmAnimate
 + "&X Configuration"	Popup MenuFvwmXConfiguration
 + "" Nop
@@ -204,10 +205,10 @@ AddToMenu   MenuFvwmConfiguration "Fvwm Configuration" Title
 
 DestroyMenu MenuFvwmXConfiguration
 AddToMenu   MenuFvwmXConfiguration "X Configuration" Title
-+ "Bell%menu/sound.xpm%" FvwmScript ScriptFvwmBellSetup
-+ "KeyBoard%menu/keyboard.xpm%" FvwmScript ScriptFvwmKeyboardSetup
-+ "Screen%menu/display.xpm%" FvwmScript ScriptFvwmScreenSetup
-+ "Mouse%menu/mouse.xpm%" FvwmScript ScriptFvwmPointerSetup
++ "Bell%menu/sound.xpm%"        FvwmScript FvwmScript-BellSetup
++ "KeyBoard%menu/keyboard.xpm%" FvwmScript FvwmScript-KeyboardSetup
++ "Screen%menu/display.xpm%"    FvwmScript FvwmScript-ScreenSetup
++ "Mouse%menu/mouse.xpm%"       FvwmScript FvwmScript-PointerSetup
 
 # -----------------------------------------------------------------------------
 # ---------- MenuFvwmQuit

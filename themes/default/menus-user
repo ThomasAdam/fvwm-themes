@@ -27,7 +27,7 @@ AddToMenu   MenuFvwmShells "Shells" Title
 + "&Konsole	80x40%menu/xterm.xpm%"             Exec exec konsole -nowelcome -sl 4096 -ls -vt_sz 80x40
 + "&Dtterm	80x40 (7x14 font)%menu/xterm.xpm%" Exec exec /usr/dt/bin/dtterm -n $USER@$HOST -T $USER@$HOST -sl 4096 -ls -g 80x40 -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
 + "" Nop
-+ "Remote login...%menu/xterm.xpm%" FvwmForm FormFvwmRlogin.
++ "Remote login...%menu/xterm.xpm%" FvwmForm FvwmForm-Rlogin
 
 
 # ----------------------------------------------------------------------------

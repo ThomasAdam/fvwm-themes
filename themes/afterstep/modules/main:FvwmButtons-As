@@ -22,7 +22,7 @@ DestroyModuleConfig FvwmButtons-AsBar: *
 	`Exec exec xload -bg $[bg.cs11] -fg $[fg.cs11] -hl $[shadow.cs11]\
 	-update 5 -nolabel -geometry +5000+5000`)
 *FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Icon 48x48-general/wm-restart.xpm, Action 'Restart')
-*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Icon 48x48-general/choice-no.xpm, Action 'Module FvwmForm FormFvwmQuitVerify.')
+*FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Icon 48x48-general/choice-no.xpm, Action 'Module FvwmForm FvwmForm-QuitVerify')
 *FvwmButtons-AsBar: (1x1, Colorset 12, Title(Left) ...., Panel(left, position module bottom mtb mlr) "FvwmButtons-AsAppletsPanel" 'FvwmButtons FvwmButtons-AsAppletsPanel')
 
 DestroyModuleConfig FvwmButtons-AsPanel: *

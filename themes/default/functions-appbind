@@ -254,7 +254,7 @@ AddToFunc   FuncFvwm2Keyboard
 
 DestroyFunc FuncFvwm3Keyboard
 AddToFunc   FuncFvwm3Keyboard
-+ I FvwmScript ScriptFvwmKeyboardSetup
++ I FvwmScript FvwmScript-KeyboardSetup
 
 # Used in migo
 DestroyFunc FuncFvwmWmLock
@@ -298,5 +298,5 @@ AddToFunc   FuncFvwm3WmRestart
 # used in stroke & luthien; IMHO, both beep and grab are very annoying
 DestroyFunc FuncFvwmQuitVerify
 AddToFunc   FuncFvwmQuitVerify
-+ I FvwmForm FormFvwmQuitVerify.
++ I FvwmForm FvwmForm-QuitVerify
 #+ I Quit
