@@ -75,13 +75,13 @@ Colorset 13 fg black, bg rgb:98/B0/C8, hi black, sh blue, \
 	Plain, NoShape
 
 # default2 (FvwmPager or to get more colors in Buttons)
-Colorset 14 fg black, bg rgb:98/B0/C8, Plain, NoShape
+Colorset 14 fg black, bg rgb:48/B0/C8, Plain, NoShape
 
 # default hilight2: (FvwmPager or to get more colors in a Buttons)
-Colorset 15 fg black, bg white, Plain, NoShape
+Colorset 15 fg rgb:40/30/20, bg rgb:b0/f0/ff, Plain, NoShape
 
 # tips/balloons
-Colorset 16 fg white, bg rgb:14/58/bc, Plain, NoShape
+Colorset 16 fg rgb:ff/ff/b0, bg rgb:14/58/bc, Plain, NoShape
 
 # ----------------------------
 # Window List Module Colorsets

@@ -21,13 +21,13 @@ AddToFunc   FuncFvwmStartNormalIcons
 DestroyFunc FuncFvwmStartThemeModules
 AddToFunc   FuncFvwmStartThemeModules
 # migo: I can't make transparency work for this theme!
-+ I Colorset 10 fg contrast, bg average, TiledPixmap module/panel-bg.xpm, NoShape
++ I Colorset 10 fg white, bg average, TiledPixmap module/panel-bg.xpm, NoShape
 #+ I Colorset 23 fg $[fg.cs10], bg $[bg.cs10], Transparent, NoShape
-+ I Colorset 23 fg contrast, bg average, TiledPixmap module/panel-bg.xpm, NoShape
++ I Colorset 23 fg white, bg average, TiledPixmap module/panel-bg.xpm, NoShape
 
-+ I Colorset 17 fg contrast, bg average, TiledPixmap module/panel-bg.xpm, NoShape
-+ I Colorset 19 fg contrast, bg average, TiledPixmap module/panel-bg.xpm, Tint cyan 20, NoShape
-+ I Colorset 20 fg contrast, bg average, TiledPixmap module/panel-bg.xpm, Tint white 30, NoShape
++ I Colorset 17 fg white, bg average, TiledPixmap module/panel-bg.xpm, NoShape
++ I Colorset 19 fg white, bg average, TiledPixmap module/panel-bg.xpm, Tint cyan 20, NoShape
++ I Colorset 20 fg white, bg average, TiledPixmap module/panel-bg.xpm, Tint white 30, NoShape
 + I FvwmButtons FvwmButtons-Panel
 + I FuncFvwmStartNormalIcons
 
@@ -39,13 +39,13 @@ AddToFunc   FuncFvwmReloadThemeModules
 DestroyFunc FuncFvwmReloadColorsModules
 AddToFunc   FuncFvwmReloadColorsModules
 # migo: I can't make transparency work for this theme!
-+ I Colorset 10 fg contrast, bg average, TiledPixmap module/panel-bg.xpm, NoShape
++ I Colorset 10 fg white, bg average, TiledPixmap module/panel-bg.xpm, NoShape
 #+ I Colorset 23 fg $[fg.cs10], bg $[bg.cs10], Transparent, NoShape
-+ I Colorset 23 fg contrast, bg average, TiledPixmap module/panel-bg.xpm, NoShape
++ I Colorset 23 fg white, bg average, TiledPixmap module/panel-bg.xpm, NoShape
 
-+ I Colorset 17 fg contrast, bg average, TiledPixmap module/panel-bg.xpm, NoShape
-+ I Colorset 19 fg contrast, bg average, TiledPixmap module/panel-bg.xpm, Tint cyan 20, NoShape
-+ I Colorset 20 fg contrast, bg average, TiledPixmap module/panel-bg.xpm, Tint white 30, NoShape
++ I Colorset 17 fg white, bg average, TiledPixmap module/panel-bg.xpm, NoShape
++ I Colorset 19 fg white, bg average, TiledPixmap module/panel-bg.xpm, Tint cyan 20, NoShape
++ I Colorset 20 fg white, bg average, TiledPixmap module/panel-bg.xpm, Tint white 30, NoShape
 + I FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Panel
 
 DestroyFunc FuncFvwmStopThemeModules
@@ -60,8 +60,7 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyModuleConfig FvwmIconMan: *
 + I FuncFvwmDestroyModulesThemeStyle
 + I DestroyFunc FuncFvwmDestroyModulesThemeStyle
-+ I Colorset 10 fg contrast, bg average, VGradient 300 3 rgb:14/6f/ea 2 rgb:00/3f/aa 6 rgb:14/6f/ea 1 rgb:00/3f/aa
-# restore 17, 19 and 20 too
++ I Read $./../colors
 
 DestroyFunc FuncFvwmUnReloadColorsModules
 AddToFunc   FuncFvwmUnReloadColorsModules

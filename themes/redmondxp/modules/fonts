@@ -1,17 +1,17 @@
-FuncFvwmSetFont-ModuleLabel "*FvwmButtons-Panel: Font" \
-	"-adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*"
+FuncFvwmSetFont-ModuleLabel FvwmButtons-Panel Font \
+	"xft:Luxi Sherif::Bold:size=20;-adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*"
 
-FuncFvwmSetFont-ModuleWindowList "*FvwmIconMan: Font" \
-	"-adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*"
+FuncFvwmSetFont-ModuleWindowList FvwmIconMan Font \
+	"xft:Luxi Sherif::Bold:size=12:minspace=true;-adobe-helvetica-medium-r-*-*-14-*-*-*-*-*-*-*"
 
-FuncFvwmSetFont-ModuleTips "*FvwmPager-Single: BalloonFont" fixed
-FuncFvwmSetFont-ModuleTips "*FvwmPager-Desker: BalloonFont" fixed
+FuncFvwmSetFont-ModuleTips FvwmPager-Single BalloonFont "xft:Luxi Sherif:size=11:minspace=true"
+FuncFvwmSetFont-ModuleTips FvwmPager-Desker BalloonFont "xft:Luxi Sherif:size=11:minspace=true"
 
-FuncFvwmSetFont-ModuleSmall "*FvwmPager-Single: SmallFont" "5x8"
-FuncFvwmSetFont-ModuleSmall "*FvwmPager-Desker: SmallFont" "5x8"
+FuncFvwmSetFont-ModuleSmall FvwmPager-Single SmallFont 5x8
+FuncFvwmSetFont-ModuleSmall FvwmPager-Desker SmallFont 5x8
 
-FuncFvwmSetFont-ModuleLabel "*FvwmPager-Single: Font" \
-	"-adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*"
+FuncFvwmSetFont-ModuleLabel FvwmPager-Single Font \
+	"xft:Luxi Mono:Bold:pixelsize=9;-adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*"
 
-FuncFvwmSetFont-ModuleLabel "*FvwmPager-Desker: Font" \
-	"-adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*"
+FuncFvwmSetFont-ModuleLabel FvwmPager-Desker Font \
+	"xft:Luxi Mono:Bold:pixelsize=9;-adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*"
