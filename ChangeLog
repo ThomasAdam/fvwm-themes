@@ -1,3 +1,29 @@
+2001-02-19  olicha  <olivier.chapuis@free.fr>
+
+	* themes/default/menus:
+	Add anim to place again (MenuFvwmWindowRefresh)
+	Add a rearrange submenu to Windows Operation menu
+	Rename the first MenuFvwmWindowOps2 menu to MenuFvwmWindowOps3 so
+	that "buttons" can choose between a icon/icon free WindowOps menu
+	Some screenshot fixes
+
+	* themes/olicha/buttons:
+	Use MenuFvwmWindowOps3
+
+	* themes/default/settings/kde/kde2-system-menu/ft-enabled:
+	* themes/default/settings/kde/kde2-system-menu/kde2-enabled:
+	Restablish -utf8 option. CopyMenuStyle "*" MenuSyleFvwmKde2System and
+	use MenuSyleFvwmKde2System in the kde2 menu so that the user can
+	change the kde2 menu style (not really usefull here, this will be more
+	useful with kde1 menu to just change the font, I will do it)
+
+	* themes/redmond98/colors:
+	* AUTHORS:
+	Applied (with modifications) Lorenz Minger patch
+	
+	* AUTHORS:
+	Added Andre
+	
 2000-02-17  migo  <migo@homemail.com>
 
 	* images.tar.gz:
