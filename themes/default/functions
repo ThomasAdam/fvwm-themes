@@ -76,15 +76,15 @@ AddToFunc   FuncFvwmSimpleMaximize
 
 DestroyFunc FuncFvwmSimpleMaximizeVert
 AddToFunc   FuncFvwmSimpleMaximizeVert
-+ I Maximize $0 100 0
++ I Maximize $0 0 100
 
 DestroyFunc FuncFvwmSimpleMaximizeHoriz
 AddToFunc   FuncFvwmSimpleMaximizeHoriz
-+ I Maximize $0 0 100
++ I Maximize $0 100 0
 
 DestroyFunc FuncFvwmSimplePartialMaximizeVert
 AddToFunc   FuncFvwmSimplePartialMaximizeVert
-+ I Maximize $0 95 0
++ I Maximize $0 0 95
 
 DestroyFunc FuncFvwmIconifySameResource
 AddToFunc   FuncFvwmIconifySameResource

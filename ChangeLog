@@ -2,7 +2,7 @@
 
 	* themes/default/functions:
 	* themes/default/menu:
-	* themes/lutien/buttons:
+	* themes/default/bindings:
 	Some Maximizing works. Added some "simple" functions and use it.
 	In the Maximize Menu use "On" in the place of the implicite toggle.
 	Note: unfortunately, the Grow maximizing seems buggy in fvwm,

@@ -162,7 +162,7 @@ KeyMM F6  	A	M SM	FuncFvwmRestore
 KeyMM F7  	A	M SM	Move
 KeyMM F8  	A	M SM	Resize
 KeyMM F9  	A	M SM	Iconify
-KeyMM F10  	A	M SM	Maximize
+KeyMM F10  	A	M SM	Pick FuncFvwmSimpleMaximize
 KeyMM F11 	A	M SM	Module FvwmIdent
 KeyMM F12 	A	M SM	FuncFvwmConsole
 
