@@ -1,3 +1,15 @@
+2001-03-03  migo  <migo@homemail.com>
+
+	* README:
+	* forms/FvwmForm-ThemeSettings:
+	* forms/FvwmGtk-Themes:
+	* themes/default/settings.cfg:
+	renamed Icon Style variants to "Internal wm-icons", "External wm-icons"
+
+	* themes/*/menustyle:
+	adopt a new PopdownDelayed, PopdownDelay;
+	there are some bugs with it, especially seen in @olicha and @spruce
+
 2001-03-01  olicha  <olivier.chapuis@free.fr>
 	
 	* themes/default/settings.cfg:
