@@ -3,6 +3,9 @@
 	* themes/redmondxp/images/module/panel-start.png:
 	replaced floating windows in Start button
 
+	* themes/ice/windowlook:
+	use nicer font tahoma if available
+
 2002-12-19  migo  <migo@homemail.com>
 
 	* configure.in:
