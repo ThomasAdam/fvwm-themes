@@ -25,7 +25,7 @@ Provides:  fvwm-themes-extra
 Docdir:    %{prefix}/share/doc
 
 %description
-FVWM Themes is a powerful configurational framework for FVWM,
+FVWM Themes is a powerful configuration framework for FVWM,
 designed to be easily extendible and configurable, includes
 several pre-built themes, a pack of images and sounds.
 
@@ -41,9 +41,12 @@ Ce paquet contient 6 themes fait pour Йtre utilisИ avec le paquet
 base de FVWM Themes.
 
 %description -l ru
-Пакет FVWM Themes является мощным окружением для FVWM, которое
-спроектированно с учетом легкости расширения и конфигурации.
+FVWM Themes является мощным окружением для оконного менеджера FVWM,
+спроектированным с учетом легкости расширения и конфигурации.
 Пакет включает в себя готовые темы, графические и звуковые файлы.
+
+Данный пакет содержит дополнительные 6 тем для использования наряду
+с базовыми.
 
 %prep
 %setup
@@ -68,8 +71,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 echo ""
-echo "    Refresh with no cache with the themes management menu"
-echo "    and have fun!"
+echo "    For new themes to appear in your fvwm-themes menus, choose
+echo "    'Refresh with no cache' from the Theme Management menu."
 echo ""
 
 #* 21 May 2001 FVWM Themes Developers  <fvwm-themes-devel@lists.sourceforge.net>

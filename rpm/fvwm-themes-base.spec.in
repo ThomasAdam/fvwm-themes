@@ -20,17 +20,18 @@ Autoreq:   1
 
 Requires:  fvwm >= @REQUIRED_FVWM_VERSION@
 Requires:  perl >= 5.002
+Requires:  m4
 
 Provides:  fvwm-themes
 
 Docdir:    %{prefix}/share/doc
 
 %description
-FVWM Themes is a powerful configurational framework for FVWM,
+FVWM Themes is a powerful configuration framework for FVWM,
 designed to be easily extendible and configurable, includes
 several pre-built themes, a pack of images and sounds.
 
-The base package contains the themes engines and utilities
+This base package contains the theme engine and utilities
 as well as 8 themes.
 
 %description -l fr
@@ -42,9 +43,12 @@ Le paquet main contient le moteur et des utilitaires ainsi
 que 8 thХmes.
 
 %description -l ru
-Пакет FVWM Themes является мощным окружением для FVWM, которое
-спроектированно с учетом легкости расширения и конфигурации.
+FVWM Themes является мощным окружением для оконного менеджера FVWM.
+спроектированным с учетом легкости расширения и конфигурации.
 Пакет включает в себя готовые темы, графические и звуковые файлы.
+
+Данный базовый пакет содержит конфигурационные утилиты для всевозможных
+манипуляций с темами и 8 тем.
 
 %prep
 %setup
@@ -75,6 +79,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 [ -x %{prefix}/bin/fvwm-themes-menuapp ] && %{prefix}/bin/fvwm-themes-menuapp --site --build-menus --remove-popup || true
+echo ""
+echo "    If you are running fvwm-themes now, to avoid problems choose"
+echo "    'Reset all to the default' from the Theme Management menu."
+echo ""
 
 ## TODO: how to specify the current date in .spec? Or how to run a `command`?
 #%changelog
