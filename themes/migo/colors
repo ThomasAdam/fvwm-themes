@@ -18,9 +18,9 @@ Colorset 0 fg rgb:f8/f8/f3, bg rgb:50/50/78, Plain, NoShape
 # Window decorations
 
 # window title, inactive and active
-Colorset 1 fg rgb:30/10/58, bg #cece9c, fgsh #a1a17a, \
+Colorset 1 fg rgb:30/10/58, bg rgb:ce/ce/9c, fgsh rgb:a1/a1/7a, \
 	TiledPixmap decor/rose.xpm, bgTint black 22, Tint black 22, NoShape
-Colorset 2 fg rgb:50/10/90, bg #cece9c, fgsh #cece9c, \
+Colorset 2 fg rgb:50/10/90, bg rgb:ce/ce/9c, fgsh rgb:91/9c/d1, \
 	TiledPixmap decor/rose.xpm, NoShape
 
 # window borders, inactive and active
@@ -31,7 +31,10 @@ Colorset 4 fg black, bg #cece9c, Plain, NoShape
 DestroyFunc FuncFvwmDecorBackground
 AddToFunc   FuncFvwmDecorBackground
 + I TitleStyle AllInactive MultiPixmap Main Colorset 1
-+ I TitleStyle AllActive   MultiPixmap Main Colorset 2
++ I TitleStyle AllActive   MultiPixmap Main Colorset 2 \
+	UnderText decor/text-under.png, \
+	LeftOfText decor/text-left.png, \
+	RightOfText decor/text-right.png
 + I AddTitleStyle AllInactive Colorset 1 30
 
 #+ I ButtonStyle	All Pixmap 16x16/empty.xpm
@@ -65,12 +68,11 @@ Colorset 11 fg rgb:f0/f0/f4, bg average, \
 	Pixmap modcolor/plast-brown.png, NoShape
 
 # special
-Colorset 12 fg black, bg rgb:E4/D2/C0, \
-	VGradient 30 grey50 rgb:E4/D2/C0, NoShape
+Colorset 12 fg rgb:f8/f8/f3, bg rgb:47/47/68, \
+	CGradient 50 rgb:50/50/78 rgb:40/40/5a, NoShape
 
 # swallowed window
-Colorset 13 fg black, bg rgb:E4/D2/C0, hi black, sh rgb:F0/F0/80, \
-	Plain, NoShape
+Colorset 13 fg black, bg rgb:0b/2e/46, Plain, NoShape
 
 # default2 (FvwmPager or to get more colors in Buttons)
 Colorset 14 fg rgb:f0/f0/f4, bg average, \

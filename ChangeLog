@@ -3,6 +3,9 @@
 	* themes/default/menus:
 	added FvwmGtkDebug
 
+	* themes/migo/colors:
+	some experimentations with colorsets
+
 2002-04-12 migo  <migo@homemail.com>
 
 	* locale/de/*.msg:
