@@ -19,6 +19,11 @@
 	* themes/default/images/banner/fvwm-logo-clearglass.xpm:
 	temporarily include 2 more versions for testing
 
+	* themes/default/functions-appbind:
+	fix hang with Solaris /bin/sh
+	* themes/default/menus:
+	minor rewording
+
 2002-04-30 migo  <migo@homemail.com>
 
 	* themes/default/menus:

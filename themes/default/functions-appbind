@@ -33,13 +33,15 @@ AddToFunc   FuncFvwmRunInXterm
 
 DestroyFunc FuncFvwmMenuDirectory
 AddToFunc   FuncFvwmMenuDirectory
-+ I PipeRead 'fvwm-menu-directory -d "$0" --exec-file ^emacs --check-subdir --links --wm-icons'
++ I PipeRead 'fvwm-menu-directory -d "$0" --exec-file "^emacs" --check-subdir --links --wm-icons'
 
 DestroyMenu MenuFvwmBrowser
-AddToMenu   MenuFvwmBrowser DynamicPopupAction Piperead 'fvwm-menu-directory -r -na MenuFvwmBrowser -d $HOME -s --exec-file ^emacs --xte="xterm -e" --wm-icons --check-subdir'
+AddToMenu   MenuFvwmBrowser
++ DynamicPopupAction Piperead 'fvwm-menu-directory -r -na MenuFvwmBrowser -d $HOME -s --exec-file "^emacs" --xte="xterm -e" --wm-icons --check-subdir'
 
 DestroyMenu MenuFvwmBrowserCached
-AddToMenu   MenuFvwmBrowserCached DynamicPopupAction Piperead 'fvwm-menu-directory -all -r -na MenuFvwmBrowserCached -d $HOME -s --exec-file ^emacs --xte="xterm -e" --wm-icons --check-subdir'
+AddToMenu   MenuFvwmBrowserCached
++ DynamicPopupAction Piperead 'fvwm-menu-directory -all -r -na MenuFvwmBrowserCached -d $HOME -s --exec-file "^emacs" --xte="xterm -e" --wm-icons --check-subdir'
 
 # ----------------------------------------------------------------------------
 # The following functions are mostly used in FvwmButtons modules and stroke.
