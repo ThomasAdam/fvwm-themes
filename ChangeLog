@@ -1,11 +1,19 @@
 2000-08-19  olicha  <olivier.chapuis@free.fr>
 
+	* bin/fvwm-themes-start.1:
+	* bin/fvwm-themes-images.in
+	* doc/FAQ:
+	fix some missprints
+
+2000-08-19  olicha  <olivier.chapuis@free.fr>
+
 	* bin/fvwm-themes-config.in (comLoop): a fix
 
 	* doc/FAQ:
 	* TODO:
 	* INSTALL:
 	* README:
+	* doc/README.1st:
 	some updates
 
 	* themes/awol/modules/*: a lot of desks :o)

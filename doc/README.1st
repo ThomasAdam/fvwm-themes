@@ -3,6 +3,8 @@ Requirements
 
 You need at least fvwm-2.3.20, but the latest version is preferable.
 You need perl 5.002 or better.
+It is a good idea to have ImageMagick 4.0.x or better and mknod in
+your path.
 
 Contact info
 ------------
@@ -15,3 +17,4 @@ Developer mailing list, feel free to get subscribed:
 	http://lists.sourceforge.net/mailman/listinfo/fvwm-themes-devel
 Private questions (please try fvwm-themes-devel list):
 	mailto:migo@fvwm-themes.sourceforge.net
+	mailto:olivier.chapuis@free.fr

@@ -46,7 +46,7 @@ All currently used components (probably from different themes) compose
 the current theme, which is reflected in the Theme Management menu.
 
 Any component can come with several choices, options or sub components
-which allows a fine configuration. These can be used via the the Theme
+which allow a fine configuration. These can be used via the the Theme
 Management menu under "current" or using the "Opt/Cho/Sub" button of
 the Theme Center.
 ==============================================================================

@@ -1988,7 +1988,7 @@ __END__
 
 =head1 NAME
 
-fvwm-themes-images - fvwm-themes images utility
+fvwm-themes-images - fvwm-themes images and colors utility
 
 =head1 SYNOPSIS
 
@@ -2155,11 +2155,11 @@ lot the construction of you sky by using the --be-fast option
 
 A color scheme file is a file constituted of one color by line.
 At the present time fvwm-themes-images can add to a color scheme
-file the text colors. For example, if you have in a directory DIR 
+file the text colors. For example, if you have in a directory DIR
 some color scheme files with .dp as extension if you run:
 
-	fvwm-themes-images --colors-schemes --text-colors 8:128:color1:color2
-	--in-dir DIR --out-dir DIR
+	fvwm-themes-images --colors-schemes --text-colors \
+	8:128:color1:color2 --in-dir DIR --out-dir DIR
 
 then the 8 first colors of the color schemes files will be unchanged
 and 8 new colors will be added (if your original colors files have more
@@ -2167,7 +2167,7 @@ than 8 colors these colors are ignored/removed). So, you get colors
 files with 16 colors. The ith new color (the color of the (i+8)th line)
 is the "text color" of the ith original color. The new colors are either
 color1 or color2. The ith new color is color1 if the ith original color
-have a grey value <= 128 and is color2 if not. A grey value of 255 
+have a grey value <= 128 and is color2 if not. A grey value of 255
 correspond to white and a grey value of 0 correspond to black. So, the
 idea is to use a light color for color1 (as white) and a dark color for
 color2 (as black).
