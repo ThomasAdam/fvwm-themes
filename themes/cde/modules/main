@@ -21,7 +21,7 @@ AddToFunc   FuncFvwmStartThemeModules
 
 DestroyFunc FuncFvwmReloadThemeModules
 AddToFunc   FuncFvwmReloadThemeModules
-+ I Read $./main:styles
++ I Read $./styles
 
 DestroyFunc FuncFvwmReloadColorsModules
 AddToFunc   FuncFvwmReloadColorsModules
@@ -61,6 +61,6 @@ AddToMenu   MenuFvwmStopThemeModules "CDE Modules" Title
 # ----------------------------------------------------------------------------
 # Modules configuration
 
-Read themes/cde/modules/main:styles
-Read themes/cde/modules/main:FvwmPager
-Read themes/cde/modules/main:fonts
+Read $./styles
+Read $./FvwmPager
+Read $./fonts

@@ -21,7 +21,7 @@ AddToFunc   FuncFvwmStartThemeModules
 
 DestroyFunc FuncFvwmReloadThemeModules
 AddToFunc   FuncFvwmReloadThemeModules
-+ I Read $./main:styles
++ I Read $./styles
 + I FuncFvwmStartNormalIcons
 
 DestroyFunc FuncFvwmReloadColorsModules
@@ -85,10 +85,10 @@ AddToFunc   FuncFvwmButtonsSwitch
 # ----------------------------------------------------------------------------
 # Modules configuration
 
-Read themes/awol/modules/main:styles
-Read themes/awol/modules/main:FvwmButtons-Default
-Read themes/awol/modules/main:FvwmButtons-DaLo
-Read themes/awol/modules/main:FvwmPager
-Read themes/awol/modules/main:FvwmIconMan
-Read themes/awol/modules/main:fonts
+Read $./styles
+Read $./FvwmButtons-Default
+Read $./FvwmButtons-DaLo
+Read $./FvwmPager
+Read $./FvwmIconMan
+Read $./fonts
 

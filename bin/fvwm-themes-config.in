@@ -867,10 +867,10 @@ sub getHashIdArrayIndex ($$) {
 
 # ----------------------------------------------------------------------------
 
-package Fvwm::ThemeCfg;
+package FVWM::ThemeCfg;
 
 sub AUTOLOAD ($@) {
-	my $func = $Fvwm::ThemeCfg::AUTOLOAD;
+	my $func = $FVWM::ThemeCfg::AUTOLOAD;
 	$func =~ s/.*://g;
 	$func = "main::$func";
 	no strict 'refs';
@@ -1199,7 +1199,7 @@ sub useNewComponents ($$$;$) {
 		push @{$self->{$componentKey}}, $component
 			unless $isSubComponent;
 
-		my $themeCfg = new Fvwm::ThemeCfg($theme);
+		my $themeCfg = new FVWM::ThemeCfg($theme);
 		my $cc = $themeCfg->getComponentCfg($component);
 		#ccds 1
 		$cc->{'used'} = 3;
@@ -2005,10 +2005,13 @@ sub getReadsRc($) {
 			my $optionEntry = $options->[$o];
 			my $optionFile = $optionEntry->{'file'};
 
-			$optionFile = ((ref($cc->{'variant'}) eq 'ARRAY'
-				&& $readFile =~ /^(.*\/)[^\/]+$/
-				|| $readFile =~ /^(.*\/)$mainDirFile$/)?
-				$1: "${readFile}:") . $optionFile;
+			$optionFile = (
+				(
+					$readFile =~ /^(.*\/)$mainDirFile$/
+						|| ref($cc->{'variant'}) eq 'ARRAY'
+						&& $readFile =~ /^(.*\/)[^\/]+$/
+				)? $1: "$readFile."
+			) . $optionFile;
 
 			my $current = $optionEntry->{'current'};
 			my $index = $current - 1;
@@ -2539,7 +2542,7 @@ wrongUsage() unless
 	keys %$setLockeds || $comMode || $configCenter ||
 	$setMinimalReload ne "";
 
-my $cfg = Fvwm::ThemeCfg->new('current', $reset? 'default': 'current', $fresh);
+my $cfg = FVWM::ThemeCfg->new('current', $reset? 'default': 'current', $fresh);
 if ($comMode) {
 	$comPid[0] = $comName;
 	$comPid[0] =~ s/config-//;
@@ -2603,7 +2606,7 @@ sub showInfoForConfigCenter {
 			my ($comps, $groups) = getThemeComponentsAndGroups($theme);
 			next unless isArrayElement($comps, $c);
 			$return .= "$theme\n";
-			my $themeCfg = new Fvwm::ThemeCfg($theme);
+			my $themeCfg = new FVWM::ThemeCfg($theme);
 			my $dd = $themeCfg->getComponentCfg($c);
 			my $file = $dd->{'read-file'} || "";
 			$return .= "$file\n";
@@ -2890,7 +2893,7 @@ sub comLoop {
 						if (! defined $self->{'cc'}->{$_} && $_ eq $comp);
 					$i++;
 				}
-				my $themeCfg = new Fvwm::ThemeCfg($theme);
+				my $themeCfg = new FVWM::ThemeCfg($theme);
 				$cc = $themeCfg->getComponentCfg($comp);
 			} else {
 				delete $componentToDrop{$comp}
@@ -3117,7 +3120,7 @@ sub comLoop {
 			my $comp = $1;
 			my $theme = $2;
 			my $o = $3;
-			my $themeCfg = new Fvwm::ThemeCfg($theme);
+			my $themeCfg = new FVWM::ThemeCfg($theme);
 			my $cc = $themeCfg->getComponentCfg($comp);
 			my $contains = $cc->{'contains'};
 			my $options  = $cc->{'option'};
@@ -3168,7 +3171,7 @@ sub comLoop {
 			my $theme = $2;
 			my $o = $3-1;
 			my $value = $4;
-			my $themeCfg = new Fvwm::ThemeCfg($theme);
+			my $themeCfg = new FVWM::ThemeCfg($theme);
 			my $cc = $themeCfg->getComponentCfg($comp);
 			my $contains = $cc->{'contains'};
 			my $options  = $cc->{'option'};
@@ -3202,7 +3205,7 @@ sub comLoop {
 				if -f "$userDir/$cfgCacheFileName";
 			unlink "$userDir/$currentThemeSubDir/$cfgCacheFileName"
 				if -f "$userDir/$currentThemeSubDir/$cfgCacheFileName";
-			$self = Fvwm::ThemeCfg->new('current', 'current', $fresh);
+			$self = FVWM::ThemeCfg->new('current', 'current', $fresh);
 			$allThemes = getAllThemes();
 			$tmp = $self->{$componentKey};
 			@currentComponents = sort @$tmp;
@@ -3429,7 +3432,7 @@ sub comLoop {
 				if -f "$userDir/$cfgCacheFileName";
 			unlink "$userDir/$currentThemeSubDir/$cfgCacheFileName"
 				if -f "$userDir/$currentThemeSubDir/$cfgCacheFileName";
-			$self = Fvwm::ThemeCfg->new('current', 'current', 1);
+			$self = FVWM::ThemeCfg->new('current', 'current', 1);
 			$allThemes = getAllThemes();
 			$tmp = $self->{$componentKey};
 			@currentComponents = sort @$tmp;
@@ -3485,7 +3488,7 @@ sub getOptionIndex {
 	my $optionEntry = shift;
 	my $o = shift;
 
-	my $themeCfg = new Fvwm::ThemeCfg($theme);
+	my $themeCfg = new FVWM::ThemeCfg($theme);
 	my $cc = $themeCfg->getComponentCfg($comp);
 	my $CC = $self->{cc};
 	my $_core = $self->getComponentCfg("_core");
@@ -3523,7 +3526,7 @@ sub getVariantIndex {
 	my $comp = shift;
 	my $val = shift;
 
-	my $themeCfg = new Fvwm::ThemeCfg($theme);
+	my $themeCfg = new FVWM::ThemeCfg($theme);
 	my $cc = $themeCfg->getComponentCfg($comp);
 	my $CC = $self->{cc};
 	my $_core = $self->getComponentCfg("_core");
@@ -3552,7 +3555,7 @@ sub getAllSubComponents ($$$;$$) {
 	my $self = shift;
 	my $theme = shift;
 	my $component = shift;
-	my $themeCfg = shift || new Fvwm::ThemeCfg($theme);
+	my $themeCfg = shift || new FVWM::ThemeCfg($theme);
 	my $name = shift;
 	my $configs = [];
 	my $cc = $themeCfg->getComponentCfg($component);
@@ -3790,7 +3793,7 @@ sub getScriptCurrentConfig($$$$$$$$) {
 		my $l1 = $maxLength - 3 - length($stateString) + $l;
 		$l1 = 1 if $l1 < 1;
 		if ($set == 1) {
-			my $themeCfg = new Fvwm::ThemeCfg($componentToLoad->{$_});
+			my $themeCfg = new FVWM::ThemeCfg($componentToLoad->{$_});
 			$dd = $themeCfg->getComponentCfg($_);
 			$theme = $dd->{'theme'};
 		} elsif ($set == 0 || $set == 2) {
@@ -3880,7 +3883,7 @@ sub getScriptCurrentCompName($$$$$$$$) {
 		$i++;
 	}
 	if ($set) {
-		my $themeCfg = new Fvwm::ThemeCfg($theme);
+		my $themeCfg = new FVWM::ThemeCfg($theme);
 		$dd = $themeCfg->getComponentCfg($comp);
 	} else {
 		$dd = $self->getComponentCfg($comp);
@@ -3934,7 +3937,7 @@ sub getScriptSettingsConfig($$) {
 			$config->{'current'};
 		if (defined $variantToSet->{"default/$config->{comp}"}) {
 			my $j = $variantToSet->{"default/$config->{comp}"};
-			my $themeCfg = new Fvwm::ThemeCfg('default');
+			my $themeCfg = new FVWM::ThemeCfg('default');
 			my $dd = $themeCfg->getComponentCfg("$config->{comp}");
 			my $variants = $dd->{'variant'};
 			my $set = $variants->[$j-1]->{'name'};
@@ -3964,7 +3967,7 @@ sub getScriptOptionsVariants($$$$$$$) {
 		return "None";
 	}
 
-	my $themeCfg = new Fvwm::ThemeCfg($theme);
+	my $themeCfg = new FVWM::ThemeCfg($theme);
 	my $cc = $themeCfg->getComponentCfg($comp);
 	my $contains = $cc->{'contains'};
 	my $options  = $cc->{'option'};

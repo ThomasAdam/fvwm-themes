@@ -5,6 +5,7 @@
 
 DestroyFunc  FuncFvwmLoadWMIcons
 AddToFunc    FuncFvwmLoadWMIcons
++ I Mouse 3 R CM Menu MenuFvwmIconSets Nop
 
 DestroyFunc  FuncFvwmAddToMenusWMIcons
 AddToFunc    FuncFvwmAddToMenusWMIcons
@@ -15,7 +16,7 @@ AddToFunc    FuncFvwmUnLoadWMIcons
 + I DestroyMenu MenuFvwmIconSets
 
 DestroyMenu MenuFvwmIconSets
-AddToMenu MenuFvwmIconSets "Change Icon Set" Title
+AddToMenu   MenuFvwmIconSets "Change Icon Set" Title
 + "%menu/item.xpm%menu	14x14-general"   Exec wm-icons-config -q -p -f menu 14x14-general
 + "%menu/item.xpm%menu	16x16-general"   Exec wm-icons-config -q -p -f menu 16x16-general
 + "%menu/item.xpm%menu	16x16-gnome"     Exec wm-icons-config -q -p -f menu 16x16-gnome
@@ -49,6 +50,3 @@ AddToMenu MenuFvwmIconSets "Change Icon Set" Title
 + "%menu/item.xpm%16x16	16x16-kde"       Exec wm-icons-config -q -p -f 16x16 16x16-kde
 + "" Nop
 + "%menu/restart.xpm%Restart	to activate" Restart
-
-# You can comment the following out or in.
-Mouse 3 R CM Menu MenuIconSets Nop

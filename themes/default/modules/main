@@ -19,7 +19,7 @@ AddToFunc   FuncFvwmStartThemeModules
 
 DestroyFunc FuncFvwmReloadThemeModules
 AddToFunc   FuncFvwmReloadThemeModules
-+ I Read $./main:styles
++ I Read $./styles
 + I FuncFvwmStartNormalIcons
 
 DestroyFunc FuncFvwmReloadColorsModules
@@ -81,12 +81,12 @@ AddToMenu   MenuFvwmStopThemeModules "Default Modules" Title
 # ----------------------------------------------------------------------------
 # Modules configuration
 
-Read themes/default/modules/main:styles
-Read themes/default/modules/main:FvwmButtons
-Read themes/default/modules/main:FvwmIconBox
-Read themes/default/modules/main:FvwmIconMan
-Read themes/default/modules/main:FvwmPager-Single
-Read themes/default/modules/main:FvwmPager-Desker
-Read themes/default/modules/main:FvwmTaskBar
-Read themes/default/modules/main:FvwmWinList
-Read themes/default/modules/main:fonts
+Read $./styles
+Read $./FvwmButtons
+Read $./FvwmIconBox
+Read $./FvwmIconMan
+Read $./FvwmPager-Single
+Read $./FvwmPager-Desker
+Read $./FvwmTaskBar
+Read $./FvwmWinList
+Read $./fonts

@@ -25,7 +25,7 @@ AddToFunc   FuncFvwmStartThemeModules
 
 DestroyFunc FuncFvwmReloadThemeModules
 AddToFunc   FuncFvwmReloadThemeModules
-+ I Read $./main:styles
++ I Read $./styles
 + I FuncFvwmStartNormalIcons
 
 DestroyFunc FuncFvwmReloadColorsModules
@@ -78,11 +78,11 @@ AddToMenu   MenuFvwmStopThemeModules "Redmond98 Modules" Title
 # ----------------------------------------------------------------------------
 # Modules configuration
 
-Read themes/redmond98/modules/main:styles
-Read themes/redmond98/modules/main:FvwmButtons-Bar
-Read themes/redmond98/modules/main:FvwmPager-Single
-Read themes/redmond98/modules/main:FvwmPager-Desker
-Read themes/redmond98/modules/main:FvwmTaskBar
-Read themes/redmond98/modules/main:FvwmButtons-Pager
-Read themes/redmond98/modules/main:startmenu
-Read themes/redmond98/modules/main:fonts
+Read $./styles
+Read $./FvwmButtons-Bar
+Read $./FvwmPager-Single
+Read $./FvwmPager-Desker
+Read $./FvwmTaskBar
+Read $./FvwmButtons-Pager
+Read $./startmenu
+Read $./fonts

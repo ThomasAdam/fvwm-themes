@@ -12,6 +12,9 @@
 	* themes/migo/globalfeel:
 	HintOverride
 
+	* **:
+	rename files with colon in their names
+
 2002-05-29  migo  <migo@homemail.com>
 
 	* themes/redmondxp/modules/FvwmButtons-Panel:

@@ -21,7 +21,7 @@ AddToFunc   FuncFvwmStartThemeModules
 
 DestroyFunc FuncFvwmReloadThemeModules
 AddToFunc   FuncFvwmReloadThemeModules
-+ I Read $./main:styles
++ I Read $./styles
 + I FuncFvwmStartNormalIcons
 
 DestroyFunc FuncFvwmReloadColorsModules
@@ -80,9 +80,9 @@ AddToMenu   MenuFvwmStopThemeModules "Default Modules" Title
 # ----------------------------------------------------------------------------
 # Modules configuration
 
-Read themes/luthien/modules/main:styles
-Read themes/luthien/modules/main:FvwmButtons
-Read themes/luthien/modules/main:FvwmIconMan
-Read themes/luthien/modules/main:FvwmPager
-Read themes/luthien/modules/main:FvwmWinList
-Read themes/luthien/modules/main:fonts
+Read $./styles
+Read $./FvwmButtons
+Read $./FvwmIconMan
+Read $./FvwmPager
+Read $./FvwmWinList
+Read $./fonts

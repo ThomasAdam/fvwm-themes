@@ -21,7 +21,7 @@ AddToFunc   FuncFvwmStartThemeModules
 
 DestroyFunc FuncFvwmReloadThemeModules
 AddToFunc   FuncFvwmReloadThemeModules
-+ I Read $./main:styles
++ I Read $./styles
 + I FuncFvwmStartNormalIcons
 
 DestroyFunc FuncFvwmReloadColorsModules
@@ -76,9 +76,9 @@ AddToMenu   MenuFvwmStopThemeModules "AfterStep Modules" Title
 # ----------------------------------------------------------------------------
 # Modules configuration
 
-Read themes/afterstep/modules/main:styles
-Read themes/afterstep/modules/main:FvwmButtons-As
-Read themes/afterstep/modules/main:FvwmIconMan
-Read themes/afterstep/modules/main:FvwmPager-Single
-Read themes/afterstep/modules/main:FvwmPager-Desker
-Read themes/afterstep/modules/main:fonts
+Read $./styles
+Read $./FvwmButtons-As
+Read $./FvwmIconMan
+Read $./FvwmPager-Single
+Read $./FvwmPager-Desker
+Read $./fonts

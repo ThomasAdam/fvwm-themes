@@ -21,7 +21,7 @@ AddToFunc   FuncFvwmStartThemeModules
 
 DestroyFunc FuncFvwmReloadThemeModules
 AddToFunc   FuncFvwmReloadThemeModules
-+ I Read $./main:styles
++ I Read $./styles
 + I FuncFvwmStartNormalIcons
 
 DestroyFunc FuncFvwmReloadColorsModules
@@ -68,9 +68,9 @@ AddToMenu   MenuFvwmStopThemeModules "BlackBox Modules" Title
 # ----------------------------------------------------------------------------
 # Modules configuration
 
-Read themes/blackbox/modules/main:styles
-Read themes/blackbox/modules/main:FvwmPager-Single
-Read themes/blackbox/modules/main:FvwmPager-Desker
-Read themes/blackbox/modules/main:FvwmIconMan
-Read themes/blackbox/modules/main:FvwmButtons-XX
-Read themes/blackbox/modules/main:fonts
+Read $./styles
+Read $./FvwmPager-Single
+Read $./FvwmPager-Desker
+Read $./FvwmIconMan
+Read $./FvwmButtons-XX
+Read $./fonts

@@ -25,7 +25,7 @@ AddToFunc   FuncFvwmStartThemeModules
 
 DestroyFunc FuncFvwmReloadThemeModules
 AddToFunc   FuncFvwmReloadThemeModules
-+ I Read $./main:styles
++ I Read $./styles
 + I FuncFvwmStartNormalIcons
 
 DestroyFunc FuncFvwmReloadColorsModules
@@ -149,15 +149,15 @@ Mouse 3 R SCM Menu MenuFvwmBarIconSet Nop
 # ----------------------------------------------------------------------------
 # Modules configuration
 
-Read themes/migo/modules/main:styles
-Read themes/migo/modules/main:FvwmButtons-Compact
-Read themes/migo/modules/main:FvwmPager-Single
-Read themes/migo/modules/main:FvwmPager-Desker
-Read themes/migo/modules/main:FvwmPager-Compact
-Read themes/migo/modules/main:FvwmButtons-Pager
+Read $./styles
+Read $./FvwmButtons-Compact
+Read $./FvwmPager-Single
+Read $./FvwmPager-Desker
+Read $./FvwmPager-Compact
+Read $./FvwmButtons-Pager
 # We should think how one theme can reuse module configs of other theme.
-Read themes/olicha/modules/main:FvwmIconBox
-Read themes/olicha/modules/main:FvwmIconMan
-Read themes/olicha/modules/main:FvwmTaskBar
-Read themes/olicha/modules/main:FvwmWinList
-Read themes/migo/modules/main:fonts
+Read themes/olicha/modules/FvwmIconBox
+Read themes/olicha/modules/FvwmIconMan
+Read themes/olicha/modules/FvwmTaskBar
+Read themes/olicha/modules/FvwmWinList
+Read $./fonts
