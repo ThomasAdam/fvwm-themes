@@ -21,19 +21,6 @@ Style "KDE Desktop" ClickToFocus,Sticky,WindowListSkip,CirculateSkip,\
 	BorderWidth 0,HandleWidth 0, NoTitle
 Style "kicker" ClickToFocus
 
-DestroyFunc FuncFvwmReloadEWMH
-AddToFunc   FuncFvwmReloadEWMH
-+ I SendToModule FvwmNetHints ReadStartDesktopFile
-+ I SendToModule FvwmNetHints ReadStartFile
-+ I *FvwmPager-Desker: UseListSkip
-+ I *FvwmPager-Single: UseListSkip
-+ I Style "kicker" ClickToFocus
-+ I Style "KDE Desktop" ClickToFocus,Sticky,WindowListSkip,CirculateSkip,\
-	BorderWidth 0,HandleWidth 0,NoTitle 
-
-DestroyFunc FuncFvwmUnReloadEWMH
-AddToFunc   FuncFvwmUnReloadEWMH
-
 DestroyFunc FuncFvwmLoadEWMH
 AddToFunc   FuncFvwmLoadEWMH
 + I Module FvwmNetHints

@@ -14,3 +14,12 @@ AddToFunc   FuncFvwmButton3OnRootWindow
 DestroyFunc FuncFvwmButton3OnWindow
 AddToFunc   FuncFvwmButton3OnWindow
 + I RaiseLower
+
+# For ewmh
+DestroyFunc FuncFvwmEWMHButton3OnRootWindow
+AddToFunc   FuncFvwmEWMHButton3OnRootWindow
++ I WindowList
+
+DestroyFunc FuncFvwmEWMHButton2OnRootWindow
+AddToFunc   FuncFvwmEWMHButton2OnRootWindow
++ I Menu MenuFvwmWindowOps

@@ -1,3 +1,12 @@
+2001-01-09  olicha  <olivier.chapuis@free.fr>
+
+	* * themes/default/settings/ewmh/enabled:
+	* themes/default/settings/stroke/enabled:
+	* themes/default/bindings*:
+	* themes/theme.cfg:
+	* themes/settings.cfg:
+	Some ewmh bindings fixes
+
 2001-08-30  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
@@ -19,7 +28,6 @@
 	* themes/theme.cfg:
 	* themes/settings.cfg:
 	Fixed stroke vs bindings minimal (re)loading
-
 
 2001-08-30  olicha  <olivier.chapuis@free.fr>
 	

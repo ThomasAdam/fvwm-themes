@@ -22,10 +22,3 @@ DestroyFunc FuncFvwmEWMHButton2OnRootWindow
 AddToFunc   FuncFvwmEWMHButton2OnRootWindow
 + I WindowList
 
-DestroyFunc FuncFvwmEWMHCtlButtonXXOnRootWindow
-AddToFunc   FuncFvwmEWMHCtlButtonXXOnRootWindow
-+ I Module FvwmPager -transient FvwmPager-Single * *
-
-DestroyFunc FuncFvwmEWMHShiftCtlButtonXXOnRootWindow
-AddToFunc   FuncFvwmEWMHShiftCtlButtonXXOnRootWindow
-+ I Module FvwmPager -transient FvwmPager-Desker 0 3
