@@ -12,6 +12,9 @@
 	* debian/full-control.in:
 	updated
 
+	* bin/fvwm-themes-config.in:
+	replaced $v
+
 2003-10-12  migo  <migo@homemail.com>
 
 	* themes/awol/modules/main:

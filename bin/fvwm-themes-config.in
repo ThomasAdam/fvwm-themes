@@ -2184,7 +2184,7 @@ AddToFunc   FuncFvwmRestartFvwmTheme
 
 DestroyFunc FuncFvwmShowVersionInfo
 AddToFunc   FuncFvwmShowVersionInfo
-+ I FuncFvwmShowMessage "FVWM Version" "$v^n@$versionInfo@"
++ I FuncFvwmShowMessage "FVWM Version" "$[version.line]^n@$versionInfo@"
 
 DestroyFunc FuncFvwmShowComponentInfo
 AddToFunc   FuncFvwmShowComponentInfo
@@ -2479,7 +2479,7 @@ if ($install) {
 		rmdir "$outDir";
 		print "Installation of $outDir is completed\n";
 	}
-	print "now \"Refresh with no cache\" and have fun ...\n\n";
+	print "Now \"Refresh with no cache\" and have fun...\n\n";
 	exit(0);
 }
 
