@@ -9,9 +9,9 @@
 *FvwmTheme: Colorset 3 fg #aaaaaa, bg #d0d0d0, Plain, NoShape
 *FvwmTheme: Colorset 4 fg #000000, bg #aaaaaa, Plain, NoShape
 
-# background for title and buttons
-DestroyFunc FuncFvwmTitleBackground
-AddToFunc   FuncFvwmTitleBackground
+# background for window title, buttons and border
+DestroyFunc FuncFvwmDecorBackground
+AddToFunc   FuncFvwmDecorBackground
 + I TitleStyle \
 	ActiveUp   (TiledPixmap $./images/decor/title-active.xpm) \
 	ActiveDown (TiledPixmap $./images/decor/title-active.xpm) \

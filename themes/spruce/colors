@@ -25,9 +25,9 @@
 *FvwmTheme: Colorset 3 fg black, bg grey40
 *FvwmTheme: Colorset 4 fg white, bg grey40
 
-# background for window title and buttons
-DestroyFunc FuncFvwmTitleBackground
-AddToFunc   FuncFvwmTitleBackground
+# background for window title, buttons and border
+DestroyFunc FuncFvwmDecorBackground
+AddToFunc   FuncFvwmDecorBackground
 + I TitleStyle    ActiveUp   TiledPixmap decor/titlebar_fill.xpm
 + I TitleStyle    ActiveDown TiledPixmap decor/titlebar_fill.xpm
 + I TitleStyle    Inactive   TiledPixmap decor/titlebar_fill_i.xpm

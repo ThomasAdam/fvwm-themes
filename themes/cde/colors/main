@@ -42,9 +42,9 @@ define({{CDE_COLOR8_FG}}, CDE_COLOR3_FG)define({{CDE_COLOR8_BG}}, CDE_COLOR3_BG)
 *FvwmTheme: Colorset 3 fg CDE_COLOR2_FG, bg CDE_COLOR2_BG, Plain, NoShape
 *FvwmTheme: Colorset 4 fg CDE_COLOR1_FG, bg CDE_COLOR1_BG, Plain, NoShape
 
-# background for window title and buttons
-DestroyFunc FuncFvwmTitleBackground
-AddToFunc   FuncFvwmTitleBackground
+# background for window title, buttons and border
+DestroyFunc FuncFvwmDecorBackground
+AddToFunc   FuncFvwmDecorBackground
 + I TitleStyle	ActiveUp   (Solid CDE_COLOR1_BG -- Raised)
 + I TitleStyle	ActiveDown (Solid CDE_COLOR1_BG -- Raised)
 + I TitleStyle	Inactive   (Solid CDE_COLOR2_BG -- Raised)

@@ -25,4 +25,4 @@ DestroyModuleConfig FvwmFormDefault: Colorset*
 DestroyModuleConfig FvwmFormDefault: ItemColorset*
 *FvwmFormDefault: ItemColorset 36
 
-FuncFvwmTitleBackground
+FuncFvwmDecorBackground

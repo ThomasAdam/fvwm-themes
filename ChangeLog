@@ -3,6 +3,12 @@
 	* themes/*/buttons{,/main}:
 	small change in Button Info of Maximize button
 
+	* themes/*/colors{,-decor,/main}:
+	* doc/colorsets:
+	* themes/default/globallook:
+	* themes/default/theme.cfg:
+	s/FuncFvwmTitleBackground/FuncFvwmDecorBackground/
+
 2001-08-16  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:

@@ -25,9 +25,9 @@
 *FvwmTheme: Colorset 3 fg white, bg #c3c3c3, Plain, NoShape
 *FvwmTheme: Colorset 4 fg white, bg #c3c3c3, Plain, NoShape
 
-# background for window title and buttons
-DestroyFunc FuncFvwmTitleBackground
-AddToFunc   FuncFvwmTitleBackground
+# background for window title, buttons and border
+DestroyFunc FuncFvwmDecorBackground
+AddToFunc   FuncFvwmDecorBackground
 + I TitleStyle ActiveUp   HGradient 128 Blue4 DeepSkyBlue
 + I TitleStyle ActiveDown HGradient 128 Blue4 DeepSkyBlue
 + I TitleStyle Inactive   Solid grey51

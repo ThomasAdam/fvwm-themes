@@ -103,10 +103,10 @@ Colorset N |          Meaning           |           Usage Examples
 *FvwmTheme: Colorset 3 fg black, bg rgb:88/7C/66, Plain, NoShape
 *FvwmTheme: Colorset 4 fg black, bg rgb:CC/BA/99, Plain, NoShape
 
-# background for window title and buttons
+# background for window title, buttons and border
 #
-DestroyFunc FuncFvwmTitleBackground
-AddToFunc   FuncFvwmTitleBackground
+DestroyFunc FuncFvwmDecorBackground
+AddToFunc   FuncFvwmDecorBackground
 + I TitleStyle ActiveUp   (Solid rgb:CC/BA/99 -- Raised)
 + I TitleStyle ActiveDown (Solid rgb:CC/BA/99 -- Raised)
 + I TitleStyle Inactive   (Solid rgb:88/7C/66 -- Raised)

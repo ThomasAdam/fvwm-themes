@@ -25,9 +25,9 @@
 *FvwmTheme: Colorset 3 fg grey70, bg grey30, Plain, NoShape
 *FvwmTheme: Colorset 4 fg white, bg grey50, Plain, NoShape
 
-# background for window title and buttons
-DestroyFunc FuncFvwmTitleBackground
-AddToFunc   FuncFvwmTitleBackground
+# background for window title, buttons and border
+DestroyFunc FuncFvwmDecorBackground
+AddToFunc   FuncFvwmDecorBackground
 + I TitleStyle \
 	Inactive   (Pixmap decor/title-inactive.xpm -- Top Left) \
 	ActiveUp   (Pixmap decor/title-active.xpm   -- Top Left) \
