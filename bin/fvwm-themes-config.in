@@ -592,11 +592,13 @@ sub getThemeComponents ($) {
 #	return \@components;
 }
 
-sub getThemeComponentsAndGroups ($) {
+sub getThemeNameAndComponentsAndGroups ($) {
 	my $theme = shift;
 
 	my $components = getThemeComponents($theme);
-	my $groups = clonePerlValue(loadThemeCfg($theme)->[0]->{$componentGroupKey});
+	my $themeCfg = loadThemeCfg($theme)->[0];
+	my $name = $themeCfg->{'name'} || ucfirst($theme);
+	my $groups = clonePerlValue($themeCfg->{$componentGroupKey});
 	# use reasonable default if not given
 	$groups = [ { 'name' => "all", $componentKey => ['*'] } ] unless ref($groups) eq 'ARRAY';
 	foreach (@$groups) {
@@ -606,6 +608,12 @@ sub getThemeComponentsAndGroups ($) {
 			(ref($groupComponents) ne 'ARRAY' || @$groupComponents == 1 && $groupComponents->[0] =~ /^\*?$/)?
 			[ "" ]: conjunctArrays($components, $groupComponents);
 	}
+	return ($name, $components, $groups);
+}
+
+### for backward compatibility, should be removed and all usage updated
+sub getThemeComponentsAndGroups ($) {
+	my ($name, $components, $groups) = getThemeNameAndComponentsAndGroups($_[0]);
 	return ($components, $groups);
 }
 
@@ -1163,7 +1171,8 @@ sub getAllThemeSubMenusRc ($) {
 
 	my $theme;
 	foreach $theme (@$allThemes) {
-		my ($components, $groups) = getThemeComponentsAndGroups($theme);
+		my ($name, $components, $groups) =
+			getThemeNameAndComponentsAndGroups($theme);
 		my $used = 0;
 
 		$menuRc .= qq(DestroyMenu "MenuFvwmTheme-$theme"\n);
@@ -1191,7 +1200,7 @@ sub getAllThemeSubMenusRc ($) {
 			$menuRc .= qq(+ "" Nop\n);
 			$menuRc .= qq(+ "README%menu/information.xpm%"\tFuncFvwmViewFile "$readmeFile"\n);
 		}
-		my $label = "$theme"; $label .= "\t(used)" if $used;
+		my $label = "$name"; $label .= "\t(used)" if $used;
 		$listRc .= qq(+ "$label%menu/folder.xpm%"\tPopup "MenuFvwmTheme-$theme"\n);
 	}
 	return ($listRc, $menuRc);
@@ -1203,7 +1212,7 @@ sub getOwnThemeSubMenusRc ($) {
 	my $name = $self->{'name'};
 	my $id = $self->{$idKey};
 	my $selfMenuName = "MenuFvwmTheme-$id";
-	my $listRc = qq(+ "$id%menu/folder.xpm%"\tPopup "$selfMenuName"\n);
+	my $listRc = qq(+ "$name%menu/folder.xpm%"\tPopup "$selfMenuName"\n);
 	my @menuRc = ("", "", "");  # 3 parts of the component menu
 	my $menusRc = "";
 	my $dropExtraArgs = "";

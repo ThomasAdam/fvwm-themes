@@ -1,3 +1,12 @@
+2001-05-01  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	* themes/{brushedmetal,cde,nanogui,osx}/theme-name.cfg:
+	* themes/default/theme.cfg:
+	added support for theme-name which is by default is ucfirst(theme-id)
+	this name is only displayed, and probably should not be used otherwise;
+	Having both lower-case id and mixed-case name may be confusing...
+
 2001-04-28  migo  <migo@homemail.com>
 
 	* themes/blackbox/buttons:
