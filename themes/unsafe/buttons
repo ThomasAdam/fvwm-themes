@@ -1,0 +1,60 @@
+Style "*" Button 1, Button 2, Button 3, Button 4, Button 6
+Style "*" FvwmButtons  # button relief does not follow the state
+
+AddButtonStyle 1 Pixmap button/switch.xpm
+AddButtonStyle 2 Pixmap button/close.xpm
+AddButtonStyle 3 Pixmap button/options.xpm
+AddButtonStyle 4 Pixmap button/shade.xpm
+AddButtonStyle 6 Pixmap button/iconify.xpm
+AddButtonStyle 1 ActiveDown Pixmap button/switch-pressed.xpm
+AddButtonStyle 2 ActiveDown Pixmap button/close-pressed.xpm
+AddButtonStyle 3 ActiveDown Pixmap button/options-pressed.xpm
+AddButtonStyle 4 ActiveDown Pixmap button/shade-pressed.xpm
+AddButtonStyle 6 ActiveDown Pixmap button/iconify-pressed.xpm
+
+ButtonStyle All - Clear
+TitleStyle	Height 20
+
+#     button	context	modifie	function
+Mouse 0 	1	A	Next (!Iconic) FuncFvwmFocusAndWrapToButton1
+Mouse 0 	2	A	FuncFvwmDeleteOrDestroy
+Mouse 1 	3	A	FuncFvwmWindowOpsOrAction Delete
+MouseXX 2 3	3	A       Menu MenuFvwmWindowMove
+MouseXX 3 2	3	A	Menu MenuFvwmWindowGroupOps
+Mouse 0 	4	A	WindowShade
+Mouse 1 	6	A	FuncFvwmIconify
+Mouse 2 	6	A	FuncFvwmIconifySameResource on
+Mouse 3 	6	A	FuncFvwmMaximize
+Mouse 3 	6	S	Maximize grow grow
+Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Circulate to the next application"
+Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Delete on click^nDestroy on double click"
+Mouse 0 	3	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu or Delete on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
+Mouse 0 	4	CM	FuncFvwmShowButtonInfo "WindowShade"
+Mouse 0 	6	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^n 3 - Maximize:^n^tfully on click^n^tmenu on double click^n^tgrow with shift"
+
+DestroyFunc FuncFvwmStartWindowButtons
+AddToFunc   FuncFvwmStartWindowButtons
+
+DestroyFunc FuncFvwmStopWindowButtons
+AddToFunc   FuncFvwmStopWindowButtons
++ I FuncFvwmRemoveAllButtons
++ I Mouse 0 	1	A	-
++ I Mouse 0 	2	A	-
++ I Mouse 1 	3	A	-
++ I Mouse 2 	3	A	-
++ I Mouse 3 	3	A	-
++ I Mouse 1 	6	A	-
++ I Mouse 2 	6	A	-
++ I Mouse 3 	6	A	-
++ I Mouse 3 	6	S	-
++ I Mouse 0 	1	CM	-
++ I Mouse 0 	2	CM	-
++ I Mouse 0 	3	CM	-
++ I Mouse 0 	4	CM	-
++ I Mouse 0 	6	CM	-
++ I DestroyFunc FuncFvwmFocusAndWrapToButton1
+
+DestroyFunc FuncFvwmFocusAndWrapToButton1
+AddToFunc   FuncFvwmFocusAndWrapToButton1
++ I Focus
++ I WarpToWindow 10p 10p

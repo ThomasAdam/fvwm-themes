@@ -1,3 +1,14 @@
+2001-06-16  migo  <migo@homemail.com>
+
+	* themes/unsafe/background:
+	* themes/unsafe/buttons:
+	* themes/unsafe/colors:
+	* themes/unsafe/images:
+	* themes/unsafe/menustyle:
+	* themes/unsafe/images/*:
+	Added a new theme. Ported from AfterStep theme, not finished.
+	Some details are implemented in more than questionable way.
+
 2001-06-14  migo  <migo@homemail.com>
 
 	* acinclude.m4:
