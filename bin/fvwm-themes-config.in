@@ -801,6 +801,7 @@ sub showThemeComponentInfo ($) {
 		}
 	}
 
+	
 	$str .= "Theme:      $theme ($numComponents components)\n";
 	$str .= "Component:  $component$lockedStr\n";
 	$str .= "Properties: " . (@propStrs? join(", ", @propStrs): "none") . "\n";
@@ -1987,22 +1988,11 @@ sub getAllHooksRc ($) {
 			  "$hardCodedStartHooks\n");
 }
 
-sub getMenusAndHooksAndReadsRc ($) {
+sub getReadsRc($) {
 	my $self = shift;
-	my $currentComponents = [keys %{$self->{cc}}];  # $self->{$componentKey};
-	my $rc = "";
+	my $rc = "### We will decide later whether to use full paths here.\n";
 	my $switchRc = "";
 
-	my ($ownThemeListRc, $ownThemeMenuRc) = $self->getOwnThemeSubMenusRc();
-	my ($allThemeListRc, $allThemeMenuRc) = $self->getAllThemeSubMenusRc();
-
-	# set the "reload" rules
-	$self->setUsedFlags();
-	# add current theme hooks
-	($rc,$switchRc) = $self->getAllHooksRc();
-
-	# include components themselves (Read)
-	$rc .= "### We will decide later whether to use full paths here.\n";
 	foreach (@{$self->getSortedComponentsToRead()}) {
 		my $cc = $self->getComponentCfg($_);
 		my $readFile = $cc->{'read-file'};
@@ -2079,6 +2069,27 @@ sub getMenusAndHooksAndReadsRc ($) {
 		$switchRc .= "$switchReadRc1$reloadCommand\n$switchReadRc2"
 		  if $cc->{'used'} >= 2;
 	}
+	return ($rc,$switchRc);
+}
+
+sub getMenusAndHooksAndReadsRc ($) {
+	my $self = shift;
+	my $currentComponents = [keys %{$self->{cc}}];  # $self->{$componentKey};
+	my $rc = "";
+	my $switchRc = "";
+
+	my ($ownThemeListRc, $ownThemeMenuRc) = $self->getOwnThemeSubMenusRc();
+	my ($allThemeListRc, $allThemeMenuRc) = $self->getAllThemeSubMenusRc();
+
+	# set the "reload" rules
+	$self->setUsedFlags();
+	# add current theme hooks
+	($rc,$switchRc) = $self->getAllHooksRc();
+
+	# include components themselves (Read)
+	my ($tmpRc,$tmpSwitchRc) = $self->getReadsRc();
+	$rc .= $tmpRc;
+	$switchRc .= $tmpSwitchRc;
 
 	# add main menu entries
 	my $menu = "";
@@ -2564,28 +2575,17 @@ sub showInfoForConfigCenter {
 	my $allThemes = getAllThemes();
 	my $userThemes = getAllThemes(0, 1);
 
-	### all this hardcoding is unacceptable, should be defuned in .cfg
-	### olicha: How? This is just a tmp solution it is not unacceptable: 
-	### Currently fvwm-themes-config can only reload everythings ... 
-	### So I do that so that the Config Center can be usable.
-
-	$return .= "$cc->{'styles'}->{'read-file'}\n"
-		if defined $cc->{'styles'}->{'read-file'};
-	$return .= "$cc->{'extra-styles'}->{'read-file'}\n"
-		if defined $cc->{'extra-styles'}->{'read-file'};
-	my $file = "";
-	$file = $cc->{'modules/main'}->{'read-file'}
-		if defined $cc->{'modules/main'}->{'read-file'};
-	$file = $cc->{'modules'}->{'read-file'}
-		if defined $cc->{'modules'}->{'read-file'} && $file eq "";
-	if ($file ne "") {
-		$file = "$file:styles";
-		$return .= "$file\n" if -f $file;
-	}
-	$file = "";
-	$file = $cc->{'settings/autoraise'}->{'read-file'}
-		if defined $cc->{'settings/autoraise'}->{'read-file'};
-	$return .= "$file\n" if $file =~ /modules$/ && -f $file;
+	# get themes-rc-3 without the menus
+	my $dd = $self->getComponentCfg("globalfeel");
+	$dd->{'used'} = 3;
+	$self->setComponentCfg("globalfeel", $dd);
+	$self->setUsedFlags();
+	my ($dummy,$switchRc) = $self->getAllHooksRc();
+	my $tmpSwitchRc;
+	($dummy,$tmpSwitchRc) = $self->getReadsRc();
+	$switchRc .= $tmpSwitchRc;
+	$switchRc =~ s/\n.+globalfeel\"\n/\n/;
+	print $switchRc;
 	$return .= "END\n";
 
 	foreach (@$userThemes) {

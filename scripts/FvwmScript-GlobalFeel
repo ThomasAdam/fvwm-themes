@@ -107,6 +107,16 @@ Begin
     Set $GF_Config = (GetOutput $cmd 1 -1)
     #Do {Echo CC: GF config loaded}
 
+    ###
+    Set $cmd = $SendMsgAndGet{"get-preferences"}
+    Set $tmp = (GetOutput $cmd 1 -1)
+    Set $GF_TryIsGlobal = (StrCopy $tmp 1 1)
+    Set $GF_DefaultIsGlobal = (StrCopy $tmp 2 2)
+    Set $GF_SaveIsGlobal = (StrCopy $tmp 3 3)
+    ChangeValue 962 $GF_TryIsGlobal
+    ChangeValue 963 $GF_DefaultIsGlobal
+    ChangeValue 964 $GF_SaveIsGlobal
+
 # ----------------------------------------------------------------------------
 # Internationalization.
 
@@ -586,11 +596,6 @@ Begin
 
     Set $ConfigTool = {Focus}
     
-    # Preference
-    Set $GF_TryIsGlobal = 0
-    Set $GF_DefaultIsGlobal = 0
-    Set $GF_SaveIsGlobal = 0
-
     # type of command for Apply and save
     Set $CmdType = {}
 
@@ -1648,7 +1653,6 @@ Case message of
 	Set $GF_HideTransient = 1
 	Set $GF_HideHints = 1
 	Set $GF_HidePreference = 1
-	Set $BD_HideKeyboard = 1
 	Set $NullMessage = 1
 	ChangeFont 1 $ShadeFont
 	ChangeFont 2 $SelFont
@@ -3749,14 +3753,16 @@ Case message of
  SingleClic :
  Begin
     #Execute 1 : just below
-    If $Component == {globalfeel} Then
+    #If $Component == {globalfeel} Then
 	SendSignal 991 1
  End
  1 :
  Begin
     If $ConfigTool == {GF_Preference} Then
     Begin
-	Set $msg = {Will be implemented later}
+	Set $msg = {Preference Saved}
+	Set $cmd = $SendMsgAndGet{"save-preferences }$GF_TryIsGlobal $GF_DefaultIsGlobal $GF_SaveIsGlobal{"}
+	Set $dummy = (GetOutput $cmd 1 -1)
 	ChangeTitle 990 $msg
     End
     Else
@@ -3785,8 +3791,7 @@ Case message of
  SingleClic :
  Begin
     #Execute 1 : just below
-    If $Component == {globalfeel} Then
-	SendSignal 992 1
+    SendSignal 992 1
  End
  1 :
  Begin
@@ -3820,8 +3825,7 @@ Case message of
  SingleClic :
  Begin
     #Execute 1 : just below
-    If $Component == {globalfeel} Then
-	SendSignal 993 1
+    SendSignal 993 1
  End
  1 :
  Begin

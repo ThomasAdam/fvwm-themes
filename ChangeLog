@@ -1,5 +1,22 @@
 2001-10-22  olicha  <olivier.chapuis@free.fr>
 
+	* bin/fvwm-themes-config.in (getMenusAndHooksAndReadsRc,getReadsRc):
+	Move the part of getMenusAndHooksAndReadsRc which build the read
+	part of the rc's into a separated sub getReadsRc.
+	
+	* bin/fvwm-themes-config.in (showInfoForConfigCenter):
+	Unhardcode the information for the GlobalFeel GUI
+
+	* bin/fvwm-themes.script.in:
+	* scripts/FvwmScript-GlobalFeel:
+	Save and load preferences to/from the file 
+	$FVWM_USERDIR/.FvwmScript-GlobalFeel 
+	
+	* NEWS:
+	updated
+	
+2001-10-22  olicha  <olivier.chapuis@free.fr>
+
 	* scripts/FvwmScript-ThemesCenter:
 	Implement the "Info" button
 

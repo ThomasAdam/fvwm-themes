@@ -1,5 +1,6 @@
 fvwm-themes-0.5.1 - not released yet
 
+* Improvements in theme switching
 * The Themes Center GUI is much faster now.
 * Added ewmh and ksmserver support.
 * Added Xinerama support (see the faq)
