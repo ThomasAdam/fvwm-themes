@@ -1,3 +1,8 @@
+2000-12-23  olicha  <olivier.chapuis@free.fr>
+
+	* fvwm-themes-config.in:
+	Put the menu after the Read commands in themes-rc-2 (for ColorLimit).
+
 2000-11-22  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:

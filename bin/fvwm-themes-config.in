@@ -1356,23 +1356,6 @@ sub getMenusAndHooksAndReadsRc ($) {
 	my ($ownThemeListRc, $ownThemeMenuRc) = $self->getOwnThemeSubMenusRc();
 	my ($allThemeListRc, $allThemeMenuRc) = $self->getAllThemeSubMenusRc();
 
-	# add main menu entries
-	$rc .= qq(DestroyMenu "MenuFvwmThemes"\n);
-	$rc .= qq(AddToMenu   "MenuFvwmThemes" "Theme Management" Title\n);
-	$rc .= $ownThemeListRc;
-	$rc .= qq(+ "" Nop\n);
-	$rc .= $allThemeListRc;
-	$rc .= qq(+ "" Nop\n);
-	$rc .= qq(+ "&Reset all to the default" FuncFvwmThemesReset\n);
-	$rc .= qq(+ "Re&fresh the current theme" FuncFvwmThemesFresh\n);
-	$rc .= "\n";
-
-	# add own theme menus
-	$rc .= "$ownThemeMenuRc\n";
-
-	# add all theme menus
-	$rc .= "$allThemeMenuRc\n";
-
 	# add current theme hooks
 	$rc .= $self->getAllHooksRc();
 
@@ -1425,6 +1408,25 @@ sub getMenusAndHooksAndReadsRc ($) {
 		$command =~ s/%o([\d]+)(\w)/$optionExports->[$1-1]->{$2} || ""/seg;
 		$rc .= "$readRc1$command\n$readRc2";
 	}
+
+	# add main menu entries
+	$rc .= qq(\n\n);
+	$rc .= qq(DestroyMenu "MenuFvwmThemes"\n);
+	$rc .= qq(AddToMenu   "MenuFvwmThemes" "Theme Management" Title\n);
+	$rc .= $ownThemeListRc;
+	$rc .= qq(+ "" Nop\n);
+	$rc .= $allThemeListRc;
+	$rc .= qq(+ "" Nop\n);
+	$rc .= qq(+ "&Reset all to the default" FuncFvwmThemesReset\n);
+	$rc .= qq(+ "Re&fresh the current theme" FuncFvwmThemesFresh\n);
+	$rc .= "\n";
+
+	# add own theme menus
+	$rc .= "$ownThemeMenuRc\n";
+
+	# add all theme menus
+	$rc .= "$allThemeMenuRc\n";
+
 	return $rc;
 }
 
