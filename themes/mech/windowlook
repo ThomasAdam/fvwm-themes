@@ -1,0 +1,12 @@
+FuncFvwmSetFont-WindowTitle * -*-lucida-bold-r-normal-*-*-120-*-*-p-*-*-*
+FuncFvwmSetFont-IconTitle   * -*-lucida-medium-r-normal-*-*-100-*-*-p-*-*-*
+
+Style "*"	BorderWidth 3, HandleWidth 3
+Style "*"	MWMBorder, FirmBorder
+
+BorderStyle	Simple -- HiddenHandles NoInset Raised
+
+TitleStyle	LeftJustified
+TitleStyle	-- Flat
+
+ButtonStyle	All -- Flat

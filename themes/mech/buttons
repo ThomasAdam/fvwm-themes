@@ -1,0 +1,82 @@
+Style "*" Button 1, Button 2, Button 3, Button 4, Button 5, Button 6
+Style "*" MwmButtons  # button follows the state
+
+ButtonStyle 1 \
+	ActiveUp   (Pixmap button/close-activeup.xpm) \
+	ActiveDown (Pixmap button/close-activedown.xpm) \
+	Inactive   (Pixmap button/close-inactive.xpm)
+ButtonStyle 2 \
+	ActiveUp   (Pixmap button/maximize-activeup.xpm) \
+	ActiveDown (Pixmap button/maximize-activedown.xpm) \
+	Inactive   (Pixmap button/maximize-inactive.xpm) \
+	ToggledActiveUp   (Pixmap button/maximize-activedown.xpm) \
+	ToggledActiveDown (Pixmap button/maximize-activeup.xpm) \
+	ToggledInactive   (Pixmap button/maximize-inactive.xpm)
+ButtonStyle 3 \
+	ActiveUp   (Pixmap button/titleleft-active.xpm) \
+	ActiveDown (Pixmap button/titleleft-active.xpm) \
+	Inactive   (Pixmap button/titleleft-inactive.xpm)
+ButtonStyle 4 \
+	ActiveUp   (Pixmap button/minimize-activeup.xpm) \
+	ActiveDown (Pixmap button/minimize-activedown.xpm) \
+	Inactive   (Pixmap button/minimize-inactive.xpm)
+ButtonStyle 5 \
+	ActiveUp   (Pixmap button/options-activeup.xpm) \
+	ActiveDown (Pixmap button/options-activedown.xpm) \
+	Inactive   (Pixmap button/options-inactive.xpm)
+ButtonStyle 6 \
+	ActiveUp   (Pixmap button/titleright-active.xpm) \
+	ActiveDown (Pixmap button/titleright-active.xpm) \
+	Inactive   (Pixmap button/titleright-inactive.xpm)
+
+ButtonStyle All - Clear
+ButtonStyle 2 - MWMDecorMax
+ButtonStyle 4 - MWMDecorMin
+ButtonStyle 5 - MWMDecorMenu
+
+TitleStyle	Height 18
+
+#     button	context	modifie	function
+Mouse 0 	1	A	FuncFvwmDeleteOrDestroy
+Mouse 1 	2	A	FuncFvwmMaximize
+Mouse 2 	2	A	FuncFvwmMaximizeVertically
+Mouse 3 	2	A	FuncFvwmMaximizeHorizontally
+Mouse 1 	2	S	Maximize grow grow
+Mouse 2 	2	S	Maximize    0 grow
+Mouse 3 	2	S	Maximize grow    0
+Mouse 0 	4	A	FuncFvwmIconify
+Mouse 1 	5	A	FuncFvwmWindowOpsOrAction WindowShade
+MouseXX 2 3	5	A       Menu MenuFvwmWindowMove
+MouseXX 3 2	5	A	Menu MenuFvwmWindowGroupOps
+Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Delete on click^nDestroy on double click"
+Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize fully on click^n^tMaximize Menu on double click^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally^nAll with Shift - Maximize grow"
+Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Iconify"
+Mouse 0 	5	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu, or WindowShade on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
+# simulate title bindings on two edge buttons:
+FuncFvwmSetTitleBindings 36
+
+DestroyFunc FuncFvwmStartWindowButtons
+AddToFunc   FuncFvwmStartWindowButtons
+# This is usually not in this component, but these buttons can't be non-flat
++ I TitleStyle -- flat
++ I ButtonStyle All -- flat
+
+DestroyFunc FuncFvwmStopWindowButtons
+AddToFunc   FuncFvwmStopWindowButtons
++ I FuncFvwmRemoveAllButtons
++ I Mouse 0 	1	A	-
++ I Mouse 1 	2	A	-
++ I Mouse 2 	2	A	-
++ I Mouse 3 	2	A	-
++ I Mouse 1 	2	S	-
++ I Mouse 2 	2	S	-
++ I Mouse 3 	2	S	-
++ I Mouse 0 	4	A	-
++ I Mouse 1 	5	A	-
++ I Mouse 2	5	A	-
++ I Mouse 3	5	A       -
++ I Mouse 0 	1	CM	-
++ I Mouse 0 	2	CM	-
++ I Mouse 0 	4	CM	-
++ I Mouse 0 	5	CM	-
++ I FuncFvwmUnsetTitleBindings 36
