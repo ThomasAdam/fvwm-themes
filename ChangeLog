@@ -1,3 +1,7 @@
+2001-04-02  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-start.in: fixed a typo
+
 2001-03-31  migo  <migo@homemail.com>
 
 	* themes/default/settings/iconstyles/{wm-icons,native}:

@@ -95,14 +95,14 @@ fi
 
 # check that @FVWM_BINDIR@ is in $PATH and first for fvwm-config
 if [ "`which fvwm-config 2>/dev/null`" != "@FVWM_BINDIR@/fvwm-config" ]; then
-	echo "[FVWM-Themes]: There is no correct fvwm-config in your PATH; updated"
+	echo "[FVWM-Themes]: There is no correct fvwm-config in your PATH; prepended"
 	PATH="@FVWM_BINDIR@:$PATH"
 	export PATH
 fi
 
 # check that @bindir@ is in $PATH and first for fvwm-themes-config
-if [ "`which fvwm-themes-config 2>/dev/null`" != "@bindir@/fvwm-themes-start" ]; then
-	echo "[FVWM-Themes]: There is no correct fvwm-themes-config in your PATH; updated"
+if [ "`which fvwm-themes-config 2>/dev/null`" != "@bindir@/fvwm-themes-config" ]; then
+	echo "[FVWM-Themes]: There is no correct fvwm-themes-config in your PATH; prepended"
 	PATH="@bindir@:$PATH"
 	export PATH
 fi
