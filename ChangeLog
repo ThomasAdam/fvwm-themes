@@ -1,3 +1,9 @@
+2003-11-09  migo  <migo@homemail.com>
+
+	* NEWS:
+	* configure.in:
+	increased to 0.7.1
+
 2003-10-31  migo  <migo@homemail.com>
 
 	* themes/redmondxp/images/module/panel-start.png:
