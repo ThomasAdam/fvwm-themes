@@ -2,8 +2,8 @@ fvwm-themes-0.3.14 - not released yet (cvs)
 
 * more backrounds using fvwm logos in multichoice theme
 * implemented component groups, by default two - 'all' and 'main look'
-* new colors implementation.
-* added text colors in cde schemes
+* new colors@ implementation
+* added foreground colors in cde color schemes
 
 fvwm-themes-0.3.13 - 20000729 (cvs)
 

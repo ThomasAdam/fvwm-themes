@@ -101,7 +101,7 @@ Key F8  	A	SM	Resize
 Key F9  	A	SM	Iconify
 Key F10  	A	SM	Maximize
 Key F11 	A	SM	Module FvwmIdent
-Key F12 	A	SM	Module FvwmConsole -fg $[fg.cs21] -bg $[bg.cs21]
+Key F12 	A	SM	Module FvwmConsole -fg $[fg.cs33] -bg $[bg.cs33]
 
 Key Tab 	A	SM	WindowList Root c c OnlyListSkip, NoDeskSort, SelectOnRelease
 Key Tab 	A	CM	Prev Focus

@@ -17,11 +17,10 @@ DestroyModuleConfig FvwmPager-Single*
 *FvwmPager-SingleColorset * 14
 *FvwmPager-SingleHilightColorset * 15
 *FvwmPager-SingleBalloonColorset * 16
+*FvwmPager-SingleWindowColorsets 1 2
 
+*FvwmPager-SingleColumns 1
 *FvwmPager-SingleFont none
 *FvwmPager-SingleSmallFont -*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*
 *FvwmPager-SingleBalloons Pager
-*FvwmPager-SingleColumns 1
 *FvwmPager-SingleNoSeparators
-
-

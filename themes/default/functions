@@ -76,7 +76,7 @@ AddToFunc   FuncFvwmIconify
 DestroyFunc FuncFvwmShowMessage
 AddToFunc   FuncFvwmShowMessage
 + I Exec echo "$1" | perl -pe 's/\^n/\n/g; s/\^t/\t/g; s/\^\^/^/g' - | \
-	xmessage -fg $[fg.cs14] -bg $[bg.cs14] -g 480x120 -nearmouse -title "$0" -file -
+	xmessage -fg $[fg.cs36] -bg $[bg.cs36] -g 480x120 -nearmouse -title "$0" -file -
 
 DestroyFunc FuncFvwmShowButtonInfo
 AddToFunc   FuncFvwmShowButtonInfo

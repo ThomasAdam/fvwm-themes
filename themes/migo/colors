@@ -137,10 +137,10 @@ DestroyModuleConfig FvwmIdent*
 *FvwmThemeColorset 34 fg black, bg rgb:E4/D2/C0, Plain, NoShape
 
 DestroyModuleConfig FvwmFormDefaultItemColorset*
-*FvwmFormDefaultItemColorset 34 fg black, bg rgb:E4/D2/C0, Plain, NoShape
+*FvwmFormDefaultItemColorset 34
 
 # Application run in a terminal, text file of an editor for xres ...
-*FvwmThemeColorset 35 fg black, bg grey70, Plain, NoShape
+*FvwmThemeColorset 35 fg white, bg rgb:00/30/00, Plain, NoShape
 
 # Not in one of the above category (for Script and Form, ft-xres)
 *FvwmThemeColorset 36 fg white, bg DarkGreen, Plain, NoShape

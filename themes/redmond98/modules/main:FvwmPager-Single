@@ -25,13 +25,15 @@ DestroyModuleConfig FvwmPager-Single*
 *FvwmPager-SingleColorset * 14
 *FvwmPager-SingleHilightColorset * 15
 *FvwmPager-SingleBalloonColorset * 16
+*FvwmPager-SingleWindowColorsets 1 2
 
 *FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPager-SingleHilight white
 *FvwmPager-SingleGeometry 319x69+5000+5000
-*FvwmPager-SingleLabel 0 Fvwm
-*FvwmPager-SingleLabel 1 Development
-*FvwmPager-SingleLabel 2 Internet
-*FvwmPager-SingleLabel 3 Misc
 *FvwmPager-SingleBalloons Pager
 *FvwmPager-SingleSmallFont 5x8
+
+*FvwmPager-SingleLabel 0 Fvwm
+*FvwmPager-SingleLabel 1 Internet
+*FvwmPager-SingleLabel 2 Development
+*FvwmPager-SingleLabel 3 Misc

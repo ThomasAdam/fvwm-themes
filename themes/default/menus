@@ -105,7 +105,7 @@ AddToMenu   MenuFvwmStartRegularModules "Regular Modules" Title
 + "Backe&r"            	  FuncFvwmRestartModule FvwmBacker
 + "Ba&nner"               Module FvwmBanner
 + "Co&mmandS"             FuncFvwmRestartModule FvwmCommandS
-+ "&Console"              Module FvwmConsole -fg $[fg.cs22] -bg $[bg.cs22]
++ "&Console"              Module FvwmConsole -fg $[fg.cs33] -bg $[bg.cs33]
 + "&Identify"          	  Module FvwmIdent
 + "&ScrollBar (1/2 app)"  Module FvwmScroll 2 2
 + "&ScrollBar (75%% scr)" Module FvwmScroll 75p 75p

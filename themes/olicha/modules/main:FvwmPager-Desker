@@ -2,16 +2,16 @@ Style "FvwmPager-Desker" NoTitle, Sticky, WindowListSkip, CirculateSkip, \
 	TitleAtBottom
 
 AddToMenu MenuFvwmWindowMove "" Nop
-+ "Desk One%menu/window-move.xpm%"	MoveToDesk 0 0
-+ "Desk Two%menu/window-move.xpm%"	MoveToDesk 0 1
-+ "Desk Three%menu/window-move.xpm%"	MoveToDesk 0 2
-+ "Desk Four%menu/window-move.xpm%"	MoveToDesk 0 3
++ "Desk	One%menu/window-move.xpm%"	MoveToDesk 0 0
++ "Desk	Two%menu/window-move.xpm%"	MoveToDesk 0 1
++ "Desk	Three%menu/window-move.xpm%"	MoveToDesk 0 2
++ "Desk	Four%menu/window-move.xpm%"	MoveToDesk 0 3
 
 AddToMenu MenuFvwmWindowGroupOps "" Nop
-+ "Desk One%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 0
-+ "Desk Two%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 1
-+ "Desk Three%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2
-+ "Desk Four%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
++ "Desk	One%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 0
++ "Desk	Two%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 1
++ "Desk	Three%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2
++ "Desk	Four%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
 
 DestroyModuleConfig FvwmPager-Desker*
 *FvwmPager-DeskerGeometry +5000+5000
@@ -21,6 +21,7 @@ DestroyModuleConfig FvwmPager-Desker*
 *FvwmPager-DeskerColorset * 14
 *FvwmPager-DeskerHilightColorset * 15
 *FvwmPager-DeskerBalloonColorset * 16
+*FvwmPager-DeskerWindowColorsets 1 2
 
 *FvwmPager-DeskerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPager-DeskerSmallFont 5x8

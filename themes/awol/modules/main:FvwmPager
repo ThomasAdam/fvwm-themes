@@ -20,6 +20,7 @@ DestroyModuleConfig FvwmPager-Single*
 *FvwmPager-SingleColorset * 14
 *FvwmPager-SingleHilightColorset * 15
 *FvwmPager-SingleBalloonColorset * 16
+*FvwmPager-SingleWindowColorsets 1 2
 
 *FvwmPager-SingleGeometry 800x48+0-80
 #*FvwmPager-SingleFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
@@ -51,6 +52,7 @@ DestroyModuleConfig FvwmPager-Desker*
 *FvwmPager-DeskerColorset * 14
 *FvwmPager-DeskerHilightColorset * 15
 *FvwmPager-DeskerBalloonColorset * 16
+*FvwmPager-DeskerWindowColorsets 1 2
 
 *FvwmPager-DeskerGeometry -0+0
 #*FvwmPager-DeskerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
@@ -76,4 +78,3 @@ DestroyModuleConfig FvwmPager-Desker*
 *FvwmPager-DeskerBalloons All
 *FvwmPager-DeskerBalloonYOffset -2
 *FvwmPager-DeskerWindow3DBorders 
-
