@@ -4,7 +4,8 @@
 
 $PASSWORD = 'MY_PASSWORD';
 $CVS_EXE = "/usr/bin/cvs";
-$CVS_PRM = join('" "', (map { s/\\/\\\\/g; s/"/\\"/g; s/'/`/g; $_ } @ARGV));
+$CVS_PRM = join('" "', (map {
+	s/\\/\\\\/g; s/"/\\"/g; s/'/`/g; s/\$/\\\$/g; $_ } @ARGV));
 $CVS_CMD = qq($CVS_EXE "$CVS_PRM");
 
 if (`pwd` =~ /fvwm-themes/) {
