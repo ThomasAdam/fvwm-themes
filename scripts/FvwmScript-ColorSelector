@@ -40,6 +40,7 @@ Begin
     #Set $Lang = {ru}
     # ------------------------------------- Internationalization.
     Set $DocLoaded = 0
+    Set $nonDefaultFont = 0
 
     If $Lang == {} Then
     Begin
@@ -86,6 +87,30 @@ Begin
 	End
 	If $id == {Cancel      } Then
 	    ChangeTitle 994 $msg
+	If $id == {ChangeFont  } Then
+	    Set $nonDefaultFont = $msg
+	If $id == {SelFont     } Then
+	    Set $SelFont = $msg
+	If $id == {ShadeFont   } Then
+	    Set $ShadeFont = $msg
+	If $id == {FixedFont   } Then
+	    Set $FixedFont = $msg
+    End
+
+    If $nonDefaultFont == 1 Then
+    Begin
+	ChangeFont 1 $SelFont
+	ChangeFont 14 $SelFont
+	ChangeFont 17 $SelFont
+	ChangeFont 30 $SelFont
+	ChangeFont 32 $SelFont
+	ChangeFont 34 $SelFont
+	ChangeFont 992 $SelFont
+	ChangeFont 993 $SelFont
+    	ChangeFont 994 $SelFont
+	# when the doc will be written
+	# ChangeFont 994 $FixedFont
+	ChangeFont 999 $SelFont
     End
 
     # ---------------------- Color init
@@ -148,6 +173,7 @@ End
 
 # ----------------------------------------------------------------------------
 
+# Title
 Widget 1
 Property
     Flags NoReliefString
@@ -162,6 +188,7 @@ Case message of
  End
 End
 
+# main rectangle
 Widget 2
 Property
     Flags NoReliefString
@@ -366,7 +393,7 @@ Case message of
  End
 End
 
-# Selected Color:
+# Selected Color (title):
 Widget 14
 Property
     Flags NoReliefString

@@ -1,3 +1,9 @@
+2000-11-29  olicha  <olivier.chapuis@free.fr>
+
+	* locale/ru/FvwmScript-ColorSelector.msg:
+	* scripts/FvwmScript-ColorSelector:
+	Do so that ru works with the ColorSelector
+	
 2000-11-29  migo  <migo@homemail.com>
 
 	* locale/*/FvwmScript-ComponentProperties.msg:
