@@ -9,7 +9,7 @@ datum = `date "+%a, %d %b %Y %T %z"`
 fullname = FVWM Themes Developers
 email = fvwm-themes-devel@lists.sourceforge.net
 arch ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
-sdir ?= $(shell pwd | sed 's,.*/,,')
+sdir ?= $(shell pwd)
 
 deb:
 	make clean
@@ -20,8 +20,8 @@ deb:
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
 	./configure --prefix=/usr --disable-run-updatemenu
 	cp -f debian/full-control debian/control
-	fakeroot dh_clean fvwm-themes fvwm-themes-extra fvwm-themes-full
-	(cd .. && dpkg-source -b $(sdir))
+	fakeroot dh_clean
+	(cd  .. && dpkg-source -b $(sdir))
 	fakeroot dh_testdir
 	fakeroot dh_testroot
 	$(MAKE)
@@ -45,7 +45,7 @@ deb:
 	fakeroot dh_builddeb
 	-@dpkg-genchanges > ../fvwm-themes-full_$(version)-$(release)_$(arch).changes
 	-@debsign ../fvwm-themes-full_$(version)-$(release)_$(arch).changes
-	fakeroot dh_clean fvwm-themes fvwm-themes-extra fvwm-themes-full
+	fakeroot dh_clean
 	rm -f debian/control debian/full-control
 
 
@@ -58,7 +58,7 @@ deb-base:
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
 	./configure --prefix=/usr --disable-run-updatemenu
 	cp -f debian/base-control debian/control
-	fakeroot dh_clean fvwm-themes fvwm-themes-extra fvwm-themes-full
+	fakeroot dh_clean
 	(cd .. && dpkg-source -b $(sdir))
 	fakeroot dh_testdir
 	fakeroot dh_testroot
@@ -94,7 +94,7 @@ deb-base:
 	fakeroot dh_builddeb
 	-@dpkg-genchanges > ../fvwm-themes_$(version)-$(release)_$(arch).changes
 	-@debsign ../fvwm-themes_$(version)-$(release)_$(arch).changes
-	fakeroot dh_clean fvwm-themes fvwm-themes-extra fvwm-themes-full
+	fakeroot dh_clean
 	rm -f debian/control debian/base-control
 
 
@@ -107,7 +107,7 @@ deb-extra:
 	echo " -- $(fullname) <$(email)>  $(datum)" >> debian/changelog
 	./configure --prefix=/usr --disable-run-updatemenu
 	cp -f debian/extra-control debian/control
-	fakeroot dh_clean fvwm-themes fvwm-themes-extra fvwm-themes-full
+	fakeroot dh_clean
 	(cd .. && dpkg-source -b $(sdir))
 	fakeroot dh_testdir
 	fakeroot dh_testroot
@@ -144,6 +144,6 @@ deb-extra:
 	fakeroot dh_builddeb 
 	-@dpkg-genchanges > ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes
 	-@debsign  ../fvwm-themes-extra_$(version)-$(release)_$(arch).changes
-	fakeroot dh_clean fvwm-themes fvwm-themes-extra fvwm-themes-full
+	fakeroot dh_clean
 	rm -f debian/control debian/extra-control
 
