@@ -14,6 +14,12 @@
 	tried to keep non-default Shell's paramaters the same: title,
 	scrollbar 4Kb, login-shell, 80x40, 7x14[bold] font
 
+	* bin/fvwm-themes-config.in:
+	finished component locking
+
+	* bin/fvwm-themes-{config,start}.in:
+	added nicer colors for xmessage
+
 2000-09-10  migo  <migo@homemail.com>
 
 	* themes/*/desktop:
