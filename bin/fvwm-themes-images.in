@@ -22,7 +22,7 @@
 # Filter this script to pod2man to get a man page:
 #   pod2man -c "Fvwm Utility" fvwm-themes-images | nroff -man | less -e
 
-#use strict;
+use strict;
 use Getopt::Long;
 
 my $prefix = '@prefix@';
@@ -97,34 +97,34 @@ my $addBorder = "";
 
 # ImageMagick options
 my $magickColors = 256;
-my $colorspace = "Transparent";
+my $magickColorspace = "Transparent";
 # depends if ImageMagick is compiled with 16bits per pixels enabled!
 # if yes percentage is taken with 65535 if no 255 is used
 my $threshold = 70;
 my $magickPath = "";
 my $magickBpp = 0;
 
-# cde-sky option
+# cde-like sky options
+my $sky = 0;
+my $skyColorsOpt = "";
+my $skyComp = "linear";
 my $patternFile = "$ftDataDir/themes/cde/background/pattern";
 my $patternType = "";
 my $patternXpm = "";
-my $gradColorsOpt = "";
-my $cdeSky = 0;
 my $patternGap = 1;
 my $patternY = "";
-my $gradComp = "linear";
 
 # set the background
-my $setBackground = 0;
-my $setBackProg = "xpmroot";
-my $setBackFile = "/tmp/$userName-ft-back.xpm";
+my $setRoot = 0;
+my $setRootProg = "xpmroot";
+my $setRootTmpFile = "/tmp/$userName-ft-back.xpm";
 
 # rotate
 my $rotate = 0;
 
 # colorize
 my $colorize = 0;
-my $rizeColorsOpt = "gray40:gray60";
+my $rizeColorsOpt = "gray40,gray60";
 my $transColor = "";
 my $rizeComp = "l";
 my $rizeRule = "max";
@@ -135,9 +135,9 @@ my $xcolorsetsInfo = 0;
 my $colorToShow = undef;
 
 # colors shemes
-my $colorsSchemes = 0;
-my $createTextColors = "";
-my $schemePostfix = "dp";
+my $colorSchemes = 0;
+my $colorSchemesFores = "";
+my $colorSchemesExt = "dp";
 
 # others
 my $verbose = 1;
@@ -166,7 +166,7 @@ GetOptions(
 	"magick-path=s"      => \$magickPath,
 	"magick-bpp=i"       => \$magickBpp,
 	"magick-colors=i"    => \$magickColors,
-	"magick-space=s"     => \$colorspace,
+	"magick-colorspace=s" => \$magickColorspace,
 	"convert"            => \$convert,
 	"gnome"              => \$gnome,
 	"postfix"            => \$postfix,
@@ -182,34 +182,34 @@ GetOptions(
 	"build-32x32!"       => \$build{"32x32"},
 	"build-tiles!"       => \$build{"tiles"},
 	"preserve"           => \$preserve,
+	"tile=s"             => \$tile,
 	"tile-48x48=s"       => \$tileOpt{"48x48"},
 	"tile-16x16=s"       => \$tileOpt{"16x16"},
 	"tile-56x56=s"       => \$tileOpt{"56x56"},
 	"tile-32x32=s"       => \$tileOpt{"32x32"},
 	"tile-tiles=s"       => \$tileOpt{"tiles"},
-	"add-border-48x48=s" => \$addBorderOpt{"48x48"},
-	"add-border-16x16=s" => \$addBorderOpt{"16x16"},
-	"add-border-56x56=s" => \$addBorderOpt{"56x56"},
-	"add-border-32x32=s" => \$addBorderOpt{"32x32"},
-	"add-border-tiles=s" => \$addBorderOpt{"tiles"},
-	"tile=s"             => \$tile,
-	"add-border=s"       => \$addBorder,
+	"border=s"           => \$addBorder,
+	"border-48x48=s"     => \$addBorderOpt{"48x48"},
+	"border-16x16=s"     => \$addBorderOpt{"16x16"},
+	"border-56x56=s"     => \$addBorderOpt{"56x56"},
+	"border-32x32=s"     => \$addBorderOpt{"32x32"},
+	"border-tiles=s"     => \$addBorderOpt{"tiles"},
 	"threshold=i"        => \$threshold,
 	"colorize-colors=s"  => \$rizeColorsOpt,
 	"colorize"           => \$colorize,
 	"trans-color=s"      => \$transColor,
 	"colorize-comp=s"    => \$rizeComp,
 	"colorize-rule=s"    => \$rizeRule,
-	"cde-sky"            => \$cdeSky,
-	"sky-colors=s"       => \$gradColorsOpt,
+	"sky"                => \$sky,
+	"sky-colors=s"       => \$skyColorsOpt,
 	"pattern-file=s"     => \$patternFile,
 	"pattern-type=s"     => \$patternType,
 	"pattern-xpm=s"      => \$patternXpm,
 	"pattern-gap=s"      => \$patternGap,
 	"pattern-y=i"        => \$patternY,
-	"sky-comp=s"         => \$gradComp,
-	"set-background"     => \$setBackground,
-	"set-back-prog=s"    => \$setBackProg,
+	"sky-comp=s"         => \$skyComp,
+	"setroot"            => \$setRoot,
+	"setroot-prog=s"     => \$setRootProg,
 	"rotate=s"           => \$rotate,
 	"show-xcolors"       => \$xcolorsInfo,
 	"show-xcolorsets"    => \$xcolorsetsInfo,
@@ -220,13 +220,25 @@ GetOptions(
 	"update"             => \$update,
 	"ft-install"         => \$install,
 	"be-fast"            => \$beFast,
-	"colors-schemes"     => \$colorsSchemes,
-	"text-colors=s"      => \$createTextColors,
-	"schemes-ext=s"      => \$schemePostfix,
+	"colorschemes"       => \$colorSchemes,
+	"colorschemes-fores=s" => \$colorSchemesFores,
+	"colorschemes-ext=s" => \$colorSchemesExt,
+
+	# for compatibility only (to be removed)
+	"cde-sky"            => \$sky,
+	"set-background"     => \$setRoot,
+	"set-back-prog=s"    => \$setRootProg,
+	"magick-space=s"     => \$magickColorspace,
+	"add-border-48x48=s" => \$addBorderOpt{"48x48"},
+	"add-border-16x16=s" => \$addBorderOpt{"16x16"},
+	"add-border-56x56=s" => \$addBorderOpt{"56x56"},
+	"add-border-32x32=s" => \$addBorderOpt{"32x32"},
+	"add-border-tiles=s" => \$addBorderOpt{"tiles"},
+	"add-border=s"       => \$addBorder,
 ) || wrongUsage();
 
 # compute verbosity!
-if ($setBackground) {
+if ($setRoot) {
 	$verbose = 0;
 }
 if ($verboseOpt != -1) {
@@ -238,11 +250,11 @@ if ($install) {
 	$gnome = 1;
 	$convert = 1;
 	$update = 1;
-	$createSymLink = "48x48:16x16";
+	$createSymLink = "48x48,16x16";
 }
 
-die "--convert and --set-background are incompatible\n"
-	if $setBackground && $convert;
+die "--convert and --setroot are incompatible\n"
+	if $convert && $setRoot;
 
 if ($xcolorsInfo || $xcolorsetsInfo) {
 	showXcolorsInfo($xcolorsetsInfo);
@@ -254,8 +266,8 @@ if (defined $colorToShow) {
 	exit;
 }
 
-if ($cdeSky) {
-	cdeSky();
+if ($sky) {
+	processSky();
 	exit;
 }
 
@@ -287,10 +299,12 @@ if ($createSymLink ne "") {
 	exit;
 }
 
-if ($colorsSchemes) {
-	colorsSchemes();
+if ($colorSchemes || $colorSchemesFores ne "") {
+	processColorSchemes();
 	exit;
 }
+
+wrongUsage();
 
 #------------------------------------------------------------------------------
 # Transform, main "convert" procedure
@@ -344,10 +358,10 @@ sub transform {
 	$outDir = "$transformOutDir/$outDir" if ($outDir eq "");
 
 	if ($inFile ne "" && $outFile eq "" && !$convert) {
-		if ($setBackground) { $outFile = "$setBackFile"; }
+		if ($setRoot) { $outFile = $setRootTmpFile; }
 		else {
 			die "If you specify an in-file you must specify an out-file\n" .
-				"(but for --set-background and convert)\n";
+				"(except for --setroot and --convert)\n";
 		}
 	}
 
@@ -417,10 +431,11 @@ sub transform {
 		my $haveToAddBorder = 0;
 		my ($xBorder, $yBorder) = (0, 0);
 		my $borderColor = "Gray0";
-		if ($convert && $addBorderOpt{$type} =~ /^\+(\d+)\+(\d+):*(.*)/) {
+		### migo: colon as a delimiter will be removed soon
+		if ($convert && $addBorderOpt{$type} =~ /^\+(\d+)\+(\d+)[,:]*(.*)/) {
 			$xBorder = $1; $yBorder = $2;
 			$borderColor = $3; $haveToAddBorder = 1;
-		} elsif ($addBorder =~ /^\+(\d+)\+(\d+):*(.*)/) {
+		} elsif ($addBorder =~ /^\+(\d+)\+(\d+)[,:]*(.*)/) {
 			$xBorder = $1; $yBorder = $2;
 			$borderColor = $3; $haveToAddBorder = 1;
 		}
@@ -464,7 +479,8 @@ sub transform {
 				myPrint (1,"transform $file ...");
 				myPrint(2,"\n\t convert to $type xpm ... ");
 				system("$magickPath/convert -colors $magickColors $sizeOpt ".
-					"-colorspace $colorspace $dir/$file $outDir$dirtype/$xpmFile");
+					"-colorspace $magickColorspace ".
+					"$dir/$file $outDir$dirtype/$xpmFile");
 				$xpmdir = "$outDir$dirtype";
 				myPrint(2,"done");
 			} elsif ($colorize || $tile || $addBorder || $rotate) {
@@ -477,9 +493,8 @@ sub transform {
 			if ($convert && hasMatte("$dir/$file") && $transFilter &&
 				$file !~ /.xpm$/) {
 				myPrint(2,"\n\t transparent filter ... ");
-		 		system("$magickPath/convert -mono -colorspace $colorspace ".
-					"-layers Matte".
-					" $sizeOpt -threshold $threshold ".
+		 		system("$magickPath/convert -mono -colorspace $magickColorspace ".
+					"-layers Matte $sizeOpt -threshold $threshold ".
 					"$dir/$file $outDir$dirtype/.mask.xpm");
 				$unlinkmask = 1;
 		 		$mainXpm = loadXpm("$outDir$dirtype/$xpmFile");
@@ -533,8 +548,8 @@ sub transform {
 		unlink("$outDir$dirtype/.mask.xpm") if $unlinkmask;
 	}
 
-	if ($setBackground && $outFile ne "") {
-		setBack("$outDir/$outFile");
+	if ($setRoot && $outFile ne "") {
+		setRoot("$outDir/$outFile");
 	}
 
 	if ($createSymLink ne "") {
@@ -640,7 +655,7 @@ sub getExecFileDir($) {
 sub createSymLink {
 	my $i = 0;
 	my $type;
-	my @dest = split(":",$createSymLink);
+	my @dest = split(",", $createSymLink);
 	@dest = map { "$outDir/$_$postfix" } @dest;
 	die "No directory to link!\n"
 		unless -d $dest[0] && -d $dest[1];
@@ -699,10 +714,10 @@ sub checkMagick {
 }
 
 #------------------------------------------------------------------------------
-# cde-sky (from jos-cdeskylike)
+# cde-like sky (from jos-cdeskylike)
 #------------------------------------------------------------------------------
 
-sub cdeSky() {
+sub processSky() {
 	my @pattern=();
 	my $coef;
 	if ($patternType ne "") { @pattern = createPattern() }
@@ -732,11 +747,12 @@ sub cdeSky() {
 	$W=length($pattern[0]);
 
 	my $nbrColors = 0;
-	my $gradColors = [];
+	my $skyColors = [];
 
+	## evaluate the second gradient color ourselves if only one is given
 	## this is hilightColor() with a different factor...
-	if ($gradColorsOpt !~ /:/) {
-		my $color = encode16bpp($gradColorsOpt);
+	if ($skyColorsOpt && $skyColorsOpt !~ /,/) {
+		my $color = encode16bpp($skyColorsOpt);
 		my $a = bppTo3intArray($color);
 		my $i;
 		for ($i = 0; $i < 3; $i++) {
@@ -744,13 +760,13 @@ sub cdeSky() {
 			$a->[$i] = min(255, ($a->[$i] * 180) / 100);  # was 110
 			$a->[$i] = int($a->[$i]);
 		}
-		$gradColorsOpt = encode16bpp($a) . ":$gradColorsOpt";
+		$skyColorsOpt = encode16bpp($a) . ",$skyColorsOpt";
 	}
 
-	my @tmp = split(':', $gradColorsOpt);
+	my @tmp = split(',', $skyColorsOpt);
 	my $c;
 	foreach $c (@tmp) {
-		$gradColors->[$nbrColors] = bppTo3intArray(encode16bpp($c));
+		$skyColors->[$nbrColors] = bppTo3intArray(encode16bpp($c));
 		$nbrColors++;
 	}
 
@@ -766,10 +782,10 @@ sub cdeSky() {
 	while ($i < $NY) {
 		my $t; my $j = 0; my $done = 0; my $l = 0;
 		if ($i == 0) {
-			$t=interpolateColors($gradColors,$nbrColors,$i/$dx,$gradComp,$i);
+			$t=interpolateColors($skyColors,$nbrColors,$i/$dx,$skyComp,$i);
 			$id = addColor($xpm,encode16bpp($t));
 		} else { $id = $nextId; }
-		$t=interpolateColors($gradColors,$nbrColors,($i+1)/$dx,$gradComp,$i+1);
+		$t=interpolateColors($skyColors,$nbrColors,($i+1)/$dx,$skyComp,$i+1);
 		$nextId=addColor($xpm,encode16bpp($t));
 		$id .= " " if length($id) < length($nextId);
 		while (defined $consPar[$l] && !$done) {
@@ -785,10 +801,10 @@ sub cdeSky() {
 
 	rotateXpm($xpm,$rotate) if $rotate ne "0";
 
-	$outFile = "$setBackFile" if $outFile eq "";
+	$outFile = $setRootTmpFile if $outFile eq "";
 	writeXpm($xpm,$outFile);
 
-	setBack("$outFile") if $setBackground;
+	setRoot($outFile) if $setRoot;
 }
 
 #-------------------------------------
@@ -882,12 +898,12 @@ sub createPatternXpm () {
 }
 
 #------------------------------------------------------------------------------
-# colors shemes
+# evaluating foreground from background in color shemes
 #------------------------------------------------------------------------------
 
-sub colorsSchemes () {
+sub processColorSchemes () {
 	my ($lines, $value, $white, $black) = ("","","","");
-	my $createText = 0;
+	my $evalFores = 0;
 	my @files = ();
 	my $file;
 
@@ -907,36 +923,36 @@ sub colorsSchemes () {
 	$outDir =~ s/\/$// unless $outDir eq "/";
 
 	-d $outDir || mkdir("$outDir", 0775) ||
-		die "impossible to create $outDir \n\t (we do not create more than one".
-			" level of directory).\n";
+		die "Cannot make dir $outDir: [$!]\n"
+		. "\t(we do not create more than one level of directories).\n";
 
-	opendir(DIR, "$inDir") || die "cannot open dir $inDir\n";
+	opendir(DIR, "$inDir") || die "Cannot open dir $inDir\n";
 	foreach (readdir(DIR)) {
-		push @files, $_ if  /\.$schemePostfix$/;
+		push @files, $_ if  /\.$colorSchemesExt$/;
 	}
 
-	if ($createTextColors ne "") {
-		$createText = 1;
-		($lines, $value, $white, $black) = split(":",$createTextColors);
-		die "Bad --create-text-colors options" 
+	if ($colorSchemesFores ne "") {
+		$evalFores = 1;
+		($lines, $value, $white, $black) = split(",", $colorSchemesFores);
+		die "Bad --colorschemes-fores parameters"
 			if ($lines !~ /^\d+$/ || (defined $value && $value !~ /^\d+$/));
 		$value = 128 if !defined $value  || $value eq "";
-		$white = "#ffffff" if !defined $white || $white eq "";
-		$black = "#000000" if !defined $black || $black eq "";
+		$white = "white" if !defined $white || $white eq "";
+		$black = "black" if !defined $black || $black eq "";
 	}
 
-	myPrint(1,"\ntransform colors schemes *.$schemePostfix in\n".
+	myPrint(1,"\ntransform color schemes *.$colorSchemesExt in\n".
 		"\t$inDir into\n\t$outDir\n\n");
 
 	foreach $file (@files) {
 		myPrint(2,"transform $file ... ");
-		open(FILE, "$inDir/$file") || die "cannot open $inDir/$file\n";
+		open(FILE, "$inDir/$file") || die "Cannot open $inDir/$file: [$!]\n";
 		my @f = <FILE>;
 		close(FILE);
 		foreach (@f) { chomp }
 		my @g = ();
 
-		if ($createText) {
+		if ($evalFores) {
 			my $i = 0;
 			while (defined $f[$i] && $i < $lines) {
 				#chomp($f[$i]);
@@ -950,21 +966,22 @@ sub colorsSchemes () {
 		} 
 		else { @g = @f; }
 
-		open(OUT,">$outDir/$file") || die "cannot write on $outDir/$file\n";
-		foreach (@g) { print OUT ; print OUT "\n"}
+		open(OUT,">$outDir/$file") || die "Cannot write to $outDir/$file: [$!]\n";
+		foreach (@g) { print OUT "$_\n" }
 		close(OUT);
 		myPrint(2,"done\n");
 	}
 }
 
 #------------------------------------------------------------------------------
-# set the background
+# set the root image
 #------------------------------------------------------------------------------
 
-sub setBack ($) {
-	my $file = shift;
-	die "no file $file" unless -f $file;
-	system("$setBackProg $file");
+sub setRoot ($) {
+	my $file = shift || "*none*";
+	die "No file $file to set root\n" unless -f $file;
+	system("$setRootProg $file");
+	unlink($file) if $file eq $setRootTmpFile;
 }
 
 #------------------------------------------------------------------------------
@@ -1471,7 +1488,8 @@ sub colorizeXpm() {
 
   	my $nbrColors = 0;
 	my $rizeColors = [];
-	@tmp = split(':',$rizeColorsOpt);
+	### migo: colon as a delimiter will be removed soon
+	@tmp = split('[,:]', $rizeColorsOpt);
 
 	if ($tmp[0] =~ /^\s*top\s*[[#A-Za-z]/) {
 		$min = int($min);
@@ -1789,6 +1807,9 @@ sub interpolateColors {
 	my $c = $nc-1;
 	my $i; my $j;
 
+	die "You need to specify at least two colors in the color list\n"
+		if $c <= 0;
+
 	if ($type =~ /^t/) {
 		for ($i = 0; $i < 3 ; $i++) { $a[$i] = int(rand 256) }
 		return \@a;
@@ -1799,9 +1820,6 @@ sub interpolateColors {
 		@a = @{$colors->[$i]};
 		return \@a;
 	}
-
-	die "you need to specify at least two colors in color list"
-		if $c == 0;
 
 	if ($type =~ /^p/) {
 		for ($i =0 ; $i < 3; $i++) {
@@ -1910,7 +1928,7 @@ sub showHelp {
 	print "\t--out-dir dir       The main directory for output the images\n";
 	print "\t--gnome             short cut for converting GNOME icons\n";
 	print "\t--site              set the out dir to \$FT_DATADIR/tr-image\n";
-	print "\t--create-symlink v  Create symlink for use with fvwm-themes\n";
+	print "\t--create-symlink n  Create symlink for use with fvwm-themes\n";
 	print "\t--update            only create images which are needed\n";
 	print "\t--ft-install        short cut used by fvwm-themes installation\n";
 	print "\t--verbose int       level of verbosity\n";
@@ -1930,47 +1948,52 @@ sub showHelp {
 	print "\t--size-56x56 geo    Set the size of the 56x56 XPM icons\n";
 	print "\t--size-32x32 geo    Set the size of the 32x32 XPM icons\n";
 	print "\t--size-tiles geo    Set the size of the tiles XPM icons\n";
-	print "\t--add-border-48x48  add border to the 48x48 XPM icons\n";
-	print "\t--add-border-16x16  add border to the 16x16 XPM icons\n";
-	print "\t--add-border-56x56  add border to the 32x32 XPM icons\n";
-	print "\t--add-border-32x32  add border to the 56x56 XPM icons\n";
-	print "\t--add-border-tiles  add border to the tiles XPM icons\n";
+	print "\t--tile-48x48        tile to the 48x48 XPM icons\n";
+	print "\t--tile-16x16        tile to the 16x16 XPM icons\n";
+	print "\t--tile-56x56        tile to the 32x32 XPM icons\n";
+	print "\t--tile-32x32        tile to the 56x56 XPM icons\n";
+	print "\t--tile-tiles        tile to the tiles XPM icons\n";
+	print "\t--border-48x48      add border to the 48x48 XPM icons\n";
+	print "\t--border-16x16      add border to the 16x16 XPM icons\n";
+	print "\t--border-56x56      add border to the 32x32 XPM icons\n";
+	print "\t--border-32x32      add border to the 56x56 XPM icons\n";
+	print "\t--border-tiles      add border to the tiles XPM icons\n";
 	print "ImageMagick\n";
 	print "\t--magick-bpp value  number of bit per pixel used by ImageMagick\n";
 	print "\t--magick-path path  Set the path of ImageMagick convert\n";
 	print "\t--magick-colors n   Number of colors used by ImageMagick\n";
-	print "\t--magick-space val  see the ImageMagick convert man page\n";
+	print "\t--magick-colorspace see the ImageMagick convert man page\n";
 	print "Simple transformations\n";
-	print "\t--rotate value      rotate and/or mirorr an XPM\n";
-	print "\t--add-border opt    add border to an/all image(s)\n";
-	print "\t--tile value        tile an/all image(s)\n";
+	print "\t--rotate value      rotate and/or mirror an XPM\n";
+	print "\t--tile value        tile all images\n";
+	print "\t--border +x+y,col   add border to all images\n";
 	print "Colorize\n";
 	print "\t--colorize          colorize an/all image(s)\n";
-	print "\t--colorize-colors l list of colors for colorize\n";
+	print "\t--colorize-colors l comma separated list of colors for colorize\n";
 	print "\t--trans-color col   set the transparent pixels to col pixels\n";
 	print "\t--colorize-comp t   interpolation computation type for colorize\n";
 	print "\t--colorize-rule v   colorization procedure\n";
-	print "CDE sky\n";
-	print "\t--cde-sky           produce cde like gradient and a lot more\n";
-	print "\t--sky-colors l      list of colors for cde-sky\n";
-	print "\t--pattern-file f    use pattern in file f for cde-sky\n";
+	print "CDE like sky\n";
+	print "\t--sky               produce cde-like gradient and a lot more\n";
+	print "\t--sky-colors l      comma separated list of colors for sky\n";
+	print "\t--pattern-file f    use pattern in file f for sky\n";
 	print "\t--pattern-type t    create some patterns\n";
 	print "\t--pattern-xpm f     create a pattern from an XPM\n";
 	print "\t--pattern-gap int   jump into the pattern\n";
-	print "\t--sky-comp t        interpolation computation type for cde-sky\n";
-	print "\t--be-fast           go fast but use more memory\n";
-	print "Background\n";
-	print "\t--set-background    set the root window with the XPM builded\n";
-	print "\t--set-back-prog ex  set the command to set the root window\n";
-	print "Colors Schemes\n";
-	print "\t--colors-schemes    parse and create colors schemes\n";
-	print "\t--text-colors       create text colors for colors schemes\n";
-   print "\t--schemes-ext       file extention for a colors file\n";
-	print "Colors\n";
+	print "\t--sky-comp t        interpolation computation type for sky\n";
+	print "\t--be-fast           try to be faster by using more memory\n";
+	print "Set Root Image\n";
+	print "\t--setroot           set the root window with the built XPM\n";
+	print "\t--setroot-prog prog the command to set the root window (xpmroot)\n";
+	print "Color schemes\n";
+	print "\t--colorschemes      process color schemes\n";
+	print "\t--colorschemes-fores evaluate fore from back for colors schemes\n";
+   print "\t--colorschemes-ext  file extention for color scheme files\n";
+	print "Color Info\n";
 	print "\t--show-xcolors      show a list of all xcolors\n";
 	print "\t--show-xcolorsets   show a list of all xcolor sets\n";
 	print "\t--show-color-info c show a full info for the specified color\n";
-	print "\t\tGood luck!\n";
+	print "Good luck!\n";
 	exit 0;
 }
 
@@ -1991,7 +2014,6 @@ sub myPrint {
 	if ($verbose >= $deg) {
 		print "$string";
 	}
-
 }
 
 sub myDebug {
@@ -2016,7 +2038,7 @@ fvwm-themes-images - fvwm-themes images and colors utility
 
 B<fvwm-themes-images>
 B<--convert> or/and B<--rotate> value or/and B<--colorize> or/and
-B<--tile> or/and B<--add-border> or B<--cde-sky> or B<--colors-schemes>
+B<--tile> or/and B<--border> or B<--sky> or B<--colorschemes>
 or B<--show-xcolors> or B<--show-xcolors-set> or B<--show-color-info> color 
 or B<--help> or B<--version>
 [ B<--in-dir> dir ]
@@ -2025,7 +2047,7 @@ or B<--help> or B<--version>
 [ B<--out-file> file ]
 [ B<--gnome> ]
 [ B<--site> ]
-[ B<--create-symlink> value ]
+[ B<--create-symlink> name ]
 [ B<--update> ]
 [ B<--ft-install> ]
 [ B<--verbose> int ]
@@ -2042,22 +2064,29 @@ or B<--help> or B<--version>
 [ B<--size-16x16> geo ]
 [ B<--size-56x56> geo ]
 [ B<--size-32x32> geo ]
-[ B<--size-tile> geo ]
-[ B<--add-border-48x48> +x+y:color ]
-[ B<--add-border-16x16> +x+y:color ]
-[ B<--add-border-56x56> +x+y:color ]
-[ B<--add-border-32x32> +x+y:color ]
-[ B<--add-border-tile> +x+y:color ]
+[ B<--size-tiles> geo ]
+[ B<--border> +x+y,color ]
+[ B<--border-48x48> +x+y,color ]
+[ B<--border-16x16> +x+y,color ]
+[ B<--border-56x56> +x+y,color ]
+[ B<--border-32x32> +x+y,color ]
+[ B<--border-tiles> +x+y,color ]
+[ B<--tile rule:file> ]
+[ B<--tile-48x48> rule:file ]
+[ B<--tile-16x16> rule:file ]
+[ B<--tile-56x56> rule:file ]
+[ B<--tile-32x32> rule:file ]
+[ B<--tile-tiles> rule:file ]
+[ B<--rotate> value ]
 [ B<--magick-bpp> 8/16 ]
 [ B<--magick-path> path ]
 [ B<--magick-colors> int ]
-[ B<--magick-space> value ]
-[ B<--add-border> +x+y:color ]
-[ B<--colorize-colors> color1:color2... ]
+[ B<--magick-colorspace> value ]
+[ B<--colorize-colors> color1,color2... ]
 [ B<--trans-color> color ]
 [ B<--colorize-comp> value ]
 [ B<--colorize-rule> value ]
-[ B<--sky-colors> color1:color2... ]
+[ B<--sky-colors> color1,color2... ]
 [ B<--pattern-file> file ]
 [ B<--pattern-type> value ]
 [ B<--pattern-xpm> file ]
@@ -2065,10 +2094,11 @@ or B<--help> or B<--version>
 [ B<--pattern-y> value ]
 [ B<--sky-comp> value ]
 [ B<--be-fast> ]
-[ B<--set-background> ]
-[ B<--set-back-prog> exec ]
+[ B<--setroot> ]
+[ B<--setroot-prog> exec ]
 [ B<--text-colors> value ]
-[ B<--schemes-ext> ext ]
+[ B<--colorschemes-fores> num,threshold,color1,color2 ]
+[ B<--colorschemes-ext> ext ]
 
 =head1 DESCRIPTION
 
@@ -2081,7 +2111,7 @@ fvwm-themes-images can convert images in various format
 use ImageMagick plus some internal XPM manipulations (to get
 better results). For example, if you run:
 
-	fvwm-themes-images --convert --gnome
+    fvwm-themes-images --convert --gnome
 
 then, if GNOME is not installed in an exotic way all icons
 in the GNOME images directory will be converted into 48x48 and 16x16
@@ -2106,12 +2136,12 @@ a-48x48-tile.xpm for 48x48 icons and tiled with a-16x16-tile.xpm for
 2 pixels for 16x16 icons just run fvwm-themes-images with the following
 options :o)
 
-	--gnome --convert --rotate 0m \
-	--colorize --colorize-colors blue:red \
-	--tile-48x48 path_to/a-48x48-tile.xpm \
-	--tile-16x16 path_to/a-16x16-tile.xpm \
-	--add-border-48x48 +5+5:yellow \
-	--add-border-16x16 +2+2:yellow
+    --gnome --convert --rotate 0m \
+    --colorize --colorize-colors blue,red \
+    --tile-48x48 path_to/a-48x48-tile.xpm \
+    --tile-16x16 path_to/a-16x16-tile.xpm \
+    --border-48x48 +5+5,yellow \
+    --border-16x16 +2+2,yellow
 
 =head2 Colorize
 
@@ -2119,8 +2149,8 @@ fvwm-themes-images can colorize an XPM image (or a family of images
 in a directory). The main aim of "colorize" is to produce an infinite
 number of backgrounds with only one xpm. For examples:
 
-	fvwm-themes-images --colorize --colorize-colors black:red \
-	--trans-color yellow --in-file My.xpm --set-background
+    fvwm-themes-images --colorize --colorize-colors black,red \
+    --trans-color yellow --in-file My.xpm --setroot
 
 will tile your root window with an XPM build from My.xpm, such that
 the darkest pixels in My.xpm are replaced by black pixels, the lightest
@@ -2129,33 +2159,32 @@ interpolated between black and red and the transparent pixels are
 replaced by yellow pixels. Moreover, you can use more than 2 colors
 and some options allows you to control the interpolation.
 You can also rotate, tile and borderize your XPM.
-By default, fvwm-themes-images use xpmroot as "background
-program" you can specify an other program with the --set-back-prog
+By default, fvwm-themes-images uses xpmroot as "background setter
+program", you can specify an other program using the --setroot-prog
 option, e.g., if you want to use xv just add the option
 
-	--set-back-prog "xv -root -quit"
+    --setroot-prog "xv -root -quit"
 
-Note that if you do not specify an out-file, the builded XPM
-is saved in /tmp/$USER-ft-back.xpm.
+Note that if you do not specify an out-file, the built XPM
+is saved in /tmp/$USER-ft-back.xpm and then removed in this case.
 
-=head2 CDE-SKY
+=head2 CDE-LIKE SKY
 
-fvwm-themes-images can set the root display to a gradient pattern like
+fvwm-themes-images can set the root window to a gradient pattern like
 CDE does. CDE has an option to display a gradient on the background,
 which consists of a repeated pattern, but along the color
 gradient, the color of the pattern varies. Try:
 
-	fvwm-themes-images --cde-sky --sky-colors \
-	turquoise:darkblue --set-background
+    fvwm-themes-images --sky --sky-colors turquoise,darkblue --setroot
 
 in this case the default pattern file is used
 ($FT_DATADIR/themes/cde/background/pattern). A pattern file must contain a
 rectangular pattern consisting of +es and -es like this:
 
-	+++++
-	+-+-+
-	-+-+-
-	-----
+    +++++
+    +-+-+
+    -+-+-
+    -----
 
 and nothing else. This pattern is painted repeatedly over the
 screen. However, the colors change in the y direction accordingly
@@ -2173,26 +2202,28 @@ Note that if your sky contains a lot of coulours you can speed a
 lot the construction of you sky by using the --be-fast option
 (but this will build a bigger XPM).
 
-=head2 COLORS SCHEMES
+=head2 PROCESSING COLOR SCHEMES
 
 A color scheme file is a file constituted of one color by line.
-At the present time fvwm-themes-images can add to a color scheme
-file the text colors. For example, if you have in a directory DIR
-some color scheme files with .dp as extension if you run:
+These colors are traditionally background colors.
+At the present time fvwm-themes-images can extend such color scheme
+file by adding corresponding foreground colors. For example, if there
+are several color scheme files with extension .pal in the directory DIR
+and you run:
 
-	fvwm-themes-images --colors-schemes --text-colors \
-	8:128:color1:color2 --in-dir DIR --out-dir DIR
+    fvwm-themes-images --colorschemes --colorschemes-ext pal \
+    --colorschemes-fores 8,128,color1,color2 --in-dir DIR --out-dir DIR
 
-then the 8 first colors of the color schemes files will be unchanged
-and 8 new colors will be added (if your original colors files have more
-than 8 colors these colors are ignored/removed). So, you get colors
-files with 16 colors. The ith new color (the color of the (i+8)th line)
-is the "text color" of the ith original color. The new colors are either
-color1 or color2. The ith new color is color1 if the ith original color
-have a grey value <= 128 and is color2 if not. A grey value of 255
-correspond to white and a grey value of 0 correspond to black. So, the
-idea is to use a light color for color1 (as white) and a dark color for
-color2 (as black).
+then the 8 first colors of the color scheme files will be unchanged
+and 8 new colors will be added (if your original color scheme files have
+more than 8 colors these colors are ignored/removed). So, you get color
+scheme files with 16 colors. The 7-th color is the foreground color,
+corresponding to the 1-st background color and so on. The foreground color
+is evaluated to be either color1 or color2. It is color1 for the backgrounds
+with gray value < 128 and is color2 otherwise. A gray value of 255
+corresponds to white color and a gray value of 0 corresponds to black.
+So, the idea is to use a light color for color1 (like white) and a dark
+color for color2 (like black).
 
 =head2 COLORS
 
@@ -2205,7 +2236,7 @@ red, green and blue values of the colors. To get the list of your X colors
 which have a name with the corresponding value in 8bits and in an array
 of 3 integer just type:
 
-	fvwm-themes-images --show-xcolors | less
+    fvwm-themes-images --show-xcolors | less
 
 if you use hexadecimal numbers like B<#abcdef> in some shells you must put
 these colors in quotes. Note, if you give colors by hexadecimal numbers
@@ -2214,7 +2245,7 @@ fvwm-themes-images is faster, since rgb.txt should not be loaded.
 fvwm-themes-images have some generic ways to create colors. You can
 give to fvwm-themes-images a color of the form:
 
-	typecolor
+    typecolor
 
 where type is either top[integer], hilight, shadow, random and
 where color is a color encoded as explained above. If you give
@@ -2222,11 +2253,11 @@ such a color fvwm-themes-images compute for you the "type" color
 of the "color". To see the result of these computations for
 all the colors which have name try:
 
-	fvwm-themes-images --show-xcolorsets | less
+    fvwm-themes-images --show-xcolorsets | less
 
 for any individual color type:
 
-	fvwm-themes-images --show-color-info color
+    fvwm-themes-images --show-color-info color
 
 You can enter random alone, this try to produce a random color. The only
 type which does not have a clear meaning is "top". top may have an integer
@@ -2237,11 +2268,11 @@ very dark blue. The top type (without integer argument) is used in a
 special way with the --colorize-colors option: if you want to colorize
 an XPM with "color" as a "center color" try the following:
 
-	fvwm-themes-images --colorize --colorize-colors \
-	topcolor:topcolor --in-file My.xpm --set-background
+    fvwm-themes-images --colorize --colorize-colors topcolor,topcolor \
+    --in-file My.xpm --setroot
 
-then, fvwm-themes-images will try to find the good integer values
-to top to produce the two good colors.
+then, fvwm-themes-images will try to compute good integer values
+for I<top> to produce two good colors.
 
 =head1 OPTIONS
 
@@ -2270,8 +2301,9 @@ B<--out-file> file - output file if you use the --in-file option
 and not --convert. You can give either a complete
 path or a relative path (relative to the --out-dir option, i.e.,
 $HOME/tr-images or $FT_DATADIR/tr-images). Yes, this is strange but
-this is good. With --convert this option is ignored, with --set-background
-you do not need to define an outfile: /tmp/$USER-ft-back.xpm is used.
+this is good. With --convert - this option is ignored, with --setroot -
+you do not need to define an outfile, a temporary file is used,
+but you can, if you also want to save it.
 
 B<--site> equivalent to --out-dir $FT_DATADIR/tr-images.
 
@@ -2287,15 +2319,14 @@ to /usr/share/pixmaps
 B<--ft-install> equivalent to --gnome (so --convert) --site --update
 --create-symlink
 
-B<--create-symlink> A:B - where A and B are either 48x48, 16x16, 32x32.
+B<--create-symlink> A,B - where A and B are either 48x48, 16x16, 32x32.
 Create symbolic link from $FT_DATADIR/images/norm-postfix to OUT/A-postfix
 and from $FT_DATADIR/images/mini-postfix to OUT/B-postfix. Where postfix
 is defined with the --postfix option and where OUT is the directory
 defined by --out-dir.
 
-B<--verbose> int - where int can be 0, 1 or 2. This integer represent
-the level of "verbosity". Default is 1, but with set-background, in this
-case the default is 0.
+B<--verbose> int - where int can be 0, 1 or 2. This integer represents
+the level of "verbosity". Default is 1, but with --setroot the default is 0.
 
 =head2 Convert
 
@@ -2363,16 +2394,16 @@ B<--size-32x32> geometry - As above for the 32x32 XPM icons. Default is 32x32.
 
 B<--size-tiles> geometry - As above for the tiles XPM icons. Default is "".
 
-B<--add-border-48x48> +x+y:color - add border for the 48x48 XPM icons. See
-the --add-border option for details.
+B<--border-48x48> +x+y,color - add border for the 48x48 XPM icons. See
+the --border option for details.
 
-B<--add-border-16x16> +x+y:color - As above for the 16x16 XPM icons.
+B<--border-16x16> +x+y,color - As above for the 16x16 XPM icons.
 
-B<--add-border-56x56> +x+y:color - As above for the 16x16 XPM icons.
+B<--border-56x56> +x+y,color - As above for the 16x16 XPM icons.
 
-B<--add-border-32x32> +x+y:color - As above for the 32x32 XPM icons.
+B<--border-32x32> +x+y,color - As above for the 32x32 XPM icons.
 
-B<--add-border-tile> +x+y:color - As above for the tiles XPM icons.
+B<--border-tiles> +x+y,color - As above for the tiles XPM icons.
 
 B<--tile-48x48> rule:file - tile the 48x48 XPM icons with the xpm file
 following the rule "rule". See the ---tile option for details.
@@ -2390,9 +2421,9 @@ B<--tile-tiles> rule:file - As above for the tiles XPM icons.
 B<--magick-colors> value - Number of colors used. Default is 256. If
 you use X under 16bpp (xdpyinfo) you can use for example 65536.
 
-B<--magick-space> value - Where value must be GRAY, OHTA, RGB, Transparent,
-XYZ, YCbCr, YIQ, YPbPr, YUV, or CMYK. See the -colorspace option of
-ImageMagick (man convert). Default is Transparent.
+B<--magick-colorspace> value - Where value must be GRAY, OHTA, RGB,
+Transparent, XYZ, YCbCr, YIQ, YPbPr, YUV, or CMYK. See the -colorspace
+option of ImageMagick (man convert). Default is Transparent.
 
 B<--magick-path> path - set the path of the convert ImageMagick executable.
 Useful if convert ImageMagick executable is not in your PATH or to test
@@ -2420,7 +2451,7 @@ zone to tile by x pixels in the left and
 the right of the image and y  pixels in the top and
 the bottom of the image.
 
-B<--add-border> +x+y:color - add x color pixels in the left and
+B<--border> +x+y,color - add x color pixels in the left and
 the right of the image and y color pixels in the top and
 the bottom of the image.
 
@@ -2440,7 +2471,7 @@ be changed with the --colorize-comp. If you found that your resulting
 XPM is too contrasted you can try the "--colorize-rule min" option
 (or change the color list).
 
-B<--colorize-colors> color1:color2... - list of colors for colorization.
+B<--colorize-colors> color1,color2... - list of colors for colorization.
 The top type (without integer argument) is used in a
 special way here. If you use top with the first color and/or the last
 color fvwm-themes-images will try to find the good integer values
@@ -2456,13 +2487,13 @@ random (then the list of colors are ignored and the pixels are colorized
 randomly ... this is funny).
 
 B<--colorize-rule> value - value can be max or min, default is max. max
-does nothing. min change the way of the colorization: black is "mapped"
+does nothing. min changes the way of the colorization: black is "mapped"
 to the first color in the list and white  is "mapped" to the last color
 in the list.
 
-=head2 CDE SKY
+=head2 CDE-LIKE SKY
 
-B<--cde-sky> -  Create a "gradient" XPM which consists of a repeated
+B<--sky> -  Create a "gradient" XPM which consists of a repeated
 pattern, but along the color gradient, the color of the pattern varies.
 A pattern file must contain a rectangular pattern consisting of +es and
 -es. This pattern is painted repeatedly over the screen.
@@ -2472,8 +2503,8 @@ used is $FT_DATADIR/themes/cde/background/pattern. You can use one
 of the --pattern-* option below to load or create other patterns.
 Finally, you can rotate your image to get horizontal gradient.
 
-B<--sky-colors> color1:color2... - List of the colors for creating
-the "gradient".
+B<--sky-colors> color1,color2... - List of the colors for creating
+the sky gradient.
 
 B<--pattern-file> file - use the pattern file "file" as pattern.
 
@@ -2493,7 +2524,7 @@ B<--pattern-gap> n - where n is a positive integer. Take in account
 only the xnth lines of the pattern.
 
 B<--pattern-y> y - where y is a positive integer. By default, the
-XPM file produced by --cde-sky has the same height of your screen
+XPM file produced by --sky has the same height of your screen
 to produce complete gradient. You can set this height to a smaller
 value with this option to get repeated gradient or to save memory
 and time with some patterns and some --sky-comp options.
@@ -2506,32 +2537,34 @@ B<--be-fast> - If your sky contains a lot of colors you can use this
 option so that the background appear more rapidly on your root window.
 On the other hands, the XPM file builded will be larger.
 
-=head2 Set the Background
+=head2 Setting the Root Image
 
-B<--set-background> - Set the background with the XPM file produced.
-Of course, this work only for a "transformation" which produce
-only one file (I.e., with the --in-file without --convert or with
---cde-sky).
+B<--setroot> - Set the root image (background) with the XPM file produced.
+Of course, this works only for a "transformation" which produces
+only one file, i.e., with --sky or with --in-file without --convert.
 
-B<--set-back-prog> exec - to execute "exec out.xpm" to set the background.
-Default is xpmroot.
+B<--setroot-prog> prog - a program to execute "prog out.xpm" to set the root
+window. Default is xpmroot.
 
-=head2 COLORS SCHEMES
+=head2 Evaluating foregrounds from backgrounds in color schemes
 
-B<--colors-scheme> - Parse and modify colors scheme files in a directory.
-A color scheme file is a file constituted of one color by line.
+B<--colorschemes> - Process color scheme files in the in-directory in
+place or into out-directory. A color scheme file is a file constituted
+of one color by line.
 
-B<--text-colors> l:g:color1:color2 - where l and g are integer. Transform
-a colors scheme file "orig" to a color scheme file "new" as follows: 
-1. the l first colors (i.e., lines) of "new" are the l first colors of 
-"orig"; 
-2. "new" have 2l lines the l new lines are the text colors of the
-l first colors "respectively".
-3. the text color of a color is color1 if the color has a grey value
-which is <= g and is color2 if not.
+B<--colorschemes-fores> num,threshold,color1,color2 - where num and threshold
+are integers. Transforms an original color scheme file using the following
+rules:
 
-B<--schemes-ext> ext - consider only the files with ".ext" at the end of
-its name as a colors scheme file. Default is "dp".
+  1) the resulting file has 2*num lines of colors
+  2) the first num colors (background colors) remain as are
+  3) the last num lines are evaluated to be the foreground colors for the
+first num background colors respectively.
+  4) the foreground color is color1 if the background color has a gray value
+which is less than threshold and is color2 otherwise.
+
+B<--colorschemes-ext> ext - consider only files with the trailing ".ext" in
+their names as color scheme files. Default is "dp".
 
 =head2 Colors Informations
 
@@ -2557,7 +2590,7 @@ where ImageMagick is used to convert GNOME icons into 20x20 XPM icons.
 
 =head1 COPYING
 
-The script is distributed by the same terms as fvwm itself.
+The script is distributed by the same terms as fvwm-themes itself.
 See GNU General Public License for details.
 
 =head1 BUGS
