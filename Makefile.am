@@ -188,3 +188,66 @@ rpm-extra-this:
 
 rpm-themes-this:
 	(cd rpm && $(MAKE) $(AM_MAKEFLAGS) rpm-themes) || exit 1
+
+## ---------------------------------------------------------------------------
+## Produce an deb package 
+# you need fakeroot and dpkg
+#
+#  Usage:
+#    make deb-dist
+#    make deb-dist3
+#
+#    make deb-dist  - creates full(original) debs
+#    make deb-dist3 - creates -base and -extra debs
+
+
+#
+#this is for original build debian with debian/rules
+#
+
+# first the original rule to build for debian
+# it includes all
+
+deb-dist:
+	cp -f debian/full-control debian/control
+	cp -f debian/full-changelog debian/changelog
+	dpkg-buildpackage -rfakeroot 
+
+# build base and extra debs
+deb-dist3:
+
+	
+	@echo "creating $(PACKAGE)_base/extra_$(VERSION).deb"
+	cp -f debian/base-control debian/control
+	cp -f debian/base-changelog debian/changelog
+	fakeroot debian/rules clean
+	fakeroot debian/rules binary3
+	-[ -d debian/fvwm-themes-extra ] || mkdir debian/fvwm-themes-extra
+	-[ -d debian/fvwm-themes-extra/usr ] || mkdir debian/fvwm-themes-extra/usr
+	-[ -d debian/fvwm-themes-extra/usr/share ] || mkdir debian/fvwm-themes-extra/usr/share
+	-[ -d debian/fvwm-themes-extra/usr/share/fvwm ] || mkdir debian/fvwm-themes-extra/usr/share/fvwm
+	-[ -d debian/fvwm-themes-extra/usr/share/fvwm/themes ] || mkdir debian/fvwm-themes-extra/usr/share/fvwm/themes
+	-[ -d debian/fvwm-themes/DEBIAN ] || mkdir debian/fvwm-themes-extra/DEBIAN
+	@for t in $(EXTRA_THEMES); do \
+	mv -f debian/fvwm-themes-base/usr/share/fvwm/themes/$$t\
+	debian/fvwm-themes-extra/usr/share/fvwm/themes/; \
+	done
+	fakeroot dh_md5sums
+	fakeroot dh_builddeb 
+	
+	cp -f debian/extra-control debian/control
+	cp -f debian/extra-changelog debian/changelog
+	fakeroot dh_installdocs
+	fakeroot dh_install
+	fakeroot dh_link
+	fakeroot dh_strip
+	fakeroot dh_compress
+	fakeroot dh_fixperms
+	fakeroot dh_installdeb
+	fakeroot dh_shlibdeps
+	fakeroot dh_gencontrol 
+	fakeroot dh_md5sums
+	fakeroot dh_builddeb 
+	rm -fr debian/fvwm-themes-base
+	rm -fr debian/fvwm-themes-extra
+

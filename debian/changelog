@@ -1,6 +1,6 @@
-fvwm-themes (0.7.0-1) unstable; urgency=low
+fvwm-themes-extra (0.7.0-1) unstable; urgency=low
 
   * Initial Release.
   * changed menu-entry: Programs default to menudefs.hook
 
- -- Andrei Mitrofanow (Smilie) <smilebef@web.de>  Mon, 14 Apr 2003 22:37:13 +0200
+ -- Andrei Mitrofanow <smilebef@web.de>  Mon, 14 Apr 2003 22:37:13 +0200

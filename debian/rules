@@ -3,7 +3,7 @@
 # GNU copyright 1997 to 1999 by Joey Hess.
 
 # Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
+export DH_VERBOSE=1
 
 # These are used for cross-compiling and for saving the configure script
 # from having to guess our platform (since we know it already)
@@ -24,9 +24,7 @@ endif
 config.status: configure
 	dh_testdir
 	# Add here commands to configure the package.
-	#./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info --disable-run-updatemenu --disable-build-menus --disable-menu-system
 	./configure --prefix=/usr --disable-run-updatemenu
-	#--disable-build-menus --disable-menu-system
 
 build: build-stamp
 
@@ -37,8 +35,6 @@ build-stamp:  config.status
 	$(MAKE)
 	#/usr/bin/docbook-to-man debian/fvwm-themes.sgml > fvwm-themes.1
 
-	touch build-stamp
-
 clean:
 	dh_testdir
 	dh_testroot
@@ -46,6 +42,7 @@ clean:
 
 	# Add here commands to clean up after the build process.
 	-$(MAKE) distclean
+	-test ! -x  ./configure  && ( aclocal; autoheader; automake --add-missing; autoreconf ) 
 ifneq "$(wildcard /usr/share/misc/config.sub)" ""
 	cp -f /usr/share/misc/config.sub config.sub
 endif
@@ -63,24 +60,35 @@ install: build
 
 	# Add here commands to install the package into debian/fvwm-themes.
 	$(MAKE) prefix=$(CURDIR)/debian/fvwm-themes/usr ROOT_PREFIX=$(CURDIR)/debian/fvwm-themes mandir=$(CURDIR)/debian/fvwm-themes/usr/share/man install
-	#DESTDIR=$(CURDIR)/debian/fvwm-themes prefix=$(CURDIR)/debian/fvwm-themes/usr ROOT_PREFIX=$(CURDIR)/debian/fvwm-themes install
-	[ -e $(CURDIR)/../fvwm-themes-extra-*.tar.bz2 ] && export prefix=$(CURDIR)/debian/fvwm-themes/usr/ && $(CURDIR)/debian/fvwm-themes/usr/bin/fvwm-themes-config --site --install ../fvwm-themes-extra-*.tar.bz2
-	#[ -e $(CURDIR)/../fvwm-themes-extra-*.tar.bz ]	2>/dev/null && export prefix=$(CURDIR)/debian/fvwm-themes/usr/ && $(CURDIR)/debian/fvwm-themes/usr/bin/fvwm-themes-config --site --install ../fvwm-themes-extra-*.tar.bz
-	#$(CURDIR)/debian/fvwm-themes/usr/bin/fvwm-themes-config --site --install fvwm-themes-extra.tar.bz
+
+
+
+install3: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	# Add here commands to install the package into debian/fvwm-themes.
+	$(MAKE) prefix=$(CURDIR)/debian/fvwm-themes-base/usr ROOT_PREFIX=$(CURDIR)/debian/fvwm-themes-base mandir=$(CURDIR)/debian/fvwm-themes-base/usr/share/man install
+
 
 # Build architecture-independent files here.
 binary-indep: build install
 # We have nothing to do by default.
 
+binary-indep3: install3
+# We have nothing to do by default.
+
 # Build architecture-dependent files here.
-binary-arch: build install
+binary-arch: install
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs ChangeLog
 	dh_installdocs
-	dh_installexamples
-#	dh_install
-#	dh_installmenu
+#	dh_installexamples
+	dh_install
+	dh_installmenu
 #	dh_installdebconf	
 #	dh_installlogrotate
 #	dh_installemacsen
@@ -103,5 +111,35 @@ binary-arch: build install
 	dh_md5sums
 	dh_builddeb
 
+binary-arch3: install3
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs ChangeLog
+	dh_installdocs
+#	dh_installexamples
+	dh_install
+	dh_installmenu
+#	dh_installdebconf	
+#	dh_installlogrotate
+#	dh_installemacsen
+#	dh_installpam
+#	dh_installmime
+#	dh_installinit
+#	dh_installcron
+#	dh_installinfo
+	dh_installman
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_perl
+#	dh_python
+#	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+
 binary: binary-indep binary-arch
+binary3: binary-arch3
 .PHONY: build clean binary-indep binary-arch binary install 
