@@ -6,14 +6,17 @@
 	* updated
 
 	* debian/Makefile.am:
-	* debian/base-control.in:
 	* debian/copyright:
+	* debian/base-control.in:
 	* debian/extra-control.in:
 	* debian/full-control.in:
 	updated
 
 	* bin/fvwm-themes-config.in:
-	replaced $v
+	replaced $v with $[version.line]
+
+	* themes/default/bindings:
+	replaced Shift-Ctrl-F12 binding
 
 2003-10-12  migo  <migo@homemail.com>
 

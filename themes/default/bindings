@@ -196,7 +196,7 @@ Key Tab 	A	SCM	Next FuncFvwmSelectWindow
 Key Prior	A	M	Prev FuncFvwmSelectWindow
 Key Next	A	M	Next FuncFvwmSelectWindow
 Key F11 	A	SC	Pick FuncFvwmMaximizeFullScreen
-Key F12 	A	SC	Pick FuncFvwmMaximizeFullScreen
+Key F12 	A	SC	FuncFvwmConfirm `Refresh with no cache?` FuncFvwmThemesFreshUncached
 
 # misc.
 Key F8		A	SC	FuncFvwmShowAllColorsets
