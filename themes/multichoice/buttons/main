@@ -7,18 +7,24 @@
 # Button roles used: Options (o), Close (c), Maximize (m), Iconify (i),
 # Stick (s), Shade (h); and pseudo buttons: TitleLeft, TitleRight
 
-# m4 misinterpreters '#', so use 'Nop'
-define({{BcC}}, ifdef({{BcN}}, {{}}, {{Nop}}))
-define({{BmC}}, ifdef({{BmN}}, {{}}, {{Nop}}))
-define({{BoC}}, ifdef({{BoN}}, {{}}, {{Nop}}))
-define({{BiC}}, ifdef({{BiN}}, {{}}, {{Nop}}))
-define({{BsC}}, ifdef({{BsN}}, {{}}, {{Nop}}))
-define({{BhC}}, ifdef({{BhN}}, {{}}, {{Nop}}))
-define({{BlC}}, ifdef({{BlN}}, {{}}, {{Nop}}))
-define({{BrC}}, ifdef({{BrN}}, {{}}, {{Nop}}))
+changecom  # don't treat comments specially
 
-define({{BlC}}, {{Nop}})
-define({{BrC}}, {{Nop}})
+define({{BcC}}, ifdef({{BcN}}, {{}}, {{#}}))
+define({{BmC}}, ifdef({{BmN}}, {{}}, {{#}}))
+define({{BoC}}, ifdef({{BoN}}, {{}}, {{#}}))
+define({{BiC}}, ifdef({{BiN}}, {{}}, {{#}}))
+define({{BsC}}, ifdef({{BsN}}, {{}}, {{#}}))
+define({{BhC}}, ifdef({{BhN}}, {{}}, {{#}}))
+define({{BlC}}, ifdef({{BlN}}, {{}}, {{#}}))
+define({{BrC}}, ifdef({{BrN}}, {{}}, {{#}}))
+
+ifdef({{HaveTitleEdges}}, {{
+define({{BlC}}, ifdef({{BlN}}, {{}}, {{#}}))
+define({{BrC}}, ifdef({{BrN}}, {{}}, {{#}}))
+}}, {{
+define({{BlC}}, {{#}})
+define({{BrC}}, {{#}})
+}})
 
 BcC Style "*" Button BcN
 BmC Style "*" Button BmN
@@ -31,7 +37,7 @@ BrC Style "*" Button BrN
 
 include(CompRoot/faces/FaceFile)
 
-ifdef({{HaveMiniIcon}}, BoC ButtonStyle BoN {{MiniIcon}}, {{}})
+ifdef({{HaveMiniIcon}}, {{BoC ButtonStyle BoN MiniIcon}}, {{}})
 
 ButtonStyle All - Clear
 BmC ButtonStyle BmN - MWMDecorMax
@@ -67,6 +73,11 @@ BrC FuncFvwmSetTitleBindings BrN
 
 DestroyFunc FuncFvwmStartWindowButtons
 AddToFunc   FuncFvwmStartWindowButtons
+ifdef({{HaveTitleEdges}}, {{
+# This is usually not in this component, but title edges can't be non-flat
++ I TitleStyle -- flat
++ I ButtonStyle All -- flat
+}})
 
 DestroyFunc FuncFvwmStopWindowButtons
 AddToFunc   FuncFvwmStopWindowButtons

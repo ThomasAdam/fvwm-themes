@@ -4,6 +4,11 @@
 	* themes/multichoice/buttons/main:
 	added a new buttons@multichoice boolean options miniicon
 
+	* themes/multichoice/buttons.cfg:
+	* themes/multichoice/buttons/main:
+	added support for title edges needed for some image-based faces;
+	use changecom to enable "#" instead of "Nop"
+
 2001-05-12  migo  <migo@homemail.com>
 
 	* NEWS:
