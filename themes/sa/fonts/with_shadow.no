@@ -1,0 +1,1 @@
+SetEnv FVWM_USE_SHADOW "Shadow=0:"
