@@ -14,6 +14,7 @@ currentThemeName=current
 currentThemeDir=$themesDir/$currentThemeName
 startDir=`pwd`
 build="no"
+start=yes
 
 # Arguments
 fvwmArgs=""
@@ -34,6 +35,8 @@ while [ "x$1" != "x" ]; do
 				else
 					session="$1"
 				fi ;;
+			--no-start|-n|-no-start)
+				start=no ;;
 			esac
 		fi ;;
 	esac
@@ -81,4 +84,6 @@ fi
 
 cd $startDir
 echo "[fvwm-themes]: Starting FVWM under $session fvwm-themes session"
-exec fvwm2 -f "$rcName" $fvwmArgs
+if [ "$start" = "yes" ]; then
+    exec fvwm2 -f "$rcName" $fvwmArgs
+fi;

@@ -24,7 +24,7 @@ Font		-adobe-helvetica-bold-r-*-*-12-*
 
 Init
 Begin
-
+    Do {FvwmScript FvwmScript-NoteMessage "Loading Themes"}
     # Arguments
     Set $i = 1
     Set $arg = (GetScriptArgument $i)
@@ -48,10 +48,6 @@ Begin
 	ChangeColorset 6 $TextColorset
 	ChangeColorset 12 $TextColorset
 	ChangeColorset 17 $TextColorset
-	#ChangeColorset 44 $TextColorset
-	#ChangeColorset 48 $TextColorset
-	#ChangeColorset 51 $TextColorset
-	#ChangeColorset 53 $TextColorset
     End
 
     If $ViewerColorset <> {} Then
@@ -117,6 +113,8 @@ Begin
 
     # Hide the widgets
     HideWidget 21
+
+    Do {All (FvwmScript-NoteMessage) Delete}
 End
 
 # ---------------------------------------------------------------------------
@@ -803,6 +801,12 @@ SingleClic :
 	Set $dummy = (GetOutput $cmd 1 -1)
 	Set $UpdateTSLists = 1
 	Set $NullMessage = 1
+	If $OptionEditorOne <> {} Then
+	    SendToScript $OptionEditorOne {update}
+	If $OptionEditorTwo <> {} Then
+	    SendToScript $OptionEditorTwo {update}
+	If $OptionEditorLast <> {} Then
+	    SendToScript $OptionEditorLast {update}
     End
  End
 End
@@ -836,7 +840,7 @@ SingleClic :
     End
     If $break == 1 Then
     Begin
-	Set $msg = {Msg: Drop will be implemented soon}
+	Set $msg = {Msg: Drop will be implemented one day!}
 	ChangeTitle 95 $msg
     End
  End

@@ -1551,8 +1551,8 @@ sub comLoop {
 	my %choiceToSet = ();
 
 	my $allThemes = getAllThemes();
-	my $currentComponents = $self->{$componentKey};
-	$currentComponents = [ sort @$currentComponents ];
+	my $tmp = $self->{$componentKey};
+	@currentComponents = sort @$tmp;
 	my $CC = $self->{cc};
 
 	chdir($userDir) || die "No FvwmConfigHome $userDir";
@@ -1615,7 +1615,9 @@ sub comLoop {
 				my $set = 0;
 				my $useFlag = "";
 				foreach (@$components) {
-					my $used0 = isArrayElement($currentComponents, $_) &&
+					my $used0 = 0;
+					$used0 = 1 if isArrayElement(\@currentComponents, $_) &&
+						defined $self->{'cc'}->{$_} &&
 						($self->getComponentCfg($_)->{$themeKey} || "") eq $theme;
 					$used ||= $used0;
 				}
@@ -1643,7 +1645,8 @@ sub comLoop {
 				my $useFlag = "";
 				my $set = 0;
 				my $unset = 0;
-				my $used = isArrayElement($currentComponents, $_) &&
+				my $used = isArrayElement(\@currentComponents, $_) &&
+					defined $self->{'cc'}->{$_} &&
 					($self->getComponentCfg($_)->{$themeKey} || "") eq $theme;
 				$set = 1 if defined $componentToLoad{$_} &&
 					$componentToLoad{$_} eq $theme;
@@ -1663,12 +1666,20 @@ sub comLoop {
 		}
 		# -----------------------------------------
 		elsif ($command =~ /^current-config$/) {
-			foreach (@$currentComponents) {
-				my $cc = $self->getComponentCfg($_);
+			foreach (@currentComponents) {
 				next if $_ eq "settings";
+				my $dd;
+				my $usedString;
 				my $set = 0;
-				my $theme = $cc->{'theme'};
-				my $usedString = "Used: $theme";
+				my $theme;
+				next if $_ eq "settings";
+				if (defined $self->{'cc'}->{$_}) { 
+					my $cc = $self->getComponentCfg($_);
+					$theme = $cc->{'theme'};
+					$usedString = "Used: $theme";
+				} else {
+					$usedString = "Not Used";
+				}
 				my $stateString = "";
 				$set = 1 if defined $componentToLoad{$_};
 				$usedString = "(" . $usedString . ")" if $set;
@@ -1679,13 +1690,14 @@ sub comLoop {
 				$l1 = 1 if $l1 < 1;
 				if ($set) {
 					my $themeCfg = new Fvwm::ThemeCfg($componentToLoad{$_});
-					$cc = $themeCfg->getComponentCfg($_);
+					$dd = $themeCfg->getComponentCfg($_);
+					$theme = $dd->{'theme'};
+				} else {
+					$dd = $self->getComponentCfg($_);
 				}
-				# TODO: used (U) in place of (S) if the setted option/choice/sub
-				# is the current.
-				my $contains = $cc->{'contains'};
-				my $options = $cc->{'option'};
-				my $choices = $cc->{'choice'};
+				my $contains = $dd->{'contains'};
+				my $options = $dd->{'option'};
+				my $choices = $dd->{'choice'};
 				my $OptOrContains = "";
 				my $t = "";
 				if (ref($options) eq 'ARRAY') {
@@ -1725,15 +1737,15 @@ sub comLoop {
 			my $index = $1;
 			my $i = 1;
 			my ($comp,$theme,$OptOrContains,$drop,$set) = ("","","0","0","0");
-			foreach (@$currentComponents) {
-				my $cc = $self->getComponentCfg($_);
-				next if !$cc->{'used'} || $_ eq "settings";
+			foreach (@currentComponents) {
+				next if $_ eq "settings";
 				if ($i == $index) {
 					$comp = "$_";
 					if (defined $componentToLoad{$_}) {
 						$set = 1;
 						$theme = "$componentToLoad{$_}";
 					} else {
+						my $cc = $self->getComponentCfg($_);
 						$theme = "$cc->{'theme'}";
 					}
 				}
@@ -1745,9 +1757,32 @@ sub comLoop {
 			} else {
 				$dd = $self->getComponentCfg($comp);
 			}
-			$OptOrContains = 1 if (ref($dd->{'contains'}) eq 'ARRAY' || 
-				ref($dd->{'option'}) eq 'ARRAY' || 
-				ref($dd->{'choice'}) eq 'ARRAY');
+			my $contains = $dd->{'contains'};
+			my $options = $dd->{'option'};
+			my $choices = $dd->{'choice'};
+			if (ref($options) eq 'ARRAY') {
+				$OptOrContains = 1;
+				my $opt;
+				foreach $opt (@$options) {
+					my $optFile = $opt->{'file'};
+					$set = 1 if defined $optionToSet{"$theme/$comp:$optFile"};
+				}
+			}
+			elsif (ref($choices) eq 'ARRAY') {
+				$OptOrContains = 1;
+				my $c;
+				foreach $c (@$choices) {
+					$set = 1 if defined $choiceToSet{"$theme/$comp"};
+				}
+			}
+			elsif (ref($contains) eq 'ARRAY') {
+				$OptOrContains = 1;
+				my $c;
+				# droped ?
+				foreach $c (@$contains) {
+					$set = 1 if defined $choiceToSet{"$theme/$comp/$c"};
+				}
+			}
 			### fixe me: How to know if the component is dropable??
 			$drop = 1;
 			$return = "$comp\n$theme\n$OptOrContains$set$drop";
@@ -1755,16 +1790,49 @@ sub comLoop {
 		# -------------------------------------------------
 		elsif ($command =~ /^restore\s+(.+)$/) {
 			my $comp = $1;
+			my $theme = "";
+			my $cc;
 			if (defined $componentToLoad{$comp}) {
-				delete($componentToLoad{$comp});
+				$theme=$componentToLoad{$comp};
+				delete($componentToLoad{$comp});	
+				my $i = 0;
+				my @tmp = @currentComponents;
+				foreach (@tmp) {
+				 	splice @currentComponents, $i, 1
+						if (! defined $self->{'cc'}->{$_} && $_ eq $comp);
+					$i++;
+				}
+				my $themeCfg = new Fvwm::ThemeCfg($theme);
+				$cc = $themeCfg->getComponentCfg($comp);
+			} else {
+				$cc = $self->getComponentCfg($comp);
+				$theme = $cc->{'theme'};
 			}
-			### TODO: restor option/choice/subcomponent
+			my $options = $cc->{'option'};
+			my $contains = $cc->{'contains'};
+			my $choices = $cc->{'choice'};
+			if (ref($options) eq 'ARRAY') {
+				foreach (keys %optionToSet) {
+					delete $optionToSet{$_} if /^$theme\/$comp:/;
+				}
+			}
+			elsif (ref($choices) eq 'ARRAY') {
+				foreach (keys %choiceToSet) {
+					delete $choiceToSet{$_} if /^$theme\/$comp/;
+				}
+			}
+			elsif (ref($contains) eq 'ARRAY') {
+				foreach (keys %choiceToSet) {
+					delete $choiceToSet{$_} if /^$theme\/$comp\//;
+				}				
+			}
 		}
 		#----------------------------------------
 		elsif ($command =~ /^load-all\s+(.+)$/) {
 			my ($components, $groups) = getThemeComponentsAndGroups($1);
 			foreach (@$components) {
 				$componentToLoad{$_} = $1;
+				updateCurrentComponents(\@currentComponents,$_);
 			}
 		}
 		#----------------------------------------------
@@ -1777,6 +1845,7 @@ sub comLoop {
 					my $groupComponents = $g->{$componentKey};
 					foreach (@$groupComponents) {
 						$componentToLoad{$_} = $1;
+						updateCurrentComponents(\@currentComponents,$_);
 					}
 				}
 			}
@@ -1784,6 +1853,7 @@ sub comLoop {
 		# ----------------------------------------------
 		elsif ($command =~ /^load-one\s+(.+)\s+(.+)$/) {
 			$componentToLoad{$2} = $1;
+			updateCurrentComponents(\@currentComponents,$2);
 		}
 		# -----------------------------------------------------
 		elsif ($command =~ /^component-name\s+(.+)\s+(\d+)$/) {
@@ -1828,6 +1898,8 @@ sub comLoop {
 			}
 			$self->setNewComponentValues(\%optLoad, \%choiceLoad);
 			%componentToLoad = ();
+	  		$tmp = $self->{$componentKey};
+			@currentComponents = sort @$tmp;
 			foreach (@deleteOpt) { delete $optionToSet{$_} }
 			foreach (@deleteChoice) { delete $choiceToSet{$_} }
 		}
@@ -1945,8 +2017,8 @@ sub comLoop {
 			$cfgFileCache = {};
 			$self = Fvwm::ThemeCfg->new('current', 'current', $fresh);
 			$allThemes = getAllThemes();
-			$currentComponents = $self->{$componentKey};
-			$currentComponents = [ sort @$currentComponents ];
+			$tmp = $self->{$componentKey};
+			$currentComponents = [ sort @$tmp ];
 			$CC = $self->{cc};
 		}
 		elsif ($command eq "exit") {
@@ -2078,6 +2150,20 @@ sub choicesOptionsScriptList {
 		$return .= "$name$used|";
 	}
 	return $return;
+}
+
+sub updateCurrentComponents {
+	my $currentComponents = shift;
+	my $comp = shift;
+	my $test = 1;
+
+	foreach (@$currentComponents) {
+		$test = 0 if $_ eq $comp;
+	}
+	if ($test) {
+		push @$currentComponents, $comp;
+		@$currentComponents = sort @$currentComponents;
+	}
 }
 
 #----------------------------------------------------------------------------

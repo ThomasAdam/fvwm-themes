@@ -1,3 +1,15 @@
+2000-08-18  olicha  <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-start.in:
+	* bin/fvwm-themes-start.1:
+	Added the --no-start option
+
+	* bin/fvwm-themes-config.in (comLoop):
+	* scripts/FvwmScript-Themes*:
+	Some "ameliorations". I've got ThemesCenter core dump when I use 
+	"Set & Quit" under a gnome-session! Any similar bug report is
+	welcome ...
+	
 2000-08-18  migo  <migo@homemail.com>
 
 	* NEWS:
@@ -12,7 +24,7 @@
 
 	* themes/awol/colors:
 	* themes/redmond98/colors:
-	Some colors fixes.
+	Some colors fixes and finish previous commit.
 
 2000-08-17  olicha  <olivier.chapuis@free.fr>
 

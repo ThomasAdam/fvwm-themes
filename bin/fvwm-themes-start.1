@@ -3,18 +3,74 @@
 fvwm-themes-start \- FVWM Themes starter
 .SH "SYNOPSIS"
 \fBfvwm-themes-start\fR
-[ \fB--session\fR|\fB\-s\fR name ] [ \fB--\fR fvwm-args ]
+[ \fB--session\fR|\fB\-s\fR name ] [ \fB--no-start|-n\fR ] 
+[ \fB--\fR fvwm-args ]
+
 .SH "DESCRIPTION"
 This script runs fvwm with FVWM Themes.  It should be run under X.
 Put a call to this script as the last line of your .Xclients, .xinitrc
 or .xsession file.
+
 .SH "OPTIONS"
 \fB--session\fR name \- name of the FVWM Themes session. By default it
 is "main". This allows to have and run different FVWM Themes configuration.
+
+\fB--no-start\fR - cause to do not start fvwm2, just do preparation
+for starting it. This is usefull to start FVWM Themes with a session
+manager.
+
 \fB--\fR every things after \fB--\fR will be passed to fvwm2.
 See the \fBfvwm2\fR(1) man page for the fvwm2 options.
+
+.SH "EXAMPLES"
+Most user just have to put:
+.nf
+.sp
+	fvwm-themes-start
+.sp
+.fi
+as the last line of his/her .Xclients, .xinitrc or .xsession file.
+If you want to use FVWM Themes with a real session manager, say
+GNOME, you need to use the --no-start option and put:
+.nf
+.sp
+	fvwm-themes-start --no-start
+	gnome-session
+.sp
+.fi
+as the last line of his/her .Xclients, .xinitrc or .xsession file.
+The session option allows to use FVWM Themes with different configuration.
+Say, you want to use different configuration under a normal FVWM session, 
+a gnome-session and under a normal FVWM session but the
+shell test FOO is true. Then, your .xinitrc/.xsession file can look 
+as follows (where $1 is the "first" argument given by startx, or by kdm or 
+gdm ...):
+.nf
+.sp
+	...
+	case $1 in
+	  fvwm)
+	    if FOO; Then 
+	      fvwm-themes-start --session special 
+	    else
+	      fvwm-themes-start 
+            fi
+	  ;;
+	  gnome)
+	    fvwm-themes-start --session gnome --no-start
+	    gnome-session
+	  ;; 
+	  ... other cases ...
+	esac		
+.sp
+.fi
+Note that with most session managers (e.g., GNOME or XSM) it is
+preferable to give "fvwm2 -f themes-rc" as starting window manager
+command for the session manager.
+
 .SH "COPYING"
 The script is distributed by the same terms as fvwm-themes itself.
 See GNU General Public License for details.
+
 .SH "BUGS"
 Report bugs to fvwm-themes-devel@lists.sourceforge.net.
