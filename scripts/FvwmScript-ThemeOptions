@@ -1,0 +1,253 @@
+# This script is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+#-----------------------------------------------------------------------------
+# Copyright 2000, Olivier Chapuis
+#-----------------------------------------------------------------------------
+
+
+WindowTitle {Fvwm Themes Options}
+WindowSize 320 300
+Font		-adobe-helvetica-bold-r-*-*-12-*
+
+Init
+Begin
+
+    # Arguments
+    Set $i = 1
+    Set $arg = (GetScriptArgument $i)
+    While $arg <> {} Do
+    Begin
+	Set $j = (Add $i 1)
+	If $arg == {--session} Then
+	    Set $Session = (GetScriptArgument $j)
+	If $arg == {--viewer-colorset} Then
+	    Set $ViewerColorset = (GetScriptArgument $j)
+	If $arg == {--text-colorset} Then
+	    Set $TextColorset = (GetScriptArgument $j)
+	If $arg == {--icon-colorset} Then
+	    Set $IconColorset = (GetScriptArgument $j)
+	If $arg == {--com-pid} Then
+	    Set $pid = (GetScriptArgument $j)
+	If $arg == {--component} Then
+	    Set $MainComponent = (GetScriptArgument $j)
+	If $arg == {--theme} Then
+	    Set $MainTheme = (GetScriptArgument $j)
+	Set $i = (Add $i 2)
+	Set $arg = (GetScriptArgument $i)
+    End
+
+    If $TextColorset <> {} Then
+    Begin
+	ChangeColorset 5 $TextColorset
+	#ChangeColorset 12 $TextColorset
+	#ChangeColorset 17 $TextColorset
+	#ChangeColorset 44 $TextColorset
+    End
+
+    # to send fvwm-themes-com command
+    Set $SendMsgAndGet = {fvwm-themes-com --name config-}$pid{ --lock-and-get --message=}
+    Set $SendMsg = {fvwm-themes-com --name config-}$pid{  --message=}
+    Set $GetLine = {fvwm-themes-com --name config-}$pid{  --get-buffer --line=}	
+     # Get all the options
+    Set $cmd = $SendMsgAndGet{"options }$MainComponent{ }$MainTheme{" --line 1}
+    Set $NbrOfOptions = (GetOutput $cmd 1 -1)
+    Set $cmd = $GetLine{2}
+    Set $Type = (GetOutput $cmd 1 -1)
+    Set $tmp = $Type{ for }$MainComponent{@}$MainTheme
+    ChangeTitle 1 $tmp
+    Set $cmd = $GetLine{3}
+    Set $Options = (GetOutput $cmd 1 -1)
+    If $NbrOfOptions == 1 Then
+    Begin
+	HideWidget 3
+	ChangeTitle 2 $Options
+    End
+    Else
+    Begin
+	HideWidget 2
+	ChangeTitle 3 $Options
+    End
+
+    # Get the "current" options List
+    Set $CurrentOptionsIndex = 1
+    Set $UpdateList = 1
+
+    # the selected option
+    Set $OptionIndex = 0
+
+    Set $Father = (GetScriptFather)
+End
+
+# ---------------------------------------------------------------------------
+#
+# Periodic Task
+#
+# ---------------------------------------------------------------------------
+
+PeriodicTasks
+Begin
+
+    Set $MSG = (ReceivFromScript $Father)
+    If $MSG <> {No message} Then
+	If $MSG == {exit} Then
+	    Quit
+	If $MSG == {update} Then
+	    Set $UpdateList = 1
+    End
+
+    If $UpdateList == 1 Then
+    Begin
+	Set $UpdateList = 0
+	Set $cmd = $SendMsgAndGet{"option-choices }$MainComponent{ }$MainTheme{ }$CurrentOptionsIndex{"}
+	Set $CurrentChoices = (GetOutput $cmd 1 -1)
+	ChangeTitle 5 $CurrentChoices
+    End
+
+    # better to send here
+    If $SendUpdateMsg
+	SendToScript $Father {update}
+
+End
+
+# ---------------------------------------------------------------------------
+#
+# Now the widgets
+#
+# ---------------------------------------------------------------------------
+
+Widget 1
+Property
+    Flags NoReliefString
+    Position 20 5
+    Size 280 20 
+    Type ItemDraw
+    Title {}
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
+Widget 2
+Property
+    Flags NoReliefString
+    Position 20 35
+    Size 280 20 
+    Type ItemDraw
+    Title {}
+Main
+Case message of
+    SingleClic :
+    Begin
+    End
+End
+
+Widget 3
+Property
+    Flags NoReliefString
+    Position 20 35
+    Size 240 20 
+    Type PopupMenu
+    Title {Test Option                          }
+Main
+Case message of
+SingleClic :
+ Begin
+    Set $value = (GetValue 3)
+    If $value <> $CurrentOptionsIndex Then
+    Begin
+	Set $CurrentOptionsIndex = $value
+	Set $UpdateList = 1
+	Set $OptionIndex = 0
+	ChangeValue 5 0
+    End
+ End
+End
+
+Widget 5
+Property
+    Flags NoReliefString
+    Position 20 65
+    Size 280 195 
+    Type List
+    Font Fixed
+    Title {}
+Main
+Case message of
+SingleClic :
+ Begin
+    
+ End
+End
+
+Widget 97
+Property
+    Flags NoReliefString
+    Position 40 270
+    Type PushButton
+    Title {Set}
+Main
+Case message of
+ SingleClic :
+ Begin
+    Set $OptionIndex = (GetValue 5)
+    If $OptionIndex <> 0 Then 
+    Begin
+	Set $cmd = $SendMsgAndGet{"set-options }$MainComponent{ }$MainTheme{ }$CurrentOptionsIndex{ }$OptionIndex{"}
+	Set $dummy = (GetOutput $cmd 1 -1)
+	Set $UpdateList = 1
+	Set $SendUpdateMsg = 1
+    End
+    
+ End
+End
+
+Widget 98
+Property
+    Flags NoReliefString
+    Position 115 270
+    Type PushButton
+    Title {Set & Quit}
+Main
+ Case message of
+  SingleClic :
+  Begin
+    Set $OptionIndex = (GetValue 5)
+    If $OptionIndex <> 0 Then 
+    Begin
+	Set $cmd = $SendMsgAndGet{"set-options }$MainComponent{ }$MainTheme{ }$CurrentOptionsIndex{ }$OptionIndex{"}
+	Set $dummy = (GetOutput $cmd 1 -1)
+    End
+    SendToScript $Father {updatequit}
+    Quit
+  End
+End
+
+Widget 99
+Property
+    Flags NoReliefString
+ Position 230 270
+ Type PushButton
+ Title {Quit}
+Main
+ Case message of
+  SingleClic :
+  Begin
+    SendToScript $Father {quit}
+    Quit
+  End
+End

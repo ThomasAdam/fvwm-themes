@@ -41,6 +41,8 @@ sub showHelp {
 	print "\t--version         show the version and exit\n";
 	print "\t--info [theme]    print info about current or given theme\n";
 	print "\t--site            use site config dir for output, not user's\n";
+	print "\t--com-mode        run under the communication mode\n";
+	print "\t--com-name name   name for communication with fvwm-themes-com\n";
 	print "\t--show-themes     show all themes list\n";
 	print "\t--show-components show components in all themes\n";
 	print "\t--show-dir        show all theme directory full paths\n";
@@ -1243,6 +1245,10 @@ sub getMenusAndHooksAndReadsRc ($) {
 	# add main menu entries
 	$rc .= qq(DestroyMenu "MenuFvwmThemes"\n);
 	$rc .= qq(AddToMenu   "MenuFvwmThemes" "Theme Management" Title\n);
+	$rc .= qq(+ "" Nop\n);
+	$rc .= qq(+ "Themes Center GUI" FvwmScript FvwmScript-ThemesCenter );
+	$rc .= qq(--text-colorset 34 --viewer-colorset 33\n);
+	$rc .= qq(+ "" Nop\n);
 	$rc .= $ownThemeListRc;
 	$rc .= qq(+ "" Nop\n);
 	$rc .= $allThemeListRc;
@@ -1463,6 +1469,9 @@ my $loadComponents = [];
 my $dropComponents = [];
 my $options = {};
 my $choices = {};
+my $comMode = 0;
+my $comName = "config";
+my $comPid = 0;
 
 GetOptions(
 	"help"        => \&showHelp,
@@ -1482,6 +1491,8 @@ GetOptions(
 	"option=s%"   => $options,
 	"choice=s%"   => $choices,
 	"pipe"        => \$pipe,
+	"com-mode"    => \$comMode,
+	"com-name=s"  => \$comName,
 ) || wrongUsage();
 
 if (defined $expandFile) {
@@ -1502,15 +1513,619 @@ showThemeComponentValues($component, $showValues) if $component && @$showValues;
 wrongUsage() unless
 	$fresh || $reset ||
 	@$loadComponents || @$dropComponents ||
-	keys %$options || keys %$choices;
+	keys %$options || keys %$choices || $comMode;
 
 my $cfg = Fvwm::ThemeCfg->new('current', $reset? 'default': 'current', $fresh);
+if ($comMode) {
+	$comPid = $comName;
+	$comPid =~ s/config-//;
+	$comPid = 0 if ($comPid !~ /^\d+$/);
+	$cfg->comLoop($comName);
+	# we never return here
+}
 $cfg->useNewComponents($loadComponents, $dropComponents);
 $cfg->setNewComponentValues($options, $choices);
 $cfg->save() if $cfg->isModified();
 $cfg->generateThemesRc();
 
 exit(0);
+
+#-----------------------------------------------------------------------------
+#
+# communication loop
+#
+#-----------------------------------------------------------------------------
+
+sub comLoop {
+	my $self = shift;
+	my $outFifo = ".tmp-com-out-" . $comName;
+	my $inFifo = ".tmp-com-in-"  . $comName;
+	my $lockFifo = ".tmp-com-lock-" . $comName;
+	my $command = "";
+	my $return = "";
+
+	my $maxLength = 21;
+	my $maxLengthOpt = 29;
+	my %componentToLoad = ();
+	my %optionToSet = ();
+	my %choiceToSet = ();
+
+	my $allThemes = getAllThemes();
+	my $currentComponents = $self->{$componentKey};
+	$currentComponents = [ sort @$currentComponents ];
+	my $CC = $self->{cc};
+
+	chdir($userDir) || die "No FvwmConfigHome $userDir";
+	unlink($lockFifo);
+	unlink($inFifo);
+	myMakeFifo($lockFifo);
+
+	while(1) {
+
+		eval {
+			local $SIG{ALRM} = \&checkScript;
+			alarm(10);
+			# block until com want to communicate
+			open(LOCK,">$lockFifo") || die "cannot write fifo $lockFifo";
+			alarm(0);
+			close(LOCK);
+		};
+		if ($@ =~ /^cannot/) {
+			print STDERR "$comName: cannot write fifo $lockFifo\n";
+			unlink("$lockFifo");
+			exit(0);
+		}
+		if ($@ =~ /^NoScript/) {
+			print STDERR "$comName: No more FvwmScript-Menu: exit!\n";
+			unlink("$lockFifo");
+			exit(0);
+		}
+		if ($@ =~ /^Script/) {
+			next;
+		}
+
+		# read the command.
+		eval {
+			local $SIG{ALRM} = sub { die "Timeout" };
+			alarm(10);
+			# block unless com is ready to write on $outFifo
+			open(IN,"$outFifo") || die "cannot open $outFifo";
+			alarm(0);
+			($command)=(<IN>);
+			close(IN);
+		};
+		if ($@ =~ /^cannot/) {
+			print STDERR "$comName: cannot read fifo $lockFifo\n";
+			exit(0);
+		}
+		if ($@ =~ /^Timeout/) {
+			print STDERR "$comName: com give an unvalide unlock!\n";
+			next;
+		}
+
+		# build the answer
+		chomp($command);
+		my $return = "";
+		# -----------------------------------------
+		if ($command =~ /^themes-list/) {
+			my $theme;
+			foreach $theme (@$allThemes) {
+				my ($components, $groups) = getThemeComponentsAndGroups($theme);
+				my $used = 0;
+				my $set = 0;
+				my $useFlag = "";
+				foreach (@$components) {
+					my $used0 = isArrayElement($currentComponents, $_) &&
+						($self->getComponentCfg($_)->{$themeKey} || "") eq $theme;
+					$used ||= $used0;
+				}
+				foreach $key (keys %componentToLoad) {
+					$set = 1 if $componentToLoad{$key} eq $theme;
+				}
+				my $l = $maxLength - length($theme);
+				$l = 1 if $l < 1;
+				$useFlag .= " " x $l . "(" if $used || $set;
+				$useFlag .= "used" if $used;
+				$useFlag .= "/" if $used && $set;
+				$useFlag .= "set" if $set;
+				$useFlag .= ")" if $used || $set;
+				$return .= "$theme$useFlag|";
+			}
+			$return =~ s/\|$//;
+		}
+		# -----------------------------------------
+		elsif ($command =~ /^theme-components\s+(\d+)$/) {
+			my $index = $1 - 1;
+			my $theme = $$allThemes[$index];
+		   my ($components, $groups) = getThemeComponentsAndGroups($theme);
+			foreach (@$components) {
+				next if $_ eq "settings";
+				my $useFlag = "";
+				my $set = 0;
+				my $unset = 0;
+				my $used = isArrayElement($currentComponents, $_) &&
+					($self->getComponentCfg($_)->{$themeKey} || "") eq $theme;
+				$set = 1 if defined $componentToLoad{$_} &&
+					$componentToLoad{$_} eq $theme;
+				$unset = 1 if defined $componentToLoad{$_} && !$set;
+				my $l = $maxLength - length($_);
+				$l = 1 if $l < 1;
+				$useFlag .= " " x $l . "(" if $used || $set;
+				$useFlag .= "used" if $used && !$unset;
+				$useFlag .= "unset" if $used && $unset;
+				$useFlag .= "/" if $used && $set;
+				$useFlag .= "set" if $set;
+				$useFlag .= ")" if $used || $set;
+				$return .= "$_$useFlag|";
+			}
+			$return =~ s/\|$//;
+			$return .= "\n$theme\n" . getThemeDir($theme);
+		}
+		# -----------------------------------------
+		elsif ($command =~ /^current-config$/) {
+			foreach (@$currentComponents) {
+				my $cc = $self->getComponentCfg($_);
+				next if $_ eq "settings";
+				my $set = 0;
+				my $theme = $cc->{'theme'};
+				my $usedString = "Used: $theme";
+				my $stateString = "";
+				$set = 1 if defined $componentToLoad{$_};
+				$usedString = "(" . $usedString . ")" if $set;
+				my $l = $maxLength - length($usedString);
+				$l = 1 if $l < 1;
+				$stateString = " " x $l . "Set: $componentToLoad{$_}" if $set;
+				my $l1 = $maxLength - 3 - length($stateString) + $l;
+				$l1 = 1 if $l1 < 1;
+				if ($set) {
+					my $themeCfg = new Fvwm::ThemeCfg($componentToLoad{$_});
+					$cc = $themeCfg->getComponentCfg($_);
+				}
+				# TODO: used (U) in place of (S) if the setted option/choice/sub
+				# is the current.
+				my $contains = $cc->{'contains'};
+				my $options = $cc->{'option'};
+				my $choices = $cc->{'choice'};
+				my $OptOrContains = "";
+				my $t = "";
+				if (ref($options) eq 'ARRAY') {
+					$OptOrContains = " " x $l1 ."Opt";
+					my $opt;
+					foreach $opt (@$options) {
+						my $optFile = $opt->{'file'};
+						$t = "(S)" if defined $optionToSet{"$theme/$_:$optFile"};
+					}
+				} 
+				elsif (ref($choices) eq 'ARRAY') {
+					$OptOrContains = " " x $l1 ."Cho";
+					my $c;
+					foreach $c (@$choices) {
+						$t = "(S)" if defined $choiceToSet{"$theme/$_"};
+					}
+				}
+				elsif (ref($contains) eq 'ARRAY') {
+					$OptOrContains = " " x $l1 ."Sub";
+					my $c;
+					# droped ?
+					foreach $c (@$contains) {
+						$t = "(S)" if defined $choiceToSet{"$theme/$_/$c"};
+					}
+				}
+				$OptOrContains .= $t;
+ 				$l = $maxLength - length($_);
+				$l = 1 if $l < 1;
+				$return .= "$_" . " " x $l . $usedString . $stateString .
+					$OptOrContains . "|";
+			}
+			$return =~ s/\|$//;
+		}
+		# -----------------------------------------
+		elsif ($command =~ /^current-comp-name\s+(\d+)$/) {
+			my $dd = [];
+			my $index = $1;
+			my $i = 1;
+			my ($comp,$theme,$OptOrContains,$drop,$set) = ("","","0","0","0");
+			foreach (@$currentComponents) {
+				my $cc = $self->getComponentCfg($_);
+				next if !$cc->{'used'} || $_ eq "settings";
+				if ($i == $index) {
+					$comp = "$_";
+					if (defined $componentToLoad{$_}) {
+						$set = 1;
+						$theme = "$componentToLoad{$_}";
+					} else {
+						$theme = "$cc->{'theme'}";
+					}
+				}
+				$i++;
+			}
+			if ($set) {
+				my $themeCfg = new Fvwm::ThemeCfg($theme);
+				$dd = $themeCfg->getComponentCfg($comp);
+			} else {
+				$dd = $self->getComponentCfg($comp);
+			}
+			$OptOrContains = 1 if (ref($dd->{'contains'}) eq 'ARRAY' || 
+				ref($dd->{'option'}) eq 'ARRAY' || 
+				ref($dd->{'choice'}) eq 'ARRAY');
+			### fixe me: How to know if the component is dropable??
+			$drop = 1;
+			$return = "$comp\n$theme\n$OptOrContains$set$drop";
+		}
+		# -------------------------------------------------
+		elsif ($command =~ /^restor\s+(.+)$/) {
+			my $comp = $1;
+			if (defined $componentToLoad{$comp}) {
+				delete($componentToLoad{$comp});
+			}
+			### TODO: restor option/choice/subcomponent
+		}
+		#----------------------------------------
+		elsif ($command =~ /^load-all\s+(.+)$/) {
+			my ($components, $groups) = getThemeComponentsAndGroups($1);
+			foreach (@$components) {
+				$componentToLoad{$_} = $1;
+			}
+		}
+		#----------------------------------------------
+		elsif ($command =~ /^load-main-look\s+(.+)$/) {
+			my ($components, $groups) = getThemeComponentsAndGroups($1);
+			my $g;
+			foreach $g (@$groups) {
+				my $name = escapeMenuName($g->{'name'});
+				if ($name eq "main look") {
+					my $groupComponents = $g->{$componentKey};
+					foreach (@$groupComponents) {
+						$componentToLoad{$_} = $1;
+					}
+				}
+			}
+		}
+		# ----------------------------------------------
+		elsif ($command =~ /^load-one\s+(.+)\s+(.+)$/) {
+			$componentToLoad{$2} = $1;
+		}
+		# -----------------------------------------------------
+		elsif ($command =~ /^component-name\s+(.+)\s+(\d+)$/) {
+			my ($components, $groups) = getThemeComponentsAndGroups($1);
+			my $i = 1;
+			foreach (@$components) {
+				next if $_ eq "settings";
+				$return = $_ if $i == $2;
+				$i++;
+			}
+		}
+		# -----------------------------------------
+		elsif ($command =~ /^apply-ts-cmd-opts$/) {
+			my @compLoad = ();
+			my %optLoad = ();
+			my %choiceLoad = ();
+			my @deleteOpt = ();
+			my @deleteChoice = ();
+			foreach (keys %componentToLoad) {
+				$return .= "--load $_\@$componentToLoad{$_} ";
+				push @compLoad, "$_\@$componentToLoad{$_}";
+			}
+			$self->useNewComponents(\@compLoad, []);
+			# pbs: options and choice can be set only for the current
+			# themes. IMHO this may be changed ???
+			foreach (keys %optionToSet) {
+				my $opt = substr($_,index($_,"/")+1);
+				my $comp = substr($opt,0,rindex($opt,":"));
+				if (defined $CC->{$comp}) {
+					$return .= "--option $opt=$optionToSet{$_} ";
+					$optLoad{$opt} = "$optionToSet{$_}";
+					push @deleteOpt, $_;
+				}
+			}
+			foreach (keys %choiceToSet) {
+				my $comp = substr($_,index($_,"/")+1);
+				if (defined $CC->{$comp}) {
+					$return .= "--choice $comp=$choiceToSet{$_} ";
+					$choiceLoad{$comp} = "$choiceToSet{$_}";
+					push @deleteChoice, $_;
+				}
+			}
+			$self->setNewComponentValues(\%optLoad, \%choiceLoad);
+			%componentToLoad = ();
+			foreach (@deleteOpt) { delete $optionToSet{$_} }
+			foreach (@deleteChoice) { delete $choiceToSet{$_} }
+		}
+		# -----------------------------------------
+		elsif ($command =~ /^option-choices\s+(.+)\s+(.+)\s+(\d+)$/) {
+			my $comp = $1;
+			my $theme = $2;
+			my $o = $3-1;
+			my $themeCfg = new Fvwm::ThemeCfg($theme);
+			my $cc = $themeCfg->getComponentCfg($comp);
+			my $options = $cc->{'option'};
+			my $contains = $cc->{'contains'};
+			my $choices = $cc->{'choice'};
+			if (ref($options) eq 'ARRAY' && defined $options->[$o]) {
+				my $optionEntry = $options->[$o];
+				my $i = getOptionIndex($self,$theme,$comp,$optionEntry,$o);
+				my $optFile = $optionEntry->{'file'};
+				my $isSet = -1;
+				$isSet = $optionToSet{"$theme/$comp:$optFile"} 
+					if defined $optionToSet{"$theme/$comp:$optFile"};
+				my $values = $optionEntry->{'value'};
+				$return = 
+					choicesOptionsScriptList($values,$i,$isSet,$maxLengthOpt);
+			}
+			elsif (ref($choices) eq 'ARRAY') {
+				my $i = getChoiceIndex($self,$theme,$comp,@$choices);
+				my $isSet = -1;
+				$isSet = $choiceToSet{"$theme/$comp"} 
+					if defined $choiceToSet{"$theme/$comp"};
+				$return = 
+					choicesOptionsScriptList($choices,$i,$isSet,$maxLengthOpt);
+			}
+			elsif (ref($contains) eq 'ARRAY' && defined $contains->[$o]) {
+				my $c = $contains->[$o];
+				my $dd = $themeCfg->getComponentCfg("$comp/$c");
+				my $sChoices = $dd->{'choice'};
+				if (ref($sChoices) eq 'ARRAY') {
+					my $i = getChoiceIndex($self,$theme,"$comp/$c",@$sChoices);
+					my $isSet = -1;
+					$isSet = $choiceToSet{"$theme/$comp/$c"}
+						if defined $choiceToSet{"$theme/$comp/$c"};
+					$return = 
+						choicesOptionsScriptList($sChoices,$i,$isSet,$maxLengthOpt);
+				}
+				$return .= "Drop This component";
+			}
+			$return =~ s/\|$//;
+		}
+		# --------------------------------------------
+		elsif ($command =~ /^options\s+(.+)\s+(.+)$/) {
+			my $comp = $1;
+			my $theme = $2;
+			my $themeCfg = new Fvwm::ThemeCfg($theme);
+			my $cc = $themeCfg->getComponentCfg($comp);
+			my $options = $cc->{'option'};
+			my $contains = $cc->{'contains'};
+			my $choices = $cc->{'choice'};
+			my $i = 0;
+			my $type = "Options";
+			if (ref($options) eq 'ARRAY') {
+				my $opt;
+				foreach $opt (@$options) {
+					$i++;
+					$return .= "$opt->{'name'}|";
+				}
+			}
+			elsif (ref($choices) eq 'ARRAY') {
+				$type = "Choices";
+				$i = 1;
+				$return .= "$comp choices"
+			}
+			elsif (ref($contains) eq 'ARRAY') {
+				$type = "Sub Components";
+				my $c;
+				foreach $c (@$contains) {
+					$i++;
+					my $name = $themeCfg->getComponentCfg("$comp/$c")->{'name'};
+					$name = escapeMenuName($name || $c);
+					$return .= "$name|";
+				}
+			}
+			$return = "$i\n$type\n$return";
+			$return =~ s/\|$//;
+		}
+		# --------------------------------------------
+		elsif ($command =~ /^set-options\s+(.+)\s+(.+)\s+(\d+)\s+(\d+)$/) {
+			my $comp = $1;
+			my $theme = $2;
+			my $o = $3-1;
+			my $value = $4;
+			my $themeCfg = new Fvwm::ThemeCfg($theme);
+			my $cc = $themeCfg->getComponentCfg($comp);
+			my $options = $cc->{'option'};
+			my $contains = $cc->{'contains'};
+			my $choices = $cc->{'choice'};
+			if (ref($options) eq 'ARRAY' && defined $options->[$o]) {
+				my $optionEntry = $options->[$o];
+				my $optionFile = $optionEntry->{'file'};
+				$optionToSet{"$theme/$comp:$optionFile"} = $value;
+			} elsif (ref($choices) eq 'ARRAY') {
+				$choiceToSet{"$theme/$comp"}="$value";
+			} elsif (ref($contains) eq 'ARRAY' && defined $contains->[$o]) {
+				my $c = $contains->[$o];
+				my $dd = $themeCfg->getComponentCfg("$comp/$c");
+				my $subChoices = $dd->{'choice'};
+				if (ref($subChoices) eq 'ARRAY') {
+					$choiceToSet{"$theme/$comp/$c"}="$value";
+				} else {
+					# Need To Drop ..
+				}
+			}
+		}
+		elsif ($command eq "update-ts\s+(\d+)") {
+			my $fresh;
+			$cfgFileCache = {};
+			$self = Fvwm::ThemeCfg->new('current', 'current', $fresh);
+			$allThemes = getAllThemes();
+			$currentComponents = $self->{$componentKey};
+			$currentComponents = [ sort @$currentComponents ];
+			$CC = $self->{cc};
+		}
+		elsif ($command eq "exit") {
+			unlink($lockFifo);
+			exit(0);
+		}
+		else {
+			print STDERR "$comName: unknown command $command\n";
+			$return = "0";
+		}
+		
+		# answer
+		myMakeFifo($inFifo);
+		eval {
+			local $SIG{ALRM} = sub { die "Timeout" };
+			alarm(10);
+			# this line block until com take the answer
+			open(OUT,">$inFifo") || die "cannot write fifo $inFifo";
+			alarm(0);
+			print OUT "ok\n" . $return;
+			close(OUT);
+			unlink($inFifo);
+		};
+		if ($@ =~ /cannot/) {
+			print STDERR "$comName: cannot write on fifo $inFifo\n";
+			exit(0);
+		}
+		if ($@ =~ /Timeout/) {
+			print STDERR "$comName: com do not read my answer!\n";
+		}
+
+	}
+}
+
+#----------------------------------------------------------------------------
+# useful functions which may be useful not only for the com loop
+
+#--------------------------------------
+sub getOptionIndex {
+	my $self = shift;
+	my $theme = shift;
+	my $comp = shift;
+	my $optionEntry = shift;
+	my $o = shift;
+
+	my $themeCfg = new Fvwm::ThemeCfg($theme);
+	my $cc = $themeCfg->getComponentCfg($comp);
+	my $CC = $self->{cc};
+	my $_core = $self->getComponentCfg("_core");
+
+	my $values = $optionEntry->{'value'};
+	my $index = 
+	  $optionEntry->{'current'} || ($optionEntry->{'default'} || 1);
+	# see if $comp@$theme is "current"
+	if (defined $CC->{$comp}->{'theme'} && 
+		 $CC->{$comp}->{'theme'} eq $theme) {
+		my $OptE = $CC->{$comp}->{'option'}->[$o];
+		$index = $OptE->{'current'} || ($OptE->{'default'} || 1);
+		# if not see if we have a memeory
+	} elsif (defined $_core->{'memory'}->{$theme}->{$comp}) {
+		my $cm = $_core->{'memory'}->{$theme}->{$comp};
+		my $mOptions = $cm->{'option'};
+		if (time() - $cm->{'time'} <= 6 * 30 * 24 * 60 * 60 &&
+			 ref($mOptions) eq 'ARRAY' && 
+			 defined $mOptions->[$o]->{'current'}) {
+			$index = $mOptions->[$o]->{'current'}
+		}
+	}
+	$index--;
+	$index = 0 if $index < 0 || $index >= @$values;
+
+	return $index;
+}
+
+#--------------------------------------
+sub getChoiceIndex {
+	my $self = shift;
+	my $theme = shift;
+	my $comp = shift;
+	my $val = shift;
+
+	my $themeCfg = new Fvwm::ThemeCfg($theme);
+	my $cc = $themeCfg->getComponentCfg($comp);
+	my $CC = $self->{cc};
+	my $_core = $self->getComponentCfg("_core");
+
+	my $index = $cc->{'current'} || $cc->{'default'};
+	if (defined $CC->{"$comp"}->{'theme'} && 
+		 $CC->{"$comp"}->{'theme'} eq $theme) {
+		$index = $CC->{"$comp"}->{'current'} || $index;
+		# if not see if we have a memory
+	} elsif (defined $_core->{'memory'}->{"$theme"}->{"$comp"}) {
+		my $cm = $_core->{'memory'}->{$theme}->{"$comp"};
+		if (time() - $cm->{'time'} <= 6 * 30 * 24 * 60 * 60 &&
+			 $cm->{'current'}) {
+			$index = $cm->{'current'};
+		}
+	}
+	$index--;
+	$index = 0 if $index < 0 || $index >= $val;
+	return $index;
+}
+
+#----------------------------------------------------------------------------
+# useful functions for the com loop
+
+sub choicesOptionsScriptList {
+	my $choices = shift;
+	my $index = shift;
+	my $isSet = shift;
+	my $max = shift;
+
+	my $return = "";
+	my $i;
+	for ($i = 0; $i < @$choices; $i++) {
+		my $isCurrent = $i eq $index;
+		my $set = 0;
+		my $used = "";
+		my $name = 
+		  escapeMenuName($choices->[$i]->{'name'}, !$isCurrent);
+		$set = 1 if $isSet == $i+1;
+		my $l = $max - length($name);
+		$l = 1 if $l < 1;
+		$used = " " x $l . "(" if $isCurrent || $set;
+		$used .= $isCurrent? "Used": "";
+		$used .= "/" if  $isCurrent && $set;
+		$used .= "Set" if  $set;
+		$used .= ")" if $isCurrent || $set;
+		$return .= "$name$used|";
+	}
+	return $return;
+}
+
+#----------------------------------------------------------------------------
+# An alarm handler (called from eval block):
+sub checkScript {
+
+	die "Script" unless ($comPid);
+
+	my $test = 0;
+	my $lockFifo = ".tmp-com-lock-" . $comName;
+
+	open(PS,"ps ax|");
+	while (<PS>) {
+		$test=1 if (/^\s*$comPid\s+/);
+	}
+	close(PS);
+
+	if ($test) { die "Script"; }
+	else { unlink($lockFifo);die "NoScript"; }
+}
+
+#-----------------------------------------------------------------------------
+# 
+sub myMakeFifo {
+	my ($fifo) = @_;
+	system("mknod '$fifo' p");
+}
+
+#-----------------------------------------------------------------------------
+# For killing FvwmScript-ThemesCenter if an error happen in this script!
+END {
+	if ($comMode) {
+		if ($?) {
+			my $lockFifo = ".tmp-com-lock-" . $comName;
+			my $inFifo = ".tmp-com-in-" . $comName;
+			my $message="fvwm-themes-config: internal error $?";
+
+			unlink($lockFifo);
+			unlink($inFifo);
+		  	if ($comPid) {
+				kill(9,$comPid);
+				$message .= ", kill FvwmScript-Menus";
+			}
+			print STDERR "$message\n"; 
+		}
+	}
+}
+
 
 __END__
 
@@ -1527,6 +2142,8 @@ B<fvwm-themes-config>
 [ B<--version>|B<-v> ]
 [ B<--site> ]
 [ B<--pipe> ]
+[ B<--com-mode> ]
+[ B<--com-name> name ] 
 [ B<--show-themes> ]
 [ B<--show-components> ]
 [ B<--show-dir> ]
@@ -1559,6 +2176,20 @@ use the user's directory.
 
 B<--pipe> - generate fvwm commands suitable to use within fvwm's PipeRead
 (instead of error messages, for example).
+
+B<--com-mode> Run fvwm-themes-config under the "communication mode". See,
+the fvwm-themes-com and fvwm-themes-menuapp manual pages for more information
+on this option.
+You need to read the code to know the communication commands.
+
+B<--com-name> name - use name as name for communication with fvwm-themes-com.
+By default, "config" is used, but you should use  "config-pid" as name
+where pid is the pid of the program that 
+want to talk to fvwm-themes-config so that fvwm-themes-config can 
+exit if this program exit and so that fvwm-themes-config can kill the program
+if an internal error happen in fvwm-themes-config. On the other hand,
+if you want to talk with fvwm-themes-config in, say, a terminal you must
+not give an name as "config-an_integer" as name.
 
 B<--show-themes> - shows list of all themes (or ones specified by B<--theme>).
 
@@ -1657,6 +2288,9 @@ Other examples:
 =head1 AUTHORS
 
 Mikhael Goikhman <migo@homemail.com>, 31 Dec 1999.
+
+Olivier Chapuis <olivier.chapuis@free.fr> (some small things and
+the --com-mode option).
 
 =head1 COPYING
 

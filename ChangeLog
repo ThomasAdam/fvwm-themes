@@ -1,3 +1,30 @@
+2000-08-13  olicha <olivier.chapuis@free.fr>
+
+	* scripts/FvwmScript-ThemesCenter:
+	* scripts/FvwmScript-ThemeOptions:
+	* scripts/Makefile.am:
+	* bin/fvwm-themes-config.in:
+	* NEWS:
+	* TODO:
+	A new FvwmScript for themes selection (and more in the future).
+	This script use the same logic as FvwmScript-Menus: I've added
+	a communication loop in fvwm-themes-config and the ThemesCenter
+	(and ThemeOptions) communicate with fvwm-themes-config via
+ 	fvwm-themes-com. The ThemeCenter Theme Selector support normal
+	component, component with choice, component with options and
+	component with one level of sub component (with choices, but
+	not with options). So, all the current themes are supported
+	but the "settings" component (a special ThemeCenter config tool
+	will be added one days for this special component). 
+	Things to do for the themes selector: implement "drop" and
+	finish "restore" (for opt/cho/sub). My problem with drop is:
+	can we know before dropping if the dropping is not forbidden?
+	The changes in fvwm-themes-config have almost an empty intersection
+ 	with the "old" code. Mikhael, feel free to do all the changes
+	you want. The intersection is a modification in themes-rc-2:
+	a menu entries for the ThemesCenter in the Theme Management
+	menu.
+	
 2000-08-11  migo  <migo@homemail.com>
 
 	* themes/spruce/colors:
