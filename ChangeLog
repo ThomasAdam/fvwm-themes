@@ -1,3 +1,14 @@
+2001-06-04  migo  <migo@homemail.com>
+
+	* themes/multichoice/buttons/images/osx.tar.gz:
+	completed shade and stick buttons
+
+	* themes/multichoice/buttons/images/warpluc.tar.gz:
+	removed empty space; restored maximize button, it looked improperly
+	aligned as compared to others, either all buttons are shifted or none;
+	The original buttons are from (more button faces in the same dir):
+	http://redhat.oz-online.net/images/screenshots/lvbogaert.gif
+
 2001-06-01  migo  <migo@homemail.com>
 
 	* themes/default/menus:
