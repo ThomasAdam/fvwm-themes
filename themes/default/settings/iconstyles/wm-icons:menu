@@ -8,7 +8,8 @@
 # Also, MenuFvwmIconSets is not destroyed after leaving this component...
 
 AddToFunc FuncFvwmStartAllHooks
-+ I AddToMenu MenuFvwmConfiguration "%menu/themes.xpm%wm-icons Icons" Popup MenuFvwmIconSets
++ I AddToMenu MenuFvwmConfiguration
++ I + "%menu/themes.xpm%wm-icons Aliases" Popup MenuFvwmIconSets
 
 DestroyMenu MenuFvwmIconSets
 AddToMenu MenuFvwmIconSets "Change Icon Set" Title

@@ -91,7 +91,7 @@ AddToFunc   FuncFvwmStartMyPager
 # Just because settings/iconstyles/wm-icons uses FuncFvwmStartAllHooks...
 AddToFunc FuncFvwmStartAllHooks
 + I AddToMenu MenuFvwmConfiguration
-+ I + "wm-icons Bar Icons%menu/themes.xpm%" Popup MenuFvwmBarIconSet
++ I + "wm-icons Bar Alias%menu/themes.xpm%" Popup MenuFvwmBarIconSet
 
 DestroyFunc FuncFvwmSwitchBarIconSet
 AddToFunc   FuncFvwmSwitchBarIconSet

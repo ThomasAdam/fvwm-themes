@@ -4,6 +4,10 @@
 	* themes/default/menus-user:
 	more small icon related corrections
 
+	* themes/default/settings/iconstyles/wm-icons:menu:
+	* themes/migo/modules/main:
+	minor menu label change
+
 2001-03-20  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-image.in:
