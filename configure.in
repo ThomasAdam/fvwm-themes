@@ -2,9 +2,9 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.12)
 AC_REVISION(0.2.3)
 AC_INIT(themes/default/README)
-AM_INIT_AUTOMAKE(fvwm-themes, 0.4.3)
+AM_INIT_AUTOMAKE(fvwm-themes, 0.5.0)
 
-REQUIRED_FVWM_VERSION=2.3.30
+REQUIRED_FVWM_VERSION=2.3.33
 AC_SUBST(REQUIRED_FVWM_VERSION)dnl
 
 mg_ARG_WITH(fvwm-bindir, [  --with-fvwm-bindir DIR  specify fvwm bin directory, if not in PATH], FVWM_BINDIR, "")
@@ -26,6 +26,11 @@ AC_ARG_ENABLE(build-menus,
 	[ BUILD_MENUS=yes ]
 )
 AC_SUBST(BUILD_MENUS)dnl
+
+dnl 'unset' is not portable, but setting to null is not enough to avoid using
+dnl the cached value!  For ancient shells "rm config.cache" is a solution.
+UNSET=true
+if unset UNSET 2>/dev/null; then UNSET=unset; fi
 
 AC_PATH_PROG(PERL, perl)
 if test -z "$PERL"; then
@@ -60,6 +65,7 @@ fi
 GNOME_IMAGES_DIR=`echo $GNOME_SESSION | sed -e "s,/[[^/]]*/gnome-session$,,"`/share/pixmaps
 AC_SUBST(GNOME_IMAGES_DIR)dnl
 
+$UNSET ac_cv_path_FVWM_CONFIG
 AC_PATH_PROG(FVWM_CONFIG, fvwm-config --version, , "${PATH}:$FVWM_BINDIR")
 if test -z "$FVWM_CONFIG"; then
 	AC_MSG_ERROR([
@@ -76,6 +82,7 @@ FVWM_DEFAULT_IMAGEPATH=`$FVWM_CONFIG --default-imagepath`
 AC_SUBST(FVWM_DEFAULT_IMAGEPATH)dnl
 FVWM_MODULEDIR=`$FVWM_CONFIG --fvwm-moduledir`
 
+$UNSET ac_cv_path_FVWM_M4
 AC_PATH_PROG(FVWM_M4, FvwmM4, ,"$FVWM_MODULEDIR")
 if test -z "$FVWM_M4"; then
 	AC_MSG_WARN(FvwmM4 is not found; you will have a few problems using this package!)

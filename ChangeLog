@@ -24,6 +24,10 @@
 	* README:
 	prepare documentation for 0.5.0
 
+	* configure.in:
+	update version / requirement: 0.5.0, 2.3.33;
+	don't cache fvwm util locations
+
 2001-07-05  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
