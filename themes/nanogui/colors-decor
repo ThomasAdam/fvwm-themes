@@ -2,12 +2,12 @@
 # Window decorations
 
 # window title, inactive and active
-*FvwmTheme: Colorset 1 fg #cdcdcd, bg #7f7f7f, Plain, NoShape
-*FvwmTheme: Colorset 2 fg #ffffff, bg #6381c6, Plain, NoShape
+Colorset 1 fg #cdcdcd, bg #7f7f7f, Plain, NoShape
+Colorset 2 fg #ffffff, bg #6381c6, Plain, NoShape
 
 # window borders, inactive and active
-*FvwmTheme: Colorset 3 fg #cdcdcd, bg #7f7f7f, Plain, NoShape
-*FvwmTheme: Colorset 4 fg #ffffff, bg #6381c6, Plain, NoShape
+Colorset 3 fg #cdcdcd, bg #7f7f7f, Plain, NoShape
+Colorset 4 fg #ffffff, bg #6381c6, Plain, NoShape
 
 # background for window title, buttons and border
 DestroyFunc FuncFvwmDecorBackground

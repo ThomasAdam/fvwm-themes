@@ -2,15 +2,15 @@
 # Window decorations
 
 # window title, inactive and active
-*FvwmTheme: Colorset 1 fg black, bg rgb:cc/cc/cc, Plain, NoShape, \
+Colorset 1 fg black, bg rgb:cc/cc/cc, Plain, NoShape, \
 	sh rgb:99/99/99, hi rgb:ff/ff/ff
-*FvwmTheme: Colorset 2 fg black, bg rgb:cc/cc/ff, Plain, NoShape, \
+Colorset 2 fg black, bg rgb:cc/cc/ff, Plain, NoShape, \
 	sh rgb:99/99/cc, hi rgb:ff/ff/ff
 
 # window borders, inactive and active
-*FvwmTheme: Colorset 3 fg black, bg rgb:66/66/66, Plain, NoShape, \
+Colorset 3 fg black, bg rgb:66/66/66, Plain, NoShape, \
 	sh rgb:33/33/33, hi rgb:99/99/99
-*FvwmTheme: Colorset 4 fg black, bg rgb:66/66/99, Plain, NoShape, \
+Colorset 4 fg black, bg rgb:66/66/99, Plain, NoShape, \
 	sh rgb:33/33/66, hi rgb:99/99/cc
 
 # background for window title, buttons and border
