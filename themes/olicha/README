@@ -3,14 +3,14 @@ The theme is created by Olivier Chapuis on 15/Jan/2000.
 * Background:
 ------------
 
-It is from KDE background collection: blue freon.
+It is from the KDE background collection: blue freon.
 
 * Windows Buttons:
 -----------------
 
-Mac styles Buttons from ... I do not remember. 
-As usual you can ask the buttons themselves about their info by clicking
-Ctrl-Alt + title button.
+Mac style Buttons from ... I do not remember. 
+As usual, you can ask the buttons themselves about their bindings by
+clicking Ctrl-Alt + title button.
 
 * Cursor:
 --------
@@ -22,50 +22,49 @@ As the default, but the root one a black/yellow hand
 
 The FvwmButtons-WMakerApplets is a Button Bar for WMaker and AfterStep applets.
 You may edit modules/main:FvwmButtons-WMakerApplets to choose your prefered
-applets (see below). Also it is not started by default. The more compatible 
-FvwmButtons-FvwmApplets is started by default (use current->modules->Applets
-in the Theme Management menu).
-How to use these Buttons: Mouse 1 in the backgroud of a button will start 
-a panel if it is not started, will ummap it if it is visibale and map it
-if it started but not visible. Mouse 3 in the backgroud of a button will 
-kill.
+applets (see below). Also this Button Bar is not started by default.
+The more compatible FvwmButtons-FvwmApplets is started by default
+(use current->modules->Applets in the Theme Management menu to change).
 
-* How to edit modules/main:FvwmButtons-WMakerApplets
-----------------------------------------------------
+How to use these Buttons: Mouse 1 on the button background starts a panel
+if it is not started, ummaps it if it is visibale and maps it if it is
+started but not visible. Mouse 3 on the button background kills.
 
-If not already done create your personal theme directory:
+* How to overwrite modules/main:FvwmButtons-WMakerApplets
+---------------------------------------------------------
 
-mkdir $FVWM_USERDIR/themes/personal
+If it is not already done, create your personal theme directory:
 
-If not already done create the file modules-extra in this directory
-and then copy the contents of
+  mkdir $FVWM_USERDIR/themes/personal
 
-fvwm-themes-install-dir/themes/olicha/modules/main:FvwmButtons-WMakerApplets
+Copy the contents of
 
-in this file and then choose your prefered applets (there are some
-indications in this file).
+  fvwm-themes-install-dir/themes/olicha/modules/main:FvwmButtons-WMakerApplets
 
-Note that the above apply to any "modules" in a modules themes: the only
-problem is that if a module in an other modules theme have the same name
-this configuration will be also over-read. However, for 
+to the file modules-extra in the personal theme directory and then
+choose your preferred applets (with help of indicators in this file).
+
+The instructions above apply to modules components in other themes as well,
+the only problem is that if a module in an other theme have the same name,
+its configuration will be also over-written. However, for
 FvwmButtons-WMakerApplets and others this is not a problem.
 
-Now, the above is enough if you use modules@olicha. But, if you want
-to be able to use this module in any modules themes you must add the 
-following to modules-extra (Note that the position of WMakerApplets may 
-be in conflict with modules themes different from olicha; e.g., with
-modules@default if you use icons, the first icon will be masked
-by WMakerApplets).
+Now, the above is enough if you use modules@olicha. But, if for some strange
+reason you want to be able to use this module with modules from other themes,
+you should add the following to modules-extra (be ware that the position of
+WMakerApplets may  conflict with modules from different (from olicha) themes;
+say, if you use modules@default and icons, the first icon will be overlapped).
 
 #-----------------------------------------------------------------------------
-# the following is needed if you alawys want to be able to start
-# FvwmButtons-WMakerApplets
+# the following is only needed as an addition to the contents of 
+# modules/main:FvwmButtons-WMakerApplets if you always want to have
+# FvwmButtons-WMakerApplets in your menus regardless of the current theme.
 
 Style "FvwmButtons-WMaker*Applets" NoTitle, NoHandles, BorderWidth 0, Sticky, \
 	WindowListSkip, CirculateHit, NoIcon, TitleAtTop
 
-# Maybe you want to always start this modules (of course in this case
-# you must disabled any applets in modules@olicha). 
+# Uncomment this to start WMakerApplets unconditionally (not suggested).
+# In this case you should disable any button bar in modules@olicha, of course.
 #AddToFunc   FuncFvwmStartThemeModules
 #+ I FvwmButtons FvwmButtons-WMakerApplets
 
@@ -97,8 +96,7 @@ AddToFunc   FuncFvwmRestartMyWMApplets
 AddToFunc   FuncFvwmStopThemeModules
 + I FuncFvwmStopWMakerButtons
 + I DestroyStyle "FvwmButtons-WMaker*Applets"
-# All what follows are not really needed since apriorie modules-extra 
-# is loaded each time
+# Clean up all, not really needed, since modules-extra is loaded every time.
 + I DestroyModuleConfig FvwmButtons-WMaker*Applets*
 + I DestroyFunc FuncFvwmStopWMakerButtons
 + I DestroyFunc FuncFvwmRestartMyWMApplets
@@ -107,8 +105,8 @@ AddToFunc   FuncFvwmStopThemeModules
 
 #-----------------------------------------------------------------------------
 
-Note that again the above method may apply to others modules in other
-modules themes, but you may have to know what you are doing.
+Note that, again, the method above may apply to others modules in other
+themes, but you should know what you are doing.
 
 -- 
 olicha, last modified: 10/Nov/2000
