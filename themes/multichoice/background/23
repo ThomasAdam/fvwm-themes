@@ -1,0 +1,7 @@
+DestroyFunc FuncFvwmStartThemeBackground
+AddToFunc   FuncFvwmStartThemeBackground
++ I Exec exec fvwm-themes-images --in-file $FT_DATADIR/themes/multichoice/images/banner/fvwm-red.xpm -setroot --border +10+20,black --rotate 90
+
+DestroyFunc FuncFvwmStopThemeBackground
+AddToFunc   FuncFvwmStopThemeBackground
++ I Nop
