@@ -2,8 +2,8 @@ Requirements
 ------------
 
 You need at least fvwm-2.3.22, but the latest version is preferable.
-You need perl 5.002 or better.
-It is a good idea to have ImageMagick 4.0+ and mknod in your path.
+You need perl 5.004 or better. Probably 5.002+ is ok too, but not tested.
+It is a good idea to have ImageMagick 4.0+ and mkfifo in your path.
 
 Contact info
 ------------
@@ -12,8 +12,10 @@ Project home page:
 	http://fvwm-themes.sourceforge.net/
 Project developement page:
 	http://sourceforge.net/projects/fvwm-themes/
-Developer mailing list, feel free to get subscribed:
+Users mailing list, feel free to get subscribed:
+	http://lists.sourceforge.net/mailman/listinfo/fvwm-themes-users
+Devel mailing list, feel free to get subscribed:
 	http://lists.sourceforge.net/mailman/listinfo/fvwm-themes-devel
-Private questions (please try fvwm-themes-devel list):
+Private questions (please try lists):
 	mailto:migo@fvwm-themes.sourceforge.net
 	mailto:olivier.chapuis@free.fr

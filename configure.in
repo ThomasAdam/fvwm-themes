@@ -33,9 +33,9 @@ if test -z "$PERL"; then
 fi
 AC_SUBST(PERL)dnl
 
-AC_PATH_PROG(MKNOD, mknod)
-if test -z "$MKNOD"; then
-	AC_MSG_WARN(mknod is not found; you will have some problems with GUI!)
+AC_PATH_PROG(MKFIFO, mkfifo)
+if test -z "$MKFIFO"; then
+	AC_MSG_WARN(mkfifo is not found; you will have some problems with GUI!)
 fi
 
 # fvwm-themes-images needs to know where the rgb.txt file is

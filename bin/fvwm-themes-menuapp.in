@@ -1727,7 +1727,7 @@ sub nei {
 
 sub myMakeFifo {
 	my ($fifo) = @_;
-	system("mknod '$fifo' p");
+	system("mkfifo '$fifo'");  # not portable: mknod '$fifo' p
 }
 
 #-----------------------------------------------------------------------------

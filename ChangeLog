@@ -1,3 +1,10 @@
+2000-12-12  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-*.in:
+	* configure.in:
+	* doc/README.1st:
+	replaced "mknod NAME p" with a more portable "mkfifo NAME"
+
 2000-12-09  migo  <migo@homemail.com>
 
 	* themes/cde/README: updated
