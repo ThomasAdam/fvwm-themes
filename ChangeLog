@@ -7,6 +7,11 @@
 	* themes/redmondxp/modules/*:
 	added pager bar
 
+	* themes/multichoice/buttons.cfg:
+	* themes/multichoice/buttons/faces/aron:
+	added new vector face "aron",
+	show in a menu whether a face is vector or image based
+
 2002-05-24  migo  <migo@homemail.com>
 
 	* themes/redmondxp/README:

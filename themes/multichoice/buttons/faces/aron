@@ -1,0 +1,21 @@
+BoC AddButtonStyle BoN Vector 5 18x18@2 82x18@1 82x82@0 18x82@0 18x18@1
+BoC AddButtonStyle BoN Vector 5 23x23@2 45x23@0 45x45@1 23x45@1 23x23@0
+BoC AddButtonStyle BoN Vector 5 55x23@2 77x23@0 77x45@1 55x45@1 55x23@0
+BoC AddButtonStyle BoN Vector 5 55x55@2 77x55@0 77x77@1 55x77@1 55x55@0
+BoC AddButtonStyle BoN Vector 5 23x55@2 45x55@0 45x77@1 23x77@1 23x55@0
+
+BcC AddButtonStyle BcN Vector 13 35x25@2 50x40@1 65x25@1 75x35@1 60x50@0 75x65@1 65x75@0 50x60@0 35x75@0 25x65@0 40x50@1 25x35@0 35x25@1
+BmC AddButtonStyle BmN Vector 11 82x18@2 82x70@0 30x70@0 50x70@0 50x82@0 18x82@0 18x50@1 30x50@1 30x70@1 30x18@1 82x18@1
+BiC AddButtonStyle BiN Vector 17 82x20@2 82x60@0 62x60@0 62x40@0 62x70@0 42x70@0 42x62@0 42x82@0 18x82@0 18x62@1 42x62@1 30x62@1 30x40@1 62x40@1 45x40@1 45x18@1 82x18@1
+BhC AddButtonStyle BhN Vector 16 18x18@2 82x18@1 82x25@0 18x25@0 18x18@1 82x18@1 82x50@0 18x50@0 18x18@1 82x18@1 82x50@0 52x50@0 52x82@0 48x82@0 48x50@1 18x50@0
+BsC AddButtonStyle BsN Vector 11 50x25@2 30x30@1 25x35@1 25x40@1 47x40@0 50x75@1 53x40@0 75x40@0 75x35@0 70x30@0 50x25@0
+
+BlC AddButtonStyle BlN *undefined*
+BrC AddButtonStyle BrN *undefined*
+
+# I dislike duplication, so a trick (may be done outside of this component)
+AddToFunc FuncFvwmReloadDecorPassIt I $*
+FuncFvwmReloadDecorPassIt AddToFunc   FuncFvwmReloadDecor
+FuncFvwmReloadDecorPassIt + I DestroyFunc FuncFvwmReloadDecorPassIt
+FuncFvwmReloadDecorPassIt + I AddToFunc   FuncFvwmReloadDecorPassIt I Break
+FuncFvwmReloadDecorPassIt + I Read $./aron
