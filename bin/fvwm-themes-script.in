@@ -280,12 +280,15 @@ sub parseHtml {
 sub buildDoc {
 	$lang = $ENV{'LANG'} if $lang eq "";
 	$lang = substr($lang, 0, 2);
-	my $usedLang = $lang;
 	my $fileExt = "html";
-	my %fixedFont = ();
-	$fixedFont{'ru'} = 
-		"-cronyx-fixed-medium-r-semicondensed--*-*-*-*-*-*-koi8-*";
-	$fixedFont{'default'} = "fixed";
+	# migo: actually, I think that in a proper system, "fixed" alias already
+	# points to localized font, but this may be good to support any --lang.
+	# This info may be read from locale/LANG/fonts.cfg probably.
+	my %fixedFont = (
+		'en' => "fixed",
+		'ru' => "-cronyx-fixed-medium-r-semicondensed--*-*-*-*-*-*-koi8-*",
+	);
+	my $fontLang = exists $fixedFont{$lang}? $lang: 'en';
 
 	my $file;
 	if ($inLineDoc =~ /^\//) {
@@ -294,7 +297,7 @@ sub buildDoc {
 		$file = "$localeDir/$lang/$inLineDoc.$fileExt";
 		if (! -f $file) {
 			$file = "$localeDir/en/$inLineDoc.$fileExt" unless -f $file;
-			$usedLang = "en";
+			$fontLang = "en";
 		}
 	}
 
@@ -303,11 +306,7 @@ sub buildDoc {
 		exit(0);
 	}
 
-	if (defined $fixedFont{"$usedLang"}) {
-		print $fixedFont{"$usedLang"} . "|";
-	} else {
-		print $fixedFont{'default'} . "|";
-	}
+	print $fixedFont{"$fontLang"} . "|";
 
 	my $contentRef = loadFile($file);
 	my $parsedText = parseHtml($$contentRef, $lineLength);

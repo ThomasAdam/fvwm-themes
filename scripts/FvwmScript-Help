@@ -63,11 +63,12 @@ Begin
     If $InLineDoc <> {} Then
     Begin
 	Set $cmd = {fvwm-themes-script --in-line-doc }$InLineDoc{ --line-length 70}
-	# if the --lang is not use ft-script compute it for use
+	# if the --lang is not used, ft-script computes it itself
 	If $Lang <> {} Then
 	    Set $cmd = $cmd { --lang }$Lang
  	Set $Doc = (GetOutput $cmd 1 -1)
-	# first "line" give the font:
+
+	# first "line" is the font, evaluate it
 	Set $font = {}
 	Set $index = 1
 	Set $done = 0
@@ -85,12 +86,13 @@ Begin
 		Set $done = 1
 	    End
 	End
+
 	Set $Doc = (StrCopy $Doc $index 32000)
  	ChangeTitle 2 $Doc
     End
 
     If $TextFont <> {} Then
-	Set $font = $TextFont	
+	Set $font = $TextFont
     ChangeFont 2 $font
 
 End

@@ -698,8 +698,30 @@ Case message of
     Begin
 	Set $DocLoaded = 1
 	Set $cmd = {fvwm-themes-script --in-line-doc FvwmScript-ColorSelector --line-length 44 --lang }$Lang
-	Set $tmp = (GetOutput $cmd 1 -1)
-	ChangeTitle 998 $tmp
+	Set $Doc = (GetOutput $cmd 1 -1)
+
+        # first "line" is the font, evaluate it
+        Set $font = {}
+        Set $index = 1
+        Set $done = 0
+        While $done <> 1 Do
+        Begin
+            Set $tmp = (StrCopy $Doc $index $index)
+            If $tmp == {|} Then
+                Set $done = 1
+            Else
+                Set $font = $font $tmp 
+            Set $index = (Add $index 1)
+            If $index == 300 Then
+            Begin
+                Set $font = "fixed"
+                Set $done = 1
+            End
+        End
+	ChangeFont 998 $font
+
+	Set $Doc = (StrCopy $Doc $index 32000)
+	ChangeTitle 998 $Doc
     End
     ShowWidget 998
     ShowWidget 999
