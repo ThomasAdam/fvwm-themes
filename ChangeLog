@@ -1,9 +1,14 @@
+2000-09-20  migo  <migo@homemail.com>
+
+	* themes/{cde,luthien}/colors/main:
+	improved ColourTable
+
 2000-09-19  migo  <migo@homemail.com>
 
 	* TODO: one more idea about option groups
 
 	* themes/luthien/colors/main:
-	menu colors (gradient), module colors, still may ne not finished
+	menu colors (gradient), module colors, still may be not finished
 
 	* themes/luthien/buttons:
 	make Maximize button bindings the same as the original

@@ -198,6 +198,11 @@ AddToFunc   FuncFvwmStopColors
 + I DestroyStyle FvwmButtons-ColourTable
 + I Key F2 A SC -
 
+DestroyFunc FuncFvwmToggleColorsFile
+AddToFunc   FuncFvwmToggleColorsFile
++ I None ("* - $[CDE_COLORS_SCHEME]") FuncFvwmViewFile "$[CDE_COLORS_SCHEME]"
++ I Next ("* - $[CDE_COLORS_SCHEME]") Delete
+
 *FvwmButtons-ColourTable: Frame       0
 #*FvwmButtons-ColourTable: Geometry    260x36+0+0
 *FvwmButtons-ColourTable: Geometry    324x44
@@ -206,18 +211,18 @@ AddToFunc   FuncFvwmStopColors
 *FvwmButtons-ColourTable: BoxSize     fixed
 *FvwmButtons-ColourTable: Padding     0 0
 *FvwmButtons-ColourTable: (Title [1], Back CDE_COLOR1_BG, \
-	Fore CDE_COLOR1_FG)
+	Fore CDE_COLOR1_FG, Action FuncFvwmToggleColorsFile)
 *FvwmButtons-ColourTable: (Title [2], Back CDE_COLOR2_BG, \
-	Fore CDE_COLOR2_FG)
+	Fore CDE_COLOR2_FG, Action FuncFvwmToggleColorsFile)
 *FvwmButtons-ColourTable: (Title [3], Back CDE_COLOR3_BG, \
-	Fore CDE_COLOR3_FG)
+	Fore CDE_COLOR3_FG, Action FuncFvwmToggleColorsFile)
 *FvwmButtons-ColourTable: (Title [4], Back CDE_COLOR4_BG, \
-	Fore CDE_COLOR4_FG)
+	Fore CDE_COLOR4_FG, Action FuncFvwmToggleColorsFile)
 *FvwmButtons-ColourTable: (Title [5], Back CDE_COLOR5_BG, \
-	Fore CDE_COLOR5_FG)
+	Fore CDE_COLOR5_FG, Action FuncFvwmToggleColorsFile)
 *FvwmButtons-ColourTable: (Title [6], Back CDE_COLOR6_BG, \
-	Fore CDE_COLOR6_FG)
+	Fore CDE_COLOR6_FG, Action FuncFvwmToggleColorsFile)
 *FvwmButtons-ColourTable: (Title [7], Back CDE_COLOR7_BG, \
-	Fore CDE_COLOR7_FG)
+	Fore CDE_COLOR7_FG, Action FuncFvwmToggleColorsFile)
 *FvwmButtons-ColourTable: (Title [8], Back CDE_COLOR8_BG, \
-	Fore CDE_COLOR8_FG)
+	Fore CDE_COLOR8_FG, Action FuncFvwmToggleColorsFile)
