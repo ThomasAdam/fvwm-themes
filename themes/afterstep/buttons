@@ -22,7 +22,7 @@ Mouse 3 	4	A	FuncFvwmMaximize
 Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Circulate to the next application"
 Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Mouse 1:^n^tDelete on click^n^tDestroy on double click^nMouse 3 - Shade"
 Mouse 0 	3	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu or Delete on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
-Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^n 3 - Maximize:^n^tpartially on click^n^tfully on double click^n^tvertically on hold"
+Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Iconify^nMouse 2 - Iconify on resource group^n 3 - Maximize:^n^tfully on click^n^tmenu on double click"
 
 DestroyFunc FuncFvwmStartWindowButtons
 AddToFunc   FuncFvwmStartWindowButtons
@@ -41,8 +41,8 @@ AddToFunc   FuncFvwmStopWindowButtons
 + I Mouse 3 	4	A	-
 + I Mouse 0 	1	CM	-
 + I Mouse 0 	2	CM	-
++ I Mouse 0 	3	CM	-
 + I Mouse 0 	4	CM	-
-+ I Mouse 0 	6	CM	-
 + I DestroyFunc FuncFvwmFocusAndWrapToButton1
 
 DestroyFunc FuncFvwmFocusAndWrapToButton1
