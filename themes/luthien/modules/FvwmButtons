@@ -1,3 +1,6 @@
+# We may need to have an option with two buttonbar's, one is standard
+# and one with Dominik's icons, Fvwm
+
 Style "FvwmButtons-Bar" NoTitle, TitleAtBottom, NoHandles, Sticky, \
 	WindowListSkip, CirculateSkip
 
@@ -11,13 +14,15 @@ DestroyModuleConfig FvwmButtons-Bar: *
 *FvwmButtons-Bar: Padding	1 1
 *FvwmButtons-Bar: Colorset	10
 
-*FvwmButtons-Bar: (3x2+18+1, Colorset 24, Swallow (Close) xload `Exec exec xload -g +32767+32767 -fg $[fg.cs10] -bg $[bg.cs10] -nolabel`)
-*FvwmButtons-Bar: (3x2+18+3, Colorset 24, Swallow (Close) FvwmXclock `Exec exec xclock -name FvwmXclock -geometry 16x16+2000+2000 -padding 2 -analog -bg $[bg.cs10] -chime`, Action (Mouse1) Beep)
+*FvwmButtons-Bar: (3x2+18+1, Colorset 23, Swallow (Close) xload `Exec exec xload -g +32767+32767 -fg $[fg.cs10] -bg $[bg.cs10] -nolabel`)
+*FvwmButtons-Bar: (3x2+18+3, Colorset 23, Swallow (Close) BarXclock `Exec exec xclock -name BarXclock -geometry 16x16+2000+2000 -padding 2 -analog -bg $[bg.cs10] -chime`, Action (Mouse1) Beep)
 # Menu Popups
-*FvwmButtons-Bar: (6x1+0+0,  Padding 0, Title Root, Action `Menu MenuFvwmRoot rectangle $widthx$height+$left+$top o+30 -100m Nop`)
-*FvwmButtons-Bar: (6x1+6+0,  Padding 0, Title Modules, Action `Menu MenuFvwmModules rectangle $widthx$height+$left+$top o+30 -100m Nop`)
-*FvwmButtons-Bar: (6x1+12+0, Padding 0, Title Window, Action `Menu MenuFvwmWindowOps rectangle $widthx$height+$left+$top o+30 -100m Nop`)
-*FvwmButtons-Bar: (3x1+18+0, Padding 2, Panel(smooth, indicator 15, position Module bottom left +0 -0 mtb) FvwmButtons-ColourTable `Module FvwmButtons -transientpanel FvwmButtons-ColourTable`, Action (Mouse 2) Beep)
+*FvwmButtons-Bar: (6x1+0+0,  Padding 0, Title Root,    Action `Menu MenuFvwmRoot      rectangle $widthx$height+$left+$top o+30 -100m Nop`)
+*FvwmButtons-Bar: (6x1+6+0,  Padding 0, Title Modules, Action `Menu MenuFvwmModules   rectangle $widthx$height+$left+$top o+30 -100m Nop`)
+*FvwmButtons-Bar: (6x1+12+0, Padding 0, Title Window,  Action `Menu MenuFvwmWindowOps rectangle $widthx$height+$left+$top o+30 -100m Nop`)
+*FvwmButtons-Bar: (3x1+18+0, Padding 2, Title ^,       Action `Menu MenuFvwmThemes    rectangle $widthx$height+$left+$top o+30 -100m Nop`, \
+	Action (Mouse 2) Beep, Action (Mouse 3) `Menu MenuFvwmConfiguration      rectangle $widthx$height+$left+$top o+30 -100m Nop`)
+#*FvwmButtons-Bar: (3x1+18+0, Padding 2, Panel(smooth, indicator 15, position Module bottom left +0 -0 mtb) FvwmButtons-ColourTable `Module FvwmButtons -transientpanel FvwmButtons-ColourTable`, Action (Mouse 2) Beep)
 # first row of buttons from left to right:
 *FvwmButtons-Bar: (3x2+0+1,  Icon 16x16/wm-lock.xpm, Action (Mouse 1) FuncFvwmWmLock, Action (Mouse 2) FuncFvwm2WmLock, Action (Mouse 2) FuncFvwm3WmLock)
 *FvwmButtons-Bar: (3x2+3+1,  Icon 16x16/window-resize.xpm, Action Resize)
@@ -35,7 +40,9 @@ DestroyModuleConfig FvwmButtons-Bar: *
 # big items
 *FvwmButtons-Bar: (11x5, Swallow FvwmPager-Single 'FvwmPager FvwmPager-Single * * -geometry 40x40-2000-2000')
 *FvwmButtons-Bar: (14x5, Swallow FvwmIconMan 'Module FvwmIconMan')
-*FvwmButtons-Bar: (22x5, Colorset 24, Swallow (Close) xosview `Exec exec xosview -xrm xosview*background:$[bg.cs10] +load +mem -net -cpu -int -swap +page -geometry 100x50+0-0 -font 5x7`)
+*FvwmButtons-Bar: (22x5, Colorset 23, Swallow (Close) BarXosview FuncFvwmStartBarXosview)
+
+# ----------------------------------------------------------------------------
 
 DestroyFunc ToggleXMessages
 AddToFunc   ToggleXMessages
@@ -54,5 +61,12 @@ AddToFunc   ToggleSlipperyXMessages
 
 DestroyFunc ToggleFvwmConsole
 AddToFunc   ToggleFvwmConsole
-+ I None (FvwmConsole, UseListSkip) FuncFvwmConsole
-+ I Next (FvwmConsole, UseListSkip) Close
++ I None (FvwmConsole, CirculateHit) FuncFvwmConsole
++ I Next (FvwmConsole, CirculateHit) Close
+
+DestroyFunc FuncFvwmStartBarXosview
+AddToFunc   FuncFvwmStartBarXosview
++ I Exec xosview -name BarXosview -xrm 'xosview*background:$[bg.cs10]' +load \
+	+mem -net -cpu -int -swap +page -geometry 100x50+0-0 -font 5x7 \
+	2>/dev/null; if [ "$?" = 127 ]; then \
+	xlogo -fg $[fg.cs10] -bg $[bg.cs10] -g 100x50+0-0 -name BarXosview; fi

@@ -182,17 +182,20 @@ DestroyModuleConfig FvwmIdent: *
 #
 *FvwmTheme: Colorset 22 fg black, bg bisque, Plain, NoShape
 
+# transparent
+#*FvwmTheme: Colorset 23 fg $[fg.cs10], bg $[bg.cs10], Transparent, Plain, NoShape
+
 # ------------------------
 # II.4. External Colorsets
 # ------------------------
-
-# temporary colorset: 23, has no static definition, used dynamically
 
 # ----------------------------
 # reserved for modules@: 24-25
 
 # --------------------------------
-# reserved for a future use: 26-29
+# reserved for a future use: 26-28
+
+# temporary colorset: 29, has no static definition, used dynamically
 
 # ----------------------------------------------------------------------------
 # III. Applications Colorsets

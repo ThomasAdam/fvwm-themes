@@ -14,6 +14,8 @@ Style "*"	SlipperyIcon, IconTitle
 
 DestroyFunc FuncFvwmStartThemeModules
 AddToFunc   FuncFvwmStartThemeModules
++ I SendToModule FvwmTheme Colorset 23 fg $[fg.cs10], bg $[bg.cs10], \
+	Transparent, NoShape
 + I FuncFvwmStartNormalIcons
 + I FvwmButtons FvwmButtons-Bar
 
@@ -36,7 +38,7 @@ AddToFunc   FuncFvwmStopThemeModules
 DestroyMenu MenuFvwmStartThemeModules
 AddToMenu   MenuFvwmStartThemeModules "Default Modules" Title
 + "&Buttons"        FuncFvwmRestartModuleByAlias FvwmButtons FvwmButtons-Bar
-+ "&Pager"          FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Single
++ "&Desker"         FuncFvwmRestartModuleByAlias FvwmPager FvwmPager-Desker
 + "" Nop
 + "No normal icons" Style * NoIcon  # needed to use NoIcon modules
 + "Normal icons"    Read themes/default/settings/iconstyles/style-icon-miniicon
@@ -45,7 +47,7 @@ AddToMenu   MenuFvwmStartThemeModules "Default Modules" Title
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "Default Modules" Title
 + "Stop &Buttons" FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-Bar
-+ "Stop &Pager"   FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Single
++ "Stop &Desker"   FuncFvwmStopModuleByAlias FvwmPager FvwmPager-Desker
 + "Stop &WinList" KillModule FvwmWinList
 
 # ----------------------------------------------------------------------------

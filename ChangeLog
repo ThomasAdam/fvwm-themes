@@ -3,6 +3,19 @@
 	* bin/fvwm-themes-config.in:
 	Fixed sorting bug, shown if menustyles-extra exists.
 
+	* themes/luthien/modules/FvwmButtons:
+	* themes/luthien/modules/FvwmIconMan:
+	* themes/luthien/modules/FvwmPager:
+	* themes/luthien/modules/main:
+	* themes/luthien/colors/main:
+	several changes and corrections, use transparent colorset in modules,
+	temporarily moved definition of colorset 23 (transparent) to
+	luthien/modules/main, bad that *Module does not parse $[var]
+
+	* doc/colorsets:
+	* themes/default/colors:
+	colorset 29 is now temporary (was 23)
+
 2000-10-02  migo  <migo@homemail.com>
 
 	* scripts/FvwmScript-ThemesCenter:

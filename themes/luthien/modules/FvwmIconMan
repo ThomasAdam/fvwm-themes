@@ -2,11 +2,11 @@ Style "FvwmIconMan" NoTitle, NoHandles, Sticky, WindowListSkip, \
 	CirculateSkip, TitleAtBottom
 
 DestroyModuleConfig FvwmIconMan: *
-*FvwmIconMan: *numManagers 1
+*FvwmIconMan: *NumManagers 1
 
-*FvwmIconMan: *Colorset		24
+*FvwmIconMan: *Colorset		23
 *FvwmIconMan: *TitleColorset	1
-*FvwmIconMan: *IconColorset	17
+*FvwmIconMan: *IconColorset	19
 *FvwmIconMan: *PlainColorset	19
 *FvwmIconMan: *SelectColorset	19
 *FvwmIconMan: *FocusColorset	18
