@@ -1,3 +1,14 @@
+2000-08-16  olicha <olivier.chapuis@free.fr>
+
+	* bin/fvwm-themes-start.in:
+	* bin/fvwm-themes-start.1:
+	Some Fixes.
+
+	* scripts/FvwmScript-Themes*:
+	* bin/fvwm-themes-com.in:
+	* bin/fvwm-themes-config.in:
+	Fixed "Too many messages ... " and some missprints
+	
 2000-08-16  migo  <migo@homemail.com>
 
 	* themes/default/bindings:
@@ -11,6 +22,7 @@
 	Renamed default session to 'main'. Some small changes.
 	I will do some changes later. (mkdir -p and some others - not portable)
 
+>>>>>>> 1.34
 2000-08-15  olicha <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-start.in:

@@ -1576,7 +1576,7 @@ sub comLoop {
 			exit(0);
 		}
 		if ($@ =~ /^NoScript/) {
-			print STDERR "$comName: No more FvwmScript-Menu: exit!\n";
+			print STDERR "$comName: No more FvwmScript-ThemesCenter: exit!\n";
 			unlink("$lockFifo");
 			exit(0);
 		}
@@ -2119,7 +2119,7 @@ END {
 			unlink($inFifo);
 		  	if ($comPid) {
 				kill(9,$comPid);
-				$message .= ", kill FvwmScript-Menus";
+				$message .= ", kill FvwmScript-ThemesCenter";
 			}
 			print STDERR "$message\n"; 
 		}

@@ -208,6 +208,7 @@ Begin
 	    End
 	    If $MSG == {updatequit} Then
 	    Begin
+		#SendToScript $OptionEditorOne {exit}
 		Set $OptionEditorOne = {}
 		Set $OptionEditorOneTandC = {}
 		Set $UpdateCurrentConfig = 1
@@ -999,7 +1000,6 @@ Main
  Case message of
   SingleClic :
   Begin
-    Set $cmd = $SendMsg{"exit"}
     If $OptionEditorOne <> {} Then
 	SendToScript $OptionEditorOne {exit}
     If $OptionEditorTwo <> {} Then

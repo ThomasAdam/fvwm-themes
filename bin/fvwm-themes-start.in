@@ -8,7 +8,8 @@ rcName=themes-rc
 rcFile=$FVWM_USERDIR/$rcName
 rcName2=themes-rc-2
 rcFile2=$FVWM_USERDIR/$rcName2
-themesDir=$FVWM_USERDIR/themes
+themesName=themes
+themesDir=$FVWM_USERDIR/$themesName
 currentThemeName=current
 currentThemeDir=$themesDir/$currentThemeName
 startDir=`pwd`
@@ -39,47 +40,38 @@ while [ "x$1" != "x" ]; do
 	shift
 done
 
-realRcFile2="$rcFile2-$session"
-realRcName2="$rcName2-$session"
 realCurrentThemeName="current-$session"
 realCurrentThemeDir="$themesDir/$realCurrentThemeName"
-
-# backward compatibility (may be removed before 0.3.16)
-if [ -f $rcFile2 -a ! -L $rcFile2 ]; then
-	mv -f $rcFile2 $realRcFile2
-fi
-if [ -d $currentThemeDir -a ! -L $currentThemeDir ]; then
-	mv -f  $currentThemeDir $realCurrentThemeDir
-fi
+destRcFile2="$themesName/$realCurrentThemeName/$rcName2"
 
 # create the symbolic links
 # POSIX says that we can have symlink to not existing file. However some
 # 2.3.x Linux kernel and may be 2.4.x do not support this ???
-[ -d $FVWM_USERDIR ] || mkdir -p $FVWM_USERDIR
-cd $FVWM_USERDIR
-if [ ! -f $realRcName2 ]; then
-	touch $realRcName2
-	build="yes"
-fi
-ln -sf $realRcName2 $rcName2
-
 [ -d $themesDir ] || mkdir -p $themesDir
 cd $themesDir
 if [ ! -d $realCurrentThemeName ]; then
-	mkdir -p $realCurrentThemeName
-	build="yes"
+    mkdir -p $realCurrentThemeName
+    build="yes"
 fi
-ln -sf $realCurrentThemeName $currentThemeName
+rm -f $currentThemeName
+ln -s $realCurrentThemeName $currentThemeName
+cd $FVWM_USERDIR
+if [ ! -f $destRcFile2 ]; then
+    touch $destRcFile2
+    build="yes"
+fi
+rm -f $rcName2
+ln -s $destRcFile2 $rcName2
 
 # check whether this is a first run
 if [ ! -f $rcFile -o "$build" = "yes" -o "`head -1 $rcFile | cut -d' ' -f3`" != "@VERSION@" ]; then
-	@bindir@/fvwm-themes-config --reset
 	if [ ! -f $rcFile -o "`head -1 $rcFile | cut -d' ' -f3`" != "@VERSION@" ]; then
 		echo '[fvwm-themes]: Welcome to FVWM Themes @VERSION@!'
 		xmessage -center -timeout 30 'Welcome to FVWM Themes @VERSION@!' &
 	else
 		echo "[fvwm-themes]: initial $session FVWM Themes session"
 	fi
+	@bindir@/fvwm-themes-config --reset
 fi
 
 # check that @FVWM_BINDIR@ is in $PATH

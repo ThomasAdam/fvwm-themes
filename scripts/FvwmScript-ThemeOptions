@@ -56,16 +56,17 @@ Begin
 
     # to send fvwm-themes-com command
     Set $SendMsgAndGet = {fvwm-themes-com --name config-}$pid{ --lock-and-get --message=}
+    Set $SendMsgAndGetBuff = {fvwm-themes-com --name config-}$pid{ --lock-and-get --buffer-name config-bis-}$pid{ --message=}
     Set $SendMsg = {fvwm-themes-com --name config-}$pid{ --message=}
-    Set $GetLine = {fvwm-themes-com --name config-}$pid{ --get-buffer --line=}	
+    Set $GetLine = {fvwm-themes-com --name config-}$pid{ --buffer-name config-bis-}$pid{ --get-buffer --line=}	
      # Get all the options
-    Set $cmd = $SendMsgAndGet{"options }$MainComponent{ }$MainTheme{" --line 1}
+    Set $cmd = $SendMsgAndGetBuff{"options }$MainComponent{ }$MainTheme{" --line 1}
     Set $NbrOfOptions = (GetOutput $cmd 1 -1)
     Set $cmd = $GetLine{2}
     Set $Type = (GetOutput $cmd 1 -1)
     Set $tmp = $Type{ for }$MainComponent{@}$MainTheme
     ChangeTitle 1 $tmp
-    Set $cmd = $GetLine{3  --clear-buffer}
+    Set $cmd = $GetLine{3 --clear-buffer}
     Set $Options = (GetOutput $cmd 1 -1)
     If $NbrOfOptions == 1 Then
     Begin
@@ -85,6 +86,7 @@ Begin
     # the selected option
     Set $OptionIndex = 0
 
+    Set $SendUpdateMsg = 0
     Set $Father = (GetScriptFather)
 End
 
@@ -116,7 +118,10 @@ Begin
 
     # better to send here
     If $SendUpdateMsg == 1 Then
+    Begin
+	Set $SendUpdateMsg = 0
 	SendToScript $Father {update}
+    End
 
 End
 
