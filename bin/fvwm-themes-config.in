@@ -1016,15 +1016,40 @@ sub getSortedComponentsToRead ($) {
 		#olicha 1
 		next unless $cc->{'used'};		
 		next unless $cc->{'read-file'};
-		$precedes->{$component} = {};
 		push @currentComponents, $component;
+
+		$precedes->{$component} = {};
+		my $precedes0 = {};
+		if (ref($cc->{'precedes'}) eq 'ARRAY') {
+			foreach (@{$cc->{'precedes'}}) {
+				$precedes0->{$_} = 1;
+			}
+		}
+		if (ref($cc->{'follows'}) eq 'ARRAY') {
+			foreach (@{$cc->{'follows'}}) {
+				$precedes0->{$_} = -1;
+			}
+		}
+		if (keys %$precedes0) {
+			my ($c2, $cmp2);
+			while (($c2, $cmp2) = (each %$precedes0)) {
+				if (! exists $precedes->{$c2}) {
+					$precedes->{$component}->{$c2} = $cmp2;
+				} else {
+					$precedes->{$c2}->{$component} = -$cmp2;
+				}
+			}
+		}
+
 		$requires->{$component} = $cc->{'requires'} || [];
+
 		if (ref($cc->{'provides'}) eq 'ARRAY') {
 			$provides->{$component} = {};
 			foreach (@{$cc->{'provides'}}) {
 				$provides->{$component}->{$_} = 1;
 			}
 		}
+		#$provides->{$component}->{$component} = 1;
 	}
 
 	my $done = 0;
@@ -1069,12 +1094,12 @@ sub getSortedComponentsToRead ($) {
 
 	my ($i, $j, $k);
 	for ($i = 0; $i < @currentComponents - 1; $i++) {
+		my $c1 = $currentComponents[$i];
 		for ($j = $i + 1; $j < @currentComponents; $j++) {
+			my $c2 = $currentComponents[$j];
+			my $cmp1 = $precedes->{$c1}->{$c2};
 			for ($k = $i + 1; $k < $j; $k++) {
-				my $c1 = $currentComponents[$i];
-				my $c2 = $currentComponents[$j];
 				my $c3 = $currentComponents[$k];
-				my $cmp1 = $precedes->{$c1}->{$c2};
 				my $cmp2 = $precedes->{$c1}->{$c3};
 				my $cmp3 = $precedes->{$c3}->{$c2};
 				if ($cmp3 == 0 && $cmp1) {

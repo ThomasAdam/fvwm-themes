@@ -3,8 +3,22 @@
 	* doc/colorsets: A color spec.
 
 	* themes/cde/buttons: buttons for CDE
-	
+
 2000-07-29  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	* themes/default/theme.cfg:
+	* themes/default/settings.cfg:
+	* themes/*/modules.cfg:
+	Implemented 'follows' & 'precedes', unlike 'require' & 'provides'
+	the value is another component directly. *-extra@ now use 'follows'.
+	Also use 'follows' for some other components instead of 'requires'.
+
+	* themes/multichoice/theme.cfg:
+	removed requires+=bindings from colors@
+
+	* themes/olicha/modules/main:FvwmTaskBar:
+	added Style "FvwmTaskBar" TitleAtBottom :-)
 
 	* bin/fvwm-themes-config.in (escapeMenuName, getOwnThemeSubMenusRc):
 	Fix escaping of & in menu labels, I think it is a bug in fvwm.

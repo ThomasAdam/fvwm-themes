@@ -4,7 +4,7 @@
 
 $PASSWORD = 'MY_PASSWORD';
 $CVS_EXE = "/usr/bin/cvs";
-$CVS_PRM = join('" "', (map { s/\\/\\\\/g; s/"/\\"/g; $_ } @ARGV));
+$CVS_PRM = join('" "', (map { s/\\/\\\\/g; s/"/\\"/g; s/'/`/g; $_ } @ARGV));
 $CVS_CMD = qq($CVS_EXE "$CVS_PRM");
 
 if (`pwd` =~ /fvwm-themes/) {
@@ -16,7 +16,7 @@ if (`pwd` =~ /fvwm-themes/) {
 			stty echo echonl; send_tty "\\n"; interact'
 	);
 	$EXPECT_CMD =~ s/\n/ /sg;
-	$| = 1;
+	#$| = 1;
 	#print "[$EXPECT_CMD]\n";
 	system($EXPECT_CMD);
 } else {

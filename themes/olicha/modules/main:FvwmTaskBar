@@ -1,4 +1,4 @@
-Style "FvwmTaskBar" NoTitle, Sticky, WindowListSkip
+Style "FvwmTaskBar" NoTitle, Sticky, WindowListSkip, TitleAtBottom
 DestroyModuleConfig FvwmTaskBar*
 
 *FvwmTaskBarGeometry +0-0
