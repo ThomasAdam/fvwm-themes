@@ -339,7 +339,7 @@ $module->addHandler(M_NEW_DESK, sub {
 
 $module->addHandler(M_STRING, sub {
 	my ($self, $event) = @_;
-	my $string = $event->_line || "_internal_problem_";
+	my $string = eval { $event->_text } || "_internal_problem_";
 
 	my $action = cutToken(\$string);
 	if ($action eq 'toggle') {
