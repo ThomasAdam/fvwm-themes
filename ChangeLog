@@ -1,3 +1,8 @@
+2000-01-06  migo  <migo@homemail.com>
+
+	* themes/default/menus:
+	improved window printing, so this now should work on more systems
+
 2000-01-05  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

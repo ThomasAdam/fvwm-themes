@@ -371,15 +371,15 @@ AddToMenu   MenuFvwmWindowRefresh "Refresh Window" Title
 DestroyFunc FuncFvwmRaiseAndExec
 AddToFunc   FuncFvwmRaiseAndExec
 + I Raise
-+ I Exec $0
++ I Exec $*
 
 DestroyFunc FuncFvwmWindowPrint
 AddToFunc   FuncFvwmWindowPrint
-+ I FuncFvwmRaiseAndExec "xdpr -id $w"
++ I FuncFvwmRaiseAndExec which xdpr >/dev/null 2>&1 && (xdpr -id $w; true) || (import -window $w - | lpr)
 
 DestroyFunc FuncFvwmWindowPrintReverse
 AddToFunc   FuncFvwmWindowPrintReverse
-+ I FuncFvwmRaiseAndExec "xdpr 1/2 -h -rv -id $w"
++ I FuncFvwmRaiseAndExec which xdpr >/dev/null 2>&1 && (xdpr 1/2 -h -rv -id $w; true) || (import -window $w -rotate 90 - | lpr)
 
 DestroyFunc FuncFvwmWindowCreateScreenshot
 AddToFunc   FuncFvwmWindowCreateScreenshot
@@ -395,11 +395,11 @@ AddToFunc   FuncFvwmDesktopCreateScreenshot
 
 DestroyMenu MenuFvwmWindowUtility
 AddToMenu   MenuFvwmWindowUtility "Window Utility" Title
-+ "%menu/utility.xpm%&Print"              Pick (CirculateHit) FuncFvwmWindowPrint
-+ "%menu/utility.xpm%Print &Reverse"      Pick (CirculateHit) FuncFvwmWindowPrintReverse
-+ "" Nop
 + "%menu/window.xpm%Create &Screenshot"   Pick (CirculateHit) FuncFvwmWindowCreateScreenshot
 + "%menu/desktop.xpm%&Desktop Screenshot" Pick (CirculateHit) FuncFvwmDesktopCreateScreenshot
++ "" Nop
++ "%menu/utility.xpm%&Print"              Pick (CirculateHit) FuncFvwmWindowPrint
++ "%menu/utility.xpm%Print &Reverse"      Pick (CirculateHit) FuncFvwmWindowPrintReverse
 + "" Nop
 + "%menu/window-raise.xpm%Layer +1"       Pick (CirculateHit) Layer +1
 + "%menu/window-lower.xpm%Layer -1"       Pick (CirculateHit) Layer -1
