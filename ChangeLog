@@ -8,6 +8,9 @@
 	* AUTHORS:
 	Added initial components of the Dominik's theme.
 
+	* bin/fvwm-themes-config.in:
+	added an error msg when loading [all] and all components are locked
+
 2000-09-11  migo  <migo@homemail.com>
 
 	* scripts/FvwmScript-ThemesCenter:

@@ -822,6 +822,8 @@ sub useNewComponents ($$$;$) {
 				my $cc = $self->{'cc'}->{$_}; !$cc || !$cc->{'locked'}
 			} @{getThemeComponents($theme)};
 			foreach (@components) { $_ .= "\@$theme"; }
+			errDie("All components in \@$theme are locked, unlock first")
+				unless @components;
 			$self->useNewComponents(\@components, []);
 			next;
 		}
