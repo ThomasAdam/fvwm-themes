@@ -6,6 +6,8 @@
 
 %define ver @VERSION@
 %define rel 1
+%define c_p --disable-gnome-icons
+%define m_p CFLAGS="-O2"
 
 Summary:   FVWM Themes, configurational framework for FVWM
 Name:      fvwm-themes
@@ -35,9 +37,9 @@ several pre-built themes, a pack of images and sounds.
 %setup
 
 %build
-./configure --prefix=%{prefix}
-#./configure
-make
+./configure --prefix=%{prefix} %{c_p}
+#./configure %{c_p}
+make %{m_p}
 
 %install
 rm -rf $RPM_BUILD_ROOT

@@ -3,6 +3,11 @@
 	* themes/default/settings/iconstyles/style-icon-miniicon: updated
 	* NEWS: updated
 
+	* Makefile.am:
+	* rpm/Makefile.am:
+	* rpm/fvwm-themes.spec.in:
+	it is possible to specify configure and make parameters for rpm
+
 2000-10-10  migo  <migo@homemail.com>
 
 	* themes/default/menus: another try to improve creating screenshots
