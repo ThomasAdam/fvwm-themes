@@ -6,6 +6,7 @@
 	some updates, added colors for modules
 
 	* themes/redmondxp/modules/*:
+	* themes/redmondxp/images/module/*:
 	Added modules, the task-bar like panel should be very configurable
 	in the future; for some reason I can't make transparency work.
 	Used new name scheme for files, no more files with colon.
