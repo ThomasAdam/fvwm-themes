@@ -19,6 +19,9 @@
 	converted cde-like color scheme configs from SetEnv to a new format;
 	expend all macros on line; added support for 4 colors in colors@cde
 
+	* themes/cde/colors/schemes/*.dp:
+	regenerated with a pass-filter 192 (75%) instead of 128, Jos wants 200
+
 2000-10-23  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/menus:
