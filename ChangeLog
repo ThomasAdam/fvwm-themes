@@ -20,6 +20,9 @@
 	* doc/functions-appbind-extra:
 	example component
 
+	* themes/olicha/modules/main:
+	fixed module menu entries for normal icons
+
 2002-12-05  olicha  <olivier.chapuis@free.fr>
 
 	* themes/minimal/modules/main:

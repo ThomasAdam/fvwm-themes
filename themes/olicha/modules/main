@@ -7,8 +7,8 @@
 # ----------------------------------------------------------------------------
 # Icon related configuration
 
-Style "*" IconBox screen w 10 10 -200 -10, IconGrid 64 10, IconFill left bottom
-Style "*"       SlipperyIcon, IconTitle
+Style "*" IconBox screen w 10 10 -200 -10, IconGrid 74 10, IconFill left bottom
+Style "*" SlipperyIcon, IconTitle
 
 # ----------------------------------------------------------------------------
 # Switch functions
@@ -59,8 +59,8 @@ AddToFunc   FuncFvwmStopThemeModules
 + I DestroyFunc FuncFvwmIconManPage
 + I DestroyFunc FuncFvwmIconBoxDesk
 + I DestroyFunc FuncFvwmIconBoxGlobal
-+ I DestroyFunc FuncFvwmSlipperyIcons
-+ I DestroyFunc FuncFvwmAddSlipperyIcons
++ I DestroyFunc FuncFvwmUseNormalIcons
++ I DestroyFunc FuncFvwmAddNormalIcons
 + I DestroyFunc FuncFvwmChangeWinMan
 + I DestroyFunc FuncFvwmMyPopupPanel
 + I DestroyFunc FuncFvwmStopWMakerButtons
@@ -111,8 +111,8 @@ AddToMenu   MenuFvwmStartAppsManagerModules "Apps Manager" Title
 + "%menu/item.xpm%Desk IconBox"	FuncFvwmChangeWinMan FuncFvwmIconBoxDesk
 + "%menu/item.xpm%Global IconBox"	FuncFvwmChangeWinMan FuncFvwmIconBoxGlobal
 + "" Nop
-+ "%menu/item.xpm%Only Normal Icons" 	FuncFvwmChangeWinMan FuncFvwmSlipperyIcons
-+ "%menu/item.xpm%Add Normal Icons"	FuncFvwmAddSlipperyIcons
++ "%menu/item.xpm%Only Normal Icons" 	FuncFvwmChangeWinMan FuncFvwmUseNormalIcons
++ "%menu/item.xpm%Add Normal Icons"	FuncFvwmAddNormalIcons
 
 DestroyMenu MenuFvwmStopThemeModules
 AddToMenu   MenuFvwmStopThemeModules "OliCha Modules" Title
@@ -132,80 +132,78 @@ AddToMenu   MenuFvwmStopThemeModules "OliCha Modules" Title
 
 DestroyFunc FuncFvwmWinListDesk
 AddToFunc   FuncFvwmWinListDesk
-+ "I" *FvwmWinList: ShowCurrentDesk
-+ "I" Module FvwmWinList
++ I *FvwmWinList: ShowCurrentDesk
++ I Module FvwmWinList
 
 DestroyFunc FuncFvwmWinListGlobal
 AddToFunc   FuncFvwmWinListGlobal
-+ "I" DestroyModuleConfig FvwmWinList: ShowCurrent*
-+ "I" Module FvwmWinList
++ I DestroyModuleConfig FvwmWinList: ShowCurrent*
++ I Module FvwmWinList
 
 DestroyFunc FuncFvwmTaskBarDesk
 AddToFunc   FuncFvwmTaskBarDesk
-+ "I" *FvwmTaskBar: DeskOnly
-+ "I" Module FvwmTaskBar
++ I *FvwmTaskBar: DeskOnly
++ I Module FvwmTaskBar
 
 DestroyFunc FuncFvwmTaskBarGlobal
 AddToFunc   FuncFvwmTaskBarGlobal
-+ "I" DestroyModuleConfig FvwmTaskBar: Desk* 
-+ "I" Module FvwmTaskBar
++ I DestroyModuleConfig FvwmTaskBar: Desk* 
++ I Module FvwmTaskBar
 
 DestroyFunc FuncFvwmIconManGlobal
 AddToFunc   FuncFvwmIconManGlobal 
-+ "I" *FvwmIconMan: Resolution global
-+ "I" *FvwmIconMan: title "Global IconMan"
-+ "I" Module FvwmIconMan
++ I *FvwmIconMan: Resolution global
++ I *FvwmIconMan: title "Global IconMan"
++ I Module FvwmIconMan
 
 DestroyFunc FuncFvwmIconManDesk
 AddToFunc   FuncFvwmIconManDesk
-+ "I" *FvwmIconMan: Resolution desk
-+ "I" *FvwmIconMan: title "Desk IconMan"
-+ "I" Module FvwmIconMan
++ I *FvwmIconMan: Resolution desk
++ I *FvwmIconMan: title "Desk IconMan"
++ I Module FvwmIconMan
 
 DestroyFunc FuncFvwmIconManPage
 AddToFunc   FuncFvwmIconManPage
-+ "I" *FvwmIconMan: Resolution page
-+ "I" *FvwmIconMan: title "Page IconMan"
-+ "I" Module FvwmIconMan
++ I *FvwmIconMan: Resolution page
++ I *FvwmIconMan: title "Page IconMan"
++ I Module FvwmIconMan
 
 DestroyFunc FuncFvwmIconBoxDesk
 AddToFunc   FuncFvwmIconBoxDesk
-+ "I" *FvwmIconBox: Resolution Desk
-+ "I" Module FvwmIconBox
++ I *FvwmIconBox: Resolution Desk
++ I Module FvwmIconBox
 
 DestroyFunc FuncFvwmIconBoxGlobal
 AddToFunc   FuncFvwmIconBoxGlobal
-+ "I" DestroyModuleConfig FvwmIconBox: Resolution
-+ "I" Module FvwmIconBox
++ I DestroyModuleConfig FvwmIconBox: Resolution
++ I Module FvwmIconBox
 
-DestroyFunc FuncFvwmSlipperyIcons
-AddToFunc   FuncFvwmSlipperyIcons
-+ "I" Style "*" IconBox 10 -10 -250 300, IconGrid 64 64, IconFill left top
-+ "I" Style * Icon, SlipperyIcon 
-+ "I" Read options/current/iconstyles
-+ "I" Style "FvwmButtons-Fvwm*Applets" NoIcon
-+ "I" Style "FvwmButtons-WMaker*Applets" NoIcon
-+ "I" All (Iconic) RecaptureWindow
+DestroyFunc FuncFvwmUseNormalIcons
+AddToFunc   FuncFvwmUseNormalIcons
++ I FuncFvwmChangeWinMan Nop
++ I Style "*" IconBox 10 -10 -250 -10, IconGrid 74 10, IconFill left bottom
++ I Read themes/default/settings/iconstyles/style-icon-miniicon
++ I Style "FvwmButtons-Fvwm*Applets" NoIcon
++ I Style "FvwmButtons-WMaker*Applets" NoIcon
++ I All (Iconic) RecaptureWindow
 
 #add:
-DestroyFunc FuncFvwmAddSlipperyIcons
-AddToFunc   FuncFvwmAddSlipperyIcons
-+ "I" Style "*" NoIcon
-+ "I" Style "*"	IconBox 90 5 -70 350, IconGrid 64 64, IconFill left top
-+ "I" Style "*" Icon, SlipperyIcon 
-+ "I" Read themes/default/settings/iconstyles/styles-icon-miniicon
-+ "I" Style "FvwmButtons-Fvwm*Applets" NoIcon
-+ "I" Style "FvwmButtons-WMaker*Applets" NoIcon
-+ "I" All (Iconic) RecaptureWindow
+DestroyFunc FuncFvwmAddNormalIcons
+AddToFunc   FuncFvwmAddNormalIcons
++ I Style "*" IconBox 90 5 -70 350, IconGrid 74 10, IconFill left top
++ I Read themes/default/settings/iconstyles/style-icon-miniicon
++ I Style "FvwmButtons-Fvwm*Applets" NoIcon
++ I Style "FvwmButtons-WMaker*Applets" NoIcon
++ I All (Iconic) RecaptureWindow
 
 DestroyFunc FuncFvwmChangeWinMan
 AddToFunc   FuncFvwmChangeWinMan
-+ "I" Style * NoIcon
-+ "I" FuncFvwmStopModule FvwmTaskBar
-+ "I" FuncFvwmStopModule FvwmWinList
-+ "I" FuncFvwmStopModule FvwmIconMan
-+ "I" FuncFvwmStopModule FvwmIconBox
-+ "I" $0
++ I Style * NoIcon
++ I FuncFvwmStopModule FvwmTaskBar
++ I FuncFvwmStopModule FvwmWinList
++ I FuncFvwmStopModule FvwmIconMan
++ I FuncFvwmStopModule FvwmIconBox
++ I $0
 
 # ----------------------------------------------------------------------------
 # WMakerButtons XappletsButtons functions:
@@ -213,8 +211,8 @@ AddToFunc   FuncFvwmChangeWinMan
 # Function to start/popup Panels:
 DestroyFunc FuncFvwmMyPopupPanel
 AddToFunc   FuncFvwmMyPopupPanel
-+ "I" All  ($0 CirculateHit) Iconify
-+ "I" None ($0 CirculateHit) FvwmButtons -g +$1+$2 $0
++ I All  ($0 CirculateHit) Iconify
++ I None ($0 CirculateHit) FvwmButtons -g +$1+$2 $0
 
 # Function to stop WMakerButtons & XappletsButtons:
 DestroyFunc FuncFvwmStopWMakerButtons
