@@ -1884,10 +1884,6 @@ AddToFunc   FuncFvwmThemesConfigAndUpdate
 + I PipeRead `@$scriptFile@ $0 --pipe`
 + I FuncFvwmResetInitFunctions
 + I FuncFvwmStopAllHooks
-# now the 3 next function are in StopAllHooks
-#+ I FuncFvwmRemoveBindings
-#+ I FuncFvwmRemoveButtonsBindings
-#+ I FuncFvwmRemoveAllButtons
 #+ I FuncFvwmRestartFvwmTheme
 #+ I DestroyModuleConfig FvwmTheme: *
 + I Read @$rcFile2@
@@ -1935,7 +1931,7 @@ DestroyFunc FuncFvwmMinimalThemesConfigAndUpdate
 AddToFunc   FuncFvwmMinimalThemesConfigAndUpdate
 + I FvwmScript FvwmScript-NoteMessage "Minimal theme switching"
 + I Wait FvwmScript-NoteMessage
-# The stop function are *executed* in the begining of themes-rc-3
+# The stop function is executed in the begining of themes-rc-3
 + I PipeRead `@$scriptFile@ $0 --pipe`
 + I Read @$rcFile3@
 + I FuncFvwmStartAllHooks

@@ -1,3 +1,8 @@
+2001-05-10  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	small rc comment clean up
+
 2001-05-02  migo  <migo@homemail.com>
 
 	* themes/multichoice/buttons.cfg:
