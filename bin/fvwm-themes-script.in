@@ -19,7 +19,7 @@
 #     Copyright 2000, Olivier Chapuis
 #-----------------------------------------------------------------------------
 
-use strict;
+#use strict;
 use Getopt::Long;
 
 my $version = '@VERSION@';
@@ -1613,8 +1613,20 @@ sub parse_bindings_Config {
 	
 	my $keysBindings = $config->{'Key'};
 	foreach $b (@$keysBindings) {
-		$configForScript .= $b->{'key'};
-		my $l = length($b->{'key'});
+		my $l = 0;
+		$configForScript->{KeyBindings} .= $b->{'key'};
+		$l = length($b->{'key'});
+		$l = 7-$l;
+		$configForScript->{KeyBindings} .= " " x $l;
+		$configForScript->{KeyBindings} .= $b->{'context'};
+		$l = length($b->{'context'});
+		$l = 7-$l;
+		$configForScript->{KeyBindings} .= " " x $l;
+		$configForScript->{KeyBindings} .= $b->{'modifier'};
+		$l = length($b->{'modifier'});
+		$l = 7-$l;
+		$configForScript->{KeyBindings} .= " " x $l;
+		$configForScript->{KeyBindings} .= "$b->{'action'}|";
 	}
 }
 
