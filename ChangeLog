@@ -1,3 +1,10 @@
+2002-09-07  migo  <migo@homemail.com>
+
+	* configure.in:
+	* rpm/fvwm-themes-base.spec.in:
+	* rpm/fvwm-themes.spec.in:
+	use @REQUIRED_PERL_VERSION@
+
 2002-09-04  migo  <migo@homemail.com>
 
 	* debian/*:

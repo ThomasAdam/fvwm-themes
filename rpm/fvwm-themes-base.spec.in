@@ -22,7 +22,7 @@ Packager:  FVWM Themes Developers <fvwm-themes-devel@lists.sourceforge.net>
 Autoreq:   1
 
 Requires:  fvwm >= @REQUIRED_FVWM_VERSION@
-Requires:  perl >= 5.004
+Requires:  perl >= @REQUIRED_PERL_VERSION@
 Requires:  m4
 
 Provides:  fvwm-themes
