@@ -143,7 +143,7 @@ DestroyModuleConfig FvwmFormDefaultItemColorset*
 *FvwmTheme: Colorset 35 fg white, bg rgb:00/30/00, Plain, NoShape
 
 # Not in one of the above category (for Script and Form, ft-xres)
-*FvwmTheme: Colorset 36 fg white, bg DarkGreen, Plain, NoShape
+*FvwmTheme: Colorset 36 fg black, bg rgb:a0/9e/80, Plain, NoShape
 
 DestroyModuleConfig FvwmScriptDefaultColorset*
 *FvwmScript: DefaultColorset 36

@@ -11,6 +11,8 @@
 	* bin/fvwm-themes-config.in:
 	added an error msg when loading [all] and all components are locked
 
+	* themes/migo/colors: replaced Colorset 36
+
 2000-09-11  migo  <migo@homemail.com>
 
 	* scripts/FvwmScript-ThemesCenter:
