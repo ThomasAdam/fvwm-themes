@@ -1,3 +1,30 @@
+2000-09-03  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-config.in:
+	Small fix for options used together with choices.
+	GUI should be enhanced to support this case (O/C).
+	One time there will be 'scalar's for arbitrary numbers/strings/colors.
+
+	* themes/multichoice/theme.cfg:
+	* themes/multichoice/cursors/from-*:
+	* themes/multichoice/cursors/color/black-white:
+	* themes/multichoice/cursors/color/default:
+	* themes/multichoice/cursors/color/yellow-black:
+	Added "cursor colors" option in cursors@multichoice, option+choice.
+
+	* themes/multichoice/theme.cfg:
+	* themes/multichoice/cursors/pixmap1:
+	* themes/multichoice/cursors/images/pixmap1/move.xpm:
+	* themes/multichoice/cursors/images/pixmap1/resize_bl.xpm:
+	* themes/multichoice/cursors/images/pixmap1/resize_br.xpm:
+	* themes/multichoice/cursors/images/pixmap1/resize_h.xpm:
+	* themes/multichoice/cursors/images/pixmap1/resize_v.xpm:
+	* themes/multichoice/cursors/images/pixmap1/top_left_arrow.xpm:
+	* themes/multichoice/cursors/images/pixmap1/x_cross.xpm:
+	Added pixmap1 choice and some cursor pixmaps (from E Aqua theme).
+	We can think about an automatic way to create .xpm cursors from .xbm
+	and .xbm.mask (using combine? I didn't succeed). Not urgent at all.
+
 2000-09-02  migo  <migo@homemail.com>
 
 	* themes/default/menus:

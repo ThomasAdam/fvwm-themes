@@ -1280,8 +1280,12 @@ sub getMenusAndHooksAndReadsRc ($) {
 			my $optionEntry = $options->[$o];
 			my $command = $optionEntry->{'read-command'} || $defaultReadCommand;
 			my $optionFile = $optionEntry->{'file'};
-			$optionFile = ($readFile =~ /^(.*\/)$mainDirFile$/?
+
+			$optionFile = ((ref($cc->{'choice'}) eq 'ARRAY'
+				&& $readFile =~ /^(.*\/)[^\/]+$/
+				|| $readFile =~ /^(.*\/)$mainDirFile$/)?
 				$1: "${readFile}:") . $optionFile;
+
 			my $index = $optionEntry->{'current'} - 1;
 			my $valueFile = $optionEntry->{'value'}->[$index]->{'file'};
 			$valueFile = $optionFile . (-d $optionFile? "/": "=")

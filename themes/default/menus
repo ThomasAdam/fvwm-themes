@@ -168,8 +168,8 @@ AddToMenu   MenuFvwmConfiguration "Fvwm Configuration" Title
 + "Control &Animation"	Popup MenuFvwmAnimate
 + "&X Configuration"	Popup MenuFvwmXConfiguration
 + "" Nop
-+ "Restore Theme &Cursors"	Read themes/current/cursors
 + "Restore Theme &Background"	FuncFvwmStartThemeBackground
++ "Restore Theme &Cursors"	Read themes/current/cursors
 
 DestroyMenu MenuFvwmXConfiguration
 AddToMenu   MenuFvwmXConfiguration "X Configuration" Title
@@ -349,7 +349,7 @@ AddToMenu   MenuFvwmWindowUtility "Window Utility" Title
 + "%menu/utility.xpm%&Print"              Pick FuncFvwmWindowPrint
 + "%menu/utility.xpm%Print &Reverse"      Pick FuncFvwmWindowPrintReverse
 + "" Nop
-+ "%menu/utility.xpm%Create &Screenshot"  Pick FuncFvwmWindowCreateScreenshot
-+ "%menu/utility.xpm%&Desktop Screenshot" Pick FuncFvwmDesktopCreateScreenshot
++ "%menu/window.xpm%Create &Screenshot"   Pick FuncFvwmWindowCreateScreenshot
++ "%menu/desktop.xpm%&Desktop Screenshot" Pick FuncFvwmDesktopCreateScreenshot
 + "" Nop
 + "%menu/window-resize.xpm%Scroll&Bar"    Pick Module FvwmScroll 2 2
