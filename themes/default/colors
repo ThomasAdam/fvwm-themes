@@ -29,7 +29,7 @@
 
 # for feedback windows (like geometry window and NoteMessage) and FvwmScroll
 #
-Colorset 0 fg black, bg #70A0A0
+Colorset 0 fg black, bg rgb:70/a0/a0
 
 # -----------------------
 # I.2. Window Decorations
@@ -42,13 +42,16 @@ Colorset 0 fg black, bg #70A0A0
 
 # window title, inactive and active
 #
-Colorset 1 fg black, bg rgb:88/7C/66, Plain, NoShape
-Colorset 2 fg black, bg rgb:CC/BA/99, Plain, NoShape
+
+Colorset 1 VGradient 100 2 rgb:88/7b/66 1 rgb:66/5c/4c 1 rgb:88/7b/66, \
+	bg average, fg gray80, fgAlpha 85, NoShape
+Colorset 2 VGradient 100 2 rgb:cc/b8/9a 1 rgb:99/8a/7b 1 rgb:cc/b8/9a, \
+	bg average, fg white, NoShape
 
 # window borders, inactive and active
 #
-Colorset 3 fg black, bg rgb:88/7C/66, Plain, NoShape
-Colorset 4 fg black, bg rgb:CC/BA/99, Plain, NoShape
+Colorset 3 fg black, bg rgb:88/7b/66, Plain, NoShape
+Colorset 4 fg black, bg rgb:cc/B8/9a, Plain, NoShape
 
 # background for window title, buttons and border
 #
@@ -65,15 +68,15 @@ AddToFunc   FuncFvwmDecorBackground
 
 # inactive menu item fg+bg and menu face if any
 #
-Colorset 5 fg black, bg rgb:80/98/B0, Plain, NoShape
+Colorset 5 fg white, HGradient 40 rgb:51/6c/90 rgb:3f/54/70, bg average, NoShape
 
 # active menu item fg+bg
 #
-Colorset 6 fg black, bg rgb:90/A9/C2, Plain, NoShape
+Colorset 6 fg white, bg rgb:63/84/b0, Plain, NoShape
 
 # greyed menu item fg
 #
-Colorset 7 fg grey48, bg grey48, Plain, NoShape
+Colorset 7 fg grey45, bg grey45, Plain, NoShape
 
 # -------------------------------------------------
 # Colorsets 8 and 9 are reserved for the future use.

@@ -1,20 +1,21 @@
-FuncFvwmSetFont-WindowTitle * -*-helvetica-bold-r-normal-*-12-*
-FuncFvwmSetFont-IconTitle   * -*-fixed-medium-r-semicondensed-*-13-*
+FuncFvwmSetFont-WindowTitle * 'shadow=1 r br b:xft:Verdana:pixelsize=14:minspace=true:-adobe-helvetica-medium-r-*-*-14-*-*-*-*-*-*-*'
+FuncFvwmSetFont-IconTitle   * 'shadow=1 r br b:xft:Verdana:pixelsize=12:minspace=true:-adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*'
 
 Style "*"	BorderWidth 5, HandleWidth 6
 Style "*"	FvwmBorder, FirmBorder
 
 BorderStyle	Simple
 
-TitleStyle	LeftJustified
+TitleStyle	Centered
 TitleStyle	-- Raised
 
 ButtonStyle	All -- Raised
 
 AddToFunc   FuncFvwmReloadDecor
-+ I FuncFvwmSetFont-WindowTitle * -*-helvetica-bold-r-normal-*-12-*
-+ I FuncFvwmSetFont-IconTitle   * -*-fixed-medium-r-semicondensed-*-13-*
++ I FuncFvwmSetFont-WindowTitle * 'shadow=1 r br b:xft:Verdana:pixelsize=14:minspace=true:-adobe-helvetica-medium-r-*-*-14-*-*-*-*-*-*-*'
++ I FuncFvwmSetFont-IconTitle   * 'shadow=1 r br b:xft:Verdana:pixelsize=12:minspace=true:-adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*'
 + I BorderStyle	Simple
++ I TitleStyle	Centered
 + I TitleStyle	-- Raised
 + I ButtonStyle	All -- Raised
 + I FuncFvwmOverRideWindowLook

@@ -1,3 +1,16 @@
+2003-06-21  migo  <migo@homemail.com>
+
+	* themes/default/bindings:
+	use new function FuncFvwmWindowList instead of WindowList
+
+	* themes/default/settings/automenus/headlines/enabled:
+	fix fvwm-menu-headlines command line
+
+	* themes/default/colors:
+	* themes/default/menustyle:
+	* themes/default/windowlook:
+	improve the default theme look
+
 2003-12-11  migo  <migo@homemail.com>
 
 	* NEWS:
