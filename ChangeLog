@@ -12,6 +12,8 @@
 	* locale/ru/Makefile.am:
 	translated ColorSelector to 'ru', this does not work because of fonts
 
+	Please don't work on .txt, they will be replaced soon when I have time.
+
 2000-11-28  olicha  <olivier.chapuis@free.fr>
 
 	* locale/{en,fr}/Makefile.am:
