@@ -219,8 +219,9 @@ AddToMenu   MenuFvwmScience "Science" Title
 
 DestroyMenu MenuFvwmEditors
 AddToMenu   MenuFvwmEditors "Editors" Title
-+ "Emacs%menu/editor.xpm%"		Exec exec emacs
-+ "Xemacs%menu/editor.xpm%"		Exec exec xemacs
++ "Emacs%menu/gnu.xpm%"			Exec exec emacs
++ "Xemacs%menu/gnu.xpm%"		Exec exec xemacs
+" "gnuclient%menu/gnu.xpm%"		Exec exec gnuclient
 + "VI%menu/editor.xpm%"			FuncFvwmRunInXterm "VI" "vi"
 + "Gvim%menu/editor.xpm%"		Exec exec gvim
 + "NEdit%menu/editor.xpm%"		Exec exec nedit

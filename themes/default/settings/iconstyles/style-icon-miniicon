@@ -50,7 +50,7 @@ Style "Dialogue"               Icon norm/www.xpm,              MiniIcon mini/www
 Style "Display"                Icon norm/image-viewer.xpm,     MiniIcon mini/image-viewer.xpm
 Style "dosemu*"                Icon norm/todo.xpm,             MiniIcon mini/todo.xpm
 Style "Image Viewer*"          Icon norm/image-viewer.xpm,     MiniIcon mini/image-viewer.xpm
-Style "emacs"                  Icon norm/editor.xpm,           MiniIcon mini/editor.xpm
+Style "emacs"                  Icon norm/gnu.xpm,              MiniIcon mini/gnu.xpm
 Style "Explorer"               Icon norm/file-manager.xpm,     MiniIcon mini/file-manager.xpm
 Style "fr"                     Icon norm/file-manager.xpm,     MiniIcon mini/file-manager.xpm
 Style "freeamp"                Icon norm/music.xpm,            MiniIcon mini/music.xpm
