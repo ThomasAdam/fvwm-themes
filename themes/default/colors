@@ -2,7 +2,7 @@
 
 # ----------------------------------------------------------------------------
 #
-# I.   Fvwm Colorsets (0 to 9)
+# I.   FVWM Colorsets (0 to 9)
 #	I.1. Default Colorsets
 #	I.2. Window Decorations
 #	I.3. Menu Colorsets
@@ -20,7 +20,7 @@
 # ============================================================================
 
 # ----------------------------------------------------------------------------
-# I. Fvwm Colorsets
+# I. FVWM Colorsets
 # ============================================================================
 
 # ----------------------
@@ -96,8 +96,8 @@ MenuStyle * MenuColorset 5, ActiveColorset 6, GreyedColorset 7
 # This should be determined, needed or not, as soon as possible.
 MenuStyle * ActiveFore, HilightBack
 
-# -----------------------------------------------
-# Colorsets 8 and 9 are reserved for a future use.
+# -------------------------------------------------
+# Colorsets 8 and 9 are reserved for the future use.
 
 # ----------------------------------------------------------------------------
 # II. Module Colorsets
@@ -185,8 +185,8 @@ DestroyModuleConfig FvwmIdent: *
 # ----------------------------
 # reserved for modules@: 24-25
 
-# --------------------------------
-# reserved for a future use: 26-28
+# ----------------------------------
+# reserved for the future use: 26-28
 
 # temporary colorset: 29, has no static definition, used dynamically
 
@@ -231,8 +231,8 @@ DestroyModuleConfig FvwmScript: DefaultColorset*
 DestroyModuleConfig FvwmFormDefault: Colorset*
 *FvwmFormDefault: Colorset 36
 
-# ------------------------------------------------
-# Colorsets 37 to 39 are reserved for a future use.
+# --------------------------------------------------
+# Colorsets 37 to 39 are reserved for the future use.
 
 # ----------------------------------------------------------------------------
 # IV. Start/Stop Functions:
