@@ -8,57 +8,57 @@ colors-extra@ component) if he ever needs any additional colorsets.
 
 Colorset N |          Meaning           |           Usage Examples
 -----------+----------------------------+-------------------------------------
-	 0 | default			| feedback windows
-	 1 | inactive window		| window/icon titles, windows in Pager
-	 2 | active window		| window/icon titles, windows in Pager
-	 3 | inactive borders		| window borders (may copy 1)
-	 4 | active borders		| window borders (may copy 2)
-	 5 | inactive menu item		| menus (may have pixmap or gradient)
-	 6 | active menu item		| menus (only bg/fg used)
-	 7 | greyed menu item		| menus (only fg used)
-	 8 | reserved			| for the fvwm-themes future use
-	 9 | reserved			| for the fvwm-themes future use
-	10 | modules, default		| Button Bar, Pager, other modules
-	11 | modules, default hilight	| Button Bar
-	12 | modules, special		| gradient for IconMan/IconBox
-	13 | 
-	14 | 
-	15 | 
-	16 | 
-	17 | 
-	18 | 
-	19 | 
-	20 | 
-	21 | 
-	22 | 
-	23 | 
-	24 | 
-	25 | 
-	26 | 
-	27 | 
-	28 | 
-	29 | 
-	30 | 
-	31 | 
-	32 | 
-	33 | 
-	34 | 
-	35 | 
-	36 | 
-	37 | 
-	38 | 
-	39 | 
+         0 | default                    | feedback windows
+         1 | inactive window            | window/icon titles, windows in Pager
+         2 | active window              | window/icon titles, windows in Pager
+         3 | inactive borders           | window borders (may copy 1)
+         4 | active borders             | window borders (may copy 2)
+         5 | inactive menu item         | menus (may have pixmap or gradient)
+         6 | active menu item           | menus (only bg/fg used)
+         7 | greyed menu item           | menus (only fg used)
+         8 | reserved                   | for the fvwm-themes future use
+         9 | reserved                   | for the fvwm-themes future use
+        10 | modules, default           | Button Bar, Pager, other modules
+        11 | modules, default hilight   | Button Bar
+        12 | modules, special           | gradient for IconMan/IconBox
+        13 | modules, swallowed apps    | bg, fg, sh, hi for xclock/xload etc.
+        14 | modules, default #2        | alternative for Pager, Button Bar
+        15 | modules, default hilight #2| alternative for Pager
+        16 | modules, balloons          | TaskBar, Pager
+        17 | modules, winlist, standard | item of IconMan, WinList, TaskBar
+        18 | modules, winlist, active   | --.--
+        19 | modules, winlist, iconified| --.--
+        20 | modules, winlist, pointed  | --.--
+        21 | modules, ident             | FvwmIdent
+        22 | modules, console           | FvwmConsole
+        23 | modules, transparent       | Button Bar
+        24 | modules, reserved          | for the fvwm-themes future use
+        25 | modules, reserved          | for the fvwm-themes future use
+        26 | reserved                   | for the fvwm-themes future use
+        27 | reserved                   | for the fvwm-themes future use
+        28 | reserved                   | for the fvwm-themes future use
+        29 | dynamical/temporary        | tools for choosing/previewing color
+        30 | regular terminal           | xterm/rxvt or any other terminal
+        31 | admin terminal             | terminal for root (su)
+        32 | remote terminal            | terminal with ssh/rsh/telnet
+        33 | viewer terminal            | man, less, tail -f
+        34 | dialog text area           | Script, Form, xmessage
+        35 | console application        | top, editor
+        36 | dialog main                | Script, Form, xmessage
+        37 | reserved                   | for the fvwm-themes future use
+        38 | reserved                   | for the fvwm-themes future use
+        39 | reserved                   | for the fvwm-themes future use
 
 # ----------------------------------------------------------------------------
 #
 # I.   FVWM Colorsets (0 to 9)
-#	I.1. Default Colorsets
-#	I.2. Window Decorations
-#	I.3. Menu Colorsets
+#       I.1. Default Colorsets
+#       I.2. Window Decorations
+#       I.3. Menu Colorsets
 #
 # II.  Module Colorsets (10 to 29)
-#	II.1. Common Colorsets
-#	II.2. Window List Module Colorsets
+#       II.1. Common Colorsets
+#       II.2. Window List Module Colorsets
 #       II.3. Other Modules
 #       II.4. External Colorsets
 #
@@ -355,4 +355,5 @@ AddToFunc   FuncFvwmStopColors
 # Exec exec xterm -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
 # Exec exec xterm -fg $[fg.cs32] -bg $[bg.cs32] -T "Remote" -e rsh tiger
 # Exec exec xterm -fg $[fg.cs33] -bg $[bg.cs33] -T "File Viewer" -e less "$0"
-# FvwmScript FvwmScript-ColorSelector --text-colorset 34 --viewer-colorset 33
+# FvwmScript FvwmScript-ThemesCenter --text-colorset 34 --viewer-colorset 33
+# FvwmScript FvwmScript-IconBrowser --text-colorset 34 --icon-colorset 10

@@ -12,6 +12,9 @@
 	Currently this is done to one colors@migo, I think this is a good
 	thing to do, I am waiting for objections, and will finish this soon.
 
+	* doc/colorsets:
+	finished colorset description
+
 2001-07-23  olicha  <olivier.chapuis@free.fr>
 
 	* scripts/Makefile.am:
