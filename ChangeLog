@@ -29,6 +29,9 @@
 	* NEWS:
 	added new setting: Auto Menus / Headlines
 
+	* themes/migo/modules/README:
+	deleted
+
 2002-06-02  olicha  <olivier.chapuis@free.fr>
 
 	* themes/default/settings.cfg: 
