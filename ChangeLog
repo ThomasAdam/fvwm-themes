@@ -1,7 +1,10 @@
 2002-01-11  migo  <migo@homemail.com>
 
 	* configure.in:
-	require fvwm-2.5.6
+	require at least fvwm-2.5.6 and autoconf-2.50
+
+	* acinclude.m4:
+	converted from autoconf-2.13 only to autoconf-2.50+ only
 
 2002-01-09  migo  <migo@homemail.com>
 
