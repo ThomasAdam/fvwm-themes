@@ -152,7 +152,7 @@ AddToMenu   MenuFvwmPrograms "   Programs   " Title
 
 DestroyMenu MenuFvwmCDE
 AddToMenu   MenuFvwmCDE
-+ "&Applications Manager%menu/program.xpm%" Exec exec /usr/dt/bin/dtaction Dtappmgr
++ "&Application Manager%menu/programs.xpm%" Exec exec /usr/dt/bin/dtaction Dtappmgr
 + "&Terminal%menu/terminal.xpm%"	Exec exec /usr/dt/bin/dtterm
 + "&File Manager%menu/file-manager.xpm%" Exec exec /usr/dt/bin/dtfile
 + "&Trash Can%menu/file-manager.xpm%"	Exec exec /usr/dt/bin/dtaction Dttrash
@@ -384,14 +384,14 @@ AddToMenu   MenuFvwmGamesTetris "Tetris" Title
 
 DestroyMenu MenuFvwmGamesPenguins
 AddToMenu   MenuFvwmGamesPenguins "Ace of Penguins" Title
-## Unfortunately the name freecell clombers other card game (from GNOME)
+## Unfortunately the name freecell conflicts with other card game (from GNOME)
 ##+ "freecell%menu/game-cards.xpm%"	Exec exec freecell
 + "golf%menu/game-cards.xpm%"		Exec exec golf
 + "penguins%menu/game-cards.xpm%"	Exec exec penguins
 + "solitaire%menu/game-cards.xpm%"	Exec exec solitaire
 + "thornq%menu/game-cards.xpm%"		Exec exec thornq
 + "mastermind%menu/game.xpm%"		Exec exec mastermind
-+ "merlin%menu/game-chess.xpm%"		Exec exec merlin
++ "merlin%menu/game-board.xpm%"		Exec exec merlin
 + "minesweeper%menu/game.xpm%"		Exec exec minesweeper
 + "pegged%menu/game.xpm%"		Exec exec pegged
 + "taipei%menu/game.xpm%"		Exec exec taipei

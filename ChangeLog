@@ -14,6 +14,9 @@
 	* themes/brushedmetal/buttons:
 	added functions FuncFvwm{Set,Unset}TitleBindings in bindings@
 
+	* themes/default/menus-user:
+	corrected names of 2 menu icons
+
 2001-04-13  migo  <migo@homemail.com>
 
 	* TODO: updated
