@@ -1,3 +1,16 @@
+2000-11-15  migo  <migo@homemail.com>
+
+	* bin/fvwm-themes-script.in:
+	* scripts/FvwmScript-ColorSelector:
+	* scripts/FvwmScript-ThemesCenter:
+	minor one-char corrections;
+	I think, option names may be: --doc-domain --doc-line-size
+
+	* locale/en/FvwmScript-ThemesCenter.txt:
+	if it is a valid sgml, it could be .sgml, I think.
+	I did some rewording in some places, but not in all, no time now.
+	Please don't translate until I reword english texts fully. :)
+
 2000-11-15  olicha  <olivier.chapuis@free.fr>
 
 	* locale/en/Makefile.am:

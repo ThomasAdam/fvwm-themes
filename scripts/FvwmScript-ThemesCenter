@@ -74,10 +74,10 @@ Begin
 	Set $cmd = {echo "$LANG" | cut -c1-2}
 	Set $Lang = (GetOutput $cmd 1 -1)
     End
-    Set $locateSet = 0
+    Set $localeSet = 0
     If $Lang == {fr} Then
     Begin
-	Set $locateSet = 1
+	Set $localeSet = 1
 	ChangeTitle 1 {Outils de Configurations:}
 	ChangeTitle 2 {       Sélecteur de Thèmes        |       Configuration Générale        |        Sessions FVWM Themes     }
 	ChangeTitle 5 {Liste des Thèmes}
@@ -166,7 +166,7 @@ Begin
     End
     If $Lang == {ru} Then
     Begin
-	Set $locateSet = 1
+	Set $localeSet = 1
 	Set $SelFont = {-cronyx-times-bold-r-*-*-12-*-*-*-*-*-koi8-*}
 	Set $ShadeFont = {-cronyx-times-medium-r-*-*-12-*-*-*-*-*-koi8-*}
 	Set $FixedFont = {-cronyx-fixed-medium-r-semicondensed--*-*-*-*-*-*-koi8-*}
@@ -255,7 +255,7 @@ Begin
 	ChangeTitle 98 {ðÏÍÏÝØ}
 	ChangeTitle 99 {÷ÙÈÏÄ}
     End
-    If $locateSet == 0 Then
+    If $localeSet == 0 Then
     Begin
 	Set $Lang = {en}
 	ChangeTitle 1 {Configuration Tools:}

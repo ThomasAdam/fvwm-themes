@@ -32,7 +32,7 @@ my $currentThemeName = 'current';
 my $themesSubDir = 'themes';
 my $currentThemeSubDir = "$themesSubDir/$currentThemeName";
 my $personalDirName = 'personal';
-my $localeDir = "$datadir/fvwm/locale/";
+my $localeDir = "$datadir/fvwm/locale";
 
 my $scriptName = ($0 =~ m:([^/]+)$:, $1);
 my $dirs = "";

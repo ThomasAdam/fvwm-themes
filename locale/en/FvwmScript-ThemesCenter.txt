@@ -1,17 +1,16 @@
 <title>FVWM Themes Center Documentation
 
 <abstract>
-The Themes Center is a FvwmScript which allows you to choose your
-themes configuration, your general settings and edit your FVWM Themes
-sessions. You can start it via the Theme Management Menu (Themes Center
-GUI).
+The Themes Center is a FvwmScript sample, which allows you to manage your
+themes configuration, general settings and FVWM Themes sessions.
+You can start it via the menu "Theme Management" / "Themes Center GUI".
 </abstract>
 
 <verb>
 Contents:
             1. Themes Selector
             2. General Settings
-            3. FVWM Themes Session
+            3. FVWM Themes Sessions
             4. Miscenallous
             5. Bugs
 </verb>
@@ -68,27 +67,29 @@ Important Note: If you click on "Apply" in the Themes Selector or here
 the changes will be applied for both.
 
 
-<sec>3. FVWM Themes Session
+<sec>3. FVWM Themes Sessions
 
 FVWM Themes has its own session concept. See the fvwm-themes-start
 manual page and the FAQ for details on this. This is useful to run
-different FVWM Themes configuration. The use of the GUI seems really
-transparent for me (and there are already a mini doc in it) so I
-will not go further.
+different FVWM Themes configurations. The GUI seems really intuitive
+(there is already a mini doc in it), so we will not go further.
 
 
-However, let us give a tips. If you want to make some test without
-changing your configuration, add a session named "test" (with say
-"your" main configuration) and "Apply". Then, you can used the
-Themes Selector and the General Settings tool freely without
-modifying your main configuration. Then, you can return
-to your main configuration and if you prefer the test configuration
-you can copy it to your main configuration by using the GUI.
+However, here are some tips showing how sessions can be useful. If you
+want to make a fast test without forgetting your current configuration,
+add a session named "test" (or reuse the existing "test" session),
+and define your current (usually "main") session configuration for it.
+After defining "test" session as described, click on "Apply". Now, you
+can use the Themes Selector and the General Settings tools freely
+without modifying your main configuration. You can always return to your
+"main" session, restoring the previous configuration, or, if you prefer,
+you can update your "main" configuration from the current "test"
+configuration using the same method as described above.
 
 
 <sec>4. Miscenallous
 
-The Script as a few options, it is run as follows in the Themes Management
+The Script has a few options, it is run as follows in the Themes Management
 Menu:
 
 <verb>

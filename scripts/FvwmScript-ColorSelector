@@ -40,12 +40,12 @@ Begin
     #Set $Lang = {ru}
     # Internationalization.
     Set $DocLoaded = 0
-    Set $locateSet = 0 
+    Set $localeSet = 0 
     If $Lang == {} Then
     Begin
 	Set $cmd = {echo "$LANG" | cut -c1-2}
 	Set $Lang = (GetOutput $cmd 1 -1)
-	Set $locateSet = 1
+	Set $localeSet = 1
     End
     If $Lang == {fr} Then
     Begin
@@ -53,15 +53,15 @@ Begin
 	ChangeTitle 14 {Couleur Sélectionnée:}
 	ChangeTitle 993 {Aide}
 	ChangeTitle 994 {Annuler}
-	Set $locateSet = 1
+	Set $localeSet = 1
     End
     If $Lang == {ru} Then
     Begin
     End
-    If $locateSet == 0 Then
+    If $localeSet == 0 Then
     Begin
 	Set $Lang = {en}
-	Set $locateSet = 1
+	Set $localeSet = 1
     End
     
     Set $cmd = {echo "$FT_DATADIR"}
