@@ -2169,8 +2169,8 @@ sub comLoop {
 	my ($currentSession,$sessionList,$uptime) =  sessionInfo();
 
 	chdir($userDir) || die "No FvwmConfigHome $userDir";
-	unlink($lockFifo);
-	unlink($inFifo);
+	unlink($lockFifo) if -p "$lockFifo";
+	unlink($inFifo) if -p "$inFifo";
 	myMakeFifo($lockFifo);
 
 	while(1) {
@@ -2185,13 +2185,13 @@ sub comLoop {
 		};
 		if ($@ =~ /^cannot/) {
 			print STDERR "$comName: cannot write fifo $lockFifo\n";
-			unlink("$lockFifo");
+			unlink("$lockFifo") if -p "$lockFifo";
 			exit(1);
 		}
 		if ($@ =~ /^NoScript/) {
 			print STDERR "$comName: No more FvwmScript-ThemesCenter: exit!\n";
-			unlink("$lockFifo");
-			exit(1);
+			unlink("$lockFifo") if -p "$lockFifo";
+			exit(0);
 		}
 		if ($@ =~ /^Script/) {
 			next;
@@ -2961,7 +2961,7 @@ sub comLoop {
 			local $SIG{ALRM} = sub { die "Timeout" };
 			alarm(10);
 			# this line block until com take the answer
-			open(OUT,">$inFifo") || die "cannot write fifo $inFifo";
+			open(OUT,">$inFifo") || die "$comName: cannot write fifo $inFifo";
 			alarm(0);
 			print OUT "ok\n" . $return;
 			close(OUT);
@@ -3182,7 +3182,7 @@ sub checkScript {
 	$test = 1 if kill 0 => $comPid;
 
 	if ($test) { die "Script"; }
-	else { unlink($lockFifo);die "NoScript"; }
+	else { unlink($lockFifo) if -p "$lockFifo"; die "NoScript"; }
 }
 
 #-----------------------------------------------------------------------------
@@ -3204,8 +3204,8 @@ END {
 			$message .= "\t C lib error: $!\n";
 			$message .= "\t os error: $^E\n";
 
-			unlink($lockFifo);
-			unlink($inFifo);
+			unlink($lockFifo) if -p "$lockFifo";
+			unlink($inFifo) if -p "$inFifo";
 		  	if ($comPid) {
 				kill(9, $comPid);
 				$message .= "\t killing FvwmScript-ThemesCenter";

@@ -184,7 +184,7 @@ sub comLoop {
 		if ($@ =~ /^NoScript/) {
 			print STDERR "$comName: No more FvwmScript-Menu: exit!\n";
 			unlink("$lockFifo");
-			exit(1);
+			exit(0);
 		}
 		if ($@ =~ /^Script/) {
 			next;
@@ -1607,7 +1607,7 @@ sub getTypeForItemsList {
 
 sub wrotefilesLines {
 
-	if ($menuFiles eq "" && !$site) {
+	if (!$site) {
 		-d $persThemeDir || mkdir($persThemeDir, 0775) ||
 			die "cannot create directory $persThemeDir\n";
 	}

@@ -1083,7 +1083,7 @@ sub configCenterComLoop {
 		if ($@ =~ /^NoScript/) {
 			print STDERR "$comName: No more FvwmScript-ConfigCenter: exit!\n";
 			unlink("$lockFifo");
-			exit(1);
+			exit(0);
 		}
 		if ($@ =~ /^Script/) {
 			next;
@@ -1339,7 +1339,7 @@ sub checkScript {
 	$test = 1 if kill 0 => $comPid;
 
 	if ($test) { die "Script"; }
-	else { unlink($lockFifo);die "NoScript"; }
+	else { unlink($lockFifo) if -p "$lockFifo"; die "NoScript"; }
 }
 
 #-----------------------------------------------------------------------------
@@ -1361,8 +1361,8 @@ END {
 			$message .= "\t C lib error: $!\n";
 			$message .= "\t os error: $^E\n";
 
-			unlink($lockFifo);
-			unlink($inFifo);
+			unlink($lockFifo) if -p "$lockFifo";
+			unlink($inFifo) if -p "$lockFifo";
 		  	if ($comPid) {
 				kill(9, $comPid);
 				$message .= "\t killing FvwmScript-ConfigCenter";

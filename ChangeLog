@@ -1,3 +1,11 @@
+2001-02-21  olicha  <olivier.chapuis@free.fr>
+
+        * bin/fvwm-themes-config.in:
+	* bin/fvwm-themes-menuapp.in:
+	* bin/fvwm-themes-script.in:
+	fixed creation of personal dir in ft-menuapp
+	some comloop clean up
+	
 2001-02-20  olicha  <olivier.chapuis@free.fr>
 
 	* bin/fvwm-themes-config.in:
