@@ -19,7 +19,7 @@ AddButtonStyle 6 Pixmap button/iconify-activeup.xpm   -- flat
 #	ActiveUp   (Pixmap button/iconify-activeup.xpm   -- flat) \
 #	ActiveDown (Pixmap button/iconify-activedown.xpm -- flat) \
 #	Inactive   (Pixmap button/iconify-inactive.xpm   -- flat)
-AddButtonStyle 4 Pixmap button/maximize-activedown.xpm -- flat
+#AddButtonStyle 4 AllToggled Pixmap button/maximize-activedown.xpm -- flat
 #	ToggledActiveUp   (Pixmap button/maximize-activedown.xpm -- flat) \
 #	ToggledActiveDown (Pixmap button/maximize-activeup.xpm   -- flat) \
 #	ToggledInactive   (Pixmap button/maximize-inactive.xpm   -- flat)
@@ -72,7 +72,7 @@ AddToFunc   FuncFvwmReloadDecor
 #	ActiveUp   (Pixmap button/iconify-activeup.xpm   -- flat) \
 #	ActiveDown (Pixmap button/iconify-activedown.xpm -- flat) \
 #	Inactive   (Pixmap button/iconify-inactive.xpm   -- flat)
-+ I AddButtonStyle 4 Pixmap button/maximize-activedown.xpm -- flat
+#+ I AddButtonStyle 4 AllToggled Pixmap button/maximize-activedown.xpm -- flat
 #	ToggledActiveUp   (Pixmap button/maximize-activedown.xpm -- flat) \
 #	ToggledActiveDown (Pixmap button/maximize-activeup.xpm   -- flat) \
 #	ToggledInactive   (Pixmap button/maximize-inactive.xpm   -- flat)

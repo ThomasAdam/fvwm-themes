@@ -1766,7 +1766,7 @@ sub getAdditionalImagePath ($) {
 		errDie("external-imagepath ($dirs) in component '$_' is not ARRAY")
 			unless ref($dirs) eq 'ARRAY';
 		foreach (@$dirs) {
-			my $i = /wm-icons$/? 0: 1;  # we are wm-icons compatible
+			my $i = /wm-icons(;.*)?$/? 0: 1;  # we are wm-icons compatible
 			next if isArrayElement($imagePathDirs[$i], $_);
 			push @{$imagePathDirs[$i]}, $_;
 		}
