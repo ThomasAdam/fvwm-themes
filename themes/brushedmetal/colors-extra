@@ -1,0 +1,29 @@
+# ------------------
+# Window decorations
+
+# Text and sh/hi windows title bar colors, icons title and Pager mini-win.
+# inactive:
+*FvwmTheme: Colorset 1 fg #303030, bg #808080, Plain, NoShape
+Style "*"	Colorset 1
+# active:
+*FvwmTheme: Colorset 2 fg #000000, bg #d0d0d0, Plain, NoShape
+Style "*"	HilightColorset 2
+
+# borders of the windows inactive/active:
+*FvwmTheme: Colorset 3 fg #303030, bg #808080, Plain, NoShape
+Style "*"	BorderColorset 3
+*FvwmTheme: Colorset 4 fg #000000, bg #d0d0d0, Plain, NoShape
+Style "*"	HilightBorderColorset 4
+
+# title
+TitleStyle \
+	ActiveUp   (TiledPixmap $./images/decor/title-activeup.xpm) \
+	ActiveDown (TiledPixmap $./images/decor/title-activedown.xpm) \
+	Inactive   (TiledPixmap $./images/decor/title-inactive.xpm) \
+	ToggledActiveUp   (TiledPixmap $./images/decor/title-activeup.xpm) \
+	ToggledActiveDown (TiledPixmap $./images/decor/title-activedown.xpm) \
+	ToggledInactive   (TiledPixmap $./images/decor/title-inactive.xpm)
+
+# window button background
+#ButtonStyle	All Pixmap 16x16-general/empty.xpm
+#ButtonStyle	All -- UseTitleStyle

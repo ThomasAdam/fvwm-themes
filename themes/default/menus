@@ -46,9 +46,9 @@ AddToMenu   MenuFvwmHelp "Help" Title
 + "%menu/information.xpm%Show FVWM Version"	FuncFvwmShowVersionInfo
 + "" Nop
 + "%menu/help.xpm%Xman"      		Exec exec xman
-+ "%menu/help.xpm%Gnome Help Browser"	Exec exec gnome-help-browser
++ "%menu/help.xpm%GNOME Help Browser"	Exec exec gnome-help-browser
 + "%menu/help.xpm%KDE Help"		Exec exec kdehelp
-+ "%menu/help.xpm%KDE Help"		Exec exec khelpcenter
++ "%menu/help.xpm%KDE Help Center"	Exec exec khelpcenter
 
 DestroyMenu MenuFvwmWebPages
 AddToMenu   MenuFvwmWebPages

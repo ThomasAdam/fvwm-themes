@@ -1,3 +1,13 @@
+2001-04-12  migo  <migo@homemail.com>
+
+	* NEWS:
+	* themes/brushedmetal:
+	Added brushedmetal theme (a bit similar to nanogui) with components
+	buttons@, colors-extra@ and windowlook@.
+	Using of colors-extra@ is only temporary, I hope.
+	Currently there is no titlebar button selector; to do?
+	Images iconify* and maximize* were enlarged from 14x15 to 15x15.
+
 2001-04-08  migo  <migo@homemail.com>
 
 	* NEWS:

@@ -1,0 +1,78 @@
+Style "*" Button 1, Button 2, Button 3, Button 4, Button 6, Button 8
+Style "*" FvwmButtons  # button relief does not follow the state
+
+ButtonStyle 1 \
+	ActiveUp   (Pixmap $./images/button/options-activeup.xpm) \
+	ActiveDown (Pixmap $./images/button/options-activedown.xpm) \
+	Inactive   (Pixmap $./images/button/options-inactive.xpm)
+ButtonStyle 2 \
+	ActiveUp   (Pixmap $./images/button/close-activeup.xpm) \
+	ActiveDown (Pixmap $./images/button/close-activedown.xpm) \
+	Inactive   (Pixmap $./images/button/close-inactive.xpm)
+ButtonStyle 3 \
+	ActiveUp   (Pixmap $./images/button/titleleft-activeup.xpm) \
+	ActiveDown (Pixmap $./images/button/titleleft-activedown.xpm) \
+	Inactive   (Pixmap $./images/button/titleleft-inactive.xpm)
+ButtonStyle 4 \
+	ActiveUp   (Pixmap $./images/button/maximize-activeup.xpm) \
+	ActiveDown (Pixmap $./images/button/maximize-activedown.xpm) \
+	Inactive   (Pixmap $./images/button/maximize-inactive.xpm)
+ButtonStyle 6 \
+	ActiveUp   (Pixmap $./images/button/iconify-activeup.xpm) \
+	ActiveDown (Pixmap $./images/button/iconify-activedown.xpm) \
+	Inactive   (Pixmap $./images/button/iconify-inactive.xpm)
+ButtonStyle 8 \
+	ActiveUp   (Pixmap $./images/button/titleright-activeup.xpm) \
+	ActiveDown (Pixmap $./images/button/titleright-activedown.xpm) \
+	Inactive   (Pixmap $./images/button/titleright-inactive.xpm)
+
+ButtonStyle All - Clear
+ButtonStyle 1 - MWMDecorMenu
+ButtonStyle 4 - MWMDecorMax
+ButtonStyle 6 - MWMDecorMin
+
+TitleStyle	Height 15
+
+#     button	context	modifie	function
+Mouse 1 	1	A	FuncFvwmWindowOpsOrAction Delete
+MouseXX 2 3	1	A       Menu MenuFvwmWindowMove
+MouseXX 3 2	1	A	Menu MenuFvwmWindowGroupOps
+Mouse 0 	2	A	FuncFvwmDeleteOrDestroy
+Mouse 1 	4	A	FuncFvwmMaximize
+Mouse 2 	4	A	FuncFvwmMaximizeVertically
+Mouse 3 	4	A	FuncFvwmMaximizeHorizontally
+Mouse 0 	6	A	FuncFvwmIconify
+Mouse 0 	1	CM	FuncFvwmShowButtonInfo "Mouse 1 - Window Ops menu, or Delete on double click^nMouse 2/3 - Move menu^nMouse 3/2 - Resource Group menu"
+Mouse 0 	2	CM	FuncFvwmShowButtonInfo "Delete on click^nDestroy on double click"
+Mouse 0 	4	CM	FuncFvwmShowButtonInfo "Mouse 1 - Maximize:^n^tpartially on click^n^tfully on double click^n^tvertically on hold^nMouse 2 - Maximize vertically^nMouse 3 - Maximize horizontally"
+Mouse 0 	6	CM	FuncFvwmShowButtonInfo "Iconify"
+# simulate title bindings on two edge buttons:
+Mouse 1 	38	A	FuncFvwmMoveOrRaiseOrShade  
+Mouse 1 	38	C	FuncFvwmMoveOrRaiseLower
+MouseXX 2 3	38	A	FuncFvwmMoveOrRaiseLower
+MouseXX 3 2	38	A	Menu MenuFvwmWindowOps2
+MouseXX 3 2	38	M	Menu MenuFvwmWindowOps
+
+DestroyFunc FuncFvwmStartWindowButtons
+AddToFunc   FuncFvwmStartWindowButtons
+
+DestroyFunc FuncFvwmStopWindowButtons
+AddToFunc   FuncFvwmStopWindowButtons
++ I FuncFvwmRemoveAllButtons
++ I Mouse 1 	1	A	-
++ I Mouse 2	1	A	-
++ I Mouse 3	1	A       -
++ I Mouse 0 	2	A	-
++ I Mouse 1 	4	A	-
++ I Mouse 2 	4	A	-
++ I Mouse 3 	4	A	-
++ I Mouse 0 	6	A	-
++ I Mouse 0 	1	CM	-
++ I Mouse 0 	2	CM	-
++ I Mouse 0 	4	CM	-
++ I Mouse 0 	6	CM	-
++ I Mouse 1 	38	A	-
++ I Mouse 1 	38	C	-
++ I Mouse 2 	38	A	-
++ I Mouse 3 	38	A	-
++ I MouseXX 3 2	38	M	-
