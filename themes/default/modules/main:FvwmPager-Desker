@@ -20,10 +20,7 @@ DestroyModuleConfig FvwmPager-Desker: *
 *FvwmPager-Desker: BalloonColorset * 16
 *FvwmPager-Desker: WindowColorsets 1 2
 
-*FvwmPager-Desker: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-*FvwmPager-Desker: SmallFont 5x8
 *FvwmPager-Desker: Balloons            All
-*FvwmPager-Desker: BalloonFont -*-lucidatypewriter-medium-r-normal-sans-14-*-*-*-*-*-*-*
 *FvwmPager-Desker: BalloonYOffset      +2
 
 *FvwmPager-Desker: Label 0 Main

@@ -9,9 +9,6 @@ DestroyModuleConfig FvwmTaskBar: *
 
 *FvwmTaskBar: NoBrightFocus
 
-*FvwmTaskBar: Font -b&h-lucida-bold-r-*-*-10-*-*-*-*-*-*-*
-*FvwmTaskBar: SelFont -b&h-lucida-bold-r-*-*-10-*-*-*-*-*-*-*
-
 *FvwmTaskBar: Action Click1 FuncFvwmDeiconifyFocusAndRaise
 *FvwmTaskBar: Action Click2 Iconify
 *FvwmTaskBar: Action Click3 Popup MenuFvwmWindowOps2 Mouse c -102m

@@ -2,7 +2,6 @@ DestroyModuleConfig FvwmButtons-Pager: *
 
 *FvwmButtons-Pager: Geometry -0-117
 *FvwmButtons-Pager: Colorset 10
-*FvwmButtons-Pager: Font -schumacher-clean-medium-r-normal--6-*-*-*-*-*-*-*
 *FvwmButtons-Pager: Columns 3
 *FvwmButtons-Pager: (Size 38 4, Title " <--- ", Action 'Desk -1 0 3')
 *FvwmButtons-Pager: (Size 38 4, \

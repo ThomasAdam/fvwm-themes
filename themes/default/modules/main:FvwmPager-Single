@@ -22,10 +22,8 @@ DestroyModuleConfig FvwmPager-Single: *
 
 *FvwmPager-Single: Geometry +5000+5000
 *FvwmPager-Single: Columns 1
-*FvwmPager-Single: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-*FvwmPager-Single: SmallFont 5x8
 *FvwmPager-Single: Balloons            All
-*FvwmPager-Single: BalloonFont         -*-lucidatypewriter-medium-r-normal-sans-12-*-*-*-*-*-*-*
+
 *FvwmPager-Single: BalloonYOffset      +2
 *FvwmPager-Single: BalloonBorderWidth  1
 

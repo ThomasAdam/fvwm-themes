@@ -1,0 +1,26 @@
+FuncFvwmSetFont-ModuleWindowList "*FvwmIconMan: *font" \
+	"7x13bold"
+
+FuncFvwmSetFont-ModuleTips "*FvwmPager-Single: BalloonFont" \
+	-adobe-helvetica-medium-r-*-*-10-*-*-*-*-*-*-*
+FuncFvwmSetFont-ModuleTips "*FvwmPager-Desker: BalloonFont" \
+	lucidasanstypewriter-12
+
+FuncFvwmSetFont-ModuleSmall "*FvwmPager-Single: SmallFont" "5x8"
+FuncFvwmSetFont-ModuleSmall "*FvwmPager-Desker: SmallFont" "5x8"
+
+FuncFvwmSetFont-ModuleLabel "*FvwmPager-Single: Font" \
+	"-adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*"
+
+FuncFvwmSetFont-ModuleLabel "*FvwmPager-Desker: Font" \
+	"-adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*"
+
+FuncFvwmSetFont-ModuleLabel "*FvwmButtons-AsBar: Font" \
+	"-adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*"
+
+
+FuncFvwmSetFont-ModuleLabel "*FvwmButtons-AsPanel: Font" \
+	"-adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*"
+
+FuncFvwmSetFont-ModuleLabel "*FvwmButtons-AsAppletsPanel: Font" \
+	"-adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*"

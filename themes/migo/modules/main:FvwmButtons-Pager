@@ -1,7 +1,6 @@
 DestroyModuleConfig FvwmButtons-Pager: *
 
 *FvwmButtons-Pager: Colorset 14
-*FvwmButtons-Pager: Font -schumacher-clean-medium-r-*-*-6-*-*-*-*-*-*-*
 *FvwmButtons-Pager: Geometry 99x99
 *FvwmButtons-Pager: Columns 99
 *FvwmButtons-Pager: Frame 2

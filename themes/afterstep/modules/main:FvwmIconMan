@@ -15,7 +15,6 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: *focusbutton	up
 *FvwmIconMan: *focusandselectbutton down
 
-*FvwmIconMan: *font        7x13bold
 *FvwmIconMan: *format      "%t"
 *FvwmIconMan: *action   Mouse   1 N sendcommand "FuncFvwmDeiconifyFocusAndRaise"
 *FvwmIconMan: *action   Mouse   2 N sendcommand "Iconify"

@@ -5,7 +5,6 @@ DestroyModuleConfig FvwmButtons-AsBar: *
 *FvwmButtons-AsBar: Colorset 10
 *FvwmButtons-AsBar: Frame 1
 *FvwmButtons-AsBar: Columns 1
-*FvwmButtons-AsBar: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 #*FvwmButtons-AsBar: Geometry 12x440-5-64
 *FvwmButtons-AsBar: Geometry -5-5
 *FvwmButtons-AsBar: (1x3, Size 64 64, Colorset 12, Icon 48x48-general/netscape.xpm, \
@@ -27,7 +26,6 @@ DestroyModuleConfig FvwmButtons-AsBar: *
 
 DestroyModuleConfig FvwmButtons-AsPanel: *
 *FvwmButtons-AsPanel: Colorset 12
-*FvwmButtons-AsPanel: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmButtons-AsPanel: Geometry +5000+5000
 *FvwmButtons-AsPanel: Rows 1
 *FvwmButtons-AsPanel: Frame 1
@@ -60,7 +58,6 @@ DestroyModuleConfig FvwmButtons-AsPanel: *
 
 DestroyModuleConfig FvwmButtons-AsAppletsPanel: *
 *FvwmButtons-AsAppletsPanel: Colorset 12
-*FvwmButtons-AsAppletsPanel: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmButtons-AsAppletsPanel: Geometry +5000+5000
 *FvwmButtons-AsAppletsPanel: Rows 1
 *FvwmButtons-AsAppletsPanel: Frame 1

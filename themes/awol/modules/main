@@ -73,6 +73,5 @@ Read themes/awol/modules/main:FvwmButtons-Default
 Read themes/awol/modules/main:FvwmButtons-DaLo
 Read themes/awol/modules/main:FvwmPager
 Read themes/awol/modules/main:FvwmIconMan
-#Read themes/default/modules/main:FvwmIconBox
-#Read themes/default/modules/main:FvwmTaskBar
-#Read themes/default/modules/main:FvwmWinList
+Read themes/awol/modules/main:fonts
+

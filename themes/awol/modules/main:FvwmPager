@@ -21,8 +21,6 @@ DestroyModuleConfig FvwmPager-Single: *
 *FvwmPager-Single: WindowColorsets 1 2
 
 *FvwmPager-Single: Geometry 800x48+0-80
-#*FvwmPager-Single: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-*FvwmPager-Single: Font -b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1
 *FvwmPager-Single: DeskHilight
 *FvwmPager-Single: MiniIcons
 *FvwmPager-Single: Label -7 One more
@@ -40,7 +38,6 @@ DestroyModuleConfig FvwmPager-Single: *
 *FvwmPager-Single: Label 5 Crap
 *FvwmPager-Single: Label 6 More Crap
 *FvwmPager-Single: Label 7 Whatever
-*FvwmPager-Single: SmallFont 8x12
 *FvwmPager-Single: IconGeometry 48x48+0-100
 *FvwmPager-Single: Balloons All
 *FvwmPager-Single: BalloonYOffset -2
@@ -55,8 +52,6 @@ DestroyModuleConfig FvwmPager-Desker: *
 
 *FvwmPager-Desker: Geometry 48x500-0+0
 *FvwmPager-Desker: Columns 1
-#*FvwmPager-Desker: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-*FvwmPager-Desker: Font -b&h-lucida-medium-r-normal-sans-8-0-72-72-p-45-iso8859-1
 *FvwmPager-Desker: DeskHilight
 *FvwmPager-Desker: MiniIcons
 *FvwmPager-Desker: Label -7 One More
@@ -74,7 +69,6 @@ DestroyModuleConfig FvwmPager-Desker: *
 *FvwmPager-Desker: Label 5 Crap
 *FvwmPager-Desker: Label 6 More Crap
 *FvwmPager-Desker: Label 7 Whatever
-*FvwmPager-Desker: SmallFont 8x12
 *FvwmPager-Desker: IconGeometry 48x48+0-100
 *FvwmPager-Desker: Balloons All
 *FvwmPager-Desker: BalloonYOffset -2

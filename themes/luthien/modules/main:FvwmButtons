@@ -2,7 +2,6 @@
 # and one with Dominik's icons
 
 DestroyModuleConfig FvwmButtons-Bar: *
-*FvwmButtons-Bar: Font	5x7
 *FvwmButtons-Bar: Frame	1
 *FvwmButtons-Bar: Geometry	548x57+0-0
 *FvwmButtons-Bar: Rows	5

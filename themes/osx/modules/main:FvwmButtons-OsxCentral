@@ -6,7 +6,6 @@ DestroyModuleConfig FvwmButtons-OsxCentral: *
 *FvwmButtons-OsxCentral: Colorset 10
 *FvwmButtons-OsxCentral: Frame 1
 *FvwmButtons-OsxCentral: Rows 11
-*FvwmButtons-OsxCentral: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmButtons-OsxCentral: (2x10, Swallow  "FvwmPager-Single" "FvwmPager FvwmPager-Single * *")
 *FvwmButtons-OsxCentral: (1x5, Swallow "xbiff" `Exec exec xbiff \
 	-g +5000+5000 -bg $[bg.cs13] -fg $[fg.cs13]`)

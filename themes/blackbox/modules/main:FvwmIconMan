@@ -21,7 +21,6 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: *focusandselectcolorset 20
 
 *FvwmIconMan: *1*buttongeometry 100x14
-*FvwmIconMan: *1*font -*-lucida-bold-r-normal-*-10-*-*-*-*-*-*
 *FvwmIconMan: *1*plainbutton flat
 *FvwmIconMan: *1*titlebutton flat
 *FvwmIconMan: *1*followfocus true

@@ -7,7 +7,6 @@ DestroyModuleConfig FvwmIconBox: *
 *FvwmIconBox: Geometry 5x1+0-0
 *FvwmIconBox: Lines 5
 *FvwmIconBox: MaxIconSize 48x48
-*FvwmIconBox: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmIconBox: SortIcons    IconName
 
 *FvwmIconBox: Padding 10

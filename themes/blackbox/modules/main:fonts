@@ -1,0 +1,16 @@
+FuncFvwmSetFont-ModuleWindowList "*FvwmIconMan: *1*font" \
+	"-*-lucida-bold-r-normal-*-10-*-*-*-*-*-*"
+
+FuncFvwmSetFont-ModuleTips "*FvwmPager-Single: BalloonFont" fixed
+FuncFvwmSetFont-ModuleTips "*FvwmPager-Desker: BalloonFont" fixed
+
+FuncFvwmSetFont-ModuleSmall "*FvwmPager-Single: SmallFont" \
+	"-*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*"
+FuncFvwmSetFont-ModuleSmall "*FvwmPager-Desker: SmallFont" \
+	"-*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*"
+
+# enforce no label!
+*FvwmPager-Single: Font none
+
+FuncFvwmSetFont-ModuleSmallLabel "*FvwmPager-Desker: Font" \
+	"-*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*"

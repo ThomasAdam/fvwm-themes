@@ -10,6 +10,50 @@ DestroyFunc FuncFvwmSetFont-Menu
 AddToFunc   FuncFvwmSetFont-Menu
 + I MenuStyle "$0" Font -*-lucida-medium-r-normal-*-*-100-*-*-p-*-*-*
 
-DestroyFunc FuncFvwmSetFont-Module
-AddToFunc   FuncFvwmSetFont-Module
-#+ I $0 $1 "$2" $3
+# for FvwmIdent (called in colors ... maybe not a very good thing) 
+DestroyFunc FuncFvwmSetFont-FvwmIdent
+AddToFunc   FuncFvwmSetFont-FvwmIdent
++ I *FvwmIdent: Font -*-lucida-medium-r-normal-*-*-100-*-*-p-*-*-*
+
+#------------------------------------------------------------------------------
+# at present time the default for module theme:
+
+# default font for IconBox, IconMan, TaskBar and WinList
+DestroyFunc FuncFvwmSetFont-ModuleWindowList
+AddToFunc   FuncFvwmSetFont-ModuleWindowList
++ I $0 $1
+
+# selected font (TaskBar)
+DestroyFunc FuncFvwmSetFont-ModuleSelectedWindowList
+AddToFunc   FuncFvwmSetFont-ModuleSelectedWindowList
++ I $0 $1
+
+# if one want small font for a Window List module (e.g., luthien IconMan)
+DestroyFunc FuncFvwmSetFont-ModuleSmallWindowList
+AddToFunc   FuncFvwmSetFont-ModuleSmallWindowList
++ I $0 $1
+
+# small font (Pager mini window font)
+DestroyFunc FuncFvwmSetFont-ModuleSmall
+AddToFunc   FuncFvwmSetFont-ModuleSmall
++ I $0 $1
+
+# tips font (for TaskBar, Pager)
+DestroyFunc FuncFvwmSetFont-ModuleTips
+AddToFunc   FuncFvwmSetFont-ModuleTips
++ I $0 $1
+
+# normal "Label" font for Pager and Buttons
+DestroyFunc FuncFvwmSetFont-ModuleLabel
+AddToFunc   FuncFvwmSetFont-ModuleLabel
++ I $0 $1 $2
+
+# small "Label" for Buttons and Pager
+DestroyFunc FuncFvwmSetFont-ModuleSmallLabel
+AddToFunc   FuncFvwmSetFont-ModuleSmallLabel
++ I $0 $1 $2
+
+# big "Label" font for Buttons and Pager
+DestroyFunc FuncFvwmSetFont-ModuleBigLabel
+AddToFunc   FuncFvwmSetFont-ModuleBigLabel
++ I $0 $1 $2

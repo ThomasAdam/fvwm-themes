@@ -22,8 +22,6 @@ DestroyModuleConfig FvwmPager-Desker: *
 *FvwmPager-Desker: WindowColorsets 1 2
 
 *FvwmPager-Desker: Geometry 319x69+5000+5000
-*FvwmPager-Desker: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-*FvwmPager-Desker: SmallFont 5x8
 *FvwmPager-Desker: Balloons Pager
 
 *FvwmPager-Desker: Label 0 Fvwm

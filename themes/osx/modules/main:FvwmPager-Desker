@@ -19,12 +19,9 @@ DestroyModuleConfig FvwmPager-Desker: *
 *FvwmPager-Desker: BalloonColorset * 16
 *FvwmPager-Desker: WindowColorsets 1 2
 
-*FvwmPager-Desker: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPager-Desker: LabelsBelow
 *FvwmPager-Desker: SolidSeparator
-*FvwmPager-Desker: SmallFont 5x8
 *FvwmPager-Desker: Balloons            All
-*FvwmPager-Desker: BalloonFont         -adobe-helvetica-medium-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPager-Desker: BalloonYOffset      +2
 *FvwmPager-Desker: BalloonBorderWidth  1
 

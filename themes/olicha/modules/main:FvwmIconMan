@@ -16,8 +16,6 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: *focuscolorset	18
 *FvwmIconMan: *focusandselectcolorset 20
 
-*FvwmIconMan: *font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
-
 *FvwmIconMan: *usewinlist true
 
 *FvwmIconMan: *drawicons always

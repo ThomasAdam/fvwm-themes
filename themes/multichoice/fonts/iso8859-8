@@ -1,3 +1,6 @@
+#-----------------------------------------------------------------------------
+# General fonts
+
 DestroyFunc FuncFvwmSetFont-WindowTitle
 AddToFunc   FuncFvwmSetFont-WindowTitle
 + I Style "$0" Font "-*-*-bold-r-normal-*-14-*-*-*-*-*-iso8859-8"
@@ -10,6 +13,50 @@ DestroyFunc FuncFvwmSetFont-Menu
 AddToFunc   FuncFvwmSetFont-Menu
 + I MenuStyle "$0" Font "-*-*-medium-r-normal-*-14-*-*-*-*-*-iso8859-8"
 
-DestroyFunc FuncFvwmSetFont-Module
-AddToFunc   FuncFvwmSetFont-Module
-+ I Nop
+# for FvwmIdent (called in colors ... maybe not a very good thing) 
+DestroyFunc FuncFvwmSetFont-FvwmIdent
+AddToFunc   FuncFvwmSetFont-FvwmIdent
++ I *FvwmIdent: Font -*-*-medium-r-normal-*-10-*-*-*-*-*-iso8859-8
+
+#-----------------------------------------------------------------------------
+# Modules Theme fonts
+
+# default font for IconBox, IconMan, TaskBar and WinList
+DestroyFunc FuncFvwmSetFont-ModuleWindowList
+AddToFunc   FuncFvwmSetFont-ModuleWindowList
++ I $0 -*-*-medium-r-normal-*-14-*-*-*-*-*-iso8859-8
+
+# selected font (TaskBar)
+DestroyFunc FuncFvwmSetFont-ModuleSelectedWindowList
+AddToFunc   FuncFvwmSetFont-ModuleSelectedWindowList
++ I $0 -*-*-medium-r-normal-*-14-*-*-*-*-*-iso8859-8
+
+# if one want small font for a Window List module (e.g., luthien IconMan)
+DestroyFunc FuncFvwmSetFont-ModuleSmallWindowList
+AddToFunc   FuncFvwmSetFont-ModuleSmallWindowList
++ I $0 -*-*-medium-r-normal-*-10-*-*-*-*-*-iso8859-8
+
+# small font (Pager mini window font)
+DestroyFunc FuncFvwmSetFont-ModuleSmall
+AddToFunc   FuncFvwmSetFont-ModuleSmall
++ I $0 -*-*-medium-r-normal-*-10-*-*-*-*-*-iso8859-8
+
+# tips font (for TaskBar, Pager)
+DestroyFunc FuncFvwmSetFont-ModuleTips
+AddToFunc   FuncFvwmSetFont-ModuleTips
++ I $0 -*-*-medium-r-normal-*-10-*-*-*-*-*-iso8859-8
+
+# normal "Label" font for Pager and Buttons
+DestroyFunc FuncFvwmSetFont-ModuleLabel
+AddToFunc   FuncFvwmSetFont-ModuleLabel
++ I $0 $1 $2
+
+# small "Label" for Buttons
+DestroyFunc FuncFvwmSetFont-ModuleSmallLabel
+AddToFunc   FuncFvwmSetFont-ModuleSmallLabel
++ I $0 $1 $2
+
+# big "Label" font for Buttons
+DestroyFunc FuncFvwmSetFont-ModuleBigLabel
+AddToFunc   FuncFvwmSetFont-ModuleBigLabel
++ I $0 $1 $2

@@ -43,3 +43,4 @@ AddToMenu   MenuFvwmStopThemeModules "CDE Modules" Title
 
 Read themes/cde/modules/main:styles
 Read themes/cde/modules/main:FvwmPager
+Read themes/cde/modules/main:fonts

@@ -8,7 +8,6 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: *focuscolorset	18
 *FvwmIconMan: *focusandselectcolorset 20
 
-*FvwmIconMan: *font        7x13bold
 *FvwmIconMan: *format      "%t"
 *FvwmIconMan: *action  Mouse   1 N sendcommand "FuncFvwmDeiconifyFocusAndRaise"
 *FvwmIconMan: *action  Mouse   2 N sendcommand "Iconify"

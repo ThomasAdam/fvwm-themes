@@ -134,6 +134,7 @@ MenuStyle * ActiveFore, HilightBack
 
 DestroyModuleConfig FvwmIdent: *
 *FvwmIdent: Colorset 21
+FuncFvwmSetFont-FvwmIdent
 
 # FvwmConsole
 *FvwmTheme: Colorset 22 fg CDE_COLOR6_FG, bg CDE_COLOR6_BG, Plain, NoShape

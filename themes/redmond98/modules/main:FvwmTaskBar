@@ -12,9 +12,6 @@ DestroyModuleConfig FvwmTaskBar: *
 *FvwmTaskBar: IconColorset 19
 *FvwmTaskBar: TipsColorset 16
 
-*FvwmTaskBar: Font -adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
-*FvwmTaskBar: SelFont -adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
-*FvwmTaskBar: StatusFont fixed
 *FvwmTaskBar: Action Click1 FuncFvwmDeiconifyFocusAndRaise
 *FvwmTaskBar: Action Click2 Iconify
 *FvwmTaskBar: Action Click3 Popup MenuFvwmWindowOps2 Mouse c -102m

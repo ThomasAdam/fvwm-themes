@@ -18,7 +18,6 @@ define({X_POS11},eval(29*X_DELTA))
 
 *FvwmButtons-MenuBar: Geometry GEOMETRY
 *FvwmButtons-MenuBar: Colorset 5
-*FvwmButtons-MenuBar: Font -adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
 *FvwmButtons-MenuBar: Rows 1
 *FvwmButtons-MenuBar: Frame 0
 *FvwmButtons-MenuBar: (2x1, Left, Icon 16x16/linux.xpm, \

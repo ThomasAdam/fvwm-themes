@@ -22,10 +22,7 @@ DestroyModuleConfig FvwmPager-Single: *
 
 *FvwmPager-Single: Geometry +5000+5000
 *FvwmPager-Single: Columns 1
-*FvwmPager-Single: Font none
-*FvwmPager-Single: SmallFont 5x7
 *FvwmPager-Single: Balloons            All
-*FvwmPager-Single: BalloonFont         lucidasanstypewriter-12
 *FvwmPager-Single: BalloonYOffset      +2
 *FvwmPager-Single: BalloonBorderWidth  1
 
@@ -59,10 +56,7 @@ DestroyModuleConfig FvwmPager-Desker: *
 *FvwmPager-Desker: BalloonColorset * 16 
 
 *FvwmPager-Desker: Columns 1
-*FvwmPager-Desker: Font none
-*FvwmPager-Desker: SmallFont 5x7
 *FvwmPager-Desker: Balloons            All
-*FvwmPager-Desker: BalloonFont         lucidasanstypewriter-12
 *FvwmPager-Desker: BalloonYOffset      +2
 *FvwmPager-Desker: BalloonBorderWidth  1
 

@@ -1,3 +1,24 @@
+2001-07-05  olicha  <olivier.chapuis@free.fr>
+
+	* themes/multichoice/buttons.cfg:
+	Remove title hedges in nanoGUI
+
+	* themes/default/fonts:
+	* themes/*/modules/*:
+	* themes/*/colors:
+	* themes/multichoice/fonts/*:
+	* themes/brushedmetal/fonts:
+	Continue the fonts set stuff: modules themes. I do some choices, maybe
+	some are bad ...
+	Files in themes/multichoice/fonts/ should be edited by one which used
+	the coresponding font
+	I have edited one tone of files hope that there are not to many
+	missprint!
+
+	* themes/multichoice/fonts/admono:
+	A new fonts set based on the a_d_mono.ttf font 
+	(from fonts-ttf-west_european package)
+	
 2001-06-24  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-start.in:

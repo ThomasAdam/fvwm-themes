@@ -18,7 +18,5 @@ DestroyModuleConfig FvwmPager-Single: *
 
 *FvwmPager-Single: Geometry +5000+5000
 *FvwmPager-Single: Columns 1
-*FvwmPager-Single: Font none
-*FvwmPager-Single: SmallFont -*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*
 *FvwmPager-Single: Balloons Pager
 *FvwmPager-Single: NoSeparators

@@ -6,7 +6,6 @@
 
 DestroyModuleConfig FvwmButtons-Bar: *
 *FvwmButtons-Bar: Colorset 10
-*FvwmButtons-Bar: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 #*FvwmButtons-Bar: Geometry 127x440-5-64
 *FvwmButtons-Bar: Geometry 127x440-0-80
 *FvwmButtons-Bar: Columns 2
