@@ -1,3 +1,10 @@
+2000-10-04  migo  <migo@homemail.com>
+
+	* configure.in:
+	* NEWS:
+	increased version to 0.3.22 after setting a cvs tag version-0_3_21;
+	there probably will no actually be 0.3.22 release
+
 2000-11-03  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in (getSortedComponentsToRead):
