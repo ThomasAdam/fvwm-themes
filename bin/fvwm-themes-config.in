@@ -1409,7 +1409,7 @@ sub getOwnThemeSubMenusRc ($) {
 						my $name = escapeMenuName($values->[$i]->{'name'}, !$isCurrent);
 						my $star = $isCurrent? "": "&";
 						my $icon = $isCurrent? "choice-yes": "empty";
-						my $mark = ($isCurrent && $noIconsInMenus) ? "\t(c)" : "";
+						my $mark = ($isCurrent && $noIconsInMenus) ? "\t(+)" : "";
 						my $n = $i + 1;
 						my $menuItem = qq(+ "%menu/$icon.xpm%$star$name$mark"\tFuncFvwmThemesOption $_:$optionFile=$n\n);
 						($inline? $menusRc: $subRc2) .= $menuItem;
@@ -1450,7 +1450,7 @@ sub getOwnThemeSubMenusRc ($) {
 					my $name = escapeMenuName($variants->[$i]->{'name'}, !$isCurrent);
 					my $icon = $isCurrent? "choice-yes": "empty";
 					my $star = $isCurrent? "": "&";
-					my $mark = ($isCurrent && $noIconsInMenus) ? "\t(c)" : "";
+					my $mark = ($isCurrent && $noIconsInMenus) ? "\t(+)" : "";
 					my $n = $i + 1;
 					$menusRc .= qq(+ "%menu/$icon.xpm%$star$name$mark"\tFuncFvwmThemesVariant $_=$n\n);
 				}
