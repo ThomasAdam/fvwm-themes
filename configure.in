@@ -84,7 +84,12 @@ FVWM_VERSION=`$FVWM_CONFIG --version`
 if test "x$FVWM_VERSION" = "x"; then FVWM_VERSION=unknown; fi
 AC_SUBST(FVWM_VERSION)dnl
 
-if awk "BEGIN { exit($FVWM_VERSION >= $REQUIRED_FVWM_VERSION) }"; then
+# Hopefully this "sort" is portable (after many tries using awk and expr)
+if (echo $REQUIRED_FVWM_VERSION; echo $FVWM_VERSION) \
+| sed 's/\./ /g' | sort -n +0 +1 +2 -c 2>/dev/null; then
+	:
+	# fvwm version is ok
+else
 	AC_MSG_ERROR([
 	You have fvwm-$FVWM_VERSION, which is not up to date
 	You need at least fvwm-$REQUIRED_FVWM_VERSION])

@@ -3,6 +3,9 @@
 	* bin/fvwm-themes-start.1:
 	document --fvwm option
 
+	* configure.in:
+	rewrite fvwm version matching, so it should work on Solaris too
+
 2001-03-05  migo  <migo@homemail.com>
 
 	* forms/FvwmForm-ThemeSettings:
