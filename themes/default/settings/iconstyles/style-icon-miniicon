@@ -256,6 +256,7 @@ Style "grip"                   Icon norm/cd-player.xpm,        MiniIcon mini/cd-
 Style "gsearchtool"            Icon norm/file.xpm,             MiniIcon mini/file.xpm
 Style "gtalk"                  Icon norm/chat.xpm,             MiniIcon mini/chat.xpm
 Style "gtcd"                   Icon norm/cd-player.xpm,        MiniIcon mini/cd-player.xpm
+Style "gtk-gnutella"           Icon norm/network.xpm,          MiniIcon mini/network.xpm
 Style "gtk-shell"              Icon norm/information.xpm,      MiniIcon mini/information.xpm
 Style "gtkicq"                 Icon norm/chat.xpm,             MiniIcon mini/chat.xpm
 Style "gtop"                   Icon norm/monitoring.xpm,       MiniIcon mini/monitoring.xpm
