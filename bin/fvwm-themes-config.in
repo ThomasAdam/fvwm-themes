@@ -1092,8 +1092,7 @@ sub getOwnThemeSubMenusRc ($) {
 	return ($listRc, $menuRc);
 }
 
-### This is the most complex procedure as of now...
-### I am not at all sure that this algorithm is 100% correct!
+# sorts all current components to be read according to their dependancies
 sub getSortedComponentsToRead ($) {
 	my $self = shift;
 	my @currentComponents;
@@ -1102,6 +1101,8 @@ sub getSortedComponentsToRead ($) {
 	my $requires = {};
 	my $provides = {};
 	my $component;
+
+	# prepare components to be sorted
 	foreach $component (sort keys %{$self->{'cc'}}) {
 		my $cc = $self->getComponentCfg($component);
 		next if $component =~ /^_/;
@@ -1109,8 +1110,12 @@ sub getSortedComponentsToRead ($) {
 		next unless $cc->{'used'};		
 		next unless $cc->{'read-file'};
 		push @currentComponents, $component;
-
 		$precedes->{$component} = {};
+	}
+
+	# process 'precedes' and 'follows' dependances; prepare to the next step
+	foreach $component (@currentComponents) {
+		my $cc = $self->getComponentCfg($component);
 		my $precedes0 = {};
 		if (ref($cc->{'precedes'}) eq 'ARRAY') {
 			foreach (@{$cc->{'precedes'}}) {
@@ -1123,13 +1128,10 @@ sub getSortedComponentsToRead ($) {
 			}
 		}
 		if (keys %$precedes0) {
-			my ($c2, $cmp2);
-			while (($c2, $cmp2) = (each %$precedes0)) {
-				if (! exists $precedes->{$c2}) {
-					$precedes->{$component}->{$c2} = $cmp2;
-				} else {
-					$precedes->{$c2}->{$component} = -$cmp2;
-				}
+			my ($c2, $cmp);
+			while (($c2, $cmp) = (each %$precedes0)) {
+				$precedes->{$component}->{$c2} = +$cmp;
+				$precedes->{$c2}->{$component} = -$cmp;
 			}
 		}
 
@@ -1144,74 +1146,48 @@ sub getSortedComponentsToRead ($) {
 		#$provides->{$component}->{$component} = 1;
 	}
 
-	my $done = 0;
-	while (!$done) {
-		$done = 1;
-		my ($i, $j);
-		for ($i = 0; $i < @currentComponents - 1; $i++) {
-			for ($j = $i + 1; $j < @currentComponents; $j++) {
-				my $c1 = $currentComponents[$i];
+	# process 'provides' and 'requires' dependances
+	my $cnum = @currentComponents;
+	my ($i, $j);
+	for ($i = 0; $i < $cnum - 1; $i++) {
+		my $c1 = $currentComponents[$i];
+		for ($j = $i + 1; $j < $cnum; $j++) {
+			my $c2 = $currentComponents[$j];
+			my $cmp = undef;
+			foreach (@{$requires->{$c1}}) {
+				$cmp = -1 if $_ eq $c2
+					|| exists $provides->{$c2} && $provides->{$c2}->{$_};
+			}
+			foreach (@{$requires->{$c2}}) {
+				$cmp = +1 if $_ eq $c1
+					|| exists $provides->{$c1} && $provides->{$c1}->{$_};
+			}
+			next unless defined $cmp;
+			$precedes->{$c1}->{$c2} = +$cmp;
+			$precedes->{$c2}->{$c1} = -$cmp;
+		}
+	}
+
+	for ($i = 0; $i < $cnum - 1; $i++) {
+		my $d = 1;
+		CURRENT_COMPONENT: while (1) {
+			my $c1 = $currentComponents[$i];
+			for ($j = $i + $d; $j < $cnum; $j++) {
 				my $c2 = $currentComponents[$j];
 				my $cmp = $precedes->{$c1}->{$c2};
-				next if $cmp;
-				if (defined $cmp) {
-					# $cmp is currently 0, check and update
-					my $k;
-					for ($k = $i + 1; $k < $j; $k++) {
-						my $c3 = $currentComponents[$k];
-						my $cmp1 = $precedes->{$c1}->{$c3};
-						my $cmp2 = $precedes->{$c3}->{$c2};
-						if ($cmp1 && $cmp2 && $cmp1 == $cmp2) {
-							$cmp = $cmp1;
-							last;
-						}
-					}
-				} else {
-					# $cmp is not evaluated yet, evaluate now
-					$cmp = 0;
-					foreach (@{$requires->{$c1}}) {
-						$cmp = -1 if $_ eq $c2 #|| exists $provides->{$c2}
-							&& $provides->{$c2}->{$_};
-					}
-					foreach (@{$requires->{$c2}}) {
-						$cmp = 1 if $_ eq $c1 #|| exists $provides->{$c1}
-							&& $provides->{$c1}->{$_};
-					}
+				next unless defined $cmp;
+				if ($cmp < 0) {
+					splice(@currentComponents, $j, 1);
+					splice(@currentComponents, $i, 0, $c2);
+					$d++;
+					redo CURRENT_COMPONENT;
 				}
-				$precedes->{$c1}->{$c2} = $cmp;
-				$done = 0 if $cmp;
 			}
+			last;
 		}
 	}
 
-	my ($i, $j, $k);
-	for ($i = 0; $i < @currentComponents - 2; $i++) {
-		my $c1 = $currentComponents[$i];
-		for ($j = $i + 1; $j < @currentComponents - 1; $j++) {
-			my $c2 = $currentComponents[$j];
-			my $cmp1 = $precedes->{$c1}->{$c2};
-			for ($k = $j + 1; $k < @currentComponents; $k++) {
-				my $c3 = $currentComponents[$k];
-				my $cmp2 = $precedes->{$c1}->{$c3};
-				my $cmp3 = $precedes->{$c2}->{$c3};
-				if ($cmp1 == 0 && $cmp2) {
-					$precedes->{$c1}->{$c2} = $cmp2;
-				}
-				if ($cmp3 == 0 && $cmp2) {
-					$precedes->{$c2}->{$c3} = $cmp2;
-				}
-			}
-		}
-	}
-
-	my @sortedComponents = sort {
-# If this algorithm is incorrect, uncomment the following line. :)
-#		$a eq 'colors'? -1: $b eq 'colors'? 1:
-		$precedes->{$a}->{$b}? -$precedes->{$a}->{$b}:
-			($precedes->{$b}->{$a} || 0);
-	} @currentComponents;
-
-	return \@sortedComponents;
+	return \@currentComponents;
 }
 
 # returns component key value, which can be overridden by the current variant
