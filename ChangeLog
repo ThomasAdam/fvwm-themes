@@ -7,6 +7,13 @@
 	* themes/awol/sounds/*/*:
 	added themed sound sets
 
+	* themes/awol/menustyle:
+	* themes/awol/menustyle.cfg:
+	* themes/awol/menustyle.size.large:
+	* themes/awol/menustyle.size.medium:
+	* themes/awol/menustyle.size.small:
+	added 3 size options
+
 2003-10-01  migo  <migo@homemail.com>
 
 	* NEWS:
