@@ -39,6 +39,9 @@ Style "*"	HilightBorderColorset 4
 TitleStyle	ActiveUp   VGradient 20 #6068DB #475293
 TitleStyle	ActiveDown VGradient 20 #6068DB #475293
 TitleStyle	Inactive   Solid #6e5b52
+TitleStyle	ToggledActiveUp   VGradient 20 #6068DB #475293
+TitleStyle	ToggledActiveDown VGradient 20 #6068DB #475293
+TitleStyle	ToggledInactive   Solid #6e5b52
 
 # window button background
 ButtonStyle	All Pixmap mini/empty.xpm

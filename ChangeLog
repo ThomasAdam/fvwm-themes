@@ -2,6 +2,8 @@
 
 	* themes/*/buttons: some clean up
 
+	* themes/*/colors*: fixed Toggled button definition
+
 2000-10-12  migo  <migo@homemail.com>
 
 	* bin/fvwm-themes-config.in:

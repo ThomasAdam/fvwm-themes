@@ -39,7 +39,10 @@ Style "*"	HilightBorderColorset 4
 TitleStyle \
 	ActiveUp   (TiledPixmap decor/title-active.xpm) \
 	ActiveDown (TiledPixmap decor/title-active.xpm) \
-	Inactive   (TiledPixmap decor/title-inactive.xpm)
+	Inactive   (TiledPixmap decor/title-inactive.xpm) \
+	ToggledActiveUp   (TiledPixmap decor/title-active.xpm) \
+	ToggledActiveDown (TiledPixmap decor/title-active.xpm) \
+	ToggledInactive   (TiledPixmap decor/title-inactive.xpm)
 
 # window button background
 ButtonStyle	All Pixmap mini/empty.xpm

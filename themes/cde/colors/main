@@ -47,6 +47,9 @@ Style "*"	HilightBorderColorset 4
 TitleStyle	ActiveUp   (Solid CDE_COLOR1_BG -- Raised)
 TitleStyle	ActiveDown (Solid CDE_COLOR1_BG -- Raised)
 TitleStyle	Inactive   (Solid CDE_COLOR2_BG -- Raised)
+TitleStyle	ToggledActiveUp   (Solid CDE_COLOR1_BG -- Raised)
+TitleStyle	ToggledActiveDown (Solid CDE_COLOR1_BG -- Raised)
+TitleStyle	ToggledInactive   (Solid CDE_COLOR2_BG -- Raised)
 
 # window button background
 ButtonStyle     All Pixmap mini/empty.xpm

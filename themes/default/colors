@@ -65,6 +65,9 @@ Style "*"	HilightBorderColorset 4
 TitleStyle	ActiveUp   (Solid rgb:C0/C0/C0 -- Raised)
 TitleStyle	ActiveDown (Solid rgb:C0/C0/C0 -- Raised)
 TitleStyle	Inactive   (Solid rgb:80/80/80 -- Raised)
+TitleStyle	ToggledActiveUp   (Solid rgb:C0/C0/C0 -- Raised)
+TitleStyle	ToggledActiveDown (Solid rgb:C0/C0/C0 -- Raised)
+TitleStyle	ToggledInactive   (Solid rgb:80/80/80 -- Raised)
 
 # window button background
 #

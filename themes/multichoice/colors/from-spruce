@@ -12,7 +12,7 @@
 # ----------------
 # Default colorset
 
-*FvwmTheme: Colorset 0 g black, bg rgb:9c/c2/9e, Plain, NoShape
+*FvwmTheme: Colorset 0 fg black, bg rgb:9c/c2/9e, Plain, NoShape
 
 DefaultColorset 0
 DestroyModuleConfig FvwmScroll: Colorset*
@@ -46,11 +46,11 @@ AddTitleStyle	Inactive	Pixmap decor/titlebutton-mod-dark.xpm -- Right
 # window button background
 ButtonStyle	All Pixmap mini/empty.xpm
 AddButtonStyle	All ActiveUp           TiledPixmap decor/titlebar_fill.xpm
-AddButtonStyle	All ActiveDown         TiledPixmap decor/titlebar_fill.xpm
-AddButtonStyle  All ToggledActiveUp    TiledPixmap decor/titlebar_fill.xpm
-AddButtonStyle	All ToggledActiveDown  TiledPixmap decor/titlebar_fill.xpm
-AddButtonStyle	All ToggledInactive    TiledPixmap decor/titlebar_fill_i.xpm
+AddButtonStyle	All ActiveDown         TiledPixmap decor/titlebar_fill_s.xpm
 AddButtonStyle	All Inactive           TiledPixmap decor/titlebar_fill_i.xpm
+AddButtonStyle  All ToggledActiveUp    TiledPixmap decor/titlebar_fill.xpm
+AddButtonStyle	All ToggledActiveDown  TiledPixmap decor/titlebar_fill_s.xpm
+AddButtonStyle	All ToggledInactive    TiledPixmap decor/titlebar_fill_i.xpm
 
 # -----
 # Menus

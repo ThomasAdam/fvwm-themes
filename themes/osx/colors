@@ -36,9 +36,9 @@ Style "*"	BorderColorset 3
 Style "*"	HilightBorderColorset 4
 
 # title
-TitleStyle	ActiveUp   (TiledPixmap decor/title-active.xpm)
-TitleStyle	ActiveDown (TiledPixmap decor/title-active.xpm)
-TitleStyle	Inactive   (TiledPixmap decor/title-inactive.xpm)
+TitleStyle	ActiveUp   TiledPixmap decor/title-active.xpm
+TitleStyle	ActiveDown TiledPixmap decor/title-active.xpm
+TitleStyle	Inactive   TiledPixmap decor/title-inactive.xpm
 
 # window button background
 ButtonStyle	All Pixmap mini/empty.xpm
