@@ -164,10 +164,12 @@ AddToMenu   MenuFvwmConfiguration "Fvwm Configuration" Title
 + "Theme Settings (gtk)"	FuncFvwmGtkThemeSettings
 + "&Menu Editor"	FvwmScript FvwmScript-Menus --text-colorset 34 --icon-colorset 5 --viewer-colorset 33
 + "&Root Cursor"	Module FvwmForm FormFvwmRootCursor.
-+ "Restore All &Cursors"	Read themes/current/cursors
 + "Form &Defaults"	Module FvwmForm FormFvwmForm.
 + "Control &Animation"	Popup MenuFvwmAnimate
 + "&X Configuration"	Popup MenuFvwmXConfiguration
++ "" Nop
++ "Restore Theme &Cursors"	Read themes/current/cursors
++ "Restore Theme &Background"	FuncFvwmStartThemeBackground
 
 DestroyMenu MenuFvwmXConfiguration
 AddToMenu   MenuFvwmXConfiguration "X Configuration" Title

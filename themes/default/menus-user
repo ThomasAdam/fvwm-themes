@@ -294,10 +294,21 @@ AddToFunc   FuncFvwmKillEventAndRun
 + "I" KillModule FvwmEvent
 + "I" Exec exec $0
 
+## http://www.met.rdg.ac.uk/~swrhgnrj/xpenguins/
+
 DestroyMenu MenuFvwmAmusements
 AddToMenu   MenuFvwmAmusements "Amusements" Title
-+ "Start XSnow%menu/game.xpm%"		Exec exec xsnow
++ "Start XSnow%menu/game.xpm%"		Exec exec xsnow >/dev/null
 + "Stop XSnow%menu/window-delete.xpm%"	Exec exec killall xsnow
++ "" Nop
++ "Start XPenguins%menu/penguin.xpm%"	Exec exec xpenguins -q
++ "Stop XPenguins%menu/window-delete.xpm%"	Exec exec killall xpenguins
++ "" Nop
++ "Start XTurtles%menu/penguin.xpm%"	Exec exec xturtles -q -rectwin
++ "Stop XTurtles%menu/window-delete.xpm%"	Exec exec killall xturtles
++ "" Nop
++ "Start XSheep%menu/game.xpm%"		Exec exec xsheep >/dev/null
++ "Stop XSheep%menu/window-delete.xpm%"	Exec exec killall xsheep
 + "" Nop
 + "Start XEarth%menu/game.xpm%"		Exec exec xearth
 + "Stop XEarth%menu/window-delete.xpm%"	Exec exec killall xearth
@@ -305,14 +316,11 @@ AddToMenu   MenuFvwmAmusements "Amusements" Title
 + "Start Decay Screen%menu/game.xpm%"	Exec exec /usr/X11R6/lib/xscreensaver/decayscreen -root
 + "Stop Decay Screen%menu/window-delete.xpm%"	Exec exec killall /usr/X11R6/lib/xscreensaver/decayscreen
 + "" Nop
-+ "Start XEarth%menu/game.xpm%"		Exec exec xearth
-+ "Stop XEarth%menu/window-delete.xpm%"	Exec exec killall xearth
-+ "" Nop
 ## it should be: nice -n 9 oneko
-+ "Start Oneko (Neko)%mouse.xpm"	Exec oneko
-+ "Start Oneko (Tora)%mouse.xpm"	Exec oneko -tora -fg black -bg yellow
-+ "Start Oneko (Dog)%mouse.xpm"		Exec oneko -dog -fg black -bg white
-+ "Stop Oneko%window-delete.xpm"	Exec killall oneko
++ "Start Oneko (Neko)%menu/mouse.xpm"	Exec oneko
++ "Start Oneko (Tora)%menu/mouse.xpm"	Exec oneko -tora -fg black -bg yellow
++ "Start Oneko (Dog)%menu/mouse.xpm"	Exec oneko -dog -fg black -bg white
++ "Stop Oneko%menu/window-delete.xpm"	Exec killall oneko
 + "" Nop
 ## it should be: exec nice -n 19 xoj
 + "Start O.J.S. emulator%game.xpm"	Exec exec xoj
