@@ -1829,7 +1829,8 @@ sub getAllHooksRc ($) {
 
 		# for "ColorsModules" be independent of the order
 		if ($c eq "colors" && $cc->{'used'} >= 2) {
-			$hardCodedStopHooks .= "FuncFvwmRestartFvwmTheme\n";
+			$hardCodedStopHooks .= "FuncFvwmRestartFvwmTheme\n"
+				if $fvwmVersion =~ /^2\.4\..*/;
 			$colorsIsChanged = 1;
 			if ($colorsModules) {
 				$hardCodedStopHooks .= "FuncFvwmUnReloadColorsModules\n";
@@ -2187,7 +2188,6 @@ AddToFunc   FuncFvwmShowComponentInfo
 + I PipeRead `@$scriptFile@ --pipe --show-info --component $0`
 
 FuncFvwmResetInitFunctions
-#FuncFvwmRestartFvwmTheme
 
 DestroyFunc FuncFvwmThemesConfigAndUpdate
 AddToFunc   FuncFvwmThemesConfigAndUpdate
@@ -2291,14 +2291,14 @@ Read @$rcFile2@
 	$imagePath .= "\nImagePath $addImagePath" if $addImagePath =~ /\+/;
 	my ($menusAndHooksRc, $switchMenusAndHooksRc) = 
 			$self->getMenusAndHooksAndReadsRc();
+	my $funcFvwmRestartFvwmTheme = $fvwmVersion =~ /^2\.4\..*/?
+		"\nFuncFvwmRestartFvwmTheme\n": "";
 
 	$contents = "# fvwm/$rcFile2 $version$header";
 	$contents .= qq{
 SetEnv FT_DATADIR '$siteDir'
 ImagePath $imagePath
-
-FuncFvwmRestartFvwmTheme
-
+$funcFvwmRestartFvwmTheme
 $menusAndHooksRc
 Mouse 2 A CM Menu MenuFvwmThemes
 };
