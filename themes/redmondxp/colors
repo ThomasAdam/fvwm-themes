@@ -58,11 +58,11 @@ Colorset 7 fg grey, bg grey, Plain, NoShape
 # Common Colorsets
 
 # default for modules
-Colorset 10 fg contrast, bg average, \
+Colorset 10 fg white, bg average, \
 	VGradient 300 3 rgb:14/6f/ea 2 rgb:00/3f/aa 6 rgb:14/6f/ea 1 rgb:00/3f/aa, NoShape
 
 # default hilight
-Colorset 11 fg contrast, bg average, \
+Colorset 11 fg white, bg average, \
 	VGradient 300 3 rgb:06/3d/c6 2 rgb:00/0d/86 6 rgb:06/3d/c6 1 rgb:00/0d/86, NoShape
 
 # special

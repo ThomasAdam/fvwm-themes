@@ -5,20 +5,20 @@
 
 DestroyFunc FuncFvwmSetFont-WindowTitle
 AddToFunc   FuncFvwmSetFont-WindowTitle
-+ I Style "$0" Font "shadowsize=1:$1"
++ I Style "$0" Font "shadow=1:$1"
 
 DestroyFunc FuncFvwmSetFont-IconTitle
 AddToFunc   FuncFvwmSetFont-IconTitle
-+ I Style "$0" IconFont "shadowsize=1:$1"
++ I Style "$0" IconFont "shadow=1:$1"
 
 DestroyFunc FuncFvwmSetFont-Menu
 AddToFunc   FuncFvwmSetFont-Menu
-+ I MenuStyle "$0" Font "shadowsize=1:$1"
++ I MenuStyle "$0" Font "shadow=1:$1"
 
 # for FvwmIdent (called in colors ... maybe not a very good thing) 
 DestroyFunc FuncFvwmSetFont-FvwmIdent
 AddToFunc   FuncFvwmSetFont-FvwmIdent
-+ I *FvwmIdent: Font shadowsize=1:xft:Verdana:Bold:pixelsize=10:minspace=true
++ I *FvwmIdent: Font shadow=1:xft:Verdana:Bold:pixelsize=10:minspace=true
 
 #-----------------------------------------------------------------------------
 # Modules Theme fonts
@@ -26,39 +26,39 @@ AddToFunc   FuncFvwmSetFont-FvwmIdent
 # default font for IconBox, IconMan, TaskBar and WinList
 DestroyFunc FuncFvwmSetFont-ModuleWindowList
 AddToFunc   FuncFvwmSetFont-ModuleWindowList
-+ I *$0: $1 "shadowsize=1:$2"
++ I *$0: $1 "shadow=1:$2"
 
 # selected font (TaskBar)
 DestroyFunc FuncFvwmSetFont-ModuleSelectedWindowList
 AddToFunc   FuncFvwmSetFont-ModuleSelectedWindowList
-+ I *$0: $1 "shadowsize=1:$2"
++ I *$0: $1 "shadow=1:$2"
 
 # if one want small font for a Window List module (e.g., luthien IconMan)
 DestroyFunc FuncFvwmSetFont-ModuleSmallWindowList
 AddToFunc   FuncFvwmSetFont-ModuleSmallWindowList
-+ I *$0: $1 "shadowsize=1:$2"
++ I *$0: $1 "shadow=1:$2"
 
 # small font (Pager mini window font)
 DestroyFunc FuncFvwmSetFont-ModuleSmall
 AddToFunc   FuncFvwmSetFont-ModuleSmall
-+ I *$0: $1 "shadowsize=1:$2"
++ I *$0: $1 "shadow=1:$2"
 
 # tips font (for TaskBar, Pager)
 DestroyFunc FuncFvwmSetFont-ModuleTips
 AddToFunc   FuncFvwmSetFont-ModuleTips
-+ I *$0: $1 "shadowsize=1:$2"
++ I *$0: $1 "shadow=1:$2"
 
 # normal "Label" font for Pager and Buttons
 DestroyFunc FuncFvwmSetFont-ModuleLabel
 AddToFunc   FuncFvwmSetFont-ModuleLabel
-+ I *$0: $1 "shadowsize=1:$2"
++ I *$0: $1 "shadow=1:$2"
 
 # small "Label" for Buttons and Pager (or Window List modules)
 DestroyFunc FuncFvwmSetFont-ModuleSmallLabel
 AddToFunc   FuncFvwmSetFont-ModuleSmallLabel
-+ I *$0: $1 "shadowsize=1:$2"
++ I *$0: $1 "shadow=1:$2"
 
 # large "Label" font for Buttons and Pager (or Window List modules)
 DestroyFunc FuncFvwmSetFont-ModuleLargeLabel
 AddToFunc   FuncFvwmSetFont-ModuleLargeLabel
-+ I *$0: $1 "shadowsize=1:$2"
++ I *$0: $1 "shadow=1:$2"

@@ -1,3 +1,19 @@
+2002-05-28  migo  <migo@homemail.com>
+
+	* themes/default/bindings:
+	replaced MaximizeFullScreen functions with better one
+
+	* themes/redmondxp/background:
+	* themes/redmondxp/colors:
+	* themes/redmondxp/fonts:
+	* themes/redmondxp/modules/FvwmButtons-Panel:
+	* themes/redmondxp/modules/FvwmIconMan:
+	* themes/redmondxp/modules/main:
+	several improvements in fonts and colorsets
+
+	* themes/redmondxp/modules/FvwmThemesPanelManager:
+	added new module :)
+
 2002-05-26  migo  <migo@homemail.com>
 
 	* themes/metal/images/decor/border-active.xpm:

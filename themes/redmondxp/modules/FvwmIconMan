@@ -1,7 +1,8 @@
 DestroyModuleConfig FvwmIconMan: *
 
 *FvwmIconMan: nummanagers 1 
-*FvwmIconMan: resolution page
+*FvwmIconMan: resolution desk  # should be configurable, of course
+*FvwmIconMan: title "FVWM Themes, RedmondXP theme, http://fvwm-themes.sf.net/"
 
 # migo: these reliefs make the most sense to me.
 # But in this theme they probably should all be flat anyway...

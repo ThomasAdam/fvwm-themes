@@ -54,7 +54,9 @@ DestroyModuleConfig FvwmButtons-Panel: *
 *FvwmButtons-Panel: (3x1, Icon module/panel-holder.png, \
 	Action `Popup MenuFvwmPanelMovePart rectangle $widthx$height+$left+$top 0 -100m`, \
 )
-*FvwmButtons-Panel: (9x1, Container(Rows 2, Font "shadowsize=3:xft:Luxi Sans:Bold:pixelsize=7:minspace=true"))
+*FvwmButtons-Panel: (9x1, Container(Rows 2, \
+	Font "shadow=3:xft:Luxi Sans:Bold:pixelsize=7:minspace=true" \
+))
 
 # TODO: specify transparency here (extend Container functionality?)
 
@@ -62,31 +64,31 @@ DestroyModuleConfig FvwmButtons-Panel: *
 	Panel(up, indicator, steps 0) FvwmPager-Single "FvwmPager FvwmPager-Single * *", \
 )
 
-# TODO: Font in Contaners do not work, so currently specify it 4 times
+# TODO: Font and Left in Contaners do not work, so currently specify it 4 times
 
-*FvwmButtons-Panel: (Padding 2 5, Colorset 23, Title 1, \
-	Font "shadowsize=1:xft:Luxi Sans:Bold:pixelsize=8:minspace=true", \
+*FvwmButtons-Panel: (Padding 0 5, Colorset 23, Title 1, Left, \
+	Font "shadow=1:xft:Luxi Sans:Bold:pixelsize=8:minspace=true", \
 	Action(Mouse 1) GotoPage 0 0, \
 	Action(Mouse 2) GotoPage prev, \
 	Action(Mouse 3) GotoDesk 0 0, \
 )
-*FvwmButtons-Panel: (Padding 2 5, Colorset 23, Title 2, \
-	Font "shadowsize=1:xft:Luxi Sans:Bold:pixelsize=8:minspace=true", \
-	Action(Mouse 1) GotoPage 0 1, \
+*FvwmButtons-Panel: (Padding 0 5, Colorset 23, Title 2, Left, \
+	Font "shadow=1:xft:Luxi Sans:Bold:pixelsize=8:minspace=true", \
+	Action(Mouse 1) GotoPage 1 0, \
 	Action(Mouse 2) GotoPage prev, \
 	Action(Mouse 3) GotoDesk 0 1, \
 )
 *FvwmButtons-Panel: (Padding 2 2, \
 	Panel(up, indicator, steps 0) FvwmPager-Desker "FvwmPager FvwmPager-Desker 0 3", \
 )
-*FvwmButtons-Panel: (Padding 2 5, Title 3, \
-	Font "shadowsize=1:xft:Luxi Sans:Bold:pixelsize=8:minspace=true", \
-	Action(Mouse 1) GotoPage 1 0, \
+*FvwmButtons-Panel: (Padding 0 5, Title 3, Left, \
+	Font "shadow=1:xft:Luxi Sans:Bold:pixelsize=8:minspace=true", \
+	Action(Mouse 1) GotoPage 0 1, \
 	Action(Mouse 2) GotoPage prev, \
 	Action(Mouse 3) GotoDesk 0 2, \
 )
-*FvwmButtons-Panel: (Padding 2 5, Title 4, \
-	Font "shadowsize=1:xft:Luxi Sans:Bold:pixelsize=8:minspace=true", \
+*FvwmButtons-Panel: (Padding 0 5, Title 4, Left, \
+	Font "shadow=1:xft:Luxi Sans:Bold:pixelsize=8:minspace=true", \
 	Action(Mouse 1) GotoPage 1 1, \
 	Action(Mouse 2) GotoPage prev, \
 	Action(Mouse 3) GotoDesk 0 3, \
