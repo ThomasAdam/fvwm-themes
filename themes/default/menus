@@ -146,8 +146,8 @@ AddToFunc   FuncFvwmFormThemeSettings
 
 DestroyFunc FuncFvwmStartGtkThemeSettings
 AddToFunc   FuncFvwmStartGtkThemeSettings
-+ I Read FvwmGtk-Themes
 + I KillModule FvwmGtk FvwmGtk-Themes
++ I Read FvwmGtk-Themes
 + I ModuleSynchronous FvwmGtk FvwmGtk-Themes
 
 DestroyFunc FuncFvwmGtkThemeSettings 

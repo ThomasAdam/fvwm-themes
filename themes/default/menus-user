@@ -176,7 +176,7 @@ AddToMenu   MenuFvwmUtilities "Utilities" Title
 + "&Bclock%menu/clock.xpm%"		Exec exec bclock
 + "&Xdaliclock%menu/clock.xpm%" 	Exec exec xdaliclock
 + "X&FontSel%menu/font.xpm%"		Exec exec xfontsel
-+ "X&ColorSel%mini-colors.xpm%"		Exec exec xcolorsel
++ "X&ColorSel%menu/unknown.xpm%"	Exec exec xcolorsel
 + "&Color List%menu/unknown.xpm%"	FuncFvwmViewFile /usr/X11R6/lib/X11/rgb.txt
 + "Xcolormap%menu/unknown.xpm%"		Exec exec xcolormap
 + "Xx&gdb%menu/debugger.xpm%"		Exec exec xxgdb
