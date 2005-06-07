@@ -253,6 +253,132 @@ MouseXX 3 2	WI	M	Menu MenuFvwmWindowOps
 DestroyFunc FuncFvwmStartBindings
 AddToFunc   FuncFvwmStartBindings
 
+DestroyFunc FuncFvwmRemoveBinding
+AddToFunc   FuncFvwmRemoveBinding
+#    Key/Mouse  (match)   key/button   context modifiers   method
+#+ I  $0         $1        $2           $3      $4           --
++ I  $0         $1        $2           W      $4            --
+
+DestroyFunc FuncFvwmRemoveBindingsOnWindow
+AddToFunc   FuncFvwmRemoveBindingsOnWindow
++ I FuncFvwmRemoveBinding Key "($0)" Left	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" Right	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" Up  	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" Down	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" Left	A	SCM	
++ I FuncFvwmRemoveBinding Key "($0)" Right	A	SCM	
++ I FuncFvwmRemoveBinding Key "($0)" Up  	A	SCM	
++ I FuncFvwmRemoveBinding Key "($0)" Down	A	SCM	
++ I FuncFvwmRemoveBinding Key "($0)" Left	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" Right	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" Up  	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" Down	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" Left	A	SM	
++ I FuncFvwmRemoveBinding Key "($0)" Right	A	SM	
++ I FuncFvwmRemoveBinding Key "($0)" Up  	A	SM	
++ I FuncFvwmRemoveBinding Key "($0)" Down	A	SM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_1	A	C	
++ I FuncFvwmRemoveBinding Key "($0)" KP_2	A	C	
++ I FuncFvwmRemoveBinding Key "($0)" KP_3	A	C	
++ I FuncFvwmRemoveBinding Key "($0)" KP_4	A	C	
++ I FuncFvwmRemoveBinding Key "($0)" KP_5	A	C	
++ I FuncFvwmRemoveBinding Key "($0)" KP_6	A	C	
++ I FuncFvwmRemoveBinding Key "($0)" KP_7	A	C	
++ I FuncFvwmRemoveBinding Key "($0)" KP_8	A	C	
++ I FuncFvwmRemoveBinding Key "($0)" KP_9	A	C	
++ I FuncFvwmRemoveBinding Key "($0)" KP_1	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_2	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_3	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_4	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_5	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_6	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_7	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_8	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_9	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_0	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" 1	A	SCM	
++ I FuncFvwmRemoveBinding Key "($0)" 2	A	SCM	
++ I FuncFvwmRemoveBinding Key "($0)" 3	A	SCM	
++ I FuncFvwmRemoveBinding Key "($0)" 4	A	SCM	
++ I FuncFvwmRemoveBinding Key "($0)" 5	A	SCM	
++ I FuncFvwmRemoveBinding Key "($0)" 6	A	SCM	
++ I FuncFvwmRemoveBinding Key "($0)" 7	A	SCM	
++ I FuncFvwmRemoveBinding Key "($0)" 8	A	SCM	
++ I FuncFvwmRemoveBinding Key "($0)" 9	A	SCM	
++ I FuncFvwmRemoveBinding Key "($0)" 0	A	SCM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_1	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" KP_2	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" KP_3	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" KP_4	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" KP_5	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" KP_6	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" KP_7	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" KP_8	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" KP_9	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" KP_0	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" KP_1	A	SM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_2	A	SM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_3	A	SM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_4	A	SM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_5	A	SM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_6	A	SM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_7	A	SM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_8	A	SM	
++ I FuncFvwmRemoveBinding Key "($0)" KP_9	A	SM	
++ I FuncFvwmRemoveBinding Key "($0)" 1   	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" 2   	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" 3   	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" 4   	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" 0   	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" 1   	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" 2   	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" 3   	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" 4   	A	SC	
++ I FuncFvwmRemoveBinding Key "($0)" 0   	A	SC	
+
+# M KeyMM
++ I FuncFvwmRemoveBinding Key "($0)" F1  	A	M 	
++ I FuncFvwmRemoveBinding Key "($0)" F2  	A	M 	
++ I FuncFvwmRemoveBinding Key "($0)" F3  	A	M 	
++ I FuncFvwmRemoveBinding Key "($0)" F4  	A	M 	
++ I FuncFvwmRemoveBinding Key "($0)" F5  	A	M 	
++ I FuncFvwmRemoveBinding Key "($0)" F6  	A	M 	
++ I FuncFvwmRemoveBinding Key "($0)" F7  	A	M 	
++ I FuncFvwmRemoveBinding Key "($0)" F8  	A	M 	
++ I FuncFvwmRemoveBinding Key "($0)" F9  	A	M 	
++ I FuncFvwmRemoveBinding Key "($0)" F10 	A	M 	
++ I FuncFvwmRemoveBinding Key "($0)" F11 	A	M 	
++ I FuncFvwmRemoveBinding Key "($0)" F12 	A	M 	
+# SM KeyMM
++ I FuncFvwmRemoveBinding Key "($0)" F1  	A	 SM	
++ I FuncFvwmRemoveBinding Key "($0)" F2  	A	 SM	
++ I FuncFvwmRemoveBinding Key "($0)" F3  	A	 SM	
++ I FuncFvwmRemoveBinding Key "($0)" F4  	A	 SM	
++ I FuncFvwmRemoveBinding Key "($0)" F5  	A	 SM	
++ I FuncFvwmRemoveBinding Key "($0)" F6  	A	 SM	
++ I FuncFvwmRemoveBinding Key "($0)" F7  	A	 SM	
++ I FuncFvwmRemoveBinding Key "($0)" F8  	A	 SM	
++ I FuncFvwmRemoveBinding Key "($0)" F9  	A	 SM	
++ I FuncFvwmRemoveBinding Key "($0)" F10 	A	 SM	
++ I FuncFvwmRemoveBinding Key "($0)" F11 	A	 SM	
++ I FuncFvwmRemoveBinding Key "($0)" F12 	A	 SM	
+
++ I FuncFvwmRemoveBinding Key "($0)" Tab 	A	M	
++ I FuncFvwmRemoveBinding Key "($0)" Tab 	A	SM	
++ I FuncFvwmRemoveBinding Key "($0)" Tab 	A	CM	
++ I FuncFvwmRemoveBinding Key "($0)" Tab 	A	SCM	
++ I FuncFvwmRemoveBinding Key "($0)" Prior	A	M	
++ I FuncFvwmRemoveBinding Key "($0)" Next	A	M	
++ I FuncFvwmRemoveBinding Mouse "($0)" 1 	W	M	
++ I FuncFvwmRemoveBinding Mouse "($0)" 1 	W	CM	
+
+# XX first
++ I FuncFvwmRemoveBinding Mouse "($0)" 2	W	M	
++ I FuncFvwmRemoveBinding Mouse "($0)" 3	W	M	
+# XX second
++ I FuncFvwmRemoveBinding Mouse "($0)" 3	W	M	
++ I FuncFvwmRemoveBinding Mouse "($0)" 2	W	M	
+
 DestroyFunc FuncFvwmStopBindings
 AddToFunc   FuncFvwmStopBindings
 + I Key Left	A	CM	-

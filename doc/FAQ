@@ -18,6 +18,7 @@ FVWM Themes Frequently Asked Questions and Answers.
   2.4  What is the "Stroke" option and what are the default stroke bindings?
   2.5  I am screwed. How can I get fvwm config in one file?
   2.6  Why changes done using X Configuration Scripts are not persistent?
+  2.7  How can I remove all bindings on a given window
 
 3. Integration
 
@@ -375,6 +376,29 @@ the line
 	$HOME/.xinitrc-fvwm
 
 in your .xinitrc or .xsession file before running fvwm-themes-start.
+==============================================================================
+
+------------------------------------------------------------------------------
+2.7  How can I remove all bindings on a given window
+
+A: Add the following line in your "bindings-extra" personal file:
+
+    FuncFvwmRemoveBindingsOnWindow xxxx
+
+where xxxx is the name, class or ressource of the window for which you want
+to disable all default bindings. This can be useful for certain applications
+as a vnc viewer or FvwmTabs.
+To remove a given binding you can use the following function:
+
+    FuncFvwmRemoveBinding Key|Mouse "(xxxx)" the_key_or_button modifiers
+
+for example
+
+   FuncFvwmRemoveBinding  Key    "(xxxx)"  F4  A  M
+   FuncFvwmRemoveBinding  Mouse  "(xxxx)"   1  W  M
+
+remove the Alt-F4 close binding on windows xxxx and remove Alt-Mouse 1
+popup menu on windows xxxx.
 ==============================================================================
 
 ------------------------------------------------------------------------------

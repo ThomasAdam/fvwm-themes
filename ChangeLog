@@ -1,3 +1,13 @@
+2005-06-07  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* themes/olicha/modules/styles:
+	Added NeverFocus to modules
+
+	* doc/FAQ:
+	* themes/default/bindings:
+	Added a new function FuncFvwmRemoveBindingsOnWindow which removes
+	all window bindings on a window
+
 2003-06-21  migo  <migo@homemail.com>
 
 	* themes/default/bindings:
