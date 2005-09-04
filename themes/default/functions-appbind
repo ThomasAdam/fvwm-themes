@@ -14,7 +14,10 @@ AddToFunc   FuncFvwmViewFile
 
 DestroyFunc FuncFvwmEditFile
 AddToFunc   FuncFvwmEditFile
-+ I Exec exec emacs "$0"
++ I Test (x emacs) Exec exec emacs "$0"
++ I TestRc (Match) Break
++ I Test (EnvIsSet EDITOR) FuncFvwmRunInXterm 'Edit File - $0' '$ENV[EDITOR] "$0"'
++ I TestRc (!Match) FuncFvwmRunInXterm 'Edit File - $0' 'vi "$0"'
 
 DestroyFunc FuncFvwmViewFileTail
 AddToFunc   FuncFvwmViewFileTail
@@ -22,7 +25,12 @@ AddToFunc   FuncFvwmViewFileTail
 
 DestroyFunc FuncFvwmOpenURL
 AddToFunc   FuncFvwmOpenURL
-+ I Exec netscape -remote 'openURL($0, new-window)' 2>/dev/null || netscape '$0'
++ I Test (x firefox) Exec firefox '$0'
++ I TestRc (!Match) Test (x netscape) Exec netscape -remote 'openURL($0, new-window)' 2>/dev/null || netscape '$0'
++ I TestRc (!Match) Test (x galeon) Exec galeon '$0'
++ I TestRc (!Match) Test (x konqueror) Exec konqueror '$0'
++ I TestRc (!Match) Test (x opera) Exec opera '$0'
++ I TestRc (!Match) FuncFvwmRunInXterm 'Open URL - $0' 'links "$0"'
 
 DestroyFunc FuncFvwmRunInXterm
 AddToFunc   FuncFvwmRunInXterm

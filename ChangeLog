@@ -6,6 +6,9 @@
 	* themes/default/settings/automenus/headlines/enabled:
 	add CPAN menu entry
 
+	* themes/default/functions-appbind:
+	start to use Test (x) choices; should do more
+
 2005-06-07  Olivier Chapuis  <olivier.chapuis@free.fr>
 
 	* themes/olicha/modules/styles:
