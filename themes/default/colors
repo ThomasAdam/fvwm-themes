@@ -43,9 +43,9 @@ Colorset 0 fg black, bg rgb:70/a0/a0
 # window title, inactive and active
 #
 
-Colorset 1 VGradient 100 2 rgb:88/7b/66 1 rgb:66/5c/4c 1 rgb:88/7b/66, \
+Colorset 1 VGradient 40 2 rgb:88/7b/66 1 rgb:66/5c/4c 1 rgb:88/7b/66, \
 	bg average, fg gray80, fgAlpha 85, NoShape
-Colorset 2 VGradient 100 2 rgb:cc/b8/9a 1 rgb:99/8a/7b 1 rgb:cc/b8/9a, \
+Colorset 2 VGradient 40 2 rgb:cc/b8/9a 1 rgb:99/8a/7b 1 rgb:cc/b8/9a, \
 	bg average, fg white, NoShape
 
 # window borders, inactive and active
