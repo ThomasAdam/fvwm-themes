@@ -31,8 +31,15 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: sort name
 *FvwmIconMan: format %i
 
-*FvwmIconMan: managergeometry 15x1+20000+20000
-*FvwmIconMan: buttongeometry 50x30
+*FvwmIconMan: ManagerGeometry 15x1+20000+20000
+*FvwmIconMan: ButtonGeometry 50x30
+*FvwmIconMan: MaxButtonWidth 256
+
+*FvwmIconMan: Tips always
+*FvwmIconMan: TipsColorset 16
+*FvwmIconMan: TipsJustification center
+*FvwmIconMan: TipsOffsets 2 1
+*FvwmIconMan: TipsDelays 1000 300
 
 # mouse actions
 #*FvwmIconMan: action  Mouse 1    A sendcommand FuncFvwmDeiconifyFocusAndRaise

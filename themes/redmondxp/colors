@@ -12,7 +12,7 @@
 # ----------------
 # Default colorset
 
-Colorset 0 fg black, bg rgb:98/B0/C8, Plain, NoShape
+Colorset 0 fg black, bg rgb:c0/d0/f0, Plain, NoShape
 
 # ------------------
 # Window decorations
@@ -82,7 +82,7 @@ Colorset 15 fg rgb:ff/ff/f0, bg average, fgsh rgb:22/48/7a, NoShape, \
 	VGradient 250 7 rgb:6e/ac/f5 1 rgb:34/5c/9a 3 rgb:11/62/cd 3 rgb:0e/60/cc 3 rgb:0f/62/ce 9 rgb:1e/70/d6 9 rgb:3a/89/e6 6 rgb:46/92/f0
 
 # tips/balloons
-Colorset 16 fg rgb:ff/ff/b0, bg rgb:14/58/bc, Plain, NoShape
+Colorset 16 fg black, bg rgb:ff/ff/d0, fgsh rgb:ff/ff/d0, Plain, NoShape
 
 # ----------------------------
 # Window List Module Colorsets
@@ -115,10 +115,10 @@ Colorset 22 fg black, bg rgb:f3/f3/ee, Plain, NoShape
 # III. Application Colorsets
 
 # regular terminal
-Colorset 30 fg white, bg rgb:30/70/d0, Plain, NoShape
+Colorset 30 fg white, bg rgb:18/50/90, Plain, NoShape
 
 # admin terminal
-Colorset 31 fg white, bg rgb:30/80/a0, Plain, NoShape
+Colorset 31 fg white, bg rgb:28/7a/a2, Plain, NoShape
 
 # remote terminal
 Colorset 32 fg white, bg rgb:60/8a/a0, Plain, NoShape

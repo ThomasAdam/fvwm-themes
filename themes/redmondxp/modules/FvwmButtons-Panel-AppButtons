@@ -1,0 +1,26 @@
+*FvwmButtons-Panel: (Icon 16x16/terminal.xpm, \
+	Action(Mouse 1) `FuncFvwmTerminal`, \
+	Action(Mouse 2) `FuncFvwm2Terminal`, \
+	Action(Mouse 3) `FuncFvwm3Terminal`, \
+)
+*FvwmButtons-Panel: (Icon 16x16/netscape.xpm, \
+	Action(Mouse 1) `FuncFvwmWWW`, \
+	Action(Mouse 2) `FuncFvwm2WWW`, \
+	Action(Mouse 3) `FuncFvwm3WWW`, \
+)
+*FvwmButtons-Panel: (Icon 16x16/music.xpm, \
+	Panel(up) FvwmButtons-MultimediaPanel "FvwmButtons FvwmButtons-MultimediaPanel", \
+	Action(Mouse 2) `Menu MenuFvwmMultimedia rectangle $widthx$height+$left+$top c -100m`, \
+	Action(Mouse 3) `FuncFvwmShowMessage "Sorry" "Configuration is not implemented yet"`, \
+)
+# should be word processors instead editors here, I think
+*FvwmButtons-Panel: (Icon 16x16/editor.xpm, \
+	Action(Mouse 1) `FuncFvwmEditor`, \
+	Action(Mouse 2) `FuncFvwm2Editor`, \
+	Action(Mouse 3) `FuncFvwm3Editor`, \
+)
+*FvwmButtons-Panel: (Icon 16x16/gimp.xpm, \
+	Action `FuncFvwmImageEdit`, \
+	Action(Mouse 2) `FuncFvwm2ImageEdit`, \
+	Action(Mouse 3) `FuncFvwmImageView`, \
+)

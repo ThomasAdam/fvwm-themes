@@ -1,20 +1,23 @@
 FuncFvwmSetFont-ModuleLabel FvwmButtons-Panel Font \
-	"xft:Adobe:Bold:size=10;-adobe-helvetica-bold-r-*-*-10-*"
+	"xft:Adobe:Bold:pixelsize=10;-adobe-helvetica-bold-r-*-*-10-*"
 
 FuncFvwmSetFont-ModuleWindowList FvwmIconMan Font \
-	"-microsoft-tahoma-medium-r-*-*-11-*;xft:Adobe:Bold:size=12:minspace=true;-adobe-helvetica-bold-r-*-*-12-*"
+	"-microsoft-tahoma-medium-r-*-*-13-*;xft:Adobe:Medium:pixelsize=13:minspace=true;-adobe-helvetica-bold-r-*-*-13-*"
 
 FuncFvwmSetFont-ModuleTips FvwmPager-Single BalloonFont \
-	"xft:Adobe:size=11:minspace=true;-*-fixed-medium-r-semicondensed-*-13-*"
+	"xft:Adobe:pixelsize=12:minspace=true;-*-fixed-medium-r-semicondensed-*-13-*"
 FuncFvwmSetFont-ModuleTips FvwmPager-Desker BalloonFont \
-	"xft:Adobe:size=11:minspace=true;-*-fixed-medium-r-semicondensed-*-13-*"
+	"xft:Adobe:pixelsize=12:minspace=true;-*-fixed-medium-r-semicondensed-*-13-*"
+FuncFvwmSetFont-ModuleTips FvwmIconMan TipsFont \
+	"xft:Adobe:pixelsize=12:minspace=true;-*-fixed-medium-r-semicondensed-*-13-*"
 
 FuncFvwmSetFont-ModuleSmall FvwmPager-Single SmallFont \
-	"xft:Adobe:Bold:size=8:minspace=true;-*-fixed-medium-r-normal-*-8-*"
+	"xft:Adobe:Bold:pixelsize=8:minspace=true;-*-fixed-medium-r-normal-*-8-*"
 FuncFvwmSetFont-ModuleSmall FvwmPager-Desker SmallFont \
-	"xft:Adobe:Bold:size=8:minspace=true;-*-fixed-medium-r-normal-*-8-*"
+	"xft:Adobe:Bold:pixelsize=8:minspace=true;-*-fixed-medium-r-normal-*-8-*"
 
 FuncFvwmSetFont-ModuleLabel FvwmPager-Single Font \
 	"xft:Luxi Sans:Bold:pixelsize=12:minspace=true;-adobe-helvetica-bold-r-*-*-12-*"
 FuncFvwmSetFont-ModuleLabel FvwmPager-Desker Font \
 	"xft:Luxi Sans:Bold:pixelsize=12:minspace=true;-adobe-helvetica-bold-r-*-*-12-*"
+	
