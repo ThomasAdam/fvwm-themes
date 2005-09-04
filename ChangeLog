@@ -3,6 +3,9 @@
 	* themes/default/colors:
 	add gradient to titlebar and menu
 
+	* themes/default/settings/automenus/headlines/enabled:
+	add CPAN menu entry
+
 2005-06-07  Olivier Chapuis  <olivier.chapuis@free.fr>
 
 	* themes/olicha/modules/styles:

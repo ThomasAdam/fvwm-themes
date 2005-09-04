@@ -22,6 +22,7 @@ AddToMenu   MenuFvwmHeadlines "Headlines" Title
 + "%menu/www.xpm%BBSpot"     Popup bbspot
 + "%menu/www.xpm%LinuxFr"    Popup linuxfr
 + "%menu/www.xpm%ThinkGeek"  Popup thinkgeek
++ "%menu/www.xpm%CPAN Modules" Popup cpan
 + "" Nop
 + "%menu/www.xpm%CNN"        Popup cnn
 + "%menu/www.xpm%BBC"        Popup bbc
