@@ -1,3 +1,8 @@
+2005-09-08  Mikhael Goikhman  <migo@homemail.com>
+
+	* themes/default/menus:
+	start to convert the menus to $[gt.label] form for i18n
+
 2005-09-04  Mikhael Goikhman  <migo@homemail.com>
 
 	* themes/default/colors:
