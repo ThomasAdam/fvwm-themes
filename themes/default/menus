@@ -1,7 +1,7 @@
 DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot
 + "$[gt.Root Menu]" Title
-+ "$[gt.&Shells]%menu/terminal.xpm%"              Popup MenuFvwmShells
++ "$[gt.&Terminals]%menu/terminal.xpm%"           Popup MenuFvwmShells
 + "$[gt.&Programs]%menu/programs.xpm%"            Popup MenuFvwmPrograms
 + "$[gt.S&ystem]%menu/system.xpm%"                Popup MenuFvwmSystem
 + "$[gt.Person&al]%menu/home.xpm%"                Popup MenuFvwmPersonal
