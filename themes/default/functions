@@ -24,7 +24,7 @@ AddToFunc   FuncFvwmDeiconifyFocusAndRaise
 DestroyFunc FuncFvwmIconifyOrFocusAndRaise
 AddToFunc   FuncFvwmIconifyOrFocusAndRaise
 + I ThisWindow (Iconic) Iconify off
-+ I TestRc (NoMatch) ThisWindow (Raised) Iconify on
++ I TestRc (NoMatch) ThisWindow (!Overlapped) Iconify on
 + I ThisWindow (!Iconic) Focus
 + I ThisWindow (!Iconic) Raise
 

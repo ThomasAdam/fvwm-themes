@@ -60,9 +60,8 @@ DestroyModuleConfig FvwmButtons-Panel: *
 	Action `FuncFvwmPopupMenuPanelApps rectangle $widthx$height+$left+$top 0 -100m`, \
 	Action(Mouse 3) `FuncFvwmHideAllApps`, \
 )
-*FvwmButtons-Panel: ($[:AppButtonsWidth]x1, Container(Rows 1, Padding 4 7, \
-))
-#	ActiveColorset 20, PressColorset 19 \
+*FvwmButtons-Panel: ($[:AppButtonsWidth]x1, Container(Rows 1, Padding 4 7))
+#	, ActiveColorset 20, PressColorset 19
 Read $[:AppButtonsFile]
 *FvwmButtons-Panel: (End)
 

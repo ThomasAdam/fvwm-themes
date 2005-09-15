@@ -4,6 +4,10 @@
 	* themes/default/menus-programs:
 	continue to convert the menus to $[gt.label]
 
+	* themes/default/functions:
+	* themes/redmondxp/modules/FvwmButtons-Panel:
+	small corrections
+
 2005-09-08  Mikhael Goikhman  <migo@homemail.com>
 
 	* themes/default/menus:
