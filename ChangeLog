@@ -1,3 +1,10 @@
+2006-03-20  Mikhael Goikhman  <migo@homemail.com>
+
+	* configure.in:
+	fix two problems with the latest Fedora: libX11 is now in /usr/lib and
+	rgb.txt is in /usr/share/X11, and sort(1) has no +num options anymore
+	(hopefully without adding problems on other systems)
+
 2005-09-16  Mikhael Goikhman  <migo@homemail.com>
 
 	* themes/default/menus:

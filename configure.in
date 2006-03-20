@@ -152,8 +152,12 @@ AC_SUBST(UPDATE_MENU)
 # fvwm-themes-images needs to know where the rgb.txt file is
 AC_PATH_XTRA
 if test -z "$X_LIBS"; then
-	AC_MSG_WARN([
+	if test -f /usr/share/X11/rgb.txt; then
+		X_LIBS=-L/usr/share
+	else
+		AC_MSG_WARN([
 	Xlib is not found; fvwm-themes-images will not fully work!])
+	fi
 fi
 
 # FIXME: a better way to find GNOME_IMAGES_DIR?
@@ -195,7 +199,7 @@ AC_SUBST(FVWM_VERSION)dnl
 
 # Hopefully this "sort" is portable (after many tries using awk and expr)
 if (echo $REQUIRED_FVWM_VERSION; echo $FVWM_VERSION) \
-| sed 's/\./ /g' | uniq | sort -n +0 -1 +1 -2 +2 -3 -c 2>/dev/null; then
+| sed 's/\./ /g' | uniq | sort -n -k 1 -k 2 -k 3 -c 2>/dev/null; then
 	:
 	# fvwm version is ok
 else
