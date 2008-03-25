@@ -396,7 +396,7 @@ $module->addHandler(M_STRING, sub {
 
 $module->send(qq{
 	Deschedule 34543
-	SendToModule $fullName init-current-page \$d \$[page.nx] \$[page.ny]
+	SendToModule $fullName init-current-page \$[desk.n] \$[page.nx] \$[page.ny]
 });
 
 showClockNowAndRegularly() unless $clockStarted;

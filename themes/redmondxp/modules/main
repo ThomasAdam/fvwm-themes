@@ -12,7 +12,7 @@ Style "*" SlipperyIcon, IconTitle
 
 DestroyFunc FuncFvwmStartNormalIcons
 AddToFunc   FuncFvwmStartNormalIcons
-+ I Style * NoIcon
++ I Style * !Icon
 
 # ----------------------------------------------------------------------------
 # Switch functions
@@ -21,7 +21,7 @@ DestroyFunc FuncFvwmStartThemeModules
 AddToFunc   FuncFvwmStartThemeModules
 + I FuncFvwmReloadColorsModules
 + I FuncFvwmStartNormalIcons
-+ I Style "*" IconBox screen w 10 10 -10 -40 p, IconGrid 76 90
++ I Style * IconBox 10 10 -10 -40p, IconGrid 76 90
 + I *FvwmIconMan: resolution page
 + I FuncFvwmStartPanel
 
