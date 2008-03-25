@@ -1,7 +1,9 @@
 FuncFvwmDecorBackground
 
-Style "*" Button 1, Button 2, Button 3, Button 4, Button 5, Button 6
-Style "*" MwmButtons  # button follows the state
+Style * Button 1, Button 2, Button 3, Button 4, Button 5, Button 6
+
+# button follows the state
+Style * MwmButtons  
 
 TitleStyle \
 	AllActive     (TiledPixmap $./images/decor/title-active.xpm) \
