@@ -3,7 +3,7 @@ Style "FvwmButtons-Bar"  !Title, !Handles, Sticky, WindowListSkip, \
 Style "FvwmButtons-Pager" !Title, !Handles, Sticky, WindowListSkip, \
 	BorderWidth 0, CirculateSkip, TitleAtTop
 Style "FvwmPager-Desker" !Title, !Handles, Sticky, WindowListSkip, \
-	CirculateSkip !Lenience, BorderWidth 5, TitleAtTop
+	CirculateSkip, !Lenience, BorderWidth 5, TitleAtTop
 Style "FvwmPager-Single" !Title, !Handles, Sticky, WindowListSkip, \
 	CirculateSkip
 Style "FvwmTaskBar" !Title, Sticky, WindowListSkip, CirculateSkip, !Handles, \
