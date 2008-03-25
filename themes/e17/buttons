@@ -1,7 +1,9 @@
 FuncFvwmDecorBackground
 
-Style "*" Button 1, Button 2, Button 4, Button 6
-Style "*" MWMButtons  # button relief follows the state
+Style * Button 1, Button 2, Button 4, Button 6
+
+# button relief follows the state
+Style * MWMButtons  
 
 AddButtonStyle 1 Pixmap button/options-activeup.xpm   -- flat
 #	ActiveUp   (Pixmap button/options-activeup.xpm   -- flat) \
