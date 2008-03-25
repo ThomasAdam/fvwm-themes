@@ -1,6 +1,6 @@
 FuncFvwmDecorBackground
 
-Style "*" Button 1, Button 3, Button 5, Button 2, Button 4
+Style * Button 1, Button 3, Button 5, Button 2, Button 4
 #Style "*" MWMButtons  # button relief follows the state
 
 # menu
