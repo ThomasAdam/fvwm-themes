@@ -1,8 +1,8 @@
 FuncFvwmSetFont-WindowTitle * -*-lucidabright-medium-r-*-*-14-*
 FuncFvwmSetFont-IconTitle   * -*-lucidabright-medium-r-*-*-12-*
 
-Style "*"	BorderWidth 5, HandleWidth 6
-Style "*"	MWMBorder, DepressableBorder
+Style *	BorderWidth 5, HandleWidth 6
+Style *	MWMBorder, DepressableBorder
 
 BorderStyle	Simple
 

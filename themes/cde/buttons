@@ -1,7 +1,9 @@
 FuncFvwmDecorBackground
 
-Style "*" Button 1, Button 2, Button 4
-Style "*" MWMButtons  # button relief follows the state
+Style * Button 1, Button 2, Button 4
+
+# button relief follows the state
+Style * MWMButtons  
 
 AddButtonStyle 1 Vector 3 23x58@0 77x58@0 77x42@0
 AddButtonStyle 1 Vector 3 23x58@1 23x42@1 77x42@1
