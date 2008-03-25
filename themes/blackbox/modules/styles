@@ -1,15 +1,15 @@
 # BorderWidth 1 is useful for 800 vs 1024 screen ... do we need to use M4?
-Style "FvwmButtons-XX" BorderWidth 1, !Title, !Handles, Sticky, \
+Style FvwmButtons-XX BorderWidth 1, !Title, !Handles, Sticky, \
 	FVWMBorder, WindowListSkip, NeverFocus, CirculateSkip, TitleAtBottom
-Style "FvwmIconMan" BorderWidth 0, !Title, !Handles, Sticky, FVWMBorder, \
+Style FvwmIconMan BorderWidth 0, !Title, !Handles, Sticky, FVWMBorder, \
 	WindowListSkip
-Style "FvwmPager-Desker" !Title, !Handles, Sticky, WindowListSkip, \
+Style FvwmPager-Desker !Title, !Handles, Sticky, WindowListSkip, \
 	!Lenience, BorderWidth 1, TitleAtTop, CirculateSkip
-Style "FvwmPager-Single" !Title, !Handles, Sticky, WindowListSkip
+Style FvwmPager-Single !Title, !Handles, Sticky, WindowListSkip
 
 DestroyFunc FuncFvwmModulesDestroyStyle
 AddToFunc   FuncFvwmModulesDestroyStyle
-+ I DestroyStyle "FvwmButtons-XX"
-+ I DestroyStyle "FvwmIconMan"
-+ I DestroyStyle "FvwmPager-Desker"
-+ I DestroyStyle "FvwmPager-Single"
++ I DestroyStyle FvwmButtons-XX
++ I DestroyStyle FvwmIconMan
++ I DestroyStyle FvwmPager-Desker
++ I DestroyStyle FvwmPager-Single

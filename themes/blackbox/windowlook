@@ -1,8 +1,8 @@
 FuncFvwmSetFont-WindowTitle * -*-lucida-bold-r-*-*-10-*
 FuncFvwmSetFont-IconTitle   * -*-fixed-medium-r-semicondensed-*-13-*
 
-Style "*"	BorderWidth 2, HandleWidth 2
-Style "*"	MWMBorder, FirmBorder
+Style *	BorderWidth 2, HandleWidth 2
+Style *	MWMBorder, FirmBorder
 
 BorderStyle	Simple -- HiddenHandles NoInset Flat
 

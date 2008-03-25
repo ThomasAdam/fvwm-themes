@@ -5,10 +5,10 @@ AddToMenu MenuFvwmWindowMove "" Nop
 + "Desk 3	Desk%menu/window-move.xpm%"	MoveToDesk 0 3
 
 AddToMenu MenuFvwmWindowGroupQuickMove "" Nop
-+ "Desk 0  	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 0
-+ "Desk 1	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 1
-+ "Desk 2	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 2
-+ "Desk 3	Desk%menu/window-move.xpm%"	Pick All ($r) MoveToDesk 0 3
++ "Desk 0  	Desk%menu/window-move.xpm%"	Pick All ($[w.resource]) MoveToDesk 0 0
++ "Desk 1	Desk%menu/window-move.xpm%"	Pick All ($[w.resource]) MoveToDesk 0 1
++ "Desk 2	Desk%menu/window-move.xpm%"	Pick All ($[w.resource]) MoveToDesk 0 2
++ "Desk 3	Desk%menu/window-move.xpm%"	Pick All ($[w.resource]) MoveToDesk 0 3
 
 DestroyModuleConfig FvwmPager-Desker: *
 

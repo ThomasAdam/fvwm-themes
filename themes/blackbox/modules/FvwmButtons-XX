@@ -1,13 +1,13 @@
 DestroyFunc  FuncFvwmButtons-XXNext
 AddToFunc    FuncFvwmButtons-XXNext
-+ I Next (!Iconic CurrentPage) Focus
++ I Next (!Iconic, CurrentPage) Focus
 + I Current Raise
 + I All (FvwmButtons-XX) Raise
 
 DestroyFunc  FuncFvwmButtons-XXPrev
 AddToFunc    FuncFvwmButtons-XXPrev
-+ I Current (FvwmButtons-XX) Prev (CirculateHit) Focus
-+ I Prev (!Iconic CurrentPage) Focus
++ I Current (FvwmButtons-XX) Prev (CirculateHit, AcceptsFocus) Focus
++ I Prev (!Iconic, CurrentPage, AcceptsFocus) Focus
 + I Current Raise
 + I All (FvwmButtons-XX) Raise
 
