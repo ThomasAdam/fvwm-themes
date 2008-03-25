@@ -1,8 +1,8 @@
 FuncFvwmSetFont-WindowTitle * -*-tahoma-bold-r-*-*-11-*;-*-snap-*-*-*-*-10-*;-*-verdana-medium-r-*-*-10-*;-*-lucida-medium-r-*-*-10-*
 FuncFvwmSetFont-IconTitle   * -*-tahoma-bold-r-*-*-10-*;-*-snap-*-*-*-*-10-*;-*-verdana-medium-r-*-*-9-*;-*-lucida-medium-r-*-*-10-*
 
-Style "*"	BorderWidth 3, HandleWidth 3
-Style "*"	FvwmBorder, FirmBorder
+Style *		BorderWidth 3, HandleWidth 3
+Style *		FvwmBorder, FirmBorder
 
 BorderStyle	Simple -- HiddenHandles NoInset Raised
 
