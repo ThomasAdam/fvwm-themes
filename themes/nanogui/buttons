@@ -35,7 +35,9 @@ BuC Style "*" Button BuN
 BdC Style "*" Button BdN
 BlC Style "*" Button BlN
 BrC Style "*" Button BrN
-Style "*" FvwmButtons  # button relief does not follow the state
+
+# button relief does not follow the state
+Style "*" FvwmButtons 
 
 BoC ButtonStyle BoN \
 BoC	ActiveUp   (Pixmap button/options-activeup.xpm) \
