@@ -9,10 +9,10 @@ AddToMenu    MenuFvwmWindowMove "Move to ..." Title
 
 DestroyMenu  MenuFvwmWindowGroupQuickMove
 AddToMenu    MenuFvwmWindowGroupQuickMove
-+ "&Right	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +1p +0p
-+ "&Left	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage -1p +0p
-+ "D&own	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p +1p
-+ "&Up  	Page%menu/window-move.xpm%" Pick All ($r) MoveToPage +0p -1p
++ "&Right	Page%menu/window-move.xpm%" Pick All ($[w.resource]) MoveToPage +1p +0p
++ "&Left	Page%menu/window-move.xpm%" Pick All ($[w.resource]) MoveToPage -1p +0p
++ "D&own	Page%menu/window-move.xpm%" Pick All ($[w.resource]) MoveToPage +0p +1p
++ "&Up  	Page%menu/window-move.xpm%" Pick All ($[w.resource]) MoveToPage +0p -1p
 
 DestroyModuleConfig FvwmPager-Single: *
 

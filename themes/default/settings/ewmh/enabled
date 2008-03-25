@@ -1,3 +1,5 @@
+# FIXME - Thomas Adam:  This needs an overhaul in lieu of what's now in FVWM's core.
+
 DestroyFunc FuncFvwmRestartFvwmNetHints
 AddToFunc   FuncFvwmRestartFvwmNetHints
 + I SendToModule FvwmNetHints Quit

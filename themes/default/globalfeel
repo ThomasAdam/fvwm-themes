@@ -15,8 +15,8 @@ OpaqueMoveSize unlimited
 Emulate FVWM
 HideGeometryWindow Never
 BugOpts FlickeringMoveWorkaround Off
-SnapAttraction 0 SameType
-SnapGrid 1 1
+Style * SnapAttraction 0
+Style * SnapGrid 1 1
 # I am not sure that this portable
 #XorValue 55555
 # Use the default:
@@ -25,7 +25,10 @@ XorValue
 # ---------------------- Paging and Mouse Parameters ----------------------
 
 EdgeScroll 0 0
-EdgeResistance 500  1 
+#EdgeResistance 500  1 
+Style * EdgeMoveDelay 500
+Style * EdgeMoveResistance 1
+
 EdgeThickness 1
 ClickTime 300
 MoveThreshold 3

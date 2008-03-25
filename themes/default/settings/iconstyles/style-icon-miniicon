@@ -470,4 +470,5 @@ Style "ktuberling"             Icon norm/game.xpm,             MiniIcon mini/gam
 Style "kwin4"                  Icon norm/game-logic.xpm,       MiniIcon mini/game-logic.xpm
 
 # this should be after XTerm Icon, otherwise Icon is not used on reload (bug?)
-Style XTerm NoActiveIconOverride  # enable: xterm +ai
+# enable: xterm +ai
+Style XTerm NoActiveIconOverride 

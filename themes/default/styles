@@ -1,41 +1,41 @@
 # The UsePPosition / NoPPosition for "*" is in globalfeel
 # We should force these for proper operations
-Style "Netscape"	NoPPosition
-Style "FreeAmp*"	UsePPosition
+Style Netscape	NoPPosition
+Style FreeAmp*	UsePPosition
 
-Style "Fvwm*"		Sticky, Title, Handles, WindowListHit, CirculateSkip
-Style "FvwmBanner"	NoTitle, StaysOnTop, WindowListSkip, NeverFocus
-Style "FvwmPager"	NoTitle, NoHandles, WindowListSkip
-Style "FvwmButtons"	NoTitle, NoHandles, WindowListSkip
-Style "FvwmIdent"	NoTitle, NoHandles, WindowListSkip
-Style "FvwmTaskBar"	NoTitle, NoHandles, WindowListSkip
-Style "FvwmIconMan"	NoTitle, NoHandles, WindowListSkip
-Style "FvwmConsole"	CirculateHit, GrabFocus
-Style "FvwmForm"	CirculateHit
-Style "FvwmScript"	Slippery, CirculateHit
+Style Fvwm*		Sticky, Title, Handles, WindowListHit, CirculateSkip
+Style FvwmBanner	!Title, StaysOnTop, WindowListSkip, NeverFocus
+Style FvwmPager		!Title, !Handles, WindowListSkip
+Style FvwmButtons	!Title, !Handles, WindowListSkip
+Style FvwmIdent		!Title, !Handles, WindowListSkip
+Style FvwmTaskBar	!Title, !Handles, WindowListSkip
+Style FvwmIconMan	!Title, !Handles, WindowListSkip
+Style FvwmConsole	CirculateHit, FPGrabFocus, FPReleaseFocus
+Style FvwmForm		CirculateHit
+Style FvwmScript	Slippery, CirculateHit
 # Simulate transient; it is nicer with title.
-Style "FvwmScript-IconBrowser"	StaysOnTop, NoHandles
-Style "FvwmScript-Browser"	StaysOnTop, NoHandles
+Style FvwmScript-IconBrowser	StaysOnTop, !Handles
+Style FvwmScript-Browser	StaysOnTop, !Handles
 # Applets are usually swallowed, so disable ActivePlacement if any.
-Style "FvwmApplet*"	CascadePlacement
+Style FvwmApplet*	CascadePlacement
 # 
 Style FvwmButtons-ColourTable HandleWidth 2, Title, TitleAtTop
 
-Style "XNoteMessage"    NoTitle, Sticky, StaysOnTop, UsePPosition, \
-	BorderWidth 0, NoHandles, WindowListSkip
-Style "xclock"		Sticky, WindowListSkip, CirculateSkip
+Style XNoteMessage    !Title, Sticky, StaysOnTop, UsePPosition, \
+      BorderWidth 0, HandleWidth 0, !Handles, WindowListSkip
+Style xclock		Sticky, WindowListSkip, CirculateSkip
 # gnome panel and icons
-Style "panel"		NeverFocus, Sticky, NoTitle, WindowListSkip, \
+Style panel		NeverFocus, Sticky, !Title, WindowListSkip, \
 	CirculateSkip, UsePPosition
-Style "desktop_icon"	CirculateSkip, Sticky, NoTitle, WindowListSkip, \
+Style desktop_icon	CirculateSkip, Sticky, !Title, WindowListSkip, \
 	NeverFocus, UsePPosition
-Style "gmc-desktop-icon" CirculateSkip, Sticky, NoTitle, WindowListSkip, \
+Style gmc-desktop-icon  CirculateSkip, Sticky, !Title, WindowListSkip, \
 	NeverFocus, UsePPosition
-Style "XSm"		Sticky
-Style "xsm"		NeverFocus, NoTitle, WindowListSkip, CirculateSkip
-Style "xmessage"        UsePPosition
+Style XSm		Sticky
+Style xsm		NeverFocus, !Title, WindowListSkip, CirculateSkip
+Style xmessage	        UsePPosition
 
-Style "gkrellm" NeverFocus, Sticky, WindowListSkip, CirculateSkip, UsePPosition
+Style gkrellm 		NeverFocus, Sticky, WindowListSkip, CirculateSkip, UsePPosition
 
 # this is to override all patterns related to file names that are edited
 Style XEmacs Slippery, Title, Handles, WindowListHit, CirculateHit

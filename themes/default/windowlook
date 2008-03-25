@@ -1,8 +1,8 @@
 FuncFvwmSetFont-WindowTitle * 'shadow=1 r br b:xft:Verdana:pixelsize=14:minspace=true:-adobe-helvetica-medium-r-*-*-14-*-*-*-*-*-*-*'
 FuncFvwmSetFont-IconTitle   * 'shadow=1 r br b:xft:Verdana:pixelsize=12:minspace=true:-adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*'
 
-Style "*"	BorderWidth 5, HandleWidth 6
-Style "*"	FvwmBorder, FirmBorder
+Style *		BorderWidth 5, HandleWidth 6
+Style *		FvwmBorder, FirmBorder
 
 BorderStyle	Simple
 
