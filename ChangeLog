@@ -1,3 +1,101 @@
+2008-03-25  Thomas Adam		  <thomas.adam22@gmail.com>
+	
+	*  themes/afterstep/background:
+	*  themes/afterstep/buttons:
+	*  themes/afterstep/globalfeel:
+	*  themes/afterstep/windowlook:
+	*  themes/afterstep/modules/main:
+	*  themes/afterstep/modules/styles:
+	*  themes/afterstep/modules/normal-icons/no:
+	*  themes/awol/windowlook:
+	*  themes/blackbox/buttons:
+	*  themes/blackbox/windowlook:
+	*  themes/blackbox/modules/FvwmButtons-XX:
+	*  themes/blackbox/modules/FvwmPager-Desker:
+	*  themes/blackbox/modules/FvwmPager-Single:
+	*  themes/blackbox/modules/main:
+	*  themes/blackbox/modules/styles:
+	*  themes/brushedmetal/buttons:
+	*  themes/brushedmetal/windowlook:
+	*  themes/cde/buttons:
+	*  themes/cde/windowlook:
+	*  themes/cde/modules/main:
+	*  themes/cde/modules/styles:
+	*  themes/celticbow/background.cpp:
+	*  themes/celticbow/buttons:
+	*  themes/celticbow/windowlook:
+	*  themes/default/buttons:
+	*  themes/default/globalfeel:
+	*  themes/default/styles:
+	*  themes/default/windowlook:
+	*  themes/default/modules/FvwmPager-Desker:
+	*  themes/default/modules/FvwmPager-Single:
+	*  themes/default/modules/main:
+	*  themes/default/modules/normal-icons/no:
+	*  themes/default/modules/winlist/DeskIconBox:
+	*  themes/default/modules/winlist/GlobalIconBox:
+	*  themes/default/settings/ewmh/enabled:
+	*  themes/default/settings/iconstyles/style-icon-miniicon:
+	*  themes/e17/buttons:
+	*  themes/e17/windowlook:
+	*  themes/ice/buttons:
+	*  themes/ice/windowlook:
+	*  themes/luthien/buttons:
+	*  themes/luthien/globalfeel:
+	*  themes/luthien/windowlook:
+	*  themes/luthien/modules/main:
+	*  themes/luthien/modules/normal-icons/no:
+	*  themes/mech/buttons:
+	*  themes/migo/buttons:
+	*  themes/migo/globalfeel:
+	*  themes/migo/modules/normal-icons/no:
+	*  themes/minimal/windowlook:
+	*  themes/minimal/modules/main:
+	*  themes/multichoice/buttons/faces/default:
+	*  themes/multichoice/buttons/faces/mwm:
+	*  themes/multichoice/buttons/faces/spruce:
+	*  themes/nanogui/buttons:
+	*  themes/nanogui/windowlook:
+	*  themes/olicha/background:
+	*  themes/olicha/modules/main:
+	*  themes/olicha/modules/AppMan/DeskIconBox:
+	*  themes/olicha/modules/AppMan/DeskIconMan:
+	*  themes/olicha/modules/AppMan/DeskTaskBar:
+	*  themes/olicha/modules/AppMan/DeskWinList:
+	*  themes/olicha/modules/AppMan/GlobalIconBox:
+	*  themes/olicha/modules/AppMan/GlobalIconMan:
+	*  themes/olicha/modules/AppMan/GlobalTaskBar:
+	*  themes/olicha/modules/AppMan/GlobalWinList:
+	*  themes/olicha/modules/AppMan/HideDeskTaskBar:
+	*  themes/olicha/modules/AppMan/HideGlobalTaskBar:
+	*  themes/olicha/modules/AppMan/PageIconMan:
+	*  themes/olicha/modules/AppMan/none:
+	*  themes/osx/buttons:
+	*  themes/osx/modules/main:
+	*  themes/osx/modules/styles:
+	*  themes/osx/modules/appsman/deskwinlist:
+	*  themes/osx/modules/appsman/globalwinlist:
+	*  themes/osx/modules/appsman/none:
+	*  themes/plainbow/background:
+	*  themes/plainbow/globalfeel:
+	*  themes/plainbow/modules/normal-icons/no:
+	*  themes/plainbow/modules/winlist/DeskIconBox:
+	*  themes/plainbow/modules/winlist/GlobalIconBox:
+	*  themes/qnx/buttons:
+	*  themes/redmond98/globalfeel:
+	*  themes/redmond98/modules/styles:
+	*  themes/redmondxp/modules/FvwmThemesPanelManager:
+	*  themes/redmondxp/modules/main:
+	*  themes/sa/buttons:
+	*  themes/sa/modules/normal-icons/no:
+	*  themes/spruce/background:
+	*  themes/spruce/buttons:
+	*  themes/spruce/globalfeel:
+	*  themes/unsafe/buttons:
+	Update all themes to support features found in FVWM 2.5.25+ which
+	removes some styles, replaces others, and removes deprecation warnings.
+
+
 2006-03-20  Mikhael Goikhman  <migo@homemail.com>
 
 	* configure.in:
