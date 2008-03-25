@@ -1,7 +1,9 @@
 FuncFvwmDecorBackground
 
 Style "*" Button 1, Button 2, Button 4
-Style "*" MWMButtons  # button relief follows the state
+
+# button relief follows the state
+Style "*" MWMButtons
 
 AddTitleStyle TiledPixmap button/title_top.png    -- Flat Top
 AddTitleStyle TiledPixmap button/title_bottom.png -- Flat Bottom
