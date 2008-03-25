@@ -3,7 +3,7 @@
 
 DestroyFunc FuncFvwmStartNormalIcons
 AddToFunc   FuncFvwmStartNormalIcons
-+ I Style * NoIcon
++ I Style * !Icon
 
 AddToFunc   FuncFvwmStartThemeModules
 + I Module FvwmIconMan
