@@ -3,4 +3,4 @@ AddToFunc   FuncFvwmStartChosenAppsMan
 
 DestroyFunc FuncFvwmStartNormalIcons
 AddToFunc   FuncFvwmStartNormalIcons
-+ I Style * NoIcon
++ I Style * !Icon

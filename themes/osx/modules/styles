@@ -6,7 +6,7 @@ Style "FvwmButtons-OsxApps" TitleAtBottom
 Style "FvwmButtons-OsxStartApplets" TitleAtTop
 Style "FvwmButtons-OsxApplets" TitleAtTop
 Style "FvwmPager-Desker" !Title, Sticky, WindowListSkip, CirculateSkip, \
-	!Handles !Lenience, BorderWidth 0, TitleAtBottom
+	!Handles, !Lenience, BorderWidth 0, TitleAtBottom
 Style "FvwmPager-Single" !Title, Sticky, WindowListSkip, CirculateSkip, \
 	!Handles
 Style "FvwmWinList" !Handles, !Title, Sticky, WindowListSkip, \

@@ -6,8 +6,8 @@
 # ----------------------------------------------------------------------------
 # Icon related configuration
 
-Style "*" IconBox screen w +10 +35 -10 -120 p, IconGrid 74 5, IconFill top right
-Style "*" SlipperyIcon, IconTitle
+Style * IconBox screen p w+10 +35 -10 -120p, IconFill t r, IconGrid 74 5  
+Style * SlipperyIcon, IconTitle
 
 # ----------------------------------------------------------------------------
 # Switch functions
