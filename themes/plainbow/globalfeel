@@ -14,14 +14,17 @@ OpaqueMoveSize 50
 Emulate FVWM
 HideGeometryWindow Never
 BugOpts FlickeringMoveWorkaround Off
-SnapAttraction 0 SameType
-SnapGrid 1 1
+Style * SnapAttraction 0 
+Style * SnapGrid 1 1
 XorValue
 
 # ---------------------- Paging and Mouse Parameters ----------------------
 
 EdgeScroll 100 100
-EdgeResistance 400  0 
+#EdgeResistance 400  0 
+Style * EdgeMoveDelay 400
+Style * EdgeMoveResistance 0
+
 EdgeThickness 1
 ClickTime 300
 MoveThreshold 3
