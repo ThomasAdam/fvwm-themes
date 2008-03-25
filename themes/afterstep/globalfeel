@@ -14,14 +14,17 @@ OpaqueMoveSize 100
 Emulate MWM
 HideGeometryWindow Never
 BugOpts FlickeringMoveWorkaround Off
-SnapAttraction 10 SameType Screen
-SnapGrid 5 5
+Style * SnapAttraction 10 SameType Screen
+Style * SnapGrid 5 5
 XorValue 55555
 
 # ---------------------- Paging and Mouse Parameters ----------------------
 
 EdgeScroll 100 100
-EdgeResistance 100  100 
+#EdgeResistance 100  100 
+Style * EdgeMoveDelay 10
+Style * EdgeMoveResistance 10
+
 EdgeThickness 1
 ClickTime 150
 MoveThreshold 3

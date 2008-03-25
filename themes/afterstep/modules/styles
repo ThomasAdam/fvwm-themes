@@ -8,7 +8,7 @@ Style FvwmPager-Desker !Title, Sticky, WindowListSkip, CirculateSkip, \
 	!Handles, !Lenience, StaysPut, TitleAtTop
 Style FvwmPager-Single !Title, Sticky, WindowListSkip, CirculateSkip, \
 	!Handles, !Lenience, StaysPut, TitleAtTop
-Style FvwmIconMan !Title, !Handles, Sticky, WindowListSkip, \
+Style FvwmIconMan !Title, !Handles, !Borders, Sticky, WindowListSkip, \
 	CirculateSkip, BorderWidth 0, StaysPut, TitleAtTop 
 
 DestroyFunc FuncFvwmModulesDestroyStyle

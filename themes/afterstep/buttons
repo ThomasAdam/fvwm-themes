@@ -1,7 +1,9 @@
 FuncFvwmDecorBackground
 
-Style "*" Button 1, Button 2, Button 3, Button 4
-Style "*" FvwmButtons  # button relief does not follow the state
+Style * Button 1, Button 2, Button 3, Button 4
+
+# button relief does not follow the state
+Style * FvwmButtons  
 
 AddButtonStyle 1 Pixmap button/as-window-switch.xpm
 AddButtonStyle 2 Pixmap button/as-window-close.xpm
