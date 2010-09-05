@@ -1,5 +1,12 @@
 2010-08-05  Thomas Adam		  <thomas@xteddy.org>
 	* configure.in:
+	Version bump required versions....
+
+	FVWM -> 2.5.31
+	Perl -> 5.008
+
+2010-08-05  Thomas Adam		  <thomas@xteddy.org>
+	* configure.in:
 	Remove refernce to AC_CONFIG_HEADERS.
 
 2010-08-05  Thomas Adam		  <thomas@xteddy.org>
