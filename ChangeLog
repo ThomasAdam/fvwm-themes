@@ -1,3 +1,10 @@
+2010-08-05  Thomas Adam		  <thomas@xteddy.org>
+	* README:
+	* contrib/configure_dev.sh:
+	Add in a means of generating a configure script from the CVS sources.
+	Explain how to use it in the README file as well.  This script is the
+	same as the one found in the FVWM sources.
+
 2008-03-25  Thomas Adam		  <thomas.adam22@gmail.com>
 	
 	*  themes/afterstep/background:
