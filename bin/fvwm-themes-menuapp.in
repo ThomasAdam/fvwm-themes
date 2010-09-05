@@ -24,8 +24,7 @@
 #   pod2man -c "Fvwm Utility" fvwm-themes-menuapp | nroff -man | less -e
 #-----------------------------------------------------------------------------
 
-# this may work but ...
-#use strict;
+use strict;
 use Getopt::Long;
 
 my $prefix = $ENV{'prefix'} || '@prefix@';
@@ -62,6 +61,10 @@ my $comName = "menuapp"; # via a script "must" be menuapp-pid_of_the_script
 my $comPid = 0;
 my $menuFiles = "";
 my $site = 0;
+
+# TA:  FIXME - this is package global because of BEGIN{} but using that is
+# ultimately the wrong solution here anyway.
+our $menuGroupByName = {};
 
 GetOptions(
 	"help"            => \&showHelp,
@@ -765,7 +768,7 @@ sub analyzePipeRead {
 #----------------------------------------------------------------------------
 #
 BEGIN {
-	$menuGroupByName = {
+	 $menuGroupByName = {
 		"System" => "System",
 		"Shells" => "Shells",
 		"ScreenSaver" => "ScreenSaver",
@@ -853,13 +856,11 @@ sub checkPopupInstrMenu {
 }
 
 sub checkMenuInstrMenu {
-	my $test = 0;
 	my $change = 0;
-	my $key;
 
-	foreach $key (keys(%strMenu)) {
-		$test = 0;
-		for ($i = 0; $i <= $menuInfo{"$key"}{itemsnbr}; $i++) {
+	foreach my $key (keys(%strMenu)) {
+		my $test = 0;
+		for (my $i = 0; $i <= $menuInfo{"$key"}{itemsnbr}; $i++) {
 			if ($strMenu{"$key"}[$i]{active} == 1) {
 			 	$test = 1;
 		  	}
@@ -876,10 +877,10 @@ sub checkTitleAndNopInstrMenu {
 	my $hasActiveAfter = 0;
 	my $ok = 1;
 	my $hasActiveBefore = 0;
-	my $key;
+    my $j = 0;
 
-	foreach $key (keys(%strMenu)) {
-		for ($i = 0; $i <= $menuInfo{"$key"}{itemsnbr}; $i++) {
+	foreach my $key (keys(%strMenu)) {
+		for (my $i = 0; $i <= $menuInfo{"$key"}{itemsnbr}; $i++) {
 			$hasActiveBefore = 1 if ($strMenu{"$key"}[$i]{active});
 			if ($strMenu{"$key"}[$i]{type} =~ /^(Nop|Title|empty)$/) {
 				$ok = 1; $j = $i + 1; $hasActiveAfter = 0;
@@ -983,7 +984,7 @@ sub addItemstrMenu {
 	my ($menu,$type,$name,$lefticon,$upicon,$trueaction,$useraction,$workingdir,
 		$checkaction,$windowtitle,$file,$linenbr) = @_;
 
-	$index = $menuInfo{$menu}{itemsnbr};
+	my $index = $menuInfo{$menu}{itemsnbr};
 	$strMenu{$menu}[$index]{type} = $type;
 	$strMenu{$menu}[$index]{name} = $name;
 	$strMenu{$menu}[$index]{lefticon} = $lefticon;
@@ -1111,7 +1112,7 @@ sub addOrEditItem {
 		$newItem{name} = "";
 	}
 	elsif ($newItem{type} eq "Title") {
-		$newItem{trueaction} = Title;
+		$newItem{trueaction} = "Title";
 	}
 	else {
 		$newItem{trueaction} = $newItem{useraction};
@@ -1134,7 +1135,7 @@ sub addOrEditItem {
 	if ($main eq "A") {
 		insertItem($menu,$i,$line,\%newItem);
 	} else {		
-		foreach $key (keys(%newItem)) {
+		foreach my $key (keys(%newItem)) {
 			$strMenu{$menu}[$i]{$key} = $newItem{$key}
 		}
 		${$strMenu{$menu}[$i]{line}} = $line;
@@ -1337,10 +1338,10 @@ sub addToselMenu {
 	
 		if ($index == $item) {
 			$lastSel++;
-			foreach $key (keys(%{$strMenu{$menu}[$i]})) {
+			foreach my $key (keys(%{$strMenu{$menu}[$i]})) {
 				next if ($key eq "file" || $key eq "linenbr");
 				if ($key eq "line") {
-					$selMenu[$lastSel]{line} = ${$strMenu{$menu}[$i]{line}};
+					$selMenu[$lastSel]{$key} = ${$strMenu{$menu}[$i]{$key}};
 		  		} else {
 					$selMenu[$lastSel]{$key} = $strMenu{$menu}[$i]{$key};
 		  		}
@@ -1385,12 +1386,15 @@ sub freeselMenu {
 sub insertOneselItem {
 	my ($menu,$item,$selItem) = @_;
 	$selItem--;
+    
+    my $i = -1;
+    my %menuInfo;
 	
 	return 0 if ($selItem < 0);
 
 	if (!defined $menuInfo{$menu}{itemsnbr}) {
 		# new menu!
-		$menuInfo{$menu}{itemsnbr} = 0;
+        $menuInfo{$menu}{itemsnbr} = 0;
 		$menuInfo{$menu}{side} = "";
 		$menuInfo{$menu}{submenus} = "";
 		$menuInfo{$menu}{group} = getGroupByMenuName($menu);
@@ -1403,7 +1407,7 @@ sub insertOneselItem {
 	}
 
 	# build the new line
-	$line = $selMenu[$selItem]{line};
+	my $line = $selMenu[$selItem]{line};
 	chomp($line);
 	print STDERR "1:".$line . "\n";
 	if ($line =~ /^AddToMenu\s+/i) {
@@ -1461,7 +1465,7 @@ sub menusList() {
 		$return .= $menu;
 	}
 
-	return $return . "\n";
+	return "$return\n";
 
 }
 #----------------------------------------------------------------------------
@@ -1470,14 +1474,13 @@ sub menusList() {
 sub rootMenusList() {
 	my ($index) = @_;
 	my $j = 1;
-	my $i = 0;
 	my $isRoot = 1;
 	my $return = "";
 
-	foreach $menu (keys(%strMenu)) {
+	foreach my $menu (keys(%strMenu)) {
 		$isRoot = 1;
-		foreach $key (keys(%strMenu)) {
-	  		for ($i = 0; $i <= $menuInfo{"$key"}{itemsnbr}; $i++) {
+		foreach my $key (keys(%strMenu)) {
+	  		for (my $i = 0; $i <= $menuInfo{"$key"}{itemsnbr}; $i++) {
 				$isRoot = 0 if (eqi($menu,$strMenu{$key}[$i]{useraction}) &&
 					($strMenu{"$key"}[$i]{type} eq "Menu" || 
 						$strMenu{"$key"}[$i]{type} eq "Popup"));
@@ -1490,7 +1493,7 @@ sub rootMenusList() {
 			$return .= $menu;
 		}
 	}
-	return $return . "\n";
+	return "$return\n";
 }
 
 #----------------------------------------------------------------------------
@@ -1560,10 +1563,9 @@ sub itemsList {
 
 sub outPutfilesLines {
 	my $return = "";
-	my $i;
 
-	foreach $key (keys(%filesLines)) {
-		for ($i=0; $i <= $lastLine{$key}; $i++) {
+	foreach my $key (keys(%filesLines)) {
+		for (my $i=0; $i <= $lastLine{$key}; $i++) {
 			$return .= $filesLines{"$key"}[$i]{line};
 		}
 	}
@@ -1619,9 +1621,9 @@ sub writeFiles {
 		-d $persThemeDir || mkdir($persThemeDir, 0775) ||
 			die "cannot create directory $persThemeDir\n";
 	}
-	foreach $key (keys(%filesLines)) {
-		open(OUT,">$key") || die "cannot write on $key";
-		for ($i=0; $i <= $lastLine{$key}; $i++) {
+	foreach my $key (keys(%filesLines)) {
+		open(OUT,">$key") || die "cannot write on $key: $!";
+		for (my $i=0; $i <= $lastLine{$key}; $i++) {
 			print OUT $filesLines{"$key"}[$i]{line};
 		}
 		close(OUT);
@@ -1637,8 +1639,8 @@ sub writeFiles {
 
 sub debugfilesLines {
 
-	foreach $key (keys(%filesLines)) {
-		for ($i=0; $i <= $lastLine{$key}; $i++) {
+	foreach my $key (keys(%filesLines)) {
+		for (my $i=0; $i <= $lastLine{$key}; $i++) {
 			print $filesLines{"$key"}[$i]{line};
 		}
 	}
@@ -1657,7 +1659,7 @@ sub removeItemInlist {
 		undef ($$reflist[$last]); 
 		return 1;
 	}
-	for ($i=$item; $i < $last; $i++) {
+	for (my $i=$item; $i < $last; $i++) {
 		$$reflist[$i] = $$reflist[$i+1];
 	}
 	undef ($$reflist[$last]);

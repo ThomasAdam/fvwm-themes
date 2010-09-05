@@ -24,6 +24,7 @@
 #   pod2man -c "Fvwm Utility" fvwm-themes-com | nroff -man | less -e
 #-----------------------------------------------------------------------------
 
+use strict;
 use Getopt::Long;
 
 my $version = '@VERSION@';
@@ -58,10 +59,10 @@ GetOptions(
 ) || wrongUsage();
 
 my $bufFile = ".tmp-com-buf-$name";
-$bufFile = ".tmp-com-buf-$optBufferName" if ($optBufferName ne "");
+$bufFile = ".tmp-com-buf-$optBufferName" if (defined $optBufferName and $optBufferName ne "");
 
 if ($getBuf) {
-	$l = 0; $line-- if ($line > 0);
+	my $l = 0; $line-- if ($line > 0);
 	open(IN,"$bufFile") || die "cannot open $bufFile";
 	while(<IN>) {
 		if ($line == $l || !$line) { print $_; } 
@@ -72,7 +73,7 @@ if ($getBuf) {
 
 if ($clearBuf) { unlink($bufFile); }
 
-if ($message ne "") {
+if (defined $message and $message ne "") {
 
 	my $outFifo = ".tmp-com-out-$name";
 	my $inFifo = ".tmp-com-in-$name";
@@ -154,7 +155,7 @@ if ($message ne "") {
 
 	while(!$done) {
 		if (-p $inFifo) {
-			$answer[0]="";
+			my @answer;
 
 			eval {
 				local $SIG{ALRM} = sub { die "Timeout" };

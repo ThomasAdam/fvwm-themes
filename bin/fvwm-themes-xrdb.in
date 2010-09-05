@@ -1,9 +1,9 @@
 #!@PERL@ -w
 
-my $font = "-*-lucidabright-medium-r-*-*-14-*-*-*-*-*-*-*";
-my %fore = ();
-my %back = ();
+use strict;
 
+my $font = "-*-lucidabright-medium-r-*-*-14-*-*-*-*-*-*-*";
+my (%back, %fore );
 my @colorsetNames = qw(
 	default          inactivewindow   activewindow     inactivemenuitem
 	activemenuitem   greyedmenuitem   defaultmodule    swallowedwindow
@@ -35,7 +35,7 @@ foreach (@lines) {
 	}
 }
 
-$xresources = qq{
+my $xresources = qq{
 *Menu*background:              $back{form}
 rxvt*background:               $back{term}
 rxvt*foreground:               $fore{term}
