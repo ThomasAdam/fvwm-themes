@@ -1,4 +1,8 @@
 2010-08-05  Thomas Adam		  <thomas@xteddy.org>
+	* configure.in:
+	Remove refernce to AC_CONFIG_HEADERS.
+
+2010-08-05  Thomas Adam		  <thomas@xteddy.org>
 	* README:
 	* contrib/configure_dev.sh:
 	Add in a means of generating a configure script from the CVS sources.

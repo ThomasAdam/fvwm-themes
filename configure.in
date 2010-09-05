@@ -8,7 +8,6 @@ REQUIRED_FVWM_VERSION=2.5.8
 AC_SUBST(REQUIRED_FVWM_VERSION)dnl
 REQUIRED_PERL_VERSION=5.004
 AC_SUBST(REQUIRED_PERL_VERSION)dnl
-AC_CONFIG_HEADERS("")
 
 mg_ARG_WITH(fvwm-bindir,
 	[  --with-fvwm-bindir=DIR    specify fvwm bin directory, if not in PATH],
