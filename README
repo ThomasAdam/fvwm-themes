@@ -12,6 +12,18 @@ or project's development page (where you may download the package):
 This release should work out of the box and is stable enough.
 The development continues.
 
+How To Install (CVS)
+--------------------
+
+To use the CVS version of fvwm-themes, you will need autotools installed, as
+well as X11 header files.  The script:
+
+contrib/configure_dev.sh
+
+in the CVS sources will run the autotool commands to generate the necessary
+configure script.  See the section on "How to Install" in this document on
+how to install fvwm-themes in the usual way.
+
 How To Install
 --------------
 
