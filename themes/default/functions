@@ -48,7 +48,9 @@ DestroyFunc FuncFvwmDeleteOrDestroy
 AddToFunc   FuncFvwmDeleteOrDestroy
 + H Nop
 + M Nop
-+ C Delete
+# Use "Close" and not "Destroy" here, as not all windows are guaranteed
+# to listen for WM_DELETE_WINDOW.
++ C Close
 + D Destroy
 
 #DestroyFunc FuncFvwmMaximize
